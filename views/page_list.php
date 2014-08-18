@@ -41,7 +41,8 @@ if( $child_pages ){
 			'exclude'     => $asm->exclude
 		);
 
-		new Advanced_Sidebar_Menu_List_Pages( $top_parent, $args );
+		$menu = new Advanced_Sidebar_Menu_List_Pages( $top_parent, $args );
+		$menu->list_pages();
 
 
 		//TODO // REMOVE the old structure
