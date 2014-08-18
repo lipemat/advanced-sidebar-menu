@@ -18,12 +18,8 @@ class Advanced_Sidebar_Menu_List_PagesTest extends WP_UnitTestCase {
 		'sort_column' => 'menu_order, post_title'
 	);
 
-	private $o;
-
-
 	public function setUp() {
 		parent::setUp();
-		$this->o = new Advanced_Sidebar_Menu_List_Pages();
 		switch_to_blog( 3 );
 	}
 
