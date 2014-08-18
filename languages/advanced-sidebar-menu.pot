@@ -1,0 +1,109 @@
+# Copyright (C) 2013 Advanced Sidebar Menu
+# This file is distributed under the same license as the Advanced Sidebar Menu package.
+msgid ""
+msgstr ""
+"Project-Id-Version: Advanced Sidebar Menu 4.7.0\n"
+"Report-Msgid-Bugs-To: http://wordpress.org/tag/advanced-sidebar-menu\n"
+"POT-Creation-Date: 2013-12-12 17:08:18+00:00\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"PO-Revision-Date: 2013-MO-DA HO:MI+ZONE\n"
+"Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
+"Language-Team: LANGUAGE <LL@li.org>\n"
+
+#: advanced-sidebar-menu.php:55
+msgid "Want More Options"
+msgstr ""
+
+#: advanced-sidebar-menu.php:57
+msgid "Go Pro"
+msgstr ""
+
+#: widgets/category.widget.php:63 widgets/page.widget.php:56
+msgid "Title"
+msgstr ""
+
+#: widgets/category.widget.php:68
+msgid "Include Parent Category"
+msgstr ""
+
+#: widgets/category.widget.php:73 widgets/page.widget.php:65
+msgid "Include Parent Even With No Children"
+msgstr ""
+
+#: widgets/category.widget.php:77
+msgid "Use this plugins styling"
+msgstr ""
+
+#: widgets/category.widget.php:81
+msgid "Display Categories on Single Posts"
+msgstr ""
+
+#: widgets/category.widget.php:92
+msgid "Display Each Single Post's Category"
+msgstr ""
+
+#: widgets/category.widget.php:110
+msgid "Categories to Exclude, Comma Separated"
+msgstr ""
+
+#: widgets/category.widget.php:114 widgets/page.widget.php:95
+msgid "Legacy Mode: (use pre 4.0 structure and css)"
+msgstr ""
+
+#: widgets/category.widget.php:120
+msgid "Always Display Child Categories"
+msgstr ""
+
+#: widgets/category.widget.php:131 widgets/page.widget.php:111
+msgid "Levels to Display"
+msgstr ""
+
+#: widgets/page.widget.php:34
+msgid "Creates a menu of all the pages using the child/parent relationship"
+msgstr ""
+
+#: widgets/page.widget.php:38
+msgid "Advanced Sidebar Pages Menu"
+msgstr ""
+
+#: widgets/page.widget.php:60
+msgid "Include Parent Page"
+msgstr ""
+
+#: widgets/page.widget.php:70
+msgid "Order By"
+msgstr ""
+
+#: widgets/page.widget.php:88
+msgid "Use this Plugin's Styling"
+msgstr ""
+
+#: widgets/page.widget.php:92
+msgid "Pages to Exclude, Comma Separated"
+msgstr ""
+
+#: widgets/page.widget.php:100
+msgid "Always Display Child Pages"
+msgstr ""
+
+#. Plugin Name of the plugin/theme
+msgid "Advanced Sidebar Menu"
+msgstr ""
+
+#. Plugin URI of the plugin/theme
+msgid "http://matlipe.com/advanced-sidebar-menu/"
+msgstr ""
+
+#. Description of the plugin/theme
+msgid "Creates dynamic menu based on child/parent relationship."
+msgstr ""
+
+#. Author of the plugin/theme
+msgid "Mat Lipe"
+msgstr ""
+
+#. Author URI of the plugin/theme
+msgid "http://matlipe.com"
+msgstr ""
