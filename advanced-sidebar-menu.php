@@ -21,6 +21,7 @@ define( 'ADVANCED_SIDEBAR_LEGACY_DIR', ADVANCED_SIDEBAR_DIR . 'legacy/' );
 #-- Bring in the Widgets
 require( ADVANCED_SIDEBAR_WIDGETS_DIR.'init.php' );
 #-- Bring in the functions
+require( ADVANCED_SIDEBAR_DIR.'classes/Advanced_Sidebar_Menu_Deprecated.php' );
 require( ADVANCED_SIDEBAR_DIR.'classes/advancedSidebarMenu.php' );
 require( ADVANCED_SIDEBAR_DIR.'classes/Advanced_Sidebar_Menu_Page_Walker.php' );
 require( ADVANCED_SIDEBAR_DIR.'classes/Advanced_Sidebar_Menu_List_Pages.php' );

@@ -109,7 +109,7 @@ class Advanced_Sidebar_Menu_List_Pages{
 	/**
 	 * fill_class_vars
 	 *
-	 * Do any adjustmens to class vars here
+	 * Do any adjustments to class vars here
 	 *
 	 * @param $args
 	 *
@@ -200,7 +200,6 @@ class Advanced_Sidebar_Menu_List_Pages{
 		}
 
 		foreach( $pages as $page ){
-			## TODO // be sure to test for excluded pages ( perhaps unit test )
 			$content .= walk_page_tree( array( $page ), 1, $this->current_page_id, $this->args );
 
 				$content .= $this->list_grandchild_pages( $page->ID );
