@@ -3,7 +3,7 @@
 -- http://www.phpmyadmin.net
 --
 -- Host: 127.0.0.1
--- Generation Time: Aug 18, 2014 at 02:07 PM
+-- Generation Time: Aug 18, 2014 at 02:21 PM
 -- Server version: 5.5.32
 -- PHP Version: 5.4.16
 
@@ -55,7 +55,7 @@ CREATE TABLE IF NOT EXISTS `wp_3_posts` (
   KEY `type_status_date` (`post_type`,`post_status`,`post_date`,`ID`),
   KEY `post_parent` (`post_parent`),
   KEY `post_author` (`post_author`)
-) ENGINE=InnoDB  DEFAULT CHARSET=utf8 AUTO_INCREMENT=25 ;
+) ENGINE=InnoDB  DEFAULT CHARSET=utf8 AUTO_INCREMENT=29 ;
 
 --
 -- Dumping data for table `wp_3_posts`
@@ -85,7 +85,11 @@ INSERT INTO `wp_3_posts` (`ID`, `post_author`, `post_date`, `post_date_gmt`, `po
 (21, 1, '2014-08-18 18:27:11', '2014-08-18 18:27:11', '', 'sixth under under', '', 'publish', 'open', 'open', '', 'sixth-under-under', '', '', '2014-08-18 18:27:11', '2014-08-18 18:27:11', '', 19, 'http://wordpress.loc/asm/?page_id=21', 0, 'page', '', 0),
 (22, 1, '2014-08-18 18:27:11', '2014-08-18 18:27:11', '', 'sixth under under', '', 'inherit', 'open', 'open', '', '21-revision-v1', '', '', '2014-08-18 18:27:11', '2014-08-18 18:27:11', '', 21, 'http://wordpress.loc/asm/2014/08/18/21-revision-v1/', 0, 'revision', '', 0),
 (23, 1, '2014-08-18 18:27:32', '2014-08-18 18:27:32', '', 'fourth under also', '', 'publish', 'open', 'open', '', 'fourth-under-also', '', '', '2014-08-18 18:27:32', '2014-08-18 18:27:32', '', 15, 'http://wordpress.loc/asm/?page_id=23', 0, 'page', '', 0),
-(24, 1, '2014-08-18 18:27:32', '2014-08-18 18:27:32', '', 'fourth under also', '', 'inherit', 'open', 'open', '', '23-revision-v1', '', '', '2014-08-18 18:27:32', '2014-08-18 18:27:32', '', 23, 'http://wordpress.loc/asm/2014/08/18/23-revision-v1/', 0, 'revision', '', 0);
+(24, 1, '2014-08-18 18:27:32', '2014-08-18 18:27:32', '', 'fourth under also', '', 'inherit', 'open', 'open', '', '23-revision-v1', '', '', '2014-08-18 18:27:32', '2014-08-18 18:27:32', '', 23, 'http://wordpress.loc/asm/2014/08/18/23-revision-v1/', 0, 'revision', '', 0),
+(25, 1, '2014-08-18 19:17:05', '2014-08-18 19:17:05', '', 'Another under also ', '', 'publish', 'open', 'open', '', 'another-under-also', '', '', '2014-08-18 19:17:05', '2014-08-18 19:17:05', '', 7, 'http://wordpress.loc/asm/?page_id=25', 0, 'page', '', 0),
+(26, 1, '2014-08-18 19:17:05', '2014-08-18 19:17:05', '', 'Another under also ', '', 'inherit', 'open', 'open', '', '25-revision-v1', '', '', '2014-08-18 19:17:05', '2014-08-18 19:17:05', '', 25, 'http://wordpress.loc/asm/2014/08/18/25-revision-v1/', 0, 'revision', '', 0),
+(27, 1, '2014-08-18 19:17:28', '2014-08-18 19:17:28', '', 'another fourth under under', '', 'publish', 'open', 'open', '', 'another-fourth-under-under', '', '', '2014-08-18 19:17:28', '2014-08-18 19:17:28', '', 13, 'http://wordpress.loc/asm/?page_id=27', 0, 'page', '', 0),
+(28, 1, '2014-08-18 19:17:28', '2014-08-18 19:17:28', '', 'another fourth under under', '', 'inherit', 'open', 'open', '', '27-revision-v1', '', '', '2014-08-18 19:17:28', '2014-08-18 19:17:28', '', 27, 'http://wordpress.loc/asm/2014/08/18/27-revision-v1/', 0, 'revision', '', 0);
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
 /*!40101 SET CHARACTER_SET_RESULTS=@OLD_CHARACTER_SET_RESULTS */;
