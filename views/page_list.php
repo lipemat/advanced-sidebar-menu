@@ -42,7 +42,7 @@ if( $child_pages ){
 		);
 
 		$menu = new Advanced_Sidebar_Menu_List_Pages( $top_parent, $args );
-		$menu->list_pages();
+		$content .= $menu->list_pages();
 
 
 		//TODO // REMOVE the old structure

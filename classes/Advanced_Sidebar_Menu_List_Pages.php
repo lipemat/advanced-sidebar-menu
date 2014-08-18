@@ -86,9 +86,6 @@ class Advanced_Sidebar_Menu_List_Pages{
 	 * @param array $args - see $this->fill_class_vars
 	 */
 	public function __construct( $parent_id, $args ){
-		if( empty( $child_pages ) ){
-			return;
-		}
 
 		$this->top_parent_id = $parent_id;
 		$this->fill_class_vars( $args );
@@ -123,20 +120,24 @@ class Advanced_Sidebar_Menu_List_Pages{
 
 		$defaults = array(
 			'depth'        => 1,
-			'child_of'     => $this->top_parent_id,
+			'parent'       => $this->top_parent_id,
 			'exclude'      => '',
 			'echo'         => 0,
 			'sort_column'  => 'menu_order, post_title',
 			'walker'       => new Advanced_Sidebar_Menu_Page_Walker(),
-			'hierarchical' => 0
+			'hierarchical' => 0,
+			'link_before'  => '',
+			'link_after'   => '',
+			'title_li'     => ''
 		);
 
 		$args = wp_parse_args( $args, $defaults );
 
 		// sanitize, mostly to keep spaces out
-		$args[ 'exclude' ] = preg_replace( '/[^0-9,]/', '', $args[ 'exclude' ] );
-		$exclude_array     = ( $args[ 'exclude' ] ) ? explode( ',', $args[ 'exclude' ] ) : array();
-		$args[ 'exclude' ] = implode( ',', apply_filters( 'wp_list_pages_excludes', $exclude_array ) );
+		if( is_string( $args[ 'exclude' ] ) ){
+			$args[ 'exclude' ]  = explode( ',', $args[ 'exclude' ] );
+		}
+		$args[ 'exclude' ] = preg_replace( '/[^0-9,]/', '', implode( ',', apply_filters( 'wp_list_pages_excludes', $args[ 'exclude' ] ) ) );
 
 		$this->args = $args;
 
@@ -161,9 +162,9 @@ class Advanced_Sidebar_Menu_List_Pages{
 
 		foreach( $pages as $page ){
 
-			$this->output .= walk_page_tree( $page, 1, $this->current_page_id, $this->args );
+			$this->output .= walk_page_tree( array( $page ), 1, $this->current_page_id, $this->args );
 
-				$this->output .= $this->list_grandchild_pages( $page );
+				$this->output .= $this->list_grandchild_pages( $page->ID );
 
 			$this->output .= "</li>\n";
 
@@ -201,7 +202,7 @@ class Advanced_Sidebar_Menu_List_Pages{
 
 		foreach( $pages as $page ){
 			## TODO // be sure to test for excluded pages ( perhaps unit test )
-			$content .= walk_page_tree( $page, 1, $this->current_page_id, $this->args );
+			$content .= walk_page_tree( array( $page ), 1, $this->current_page_id, $this->args );
 
 				$content .= $this->list_grandchild_pages( $page->ID );
 
