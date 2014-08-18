@@ -120,7 +120,6 @@ class Advanced_Sidebar_Menu_List_Pages{
 
 		$defaults = array(
 			'depth'        => 1,
-			'parent'       => $this->top_parent_id,
 			'exclude'      => '',
 			'echo'         => 0,
 			'sort_column'  => 'menu_order, post_title',
@@ -158,7 +157,7 @@ class Advanced_Sidebar_Menu_List_Pages{
 	 */
 	public function list_pages() {
 
-		$pages = get_pages( $this->args );
+		$pages = $this->get_child_pages( $this->top_parent_id );
 
 		foreach( $pages as $page ){
 
@@ -196,7 +195,7 @@ class Advanced_Sidebar_Menu_List_Pages{
 			return '';
 		}
 
-		if( !$pages = $this->page_children( $parent_page_id ) ){
+		if( !$pages = $this->get_child_pages( $parent_page_id ) ){
 			return '';
 		}
 
@@ -229,10 +228,8 @@ class Advanced_Sidebar_Menu_List_Pages{
 	 *
 	 * @return array
 	 */
-	private function page_children( $parent_page_id ) {
+	public function get_child_pages( $parent_page_id ) {
 		$args = $this->args;
-
-		unset( $args[ 'include' ] );
 		$args[ 'parent' ] = $parent_page_id;
 
 		return get_pages( $args );
