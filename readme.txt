@@ -4,8 +4,8 @@ Contributors: Mat Lipe
 Donate link: https://www.paypal.com/cgi-bin/webscr?cmd=_donations&business=paypal%40lipeimagination%2einfo&lc=US&item_name=Advanced%20Sidebar%20Menu&no_note=0&currency_code=USD&bn=PP%2dDonationsBF%3abtn_donateCC_LG%2egif%3aNonHostedGuest
 Tags: menus, sidebar menu, heirchy, category menu, pages menu
 Requires at least: 3.8.0
-Tested up to: 3.9.1
-Stable tag: 4.7.6
+Tested up to: 3.9.2
+Stable tag: 5.0.0
 
 Creates a widget for both page and categories that will display the current page/category and all child pages or categories.
 
@@ -128,6 +128,10 @@ I do offer preminum services for buiding custom add-ons for additional functiona
 
 
 == Changelog ==
+= 5.0.0 =
+* Greatly improved performance
+* Improved code structure 
+
 = 4.7.0 =
 * Added Internationalization (I18n) support
 
@@ -189,6 +193,9 @@ I do offer preminum services for buiding custom add-ons for additional functiona
 
 
 == Upgrade Notice ==
+
+= 5.0.0 =
+If you used a custom page_list.php template previously you may want to redo it on this version to take advantage of the new structure.
 
 = 3.3.0 =
 If you customized the output previously you may want to redo it on this version to take advantage of the new structure.
