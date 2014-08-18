@@ -1,13 +1,10 @@
 <?php
 /**
- * The Ouput of the Advanced Sidebar Page Widget
+ * The Output of the Advanced Sidebar Page Widget
  *
  * @author Mat Lipe
  *
- * @since  4.5.0
- *
- * @since  9.24.13
- *
+ * @since  5.0.0
  *
  * @uses   to edit, create a file named page_list.php and put in a folder in the your theme called 'advanced-sidebar-menu
  * @uses   copy the contents of the file into that file and edit at will
@@ -33,8 +30,6 @@ if( $child_pages ){
 
 	} else {
 
-		//TODO // BENCHMARK new vs old
-
 		$args = array(
 			'post_type'   => $post_type,
 			'sort_column' => $order_by,
@@ -44,25 +39,6 @@ if( $child_pages ){
 		$menu = new Advanced_Sidebar_Menu_List_Pages( $top_parent, $args );
 		$content .= $menu->list_pages();
 
-
-		//TODO // REMOVE the old structure
-
-		#-- Display children of current page's parent only
-		foreach( $child_pages as $pID ){
-
-			#-- If the page is not in the excluded ones
-			if( $asm->exclude( $pID->ID ) ){
-				#--echo the current page from the $result
-				$content .= $asm->openListItem( wp_list_pages( "post_type=" . $post_type . "&sort_column=$order_by&title_li=&echo=0&depth=1&include=" . $pID->ID ) );
-			} else {
-				continue;
-			}
-
-			$content .= $asm->displayGrandChildMenu( $pID );
-
-
-			$content .= '</li>';
-		}
 	}
 
 	#-- Close the First Level menu
@@ -72,7 +48,3 @@ if( $child_pages ){
 if( $asm->include_parent() ){
 	$content .= '</li></ul><!-- .parent-sidebar-menu -->';
 }
-		
-
-
-	
