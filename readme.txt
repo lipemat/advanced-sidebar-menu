@@ -51,6 +51,9 @@ Many built in filters for altering the way the widgets function.
 Developer Docs may be found here
 <a href="http://matlipe.com/advanced-sidebar-menu/developer-docs/">http://matlipe.com/advanced-sidebar-menu/developer-docs/</a>
 
+To contribute send pull requests:
+<a href="https://github.com/lipemat/advanced-sidebar-menu">GitHub Repo</a>
+
 
 == Installation ==
 
