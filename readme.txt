@@ -57,9 +57,9 @@ To contribute send pull requests:
 
 == Installation ==
 
-This section describes how to install the plugin and get it working.
+Use the standard WordPress plugins search and install feature.
 
-e.g.
+Manual Installation
 
 1. Upload the `advanced-sidbebar-menu` folder to the `/wp-content/plugins/` directory
 1. Activate the plugin through the 'Plugins' menu in WordPress
