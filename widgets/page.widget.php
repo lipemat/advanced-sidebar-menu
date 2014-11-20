@@ -181,10 +181,6 @@ class advanced_sidebar_menu_page extends WP_Widget {
         $asm->instance = $instance;
         $asm->args = $args;
 
-	    if( isset( $args[ 'level_limit' ] ) ){
-		    $asm->levels = $args[ 'level_limit' ];
-	    }
-         
         do_action( 'advanced_sidebar_menu_widget_pre_render', $asm, $this );               
         
         //The excluded pages
