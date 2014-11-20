@@ -18,6 +18,7 @@ class advancedSidebarMenu extends Advanced_Sidebar_Menu_Deprecated {
 	var $order_by;
 	var $taxonomy; //For filters to override the taxonomy
 	var $current_term; //Current category or taxonomy
+	public $levels = 100;
 
 
 	/**

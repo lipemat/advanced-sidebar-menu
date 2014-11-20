@@ -82,12 +82,20 @@ class Advanced_Sidebar_Menu_List_Pages{
 	 *
 	 * Used in the view
 	 *
-	 * @param array $child_pages - array if page_ids
-	 * @param array $args - see $this->fill_class_vars
+	 * @param int $parent_id - $asm->top_id
+	 * @param advancedSidebarMenu $class
 	 */
-	public function __construct( $parent_id, $args ){
+	public function __construct( $parent_id, $class ){
 
 		$this->top_parent_id = $parent_id;
+
+		$args = array(
+			'post_type'   => $class->post_type,
+			'sort_column' => $class->order_by,
+			'exclude'     => $class->exclude,
+			'levels'      => $class->levels
+		);
+
 		$this->fill_class_vars( $args );
 
 	}
@@ -116,8 +124,6 @@ class Advanced_Sidebar_Menu_List_Pages{
 	 * @return void
 	 */
 	private function fill_class_vars( $args ){
-		global $wp_query;
-
 		$defaults = array(
 			'depth'        => 1,
 			'exclude'      => '',
@@ -127,7 +133,8 @@ class Advanced_Sidebar_Menu_List_Pages{
 			'hierarchical' => 0,
 			'link_before'  => '',
 			'link_after'   => '',
-			'title_li'     => ''
+			'title_li'     => '',
+			'levels'       => 100
 		);
 
 		$args = wp_parse_args( $args, $defaults );
@@ -189,8 +196,6 @@ class Advanced_Sidebar_Menu_List_Pages{
 	 * @return string
 	 */
 	private function list_grandchild_pages( $parent_page_id ){
-		$content = '';
-
 		if( !$this->current_page_ancestor( $parent_page_id ) ){
 			return '';
 		}
@@ -199,22 +204,28 @@ class Advanced_Sidebar_Menu_List_Pages{
 			return '';
 		}
 
-		foreach( $pages as $page ){
-			$content .= walk_page_tree( array( $page ), 1, $this->current_page_id, $this->args );
-
-				$content .= $this->list_grandchild_pages( $page->ID );
-
-			$content .= "</li>\n";
-
-		}
-
-		if( '' == $content ){
-			return $content;
+		if( $this->level == $this->args[ 'levels' ] ){
+			return '';
 		}
 
 		$this->level++;
 
-		return sprintf( '<ul class="grandchild-sidebar-menu level-%s children">', $this->level ) . $content . "</ul>\n";
+		$content = sprintf( '<ul class="grandchild-sidebar-menu level-%s children">', $this->level );
+		$inside = '';
+
+		foreach( $pages as $page ){
+			$inside .= walk_page_tree( array( $page ), 1, $this->current_page_id, $this->args );
+				$inside .= $this->list_grandchild_pages( $page->ID );
+			$inside .= "</li>\n";
+
+		}
+
+		if( '' == $inside ){
+			return '';
+		}
+
+
+		return $content . $inside  . "</ul>\n";
 	}
 
 

@@ -30,13 +30,7 @@ if( $child_pages ){
 
 	} else {
 
-		$args = array(
-			'post_type'   => $post_type,
-			'sort_column' => $order_by,
-			'exclude'     => $asm->exclude
-		);
-
-		$menu = new Advanced_Sidebar_Menu_List_Pages( $top_parent, $args );
+		$menu = new Advanced_Sidebar_Menu_List_Pages( $asm->top_id, $asm );
 		$content .= $menu->list_pages();
 
 	}
