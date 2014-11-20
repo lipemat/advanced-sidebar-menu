@@ -170,8 +170,7 @@ class advanced_sidebar_menu_page extends WP_Widget {
      *         apply_filters('advanced_sidebar_menu_top_parent', $top_parent, $post, $args, $instance );
      *         apply_filters('advanced_sidebar_menu_post_type', 'page', $args, $instance );
      * 
-     * 
-     * @since 11.4.13
+     *
      * 
      * @see Geansai - pointed out a notice level error. Thanks Geansai!!
      */
@@ -179,9 +178,12 @@ class advanced_sidebar_menu_page extends WP_Widget {
         global $wpdb, $post, $table_prefix;
         
         $asm = new advancedSidebarMenu();
-
         $asm->instance = $instance;
         $asm->args = $args;
+
+	    if( isset( $args[ 'level_limit' ] ) ){
+		    $asm->levels = $args[ 'level_limit' ];
+	    }
          
         do_action( 'advanced_sidebar_menu_widget_pre_render', $asm, $this );               
         
