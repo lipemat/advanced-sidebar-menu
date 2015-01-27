@@ -4,8 +4,8 @@ Contributors: Mat Lipe
 Donate link: https://www.paypal.com/cgi-bin/webscr?cmd=_donations&business=paypal%40lipeimagination%2einfo&lc=US&item_name=Advanced%20Sidebar%20Menu&no_note=0&currency_code=USD&bn=PP%2dDonationsBF%3abtn_donateCC_LG%2egif%3aNonHostedGuest
 Tags: menus, sidebar menu, heirchy, category menu, pages menu
 Requires at least: 3.8.0
-Tested up to: 4.0.1
-Stable tag: 5.0.2
+Tested up to: 4.1.0
+Stable tag: 5.0.3
 
 Creates a widget for both page and categories that will display the current page/category and all child pages or categories.
 
