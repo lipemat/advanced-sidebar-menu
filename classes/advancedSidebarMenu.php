@@ -22,21 +22,20 @@ class advancedSidebarMenu extends Advanced_Sidebar_Menu_Deprecated {
 
 
 	/**
-	 * Check is a page has children by id
+	 * Check is a post has children by id
 	 *
 	 * @since 8.29.13
 	 *
 	 * @param int $postId
+	 *
+	 * @return bool
 	 */
-	function hasChildren( $postId ) {
-		if( $this->post_type == 'page' ){
-			$children = get_pages( "child_of=$postId" );
-		} else {
-			$children = get_posts( array(
-				'post_type'   => $this->post_type,
-				'post_parent' => $postId
-			) );
-		}
+	function hasChildren( $postId ){
+		$children  = get_children( array(
+			'post_parent' => $postId,
+			'fields' => 'ids'
+		));
+
 		if( count( $children ) != 0 ){
 			return true;
 		} else {
