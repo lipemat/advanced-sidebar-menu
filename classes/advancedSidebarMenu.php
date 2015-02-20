@@ -31,10 +31,14 @@ class advancedSidebarMenu extends Advanced_Sidebar_Menu_Deprecated {
 	 * @return bool
 	 */
 	function hasChildren( $postId ){
-		$children  = get_children( array(
+		$args = array(
 			'post_parent' => $postId,
-			'fields' => 'ids'
-		));
+			'fields' => 'ids',
+			'post_type' => get_post_type( $postId ),
+			'post_status' => 'publish'
+		);
+
+		$children  = get_children( $args );
 
 		if( count( $children ) != 0 ){
 			return true;
