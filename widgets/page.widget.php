@@ -250,16 +250,14 @@ class advanced_sidebar_menu_page extends WP_Widget {
 				echo '</style>';
 			}
 
-			//Start the menu
 			echo $before_widget;
-			#-- Bring in the
-			$content = '';
-			require( $asm->file_hyercy( 'page_list.php', $legacy ) );
-			echo apply_filters( 'advanced_sidebar_menu_page_widget_output', $content, $args, $instance );
+				$content = '';
+				require( $asm->file_hyercy( 'page_list.php', $legacy ) );
+				echo apply_filters( 'advanced_sidebar_menu_page_widget_output', $content, $args, $instance );
 			echo $after_widget;
 
 		}
 
-	} #== /widget()
+	}
 
-} #== /Clas
+}

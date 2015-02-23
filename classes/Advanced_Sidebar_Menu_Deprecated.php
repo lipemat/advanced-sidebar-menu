@@ -16,7 +16,9 @@ class Advanced_Sidebar_Menu_Deprecated {
 	function page_children( $pID ) {
 		global $wpdb, $table_prefix;
 
-		return $wpdb->get_results( "SELECT ID FROM " . $table_prefix . "posts WHERE post_parent = " . $pID . " AND post_status='publish' ORDER By " . $this->order_by );
+		_deprecated_function( 'advancedSidebarMenu::page_children', "5.0.0", 'advancedSidebarMenu::hasChildren' );
+
+		return $wpdb->get_results( "SELECT ID FROM " . $table_prefix . "posts WHERE post_parent = " . $pID . " AND post_type = $this->post_type AND post_status='publish' ORDER By " . $this->order_by );
 
 	}
 
