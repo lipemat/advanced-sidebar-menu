@@ -175,71 +175,58 @@ class advanced_sidebar_menu_page extends WP_Widget {
      * @see Geansai - pointed out a notice level error. Thanks Geansai!!
      */
     function widget($args, $instance) {
-        global $wpdb, $post, $table_prefix;
+        global $wpdb, $post;
         
         $asm = new advancedSidebarMenu();
         $asm->instance = $instance;
         $asm->args = $args;
+	    $asm->exclude  = apply_filters( 'advanced_sidebar_menu_excluded_pages', explode(',', $instance['exclude']), $post, $asm->args, $asm->instance, $asm );
 
         do_action( 'advanced_sidebar_menu_widget_pre_render', $asm, $this );               
-        
-        //The excluded pages
-        $exclude = apply_filters( 'advanced_sidebar_menu_excluded_pages', explode(',', $instance['exclude']), $post, $args, $instance, $asm );
-        $asm->exclude = $exclude;
 
         extract($args);
-        
-        //Filter this one with a 'single' for a custom post type will default to working for pages only
-        $post_type = apply_filters('advanced_sidebar_menu_post_type', 'page', $args, $instance, $asm  );
-        $asm->post_type = $post_type;
-        
-        //Add a has_children class to appropriate pages
+
+	    $filter_args = array(
+		    1 => &$asm->args,
+		    2 => &$asm->instance,
+		    3 => &$asm
+	    );
+
+		$filter_args[ 0 ] = 'page';
+	    $asm->post_type = $post_type = apply_filters_ref_array('advanced_sidebar_menu_post_type', $filter_args );
+
+
         add_filter( 'page_css_class', array( $asm, 'hasChildrenClass' ), 2, 2 );
-        
-        //Add the default classes to pages from a custom post type
         if( $asm->post_type != 'page' ){
              add_filter( 'page_css_class', array( $asm, 'custom_post_type_css' ), 2, 4 );   
         }
-        
-        
+
         $proper_single = !( is_page() || ( is_single() && $asm->post_type == get_post_type() ) );
-        //Filter the single post check if try to display the menu somewhere else like a category page
         if( apply_filters( 'advanced_sidebar_menu_proper_single', $proper_single, $args, $instance, $asm ) ){
        		return;
 		}
-        
 
-        //Get the Top Parent Id
         if($post->ancestors){
              $ancestors = $post->ancestors;
              $top_parent = end( $ancestors );
         } else {
              $top_parent = $post->ID;
         }   
-        //Filter for specifying the top parent
-        $top_parent = apply_filters( 'advanced_sidebar_menu_top_parent', $top_parent, $post, $args, $instance, $asm );
-        $asm->top_id = $top_parent;
 
-
-        //Bail if the parent page does not belong in this menu
+	    $asm->top_id = $top_parent = apply_filters( 'advanced_sidebar_menu_top_parent', $top_parent, $post, $args, $instance, $asm );
         if( get_post_type( $asm->top_id ) != $asm->post_type ) return;
-        
-        
-        //Filter for specifiying the order by
-        $order_by = apply_filters('advanced_sidebar_menu_order_by', $instance['order_by'], $post, $args, $instance, $asm );
-        $asm->order_by = $order_by; 
+
+	    $asm->order_by = $order_by = apply_filters('advanced_sidebar_menu_order_by', $instance['order_by'], $post, $args, $instance, $asm );
+
             
         /**
          * Must be done this way to prevent doubling up of pages
          */
         $child_pages = $wpdb->get_results( "SELECT ID FROM ". $wpdb->posts ." WHERE post_parent = $top_parent AND post_status='publish' AND post_type='$post_type' Order by $order_by" );
-		 
-        //for depreciation
-        $p = $top_parent;
-        $result = $child_pages = apply_filters( 'advanced_sidebar_menu_child_pages', $child_pages, $post, $args, $instance, $asm );
+        $child_pages = apply_filters( 'advanced_sidebar_menu_child_pages', $child_pages, $post, $args, $instance, $asm );
 
         #---- if there are no children do not display the parent unless it is check to do so
-        if( (!empty($child_pages)) || $asm->checked('include_childless_parent') && (!in_array($top_parent, $exclude) )  ){
+        if( (!empty($child_pages)) || $asm->checked('include_childless_parent') && (!in_array($top_parent, $asm->exclude) )  ){
             
                 $legacy = $asm->checked('legacy_mode');
             
@@ -248,7 +235,6 @@ class advanced_sidebar_menu_page extends WP_Widget {
                         include( $asm->file_hyercy('sidebar-menu.css', $legacy ) );
                     echo '</style>';
                 }
-    
                 
                 //Start the menu
                 echo $before_widget;

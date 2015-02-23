@@ -18,6 +18,24 @@ class advancedSidebarMenu extends Advanced_Sidebar_Menu_Deprecated {
 	var $order_by;
 	var $taxonomy; //For filters to override the taxonomy
 	var $current_term; //Current category or taxonomy
+
+	/**
+	 * args
+	 *
+	 * Widget Args
+	 *
+	 * @var array
+	 */
+	public $args = array();
+
+	/**
+	 * post_type
+	 *
+	 * @var string
+	 */
+	public $post_type = 'page';
+
+
 	public $levels = 100;
 
 
