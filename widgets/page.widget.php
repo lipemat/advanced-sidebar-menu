@@ -215,7 +215,8 @@ class advanced_sidebar_menu_page extends WP_Widget {
 		}
 
 		$proper_single = !( is_page() || ( is_single() && $asm->post_type == get_post_type() ) );
-		if( apply_filters( 'advanced_sidebar_menu_proper_single', $proper_single, $args, $instance, $asm ) ){
+		$filter_args[0] = $proper_single;
+		if( apply_filters_ref_array( 'advanced_sidebar_menu_proper_single', $filter_args ) ){
 			return;
 		}
 
@@ -226,18 +227,24 @@ class advanced_sidebar_menu_page extends WP_Widget {
 			$top_parent = $post->ID;
 		}
 
-		$asm->top_id = $top_parent = apply_filters( 'advanced_sidebar_menu_top_parent', $top_parent, $post, $args, $instance, $asm );
+		$filter_args[ 0 ] = $top_parent;
+		$asm->top_id = $top_parent = apply_filters_ref_array( 'advanced_sidebar_menu_top_parent', $filter_args );
 		if( get_post_type( $asm->top_id ) != $asm->post_type ){
 			return;
 		}
 
-		$asm->order_by = $order_by = apply_filters( 'advanced_sidebar_menu_order_by', $instance[ 'order_by' ], $post, $args, $instance, $asm );
+		unset( $filter_args[ 0 ] );
+		array_unshift( $filter_args, $post );
+		array_unshift( $filter_args, $instance[ 'order_by' ] );
+
+		$asm->order_by = $order_by = apply_filters_ref_array( 'advanced_sidebar_menu_order_by', $filter_args );
 
 		/**
 		 * Must be done this way to prevent doubling up of pages
 		 */
 		$child_pages = $wpdb->get_results( "SELECT ID FROM " . $wpdb->posts . " WHERE post_parent = $top_parent AND post_status='publish' AND post_type='$post_type' Order by $order_by" );
-		$child_pages = apply_filters( 'advanced_sidebar_menu_child_pages', $child_pages, $post, $args, $instance, $asm );
+		$filter_args[ 0 ] = $child_pages;
+		$child_pages = apply_filters_ref_array( 'advanced_sidebar_menu_child_pages', $filter_args );
 
 		#---- if there are no children do not display the parent unless it is check to do so
 		if( ( !empty( $child_pages ) ) || $asm->checked( 'include_childless_parent' ) && ( !in_array( $top_parent, $asm->exclude ) ) ){
