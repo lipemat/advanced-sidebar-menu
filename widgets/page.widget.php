@@ -189,7 +189,7 @@ class advanced_sidebar_menu_page extends WP_Widget {
 	 * @see    Geansai - pointed out a notice level error. Thanks Geansai!!
 	 */
 	function widget( $args, $instance ){
-		global $wpdb, $post;
+		global $post;
 
 		$asm           = new advancedSidebarMenu();
 		$asm->instance = $instance;
@@ -201,9 +201,9 @@ class advanced_sidebar_menu_page extends WP_Widget {
 		extract( $args );
 
 		$filter_args = array(
-			1 => &$asm->args,
-			2 => &$asm->instance,
-			3 => &$asm
+			1 => $asm->args,
+			2 => $asm->instance,
+			3 => $asm
 		);
 
 		$filter_args[ 0 ] = 'page';
@@ -214,8 +214,8 @@ class advanced_sidebar_menu_page extends WP_Widget {
 			add_filter( 'page_css_class', array( $asm, 'custom_post_type_css' ), 2, 4 );
 		}
 
-		$proper_single = !( is_page() || ( is_single() && $asm->post_type == get_post_type() ) );
-		$filter_args[0] = $proper_single;
+		$proper_single    = !( is_page() || ( is_single() && $asm->post_type == get_post_type() ) );
+		$filter_args[ 0 ] = $proper_single;
 		if( apply_filters_ref_array( 'advanced_sidebar_menu_proper_single', $filter_args ) ){
 			return;
 		}
@@ -228,7 +228,7 @@ class advanced_sidebar_menu_page extends WP_Widget {
 		}
 
 		$filter_args[ 0 ] = $top_parent;
-		$asm->top_id = $top_parent = apply_filters_ref_array( 'advanced_sidebar_menu_top_parent', $filter_args );
+		$asm->top_id      = $top_parent = apply_filters_ref_array( 'advanced_sidebar_menu_top_parent', $filter_args );
 		if( get_post_type( $asm->top_id ) != $asm->post_type ){
 			return;
 		}
@@ -239,12 +239,7 @@ class advanced_sidebar_menu_page extends WP_Widget {
 
 		$asm->order_by = $order_by = apply_filters_ref_array( 'advanced_sidebar_menu_order_by', $filter_args );
 
-		/**
-		 * Must be done this way to prevent doubling up of pages
-		 */
-		$child_pages = $wpdb->get_results( "SELECT ID FROM " . $wpdb->posts . " WHERE post_parent = $top_parent AND post_status='publish' AND post_type='$post_type' Order by $order_by" );
-		$filter_args[ 0 ] = $child_pages;
-		$child_pages = apply_filters_ref_array( 'advanced_sidebar_menu_child_pages', $filter_args );
+		$child_pages = $this->get_child_pages( $asm, $filter_args );
 
 		#---- if there are no children do not display the parent unless it is check to do so
 		if( ( !empty( $child_pages ) ) || $asm->checked( 'include_childless_parent' ) && ( !in_array( $top_parent, $asm->exclude ) ) ){
@@ -258,12 +253,55 @@ class advanced_sidebar_menu_page extends WP_Widget {
 			}
 
 			echo $before_widget;
-				$content = '';
-				require( $asm->file_hyercy( 'page_list.php', $legacy ) );
-				echo apply_filters( 'advanced_sidebar_menu_page_widget_output', $content, $args, $instance );
+			$content = '';
+			require( $asm->file_hyercy( 'page_list.php', $legacy ) );
+			echo apply_filters( 'advanced_sidebar_menu_page_widget_output', $content, $args, $instance );
 			echo $after_widget;
 
 		}
+
+	}
+
+
+	/**
+	 * get_child_pages
+	 *
+	 * Get the children's ids of the top level parent
+	 *
+	 * @param advancedSidebarMenu $asm
+	 * @param array $filter_args
+	 *
+	 * @filter advanced_sidebar_menu_child_pages
+	 *
+	 * @return mixed
+	 */
+	private function get_child_pages( $asm, $filter_args ){
+		global $wpdb;
+		$_excluded = '';
+
+		if( !empty( $asm->exclude ) ){
+			$asm->exclude = array_filter( $asm->exclude );
+			if( !empty( $asm->exclude ) ){
+				foreach( $asm->exclude as $k => $_exclude ){
+					$asm->exclude[ $k ] = (int) $_exclude;
+				}
+				$_excluded = "AND ID NOT IN (" . implode( ',', $asm->exclude ) . ")";
+			}
+		}
+
+		$query = "SELECT ID FROM $wpdb->posts
+					WHERE post_parent = $asm->top_id
+					AND post_status='publish'
+					AND post_type='$asm->post_type'
+					$_excluded
+					Order by $asm->order_by";
+
+		$child_pages = $wpdb->get_col( $query );
+
+		$filter_args[ 0 ] = $child_pages;
+		$child_pages      = apply_filters_ref_array( 'advanced_sidebar_menu_child_pages', $filter_args );
+
+		return $child_pages;
 
 	}
 
