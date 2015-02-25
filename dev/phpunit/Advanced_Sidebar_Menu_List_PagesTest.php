@@ -13,14 +13,10 @@ class Advanced_Sidebar_Menu_List_PagesTest extends WP_UnitTestCase {
 	private $top_parent = 2; //sample-page
 
 	public $default_args = array(
-		'depth'        => 1,
-		'exclude'      => '',
-		'echo'         => 0,
-		'sort_column'  => 'menu_order, post_title',
-		'hierarchical' => 0,
-		'link_before'  => '',
-		'link_after'   => '',
-		'title_li'     => '',
+		'post_type' => 'page',
+		'exclude'   => '',
+		'order_by'  => 'menu_order, post_title',
+		'levels'    => 0
 	);
 
 	public function setUp() {
@@ -32,7 +28,7 @@ class Advanced_Sidebar_Menu_List_PagesTest extends WP_UnitTestCase {
 		$args = $this->default_args;
 		$args[ 'exclude' ] = "7,19,";
 
-		$menu = new Advanced_Sidebar_Menu_List_Pages( $this->top_parent, $args );
+		$menu = new Advanced_Sidebar_Menu_List_Pages( $this->top_parent, (object)$args );
 
 		function not_contains_page_id( $pages, $menu, $test ){
 			$pages = wp_list_pluck( $pages, 'ID' );
@@ -53,9 +49,9 @@ class Advanced_Sidebar_Menu_List_PagesTest extends WP_UnitTestCase {
 
 	public function test_order_by_title(){
 		$args = $this->default_args;
-		$args[ 'sort_column' ] = "title";
+		$args[ 'order_by' ] = "title";
 
-		$menu = new Advanced_Sidebar_Menu_List_Pages( $this->top_parent, $args );
+		$menu = new Advanced_Sidebar_Menu_List_Pages( $this->top_parent, (object)$args );
 
 		function ordered_by_title( $pages, $menu, $test ){
 			$orig = wp_list_pluck( $pages, 'post_title' );
@@ -76,9 +72,9 @@ class Advanced_Sidebar_Menu_List_PagesTest extends WP_UnitTestCase {
 
 	public function test_order_by_menu_order(){
 		$args = $this->default_args;
-		$args[ 'sort_column' ] = "menu_order";
+		$args[ 'order_by' ] = "menu_order";
 
-		$menu = new Advanced_Sidebar_Menu_List_Pages( $this->top_parent, $args );
+		$menu = new Advanced_Sidebar_Menu_List_Pages( $this->top_parent, (object)$args );
 
 		function ordered_by_menu_order( $pages, $menu, $test ){
 			$orig = wp_list_pluck( $pages, 'menu_order' );
