@@ -1,24 +1,18 @@
 <?php
 
+
+define( 'ABSPATH', "E:/SVN/wordpress/wp/" );
+define( 'WP_TESTS_DIR', 'E:/SVN/wordpress-tests/' );
+define( 'WP_CONTENT_DIR', 'E:/SVN/wordpress/content/' );
+define(	'WP_CONTENT_URL' ,'http://wordpress.loc/content' );
+
+
 // Test with multisite enabled.
 // Alternatively, use the tests/phpunit/multisite.xml configuration file.
 define( 'WP_TESTS_MULTISITE', true );
 
-// Force known bugs to be run.
-// Tests with an associated Trac ticket that is still open are normally skipped.
-// define( 'WP_TESTS_FORCE_KNOWN_BUGS', true );
-
 // Test with WordPress debug mode (default).
 define( 'WP_DEBUG', true );
-
-// ** MySQL settings ** //
-
-// This configuration file will be used by the copy of WordPress being tested.
-// wordpress/wp-config.php will be ignored.
-
-// WARNING WARNING WARNING!
-// These tests will DROP ALL TABLES in the database with the prefix named below.
-// DO NOT use a production database or one that is shared with something else.
 
 $_SERVER[ 'REMOTE_ADDR' ] = "127.0.0.1";
 
@@ -33,14 +27,14 @@ $table_prefix  = 'wp_';   // Only numbers, letters, and underscores please!
 
 define( 'WP_TESTS_DOMAIN', 'wordpress.loc' );
 define( 'WP_TESTS_EMAIL', 'mat@matlipe.com' );
-define( 'WP_TESTS_TITLE', 'Advanced Sidebar Menu Testing' );
+define( 'WP_TESTS_TITLE', 'asm testing' );
 
-define('DOMAIN_CURRENT_SITE', 'wordpress.loc');
+define('DOMAIN_CURRENT_SITE', 'wordpress.loc/');
 define('PATH_CURRENT_SITE', '/asm/');
 define('SITE_ID_CURRENT_SITE', 1);
-define('BLOG_ID_CURRENT_SITE', 3);
+define('BLOG_ID_CURRENT_SITE', 2);
 
 define( 'WP_PHP_BINARY', 'php' );
 
 //error_reporting(E_ERROR | E_WARNING | E_PARSE | E_NOTICE);
-ini_set('display_errors', 0);
+ini_set('display_errors', 1);
