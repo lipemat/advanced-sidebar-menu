@@ -28,6 +28,9 @@ class Advanced_Sidebar_Menu_Deprecated {
 	 */
 	function page_ancestor( $pID ) {
 		global $post;
+		if( is_numeric( $pID ) ){
+			$pID = get_post( $pID );
+		}
 
 		if( $pID->ID == $post->ID or $pID->ID == $post->post_parent or @in_array( $pID->ID, $post->ancestors ) ){
 			$return = true;

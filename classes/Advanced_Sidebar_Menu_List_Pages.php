@@ -258,7 +258,6 @@ class Advanced_Sidebar_Menu_List_Pages{
 	 */
 	private function current_page_ancestor( $page_id ) {
 		$return = false;
-
 		if( !empty( $this->current_page_id ) ){
 			if( $page_id == $this->current_page_id ){
 				$return = true;
