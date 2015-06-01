@@ -171,7 +171,7 @@ class advanced_sidebar_menu_category extends WP_Widget {
 	 * @since  5.19.13
 	 */
 	function update( $newInstance, $oldInstance ){
-		$newInstance[ 'exclude' ] = strip_tags( $new_instance[ 'exclude' ] );
+		$newInstance[ 'exclude' ] = strip_tags( $newInstance[ 'exclude' ] );
 		$newInstance              = apply_filters( 'advanced_sidebar_menu_category_widget_update', $newInstance, $oldInstance );
 
 		return $newInstance;
