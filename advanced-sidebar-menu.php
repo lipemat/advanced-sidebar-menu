@@ -4,11 +4,11 @@ Plugin Name: Advanced Sidebar Menu
 Plugin URI: http://matlipe.com/advanced-sidebar-menu/
 Description: Creates dynamic menu based on child/parent relationship.
 Author: Mat Lipe
-Version: 5.0.7
+Version: 5.0.8
 Author URI: http://matlipe.com
 */
 
-define( 'ADVANCED_SIDEBAR_BASIC_VERSION', '5.0.7' );
+define( 'ADVANCED_SIDEBAR_BASIC_VERSION', '5.0.8' );
 
 
 #-- Define Constants
