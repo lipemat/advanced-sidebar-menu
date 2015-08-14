@@ -28,22 +28,15 @@ class advanced_sidebar_menu_category extends WP_Widget {
 	);
 
 
-	#-------------------------------------------------------------------------------------------------------------------------
-
-	/**
-	 * Build the widget like a Baller
-	 *
-	 * @since 8.1.13
-	 */
 	function __construct(){
-		/* Widget settings. */
+
 		$widget_ops  = array(
 			'classname'   => 'advanced-sidebar-menu advanced-sidebar-category',
 			'description' => 'Creates a menu of all the Categories using the child/parent relationship'
 		);
 		$control_ops = array( 'width' => 290 );
-		/* Create the widget. */
-		$this->WP_Widget( 'advanced_sidebar_menu_category', 'Advanced Sidebar Categories Menu', $widget_ops, $control_ops );
+
+		parent::__construct( 'advanced_sidebar_menu_category', 'Advanced Sidebar Categories Menu', $widget_ops, $control_ops );
 	}
 
 

@@ -27,14 +27,8 @@ class advanced_sidebar_menu_page extends WP_Widget {
 	);
 
 
-	/**
-	 * Build the widget like a BOSS
-	 *
-	 * @since 4.5.13
-	 *
-	 */
 	function __construct(){
-		/* Widget settings. */
+
 		$widget_ops  = array(
 			'classname'   => 'advanced-sidebar-menu',
 			'description' => __( 'Creates a menu of all the pages using the child/parent relationship', 'advanced-sidebar-menu' )
@@ -43,8 +37,8 @@ class advanced_sidebar_menu_page extends WP_Widget {
 			'width' => 290
 		);
 
-		/* Create the widget. */
-		$this->WP_Widget( 'advanced_sidebar_menu', __( 'Advanced Sidebar Pages Menu', 'advanced-sidebar-menu' ), $widget_ops, $control_ops );
+
+		parent::__construct( 'advanced_sidebar_menu', __( 'Advanced Sidebar Pages Menu', 'advanced-sidebar-menu' ), $widget_ops, $control_ops );
 
 	}
 
