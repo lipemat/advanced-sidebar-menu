@@ -32,11 +32,11 @@ class advanced_sidebar_menu_category extends WP_Widget {
 
 		$widget_ops  = array(
 			'classname'   => 'advanced-sidebar-menu advanced-sidebar-category',
-			'description' => 'Creates a menu of all the Categories using the child/parent relationship'
+			'description' => __( 'Creates a menu of all the categories using the child/parent relationship', 'advanced-sidebar-menu' )
 		);
 		$control_ops = array( 'width' => 290 );
 
-		parent::__construct( 'advanced_sidebar_menu_category', 'Advanced Sidebar Categories Menu', $widget_ops, $control_ops );
+		parent::__construct( 'advanced_sidebar_menu_category', __( 'Advanced Sidebar Categories Menu', 'advanced-sidebar-menu' ), $widget_ops, $control_ops );
 	}
 
 

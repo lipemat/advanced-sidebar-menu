@@ -1,34 +1,51 @@
-# Copyright (C) 2013 Advanced Sidebar Menu
-# This file is distributed under the same license as the Advanced Sidebar Menu package.
+#, fuzzy
 msgid ""
 msgstr ""
-"Project-Id-Version: Advanced Sidebar Menu 4.7.0\n"
-"Report-Msgid-Bugs-To: http://wordpress.org/tag/advanced-sidebar-menu\n"
-"POT-Creation-Date: 2013-12-12 17:08:18+00:00\n"
+"Plural-Forms: nplurals=INTEGER; plural=EXPRESSION;\n"
+"Project-Id-Version: Advanced Sidebar Menu\n"
+"POT-Creation-Date: 2015-08-14 16:54-0400\n"
+"PO-Revision-Date: 2015-08-14 16:53-0400\n"
+"Last-Translator: \n"
+"Language-Team: \n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"PO-Revision-Date: 2013-MO-DA HO:MI+ZONE\n"
-"Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
-"Language-Team: LANGUAGE <LL@li.org>\n"
+"X-Generator: Poedit 1.8.4\n"
+"X-Poedit-Basepath: ..\n"
+"X-Poedit-WPHeader: advanced-sidebar-menu.php\n"
+"X-Poedit-SourceCharset: UTF-8\n"
+"X-Poedit-KeywordsList: __;_e;_n:1,2;_x:1,2c;_ex:1,2c;_nx:4c,1,2;esc_attr__;"
+"esc_attr_e;esc_attr_x:1,2c;esc_html__;esc_html_e;esc_html_x:1,2c;_n_noop:1,2;"
+"_nx_noop:3c,1,2;__ngettext_noop:1,2\n"
+"X-Poedit-SearchPath-0: .\n"
+"X-Poedit-SearchPathExcluded-0: *.js\n"
 
-#: advanced-sidebar-menu.php:55
+#: advanced-sidebar-menu.php:56
 msgid "Want More Options"
 msgstr ""
 
-#: advanced-sidebar-menu.php:57
+#: advanced-sidebar-menu.php:58
 msgid "Go Pro"
 msgstr ""
 
-#: widgets/category.widget.php:63 widgets/page.widget.php:56
+#: widgets/category.widget.php:35
+msgid ""
+"Creates a menu of all the categories using the child/parent relationship"
+msgstr ""
+
+#: widgets/category.widget.php:39
+msgid "Advanced Sidebar Categories Menu"
+msgstr ""
+
+#: widgets/category.widget.php:57 widgets/page.widget.php:60
 msgid "Title"
 msgstr ""
 
-#: widgets/category.widget.php:68
+#: widgets/category.widget.php:64
 msgid "Include Parent Category"
 msgstr ""
 
-#: widgets/category.widget.php:73 widgets/page.widget.php:65
+#: widgets/category.widget.php:71 widgets/page.widget.php:73
 msgid "Include Parent Even With No Children"
 msgstr ""
 
@@ -36,27 +53,27 @@ msgstr ""
 msgid "Use this plugins styling"
 msgstr ""
 
-#: widgets/category.widget.php:81
+#: widgets/category.widget.php:83
 msgid "Display Categories on Single Posts"
 msgstr ""
 
-#: widgets/category.widget.php:92
+#: widgets/category.widget.php:96
 msgid "Display Each Single Post's Category"
 msgstr ""
 
-#: widgets/category.widget.php:110
+#: widgets/category.widget.php:114
 msgid "Categories to Exclude, Comma Separated"
 msgstr ""
 
-#: widgets/category.widget.php:114 widgets/page.widget.php:95
+#: widgets/category.widget.php:120 widgets/page.widget.php:109
 msgid "Legacy Mode: (use pre 4.0 structure and css)"
 msgstr ""
 
-#: widgets/category.widget.php:120
+#: widgets/category.widget.php:127
 msgid "Always Display Child Categories"
 msgstr ""
 
-#: widgets/category.widget.php:131 widgets/page.widget.php:111
+#: widgets/category.widget.php:140 widgets/page.widget.php:128
 msgid "Levels to Display"
 msgstr ""
 
@@ -64,27 +81,27 @@ msgstr ""
 msgid "Creates a menu of all the pages using the child/parent relationship"
 msgstr ""
 
-#: widgets/page.widget.php:38
+#: widgets/page.widget.php:41
 msgid "Advanced Sidebar Pages Menu"
 msgstr ""
 
-#: widgets/page.widget.php:60
+#: widgets/page.widget.php:66
 msgid "Include Parent Page"
 msgstr ""
 
-#: widgets/page.widget.php:70
+#: widgets/page.widget.php:79
 msgid "Order By"
 msgstr ""
 
-#: widgets/page.widget.php:88
+#: widgets/page.widget.php:98
 msgid "Use this Plugin's Styling"
 msgstr ""
 
-#: widgets/page.widget.php:92
-msgid "Pages to Exclude, Comma Separated"
+#: widgets/page.widget.php:104
+msgid "Pages to Exclude (ids), Comma Separated"
 msgstr ""
 
-#: widgets/page.widget.php:100
+#: widgets/page.widget.php:115
 msgid "Always Display Child Pages"
 msgstr ""
 
