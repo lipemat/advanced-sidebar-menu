@@ -2,9 +2,9 @@
 
 Contributors: Mat Lipe
 Donate link: https://www.paypal.com/cgi-bin/webscr?cmd=_donations&business=paypal%40lipeimagination%2einfo&lc=US&item_name=Advanced%20Sidebar%20Menu&no_note=0&currency_code=USD&bn=PP%2dDonationsBF%3abtn_donateCC_LG%2egif%3aNonHostedGuest
-Tags: menus, sidebar menu, heirchy, category menu, pages menu
+Tags: menus, sidebar menu, hierarchy, category menu, pages menu
 Requires at least: 3.8.0
-Tested up to: 4.3.0
+Tested up to: 4.3.1
 Stable tag: 5.0.8
 
 Creates a widget for both page and categories that will display the current page/category and all child pages or categories.
@@ -14,7 +14,7 @@ Creates a widget for both page and categories that will display the current page
 Creates a widget for both page and categories that will display the current page/category and an child pages or categories.
 Keeps the menu clean and usable.
 
-<h3>Want More Options and Better Support?</h3>
+<h3>Want more options and better support?</h3>
 	
 <strong><big><a href="http://matlipe.com/product/advanced-sidebar-menu-pro/">Go Pro!</a></big></strong>
 
@@ -48,8 +48,8 @@ Templates may be overridden for customization of outputs and/or css.
 
 Many built in filters for altering the way the widgets function.
    
-Developer Docs may be found here
-<a href="http://matlipe.com/advanced-sidebar-menu/developer-docs/">http://matlipe.com/advanced-sidebar-menu/developer-docs/</a>
+Developer docs may be found here
+<a href="https://matlipe.com/advanced-sidebar-menu/developer-docs/">https://matlipe.com/advanced-sidebar-menu/developer-docs/</a>
 
 To contribute send pull requests:
 <a href="https://github.com/lipemat/advanced-sidebar-menu">GitHub Repo</a>
@@ -61,9 +61,9 @@ Use the standard WordPress plugins search and install feature.
 
 Manual Installation
 
-1. Upload the `advanced-sidbebar-menu` folder to the `/wp-content/plugins/` directory
+1. Upload the `advanced-sidebar-menu` folder to the `/wp-content/plugins/` directory
 1. Activate the plugin through the 'Plugins' menu in WordPress
-1. Drag the "Advanced Sidebar Pages Menu" widget Or the "Advanced Sidebar Categories Menu" widget into a sidebar.
+1. Drag the "Advanced Sidebar Pages Menu" widget or the "Advanced Sidebar Categories Menu" widget into a sidebar.
 
 
 == Screenshots ==
@@ -75,7 +75,7 @@ Manual Installation
 == Frequently Asked Questions ==
 
 Developer docs may be found here:
-<a href="http://matlipe.com/advanced-sidebar-menu/developer-docs/">http://matlipe.com/advanced-sidebar-menu/developer-docs/</a>
+<a href="https://matlipe.com/advanced-sidebar-menu/developer-docs/">https://matlipe.com/advanced-sidebar-menu/developer-docs/</a>
 
 = What text domain do I use for translation and where is the .pot file? =
 
@@ -127,7 +127,7 @@ You may want to use something like margins to set the levels apart.
 
 = What if I want functionality which is not built in? =
 
-I do offer preminum services for buiding custom add-ons for additional functionality. Otherwise you are welcome to alter the code in any way or build your own add-ons. keep in mind, if you edit the code directly, it will break on update. The best way to customize is using the built in filters or template overides. If you have a cool add-on you have developed, let me know, I may want to publish your work.
+I do offer premium services for building custom add-ons for additional functionality. Otherwise you are welcome to alter the code in any way or build your own add-ons. keep in mind, if you edit the code directly, it will break on update. The best way to customize is using the built in filters or template overrides. If you have a cool add-on you have developed, let me know, I may want to publish your work.
 
 
 == Changelog ==
