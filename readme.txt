@@ -5,7 +5,7 @@ Donate link: https://www.paypal.com/cgi-bin/webscr?cmd=_donations&business=paypa
 Tags: menus, sidebar menu, hierarchy, category menu, pages menu
 Requires at least: 3.8.0
 Tested up to: 4.3.1
-Stable tag: 5.0.8
+Stable tag: 5.0.9
 
 Creates a widget for both page and categories that will display the current page/category and all child pages or categories.
 
