@@ -19,7 +19,7 @@ Keeps the menu clean and usable.
 <strong><big><a href="http://matlipe.com/product/advanced-sidebar-menu-pro/">Go Pro!</a></big></strong>
 
 
-Includes Page options:
+Included page options:
 <ol>
    <li>Add a title to the widget</li>
    <li>Include the highest level parent page</li>
@@ -31,7 +31,7 @@ Includes Page options:
    <li>Always display child Pages</li>
    <li>Number of levels of child pages to display</li>
 </ol>  
-Includes Category Options:
+Included category options:
 <ol>
    <li>Add a title to the widget</li>
    <li>Include Parent Category</li>
