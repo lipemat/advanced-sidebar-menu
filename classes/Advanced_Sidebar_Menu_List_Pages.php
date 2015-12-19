@@ -76,6 +76,15 @@ class Advanced_Sidebar_Menu_List_Pages{
 	 */
 	private $level = 0;
 
+	/**
+	 * Used exclusively for caching
+	 * Holds the value of the latest parent we
+	 * retrieve children for
+	 *
+	 * @var int
+	 */
+	private $current_children_parent = 0;
+
 
 	/**
 	 * Constructor
@@ -239,10 +248,19 @@ class Advanced_Sidebar_Menu_List_Pages{
 	 * @return array
 	 */
 	public function get_child_pages( $parent_page_id ) {
-		$args = $this->args;
-		$args[ 'parent' ] = $parent_page_id;
+		$this->current_children_parent = $parent_page_id;
 
-		return get_pages( $args );
+		$cache = Advanced_Sidebar_Menu_Cache::get_instance();
+		$child_pages = $cache->get_child_pages( $this );
+		if( $child_pages === false ){
+			$args = $this->args;
+			$args[ 'parent' ] = $this->current_children_parent;
+			$child_pages = get_pages( $args );
+
+			$cache->add_child_pages( $this, $child_pages );
+		}
+
+		return $child_pages;
 
 	}
 

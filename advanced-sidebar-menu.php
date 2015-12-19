@@ -19,21 +19,27 @@ define( 'ADVANCED_SIDEBAR_VIEWS_DIR', ADVANCED_SIDEBAR_DIR . 'views/' );
 define( 'ADVANCED_SIDEBAR_LEGACY_DIR', ADVANCED_SIDEBAR_DIR . 'legacy/' );
 
 
-#-- Bring in the Widgets
-require( ADVANCED_SIDEBAR_WIDGETS_DIR.'init.php' );
-#-- Bring in the functions
-require( ADVANCED_SIDEBAR_DIR.'classes/Advanced_Sidebar_Menu_Deprecated.php' );
-require( ADVANCED_SIDEBAR_DIR.'classes/advancedSidebarMenu.php' );
-require( ADVANCED_SIDEBAR_DIR.'classes/Advanced_Sidebar_Menu_Page_Walker.php' );
-require( ADVANCED_SIDEBAR_DIR.'classes/Advanced_Sidebar_Menu_List_Pages.php' );
-$asm = new advancedSidebarMenu();
+if( !function_exists( 'advanced_sidebar_menu_load' ) ){
+    function advanced_sidebar_menu_load(){
+        require( ADVANCED_SIDEBAR_WIDGETS_DIR . 'init.php' );
+        require( ADVANCED_SIDEBAR_DIR . 'classes/Advanced_Sidebar_Menu_Deprecated.php' );
+        require( ADVANCED_SIDEBAR_DIR . 'classes/advancedSidebarMenu.php' );
+        require( ADVANCED_SIDEBAR_DIR . 'classes/Advanced_Sidebar_Menu_Page_Walker.php' );
+        require( ADVANCED_SIDEBAR_DIR . 'classes/Advanced_Sidebar_Menu_List_Pages.php' );
+        require( ADVANCED_SIDEBAR_DIR . 'classes/Advanced_Sidebar_Menu_Cache.php' );
+
+        Advanced_Sidebar_Menu_Cache::init();
+        $asm = new advancedSidebarMenu();
+    }
+    add_action( 'plugins_loaded', 'advanced_sidebar_menu_load' );
+
+}
 
 #-- Translate
 add_action('plugins_loaded', 'advanced_sidebar_menu_translate' );
 function advanced_sidebar_menu_translate(){
     load_plugin_textdomain('advanced-sidebar-menu', false, 'advanced-sidebar-menu/languages');
 }
-
 
 
  #-- Bring in the JQuery

@@ -273,19 +273,26 @@ class advanced_sidebar_menu_page extends WP_Widget {
 	 * @return mixed
 	 */
 	private function get_child_pages( $asm, $filter_args ){
-		$child_page_args = array(
-			'post_type'   => $asm->post_type,
-			'orderby'     => $asm->order_by,
-			'post_parent' => $asm->top_id,
-			'fields'      => 'ids',
-		);
+		$cache = Advanced_Sidebar_Menu_Cache::get_instance();
+		$child_pages = $cache->get_child_pages( $asm );
 
-		$excluded = $asm->get_excluded_ids();
-		if( !empty( $excluded ) ){
-			$child_page_args[ 'post__not_in' ] = $excluded;
+		if( $child_pages === false ){
+			$child_page_args = array(
+				'post_type'   => $asm->post_type,
+				'orderby'     => $asm->order_by,
+				'post_parent' => $asm->top_id,
+				'fields'      => 'ids',
+			);
+
+			$excluded = $asm->get_excluded_ids();
+			if( !empty( $excluded ) ){
+				$child_page_args[ 'post__not_in' ] = $excluded;
+			}
+
+			$child_pages = get_posts( $child_page_args );
+
+			$cache->add_child_pages( $asm, $child_pages );
 		}
-
-		$child_pages = get_posts( $child_page_args );
 
 		$filter_args[ 0 ] = $child_pages;
 		$child_pages      = apply_filters_ref_array( 'advanced_sidebar_menu_child_pages', $filter_args );

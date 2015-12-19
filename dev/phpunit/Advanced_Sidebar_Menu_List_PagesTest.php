@@ -30,7 +30,7 @@ class Advanced_Sidebar_Menu_List_PagesTest extends WP_UnitTestCase {
 
 		$menu = new Advanced_Sidebar_Menu_List_Pages( $this->top_parent, (object)$args );
 
-		function not_contains_page_id( $pages, $menu, $test ){
+		function not_contains_page_id( $pages, Advanced_Sidebar_Menu_List_Pages $menu, Advanced_Sidebar_Menu_List_PagesTest $test ){
 			$pages = wp_list_pluck( $pages, 'ID' );
 			$test->assertNotContains( 7, $pages, "an excluded page is present" );
 			$test->assertNotContains( 19, $pages, "an excluded page is present" );
