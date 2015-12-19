@@ -7,6 +7,7 @@ Requires at least: 3.8.0
 Tested up to: 4.4.0
 Stable tag: 5.0.10
 
+
 Creates a widget for both page and categories that will display the current page/category and all child pages or categories.
 
 == Description ==

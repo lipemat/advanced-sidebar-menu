@@ -203,8 +203,10 @@ class advanced_sidebar_menu_page extends WP_Widget {
 		$filter_args[ 0 ] = 'page';
 		$asm->post_type   = $post_type = apply_filters_ref_array( 'advanced_sidebar_menu_post_type', $filter_args );
 
-		add_filter( 'page_css_class', array( $asm, 'hasChildrenClass' ), 2, 2 );
-		if( $asm->post_type != 'page' ){
+		if( 'page' == $asm->post_type ){
+			add_filter( 'page_css_class', array( $asm, 'add_has_children_class' ), 2, 2 );
+
+		} else {
 			add_filter( 'page_css_class', array( $asm, 'custom_post_type_css' ), 2, 4 );
 		}
 
@@ -242,15 +244,16 @@ class advanced_sidebar_menu_page extends WP_Widget {
 
 			if( $asm->checked( 'css' ) ){
 				echo '<style type="text/css">';
-				include( $asm->file_hyercy( 'sidebar-menu.css', $legacy ) );
+					include( $asm->file_hyercy( 'sidebar-menu.css', $legacy ) );
 				echo '</style>';
 			}
 
-			echo $before_widget;
-			$content = '';
-			require( $asm->file_hyercy( 'page_list.php', $legacy ) );
-			echo apply_filters( 'advanced_sidebar_menu_page_widget_output', $content, $args, $instance );
-			echo $after_widget;
+			echo $args[ 'before_widget' ];
+
+				$content = '';
+				require( $asm->file_hyercy( 'page_list.php', $legacy ) );
+				echo apply_filters( 'advanced_sidebar_menu_page_widget_output', $content, $args, $instance );
+			echo $args[ 'after_widget' ];
 
 		}
 
@@ -270,27 +273,19 @@ class advanced_sidebar_menu_page extends WP_Widget {
 	 * @return mixed
 	 */
 	private function get_child_pages( $asm, $filter_args ){
-		global $wpdb;
-		$_excluded = '';
+		$child_page_args = array(
+			'post_type'   => $asm->post_type,
+			'orderby'     => $asm->order_by,
+			'post_parent' => $asm->top_id,
+			'fields'      => 'ids',
+		);
 
-		if( !empty( $asm->exclude ) ){
-			$asm->exclude = array_filter( $asm->exclude );
-			if( !empty( $asm->exclude ) ){
-				foreach( $asm->exclude as $k => $_exclude ){
-					$asm->exclude[ $k ] = (int) $_exclude;
-				}
-				$_excluded = "AND ID NOT IN (" . implode( ',', $asm->exclude ) . ")";
-			}
+		$excluded = $asm->get_excluded_ids();
+		if( !empty( $excluded ) ){
+			$child_page_args[ 'post__not_in' ] = $excluded;
 		}
 
-		$query = "SELECT ID FROM $wpdb->posts
-					WHERE post_parent = $asm->top_id
-					AND post_status='publish'
-					AND post_type='$asm->post_type'
-					$_excluded
-					Order by $asm->order_by";
-
-		$child_pages = $wpdb->get_col( $query );
+		$child_pages = get_posts( $child_page_args );
 
 		$filter_args[ 0 ] = $child_pages;
 		$child_pages      = apply_filters_ref_array( 'advanced_sidebar_menu_child_pages', $filter_args );

@@ -33,7 +33,7 @@ if( $child_pages ){
 		foreach($result as $pID){
 
 				#-- If the page is not in the excluded ones
-			if( $asm->exclude( $pID->ID) ){
+			if( $asm->is_excluded( $pID->ID) ){
 					#--echo the current page from the $result
 				wp_list_pages("post_type=".$post_type."&sort_column=$order_by&title_li=&echo=1&depth=1&include=".$pID->ID);
 			}
