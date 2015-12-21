@@ -9,15 +9,17 @@ Stable tag: 5.1.1
 
 == Description ==
 
-Creates a widget for both pages and categories that will display the current page/category and an child pages or categories.
-Keeps the menu clean and usable.
+Uses the parent/child relationship to your pages or categories to generate menus based on the current section of your site. Simply assign a page or category to a parent and this will do the rest for you.
+
+Keeps the menu clean and usable. Only related items display so you don't have to worry about keeping a custom menu up to date or displaying links to items that don't belong.
+
 
 <h3>Want more options and better support?</h3>
 	
 <strong><big><a href="https://matlipe.com/product/advanced-sidebar-menu-pro/">Go Pro!</a></big></strong>
 
 
-Included page options:
+<h4>Included page options:</h4>
 <ol>
    <li>Add a title to the widget</li>
    <li>Include the highest level parent page</li>
@@ -29,7 +31,8 @@ Included page options:
    <li>Always display child Pages</li>
    <li>Number of levels of child pages to display</li>
 </ol>  
-Included category options:
+
+<h4>Included category options:</h4>
 <ol>
    <li>Add a title to the widget</li>
    <li>Include Parent Category</li>
