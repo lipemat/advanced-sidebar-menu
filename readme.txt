@@ -9,7 +9,7 @@ Stable tag: 5.1.1
 
 == Description ==
 
-Uses the parent/child relationship to your pages or categories to generate menus based on the current section of your site. Simply assign a page or category to a parent and this will do the rest for you.
+Uses the parent/child relationship of your pages or categories to generate menus based on the current section of your site. Simply assign a page or category to a parent and this will do the rest for you.
 
 Keeps the menu clean and usable. Only related items display so you don't have to worry about keeping a custom menu up to date or displaying links to items that don't belong.
 
