@@ -53,7 +53,7 @@ class Advanced_Sidebar_Menu_Deprecated {
 		}
 
 		//Get the children of this page
-		$grandkids = $this->page_children( $pID->ID );
+		$grandkids = $this->page_children( $pID );
 		if( $grandkids ){
 			#-- Create a new menu with all the children under it
 			$content .= '<ul class="grandchild-sidebar-menu">';

@@ -38,20 +38,20 @@ if( $child_pages ){
 		foreach($child_pages as $pID){
 
 				#-- If the page is not in the excluded ones
-			if( $asm->is_excluded( $pID->ID) ){
+			if( $asm->is_excluded( $pID ) ){
 					#--echo the current page from the $result
-				wp_list_pages("post_type=".$asm->post_type."&sort_column=$asm->order_by&title_li=&echo=1&depth=1&include=".$pID->ID);
+				wp_list_pages("post_type=".$asm->post_type."&sort_column=$asm->order_by&title_li=&echo=1&depth=1&include=".$pID);
 			}
 
 			#-- if the link that was just listed is the current page we are on
 			if( $asm->page_ancestor( $pID ) ){
 
 				//Get the children of this page
-				$grandkids = $asm->page_children($pID->ID );				
+				$grandkids = $asm->page_children($pID);
 				if( $grandkids ){
 					#-- Create a new menu with all the children under it
 					echo '<ul class="grandchild-sidebar-menu">';
-							wp_list_pages("post_type=".$asm->post_type."&sort_column=$asm->order_by&title_li=&echo=1&exclude=".$instance['exclude']."&child_of=".$pID->ID);
+							wp_list_pages("post_type=".$asm->post_type."&sort_column=$asm->order_by&title_li=&echo=1&exclude=".$instance['exclude']."&child_of=".$pID);
 
 					echo '</ul>';
 				}

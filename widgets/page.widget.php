@@ -236,8 +236,6 @@ class advanced_sidebar_menu_page extends WP_Widget {
 		$asm->order_by = $order_by = apply_filters_ref_array( 'advanced_sidebar_menu_order_by', $filter_args );
 
 		$child_pages = $this->get_child_pages( $asm, $filter_args );
-		//backward compatibility
-		$result = $child_pages;
 
 		#---- if there are no children do not display the parent unless it is check to do so
 		if( ( !empty( $child_pages ) ) || $asm->checked( 'include_childless_parent' ) && ( !in_array( $top_parent, $asm->exclude ) ) ){
