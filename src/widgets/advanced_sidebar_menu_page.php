@@ -232,7 +232,7 @@ class advanced_sidebar_menu_page extends WP_Widget {
 
 		#---- if there are no children do not display the parent unless it is check to do so
 		if( ( !empty( $child_pages ) ) || $asm->checked( 'include_childless_parent' ) && ( !in_array( $top_parent, $asm->exclude ) ) ){
-			
+
 			if( $asm->checked( 'css' ) ){
 				echo '<style type="text/css">';
 					include( Advanced_Sidebar_Menu::get_instance()->get_template_part( 'sidebar-menu.css' ) );
@@ -286,7 +286,21 @@ class advanced_sidebar_menu_page extends WP_Widget {
 		}
 
 		$filter_args[ 0 ] = $child_pages;
-		$child_pages      = apply_filters_ref_array( 'advanced_sidebar_menu_child_pages', $filter_args );
+
+		if( defined( 'ADVANCED_SIDEBAR_MENU_PRO_VERSION' ) ){
+			/**
+			 * Pro version 1.4.3 or below had a typeset for the arg
+			 * of this filter. This changed in version 6.0.0 so we have
+			 * to disable the filter. If someone has an issue then make
+			 * sure they update to version 1.4.4 to restore this filter
+			 */
+			if( version_compare( ADVANCED_SIDEBAR_MENU_PRO_VERSION, '1.4.4', '>=' ) ){
+				$child_pages = apply_filters_ref_array( 'advanced_sidebar_menu_child_pages', $filter_args );
+			}
+
+		} else {
+			$child_pages = apply_filters_ref_array( 'advanced_sidebar_menu_child_pages', $filter_args );
+		}
 
 		return $child_pages;
 
