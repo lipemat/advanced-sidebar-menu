@@ -91,8 +91,8 @@ class Advanced_Sidebar_Menu_List_Pages{
 	 *
 	 * Used in the view
 	 *
-	 * @param int $parent_id - $asm->top_id
-	 * @param advancedSidebarMenu $class
+	 * @param int                        $parent_id - $asm->top_id
+	 * @param Advanced_Sidebar_Menu_Menu $class
 	 */
 	public function __construct( $parent_id, $class ){
 

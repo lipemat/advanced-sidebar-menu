@@ -21,7 +21,6 @@ class advanced_sidebar_menu_page extends WP_Widget {
 		'order_by'                 => 'menu_order',
 		'css'                      => false,
 		'exclude'                  => false,
-		'legacy_mode'              => false,
 		'display_all'              => false,
 		'levels'                   => 1
 	);
@@ -106,12 +105,6 @@ class advanced_sidebar_menu_page extends WP_Widget {
 				name="<?php echo $this->get_field_name( 'exclude' ); ?>" class="widefat" type="text" value="<?php echo $instance[ 'exclude' ]; ?>"/>
 		</p>
 
-		<p> <?php _e( "Legacy Mode: (use pre 4.0 structure and css)", 'advanced-sidebar-menu' ); ?>
-			<input id="<?php echo $this->get_field_name( 'legacy_mode' ); ?>"
-				name="<?php echo $this->get_field_name( 'legacy_mode' ); ?>" type="checkbox" value="checked"
-				<?php echo $instance[ 'legacy_mode' ]; ?>/>
-		</p>
-
 		<p> <?php _e( "Always Display Child Pages", 'advanced-sidebar-menu' ); ?>:
 			<input id="<?php echo $this->get_field_id( 'display_all' ); ?>"
 				name="<?php echo $this->get_field_name( 'display_all' ); ?>" type="checkbox" value="checked"
@@ -185,7 +178,7 @@ class advanced_sidebar_menu_page extends WP_Widget {
 	function widget( $args, $instance ){
 		global $post;
 
-		$asm           = new advancedSidebarMenu();
+		$asm           = new Advanced_Sidebar_Menu_Menu();
 		$asm->instance = $instance;
 		$asm->args     = $args;
 		$asm->exclude  = apply_filters( 'advanced_sidebar_menu_excluded_pages', explode( ',', $instance[ 'exclude' ] ), $post, $asm->args, $asm->instance, $asm );
@@ -239,19 +232,17 @@ class advanced_sidebar_menu_page extends WP_Widget {
 
 		#---- if there are no children do not display the parent unless it is check to do so
 		if( ( !empty( $child_pages ) ) || $asm->checked( 'include_childless_parent' ) && ( !in_array( $top_parent, $asm->exclude ) ) ){
-
-			$legacy = $asm->checked( 'legacy_mode' );
-
+			
 			if( $asm->checked( 'css' ) ){
 				echo '<style type="text/css">';
-					include( $asm->file_hyercy( 'sidebar-menu.css', $legacy ) );
+					include( Advanced_Sidebar_Menu::get_instance()->get_template_part( 'sidebar-menu.css' ) );
 				echo '</style>';
 			}
 
 			echo $args[ 'before_widget' ];
 
 				$content = '';
-				require( $asm->file_hyercy( 'page_list.php', $legacy ) );
+				require( Advanced_Sidebar_Menu::get_instance()->get_template_part( 'page_list.php' ) );
 				echo apply_filters( 'advanced_sidebar_menu_page_widget_output', $content, $args, $instance );
 			echo $args[ 'after_widget' ];
 
@@ -265,8 +256,8 @@ class advanced_sidebar_menu_page extends WP_Widget {
 	 *
 	 * Get the children's ids of the top level parent
 	 *
-	 * @param advancedSidebarMenu $asm
-	 * @param array $filter_args
+	 * @param Advanced_Sidebar_Menu_Menu $asm
+	 * @param array                      $filter_args
 	 *
 	 * @filter advanced_sidebar_menu_child_pages
 	 *

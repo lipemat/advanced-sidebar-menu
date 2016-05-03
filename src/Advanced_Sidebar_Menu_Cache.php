@@ -36,7 +36,7 @@ class Advanced_Sidebar_Menu_Cache {
 	 * Retrieve a posts child pages from the cache
 	 * If no exist in the cache will return false
 	 *
-	 * @param advancedSidebarMenu|Advanced_Sidebar_Menu_List_Pages $class
+	 * @param Advanced_Sidebar_Menu_Menu|Advanced_Sidebar_Menu_List_Pages $class
 	 *
 	 * @return array|false
 	 */
@@ -55,8 +55,8 @@ class Advanced_Sidebar_Menu_Cache {
 	 * Add a post and its children to the cache
 	 * Uses a global key for all posts so this appends to an array
 	 *
-	 * @param advancedSidebarMenu|Advanced_Sidebar_Menu_List_Pages $class
-	 * @param array                                                $child_pages
+	 * @param Advanced_Sidebar_Menu_Menu|Advanced_Sidebar_Menu_List_Pages $class
+	 * @param array                                                       $child_pages
 	 *
 	 * @return void
 	 */
@@ -75,7 +75,7 @@ class Advanced_Sidebar_Menu_Cache {
 	 * we serialize the whole object and hash it
 	 *
 	 *
-	 * @param advancedSidebarMenu|Advanced_Sidebar_Menu_List_Pages $class
+	 * @param Advanced_Sidebar_Menu_Menu|Advanced_Sidebar_Menu_List_Pages $class
 	 *
 	 * @return string
 	 */
