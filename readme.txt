@@ -5,7 +5,7 @@ Donate link: https://www.paypal.com/cgi-bin/webscr?cmd=_donations&business=paypa
 Tags: menus, sidebar menu, hierarchy, category menu, pages menu
 Requires at least: 4.2.0
 Tested up to: 4.5.1
-Stable tag: 6.0.0
+Stable tag: 6.1.0
 
 == Description ==
 
@@ -132,6 +132,10 @@ I do offer premium services for building custom add-ons for additional functiona
 
 
 == Changelog ==
+= 6.1.0 =
+* Improve page list view
+* Add advanced_sidebar_menu_list_pages_args filter
+
 = 6.0.0 =
 * Remove legacy template support
 * Restructure plugin
