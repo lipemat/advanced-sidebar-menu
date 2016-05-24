@@ -202,20 +202,20 @@ class advanced_sidebar_menu_category extends WP_Widget {
 		$exclude      = explode( ',', $instance[ 'exclude' ] );
 		$asm->exclude = $exclude;
 
-		$asm->taxonomy = apply_filters( 'advanced_sidebar_menu_taxonomy', 'category', $args, $instance );
+		$asm->taxonomy = apply_filters( 'advanced_sidebar_menu_taxonomy', 'category', $args, $instance, $asm );
 
 		extract( $args );
 
 		//If on a single page create an array of each category and create a list for each
 		if( is_single() ){
-			if( !apply_filters( 'advanced_sidebar_menu_proper_single', $asm->checked( 'single' ), $args, $instance ) ){
+			if( !apply_filters( 'advanced_sidebar_menu_proper_single', $asm->checked( 'single' ), $args, $instance, $asm ) ){
 				return;
 			}
 			global $post;
 			$category_array = wp_get_object_terms( $post->ID, $asm->taxonomy );
 
 			//Sort by a field like term order for other plugins
-			$asm->order_by = apply_filters( 'advanced_sidebar_menu_category_orderby', 'name', $args, $instance );
+			$asm->order_by = apply_filters( 'advanced_sidebar_menu_category_orderby', 'name', $args, $instance, $asm );
 
 			uasort( $category_array, array( $asm, 'sortTerms' ) );
 
@@ -230,7 +230,7 @@ class advanced_sidebar_menu_category extends WP_Widget {
 			$cat_ids[]         = get_queried_object()->term_id;
 		}
 
-		$cat_ids = apply_filters( 'advanced_sidebar_menu_category_ids', $cat_ids, $args, $instance );
+		$cat_ids = apply_filters( 'advanced_sidebar_menu_category_ids', $cat_ids, $args, $instance, $asm );
 
 		if( empty( $cat_ids ) ){
 			return;
