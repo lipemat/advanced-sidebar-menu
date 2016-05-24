@@ -239,11 +239,11 @@ class advanced_sidebar_menu_page extends WP_Widget {
 				echo '</style>';
 			}
 
+			$content = '';
 			echo $args[ 'before_widget' ];
-
-				$content = '';
 				require( Advanced_Sidebar_Menu::get_instance()->get_template_part( 'page_list.php' ) );
-				echo apply_filters( 'advanced_sidebar_menu_page_widget_output', $content, $args, $instance );
+				$filter_args[ 0 ] = $content;
+				echo apply_filters_ref_array( 'advanced_sidebar_menu_page_widget_output', $filter_args );
 			echo $args[ 'after_widget' ];
 
 		}
