@@ -1,0 +1,14 @@
+{
+    "name": "lipemat/advanced-sidebar-menu",
+    "description": "Menu widget generator for wordpress",
+    "type": "wordpress-plugin",
+    "license": "GPL",
+    "authors": [
+        {
+            "name": "lipemat",
+            "email": "mat@matlipe.com"
+        }
+    ],
+    "minimum-stability": "dev",
+    "require": {}
+}
