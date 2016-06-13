@@ -91,8 +91,8 @@ class Advanced_Sidebar_Menu_List_Pages{
 	 *
 	 * Used in the view
 	 *
-	 * @param int $parent_id - $asm->top_id
-	 * @param advancedSidebarMenu $class
+	 * @param int                        $parent_id - $asm->top_id
+	 * @param Advanced_Sidebar_Menu_Menu $class
 	 */
 	public function __construct( $parent_id, $class ){
 
@@ -105,10 +105,20 @@ class Advanced_Sidebar_Menu_List_Pages{
 			'levels'      => $class->levels
 		);
 
-		$this->fill_class_vars( $args );
+		$this->parse_args( $args );
 
 	}
 
+
+	/**
+	 * Return the list of args that have been populated by this class
+	 *
+	 * @return array
+	 */
+	public function get_args(){
+		return $this->args;
+	}
+	
 
 	/**
 	 * __toString
@@ -124,19 +134,19 @@ class Advanced_Sidebar_Menu_List_Pages{
 
 
 	/**
-	 * fill_class_vars
 	 *
-	 * Do any adjustments to class vars here
+	 * Do any adjustments to class args here
 	 *
-	 * @param $args
+	 * @param array $args
 	 *
 	 * @return void
 	 */
-	private function fill_class_vars( $args ){
+	private function parse_args( $args ){
 		$defaults = array(
 			'depth'        => 1,
 			'exclude'      => '',
 			'echo'         => 0,
+			'sort_order'   => 'ASC',
 			'sort_column'  => 'menu_order, post_title',
 			'walker'       => new Advanced_Sidebar_Menu_Page_Walker(),
 			'hierarchical' => 0,
@@ -154,12 +164,12 @@ class Advanced_Sidebar_Menu_List_Pages{
 		}
 		$args[ 'exclude' ] = preg_replace( '/[^0-9,]/', '', implode( ',', apply_filters( 'wp_list_pages_excludes', $args[ 'exclude' ] ) ) );
 
-		$this->args = $args;
-
 		if ( is_page() || is_singular() ) {
 			$this->current_page = get_queried_object();
 			$this->current_page_id = $this->current_page->ID;
 		}
+
+		$this->args = apply_filters( 'advanced_sidebar_menu_list_pages_args', $args, $this );
 
 	}
 

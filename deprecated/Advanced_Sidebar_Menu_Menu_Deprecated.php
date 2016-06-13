@@ -7,7 +7,47 @@
  *
  * @see
  */
-class Advanced_Sidebar_Menu_Deprecated {
+abstract class Advanced_Sidebar_Menu_Menu_Deprecated {
+
+	/**
+	 * @deprecated 6.0.0
+	 */
+	static function file_hyercy( $file, $legacy = false ) {
+		if( $theme_file = locate_template( array( 'advanced-sidebar-menu/' . $file ) ) ){
+			$file = $theme_file;
+		} else {
+			$file = ADVANCED_SIDEBAR_DIR . 'views/' . $file;
+		}
+
+		return apply_filters( 'advanced_sidebar_menu_view_file', $file, $legacy );
+
+	}
+
+	/**
+	 * @see add_has_children_class
+	 * @deprecated
+	 */
+	function hasChildrenClass( $classes, $page ) {
+		return $this->add_has_children_class( $classes, $page );
+	}
+
+
+	/**
+	 * @see has_children
+	 * @deprecated
+	 */
+	function hasChildren( $post_id ){
+		return $this->has_children( $post_id );
+	}
+
+
+	/**
+	 * @see is_excluded
+	 * @deprecated
+	 */
+	function exclude( $id ) {
+		return $this->is_excluded( $id );
+	}
 
 
 	/**
@@ -16,7 +56,7 @@ class Advanced_Sidebar_Menu_Deprecated {
 	function page_children( $pID ) {
 		global $wpdb, $table_prefix;
 
-		_deprecated_function( 'advancedSidebarMenu::page_children', "5.0.0", 'advancedSidebarMenu::hasChildren' );
+		_deprecated_function( 'Advanced_Sidebar_Menu_Menu::page_children', "5.0.0", 'Advanced_Sidebar_Menu_Menu::hasChildren' );
 
 		return $wpdb->get_results( "SELECT ID FROM " . $table_prefix . "posts WHERE post_parent = " . $pID . " AND post_type = $this->post_type AND post_status='publish' ORDER By " . $this->order_by );
 

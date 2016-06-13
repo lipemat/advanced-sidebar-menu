@@ -4,8 +4,8 @@ Contributors: Mat Lipe
 Donate link: https://www.paypal.com/cgi-bin/webscr?cmd=_donations&business=paypal%40matlipe%2ecom&lc=US&item_name=Advanced%20Sidebar%20Menu&no_note=0&currency_code=USD&bn=PP%2dDonationsBF%3abtn_donateCC_LG%2egif%3aNonHostedGuest
 Tags: menus, sidebar menu, hierarchy, category menu, pages menu
 Requires at least: 4.2.0
-Tested up to: 4.4.2
-Stable tag: 5.1.3
+Tested up to: 4.5.1
+Stable tag: 6.1.0
 
 == Description ==
 
@@ -132,6 +132,16 @@ I do offer premium services for building custom add-ons for additional functiona
 
 
 == Changelog ==
+= 6.1.0 =
+* Improve page list view
+* Add advanced_sidebar_menu_list_pages_args filter
+
+= 6.0.0 =
+* Remove legacy template support
+* Restructure plugin
+* Introduce 'advanced_sidebar_menu_template_part' filter
+
+
 = 5.1.0 =
 * Convert query over to get_posts() to allow for more extendability
 * Implement object caching to improve performance for environments using external object caches
@@ -202,6 +212,8 @@ I do offer premium services for building custom add-ons for additional functiona
 
 
 == Upgrade Notice ==
+= 6.0.0 =
+If you are using the Pro version of this plugin be sure to update to Pro version 1.4.4 to keep all functionality intact with this version.
 
 = 5.0.0 =
 If you used a custom page_list.php template previously you may want to redo it on this version to take advantage of the new structure.

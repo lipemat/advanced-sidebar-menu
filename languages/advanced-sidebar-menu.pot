@@ -3,14 +3,14 @@ msgid ""
 msgstr ""
 "Plural-Forms: nplurals=INTEGER; plural=EXPRESSION;\n"
 "Project-Id-Version: Advanced Sidebar Menu\n"
-"POT-Creation-Date: 2015-08-14 16:54-0400\n"
-"PO-Revision-Date: 2015-08-14 16:53-0400\n"
+"POT-Creation-Date: 2016-05-03 10:55-0400\n"
+"PO-Revision-Date: 2016-05-03 10:55-0400\n"
 "Last-Translator: \n"
 "Language-Team: \n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Generator: Poedit 1.8.4\n"
+"X-Generator: Poedit 1.8.7\n"
 "X-Poedit-Basepath: ..\n"
 "X-Poedit-WPHeader: advanced-sidebar-menu.php\n"
 "X-Poedit-SourceCharset: UTF-8\n"
@@ -20,88 +20,87 @@ msgstr ""
 "X-Poedit-SearchPath-0: .\n"
 "X-Poedit-SearchPathExcluded-0: *.js\n"
 
-#: advanced-sidebar-menu.php:56
+#: advanced-sidebar-menu.php:65
 msgid "Want More Options"
 msgstr ""
 
-#: advanced-sidebar-menu.php:58
+#: advanced-sidebar-menu.php:70
 msgid "Go Pro"
 msgstr ""
 
-#: widgets/category.widget.php:35
+#: src/widgets/advanced_sidebar_menu_category.php:35
 msgid ""
 "Creates a menu of all the categories using the child/parent relationship"
 msgstr ""
 
-#: widgets/category.widget.php:39
+#: src/widgets/advanced_sidebar_menu_category.php:39
 msgid "Advanced Sidebar Categories Menu"
 msgstr ""
 
-#: widgets/category.widget.php:57 widgets/page.widget.php:60
+#: src/widgets/advanced_sidebar_menu_category.php:57
+#: src/widgets/advanced_sidebar_menu_page.php:59
 msgid "Title"
 msgstr ""
 
-#: widgets/category.widget.php:64
+#: src/widgets/advanced_sidebar_menu_category.php:64
 msgid "Include Parent Category"
 msgstr ""
 
-#: widgets/category.widget.php:71 widgets/page.widget.php:73
+#: src/widgets/advanced_sidebar_menu_category.php:71
+#: src/widgets/advanced_sidebar_menu_page.php:72
 msgid "Include Parent Even With No Children"
 msgstr ""
 
-#: widgets/category.widget.php:77
+#: src/widgets/advanced_sidebar_menu_category.php:77
 msgid "Use this plugins styling"
 msgstr ""
 
-#: widgets/category.widget.php:83
+#: src/widgets/advanced_sidebar_menu_category.php:83
 msgid "Display Categories on Single Posts"
 msgstr ""
 
-#: widgets/category.widget.php:96
+#: src/widgets/advanced_sidebar_menu_category.php:96
 msgid "Display Each Single Post's Category"
 msgstr ""
 
-#: widgets/category.widget.php:114
+#: src/widgets/advanced_sidebar_menu_category.php:113
 msgid "Categories to Exclude, Comma Separated"
 msgstr ""
 
-#: widgets/category.widget.php:120 widgets/page.widget.php:109
-msgid "Legacy Mode: (use pre 4.0 structure and css)"
-msgstr ""
-
-#: widgets/category.widget.php:127
+#: src/widgets/advanced_sidebar_menu_category.php:118
 msgid "Always Display Child Categories"
 msgstr ""
 
-#: widgets/category.widget.php:140 widgets/page.widget.php:128
+#: src/widgets/advanced_sidebar_menu_category.php:131
+#: src/widgets/advanced_sidebar_menu_page.php:121
 msgid "Levels to Display"
 msgstr ""
 
-#: widgets/page.widget.php:34
+#: src/widgets/advanced_sidebar_menu_page.php:33
 msgid "Creates a menu of all the pages using the child/parent relationship"
 msgstr ""
 
-#: widgets/page.widget.php:41
+#: src/widgets/advanced_sidebar_menu_page.php:40
 msgid "Advanced Sidebar Pages Menu"
 msgstr ""
 
-#: widgets/page.widget.php:66
+#: src/widgets/advanced_sidebar_menu_page.php:65
 msgid "Include Parent Page"
 msgstr ""
 
-#: widgets/page.widget.php:79
+#: src/widgets/advanced_sidebar_menu_page.php:78
 msgid "Order By"
 msgstr ""
 
-#: widgets/page.widget.php:98
+#: src/widgets/advanced_sidebar_menu_page.php:97
 msgid "Use this Plugin's Styling"
 msgstr ""
 
-#: widgets/page.widget.php:104
+#: src/widgets/advanced_sidebar_menu_page.php:103
 msgid "Pages to Exclude (ids), Comma Separated"
 msgstr ""
 
-#: widgets/page.widget.php:115
+#: src/widgets/advanced_sidebar_menu_page.php:108
 msgid "Always Display Child Pages"
 msgstr ""
 
@@ -110,11 +109,13 @@ msgid "Advanced Sidebar Menu"
 msgstr ""
 
 #. Plugin URI of the plugin/theme
-msgid "http://matlipe.com/advanced-sidebar-menu/"
+msgid "https://matlipe.com/advanced-sidebar-menu/"
 msgstr ""
 
 #. Description of the plugin/theme
-msgid "Creates dynamic menu based on child/parent relationship."
+msgid ""
+"Creates dynamic menus based on parent/child relationship of your pages or "
+"categories."
 msgstr ""
 
 #. Author of the plugin/theme
@@ -122,5 +123,5 @@ msgid "Mat Lipe"
 msgstr ""
 
 #. Author URI of the plugin/theme
-msgid "http://matlipe.com"
+msgid "https://matlipe.com"
 msgstr ""

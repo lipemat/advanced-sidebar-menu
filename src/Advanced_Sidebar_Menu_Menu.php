@@ -1,6 +1,6 @@
 <?php
 /**
- * advancedSidebarMenu
+ * Advanced_Sidebar_Menu_Menu
  *
  * These Functions are Specific to the Advanced Sidebar Menu
  *
@@ -8,7 +8,7 @@
  *
  * @package Advanced Sidebar Menu
  */
-class advancedSidebarMenu extends Advanced_Sidebar_Menu_Deprecated {
+class Advanced_Sidebar_Menu_Menu extends Advanced_Sidebar_Menu_Menu_Deprecated {
 
 	var $instance; //The widget instance
 	var $top_id; //Either the top cat or page
@@ -268,11 +268,7 @@ class advancedSidebarMenu extends Advanced_Sidebar_Menu_Deprecated {
 			$title = apply_filters( 'widget_title', $this->instance[ 'title' ], $this->args, $this->instance );
 			$title = apply_filters( 'advanced_sidebar_menu_widget_title', $title, $this->args, $this->instance, $this );
 
-			if( $this->checked( 'legacy_mode' ) ){
-				echo '<h4 class="widgettitle">' . $title . '</h4>';
-			} else {
-				echo $this->args[ 'before_title' ] . $title . $this->args[ 'after_title' ];
-			}
+			echo $this->args[ 'before_title' ] . $title . $this->args[ 'after_title' ];
 		}
 
 	}
@@ -306,59 +302,6 @@ class advancedSidebarMenu extends Advanced_Sidebar_Menu_Deprecated {
 			return false;
 		}
 	}
-
-
-	/**
-	 * Allows for Overwriting files in the child theme
-	 *
-	 * @since 4.23.13
-	 *
-	 * @param string $file the name of the file to overwrite
-	 */
-
-	static function file_hyercy( $file, $legacy = false ) {
-		if( $theme_file = locate_template( array( 'advanced-sidebar-menu/' . $file ) ) ){
-			$file = $theme_file;
-		} elseif( $legacy ) {
-			$file = ADVANCED_SIDEBAR_LEGACY_DIR . $file;
-		} else {
-			$file = ADVANCED_SIDEBAR_VIEWS_DIR . $file;
-		}
-
-		return apply_filters( 'advanced_sidebar_menu_view_file', $file, $legacy );
-
-	}
-
-	/*************** Deprectated ***************/
-
-	/**
-	 * @see add_has_children_class
-	 * @deprecated
-	 */
-	function hasChildrenClass( $classes, $page ) {
-		return $this->add_has_children_class( $classes, $page );
-	}
-
-
-	/**
-	 * @see has_children
-	 * @deprecated
-	 */
-	function hasChildren( $post_id ){
-		return $this->has_children( $post_id );
-	}
-
-
-	/**
-	 * @see is_excluded
-	 * @deprecated
-	 */
-	function exclude( $id ) {
-		return $this->is_excluded( $id );
-	}
-
-
-
 
 } //End class
 

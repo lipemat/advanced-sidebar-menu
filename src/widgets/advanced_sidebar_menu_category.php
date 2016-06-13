@@ -15,16 +15,16 @@
 class advanced_sidebar_menu_category extends WP_Widget {
 
 	private $defaults = array(
-		'title'                    => false,
+		'title'                    => '',
 		'include_parent'           => false,
 		'include_childless_parent' => false,
-		'single'                   => false,
 		'css'                      => false,
-		'exclude'                  => false,
-		'new_widget'               => 'list',
-		'legacy_mode'              => false,
+		'single'                   => false,
+		'new_widget'               => 'widget',
+		'exclude'                  => '',
 		'display_all'              => false,
-		'levels'                   => 1
+		'levels'                   => 1,
+		'order'                    => 'DESC',
 	);
 
 
@@ -32,7 +32,7 @@ class advanced_sidebar_menu_category extends WP_Widget {
 
 		$widget_ops  = array(
 			'classname'   => 'advanced-sidebar-menu advanced-sidebar-category',
-			'description' => __( 'Creates a menu of all the categories using the child/parent relationship', 'advanced-sidebar-menu' )
+			'description' => __( 'Creates a menu of all the categories using the child/parent relationship', 'advanced-sidebar-menu' ),
 		);
 		$control_ops = array( 'width' => 290 );
 
@@ -110,19 +110,10 @@ class advanced_sidebar_menu_category extends WP_Widget {
             </span>
 
 
-
 		<p> <?php _e( "Categories to Exclude, Comma Separated", 'advanced-sidebar-menu' ); ?>:
 			<input id="<?php echo $this->get_field_name( 'exclude' ); ?>"
 				name="<?php echo $this->get_field_name( 'exclude' ); ?>" type="text" class="widefat" value="<?php echo $instance[ 'exclude' ]; ?>"/>
 		</p>
-
-
-		<p> <?php _e( "Legacy Mode: (use pre 4.0 structure and css)", 'advanced-sidebar-menu' ); ?>
-			<input id="<?php echo $this->get_field_name( 'legacy_mode' ); ?>"
-				name="<?php echo $this->get_field_name( 'legacy_mode' ); ?>" type="checkbox" value="checked"
-				<?php echo $instance[ 'legacy_mode' ]; ?>/>
-		</p>
-
 
 		<p> <?php _e( "Always Display Child Categories", 'advanced-sidebar-menu' ); ?>
 			<input id="<?php echo $this->get_field_name( 'display_all' ); ?>"
@@ -160,7 +151,8 @@ class advanced_sidebar_menu_category extends WP_Widget {
 	/**
 	 * Updates the widget data
 	 *
-	 * @filter - $newInstance = apply_filters('advanced_sidebar_menu_category_widget_update', $newInstance, $oldInstance );
+	 * @filter - $newInstance = apply_filters('advanced_sidebar_menu_category_widget_update', $newInstance,
+	 *         $oldInstance );
 	 * @since  5.19.13
 	 */
 	function update( $newInstance, $oldInstance ){
@@ -189,26 +181,12 @@ class advanced_sidebar_menu_category extends WP_Widget {
 	 */
 	function widget( $args, $instance ){
 
-		$defaults = array(
-			'title'                    => '',
-			'include_parent'           => false,
-			'include_childless_parent' => false,
-			'css'                      => false,
-			'single'                   => false,
-			'new_widget'               => 'widget',
-			'exclude'                  => '',
-			'legacy_mode'              => false,
-			'display_all'              => false,
-			'levels'                   => 1,
-			'order'                    => 'DESC'
-		);
-
-		$instance = wp_parse_args( $instance, $defaults );
+		$instance = wp_parse_args( $instance, $this->defaults );
 
 		if( is_single() && !isset( $instance[ 'single' ] ) ){
 			return;
 		}
-		$asm           = new advancedSidebarMenu;
+		$asm           = new Advanced_Sidebar_Menu_Menu;
 		$asm->instance = $instance;
 		$asm->args     = $args;
 
@@ -216,8 +194,7 @@ class advanced_sidebar_menu_category extends WP_Widget {
 		$asm->order_by = apply_filters( 'advanced_sidebar_menu_category_orderby', null, $args, $instance );
 
 		do_action( 'advanced_sidebar_menu_widget_pre_render', $asm, $this );
-
-		$legacy = $asm->checked( 'legacy_mode' );
+		
 
 		$cat_ids  = $already_top = array();
 		$asm_once = false; //keeps track of how many widgets this created
@@ -243,14 +220,14 @@ class advanced_sidebar_menu_category extends WP_Widget {
 			uasort( $category_array, array( $asm, 'sortTerms' ) );
 
 			foreach( $category_array as $id => $cat ){
-				$cat_ids[ ] = $cat->term_id;
+				$cat_ids[] = $cat->term_id;
 			}
 
 			//IF on a category page get the id of the category
 		} elseif( is_tax() || is_category() ) {
 
 			$asm->current_term = get_queried_object()->term_id;
-			$cat_ids[ ]        = get_queried_object()->term_id;
+			$cat_ids[]         = get_queried_object()->term_id;
 		}
 
 		$cat_ids = apply_filters( 'advanced_sidebar_menu_category_ids', $cat_ids, $args, $instance );
@@ -270,7 +247,7 @@ class advanced_sidebar_menu_category extends WP_Widget {
 				continue;
 			}
 
-			$already_top[ ] = $asm->top_id;
+			$already_top[] = $asm->top_id;
 
 			//Check for children
 			$all_categories = $all = array_filter(
@@ -278,7 +255,7 @@ class advanced_sidebar_menu_category extends WP_Widget {
 					$asm->taxonomy, array(
 						'child_of' => $asm->top_id,
 						'orderby'  => $asm->order_by,
-						'order'    => $instance[ 'order' ]
+						'order'    => $instance[ 'order' ],
 					)
 				)
 			);
@@ -304,10 +281,12 @@ class advanced_sidebar_menu_category extends WP_Widget {
 				//Start the menu
 				echo $before_widget;
 				if( !$asm_once ){
+					//must remain in the loop instead of the template because we only want it to display once
 					$asm->title();
+
 					if( $asm->checked( 'css' ) ){
 						echo '<style type="text/css">';
-						include( $asm->file_hyercy( 'sidebar-menu.css', $legacy ) );
+						include( Advanced_Sidebar_Menu::get_instance()->get_template_part( 'sidebar-menu.css' ) );
 						echo '</style>';
 					}
 
@@ -325,7 +304,7 @@ class advanced_sidebar_menu_category extends WP_Widget {
 			$cat_ancestors = $asm->ancestors;
 
 			//Bring in the view
-			require( $asm->file_hyercy( 'category_list.php', $legacy ) );
+			require( Advanced_Sidebar_Menu::get_instance()->get_template_part( 'category_list.php' ) );
 
 			echo apply_filters( 'advanced_sidebar_menu_category_widget_output', $content, $args, $instance );
 
@@ -334,7 +313,6 @@ class advanced_sidebar_menu_category extends WP_Widget {
 				echo $after_widget;
 				echo '<!-- First $after_widget -->';
 			}
-
 
 		} //End of each cat loop
 
@@ -345,7 +323,6 @@ class advanced_sidebar_menu_category extends WP_Widget {
 			echo '<!-- Second $after_widget -->';
 
 		}
-
 
 	} #== /widget()
 
