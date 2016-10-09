@@ -273,6 +273,7 @@ class advanced_sidebar_menu_page extends WP_Widget {
 				'orderby'     => $asm->order_by,
 				'post_parent' => $asm->top_id,
 				'fields'      => 'ids',
+				'numberposts' => 10000,
 			);
 
 			$excluded = $asm->get_excluded_ids();
