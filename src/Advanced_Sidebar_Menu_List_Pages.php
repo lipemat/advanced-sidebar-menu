@@ -153,7 +153,8 @@ class Advanced_Sidebar_Menu_List_Pages{
 			'link_before'  => '',
 			'link_after'   => '',
 			'title_li'     => '',
-			'levels'       => 100
+			'levels'       => 100,
+			'item_spacing' => 'preserve',
 		);
 
 		$args = wp_parse_args( $args, $defaults );
