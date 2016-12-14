@@ -18,11 +18,8 @@ if( !function_exists( 'advanced_sidebar_menu_load' ) ){
 		require( ADVANCED_SIDEBAR_DIR . 'src/widgets/advanced_sidebar_menu_category.php' );
 		require( ADVANCED_SIDEBAR_DIR . 'src/widgets/advanced_sidebar_menu_page.php' );
 
-		//main src
-		require( ADVANCED_SIDEBAR_DIR . 'deprecated/Advanced_Sidebar_Menu_Menu_Deprecated.php' );
 		require( ADVANCED_SIDEBAR_DIR . 'src/Advanced_Sidebar_Menu.php' );
 		require( ADVANCED_SIDEBAR_DIR . 'src/Advanced_Sidebar_Menu_Menu.php' );
-		require( ADVANCED_SIDEBAR_DIR . 'deprecated/advancedSidebarMenu.php' );
 
 		require( ADVANCED_SIDEBAR_DIR . 'src/Advanced_Sidebar_Menu_Page_Walker.php' );
 		require( ADVANCED_SIDEBAR_DIR . 'src/Advanced_Sidebar_Menu_List_Pages.php' );
@@ -60,15 +57,17 @@ function advanced_sidebar_menu_pro_notice(){
 	}
 	?>
 	<fieldset style="border: 1px solid black; border-radius: 10px; padding: 10px;">
-		<legend style="font-size: 14px; font-weight: bold;"><?php _e( 'Want More Options', 'advanced-sidebar-menu' ); ?>
-			?
+		<legend style="font-size: 14px; font-weight: bold;">
+            <?php _e( 'Want More Options', 'advanced-sidebar-menu' ); ?>?
 		</legend>
 		<p>
-			<strong><big>
-					<a target="blank" href="http://matlipe.com/product/advanced-sidebar-menu-pro/"><?php _e( 'Go Pro', 'advanced-sidebar-menu' ); ?>
-						!
+			<strong>
+                <big>
+					<a target="blank" href="http://matlipe.com/product/advanced-sidebar-menu-pro/">
+                        <?php _e( 'Go Pro', 'advanced-sidebar-menu' ); ?>!
 					</a>
-				</big></strong>
+				</big>
+            </strong>
 		<p>
 	</fieldset>
 	<?php

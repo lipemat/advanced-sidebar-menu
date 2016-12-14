@@ -8,7 +8,7 @@
  *
  * @package Advanced Sidebar Menu
  */
-class Advanced_Sidebar_Menu_Menu extends Advanced_Sidebar_Menu_Menu_Deprecated {
+class Advanced_Sidebar_Menu_Menu {
 
 	var $instance; //The widget instance
 	var $top_id; //Either the top cat or page
