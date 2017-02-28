@@ -3,9 +3,9 @@
 Contributors: Mat Lipe
 Donate link: https://www.paypal.com/cgi-bin/webscr?cmd=_donations&business=paypal%40matlipe%2ecom&lc=US&item_name=Advanced%20Sidebar%20Menu&no_note=0&currency_code=USD&bn=PP%2dDonationsBF%3abtn_donateCC_LG%2egif%3aNonHostedGuest
 Tags: menus, sidebar menu, hierarchy, category menu, pages menu
-Requires at least: 4.4.0
-Tested up to: 4.7.0
-Stable tag: 6.1.5
+Requires at least: 4.5.0
+Tested up to: 4.7.2
+Stable tag: 6.2.0
 
 == Description ==
 
@@ -132,6 +132,9 @@ I do offer premium services for building custom add-ons for additional functiona
 
 
 == Changelog ==
+= 6.2.0 =
+* Improve sorting of categories
+
 = 6.1.0 =
 * Improve page list view
 * Add advanced_sidebar_menu_list_pages_args filter
