@@ -10,14 +10,15 @@
  */
 class Advanced_Sidebar_Menu_Menu {
 
-	var $instance; //The widget instance
-	var $top_id; //Either the top cat or page
-	var $exclude = array();
-	var $ancestors; //For the category ancestors
-	var $count = 1; //Count for grandchild levels
-	var $order_by;
-	var $taxonomy; //For filters to override the taxonomy
-	var $current_term; //Current category or taxonomy
+	public $instance; //The widget instance
+	public $top_id; //Either the top cat or page
+	public $exclude = array();
+	public $ancestors; //For the category ancestors
+	public $count = 1; //Count for grandchild levels
+	public $order_by;
+	public $order = 'ASC'; //order for categories, PRO ONLY
+	public $taxonomy; //For filters to override the taxonomy
+	public $current_term; //Current category or taxonomy
 
 	/**
 	 * args
@@ -83,13 +84,16 @@ class Advanced_Sidebar_Menu_Menu {
 	 *
 	 * @since 4.3.0
 	 */
-	function sortTerms( $a, $b ) {
+	function sortTerms( $a, $b ){
 		if( !isset( $a->{$this->order_by} ) || !isset( $b->{$this->order_by} ) ){
 			return 0;
 		}
 
-		return $a->{$this->order_by} > $b->{$this->order_by};
-
+		if( 'DESC' != $this->order ){
+			return strnatcasecmp( $a->{$this->order_by}, $b->{$this->order_by} );
+		} else {
+			return -strnatcasecmp( $a->{$this->order_by}, $b->{$this->order_by} );
+		}
 	}
 
 

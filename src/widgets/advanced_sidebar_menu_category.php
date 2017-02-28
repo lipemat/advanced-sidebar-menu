@@ -211,21 +211,11 @@ class advanced_sidebar_menu_category extends WP_Widget {
 			if( !apply_filters( 'advanced_sidebar_menu_proper_single', $asm->checked( 'single' ), $args, $instance, $asm ) ){
 				return;
 			}
-			global $post;
-			$category_array = wp_get_object_terms( $post->ID, $asm->taxonomy );
-
-			//Sort by a field like term order for other plugins
+			$cat_ids = wp_get_object_terms( get_the_ID(), $asm->taxonomy, array( 'fields' => 'ids' ) );
 			$asm->order_by = apply_filters( 'advanced_sidebar_menu_category_orderby', 'name', $args, $instance, $asm );
-
-			uasort( $category_array, array( $asm, 'sortTerms' ) );
-
-			foreach( $category_array as $id => $cat ){
-				$cat_ids[] = $cat->term_id;
-			}
 
 			//IF on a category page get the id of the category
 		} elseif( is_tax() || is_category() ) {
-
 			$asm->current_term = get_queried_object()->term_id;
 			$cat_ids[]         = get_queried_object()->term_id;
 		}
@@ -236,18 +226,20 @@ class advanced_sidebar_menu_category extends WP_Widget {
 			return;
 		}
 
-		//Go through each category there will be only one if this is a category page mulitple possible if this is single
+		//Go through each category there will be only one if this is a category page multiple possible if this is single
+		$top_level_cats = array();
 		foreach( $cat_ids as $cat_id ){
-
-			//Get the top category id
-			$asm->top_id = $asm->getTopCat( $cat_id );
-
-			//Keeps track or already used top levels so this won't double up
-			if( in_array( $asm->top_id, $already_top ) ){
-				continue;
+			$top_level_cat = $asm->getTopCat( $cat_id );
+			if( !in_array( $top_level_cat, $top_level_cats ) ){
+				$top_level_cats[] = $top_level_cat;
 			}
+		}
 
-			$already_top[] = $asm->top_id;
+		$top_level_cats = get_terms( array( 'include' => $top_level_cats ) );
+		usort( $top_level_cats, array( $asm, 'sortTerms' ) );
+
+		foreach( $top_level_cats as $_cat ){
+            $asm->top_id = $_cat->term_id;
 
 			//Check for children
 			$all_categories = $all = array_filter(
@@ -255,15 +247,11 @@ class advanced_sidebar_menu_category extends WP_Widget {
 					$asm->taxonomy, array(
 						'child_of' => $asm->top_id,
 						'orderby'  => $asm->order_by,
-						'order'    => $instance[ 'order' ],
+						'order'    => $asm->order,
 					)
 				)
 			);
 
-			//For Backwards Compatibility
-			foreach( $all_categories as $tc ){
-				$tc->cat_ID = $tc->term_id;
-			}
 
 			//If there are no children and not displaying childless parent - bail
 			if( empty( $all_categories ) && !( $asm->checked( 'include_childless_parent' ) ) ){
@@ -298,10 +286,6 @@ class advanced_sidebar_menu_category extends WP_Widget {
 					}
 				}
 			}
-
-			//for deprecation
-			$top_cat       = $asm->top_id;
-			$cat_ancestors = $asm->ancestors;
 
 			//Bring in the view
 			require( Advanced_Sidebar_Menu::get_instance()->get_template_part( 'category_list.php' ) );
