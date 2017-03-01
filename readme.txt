@@ -5,7 +5,7 @@ Donate link: https://www.paypal.com/cgi-bin/webscr?cmd=_donations&business=paypa
 Tags: menus, sidebar menu, hierarchy, category menu, pages menu
 Requires at least: 4.5.0
 Tested up to: 4.7.2
-Stable tag: 6.2.0
+Stable tag: 6.2.1
 
 == Description ==
 
