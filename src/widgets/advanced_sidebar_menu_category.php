@@ -235,7 +235,7 @@ class advanced_sidebar_menu_category extends WP_Widget {
 			}
 		}
 
-		$top_level_cats = get_terms( array( 'include' => $top_level_cats ) );
+		$top_level_cats = get_terms( array( 'include' => $top_level_cats, 'hide_empty' => false ) );
 		usort( $top_level_cats, array( $asm, 'sortTerms' ) );
 
 		foreach( $top_level_cats as $_cat ){
