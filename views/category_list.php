@@ -48,6 +48,7 @@ if( !empty( $all_categories ) ){
 			'child_of' => $asm->top_id,
 			'depth'    => $instance[ 'levels' ],
 			'exclude'  => $instance[ 'exclude' ],
+			'show_option_none' => false,
 		);
 		$content .= wp_list_categories( $_args );
 	} else {
@@ -67,6 +68,7 @@ if( !empty( $all_categories ) ){
 					'title_li' => '',
 					'include'  => $child_cat->term_id,
 					'depth'    => 1,
+					'show_option_none' => false,
 
 				);
 				$content .= $asm->openListItem( wp_list_categories( $_args ) );
@@ -84,6 +86,7 @@ if( !empty( $all_categories ) ){
 						'exclude'  => $instance[ 'exclude' ],
 						'depth'    => 3,
 						'child_of' => $child_cat->term_id,
+						'show_option_none' => false,
 					);
 					$content .= wp_list_categories( $_args );
 					$content .= '</ul>';
