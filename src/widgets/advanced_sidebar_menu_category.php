@@ -193,7 +193,7 @@ class advanced_sidebar_menu_category extends WP_Widget {
 		do_action( 'advanced_sidebar_menu_widget_pre_render', $asm, $this );
 
 		$asm->order_by = apply_filters( 'advanced_sidebar_menu_category_orderby', 'name', $args, $instance );
-		$asm->order_by = apply_filters( 'advanced_sidebar_menu_category_order', $asm->order, $args, $instance );
+		$asm->order = apply_filters( 'advanced_sidebar_menu_category_order', $asm->order, $args, $instance );
 
 
 		$cat_ids  = $already_top = array();
