@@ -251,9 +251,9 @@ class advanced_sidebar_menu_category extends WP_Widget {
 			$all_categories = $all = array_filter(
 				get_terms(
 					$asm->taxonomy, array(
-						'child_of' => $asm->top_id,
-						'orderby'  => $asm->order_by,
-						'order'    => $asm->order,
+						'parent'  => $asm->top_id,
+						'orderby' => $asm->order_by,
+						'order'   => $asm->order,
 					)
 				)
 			);
