@@ -235,8 +235,14 @@ class advanced_sidebar_menu_category extends WP_Widget {
 			}
 		}
 
-		$top_level_cats = get_terms( array( 'include' => $top_level_cats, 'hide_empty' => false ) );
-		usort( $top_level_cats, array( $asm, 'sortTerms' ) );
+		if( !empty( $top_level_cats ) ){
+			$top_level_cats = get_terms( array(
+				'include'    => $top_level_cats,
+				'hide_empty' => false,
+				'orderby'    => $asm->order_by,
+				'order'      => $asm->order,
+			) );
+		}
 
 		foreach( $top_level_cats as $_cat ){
             $asm->top_id = $_cat->term_id;

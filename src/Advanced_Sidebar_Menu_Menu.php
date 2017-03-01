@@ -80,24 +80,6 @@ class Advanced_Sidebar_Menu_Menu {
 
 
 	/**
-	 * Used by a uasort to sort taxonomy arrays by term order
-	 *
-	 * @since 4.3.0
-	 */
-	function sortTerms( $a, $b ){
-		if( !isset( $a->{$this->order_by} ) || !isset( $b->{$this->order_by} ) ){
-			return 0;
-		}
-
-		if( 'DESC' != $this->order ){
-			return strnatcasecmp( $a->{$this->order_by}, $b->{$this->order_by} );
-		} else {
-			return -strnatcasecmp( $a->{$this->order_by}, $b->{$this->order_by} );
-		}
-	}
-
-
-	/**
 	 * Retrieves the Highest level Category Id
 	 *
 	 * @since 6.6.13
