@@ -15,7 +15,7 @@ class Advanced_Sidebar_Menu_Menu {
 	public $exclude = array();
 	public $ancestors; //For the category ancestors
 	public $count = 1; //Count for grandchild levels
-	public $order_by;
+	public $order_by = null;
 	public $order = 'ASC'; //order for categories, PRO ONLY
 	public $taxonomy; //For filters to override the taxonomy
 	public $current_term; //Current category or taxonomy

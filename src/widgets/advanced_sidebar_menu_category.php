@@ -190,11 +190,11 @@ class advanced_sidebar_menu_category extends WP_Widget {
 		$asm->instance = $instance;
 		$asm->args     = $args;
 
-		//Had to display twice for backward compat - because originaly not set to anything
-		$asm->order_by = apply_filters( 'advanced_sidebar_menu_category_orderby', null, $args, $instance );
-
 		do_action( 'advanced_sidebar_menu_widget_pre_render', $asm, $this );
-		
+
+		$asm->order_by = apply_filters( 'advanced_sidebar_menu_category_orderby', 'name', $args, $instance );
+		$asm->order_by = apply_filters( 'advanced_sidebar_menu_category_order', $asm->order, $args, $instance );
+
 
 		$cat_ids  = $already_top = array();
 		$asm_once = false; //keeps track of how many widgets this created
@@ -212,7 +212,6 @@ class advanced_sidebar_menu_category extends WP_Widget {
 				return;
 			}
 			$cat_ids = wp_get_object_terms( get_the_ID(), $asm->taxonomy, array( 'fields' => 'ids' ) );
-			$asm->order_by = apply_filters( 'advanced_sidebar_menu_category_orderby', 'name', $args, $instance, $asm );
 
 			//IF on a category page get the id of the category
 		} elseif( is_tax() || is_category() ) {

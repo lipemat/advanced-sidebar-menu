@@ -181,9 +181,10 @@ class advanced_sidebar_menu_page extends WP_Widget {
 		$asm           = new Advanced_Sidebar_Menu_Menu();
 		$asm->instance = $instance;
 		$asm->args     = $args;
-		$asm->exclude  = apply_filters( 'advanced_sidebar_menu_excluded_pages', explode( ',', $instance[ 'exclude' ] ), $post, $asm->args, $asm->instance, $asm );
 
 		do_action( 'advanced_sidebar_menu_widget_pre_render', $asm, $this );
+
+		$asm->exclude  = apply_filters( 'advanced_sidebar_menu_excluded_pages', explode( ',', $instance[ 'exclude' ] ), $post, $asm->args, $asm->instance, $asm );
 
 		extract( $args );
 
