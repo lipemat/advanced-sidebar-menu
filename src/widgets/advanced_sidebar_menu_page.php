@@ -155,38 +155,23 @@ class advanced_sidebar_menu_page extends WP_Widget {
 	}
 
 
-	#---------------------------------------------------------------------------------------------------------------------------
-
 	/**
-	 * Outputs the page list
+	 * The Widgets Output
+     *
+     *
+	 * @param array $args
+	 * @param array $instance
 	 *
-	 * @see    WP_Widget::widget()
-	 *
-	 * @uses   for custom post types send the type to the filter titled 'advanced_sidebar_menu_post_type'
-	 * @uses   change the top parent manually with the filter 'advanced_sidebar_menu_top_parent'
-	 * @uses   change the order of the 2nd level pages with 'advanced_sidebar_menu_order_by' filter
-	 *
-	 * @filter apply_filters('advanced_sidebar_menu_page_widget_output',$content, $args, $instance );
-	 *         apply_filters('advanced_sidebar_menu_order_by', 'menu_order', $post, $args, $instance );
-	 *         apply_filters('advanced_sidebar_menu_top_parent', $top_parent, $post, $args, $instance );
-	 *         apply_filters('advanced_sidebar_menu_post_type', 'page', $args, $instance );
-	 *
-	 *
-	 *
-	 * @see    Geansai - pointed out a notice level error. Thanks Geansai!!
+	 * @return void
 	 */
 	function widget( $args, $instance ){
-		global $post;
-
-		$asm           = new Advanced_Sidebar_Menu_Menu();
-		$asm->instance = $instance;
-		$asm->args     = $args;
+		$instance = wp_parse_args( $instance, $this->defaults );
+	    $post = get_post();
+		$asm = Advanced_Sidebar_Menu_Menu::factory( $instance, $args );
 
 		do_action( 'advanced_sidebar_menu_widget_pre_render', $asm, $this );
 
 		$asm->exclude  = apply_filters( 'advanced_sidebar_menu_excluded_pages', explode( ',', $instance[ 'exclude' ] ), $post, $asm->args, $asm->instance, $asm );
-
-		extract( $args );
 
 		$filter_args = array(
 			1 => $asm->args,
@@ -212,13 +197,13 @@ class advanced_sidebar_menu_page extends WP_Widget {
 
 		if( $post->ancestors ){
 			$ancestors  = $post->ancestors;
-			$top_parent = end( $ancestors );
+			$asm->top_id = end( $ancestors );
 		} else {
-			$top_parent = $post->ID;
+			$asm->top_id = $post->ID;
 		}
 
-		$filter_args[ 0 ] = $top_parent;
-		$asm->top_id      = $top_parent = apply_filters_ref_array( 'advanced_sidebar_menu_top_parent', $filter_args );
+		$filter_args[ 0 ] = $asm->top_id;
+		$asm->top_id = apply_filters_ref_array( 'advanced_sidebar_menu_top_parent', $filter_args );
 		if( get_post_type( $asm->top_id ) != $asm->post_type ){
 			return;
 		}
@@ -234,7 +219,7 @@ class advanced_sidebar_menu_page extends WP_Widget {
 		$child_pages = $this->get_child_pages( $asm, $filter_args );
 
 		#---- if there are no children do not display the parent unless it is check to do so
-		if( ( !empty( $child_pages ) ) || $asm->checked( 'include_childless_parent' ) && ( !in_array( $top_parent, $asm->exclude ) ) ){
+		if( ( !empty( $child_pages ) ) || $asm->checked( 'include_childless_parent' ) && ( !in_array( $asm->top_id, $asm->exclude ) ) ){
 
 			if( $asm->checked( 'css' ) ){
 				echo '<style type="text/css">';
@@ -242,10 +227,11 @@ class advanced_sidebar_menu_page extends WP_Widget {
 				echo '</style>';
 			}
 
-			$content = '';
 			echo $args[ 'before_widget' ];
-				require( Advanced_Sidebar_Menu::get_instance()->get_template_part( 'page_list.php' ) );
-				$filter_args[ 0 ] = $content;
+				$output = require( Advanced_Sidebar_Menu::get_instance()->get_template_part( 'page_list.php' ) );
+			//backward compatibility for old views that didn't returns
+				if( empty( $output ) ) $output = $content;
+				$filter_args[ 0 ] = $output;
 				echo apply_filters_ref_array( 'advanced_sidebar_menu_page_widget_output', $filter_args );
 			echo $args[ 'after_widget' ];
 

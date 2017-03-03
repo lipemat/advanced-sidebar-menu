@@ -8,8 +8,6 @@
  * @since   1.7.14
  * @package Advanced Sidebar Menu
  *
- * @todo    Clean this bad boy up. Still rookie code from years ago
- *
  *
  */
 class advanced_sidebar_menu_category extends WP_Widget {
@@ -180,31 +178,22 @@ class advanced_sidebar_menu_category extends WP_Widget {
 	 *
 	 */
 	function widget( $args, $instance ){
-
 		$instance = wp_parse_args( $instance, $this->defaults );
-
 		if( is_single() && !isset( $instance[ 'single' ] ) ){
 			return;
 		}
-		$asm           = new Advanced_Sidebar_Menu_Menu;
-		$asm->instance = $instance;
-		$asm->args     = $args;
+
+		$asm = Advanced_Sidebar_Menu_Menu::factory( $instance, $args );
+		$cat_ids  = $already_top = array();
+		$asm_once = false; //keeps track of how many widgets this created
+        $close = false;
 
 		do_action( 'advanced_sidebar_menu_widget_pre_render', $asm, $this );
 
 		$asm->order_by = apply_filters( 'advanced_sidebar_menu_category_orderby', 'name', $args, $instance );
 		$asm->order = apply_filters( 'advanced_sidebar_menu_category_order', $asm->order, $args, $instance );
-
-
-		$cat_ids  = $already_top = array();
-		$asm_once = false; //keeps track of how many widgets this created
-
-		$exclude      = explode( ',', $instance[ 'exclude' ] );
-		$asm->exclude = $exclude;
-
-		$asm->taxonomy = apply_filters( 'advanced_sidebar_menu_taxonomy', 'category', $args, $instance, $asm );
-
-		extract( $args );
+		$asm->exclude = apply_filters( 'advanced_sidebar_menu_excluded_categories', explode( ',', $instance[ 'exclude' ] ), $args, $instance, $asm );
+		$asm->taxonomy = apply_filters( 'advanced_sidebar_menu_taxonomy', 'category', $args, $instance, $asm );;
 
 		//If on a single page create an array of each category and create a list for each
 		if( is_single() ){
@@ -263,7 +252,7 @@ class advanced_sidebar_menu_category extends WP_Widget {
 				continue;
 			}
 			//If there are no children and the parent is excluded bail
-			if( empty( $all_categories ) && in_array( $asm->top_id, $exclude ) ){
+			if( empty( $all_categories ) && in_array( $asm->top_id, $asm->exclude ) ){
 				continue;
 			}
 
@@ -272,7 +261,7 @@ class advanced_sidebar_menu_category extends WP_Widget {
 			if( !$asm_once || ( $instance[ 'new_widget' ] == 'widget' ) ){
 
 				//Start the menu
-				echo $before_widget;
+				echo $args[ 'before_widget' ];
 				if( !$asm_once ){
 					//must remain in the loop instead of the template because we only want it to display once
 					$asm->title();
@@ -293,13 +282,15 @@ class advanced_sidebar_menu_category extends WP_Widget {
 			}
 
 			//Bring in the view
-			require( Advanced_Sidebar_Menu::get_instance()->get_template_part( 'category_list.php' ) );
+			$output = require( Advanced_Sidebar_Menu::get_instance()->get_template_part( 'category_list.php' ) );
 
-			echo apply_filters( 'advanced_sidebar_menu_category_widget_output', $content, $args, $instance );
+			//backward compatibility for old views that didn't return
+			if( empty( $output ) ) $output = $content;
+			echo apply_filters( 'advanced_sidebar_menu_category_widget_output', $output, $args, $instance );
 
 			if( $close ){
 				//End the Widget Area
-				echo $after_widget;
+				echo $args[ 'after_widget' ];
 				echo '<!-- First $after_widget -->';
 			}
 
@@ -308,11 +299,10 @@ class advanced_sidebar_menu_category extends WP_Widget {
 		//IF we were waiting for all the individual lists to complete
 		if( !$close && $asm_once ){
 			//End the Widget Area
-			echo $after_widget;
+			echo $args[ 'after_widget' ];;
 			echo '<!-- Second $after_widget -->';
 
 		}
+	}
 
-	} #== /widget()
-
-} #== /Clas
+}
