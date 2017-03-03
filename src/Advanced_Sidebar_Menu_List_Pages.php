@@ -99,10 +99,11 @@ class Advanced_Sidebar_Menu_List_Pages{
 		$this->top_parent_id = $parent_id;
 
 		$args = array(
-			'post_type'   => $class->post_type,
-			'sort_column' => $class->order_by,
-			'exclude'     => $class->exclude,
-			'levels'      => $class->levels
+			'post_type'   => $asm->post_type,
+			'sort_column' => $asm->order_by,
+			'sort_order'  => $asm->order,
+			'exclude'     => $asm->exclude,
+			'levels'      => $asm->levels,
 		);
 
 		$this->parse_args( $args );

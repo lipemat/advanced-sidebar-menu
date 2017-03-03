@@ -227,7 +227,9 @@ class advanced_sidebar_menu_page extends WP_Widget {
 		array_unshift( $filter_args, $post );
 		array_unshift( $filter_args, $instance[ 'order_by' ] );
 
-		$asm->order_by = $order_by = apply_filters_ref_array( 'advanced_sidebar_menu_order_by', $filter_args );
+		$asm->order_by = apply_filters_ref_array( 'advanced_sidebar_menu_order_by', $filter_args );
+		$filter_args[ 0 ] = $asm->order;
+		$asm->order = apply_filters_ref_array( 'advanced_sidebar_menu_page_order', $filter_args );
 
 		$child_pages = $this->get_child_pages( $asm, $filter_args );
 
