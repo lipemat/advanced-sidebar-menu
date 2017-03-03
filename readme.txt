@@ -83,10 +83,6 @@ Developer docs may be found here:
 The .pot file may be found in the plugins' languages folder. Use the 'advanced-sidebar-menu' text domain.
 
 
-= Version 4.0+ is not displaying the same as previous version of the plugin. How do I bring this back? =
-
-You will find a checkbox in the widget options for Legacy Mode. 
-
 = How do I change the styling of the current page? =
 
 You may add css to your theme's style.css to change the way the menu looks
@@ -110,26 +106,19 @@ There is a checkbox in the widget options as of version 3.2 that will display th
 = How do you edit the output or built in css? =
 
 Create a folder in your child theme named "advanced-sidebar-menu" copy any of the files from the "views" folder into
-the folder you just created. You may edit the files at will to change the output or css?
+the folder you just created. You may edit the files at will to change the output or css.
 You must have the option checked to use the built in CSS (in the widget) to be able to edit the css file in this way.
-The Others will work always.
 
 
 = Does the menu change for each page you are on? =
 
-Yes. Based on whatever parents and children pages you are on, the menu will change automatically.
+Yes. Based on whatever page you are on, the menu will change automatically to display the current parents and children.
 
 = How does this work with styling the page? =
 
-As of version 1.1 this will automatically generate class names for each level for menu system. 
+This will automatically generate class names for each level for menu system.
 You can add classes to your theme's style.css file to style it accordingly. 
 You may want to use something like margins to set the levels apart.
-
-
-= What if I want functionality which is not built in? =
-
-I do offer premium services for building custom add-ons for additional functionality. Otherwise you are welcome to alter the code in any way or build your own add-ons. keep in mind, if you edit the code directly, it will break on update. The best way to customize is using the built in filters or template overrides. If you have a cool add-on you have developed, let me know, I may want to publish your work.
-
 
 == Changelog ==
 = 6.2.0 =
