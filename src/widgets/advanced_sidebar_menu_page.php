@@ -176,7 +176,8 @@ class advanced_sidebar_menu_page extends WP_Widget {
 		$filter_args = array(
 			1 => $asm->args,
 			2 => $asm->instance,
-			3 => $asm
+			3 => $asm,
+            4 => $this,
 		);
 
 		$filter_args[ 0 ] = 'page';
@@ -227,14 +228,14 @@ class advanced_sidebar_menu_page extends WP_Widget {
 				echo '</style>';
 			}
 
-
-			$attrs = @new SimpleXMLElement( $args[ 'before_widget' ] );
-
-
 			echo $args[ 'before_widget' ];
 				$output = require( Advanced_Sidebar_Menu::get_instance()->get_template_part( 'page_list.php' ) );
-			//backward compatibility for old views that didn't returns
-				if( empty( $output ) ) $output = $content;
+
+			    //backward compatibility for old views that didn't returns
+			    if( empty( $output ) && isset( $content ) ){
+				    $output = $content;
+			    }
+
 				$filter_args[ 0 ] = $output;
 				echo apply_filters_ref_array( 'advanced_sidebar_menu_page_widget_output', $filter_args );
 			echo $args[ 'after_widget' ];
