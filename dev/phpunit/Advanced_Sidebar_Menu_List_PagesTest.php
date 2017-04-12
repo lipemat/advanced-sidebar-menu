@@ -16,6 +16,7 @@ class Advanced_Sidebar_Menu_List_PagesTest extends WP_UnitTestCase {
 		'post_type' => 'page',
 		'exclude'   => '',
 		'order_by'  => 'menu_order, post_title',
+		'order'     => 'ASC',
 		'levels'    => 0
 	);
 

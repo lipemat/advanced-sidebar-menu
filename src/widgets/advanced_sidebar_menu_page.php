@@ -227,6 +227,10 @@ class advanced_sidebar_menu_page extends WP_Widget {
 				echo '</style>';
 			}
 
+
+			$attrs = @new SimpleXMLElement( $args[ 'before_widget' ] );
+
+
 			echo $args[ 'before_widget' ];
 				$output = require( Advanced_Sidebar_Menu::get_instance()->get_template_part( 'page_list.php' ) );
 			//backward compatibility for old views that didn't returns
