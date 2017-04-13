@@ -25,9 +25,8 @@ Keeps the menu clean and usable. Only related items display so you don't have to
    <li>Include the highest level parent page</li>
    <li>Include the highest level parent page even with no Children</li>
    <li>Order Pages By (date, title, page order)</li>
-   <li>Use built in styling (very plain styling currently but plans for more advanced in near future versions)</li>
+   <li>Use built in styling (very plain styling, for more advanced styling <a href="https://matlipe.com/product/advanced-sidebar-menu-pro/">Go Pro!</a>)</li>
    <li>Exclude pages</li>
-   <li>Legacy Mode - For those who like the way it was pre version 4.0</li>
    <li>Always display child Pages</li>
    <li>Number of levels of child pages to display</li>
 </ol>  
@@ -37,7 +36,7 @@ Keeps the menu clean and usable. Only related items display so you don't have to
    <li>Add a title to the widget</li>
    <li>Include Parent Category</li>
    <li>Include Parent Even with no Children</li>
-  <li>Use Built in Styling</li>
+  <li>Use built in styling (very plain styling, for more advanced styling <a href="https://matlipe.com/product/advanced-sidebar-menu-pro/">Go Pro!</a>)</li>
   <li>Display Categories on Single Posts</li>
    <li>To display each Single Posts Category in a new widget or in same list</li>
    <li>Exclude Categories</li>
