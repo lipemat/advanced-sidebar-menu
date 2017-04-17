@@ -3,7 +3,7 @@
 /**
  * The Output of the Advanced Sidebar Categories Widget
  *
- * @since  6.2.4
+ * @since  6.2.5
  *
  * @todo split args into class similar to Advanced_Sidebar_Menu_List_Pages
  *
@@ -75,7 +75,7 @@ if( !empty( $all_categories ) ){
 				//If there are children of this cat and it is a parent or child or the current cat
 				if( $asm->second_level_cat( $child_cat ) ){
 					#-- Create a new menu with all the children under it
-					$content .= '<ul class="grandchild-sidebar-menu">';
+					$content .= '<ul class="grandchild-sidebar-menu children">';
 					$_args = array(
 						'echo'     => 0,
 						'orderby'  => $asm->order_by,
