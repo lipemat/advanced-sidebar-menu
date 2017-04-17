@@ -175,6 +175,10 @@ class advanced_sidebar_menu_category extends WP_Widget {
 	 *           apply_filters('advanced_sidebar_menu_taxonomy', 'post', $args, $instance );
 	 *           apply_filters('advanced_sidebar_menu_proper_single', $asm->checked('single'), $args, $instance)
 	 *           apply_filters( 'advanced_sidebar_menu_category_ids', $cat_ids, $args, $instance )
+     *
+     * @todo Clean up filters to match structure of page widget and use apply_filters_ref_array()
+     *       update web docs when doing so
+     *       Keep backward compat filters in place
 	 *
 	 */
 	function widget( $args, $instance ){
@@ -284,9 +288,11 @@ class advanced_sidebar_menu_category extends WP_Widget {
 			//Bring in the view
 			$output = require( Advanced_Sidebar_Menu::get_instance()->get_template_part( 'category_list.php' ) );
 
-			//backward compatibility for old views that didn't return
-			if( empty( $output ) ) $output = $content;
-			echo apply_filters( 'advanced_sidebar_menu_category_widget_output', $output, $args, $instance );
+			//backward compatibility for old views that didn't returns
+			if( empty( $output ) && isset( $content ) ){
+				$output = $content;
+			}
+			echo apply_filters( 'advanced_sidebar_menu_category_widget_output', $output, $args, $instance, $asm );
 
 			if( $close ){
 				//End the Widget Area
