@@ -5,7 +5,7 @@ Donate link: https://www.paypal.com/cgi-bin/webscr?cmd=_donations&business=paypa
 Tags: menus, sidebar menu, hierarchy, category menu, pages menu
 Requires at least: 4.6.0
 Tested up to: 4.8.0
-Stable tag: 6.2.5
+Stable tag: 6.3.0
 
 == Description ==
 
@@ -120,6 +120,9 @@ You can add classes to your theme's style.css file to style it accordingly.
 You may want to use something like margins to set the levels apart.
 
 == Changelog ==
+= 6.3.0
+* Improve category class handling for pro version accordion support
+
 = 6.2.0 =
 * Improve sorting of categories
 
