@@ -137,6 +137,28 @@ class Advanced_Sidebar_Menu_Menu {
 
 
 	/**
+	 * If a category has children add the has_children class
+	 *
+	 * @param [] $classes
+	 * @param \WP_Term $category
+	 *
+	 * @return array
+	 */
+	public function add_has_children_category_class( $classes, $category ) {
+		$children = get_terms( $category->taxonomy, array(
+			'parent'     => $category->term_id,
+			'hide_empty' => false,
+			'number'     => 1,
+		) );
+		if( !empty( $children ) ){
+			$classes[] = 'has_children';
+		}
+
+		return $classes;
+	}
+
+
+	/**
 	 * Adds the class for any menu item with children
 	 *
 	 * @param array $classes  the current css classes
@@ -171,6 +193,10 @@ class Advanced_Sidebar_Menu_Menu {
 
 		} elseif( $this_menu_item->ID == $post->post_parent ) {
 			$classes[ ] = 'current_page_parent';
+		}
+
+		if( $this->has_children( $this_menu_item->ID ) ){
+			$classes[] = 'has_children';
 		}
 
 		return $classes;

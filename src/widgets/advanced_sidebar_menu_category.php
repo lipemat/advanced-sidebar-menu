@@ -197,7 +197,11 @@ class advanced_sidebar_menu_category extends WP_Widget {
 		$asm->order_by = apply_filters( 'advanced_sidebar_menu_category_orderby', 'name', $args, $instance );
 		$asm->order = apply_filters( 'advanced_sidebar_menu_category_order', $asm->order, $args, $instance );
 		$asm->exclude = apply_filters( 'advanced_sidebar_menu_excluded_categories', explode( ',', $instance[ 'exclude' ] ), $args, $instance, $asm );
-		$asm->taxonomy = apply_filters( 'advanced_sidebar_menu_taxonomy', 'category', $args, $instance, $asm );;
+		$asm->taxonomy = apply_filters( 'advanced_sidebar_menu_taxonomy', 'category', $args, $instance, $asm );
+
+        add_filter( 'category_css_class', array( $asm, 'add_has_children_category_class' ), 2, 2 );
+
+
 
 		//If on a single page create an array of each category and create a list for each
 		if( is_single() ){
