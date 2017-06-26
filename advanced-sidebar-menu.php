@@ -25,8 +25,11 @@ if( !function_exists( 'advanced_sidebar_menu_load' ) ){
 		require( ADVANCED_SIDEBAR_DIR . 'src/Advanced_Sidebar_Menu_List_Pages.php' );
 		require( ADVANCED_SIDEBAR_DIR . 'src/Advanced_Sidebar_Menu_Cache.php' );
 
+		require( ADVANCED_SIDEBAR_DIR . 'src/Advanced_Sidebar_Menu_Debug.php' );
+
 		Advanced_Sidebar_Menu::init();
 		Advanced_Sidebar_Menu_Cache::init();
+		Advanced_Sidebar_Menu_Debug::init();
 	}
 
 	add_action( 'plugins_loaded', 'advanced_sidebar_menu_load' );
