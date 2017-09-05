@@ -14,6 +14,9 @@
  */
 class advanced_sidebar_menu_page extends WP_Widget {
 
+    //@todo set the rest to constants
+    const DISPLAY_PARENT = 'include_parent';
+
 	private $defaults = array(
 		'title'                    => false,
 		'include_parent'           => false,
@@ -62,14 +65,14 @@ class advanced_sidebar_menu_page extends WP_Widget {
 				name="<?php echo $this->get_field_name( 'title' ); ?>" class="widefat" type="text" value="<?php echo $instance[ 'title' ]; ?>"/>
 		</p>
 
-		<p> <?php _e( 'Include Parent Page', 'advanced-sidebar-menu' ); ?>:
-			<input id="<?php echo $this->get_field_id( 'include_parent' ); ?>"
-				name="<?php echo $this->get_field_name( 'include_parent' ); ?>" type="checkbox" value="checked"
-				<?php echo $instance[ 'include_parent' ]; ?>/>
+		<p> <?php _e( 'Display parent page', 'advanced-sidebar-menu' ); ?>:
+			<input id="<?php echo $this->get_field_id( self::DISPLAY_PARENT ); ?>"
+				name="<?php echo $this->get_field_name( self::DISPLAY_PARENT ); ?>" type="checkbox" value="checked"
+				<?php echo $instance[ self::DISPLAY_PARENT ]; ?>/>
 		</p>
 
 
-		<p> <?php _e( 'Include Parent Even With No Children', 'advanced-sidebar-menu' ); ?>:
+		<p> <?php _e( 'Display menu when there is only the parent page', 'advanced-sidebar-menu' ); ?>:
 			<input id="<?php echo $this->get_field_id( 'include_childless_parent' ); ?>"
 				name="<?php echo $this->get_field_name( 'include_childless_parent' ); ?>" type="checkbox" value="checked"
 				<?php echo $instance[ 'include_childless_parent' ]; ?>/>
