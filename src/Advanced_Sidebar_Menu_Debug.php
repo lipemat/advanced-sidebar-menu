@@ -29,7 +29,8 @@ class Advanced_Sidebar_Menu_Debug {
 		?>
 		<script class="<?= self::DEBUG_PARAM; ?>">
 			var <?= self::DEBUG_PARAM; ?> = window.<?= self::DEBUG_PARAM; ?> || {};
-			asm_debug['<?= $widget->id; ?>'] = <?= json_encode( $asm->instance ); ?>;
+			    <?= self::DEBUG_PARAM; ?>['version'] = '<?= ADVANCED_SIDEBAR_BASIC_VERSION; ?>';
+                <?= self::DEBUG_PARAM; ?>['<?= $widget->id; ?>'] = <?= json_encode( $asm->instance ); ?>;
 		</script>
 		<?php
 	}
