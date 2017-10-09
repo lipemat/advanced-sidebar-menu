@@ -178,7 +178,7 @@ class advanced_sidebar_menu_page extends WP_Widget {
 		$asm->exclude  = apply_filters( 'advanced_sidebar_menu_excluded_pages', explode( ',', $instance[ 'exclude' ] ), $post, $asm->args, $asm->instance, $asm );
 
 		$filter_args = array(
-			0 => 'page',
+			0 => $asm->post_type,
 			1 => $asm->args,
 			2 => $asm->instance,
 			3 => $asm,

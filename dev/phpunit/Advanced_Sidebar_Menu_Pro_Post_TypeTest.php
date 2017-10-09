@@ -30,12 +30,12 @@ class Advanced_Sidebar_Menu_Pro_Post_TypeTest extends WP_UnitTestCase {
 			'hierarchical' => true,
 		) );
 		$post_types = call_private_method( $this->o, 'get_post_types' );
-		$this->assertCount( 2, $post_types, print_r( $post_types, true ) );
+		$this->assertCount( 1, $post_types, print_r( $post_types, true ) );
 	}
 
 	public function test_available_post_type_conditions(){
 		$post_types = call_private_method( $this->o, 'get_post_types' );
-		$this->assertCount( 1, $post_types, print_r( $post_types, true ) );
+		$this->assertCount( 0, $post_types, print_r( $post_types, true ) );
 		ob_start();
 		$this->o->WidgetOutput( 'fake', array() );
 		$this->assertEmpty( ob_get_clean(), 'Outputting for no reason' );
