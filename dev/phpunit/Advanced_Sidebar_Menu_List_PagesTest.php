@@ -6,7 +6,7 @@
  * @author  mat
  * @since   8/18/14
  *
- * @package wordpress
+ * @package advacned-sidebar-menu
  */
 class Advanced_Sidebar_Menu_List_PagesTest extends WP_UnitTestCase {
 
@@ -20,16 +20,30 @@ class Advanced_Sidebar_Menu_List_PagesTest extends WP_UnitTestCase {
 		'levels'    => 0
 	);
 
+	/**
+	 * menu
+	 *
+	 * @var \Advanced_Sidebar_Menu_Menu
+	 */
+	private $mock;
+
 	public function setUp() {
 		parent::setUp();
 		switch_to_blog( 3 );
+
+		$this->mock = $this->getMockBuilder( 'Advanced_Sidebar_Menu_Menu' )
+			->getMock();
+		$this->mock->order_by = 'menu_order, post_title';
+		$this->mock->exclude = '';
+		$this->mock->levels = 0;
+		$this->mock->order = 'ASC';
+		$this->mock->post_type = 'page';
 	}
 
 	public function test_excluded_pages(){
-		$args = $this->default_args;
-		$args[ 'exclude' ] = "7,19,";
+		$this->mock->exclude = '7,19,';
 
-		$menu = new Advanced_Sidebar_Menu_List_Pages( $this->top_parent, (object)$args );
+		$menu = Advanced_Sidebar_Menu_List_Pages::factory( $this->mock );
 
 		function not_contains_page_id( $pages, Advanced_Sidebar_Menu_List_Pages $menu, Advanced_Sidebar_Menu_List_PagesTest $test ){
 			$pages = wp_list_pluck( $pages, 'ID' );
@@ -49,16 +63,15 @@ class Advanced_Sidebar_Menu_List_PagesTest extends WP_UnitTestCase {
 
 
 	public function test_order_by_title(){
-		$args = $this->default_args;
-		$args[ 'order_by' ] = "title";
+		$this->mock->order_by = 'title';
 
-		$menu = new Advanced_Sidebar_Menu_List_Pages( $this->top_parent, (object)$args );
+		$menu = Advanced_Sidebar_Menu_List_Pages::factory( $this->mock );
 
-		function ordered_by_title( $pages, $menu, $test ){
+		function ordered_by_title( $pages, Advanced_Sidebar_Menu_List_Pages $menu, $test ){
 			$orig = wp_list_pluck( $pages, 'post_title' );
 			$sorted = $orig;
 			sort( $sorted );
-			$test->assertEquals( $orig, $sorted, "Pages were not ordered by title properly" );
+			$test->assertEquals( $orig, $sorted, 'Pages were not ordered by title properly' );
 			foreach( $pages as $page ){
 				$children = $menu->get_child_pages( $page->ID );
 				if( !empty( $children ) ){
@@ -72,16 +85,15 @@ class Advanced_Sidebar_Menu_List_PagesTest extends WP_UnitTestCase {
 
 
 	public function test_order_by_menu_order(){
-		$args = $this->default_args;
-		$args[ 'order_by' ] = "menu_order";
+		$this->mock->order_by = 'menu_order';
 
-		$menu = new Advanced_Sidebar_Menu_List_Pages( $this->top_parent, (object)$args );
+		$menu = Advanced_Sidebar_Menu_List_Pages::factory( $this->mock );
 
 		function ordered_by_menu_order( $pages, $menu, $test ){
 			$orig = wp_list_pluck( $pages, 'menu_order' );
 			$sorted = $orig;
 			sort( $sorted, SORT_NUMERIC );
-			$test->assertEquals( $orig, $sorted, "Pages were not ordered by menu order properly" );
+			$test->assertEquals( $orig, $sorted, 'Pages were not ordered by menu order properly' );
 			foreach( $pages as $page ){
 				$children = $menu->get_child_pages( $page->ID );
 				if( !empty( $children ) ){

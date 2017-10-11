@@ -35,7 +35,7 @@ class Advanced_Sidebar_Menu_List_Pages{
 	 *
 	 * @var WP_Post
 	 */
-	private $current_page = NULL;
+	protected $current_page;
 
 	/**
 	 * current_page_id
@@ -45,7 +45,7 @@ class Advanced_Sidebar_Menu_List_Pages{
 	 *
 	 * @var int
 	 */
-	private $current_page_id = 0;
+	protected $current_page_id = 0;
 
 	/**
 	 * top_parent_id
@@ -100,17 +100,22 @@ class Advanced_Sidebar_Menu_List_Pages{
 	 *
 	 * @param int                        $parent_id - $asm->top_id
 	 * @param Advanced_Sidebar_Menu_Menu $asm
+	 * @param WP_Post $current_page;
 	 */
-	public function __construct( $parent_id, \Advanced_Sidebar_Menu_Menu $asm ){
+	public function __construct( $parent_id, \Advanced_Sidebar_Menu_Menu $asm, $current_page ){
 		$this->menu = $asm;
 		$this->top_parent_id = $parent_id;
+		$this->current_page = $current_page;
+		if( null !== $current_page ){
+			$this->current_page_id = $current_page->ID;
+		}
 
 		$args = array(
-			'post_type'   => $asm->post_type,
-			'sort_column' => $asm->order_by,
-			'sort_order'  => $asm->order,
-			'exclude'     => $asm->exclude,
-			'levels'      => $asm->levels,
+			'post_type' => $asm->post_type,
+			'orderby'   => $asm->order_by,
+			'order'     => $asm->order,
+			'exclude'   => $asm->exclude,
+			'levels'    => $asm->levels,
 		);
 
 		$this->parse_args( $args );
@@ -120,7 +125,7 @@ class Advanced_Sidebar_Menu_List_Pages{
 
 
 	/**
-	 * Hooks
+	 * Hooks should only hook once
 	 *
 	 * @return void
 	 */
@@ -220,11 +225,6 @@ class Advanced_Sidebar_Menu_List_Pages{
 			$args[ 'exclude' ]  = explode( ',', $args[ 'exclude' ] );
 		}
 		$args[ 'exclude' ] = preg_replace( '/[^0-9,]/', '', implode( ',', apply_filters( 'wp_list_pages_excludes', $args[ 'exclude' ] ) ) );
-
-		if ( is_page() || is_singular() ) {
-			$this->current_page = get_queried_object();
-			$this->current_page_id = $this->current_page->ID;
-		}
 
 		$this->args = apply_filters( 'advanced_sidebar_menu_list_pages_args', $args, $this );
 
@@ -376,13 +376,19 @@ class Advanced_Sidebar_Menu_List_Pages{
 	/**
 	 *
 	 * @param \Advanced_Sidebar_Menu_Menu $menu
+	 * @param \WP_Post|null $current_page;
 	 *
 	 * @static
 	 *
 	 * @return \Advanced_Sidebar_Menu_List_Pages
 	 */
-	public static function factory( Advanced_Sidebar_Menu_Menu $menu ){
-		return new self( $menu->top_id, $menu );
+	public static function factory( Advanced_Sidebar_Menu_Menu $menu, $current_page = null ){
+		if( null === $current_page ){
+			if ( is_page() || is_singular() ) {
+				$current_page = get_queried_object();
+			}
+		}
+		return new self( $menu->top_id, $menu, $current_page );
 	}
 
 }
