@@ -38,6 +38,13 @@ class Advanced_Sidebar_Menu_Menu {
 
 	public $levels = 100;
 
+	/**
+	 * list_pages
+	 *
+	 * @var \Advanced_Sidebar_Menu_List_Pages
+	 */
+	protected $list_pages;
+
 
 	/**
 	 * The instance arguments from the current widget
@@ -46,28 +53,6 @@ class Advanced_Sidebar_Menu_Menu {
 	 */
 	public function get_widget_instance(){
 		return $this->instance;
-	}
-
-
-	/**
-	 * Check is a post has children
-	 *
-	 * @param int $post_id
-	 *
-	 * @return bool
-	 */
-	function has_children( $post_id ){
-		$args = array(
-			'post_parent' => $post_id,
-			'fields'      => 'ids',
-			'post_type'   => get_post_type( $post_id ),
-			'post_status' => 'publish',
-			'numberposts' => 1,
-		);
-
-		$children = get_children( $args );
-
-		return !empty( $children );
 	}
 
 
@@ -81,13 +66,8 @@ class Advanced_Sidebar_Menu_Menu {
 	 *
 	 * @return bool
 	 */
-	function checked( $name ) {
-		if( isset( $this->instance[ $name ] ) && $this->instance[ $name ] == 'checked' ){
-			return true;
-		}
-
-		return false;
-
+	public function checked( $name ) {
+		return isset( $this->instance[ $name ] ) && $this->instance[ $name ] === 'checked';
 	}
 
 
@@ -151,51 +131,6 @@ class Advanced_Sidebar_Menu_Menu {
 			'number'     => 1,
 		) );
 		if( !empty( $children ) ){
-			$classes[] = 'has_children';
-		}
-
-		return $classes;
-	}
-
-
-	/**
-	 * Adds the class for any menu item with children
-	 *
-	 * @param array $classes  the current css classes
-	 * @param \WP_Post $page the page being checked
-	 *
-	 * @return array
-	 */
-	public function add_has_children_class( $classes, $page ) {
-		if( $this->has_children( $page->ID ) ){
-			$classes[] = 'has_children';
-		}
-
-		return $classes;
-	}
-
-
-	/**
-	 * Adds the class for current page item etc to the page list when using a custom post type
-	 *
-	 * @param array    $classes        the current css classes
-	 * @param \WP_Post $this_menu_item the page being checked
-	 *
-	 * @return array
-	 */
-	function custom_post_type_css( $classes, $this_menu_item ) {
-		global $post;
-		if( isset( $post->ancestors ) && in_array( $this_menu_item->ID, (array)$post->ancestors ) ){
-			$classes[ ] = 'current_page_ancestor';
-		}
-		if( $this_menu_item->ID == $post->ID ){
-			$classes[ ] = 'current_page_item';
-
-		} elseif( $this_menu_item->ID == $post->post_parent ) {
-			$classes[ ] = 'current_page_parent';
-		}
-
-		if( $this->has_children( $this_menu_item->ID ) ){
 			$classes[] = 'has_children';
 		}
 

@@ -55,7 +55,7 @@ class Advanced_Sidebar_Menu_List_Pages{
 	 *
 	 * @var int
 	 */
-	private $top_parent_id = 0;
+	public $top_parent_id;
 
 	/**
 	 * args
@@ -85,6 +85,13 @@ class Advanced_Sidebar_Menu_List_Pages{
 	 */
 	private $current_children_parent = 0;
 
+	/**
+	 * menu
+	 *
+	 * @var \Advanced_Sidebar_Menu_Menu
+	 */
+	protected $menu;
+
 
 	/**
 	 * Constructor
@@ -94,8 +101,8 @@ class Advanced_Sidebar_Menu_List_Pages{
 	 * @param int                        $parent_id - $asm->top_id
 	 * @param Advanced_Sidebar_Menu_Menu $asm
 	 */
-	public function __construct( $parent_id, $asm ){
-
+	public function __construct( $parent_id, \Advanced_Sidebar_Menu_Menu $asm ){
+		$this->menu = $asm;
 		$this->top_parent_id = $parent_id;
 
 		$args = array(
@@ -107,7 +114,55 @@ class Advanced_Sidebar_Menu_List_Pages{
 		);
 
 		$this->parse_args( $args );
+		$this->hooks();
 
+	}
+
+
+	/**
+	 * Hooks
+	 *
+	 * @return void
+	 */
+	protected function hooks() {
+		static $been_hooked;
+		if( null === $been_hooked ){
+			$been_hooked = true;
+			add_filter( 'page_css_class', array( $this, 'add_list_item_classes' ), 2, 2 );
+		}
+
+	}
+
+
+	/**
+	 * Add the custom classes to the list items
+	 *
+	 *
+	 * @param array         $classes
+	 * @param \WP_Post $post
+	 *
+	 * @return array
+	 */
+	public function add_list_item_classes( $classes, \WP_Post $post ) {
+		if( $post->ID === $this->top_parent_id ){
+			$children = $this->get_child_pages( $post->ID, true );
+		} else {
+			$children = $this->get_child_pages( $post->ID );
+		}
+		if( !empty( $children ) ){
+			$classes[] = 'has_children';
+		}
+
+		//below is only for custom post types
+		if( $this->current_page->post_type !== 'page' ){
+			if( isset( $post->ancestors ) && in_array( $this->current_page->ID, (array) $post->ancestors, true ) ){
+				$classes[] = 'current_page_ancestor';
+			} elseif( $this->current_page->ID === $post->post_parent ) {
+				$classes[] = 'current_page_parent';
+			}
+		}
+
+		return $classes;
 	}
 
 
@@ -185,7 +240,7 @@ class Advanced_Sidebar_Menu_List_Pages{
 	 */
 	public function list_pages() {
 
-		$pages = $this->get_child_pages( $this->top_parent_id );
+		$pages = $this->get_child_pages( $this->top_parent_id, true );
 
 		foreach( $pages as $page ){
 
@@ -225,7 +280,7 @@ class Advanced_Sidebar_Menu_List_Pages{
 			return '';
 		}
 
-		if( $this->level == $this->args[ 'levels' ] ){
+		if( $this->level === (int)$this->args[ 'levels' ] ){
 			return '';
 		}
 
@@ -241,7 +296,7 @@ class Advanced_Sidebar_Menu_List_Pages{
 
 		}
 
-		if( '' == $inside ){
+		if( '' === $inside ){
 			return '';
 		}
 
@@ -255,21 +310,30 @@ class Advanced_Sidebar_Menu_List_Pages{
 	 *
 	 * Retrieve the child pages of specific page_id
 	 *
-	 * @param $parent_page_id
+	 * @param int  $parent_page_id
+	 * @param bool $is_first_level
 	 *
 	 * @return array
 	 */
-	public function get_child_pages( $parent_page_id ) {
+	public function get_child_pages( $parent_page_id, $is_first_level = false ) {
 		$this->current_children_parent = $parent_page_id;
 
 		$cache = Advanced_Sidebar_Menu_Cache::get_instance();
 		$child_pages = $cache->get_child_pages( $this );
 		if( $child_pages === false ){
 			$args = $this->args;
-			$args[ 'parent' ] = $this->current_children_parent;
-			$child_pages = get_pages( $args );
+			$args[ 'post_parent' ] = $parent_page_id;
+			$args[ 'fields' ] = 'ids';
 
+			$child_pages = get_posts( $args );
 			$cache->add_child_pages( $this, $child_pages );
+		}
+
+		$child_pages = array_map( 'get_post', (array)$child_pages );
+
+		//we only filter the first level with this filter for backward pro compatibility
+		if( $is_first_level ){
+			$child_pages = apply_filters( 'advanced_sidebar_menu_child_pages', $child_pages, $this->current_page, $this->menu->instance, $this->menu->args, $this->menu );
 		}
 
 		return $child_pages;
@@ -289,16 +353,12 @@ class Advanced_Sidebar_Menu_List_Pages{
 	private function current_page_ancestor( $page_id ) {
 		$return = false;
 		if( !empty( $this->current_page_id ) ){
-			if( $page_id == $this->current_page_id ){
+			if( (int)$page_id === $this->current_page_id ){
 				$return = true;
-			} elseif( $this->current_page->post_parent == $page_id ) {
+			} elseif( $this->current_page->post_parent === (int)$page_id ) {
 				$return = true;
-			} else {
-				if( !empty( $this->current_page->ancestors ) ){
-					if( in_array( $page_id, $this->current_page->ancestors ) ){
-						$return = true;
-					}
-				}
+			} elseif( !empty( $this->current_page->ancestors ) && in_array( (int)$page_id, $this->current_page->ancestors, true ) ) {
+				$return = true;
 			}
 		}
 

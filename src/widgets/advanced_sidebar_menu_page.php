@@ -187,13 +187,6 @@ class advanced_sidebar_menu_page extends WP_Widget {
 
 		$asm->post_type   = $post_type = apply_filters_ref_array( 'advanced_sidebar_menu_post_type', $filter_args );
 
-		if( 'page' === $asm->post_type ){
-			add_filter( 'page_css_class', array( $asm, 'add_has_children_class' ), 2, 2 );
-
-		} else {
-			add_filter( 'page_css_class', array( $asm, 'custom_post_type_css' ), 2, 4 );
-		}
-
 		$proper_single    = !( is_page() || ( is_single() && $asm->post_type === get_post_type() ) );
 		$filter_args[ 0 ] = $proper_single;
 		if( apply_filters_ref_array( 'advanced_sidebar_menu_proper_single', $filter_args ) ){
@@ -221,9 +214,11 @@ class advanced_sidebar_menu_page extends WP_Widget {
 		$filter_args[ 0 ] = $asm->order;
 		$asm->order = apply_filters_ref_array( 'advanced_sidebar_menu_page_order', $filter_args );
 
-		$child_pages = $this->get_child_pages( $asm, $filter_args );
+		//backward compatibility $child_pages for old views
+        $list_pages = Advanced_Sidebar_Menu_List_Pages::factory( $asm );
+        $child_pages = $list_pages->get_child_pages( $list_pages->top_parent_id, true );
 
-		#---- if there are no children do not display the parent unless it is check to do so
+		//if there are no children do not display the parent unless it is check to do so
 		if( ( !empty( $child_pages ) ) || ($asm->checked( 'include_childless_parent' ) && ( !in_array( $asm->top_id, $asm->exclude, false ) ) ) ){
 
 			if( $asm->checked( 'css' ) ){
@@ -247,62 +242,4 @@ class advanced_sidebar_menu_page extends WP_Widget {
 		}
 
 	}
-
-
-	/**
-	 * get_child_pages
-	 *
-	 * Get the children's ids of the top level parent
-	 *
-	 * @param Advanced_Sidebar_Menu_Menu $asm
-	 * @param array                      $filter_args
-	 *
-	 * @filter advanced_sidebar_menu_child_pages
-	 *
-	 * @return mixed
-	 */
-	private function get_child_pages( $asm, $filter_args ){
-		$cache = Advanced_Sidebar_Menu_Cache::get_instance();
-		$child_pages = $cache->get_child_pages( $asm );
-
-		if( $child_pages === false ){
-			$child_page_args = array(
-				'post_type'   => $asm->post_type,
-				'orderby'     => $asm->order_by,
-				'post_parent' => $asm->top_id,
-				'fields'      => 'ids',
-				'numberposts' => 10000,
-			);
-
-			$excluded = $asm->get_excluded_ids();
-			if( !empty( $excluded ) ){
-				$child_page_args[ 'post__not_in' ] = $excluded;
-			}
-
-			$child_pages = get_posts( $child_page_args );
-
-			$cache->add_child_pages( $asm, $child_pages );
-		}
-
-		$filter_args[ 0 ] = $child_pages;
-
-		if( defined( 'ADVANCED_SIDEBAR_MENU_PRO_VERSION' ) ){
-			/**
-			 * Pro version 1.4.3 or below had a typeset for the arg
-			 * of this filter. This changed in version 6.0.0 so we have
-			 * to disable the filter. If someone has an issue then make
-			 * sure they update to version 1.4.4 to restore this filter
-			 */
-			if( version_compare( ADVANCED_SIDEBAR_MENU_PRO_VERSION, '1.4.4', '>=' ) ){
-				$child_pages = apply_filters_ref_array( 'advanced_sidebar_menu_child_pages', $filter_args );
-			}
-
-		} else {
-			$child_pages = apply_filters_ref_array( 'advanced_sidebar_menu_child_pages', $filter_args );
-		}
-
-		return $child_pages;
-
-	}
-
 }

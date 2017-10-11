@@ -4,7 +4,7 @@
  *
  * @author Mat Lipe
  *
- * @since  6.2.4
+ * @since  6.4.0
  *
  * @example to edit, create a file named page_list.php and
  *          put in a folder in the your theme called 'advanced-sidebar-menu.
@@ -14,6 +14,7 @@
  */
 $asm = Advanced_Sidebar_Menu_Menu::get_current();
 $menu = Advanced_Sidebar_Menu_List_Pages::factory( $asm );
+$child_pages = $menu->get_child_pages( $asm->top_id, true );
 $instance = $asm->get_widget_instance();
 $_args = $menu->get_args();
 
@@ -31,7 +32,7 @@ if( $asm->include_parent() ){
 
 
 //If there are children start the Child Sidebar Menu
-if( $child_pages ){
+if( !empty( $child_pages ) ){
 	$content .= '<ul class="child-sidebar-menu">';
 
 	#-- If they want all the pages displayed always
