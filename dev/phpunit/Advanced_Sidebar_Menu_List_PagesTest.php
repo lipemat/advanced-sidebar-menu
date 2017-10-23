@@ -40,6 +40,17 @@ class Advanced_Sidebar_Menu_List_PagesTest extends WP_UnitTestCase {
 		$this->mock->post_type = 'page';
 	}
 
+	public function test_posts_per_page(){
+		$pages = static::factory()->post->create_many( 7, array( 'post_type' => 'page' ) );
+		$top = array_shift( $pages );
+		foreach( $pages as $id ){
+			wp_update_post( array( 'ID' => $id, 'post_parent' => $top ) );
+		}
+		$menu = Advanced_Sidebar_Menu_List_Pages::factory( $this->mock );
+		$this->assertCount( 6, $menu->get_child_pages( $top, true ), 'Not returning enough children. Probably posts_per_page no set' );
+	}
+
+
 	public function test_excluded_pages(){
 		$this->mock->exclude = '7,19,';
 
@@ -70,7 +81,7 @@ class Advanced_Sidebar_Menu_List_PagesTest extends WP_UnitTestCase {
 		function ordered_by_title( $pages, Advanced_Sidebar_Menu_List_Pages $menu, $test ){
 			$orig = wp_list_pluck( $pages, 'post_title' );
 			$sorted = $orig;
-			sort( $sorted );
+			natsort( $sorted );
 			$test->assertEquals( $orig, $sorted, 'Pages were not ordered by title properly' );
 			foreach( $pages as $page ){
 				$children = $menu->get_child_pages( $page->ID );

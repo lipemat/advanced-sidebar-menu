@@ -179,7 +179,7 @@ class Advanced_Sidebar_Menu_List_Pages{
 	public function get_args(){
 		return $this->args;
 	}
-	
+
 
 	/**
 	 * __toString
@@ -204,18 +204,17 @@ class Advanced_Sidebar_Menu_List_Pages{
 	 */
 	private function parse_args( $args ){
 		$defaults = array(
-			'depth'        => 1,
 			'exclude'      => '',
 			'echo'         => 0,
-			'sort_order'   => 'ASC',
-			'sort_column'  => 'menu_order, post_title',
+			'order'        => 'ASC',
+			'orderby'      => 'menu_order, post_title',
 			'walker'       => new Advanced_Sidebar_Menu_Page_Walker(),
-			'hierarchical' => 0,
 			'link_before'  => '',
 			'link_after'   => '',
 			'title_li'     => '',
 			'levels'       => 100,
 			'item_spacing' => 'preserve',
+			'nopaging'     => true,
 		);
 
 		$args = wp_parse_args( $args, $defaults );
@@ -246,7 +245,7 @@ class Advanced_Sidebar_Menu_List_Pages{
 
 			$this->output .= walk_page_tree( array( $page ), 1, $this->current_page_id, $this->args );
 
-				$this->output .= $this->list_grandchild_pages( $page->ID );
+			$this->output .= $this->list_grandchild_pages( $page->ID );
 
 			$this->output .= '</li>' . "\n";
 
@@ -291,7 +290,7 @@ class Advanced_Sidebar_Menu_List_Pages{
 
 		foreach( $pages as $page ){
 			$inside .= walk_page_tree( array( $page ), 1, $this->current_page_id, $this->args );
-				$inside .= $this->list_grandchild_pages( $page->ID );
+			$inside .= $this->list_grandchild_pages( $page->ID );
 			$inside .= "</li>\n";
 
 		}
