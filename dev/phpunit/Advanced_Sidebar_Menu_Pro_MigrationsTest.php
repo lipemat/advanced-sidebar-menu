@@ -21,6 +21,7 @@ class Advanced_Sidebar_Menu_Pro_MigrationsTest extends WP_UnitTestCase {
 		update_post_meta( $ids[1], '_exclude_page', true );
 		update_post_meta( $ids[3], '_exclude_page', true );
 
+
 		delete_option( Advanced_Sidebar_Menu_Pro_Migrations::DB_OPTION );
 		$o->run_migrations();
 		foreach( $ids as $k => $id ){
