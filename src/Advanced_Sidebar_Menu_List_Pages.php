@@ -100,9 +100,9 @@ class Advanced_Sidebar_Menu_List_Pages{
 	 *
 	 * @param int                        $parent_id - $asm->top_id
 	 * @param Advanced_Sidebar_Menu_Menu $asm
-	 * @param WP_Post|null $current_page;
+	 * @param WP_Post $current_page;
 	 */
-	public function __construct( $parent_id, Advanced_Sidebar_Menu_Menu $asm, $current_page = null ){
+	public function __construct( $parent_id, Advanced_Sidebar_Menu_Menu $asm, $current_page ){
 		$this->menu = $asm;
 		$this->top_parent_id = $parent_id;
 		$this->current_page = $current_page;
@@ -144,11 +144,11 @@ class Advanced_Sidebar_Menu_List_Pages{
 	 *
 	 *
 	 * @param array         $classes
-	 * @param \WP_Post $post
+	 * @param $post
 	 *
 	 * @return array
 	 */
-	public function add_list_item_classes( $classes, WP_Post $post ) {
+	public function add_list_item_classes( $classes, post ) {
 		if( $post->ID === $this->top_parent_id ){
 			$children = $this->get_child_pages( $post->ID, true );
 		} else {
