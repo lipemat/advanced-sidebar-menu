@@ -144,11 +144,11 @@ class Advanced_Sidebar_Menu_List_Pages{
 	 *
 	 *
 	 * @param array         $classes
-	 * @param \WP_Post $post
+	 * @param $post
 	 *
 	 * @return array
 	 */
-	public function add_list_item_classes( $classes, WP_Post $post ) {
+	public function add_list_item_classes( $classes, post ) {
 		if( $post->ID === $this->top_parent_id ){
 			$children = $this->get_child_pages( $post->ID, true );
 		} else {
