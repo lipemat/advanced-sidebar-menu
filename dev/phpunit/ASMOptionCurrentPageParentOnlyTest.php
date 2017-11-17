@@ -43,7 +43,7 @@ class ASMOptionCurrentPageParentOnlyTest extends WP_UnitTestCase {
 		require_once ADVANCED_SIDEBAR_MENU_PRO_DIR . 'src/widget-options/page/ASMOptionCurrentPageParentOnly.php';
 		$this->o = new ASMOptionCurrentPageParentOnly();
 
-		$pages = static::factory()->post->create_many( 9, array( 'post_type' => 'page' ) );
+		$pages = $this->factory()->post->create_many( 9, array( 'post_type' => 'page' ) );
 
 		$this->top_parent = array_shift( $pages );
 		$this->child_one = array_shift( $pages );

@@ -41,7 +41,7 @@ class Advanced_Sidebar_Menu_List_PagesTest extends WP_UnitTestCase {
 	}
 
 	public function test_posts_per_page(){
-		$pages = static::factory()->post->create_many( 7, array( 'post_type' => 'page' ) );
+		$pages = $this->factory()->post->create_many( 7, array( 'post_type' => 'page' ) );
 		$top = array_shift( $pages );
 		foreach( $pages as $id ){
 			wp_update_post( array( 'ID' => $id, 'post_parent' => $top ) );
