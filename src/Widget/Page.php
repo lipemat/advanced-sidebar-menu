@@ -27,8 +27,7 @@ class Advanced_Sidebar_Menu_Widget_Page extends WP_Widget {
 	);
 
 
-	function __construct(){
-
+	public function __construct(){
 		$widget_ops  = array(
 			'classname'   => 'advanced-sidebar-menu',
 			'description' => __( 'Creates a menu of all the pages using the child/parent relationship', 'advanced-sidebar-menu' )
@@ -45,17 +44,17 @@ class Advanced_Sidebar_Menu_Widget_Page extends WP_Widget {
 
 	/**
 	 * Output a simple widget Form
-	 * Not of ton of options here but who need them
+     *
+	 * Not of ton of options here but who needs them
 	 * Most of the magic happens automatically
 	 *
 	 * @filters do_action('advanced_sidebar_menu_page_widget_form', $instance, $this->get_field_name('parent_only'), $this->get_field_id('parent_only'));
+     * @param array $instance
 	 *
-	 * @since   11.4.13
+	 * @return void
 	 */
-	function form( $instance ){
-
+	public function form( $instance ){
 		$instance = wp_parse_args( $instance, $this->defaults );
-
 		?>
 		<p> <?php _e( 'Title', 'advanced-sidebar-menu' ); ?>
 			<br>
@@ -147,7 +146,7 @@ class Advanced_Sidebar_Menu_Widget_Page extends WP_Widget {
 	 *
 	 * @since   4.26.13
 	 */
-	function update( $newInstance, $oldInstance ){
+	public function update( $newInstance, $oldInstance ){
 		$newInstance[ 'exclude' ] = strip_tags( $newInstance[ 'exclude' ] );
 
 		$newInstance = apply_filters( 'advanced_sidebar_menu_page_widget_update', $newInstance, $oldInstance );

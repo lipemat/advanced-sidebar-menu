@@ -159,8 +159,39 @@ abstract class Advanced_Sidebar_Menu_Menus_Abstract {
 	}
 
 
-	public static function factory( array $widget_instance, array $widget_args ) {
-		$menu = new static( $widget_instance, $widget_args );
+	protected static $current;
+
+
+	/**
+	 *
+	 * @static
+	 *
+	 * @return \Advanced_Sidebar_Menu_Menus_Page|\Advanced_Sidebar_Menu_Menus_Category
+	 */
+	public static function get_current() {
+		return self::$current;
+	}
+
+
+	/**
+	 * static() does not exist until PHP 5.3 which means we have to do
+	 * this hideous thing where we call the factory method from the child
+	 * class and pass it's name.
+	 * Chose to handle it this way instead of trying to maintain 2 separate
+	 * factory methods with logic.
+	 *
+	 * @param string $class
+	 * @param array  $widget_instance
+	 * @param array  $widget_args
+	 *
+	 * @static
+	 *
+	 * @return mixed
+	 */
+	public static function factory( $class, array $widget_instance, array $widget_args ) {
+		$menu = new $class( $widget_instance, $widget_args );
+		self::$current = $menu;
+
 		//backward compatibility
 		Advanced_Sidebar_Menu_Menu::set_current( $menu );
 

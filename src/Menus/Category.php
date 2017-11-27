@@ -136,5 +136,8 @@ class Advanced_Sidebar_Menu_Menus_Category extends Advanced_Sidebar_Menu_Menus_A
 
 	}
 
+	public static function factory( array $widget_instance, array $widget_args ) {
+		return parent::factory( __CLASS__, $widget_instance, $widget_args );
+	}
 
 }
