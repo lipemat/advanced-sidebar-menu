@@ -9,6 +9,11 @@ Author URI: https://matlipe.com
 Text Domain: advanced-sidebar-menu
 */
 
+
+if( defined( 'ADVANCED_SIDEBAR_BASIC_VERSION' ) ){
+    return;
+}
+
 define( 'ADVANCED_SIDEBAR_BASIC_VERSION', '6.4.2' );
 define( 'ADVANCED_SIDEBAR_DIR', plugin_dir_path( __FILE__ ) );
 
