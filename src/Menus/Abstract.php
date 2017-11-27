@@ -158,7 +158,14 @@ abstract class Advanced_Sidebar_Menu_Menus_Abstract {
 		}
 	}
 
+	/********************* static *******************************/
 
+	/**
+	 *
+	 * @static
+	 *
+	 * @var \Advanced_Sidebar_Menu_Menus_Page|\Advanced_Sidebar_Menu_Menus_Category
+	 */
 	protected static $current;
 
 
