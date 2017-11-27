@@ -17,6 +17,13 @@ class ASMOptionCurrentPageParentOnlyTest extends WP_UnitTestCase {
 	private $sub_children_one = array();
 	private $sub_children_two = array();
 
+	public $default_args = array(
+		'post_type' => 'page',
+		'exclude'   => '',
+		'order_by'  => 'menu_order, post_title',
+		'order'     => 'ASC',
+		'levels'    => 0
+	);
 	/**
 	 * menu
 	 *
@@ -62,8 +69,8 @@ class ASMOptionCurrentPageParentOnlyTest extends WP_UnitTestCase {
 			wp_update_post( array( 'ID' => $child, 'post_parent' => $this->child_two ) );
 		}
 
-		$this->menu = Advanced_Sidebar_Menu_Menus_Page::factory( array(), array() );
-		$this->menu->top_id = $this->top_parent;
+		$this->menu = Advanced_Sidebar_Menu_Menus_Page::factory( $this->default_args, array() );
+		$this->menu->set_current_post( get_post( $this->top_parent ) );
 
 		$this->widget = $this->getMockBuilder( 'Advanced_Sidebar_Menu_Widgets_Page' )
 		                     ->getMock();

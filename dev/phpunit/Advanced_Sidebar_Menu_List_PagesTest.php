@@ -1,5 +1,6 @@
 <?php
 
+
 /**
  * Advanced_Sidebar_Menu_List_PagesTest.php
  *
@@ -17,29 +18,27 @@ class Advanced_Sidebar_Menu_List_PagesTest extends WP_UnitTestCase {
 		'exclude'   => '',
 		'order_by'  => 'menu_order, post_title',
 		'order'     => 'ASC',
-		'levels'    => 0
+		'levels'    => 0,
 	);
 
 	/**
 	 * menu
 	 *
-	 * @var \Advanced_Sidebar_Menu_Menu
+	 * @var \Advanced_Sidebar_Menu_Menus_Page
 	 */
 	private $mock;
+
 
 	public function setUp() {
 		parent::setUp();
 		switch_to_blog( 3 );
 
-		$this->mock = Advanced_Sidebar_Menu_Menus_Page::factory( array(), array() );
-		$this->mock->order_by = 'menu_order, post_title';
-		$this->mock->exclude = '';
-		$this->mock->levels = 0;
-		$this->mock->order = 'ASC';
-		$this->mock->post_type = 'page';
+		$this->mock = Advanced_Sidebar_Menu_Menus_Page::factory( $this->default_args, array() );
+		$this->mock->set_current_post( $this->factory()->post->create_and_get( array( 'post_type' => 'page' ) ) );
 	}
 
-	public function test_posts_per_page(){
+
+	public function test_posts_per_page() {
 		$pages = $this->factory()->post->create_many( 7, array( 'post_type' => 'page' ) );
 		$top = array_shift( $pages );
 		foreach( $pages as $id ){
@@ -50,15 +49,15 @@ class Advanced_Sidebar_Menu_List_PagesTest extends WP_UnitTestCase {
 	}
 
 
-	public function test_excluded_pages(){
-		$this->mock->exclude = '7,19,';
+	public function test_excluded_pages() {
+		$this->mock->instance[ 'exclude' ] = '7,19, ';
 
 		$menu = Advanced_Sidebar_Menu_List_Pages::factory( $this->mock );
 
-		function not_contains_page_id( $pages, Advanced_Sidebar_Menu_List_Pages $menu, Advanced_Sidebar_Menu_List_PagesTest $test ){
+		function not_contains_page_id( $pages, Advanced_Sidebar_Menu_List_Pages $menu, Advanced_Sidebar_Menu_List_PagesTest $test ) {
 			$pages = wp_list_pluck( $pages, 'ID' );
-			$test->assertNotContains( 7, $pages, "an excluded page is present" );
-			$test->assertNotContains( 19, $pages, "an excluded page is present" );
+			$test->assertNotContains( 7, $pages, 'an excluded page is present' );
+			$test->assertNotContains( 19, $pages, 'an excluded page is present' );
 			foreach( $pages as $page ){
 				$children = $menu->get_child_pages( $page );
 				if( !empty( $children ) ){
@@ -72,12 +71,12 @@ class Advanced_Sidebar_Menu_List_PagesTest extends WP_UnitTestCase {
 	}
 
 
-	public function test_order_by_title(){
-		$this->mock->order_by = 'title';
+	public function test_order_by_title() {
+		$this->mock->instance[ 'order_by' ] = 'title';
 
 		$menu = Advanced_Sidebar_Menu_List_Pages::factory( $this->mock );
 
-		function ordered_by_title( $pages, Advanced_Sidebar_Menu_List_Pages $menu, $test ){
+		function ordered_by_title( $pages, Advanced_Sidebar_Menu_List_Pages $menu, $test ) {
 			$orig = wp_list_pluck( $pages, 'post_title' );
 			$sorted = $orig;
 			natsort( $sorted );
@@ -94,12 +93,12 @@ class Advanced_Sidebar_Menu_List_PagesTest extends WP_UnitTestCase {
 	}
 
 
-	public function test_order_by_menu_order(){
-		$this->mock->order_by = 'menu_order';
+	public function test_order_by_menu_order() {
+		$this->mock->instance[ 'order_by' ] = 'menu_order';
 
 		$menu = Advanced_Sidebar_Menu_List_Pages::factory( $this->mock );
 
-		function ordered_by_menu_order( $pages, $menu, $test ){
+		function ordered_by_menu_order( $pages, $menu, $test ) {
 			$orig = wp_list_pluck( $pages, 'menu_order' );
 			$sorted = $orig;
 			sort( $sorted, SORT_NUMERIC );
@@ -114,7 +113,6 @@ class Advanced_Sidebar_Menu_List_PagesTest extends WP_UnitTestCase {
 
 		ordered_by_menu_order( $menu->get_child_pages( $this->top_parent ), $menu, $this );
 	}
-
 
 }
  
