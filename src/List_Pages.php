@@ -99,10 +99,10 @@ class Advanced_Sidebar_Menu_List_Pages{
 	 * Used in the view
 	 *
 	 * @param int                        $parent_id - $asm->top_id
-	 * @param Advanced_Sidebar_Menu_Menu $asm
+	 * @param Advanced_Sidebar_Menu_Menu|\Advanced_Sidebar_Menu_Menus_Page $asm
 	 * @param WP_Post $current_page;
 	 */
-	public function __construct( $parent_id, Advanced_Sidebar_Menu_Menu $asm, $current_page ){
+	public function __construct( $parent_id, $asm, $current_page ){
 		$this->menu = $asm;
 		$this->top_parent_id = $parent_id;
 		$this->current_page = $current_page;
@@ -374,14 +374,14 @@ class Advanced_Sidebar_Menu_List_Pages{
 
 	/**
 	 *
-	 * @param Advanced_Sidebar_Menu_Menu $menu
-	 * @param WP_Post|null $current_page;
+	 * @param Advanced_Sidebar_Menu_Menu|\Advanced_Sidebar_Menu_Menus_Page $menu
+	 * @param WP_Post|null|object $current_page;
 	 *
 	 * @static
 	 *
 	 * @return Advanced_Sidebar_Menu_List_Pages
 	 */
-	public static function factory( Advanced_Sidebar_Menu_Menu $menu, $current_page = null ){
+	public static function factory( $menu, $current_page = null ){
 		if( null === $current_page ){
 			if ( is_page() || is_singular() ) {
 				$current_page = get_queried_object();

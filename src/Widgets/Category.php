@@ -186,7 +186,7 @@ class Advanced_Sidebar_Menu_Widgets_Category extends WP_Widget {
 			return;
 		}
 
-		$asm = Advanced_Sidebar_Menu_Menu::factory( $instance, $args );
+		$asm = Advanced_Sidebar_Menu_Menus_Category::factory( $instance, $args );
 		$cat_ids  = $already_top = array();
 		$asm_once = false; //keeps track of how many widgets this created
         $close = false;
@@ -224,7 +224,7 @@ class Advanced_Sidebar_Menu_Widgets_Category extends WP_Widget {
 		//Go through each category there will be only one if this is a category page multiple possible if this is single
 		$top_level_cats = array();
 		foreach( $cat_ids as $cat_id ){
-			$top_level_cat = $asm->getTopCat( $cat_id );
+			$top_level_cat = $asm->get_highest_parent( $cat_id );
 			if( !in_array( $top_level_cat, $top_level_cats ) ){
 				$top_level_cats[] = $top_level_cat;
 			}

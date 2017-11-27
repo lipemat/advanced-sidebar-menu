@@ -169,7 +169,7 @@ class Advanced_Sidebar_Menu_Widgets_Page extends WP_Widget {
 	public function widget( $args, $instance ){
 		$instance = wp_parse_args( $instance, $this->defaults );
 		$post = get_post();
-		$asm = Advanced_Sidebar_Menu_Menu::factory( $instance, $args );
+		$asm = Advanced_Sidebar_Menu_Menus_Page::factory( $instance, $args );
 
 		do_action( 'advanced_sidebar_menu_widget_pre_render', $asm, $this );
 

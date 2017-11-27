@@ -31,8 +31,7 @@ class Advanced_Sidebar_Menu_List_PagesTest extends WP_UnitTestCase {
 		parent::setUp();
 		switch_to_blog( 3 );
 
-		$this->mock = $this->getMockBuilder( 'Advanced_Sidebar_Menu_Menu' )
-			->getMock();
+		$this->mock = Advanced_Sidebar_Menu_Menus_Page::factory( array(), array() );
 		$this->mock->order_by = 'menu_order, post_title';
 		$this->mock->exclude = '';
 		$this->mock->levels = 0;

@@ -50,7 +50,7 @@ function advanced_sidebar_menu_autoload( $class ) {
 		'Advanced_Sidebar_Menu_Page_Walker' => 'Page_Walker.php',
 
         //menus
-		'Advanced_Sidebar_Menu_Menus_Category' => 'Menus/Menu.php',
+		'Advanced_Sidebar_Menu_Menus_Category' => 'Menus/Category.php',
 		'Advanced_Sidebar_Menu_Menus_Abstract' => 'Menus/Abstract.php',
 		'Advanced_Sidebar_Menu_Menus_Page' => 'Menus/Page.php',
 	);

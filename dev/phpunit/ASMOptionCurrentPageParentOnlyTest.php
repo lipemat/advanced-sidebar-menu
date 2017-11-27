@@ -62,12 +62,10 @@ class ASMOptionCurrentPageParentOnlyTest extends WP_UnitTestCase {
 			wp_update_post( array( 'ID' => $child, 'post_parent' => $this->child_two ) );
 		}
 
-		$this->menu = $this->getMockBuilder( 'Advanced_Sidebar_Menu_Menu' )
-			               ->setMethods( array( 'fake' ) ) //use all original methods
-		                   ->getMock();
+		$this->menu = Advanced_Sidebar_Menu_Menus_Page::factory( array(), array() );
 		$this->menu->top_id = $this->top_parent;
 
-		$this->widget = $this->getMockBuilder( 'advanced_sidebar_menu_page' )
+		$this->widget = $this->getMockBuilder( 'Advanced_Sidebar_Menu_Widgets_Page' )
 		                     ->getMock();
 		$this->widget->id_base = 'advanced_sidebar_menu';
 
