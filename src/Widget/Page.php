@@ -106,11 +106,15 @@ class Advanced_Sidebar_Menu_Widget_Page extends WP_Widget {
                     name="<?php echo $this->get_field_name( 'exclude' ); ?>" class="widefat" type="text" value="<?php echo $instance[ 'exclude' ]; ?>"/>
         </p>
 
-        <p> <?php _e( "Always Display Child Pages", 'advanced-sidebar-menu' ); ?>:
-            <input id="<?php echo $this->get_field_id( 'display_all' ); ?>"
-                    name="<?php echo $this->get_field_name( 'display_all' ); ?>" type="checkbox" value="checked"
+        <p> <?php _e( 'Always Display Child Pages', 'advanced-sidebar-menu' ); ?>:
+            <input
+                    id="<?php echo $this->get_field_id( 'display_all' ); ?>"
+                    name="<?php echo $this->get_field_name( 'display_all' ); ?>"
+                    type="checkbox"
+                    value="checked"
+                    data-js="advanced-sidebar-menu/widget/page/display_all"
                     onclick="javascript:asm_reveal_element( 'levels-<?php echo $this->get_field_id( 'levels' ); ?>' )"
-				<?php echo $instance[ 'display_all' ]; ?>/>
+		        <?= $instance[ 'display_all' ]; ?>/>
         </p>
 
     <span id="levels-<?php echo $this->get_field_id( 'levels' ); ?>" style="<?php

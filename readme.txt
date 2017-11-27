@@ -59,7 +59,7 @@ Keeps the menu clean and usable. Only related items display so you don't have to
 * Include parent in accordion
 * Ability to exclude a page from all menus using a simple checkbox
 * Link ordering for the category widget
-* Number of levels of pages to show whether always displayed child pages is checked or not.
+* Number of levels of pages to show when always displayed child pages is not checked.
 * Ability to select and display custom post types **NEW**
    
 <h4>Developers</h4>
