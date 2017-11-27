@@ -4,13 +4,13 @@
 /**
  * Creates a Widget of parent Child Categories
  *
- * @author  mat lipe
- * @since   1.7.14
+ * @author  Mat Lipe
+ * @since   7.0.0
  * @package Advanced Sidebar Menu
  *
  *
  */
-class advanced_sidebar_menu_category extends WP_Widget {
+class Advanced_Sidebar_Menu_Widgets_Category extends WP_Widget {
 
 	private $defaults = array(
 		'title'                    => '',
@@ -26,8 +26,7 @@ class advanced_sidebar_menu_category extends WP_Widget {
 	);
 
 
-	function __construct(){
-
+	public function __construct(){
 		$widget_ops  = array(
 			'classname'   => 'advanced-sidebar-menu advanced-sidebar-category',
 			'description' => __( 'Creates a menu of all the categories using the child/parent relationship', 'advanced-sidebar-menu' ),
@@ -276,21 +275,21 @@ class advanced_sidebar_menu_category extends WP_Widget {
 
 					if( $asm->checked( 'css' ) ){
 						echo '<style type="text/css">';
-						include( Advanced_Sidebar_Menu::get_instance()->get_template_part( 'sidebar-menu.css' ) );
+						include Advanced_Sidebar_Menu_Core::instance()->get_template_part( 'sidebar-menu.css' );
 						echo '</style>';
 					}
 
 					$asm_once = true;  //There has been a div
 					$close    = true; //The div should be closed at the end
 
-					if( $instance[ 'new_widget' ] == 'list' ){
+					if( $instance[ 'new_widget' ] === 'list' ){
 						$close = false;  //If this is a list leave it open for now
 					}
 				}
 			}
 
 			//Bring in the view
-			$output = require( Advanced_Sidebar_Menu::get_instance()->get_template_part( 'category_list.php' ) );
+			$output = require Advanced_Sidebar_Menu_Core::instance()->get_template_part( 'category_list.php' );
 
 			//backward compatibility for old views that didn't returns
 			if( empty( $output ) && isset( $content ) ){

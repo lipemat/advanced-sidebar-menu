@@ -5,10 +5,10 @@
  * Advanced_Sidebar_Menu
  *
  * @author Mat Lipe
- * @since  6.0.0
+ * @since  7.0.0
  *
  */
-class Advanced_Sidebar_Menu {
+class Advanced_Sidebar_Menu_Core {
 
 	private function hooks(){
 		add_action( 'widgets_init', array( $this, 'register_widgets' ) );
@@ -16,9 +16,8 @@ class Advanced_Sidebar_Menu {
 
 
 	public function register_widgets(){
-		register_widget( "advanced_sidebar_menu_page" );
-		register_widget( "advanced_sidebar_menu_category" );
-
+		register_widget( 'Advanced_Sidebar_Menu_Widgets_Page' );
+		register_widget( 'Advanced_Sidebar_Menu_Widgets_Category' );
 	}
 
 
@@ -34,7 +33,7 @@ class Advanced_Sidebar_Menu {
 	 */
 	public function get_template_part( $file_name ){
 		$file = locate_template( 'advanced-sidebar-menu/' . $file_name );
-		if( false == $file ){
+		if( empty( $file ) ){
 			$file = ADVANCED_SIDEBAR_DIR . 'views/' . $file_name;
 		}
 
@@ -67,7 +66,7 @@ class Advanced_Sidebar_Menu {
 	 * @return void
 	 */
 	public static function init(){
-		self::get_instance()->hooks();
+		self::instance()->hooks();
 	}
 
 
@@ -78,7 +77,7 @@ class Advanced_Sidebar_Menu {
 	 * @static
 	 * @return self
 	 */
-	public static function get_instance(){
+	public static function instance(){
 		if( !is_a( self::$instance, __CLASS__ ) ){
 			self::$instance = new self();
 		}

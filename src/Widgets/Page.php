@@ -2,17 +2,15 @@
 
 
 /**
- * Advanced Sidebar Menu Page
+ * Advanced_Sidebar_Menu_Widgets_Page
  *
- * Creates a Widget of parent Child Pages
+ * Parent child menu based on pages.
  *
- * @author  mat lipe <mat@matlipe.com>
- *
- * @package Advanced Sidebar Menu
- * @class   advanced_sidebar_menu_page
+ * @author Mat Lipe
+ * @since  7.0.0
  *
  */
-class advanced_sidebar_menu_page extends WP_Widget {
+class Advanced_Sidebar_Menu_Widgets_Page extends WP_Widget {
 
     //@todo set the rest to constants
     const DISPLAY_PARENT = 'include_parent';
@@ -223,12 +221,12 @@ class advanced_sidebar_menu_page extends WP_Widget {
 
 			if( $asm->checked( 'css' ) ){
 				echo '<style type="text/css">';
-				include( Advanced_Sidebar_Menu::get_instance()->get_template_part( 'sidebar-menu.css' ) );
+				include( Advanced_Sidebar_Menu_Core::instance()->get_template_part( 'sidebar-menu.css' ) );
 				echo '</style>';
 			}
 
 			echo $args[ 'before_widget' ];
-			$output = require( Advanced_Sidebar_Menu::get_instance()->get_template_part( 'page_list.php' ) );
+			$output = require( Advanced_Sidebar_Menu_Core::instance()->get_template_part( 'page_list.php' ) );
 
 			//backward compatibility for old views that didn't returns
 			if( empty( $output ) && isset( $content ) ){

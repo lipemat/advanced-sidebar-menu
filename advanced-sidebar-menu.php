@@ -19,27 +19,49 @@ define( 'ADVANCED_SIDEBAR_DIR', plugin_dir_path( __FILE__ ) );
 
 if( !function_exists( 'advanced_sidebar_menu_load' ) ){
 	function advanced_sidebar_menu_load(){
-		//widgets
-		require( ADVANCED_SIDEBAR_DIR . 'src/widgets/advanced_sidebar_menu_category.php' );
-		require( ADVANCED_SIDEBAR_DIR . 'src/widgets/advanced_sidebar_menu_page.php' );
-
-		require( ADVANCED_SIDEBAR_DIR . 'src/Advanced_Sidebar_Menu.php' );
-		require( ADVANCED_SIDEBAR_DIR . 'src/Advanced_Sidebar_Menu_Menu.php' );
-
-		require( ADVANCED_SIDEBAR_DIR . 'src/Advanced_Sidebar_Menu_Page_Walker.php' );
-		require( ADVANCED_SIDEBAR_DIR . 'src/Advanced_Sidebar_Menu_List_Pages.php' );
-		require( ADVANCED_SIDEBAR_DIR . 'src/Advanced_Sidebar_Menu_Cache.php' );
-
-		require( ADVANCED_SIDEBAR_DIR . 'src/Advanced_Sidebar_Menu_Debug.php' );
-
-		Advanced_Sidebar_Menu::init();
+		Advanced_Sidebar_Menu_Core::init();
 		Advanced_Sidebar_Menu_Cache::init();
 		Advanced_Sidebar_Menu_Debug::init();
 	}
 
 	add_action( 'plugins_loaded', 'advanced_sidebar_menu_load' );
-
 }
+
+/**
+ * Autoload classes from PSR4 src directory
+ * Mirrored after Composer dump-autoload for performance
+ *
+ * @param string $class
+ *
+ * @return void
+ */
+function advanced_sidebar_menu_autoload( $class ) {
+	$classes = array(
+        //widgets
+		'Advanced_Sidebar_Menu_Widgets_Page'     => 'Widgets/Page.php',
+		'Advanced_Sidebar_Menu_Widgets_Category' => 'Widgets/Category.php',
+
+        //core
+		'Advanced_Sidebar_Menu_Cache' => 'Cache.php',
+        'Advanced_Sidebar_Menu_Core' => 'Core.php',
+		'Advanced_Sidebar_Menu_Debug' => 'Debug.php',
+        'Advanced_Sidebar_Menu_List_Pages' => 'List_Pages.php',
+		'Advanced_Sidebar_Menu_Menu' => 'Menu.php',
+		'Advanced_Sidebar_Menu_Page_Walker' => 'Page_Walker.php',
+
+        //menus
+		'Advanced_Sidebar_Menu_Menus_Category' => 'Menus/Menu.php',
+		'Advanced_Sidebar_Menu_Menus_Abstract' => 'Menus/Abstract.php',
+		'Advanced_Sidebar_Menu_Menus_Page' => 'Menus/Page.php',
+	);
+	if( isset( $classes[ $class ] ) ){
+		require dirname( __FILE__ ) . '/src/' . $classes[ $class ];
+	}
+}
+
+spl_autoload_register( 'advanced_sidebar_menu_autoload' );
+
+
 
 #-- Translate
 add_action( 'plugins_loaded', 'advanced_sidebar_menu_translate' );
