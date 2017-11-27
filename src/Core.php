@@ -28,25 +28,23 @@ class Advanced_Sidebar_Menu_Core {
 	 * @since 6.0.0
 	 *
 	 * @param string $file_name
+	 * @param bool $include_once
 	 *
 	 * @return string
 	 */
-	public function get_template_part( $file_name ){
+	public function get_template_part( $file_name, $include_once = false ){
+		static $included = array();
+		if( $include_once && isset( $included[ $file_name ] ) ){
+			return '';
+		}
+		$included[ $file_name ] = true;
+
 		$file = locate_template( 'advanced-sidebar-menu/' . $file_name );
 		if( empty( $file ) ){
 			$file = ADVANCED_SIDEBAR_DIR . 'views/' . $file_name;
 		}
 
-		//backward compatibility
-		$file = apply_filters( 'advanced_sidebar_menu_view_file', $file, false );
-
-		$_filter_args = array(
-			$file,
-			$file_name,
-			$this,
-		);
-
-		$file = apply_filters_ref_array( 'advanced_sidebar_menu_template_part', $_filter_args );
+		$file = apply_filters( 'advanced_sidebar_menu_template_part', $file, $file_name, $this );
 
 		return $file;
 	}

@@ -14,7 +14,7 @@
  */
 $asm = Advanced_Sidebar_Menu_Menus_Page::get_current();
 $menu = Advanced_Sidebar_Menu_List_Pages::factory( $asm );
-$child_pages = $menu->get_child_pages( $asm->top_id, true );
+$child_pages = $menu->get_child_pages( $asm->get_top_parent_id(), true );
 $instance = $asm->get_widget_instance();
 $_args = $menu->get_args();
 
@@ -26,7 +26,7 @@ $content = '';
 #-- list the parent page if chosen
 if( $asm->include_parent() ){
 	$content .= '<ul class="parent-sidebar-menu" >';
-	$_args[ 'include' ] = $asm->top_id;
+	$_args[ 'include' ] = $asm->get_top_parent_id();
 	$content .= wp_list_pages( $_args );
 }
 
@@ -38,7 +38,7 @@ if( !empty( $child_pages ) ){
 	#-- If they want all the pages displayed always
 	if( $asm->display_all() ){
 		unset( $_args[ 'include' ] );
-		$_args[ 'child_of' ] = $asm->top_id;
+		$_args[ 'child_of' ] = $asm->get_top_parent_id();
 		$_args[ 'depth' ] = $instance[ 'levels' ];
 		$content .= wp_list_pages( $_args );
 

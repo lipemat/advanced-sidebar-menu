@@ -111,11 +111,11 @@ class Advanced_Sidebar_Menu_List_Pages{
 		}
 
 		$args = array(
-			'post_type' => $asm->post_type,
-			'orderby'   => $asm->order_by,
-			'order'     => $asm->order,
-			'exclude'   => $asm->exclude,
-			'levels'    => $asm->levels,
+			'post_type' => $asm->get_post_type(),
+			'orderby'   => $asm->get_order_by(),
+			'order'     => $asm->get_order(),
+			'exclude'   => $asm->get_excluded_ids(),
+			'levels'    => $asm->get_levels_to_display(),
 		);
 
 		$this->parse_args( $args );
@@ -387,7 +387,7 @@ class Advanced_Sidebar_Menu_List_Pages{
 				$current_page = get_queried_object();
 			}
 		}
-		return new self( $menu->top_id, $menu, $current_page );
+		return new self( $menu->get_top_parent_id(), $menu, $current_page );
 	}
 
 }

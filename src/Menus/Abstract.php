@@ -19,7 +19,9 @@ abstract class Advanced_Sidebar_Menu_Menus_Abstract {
 	public $args = array();
 
 	/**
-	 * Ids to exclude
+	 * exclude
+	 *
+	 * @deprecated
 	 *
 	 * @var array
 	 */
@@ -35,6 +37,8 @@ abstract class Advanced_Sidebar_Menu_Menus_Abstract {
 	/**
 	 * levels
 	 *
+	 * @deprecated
+	 *
 	 * @var int
 	 */
 	public $levels = 100;
@@ -42,12 +46,15 @@ abstract class Advanced_Sidebar_Menu_Menus_Abstract {
 	/**
 	 * order
 	 *
+	 * @deprecated 7.0.0
+	 *
 	 * @var string
 	 */
 	public $order = 'ASC';
 
 	/**
 	 * order_by
+	 * @deprecated 7.0.0
 	 *
 	 * @var string
 	 */
@@ -55,6 +62,8 @@ abstract class Advanced_Sidebar_Menu_Menus_Abstract {
 
 	/**
 	 * Top post_id or term_id
+	 *
+	 * @deprecated 7.0.0
 	 *
 	 * @var int
 	 */
@@ -65,6 +74,18 @@ abstract class Advanced_Sidebar_Menu_Menus_Abstract {
 		$this->instance = $widget_instance;
 		$this->args = $widget_args;
 	}
+
+	abstract public function get_top_parent_id();
+
+	abstract public function get_order_by();
+
+	abstract public function get_order();
+
+	abstract public function render();
+
+	abstract public function is_displayed();
+
+	abstract public function get_levels_to_display();
 
 
 	/**
@@ -107,7 +128,7 @@ abstract class Advanced_Sidebar_Menu_Menus_Abstract {
 	 * @return bool
 	 */
 	public function include_parent() {
-		if( $this->checked( 'include_parent' ) && !$this->is_excluded( $this->top_id ) ){
+		if( $this->checked( 'include_parent' ) && !$this->is_excluded( $this->get_top_parent_id() ) ){
 			return true;
 		}
 
@@ -135,7 +156,7 @@ abstract class Advanced_Sidebar_Menu_Menus_Abstract {
 	 * @return array
 	 */
 	public function get_excluded_ids() {
-		$excluded = $this->exclude;
+		$excluded = explode( ',', $this->instance[ 'exclude' ] );
 		$excluded = array_filter( $excluded );
 		$excluded = array_map( 'intval', $excluded );
 
@@ -195,7 +216,7 @@ abstract class Advanced_Sidebar_Menu_Menus_Abstract {
 	 *
 	 * @return mixed
 	 */
-	public static function factory( $class, array $widget_instance, array $widget_args ) {
+	public static function _factory( $class, array $widget_instance, array $widget_args ) {
 		$menu = new $class( $widget_instance, $widget_args );
 		self::$current = $menu;
 
