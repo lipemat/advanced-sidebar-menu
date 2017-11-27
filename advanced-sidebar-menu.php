@@ -81,25 +81,20 @@ function advanced_sidebar_menu_script(){
 
 #-- Let know about new Pro Version
 add_action( 'advanced_sidebar_menu_after_widget_form', 'advanced_sidebar_menu_pro_notice' );
-function advanced_sidebar_menu_pro_notice(){
+function advanced_sidebar_menu_pro_notice() {
 	if( defined( 'ADVANCED_SIDEBAR_MENU_PRO_VERSION' ) ){
 		return;
 	}
 	?>
-	<fieldset style="border: 1px solid black; border-radius: 10px; padding: 10px;">
-		<legend style="font-size: 14px; font-weight: bold;">
-            <?php _e( 'Want More Options', 'advanced-sidebar-menu' ); ?>?
-		</legend>
-		<p>
-			<strong>
-                <big>
-					<a target="blank" href="http://matlipe.com/product/advanced-sidebar-menu-pro/">
-                        <?php _e( 'Go Pro', 'advanced-sidebar-menu' ); ?>!
-					</a>
-				</big>
-            </strong>
-		<p>
-	</fieldset>
+    <fieldset style="border: 1px solid black; border-radius: 10px; padding: 10px;">
+        <legend style="font-size: 14px; font-weight: bold;">
+			<?php _e( 'Checkout Advanced Sidebar Menu Pro!', 'advanced-sidebar-menu' ); ?>
+        </legend>
+        <p>
+			<?php printf( __( 'Upgrade to %sAdvanced Sidebar Menu Pro%s for Priority Support, Styles, Custom Link Text, Accordions, Custom Post Types, and so much more!', 'advanced-sidebar-menu' ), '<a target="blank" href="https://matlipe.com/product/advanced-sidebar-menu-pro/">', '</a>' ); ?>
+
+        <p>
+    </fieldset>
 	<?php
 }
 

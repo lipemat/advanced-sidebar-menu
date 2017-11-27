@@ -14,45 +14,59 @@ Uses the parent/child relationship of your pages or categories to generate menus
 Keeps the menu clean and usable. Only related items display so you don't have to worry about keeping a custom menu up to date or displaying links to items that don't belong.
 
 
-<h3>Want more options and better support?</h3>
+<strong>Check out <a href="https://matlipe.com/product/advanced-sidebar-menu-pro/">Advanced Sidebar Menu Pro</a> for more features including priority support, the ability to customize the look and feel, custom text for your links, excluding of pages, category link ordering, accordions, custom post types, and so much more!</strong>
+
+<blockquote><a href="https://matlipe.com/product/advanced-sidebar-menu-pro/" target="_blank">Pro version 2.3.0</a> just dropped with lots of great new stuff!</blockquote>
+
 	
-<strong><big><a href="https://matlipe.com/product/advanced-sidebar-menu-pro/">Go Pro!</a></big></strong>
+<h4>Page Widget Options</h4>
+* Add a title to the widget
+* Include the highest level parent page
+* Include the highest level parent page even with no Children
+* Order Pages By (date, title, page order)
+* Use built in styling (very plain styling, for more advanced styling <a href="https://matlipe.com/product/advanced-sidebar-menu-pro/" target="_blank">Go Pro!</a>)
+* Exclude pages
+* Always display child Pages
+* Number of levels of child pages to display when always display child pages is checked
 
+<h4>Category Widget Options</h4>
+* Add a title to the widget
+* Include Parent Category
+* Include Parent Even with no Children
+* Use built in styling (very plain styling, for more advanced styling <a href="https://matlipe.com/product/advanced-sidebar-menu-pro/" target="_blank">Go Pro!</a>)
+* Display Categories on Single Posts
+* To display each Single Posts Category in a new widget or in same list
+* Exclude Categories
+* Always display child categories
+* Levels of Categories to display when always display child categories is checked
 
-<h4>Included page options:</h4>
-<ol>
-   <li>Add a title to the widget</li>
-   <li>Include the highest level parent page</li>
-   <li>Include the highest level parent page even with no Children</li>
-   <li>Order Pages By (date, title, page order)</li>
-   <li>Use built in styling (very plain styling, for more advanced styling <a href="https://matlipe.com/product/advanced-sidebar-menu-pro/">Go Pro!</a>)</li>
-   <li>Exclude pages</li>
-   <li>Always display child Pages</li>
-   <li>Number of levels of child pages to display</li>
-</ol>  
-
-<h4>Included category options:</h4>
-<ol>
-   <li>Add a title to the widget</li>
-   <li>Include Parent Category</li>
-   <li>Include Parent Even with no Children</li>
-  <li>Use built in styling (very plain styling, for more advanced styling <a href="https://matlipe.com/product/advanced-sidebar-menu-pro/">Go Pro!</a>)</li>
-  <li>Display Categories on Single Posts</li>
-   <li>To display each Single Posts Category in a new widget or in same list</li>
-   <li>Exclude Categories</li>
-  <li>Always display child categories</li>
-   <li>Levels of Categories to display</li>
-</ol>    
-
-Templates may be overridden for customization of outputs and/or css.
-
-Many built in filters for altering the way the widgets function.
+<h4>Pro Features</h4>
+* Priority support
+* Ability to customize each page link’s text
+* Click and drag styling for both the page and category widgets
+* Styling options for links including color, background color, size,  and font weight
+* Styling options for different levels of links
+* Styling options for the current page or category
+* Styling options for the parent of the current page or category
+* Block styling options including borders and border colors
+* Bullet style selection from 7 styles or select none to have no bullets
+* Current page parent only for the page widget
+* Accordion menu support for pages
+* Accordion menu support for categories
+* Accordion icon selection from 4 styles of icons
+* Accordion icon color selection
+* Accordion close all sections
+* Include parent in accordion
+* Ability to exclude a page from all menus using a simple checkbox
+* Link ordering for the category widget
+* Number of levels of pages to show whether always displayed child pages is checked or not.
+* Ability to select and display custom post types **NEW**
    
-Developer docs may be found here
-<a href="https://matlipe.com/advanced-sidebar-menu/developer-docs/">https://matlipe.com/advanced-sidebar-menu/developer-docs/</a>
+<h4>Developers</h4>
+Developer docs may be found <a target="_blank" href="https://matlipe.com/advanced-sidebar-menu/developer-docs/">here</a>.
 
-To contribute send pull requests:
-<a href="https://github.com/lipemat/advanced-sidebar-menu">GitHub Repo</a>
+<h4>Contribute</h4>
+Send pull requests via the <a target="_blank" href="https://github.com/lipemat/advanced-sidebar-menu">GitHub Repo</a>
 
 
 == Installation ==
@@ -75,7 +89,7 @@ Manual Installation
 == Frequently Asked Questions ==
 
 Developer docs may be found here:
-<a href="https://matlipe.com/advanced-sidebar-menu/developer-docs/">https://matlipe.com/advanced-sidebar-menu/developer-docs/</a>
+<a href="https://matlipe.com/advanced-sidebar-menu/developer-docs/" target="_blank">https://matlipe.com/advanced-sidebar-menu/developer-docs/</a>
 
 = What text domain do I use for translation and where is the .pot file? =
 
@@ -100,7 +114,7 @@ For Instance This would remove the dot and  change the color
 
 = How do you get the categories to display on single post pages? =
 
-There is a checkbox in the widget options as of version 3.2 that will display the same structure for the categories the post is in.
+There is a checkbox in the widget options that will display the same structure for the categories the post is in.
 
 = How do you edit the output or built in css? =
 
