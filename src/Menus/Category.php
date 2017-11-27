@@ -11,6 +11,9 @@
 class Advanced_Sidebar_Menu_Menus_Category extends Advanced_Sidebar_Menu_Menus_Abstract {
 	const WIDGET = 'category';
 
+	const DISPLAY_ON_SINGLE = 'single';
+	const EACH_CATEGORY_DISPLAY = 'new_widget';
+
 	/**
 	 * ancestors
 	 *
@@ -50,7 +53,6 @@ class Advanced_Sidebar_Menu_Menus_Category extends Advanced_Sidebar_Menu_Menus_A
 
 
 	public function set_current_term( WP_Term $term ) {
-		//$this->top_id is deprecated 7.0.0
 		$this->top_id = $term->term_id;
 		$this->current_term = $term;
 	}
@@ -67,12 +69,27 @@ class Advanced_Sidebar_Menu_Menus_Category extends Advanced_Sidebar_Menu_Menus_A
 			)
 		);
 
-		return (array) $child_terms;
+		return $child_terms;
 	}
 
 
+	/**
+	 * Gets the number of levels ot display when doing 'Alwasy display'
+	 *
+	 * @return int
+	 */
 	public function get_levels_to_display() {
-		return apply_filters( 'advanced-sidebar-menu/menus/category/levels', $this->levels, $this->args, $this->instance, $this );
+		return apply_filters( 'advanced-sidebar-menu/menus/category/levels', $this->instance[ self::LEVELS ], $this->args, $this->instance, $this );
+	}
+
+
+	/**
+	 * Gets the number of levels to display when not doing 'Always display'
+	 *
+	 * @return int
+	 */
+	public function get_menu_depth() {
+		return apply_filters( 'advanced-sidebar-menu/menus/category/depth', 3, $this->args, $this->instance, $this );
 	}
 
 
@@ -154,15 +171,15 @@ class Advanced_Sidebar_Menu_Menus_Category extends Advanced_Sidebar_Menu_Menus_A
 	public function is_displayed() {
 		$display = false;
 		if( is_single() ){
-			if( $this->checked( 'single' ) ){
+			if( $this->checked( self::DISPLAY_ON_SINGLE ) ){
 				$display = true;
 			}
 			if( has_filter( 'advanced_sidebar_menu_proper_single' ) ){
 				_deprecated_hook( 'advanced_sidebar_menu_proper_single', '7.0.0', 'advanced-sidebar-menu/menus/category/is-displayed' );
 				$display = !apply_filters( 'advanced_sidebar_menu_proper_single', !$display, $this->args, $this->instance, $this );
 			}
-		} elseif( $this->is_tax() ){
-		    $display = true;
+		} elseif( $this->is_tax() ) {
+			$display = true;
 		}
 
 		return apply_filters( 'advanced-sidebar-menu/menus/category/is-displayed', $display, $this->args, $this->instance, $this );
@@ -171,7 +188,7 @@ class Advanced_Sidebar_Menu_Menus_Category extends Advanced_Sidebar_Menu_Menus_A
 
 	public function is_section_displayed( array $child_terms ) {
 		if( empty( $child_terms ) ){
-			if( !$this->checked( 'include_parent' ) || !$this->checked( 'include_childless_parent' ) ){
+			if( !$this->checked( self::INCLUDE_PARENT ) || !$this->checked( self::INCLUDE_CHILDLESS_PARENT ) ){
 				return false;
 			}
 			if( $this->is_excluded( $this->get_top_parent_id() ) ){
@@ -185,7 +202,7 @@ class Advanced_Sidebar_Menu_Menus_Category extends Advanced_Sidebar_Menu_Menus_A
 
 	/**
 	 * Simplified way to verify if we are on a taxonomy
-     * archive
+	 * archive
 	 *
 	 * @return bool
 	 */
@@ -201,6 +218,7 @@ class Advanced_Sidebar_Menu_Menus_Category extends Advanced_Sidebar_Menu_Menus_A
 
 		return false;
 	}
+
 
 	public function get_excluded_ids() {
 		$excluded = parent::get_excluded_ids();
@@ -338,13 +356,13 @@ class Advanced_Sidebar_Menu_Menus_Category extends Advanced_Sidebar_Menu_Menus_A
 			}
 			do_action( 'advanced-sidebar-menu/menus/category/render', $this );
 
-			if( !$menu_open || ( $this->instance[ 'new_widget' ] === 'widget' ) ){
+			if( !$menu_open || ( $this->instance[ self::EACH_CATEGORY_DISPLAY ] === 'widget' ) ){
 				//Start the menu
 				echo $this->args[ 'before_widget' ];
 				if( !$menu_open ){
 					//must remain in the loop vs the template
 					$this->title();
-					if( $this->checked( 'css' ) ){
+					if( $this->checked( self::USE_PLUGIN_STYLES ) ){
 						?>
                         <style>
                             <?php include Advanced_Sidebar_Menu_Core::instance()->get_template_part( 'sidebar-menu.css', true ); ?>
@@ -354,7 +372,7 @@ class Advanced_Sidebar_Menu_Menus_Category extends Advanced_Sidebar_Menu_Menus_A
 
 					$menu_open = true;
 					$close_menu = true;
-					if( $this->instance[ 'new_widget' ] === 'list' ){
+					if( $this->instance[ self::EACH_CATEGORY_DISPLAY ] === 'list' ){
 						$close_menu = false;
 					}
 				}
@@ -390,6 +408,7 @@ class Advanced_Sidebar_Menu_Menus_Category extends Advanced_Sidebar_Menu_Menus_A
 	public static function factory( array $widget_instance, array $widget_args ) {
 		$class = parent::_factory( __CLASS__, $widget_instance, $widget_args );
 		$class->hook();
+
 		return $class;
 	}
 

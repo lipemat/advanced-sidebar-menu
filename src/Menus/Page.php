@@ -45,7 +45,7 @@ class Advanced_Sidebar_Menu_Menus_Page extends Advanced_Sidebar_Menu_Menus_Abstr
 
 
 	public function get_order_by() {
-		return apply_filters( 'advanced_sidebar_menu_order_by', $this->instance[ 'order_by' ], $this->get_current_post(), $this->args, $this->instance, $this );
+		return apply_filters( 'advanced_sidebar_menu_order_by', $this->instance[ self::ORDER_BY ], $this->get_current_post(), $this->args, $this->instance, $this );
 	}
 
 
@@ -90,8 +90,8 @@ class Advanced_Sidebar_Menu_Menus_Page extends Advanced_Sidebar_Menu_Menus_Abstr
 				if( $this->has_pages() ){
 					$display = true;
 					//no children + not excluded + include parent +include childless parent
-				} elseif( $this->checked( 'include_childless_parent' )
-				          && $this->checked( 'include_parent' )
+				} elseif( $this->checked( self::INCLUDE_CHILDLESS_PARENT )
+				          && $this->checked( self::INCLUDE_PARENT )
 				          && !$this->is_excluded( $this->get_top_parent_id() ) ) {
 					$display = true;
 				}
@@ -124,8 +124,25 @@ class Advanced_Sidebar_Menu_Menus_Page extends Advanced_Sidebar_Menu_Menus_Abstr
 	}
 
 
+	/**
+	 * Gets the number of levels ot display when doing 'Alwasy display'
+	 *
+	 * @return int
+	 */
 	public function get_levels_to_display() {
-		return apply_filters( 'advanced-sidebar-menu/menus/page/levels', $this->levels, $this->args, $this->instance, $this );
+		return apply_filters( 'advanced-sidebar-menu/menus/page/levels', $this->instance[ self::LEVELS ], $this->args, $this->instance, $this );
+	}
+
+
+	/**
+	 * Gets the number of levels to display when not doing 'Always display'
+	 *
+	 * @todo convert pro over to this filter
+	 *
+	 * @return int
+	 */
+	public function get_menu_depth() {
+		return apply_filters( 'advanced-sidebar-menu/menus/page/depth', $this->levels, $this->args, $this->instance, $this );
 	}
 
 
@@ -137,8 +154,8 @@ class Advanced_Sidebar_Menu_Menus_Page extends Advanced_Sidebar_Menu_Menus_Abstr
 	public function get_excluded_ids() {
 		$excluded = parent::get_excluded_ids();
 		if( !empty( $this->exclude ) ){
-		    //backward compatibility for PRO version
-		    $excluded = array_merge( $excluded, $this->exclude );
+			//backward compatibility for PRO version
+			$excluded = array_merge( $excluded, $this->exclude );
 		}
 
 		return apply_filters( 'advanced_sidebar_menu_excluded_pages', $excluded, $this->get_current_post(), $this->args, $this->instance, $this );
@@ -159,7 +176,7 @@ class Advanced_Sidebar_Menu_Menus_Page extends Advanced_Sidebar_Menu_Menus_Abstr
 
 		do_action( 'advanced-sidebar-menu/menus/page/render', $this );
 
-		if( $this->checked( 'css' ) ){
+		if( $this->checked( self::USE_PLUGIN_STYLES ) ){
 			?>
             <style>
                 <?php include Advanced_Sidebar_Menu_Core::instance()->get_template_part( 'sidebar-menu.css', true ); ?>

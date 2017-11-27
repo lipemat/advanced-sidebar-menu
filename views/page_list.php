@@ -39,7 +39,7 @@ if( !empty( $child_pages ) ){
 	if( $asm->display_all() ){
 		unset( $_args[ 'include' ] );
 		$_args[ 'child_of' ] = $asm->get_top_parent_id();
-		$_args[ 'depth' ] = $instance[ 'levels' ];
+		$_args[ 'depth' ] = $asm->get_levels_to_display();
 		$content .= wp_list_pages( $_args );
 
 	} else {

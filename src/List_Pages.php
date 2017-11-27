@@ -115,7 +115,7 @@ class Advanced_Sidebar_Menu_List_Pages{
 			'orderby'   => $asm->get_order_by(),
 			'order'     => $asm->get_order(),
 			'exclude'   => $asm->get_excluded_ids(),
-			'levels'    => $asm->get_levels_to_display(),
+			'levels'    => $asm->get_menu_depth(),
 		);
 
 		$this->parse_args( $args );

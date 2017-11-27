@@ -81,7 +81,7 @@ if( !empty( $child_terms ) ){
 						'taxonomy'         => $asm->get_taxonomy(),
 						'title_li'         => '',
 						'exclude'          => $asm->get_excluded_ids(),
-						'depth'            => $asm->get_levels_to_display(),
+						'depth'            => $asm->get_menu_depth(),
 						'child_of'         => $child_cat->term_id,
 						'show_option_none' => false,
 					);

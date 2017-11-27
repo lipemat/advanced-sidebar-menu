@@ -11,19 +11,24 @@
  *
  */
 class Advanced_Sidebar_Menu_Widget_Page extends WP_Widget {
+	const TITLE = Advanced_Sidebar_Menu_Menus_Abstract::TITLE;
+	const INCLUDE_PARENT = Advanced_Sidebar_Menu_Menus_Abstract::INCLUDE_PARENT;
+	const INCLUDE_CHILDLESS_PARENT = Advanced_Sidebar_Menu_Menus_Abstract::INCLUDE_CHILDLESS_PARENT;
+	const ORDER_BY = Advanced_Sidebar_Menu_Menus_Abstract::ORDER_BY;
+	const USE_PLUGIN_STYLES = Advanced_Sidebar_Menu_Menus_Abstract::USE_PLUGIN_STYLES;
+	const EXCLUDE = Advanced_Sidebar_Menu_Menus_Abstract::EXCLUDE;
+	const DISPLAY_ALL = Advanced_Sidebar_Menu_Menus_Abstract::DISPLAY_ALL;
+	const LEVELS = Advanced_Sidebar_Menu_Menus_Abstract::LEVELS;
 
-	//@todo set the rest to constants
-	const DISPLAY_PARENT = 'include_parent';
-
-	private $defaults = array(
-		'title'                    => false,
-		'include_parent'           => false,
-		'include_childless_parent' => false,
-		'order_by'                 => 'menu_order',
-		'css'                      => false,
-		'exclude'                  => false,
-		'display_all'              => false,
-		'levels'                   => 1,
+	protected static $defaults = array(
+		self::TITLE                    => false,
+		self::INCLUDE_PARENT           => false,
+		self::INCLUDE_CHILDLESS_PARENT => false,
+		self::ORDER_BY                 => 'menu_order',
+		self::USE_PLUGIN_STYLES        => false,
+		self::EXCLUDE                  => false,
+		self::DISPLAY_ALL              => false,
+		self::LEVELS                   => 1,
 	);
 
 
@@ -55,30 +60,30 @@ class Advanced_Sidebar_Menu_Widget_Page extends WP_Widget {
 	 * @return void
 	 */
 	public function form( $instance ) {
-		$instance = wp_parse_args( $instance, $this->defaults );
+		$instance = wp_parse_args( $instance, self::$defaults );
 		?>
         <p> <?php _e( 'Title', 'advanced-sidebar-menu' ); ?>
             <br>
-            <input id="<?php echo $this->get_field_id( 'title' ); ?>"
-                    name="<?php echo $this->get_field_name( 'title' ); ?>" class="widefat" type="text" value="<?php echo $instance[ 'title' ]; ?>"/>
+            <input id="<?php echo $this->get_field_id( self::TITLE ); ?>"
+                    name="<?php echo $this->get_field_name( self::TITLE ); ?>" class="widefat" type="text" value="<?php echo $instance[ self::TITLE ]; ?>"/>
         </p>
 
         <p> <?php _e( 'Display parent page', 'advanced-sidebar-menu' ); ?>:
-            <input id="<?php echo $this->get_field_id( self::DISPLAY_PARENT ); ?>"
-                    name="<?php echo $this->get_field_name( self::DISPLAY_PARENT ); ?>" type="checkbox" value="checked"
-				<?php echo $instance[ self::DISPLAY_PARENT ]; ?>/>
+            <input id="<?php echo $this->get_field_id( self::INCLUDE_PARENT ); ?>"
+                    name="<?php echo $this->get_field_name( self::INCLUDE_PARENT ); ?>" type="checkbox" value="checked"
+				<?php echo $instance[ self::INCLUDE_PARENT ]; ?>/>
         </p>
 
 
         <p> <?php _e( 'Display menu when there is only the parent page', 'advanced-sidebar-menu' ); ?>:
-            <input id="<?php echo $this->get_field_id( 'include_childless_parent' ); ?>"
+            <input id="<?php echo $this->get_field_id( self::INCLUDE_CHILDLESS_PARENT ); ?>"
                     name="<?php echo $this->get_field_name( 'include_childless_parent' ); ?>" type="checkbox" value="checked"
-				<?php echo $instance[ 'include_childless_parent' ]; ?>/>
+				<?php echo $instance[ self::INCLUDE_CHILDLESS_PARENT ]; ?>/>
         </p>
 
         <p> <?php _e( 'Order By', 'advanced-sidebar-menu' ); ?>:
-            <select id="<?php echo $this->get_field_id( 'order_by' ); ?>"
-                    name="<?php echo $this->get_field_name( 'order_by' ); ?>">
+            <select id="<?php echo $this->get_field_id( self::ORDER_BY ); ?>"
+                    name="<?php echo $this->get_field_name( self::ORDER_BY ); ?>">
 				<?php
 
 				$order_by = array(
@@ -89,46 +94,46 @@ class Advanced_Sidebar_Menu_Widget_Page extends WP_Widget {
 
 				foreach( $order_by as $key => $order ){
 
-					printf( '<option value="%s" %s>%s</option>', $key, selected( $instance[ 'order_by' ], $key, false ), $order );
+					printf( '<option value="%s" %s>%s</option>', $key, selected( $instance[ self::ORDER_BY ], $key, false ), $order );
 				}
 				?>
             </select>
         </p>
 
         <p> <?php _e( "Use this Plugin's Styling", 'advanced-sidebar-menu' ); ?>:
-            <input id="<?php echo $this->get_field_id( 'css' ); ?>"
-                    name="<?php echo $this->get_field_name( 'css' ); ?>" type="checkbox" value="checked"
-				<?php echo $instance[ 'css' ]; ?>/>
+            <input id="<?php echo $this->get_field_id( self::USE_PLUGIN_STYLES ); ?>"
+                    name="<?php echo $this->get_field_name( self::USE_PLUGIN_STYLES ); ?>" type="checkbox" value="checked"
+				<?php echo $instance[ self::USE_PLUGIN_STYLES ]; ?>/>
         </p>
 
-        <p> <?php _e( "Pages to Exclude (ids), Comma Separated", 'advanced-sidebar-menu' ); ?>:
-            <input id="<?php echo $this->get_field_id( 'exclude' ); ?>"
-                    name="<?php echo $this->get_field_name( 'exclude' ); ?>" class="widefat" type="text" value="<?php echo $instance[ 'exclude' ]; ?>"/>
+        <p> <?php _e( 'Pages to exclude (ids), comma separated', 'advanced-sidebar-menu' ); ?>:
+            <input id="<?php echo $this->get_field_id( self::EXCLUDE ); ?>"
+                    name="<?php echo $this->get_field_name( self::EXCLUDE ); ?>" class="widefat" type="text" value="<?php echo $instance[ self::EXCLUDE ]; ?>"/>
         </p>
 
-        <p> <?php _e( 'Always Display Child Pages', 'advanced-sidebar-menu' ); ?>:
+        <p> <?php _e( 'Always display child pages', 'advanced-sidebar-menu' ); ?>:
             <input
-                    id="<?php echo $this->get_field_id( 'display_all' ); ?>"
-                    name="<?php echo $this->get_field_name( 'display_all' ); ?>"
+                    id="<?php echo $this->get_field_id( self::DISPLAY_ALL ); ?>"
+                    name="<?php echo $this->get_field_name( self::DISPLAY_ALL ); ?>"
                     type="checkbox"
                     value="checked"
                     data-js="advanced-sidebar-menu/widget/page/display_all"
-                    onclick="javascript:asm_reveal_element( 'levels-<?php echo $this->get_field_id( 'levels' ); ?>' )"
-		        <?= $instance[ 'display_all' ]; ?>/>
+                    onclick="javascript:asm_reveal_element( 'levels-<?php echo $this->get_field_id( self::LEVELS ); ?>' )"
+				<?= $instance[ self::DISPLAY_ALL ]; ?>/>
         </p>
 
-    <span id="levels-<?php echo $this->get_field_id( 'levels' ); ?>" style="<?php
+    <span id="levels-<?php echo $this->get_field_id( self::LEVELS ); ?>" style="<?php
 	if( $instance[ 'display_all' ] === 'checked' ){
 		echo 'display:block';
 	} else {
 		echo 'display:none';
 	} ?>">
-        <p> <?php _e( "Levels to Display", 'advanced-sidebar-menu' ); ?>:
-    <select id="<?php echo $this->get_field_id( 'levels' ); ?>"
-            name="<?php echo $this->get_field_name( 'levels' ); ?>">
+        <p> <?php _e( 'Levels to display', 'advanced-sidebar-menu' ); ?>:
+    <select id="<?php echo $this->get_field_id( self::LEVELS ); ?>"
+            name="<?php echo $this->get_field_name( self::LEVELS ); ?>">
 		<?php
 		for( $i = 1; $i < 6; $i ++ ){
-			if( $i == $instance[ 'levels' ] ){
+			if( $i === (int) $instance[ self::LEVELS ] ){
 				echo '<option value="' . $i . '" selected>' . $i . '</option>';
 			} else {
 				echo '<option value="' . $i . '">' . $i . '</option>';
@@ -172,7 +177,7 @@ class Advanced_Sidebar_Menu_Widget_Page extends WP_Widget {
 	 * @return void
 	 */
 	public function widget( $args, $instance ) {
-		$instance = wp_parse_args( $instance, $this->defaults );
+		$instance = wp_parse_args( $instance, self::$defaults );
 		$asm = Advanced_Sidebar_Menu_Menus_Page::factory( $instance, $args );
 		$asm->set_current_post( get_post() );
 
