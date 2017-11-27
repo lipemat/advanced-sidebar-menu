@@ -38,8 +38,8 @@ if( !function_exists( 'advanced_sidebar_menu_load' ) ){
 function advanced_sidebar_menu_autoload( $class ) {
 	$classes = array(
         //widgets
-		'Advanced_Sidebar_Menu_Widgets_Page'     => 'Widgets/Page.php',
-		'Advanced_Sidebar_Menu_Widgets_Category' => 'Widgets/Category.php',
+		'Advanced_Sidebar_Menu_Widget_Page'     => 'Widget/Page.php',
+		'Advanced_Sidebar_Menu_Widget_Category' => 'Widget/Category.php',
 
         //core
 		'Advanced_Sidebar_Menu_Cache' => 'Cache.php',

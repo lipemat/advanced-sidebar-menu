@@ -10,7 +10,7 @@
  * @since  7.0.0
  *
  */
-class Advanced_Sidebar_Menu_Widgets_Page extends WP_Widget {
+class Advanced_Sidebar_Menu_Widget_Page extends WP_Widget {
 
     //@todo set the rest to constants
     const DISPLAY_PARENT = 'include_parent';

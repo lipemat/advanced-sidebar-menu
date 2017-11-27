@@ -16,8 +16,8 @@ class Advanced_Sidebar_Menu_Core {
 
 
 	public function register_widgets(){
-		register_widget( 'Advanced_Sidebar_Menu_Widgets_Page' );
-		register_widget( 'Advanced_Sidebar_Menu_Widgets_Category' );
+		register_widget( 'Advanced_Sidebar_Menu_Widget_Page' );
+		register_widget( 'Advanced_Sidebar_Menu_Widget_Category' );
 	}
 
 

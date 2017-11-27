@@ -10,7 +10,7 @@
  *
  *
  */
-class Advanced_Sidebar_Menu_Widgets_Category extends WP_Widget {
+class Advanced_Sidebar_Menu_Widget_Category extends WP_Widget {
 
 	private $defaults = array(
 		'title'                    => '',
