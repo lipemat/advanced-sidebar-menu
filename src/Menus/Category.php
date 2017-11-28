@@ -44,17 +44,57 @@ class Advanced_Sidebar_Menu_Menus_Category extends Advanced_Sidebar_Menu_Menus_A
 	 * @return void
 	 */
 	public function hook() {
-		static $hooked;
-		if( null === $hooked ){
-			add_filter( 'category_css_class', array( $this, 'add_has_children_category_class' ), 2, 2 );
-		}
-		$hooked = true;
+        add_filter( 'category_css_class', array( $this, 'add_has_children_category_class' ), 2, 2 );
 	}
 
 
 	public function set_current_term( WP_Term $term ) {
 		$this->top_id = $term->term_id;
 		$this->current_term = $term;
+	}
+
+	/**
+	 * Return the list of args for wp_list_categories()
+	 *
+	 * @param string $level - level of menu so we have full control of updates
+     * @param WP_Term $term - Term for child and grandchild
+	 *
+	 * @return array
+	 */
+	public function get_list_categories_args( $level = null, $term = null ) {
+		$args = array(
+			'echo'             => 0,
+			'exclude'          => $this->get_excluded_ids(),
+			'order'            => $this->get_order(),
+			'orderby'          => $this->get_order_by(),
+			'show_option_none' => false,
+			'taxonomy'         => $this->get_taxonomy(),
+			'title_li'         => '',
+		);
+
+		if( null === $level ){
+			return $args;
+		}
+		switch ( $level ){
+			case 'parent':
+			    $args[ 'hide_empty' ] = 0;
+				$args[ 'include' ] = trim( $this->get_top_parent_id() );
+				break;
+			case 'display-all':
+				$args[ 'child_of' ] = $this->get_top_parent_id();
+				$args[ 'depth' ] = $this->get_levels_to_display();
+				break;
+            case 'child':
+	            $args[ 'include' ] = $term->term_id;
+	            $args[ 'depth' ] = 1;
+	            break;
+			case 'grandchild':
+				$args[ 'child_of' ] = $term->term_id;
+				$args[ 'depth' ] = $this->get_menu_depth();
+				break;
+		}
+
+		return apply_filters( 'advanced-sidebar-menu/menus/category/get-list-categories-args', $args, $level, $this );
 	}
 
 
@@ -186,7 +226,20 @@ class Advanced_Sidebar_Menu_Menus_Category extends Advanced_Sidebar_Menu_Menus_A
 	}
 
 
-	public function is_section_displayed( array $child_terms ) {
+	/**
+	 * Is this term and it's children displayed
+	 *
+	 * 1. If children not empty we always display (or at least let the view handle it)
+	 * 2. If children empty and not include parent we don't display
+	 * 3. If children empty and not include childless parent we don't display
+	 * 4. If children empty and the top parent is excluded we don't display
+	 *
+	 *
+	 * @param array $child_terms
+	 *
+	 * @return bool
+	 */
+	public function is_term_displayed( array $child_terms ) {
 		if( empty( $child_terms ) ){
 			if( !$this->checked( self::INCLUDE_PARENT ) || !$this->checked( self::INCLUDE_CHILDLESS_PARENT ) ){
 				return false;
@@ -293,20 +346,25 @@ class Advanced_Sidebar_Menu_Menus_Category extends Advanced_Sidebar_Menu_Menus_A
 			$classes[] = 'has_children';
 		}
 
-		return $classes;
+		return array_unique( $classes );
 	}
 
 
 	/**
-	 * IF this is a top level category
+	 * 1. Is this term's parent our top_parent_id?
+	 * 2. Is this term not excluded?
+	 * 3. Does the filter allow this term?
+	 *
+	 * When looping through the view via the terms from $this->get_child_terms()
+	 * the term->parent conditions will most likely always be true.
 	 *
 	 * @param \WP_Term $term
 	 *
 	 * @return bool
 	 */
-	public function first_level_category( WP_Term $term ) {
+	public function is_first_level_term( WP_Term $term ) {
 		$return = false;
-		if( (int) $term->parent === (int) $this->get_top_parent_id() && !$this->is_excluded( $term->term_id ) ){
+		if( !$this->is_excluded( $term->term_id ) && (int) $term->parent === (int) $this->get_top_parent_id() ){
 			$return = true;
 		}
 
@@ -315,15 +373,15 @@ class Advanced_Sidebar_Menu_Menus_Category extends Advanced_Sidebar_Menu_Menus_A
 
 
 	/**
-	 * If the term is a second level term
+	 * Is this term an ancestor of the current term?
+	 * Does this term have children?
 	 *
 	 * @param \WP_Term $term
 	 *
-	 * @return bool
+	 * @return mixed
 	 */
-	public function second_level_cat( WP_Term $term ) {
+	public function is_current_term_ancestor( WP_Term $term ) {
 		$return = false;
-		//if this is the current term or a parent of the current term
 		if( (int) $term->term_id === (int) $this->current_term || in_array( $term->term_id, $this->ancestors, false ) ){
 			$all_children = get_terms( $this->get_taxonomy(), array(
 				'child_of' => $term->term_id,
@@ -334,11 +392,39 @@ class Advanced_Sidebar_Menu_Menus_Category extends Advanced_Sidebar_Menu_Menus_A
 			}
 		}
 
-		return apply_filters( 'advanced_sidebar_menu_second_level_category', $return, $term, $this );
+		if( has_filter( 'advanced_sidebar_menu_second_level_category' ) ){
+			_deprecated_hook( 'advanced_sidebar_menu_second_level_category', '7.0.0', 'advanced-sidebar-menu/menus/category/is-current-term-ancestor' );
+			$return = apply_filters( 'advanced_sidebar_menu_second_level_category', $return, $term, $this );
+		}
+
+		return apply_filters( 'advanced-sidebar-menu/menus/category/is-current-term-ancestor', $return, $term, $this );
 
 	}
 
 
+	/**
+	 * Does this term have children?
+	 *
+	 * @param \WP_Term $term
+	 *
+	 * @return mixed
+	 */
+	public function has_children( WP_Term $term ) {
+		$return = false;
+		$children = get_term_children( $term->term_id, $this->get_taxonomy() );
+		if( !empty( $children ) ){
+			$return = true;
+		}
+
+		return apply_filters( 'advanced-sidebar-menu/menus/category/has-children', $return, $term, $this );
+	}
+
+
+	/**
+	 * Render the widget output
+	 *
+	 * @return void
+	 */
 	public function render() {
 		if( !$this->is_displayed() ){
 			return;
@@ -351,14 +437,16 @@ class Advanced_Sidebar_Menu_Menus_Category extends Advanced_Sidebar_Menu_Menus_A
 			$this->set_current_term( $_cat );
 			//@deprecated 7.0.0 variable name
 			$all_categories = $this->get_child_terms();
-			if( !$this->is_section_displayed( $all_categories ) ){
+			if( !$this->is_term_displayed( $all_categories ) ){
 				continue;
 			}
-			do_action( 'advanced-sidebar-menu/menus/category/render', $this );
 
 			if( !$menu_open || ( $this->instance[ self::EACH_CATEGORY_DISPLAY ] === 'widget' ) ){
 				//Start the menu
 				echo $this->args[ 'before_widget' ];
+
+				do_action( 'advanced-sidebar-menu/menus/category/render', $this );
+
 				if( !$menu_open ){
 					//must remain in the loop vs the template
 					$this->title();
@@ -390,6 +478,30 @@ class Advanced_Sidebar_Menu_Menus_Category extends Advanced_Sidebar_Menu_Menus_A
 		if( !$close_menu && $menu_open ){
 			echo $this->args[ 'after_widget' ];
 		}
+
+	}
+
+
+	/**
+	 * @deprecated
+	 *
+	 */
+	public function first_level_category( WP_Term $term ) {
+		_deprecated_function( 'Advanced_Sidebar_Menu_Menus_Category::first_level_category', '7.0.0', 'Advanced_Sidebar_Menu_Menus_Category::is_first_level_term' );
+
+		return $this->is_first_level_term( $term );
+	}
+
+
+	/**
+	 * @deprecated
+	 */
+	public function second_level_cat( WP_Term $term ) {
+		_deprecated_function( 'Advanced_Sidebar_Menu_Menus_Category::second_level_cat', '7.0.0', 'Advanced_Sidebar_Menu_Menus_Category::is_current_term_ancestor' );
+
+		$return = ( $this->is_current_term_ancestor( $term ) && $this->has_children( $term ) );
+
+		return apply_filters( 'advanced_sidebar_menu_second_level_category', $return, $term, $this );
 
 	}
 

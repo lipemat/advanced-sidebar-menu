@@ -1,5 +1,6 @@
 <?php
 
+
 /**
  * Advanced_Sidebar_Menu_List_Pages
  *
@@ -12,12 +13,12 @@
  *
  * @package Advanced Sidebar Menu
  *
- * @author Mat Lipe <mat@matlipe.com>
+ * @author  Mat Lipe <mat@matlipe.com>
  *
- * @since 5.0.0
+ * @since   5.0.0
  *
  */
-class Advanced_Sidebar_Menu_List_Pages{
+class Advanced_Sidebar_Menu_List_Pages {
 
 	/**
 	 * output
@@ -38,24 +39,13 @@ class Advanced_Sidebar_Menu_List_Pages{
 	protected $current_page;
 
 	/**
-	 * current_page_id
-	 *
-	 * Holds id of current page. Separate from current_page because
-	 * current_page could be empty if something custom going on
-	 *
-	 * @var int
-	 */
-	protected $current_page_id = 0;
-
-	/**
 	 * top_parent_id
 	 *
-	 * Id of current page unless filtered when whatever set during
-	 * widgetcreation
+	 * The top level parent id according to the menu class
 	 *
 	 * @var int
 	 */
-	public $top_parent_id;
+	protected $top_parent_id;
 
 	/**
 	 * args
@@ -64,8 +54,7 @@ class Advanced_Sidebar_Menu_List_Pages{
 	 *
 	 * @var array
 	 */
-	private $args = array();
-
+	protected $args = array();
 
 	/**
 	 * level
@@ -74,21 +63,24 @@ class Advanced_Sidebar_Menu_List_Pages{
 	 *
 	 * @var int
 	 */
-	private $level = 0;
+	protected $level = 0;
 
 	/**
 	 * Used exclusively for caching
 	 * Holds the value of the latest parent we
-	 * retrieve children for
+	 * retrieve children for so Cache can distinguish
+	 * between calls.
 	 *
 	 * @var int
 	 */
-	private $current_children_parent = 0;
+	protected $current_children_parent = 0;
 
 	/**
 	 * menu
 	 *
-	 * @var \Advanced_Sidebar_Menu_Menu
+	 * Menu class
+	 *
+	 * @var \Advanced_Sidebar_Menu_Menus_Page
 	 */
 	protected $menu;
 
@@ -96,46 +88,35 @@ class Advanced_Sidebar_Menu_List_Pages{
 	/**
 	 * Constructor
 	 *
-	 * Used in the view
-	 *
-	 * @param int                        $parent_id - $asm->top_id
-	 * @param Advanced_Sidebar_Menu_Menu|\Advanced_Sidebar_Menu_Menus_Page $asm
-	 * @param WP_Post $current_page;
+	 * @param \Advanced_Sidebar_Menu_Menus_Page $menu
 	 */
-	public function __construct( $parent_id, $asm, $current_page ){
-		$this->menu = $asm;
-		$this->top_parent_id = $parent_id;
-		$this->current_page = $current_page;
-		if( null !== $current_page ){
-			$this->current_page_id = $current_page->ID;
-		}
+	protected function __construct( Advanced_Sidebar_Menu_Menus_Page $menu ) {
+		$this->menu = $menu;
+		$this->top_parent_id = $menu->get_top_parent_id();
+		$this->current_page = $menu->get_current_post();
 
 		$args = array(
-			'post_type' => $asm->get_post_type(),
-			'orderby'   => $asm->get_order_by(),
-			'order'     => $asm->get_order(),
-			'exclude'   => $asm->get_excluded_ids(),
-			'levels'    => $asm->get_menu_depth(),
+			'post_type' => $menu->get_post_type(),
+			'orderby'   => $menu->get_order_by(),
+			'order'     => $menu->get_order(),
+			'exclude'   => $menu->get_excluded_ids(),
+			'levels'    => $menu->get_menu_depth(),
 		);
 
-		$this->parse_args( $args );
-		$this->hooks();
-
+		$this->args = $this->parse_args( $args );
+		$this->hook();
 	}
 
 
 	/**
 	 * Hooks should only hook once
 	 *
+	 * @todo find a more appropriate place for this?
+	 *
 	 * @return void
 	 */
-	protected function hooks() {
-		static $been_hooked;
-		if( null === $been_hooked ){
-			$been_hooked = true;
-			add_filter( 'page_css_class', array( $this, 'add_list_item_classes' ), 2, 2 );
-		}
-
+	protected function hook() {
+		add_filter( 'page_css_class', array( $this, 'add_list_item_classes' ), 2, 2 );
 	}
 
 
@@ -143,7 +124,7 @@ class Advanced_Sidebar_Menu_List_Pages{
 	 * Add the custom classes to the list items
 	 *
 	 *
-	 * @param array         $classes
+	 * @param array    $classes
 	 * @param \WP_Post $post
 	 *
 	 * @return array
@@ -158,26 +139,44 @@ class Advanced_Sidebar_Menu_List_Pages{
 			$classes[] = 'has_children';
 		}
 
-		//below is only for custom post types
-		if( $this->current_page->post_type !== 'page' ){
-			if( isset( $post->ancestors ) && in_array( $this->current_page->ID, (array) $post->ancestors, true ) ){
+		//page posts are handled by wp core. This is for custom post types
+		if( $post->post_type !== 'page' ){
+			$ancestors = get_post_ancestors( $post );
+			if( !empty( $ancestors ) && in_array( $this->current_page->ID, $ancestors, false ) ){
 				$classes[] = 'current_page_ancestor';
 			} elseif( $this->current_page->ID === $post->post_parent ) {
 				$classes[] = 'current_page_parent';
 			}
 		}
 
-		return $classes;
+		return array_unique( $classes );
 	}
 
 
 	/**
 	 * Return the list of args that have been populated by this class
+	 * For use with wp_list_pages()
+	 *
+	 * @param string $level - level of menu so we have full control of updates
 	 *
 	 * @return array
 	 */
-	public function get_args(){
-		return $this->args;
+	public function get_args( $level = null ) {
+		if( null === $level ){
+			return $this->args;
+		}
+		$args = $this->args;
+		switch ( $level ){
+			case 'parent':
+				$args[ 'include' ] = $this->menu->get_top_parent_id();
+				break;
+			case 'display-all':
+				$args[ 'child_of' ] = $this->menu->get_top_parent_id();
+				$args[ 'depth' ] = $this->menu->get_levels_to_display();
+				break;
+		}
+
+		return apply_filters( 'advanced-sidebar-menu/list-pages/get-args', $args, $level, $this );
 	}
 
 
@@ -188,10 +187,9 @@ class Advanced_Sidebar_Menu_List_Pages{
 	 *
 	 * @return string
 	 */
-	public function __toString(){
+	public function __toString() {
 		return $this->output;
 	}
-
 
 
 	/**
@@ -200,9 +198,9 @@ class Advanced_Sidebar_Menu_List_Pages{
 	 *
 	 * @param array $args
 	 *
-	 * @return void
+	 * @return array
 	 */
-	private function parse_args( $args ){
+	protected function parse_args( $args ) {
 		$defaults = array(
 			'exclude'      => '',
 			'echo'         => 0,
@@ -219,13 +217,13 @@ class Advanced_Sidebar_Menu_List_Pages{
 
 		$args = wp_parse_args( $args, $defaults );
 
-		// sanitize, mostly to keep spaces out
 		if( is_string( $args[ 'exclude' ] ) ){
-			$args[ 'exclude' ]  = explode( ',', $args[ 'exclude' ] );
+			$args[ 'exclude' ] = explode( ',', $args[ 'exclude' ] );
 		}
+		//sanitize, mostly to keep spaces out
 		$args[ 'exclude' ] = preg_replace( '/[^0-9,]/', '', implode( ',', apply_filters( 'wp_list_pages_excludes', $args[ 'exclude' ] ) ) );
 
-		$this->args = apply_filters( 'advanced_sidebar_menu_list_pages_args', $args, $this );
+		return apply_filters( 'advanced_sidebar_menu_list_pages_args', $args, $this );
 
 	}
 
@@ -238,25 +236,17 @@ class Advanced_Sidebar_Menu_List_Pages{
 	 * @return string
 	 */
 	public function list_pages() {
-
 		$pages = $this->get_child_pages( $this->top_parent_id, true );
-
 		foreach( $pages as $page ){
-
-			$this->output .= walk_page_tree( array( $page ), 1, $this->current_page_id, $this->args );
-
+			$this->output .= walk_page_tree( array( $page ), 1, $this->current_page->ID, $this->args );
 			$this->output .= $this->list_grandchild_pages( $page->ID );
-
 			$this->output .= '</li>' . "\n";
-
 		}
 
 		$this->output = apply_filters( 'wp_list_pages', $this->output, $this->args );
-
 		if( !$this->args[ 'echo' ] ){
 			return $this->output;
 		}
-
 		echo $this->output;
 	}
 
@@ -270,37 +260,33 @@ class Advanced_Sidebar_Menu_List_Pages{
 	 *
 	 * @return string
 	 */
-	private function list_grandchild_pages( $parent_page_id ){
-		if( !$this->current_page_ancestor( $parent_page_id ) ){
+	protected function list_grandchild_pages( $parent_page_id ) {
+		if( $this->level >= (int) $this->args[ 'levels' ] ){
+			return '';
+		}
+		if( !$this->is_current_page_ancestor( $parent_page_id ) ){
+			return '';
+		}
+		$pages = $this->get_child_pages( $parent_page_id );
+		if( empty( $pages ) ){
 			return '';
 		}
 
-		if( !$pages = $this->get_child_pages( $parent_page_id ) ){
-			return '';
-		}
-
-		if( $this->level === (int)$this->args[ 'levels' ] ){
-			return '';
-		}
-
-		$this->level++;
-
+		$this->level ++;
 		$content = sprintf( '<ul class="grandchild-sidebar-menu level-%s children">', $this->level );
-		$inside = '';
 
+		$inside = '';
 		foreach( $pages as $page ){
-			$inside .= walk_page_tree( array( $page ), 1, $this->current_page_id, $this->args );
+			$inside .= walk_page_tree( array( $page ), 1, $this->current_page->ID, $this->args );
 			$inside .= $this->list_grandchild_pages( $page->ID );
 			$inside .= "</li>\n";
-
 		}
 
 		if( '' === $inside ){
 			return '';
 		}
 
-
-		return $content . $inside  . "</ul>\n";
+		return $content . $inside . "</ul>\n";
 	}
 
 
@@ -315,20 +301,21 @@ class Advanced_Sidebar_Menu_List_Pages{
 	 * @return array
 	 */
 	public function get_child_pages( $parent_page_id, $is_first_level = false ) {
+		//holds a unique key so Cache can distinguish calls
 		$this->current_children_parent = $parent_page_id;
 
-		$cache = Advanced_Sidebar_Menu_Cache::get_instance();
+		$cache = Advanced_Sidebar_Menu_Cache::instance();
 		$child_pages = $cache->get_child_pages( $this );
 		if( $child_pages === false ){
 			$args = $this->args;
 			$args[ 'post_parent' ] = $parent_page_id;
 			$args[ 'fields' ] = 'ids';
-
 			$child_pages = get_posts( $args );
+
 			$cache->add_child_pages( $this, $child_pages );
 		}
 
-		$child_pages = array_map( 'get_post', (array)$child_pages );
+		$child_pages = array_map( 'get_post', (array) $child_pages );
 
 		//we only filter the first level with this filter for backward pro compatibility
 		if( $is_first_level ){
@@ -341,7 +328,7 @@ class Advanced_Sidebar_Menu_List_Pages{
 
 
 	/**
-	 * current_page_ancestor
+	 * is_current_page_ancestor
 	 *
 	 * Is the current page and ancestor of the specified page?
 	 *
@@ -349,45 +336,35 @@ class Advanced_Sidebar_Menu_List_Pages{
 	 *
 	 * @return bool
 	 */
-	private function current_page_ancestor( $page_id ) {
+	protected function is_current_page_ancestor( $page_id ) {
 		$return = false;
-		if( !empty( $this->current_page_id ) ){
-			if( (int)$page_id === $this->current_page_id ){
+		if( !empty( $this->current_page->ID ) ){
+			if( (int) $page_id === $this->current_page->ID ){
 				$return = true;
-			} elseif( $this->current_page->post_parent === (int)$page_id ) {
+			} elseif( $this->current_page->post_parent === (int) $page_id ) {
 				$return = true;
-			} elseif( !empty( $this->current_page->ancestors ) && in_array( (int)$page_id, $this->current_page->ancestors, true ) ) {
-				$return = true;
+			} else {
+				$ancestors = get_post_ancestors( $this->current_page );
+				if( !empty( $ancestors ) && in_array( (int) $page_id, $ancestors, true ) ){
+					$return = true;
+				}
 			}
 		}
 
-		$return = apply_filters(
-			'advanced_sidebar_menu_page_ancestor',
-			$return,
-			$this->current_page_id,
-			$this
-		);
-
-		return $return;
+		return apply_filters( 'advanced_sidebar_menu_page_ancestor', $return, $this->current_page->ID, $this );
 	}
 
 
 	/**
 	 *
-	 * @param Advanced_Sidebar_Menu_Menu|\Advanced_Sidebar_Menu_Menus_Page $menu
-	 * @param WP_Post|null|object $current_page;
+	 * @param \Advanced_Sidebar_Menu_Menus_Page $menu
 	 *
 	 * @static
 	 *
 	 * @return Advanced_Sidebar_Menu_List_Pages
 	 */
-	public static function factory( $menu, $current_page = null ){
-		if( null === $current_page ){
-			if ( is_page() || is_singular() ) {
-				$current_page = get_queried_object();
-			}
-		}
-		return new self( $menu->get_top_parent_id(), $menu, $current_page );
+	public static function factory( Advanced_Sidebar_Menu_Menus_Page $menu ) {
+		return new self( $menu );
 	}
 
 }

@@ -11,7 +11,7 @@
 class Advanced_Sidebar_Menu_Debug {
 	const DEBUG_PARAM = 'asm_debug';
 
-	private function hook() {
+	protected function hook() {
 		if( !empty( $_REQUEST[ self::DEBUG_PARAM ] ) ){
 			add_action( 'advanced_sidebar_menu_widget_pre_render', array( $this, 'print_instance' ), 1, 2 );
 		}

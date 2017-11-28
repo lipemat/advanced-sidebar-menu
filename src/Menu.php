@@ -32,7 +32,7 @@ class Advanced_Sidebar_Menu_Menu {
 	 * @deprecated
 	 */
 	public static function get_current() {
-		//_deprecated_function( 'Advanced_Sidebar_Menu_Menu::get_current()', '7.0.0', 'Advanced_Sidebar_Menu_Menus_Page::factory()' );
+		_deprecated_function( 'Advanced_Sidebar_Menu_Menu::get_current()', '7.0.0', 'Advanced_Sidebar_Menu_Menus_Page::factory()' );
 
 		return self::$current;
 	}

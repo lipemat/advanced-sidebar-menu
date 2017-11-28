@@ -35,9 +35,17 @@ class Advanced_Sidebar_Menu_Menus_Page extends Advanced_Sidebar_Menu_Menus_Abstr
 	}
 
 
+	/**
+	 * Gets the current queried post unless it
+     * has been set explicitly.
+	 *
+	 * @return \WP_Post
+	 */
 	public function get_current_post() {
 		if( null === $this->post ){
-			$this->post = get_post();
+			if( is_page() || is_singular() ){
+				$this->post = get_queried_object();
+			}
 		}
 
 		return $this->post;
@@ -55,12 +63,11 @@ class Advanced_Sidebar_Menu_Menus_Page extends Advanced_Sidebar_Menu_Menus_Abstr
 
 
 	public function get_top_parent_id() {
-		$post = $this->get_current_post();
-		$ancestors = $this->get_current_post_ancestors();
-
-		$top_id = $post->ID;
+		$ancestors = get_post_ancestors( $this->get_current_post() );
 		if( !empty( $ancestors ) ){
 			$top_id = end( $ancestors );
+		} else {
+		    $top_id = $this->get_current_post()->ID;
 		}
 
 		//$this->top_id is deprecated since 7.0.0
@@ -68,15 +75,6 @@ class Advanced_Sidebar_Menu_Menus_Page extends Advanced_Sidebar_Menu_Menus_Abstr
 
 		return $this->top_id;
 
-	}
-
-
-	protected function get_current_post_ancestors() {
-		if( null === $this->ancestors ){
-			$this->ancestors = get_post_ancestors( $this->get_current_post() );
-		}
-
-		return $this->ancestors;
 	}
 
 

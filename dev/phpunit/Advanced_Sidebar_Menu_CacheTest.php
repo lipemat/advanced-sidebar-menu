@@ -31,7 +31,7 @@ class Advanced_Sidebar_Menu_CacheTest extends WP_UnitTestCase {
 		parent::setUp();
 		$this->menu = Advanced_Sidebar_Menu_Menus_Page::factory( $this->default_args, array() );
 		$this->menu->set_current_post( $this->factory()->post->create_and_get());
-		$this->o = Advanced_Sidebar_Menu_Cache::get_instance();
+		$this->o = Advanced_Sidebar_Menu_Cache::instance();
 	}
 
 

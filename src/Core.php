@@ -10,7 +10,7 @@
  */
 class Advanced_Sidebar_Menu_Core {
 
-	private function hooks(){
+	protected function hook(){
 		add_action( 'widgets_init', array( $this, 'register_widgets' ) );
 	}
 
@@ -54,7 +54,7 @@ class Advanced_Sidebar_Menu_Core {
 	/**
 	 * Instance of this class for use as singleton
 	 */
-	private static $instance;
+	protected static $instance;
 
 
 	/**
@@ -64,7 +64,7 @@ class Advanced_Sidebar_Menu_Core {
 	 * @return void
 	 */
 	public static function init(){
-		self::instance()->hooks();
+		self::instance()->hook();
 	}
 
 

@@ -13,12 +13,7 @@ class Advanced_Sidebar_Menu_Cache {
 	const CHILD_PAGES_KEY = 'child-pages';
 
 
-	private function __construct() {
-		$this->hooks();
-	}
-
-
-	private function hooks() {
+	protected function hook() {
 		add_action( 'save_post', array( $this, 'clear_cache_group' ) );
 	}
 
@@ -121,7 +116,7 @@ class Advanced_Sidebar_Menu_Cache {
 	 * @return void
 	 */
 	public static function init() {
-		self::$instance = self::get_instance();
+		self::instance()->hook();
 	}
 
 
@@ -132,7 +127,7 @@ class Advanced_Sidebar_Menu_Cache {
 	 * @static
 	 * @return self
 	 */
-	public static function get_instance() {
+	public static function instance() {
 		if( !is_a( self::$instance, __CLASS__ ) ){
 			self::$instance = new self();
 		}

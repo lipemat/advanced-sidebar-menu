@@ -27,14 +27,14 @@ class ASMOptionCurrentPageParentOnlyTest extends WP_UnitTestCase {
 	/**
 	 * menu
 	 *
-	 * @var \Advanced_Sidebar_Menu_Menu
+	 * @var \Advanced_Sidebar_Menu_Menus_Page
 	 */
 	private $menu;
 
 	/**
 	 * widget
 	 *
-	 * @var \advanced_sidebar_menu_page
+	 * @var \Advanced_Sidebar_Menu_Widget_Page
 	 */
 	private $widget;
 
@@ -80,15 +80,17 @@ class ASMOptionCurrentPageParentOnlyTest extends WP_UnitTestCase {
 
 	public function test_filtering() {
 		$this->menu->instance[ $this->o->get_option_name() ] = 'checked';
+		$this->menu->set_current_post( get_post( reset( $this->sub_children_one ) ) );
 		do_action( 'advanced_sidebar_menu_widget_pre_render', $this->menu, $this->widget );
 
-		$list_pages = Advanced_Sidebar_Menu_List_Pages::factory( clone $this->menu, get_post( reset( $this->sub_children_one ) ) );
+		$list_pages = Advanced_Sidebar_Menu_List_Pages::factory( clone $this->menu  );
 
 		$child_pages = wp_list_pluck( $list_pages->get_child_pages( $this->top_parent, true ), 'ID' );
 		$this->assertContains( $this->child_one, $child_pages, 'Current page parent only not working' );
 		$this->assertNotContains( $this->child_two, $child_pages, 'Current page parent only not working' );
 
-		$list_pages = Advanced_Sidebar_Menu_List_Pages::factory( clone $this->menu, get_post( reset( $this->sub_children_two ) ) );
+		$this->menu->set_current_post( get_post( reset( $this->sub_children_two ) ) );
+		$list_pages = Advanced_Sidebar_Menu_List_Pages::factory( clone $this->menu );
 
 		$child_pages = wp_list_pluck( $list_pages->get_child_pages( $this->top_parent, true ), 'ID' );
 		$this->assertContains( $this->child_two, $child_pages, 'Current page parent only not working' );

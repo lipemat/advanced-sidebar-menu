@@ -30,7 +30,7 @@ class Advanced_Sidebar_Menu_Pro_MigrationsTest extends WP_UnitTestCase {
 			if( $k === 1 || $k === 3 ){
 				$this->assertContains( AdvancedSidebarMenuProTitle::EXCLUDE_PAGE, array_keys( $meta ), 'new exclude page key not migrating over' );
 			} else {
-				$this->assertNotContains( AdvancedSidebarMenuProTitle::EXCLUDE_PAGE, array_keys( $meta ), 'new excluded pages key exists where it shouldn\'t' );
+				$this->assertNotContains( AdvancedSidebarMenuProTitle::EXCLUDE_PAGE, array_keys( $meta ), "new excluded pages key exists where it shouldn't" );
 			}
 		}
 
