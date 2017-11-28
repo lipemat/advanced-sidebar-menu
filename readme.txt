@@ -4,8 +4,8 @@ Contributors: Mat Lipe
 Donate link: https://www.paypal.com/cgi-bin/webscr?cmd=_donations&business=paypal%40matlipe%2ecom&lc=US&item_name=Advanced%20Sidebar%20Menu&no_note=0&currency_code=USD&bn=PP%2dDonationsBF%3abtn_donateCC_LG%2egif%3aNonHostedGuest
 Tags: menus, sidebar menu, hierarchy, category menu, pages menu
 Requires at least: 4.6.0
-Tested up to: 4.8.2
-Stable tag: 6.4.2
+Tested up to: 4.9.0
+Stable tag: 7.0.0
 
 == Description ==
 
@@ -134,6 +134,16 @@ You can add classes to your theme's style.css file to style it accordingly.
 You may want to use something like margins to set the levels apart.
 
 == Changelog ==
+= 7.0.0 =
+* Restructure the codebase to a more modern PSR4 structure
+* Improve cache handling
+* Improve verbiage in admin
+* Implement new actions and filters
+* Rebuild templates for improved stability and future changes
+* Improve performance
+* Kill conflicting backward compatibility with version 5
+* Open up more extendability possibilities
+
 = 6.4.0 =
 * Code improvements
 * Performance improvements via shared child retrieval
@@ -188,70 +198,13 @@ You may want to use something like margins to set the levels apart.
 * Added Legacy Mode for backwards compatibility
 
 
-= 3.4.0 =
-* Added filter support for custom post types
-
-= 3.3.1 =
-* Added unlimited number of levels displayed once on the grandchild level of pages
-
-= 3.3.0 =
-* Added the ability to have a widget title
-* Redesigned the entire structure to prepare for future changes
-
-
-= 3.2.5 =
-* Bugfixes
-
-= 3.2.3 = 
-* Fix a bug that caused multiple category list to display of more than one category the single post was in shared the same parent
-
-= 3.2.1 =
-* Fix a possible bug that may display a * Notice * error if there is nothing to display and the  error reporting is set to strict when using the categories widget.
-
-= 3.2.0 =
-* Added ability to have categories show on single post pages
-* Improved the code structure
-
-
-= 3.0.2 =
-*Bugfixes
-
-
-= 3.0 =
-* Added a categories menu widget with the same functionality as the pages widget
-* Added the ability to edit "views" files through your child theme to edit output and css
-* Cleanedup the output
-
-
 == Upgrade Notice ==
+= 7.0.0 =
+The templates have been improved drastically. While the old version 6 templates will work for now they have been deprecated and will one day stop working. If you are using custom templates please being converting them to the new structure.
+
 = 6.0.0 =
 If you are using the Pro version of this plugin be sure to update to Pro version 1.4.4 to keep all functionality intact with this version.
 
 = 5.0.0 =
 If you used a custom page_list.php template previously you may want to redo it on this version to take advantage of the new structure.
-
-= 3.3.0 =
-If you customized the output previously you may want to redo it on this version to take advantage of the new structure.
-IF you are are using the page_list.php view you will most likely get an error message to remove a couple lines.
-These lines are no longer needed for the structure in this version.
-
-= 3.2.3 = 
-This will add the ability to display the categories on single post pages.
-If you are using the category_list.php view you will most likely get an error message to remove a couple lines.
-These lines are no longer needed for the structure in this new version.
-
-= 3.0 =
-This Version will add a widget for displaying categories as well, 
-better functionality, a cleaner output, and the ability to customize the output/css
-through your child theme.
-
-= 2.0 =
-This Version will give you better control over the menu and styling ability.
-Added new options and more stable code.
-
-= 1.2 =
-This Version will allow you to order the pages in the menu using the page order section of the editor.
-
-= 1.1 =
-This version will allow simliar css styling.
 

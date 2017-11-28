@@ -3,14 +3,14 @@ msgid ""
 msgstr ""
 "Plural-Forms: nplurals=INTEGER; plural=EXPRESSION;\n"
 "Project-Id-Version: Advanced Sidebar Menu\n"
-"POT-Creation-Date: 2017-04-12 16:44-0400\n"
-"PO-Revision-Date: 2017-04-12 16:44-0400\n"
+"POT-Creation-Date: 2017-11-28 14:34-0500\n"
+"PO-Revision-Date: 2017-11-28 14:34-0500\n"
 "Last-Translator: \n"
 "Language-Team: \n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Generator: Poedit 2.0.1\n"
+"X-Generator: Poedit 2.0.4\n"
 "X-Poedit-Basepath: ..\n"
 "X-Poedit-Flags-xgettext: --add-comments=translators:\n"
 "X-Poedit-WPHeader: advanced-sidebar-menu.php\n"
@@ -21,88 +21,100 @@ msgstr ""
 "X-Poedit-SearchPath-0: .\n"
 "X-Poedit-SearchPathExcluded-0: *.js\n"
 
-#: advanced-sidebar-menu.php:61
-msgid "Want More Options"
+#: advanced-sidebar-menu.php:91
+msgid "Checkout Advanced Sidebar Menu Pro!"
 msgstr ""
 
-#: advanced-sidebar-menu.php:67
-msgid "Go Pro"
+#: advanced-sidebar-menu.php:94
+#, php-format
+msgid ""
+"Upgrade to %sAdvanced Sidebar Menu Pro%s for Priority Support, Styles, "
+"Custom Link Text, Accordions, Custom Post Types, and so much more!"
 msgstr ""
 
-#: src/widgets/advanced_sidebar_menu_category.php:33
+#: src/Widget/Category.php:42
 msgid ""
 "Creates a menu of all the categories using the child/parent relationship"
 msgstr ""
 
-#: src/widgets/advanced_sidebar_menu_category.php:37
+#: src/Widget/Category.php:46
 msgid "Advanced Sidebar Categories Menu"
 msgstr ""
 
-#: src/widgets/advanced_sidebar_menu_category.php:55
-#: src/widgets/advanced_sidebar_menu_page.php:59
+#: src/Widget/Category.php:65 src/Widget/Page.php:65
 msgid "Title"
 msgstr ""
 
-#: src/widgets/advanced_sidebar_menu_category.php:62
-msgid "Include Parent Category"
+#: src/Widget/Category.php:72
+msgid "Display parent category"
 msgstr ""
 
-#: src/widgets/advanced_sidebar_menu_category.php:69
-#: src/widgets/advanced_sidebar_menu_page.php:72
-msgid "Include Parent Even With No Children"
+#: src/Widget/Category.php:79
+msgid "Display menu where there is only the parent category"
 msgstr ""
 
-#: src/widgets/advanced_sidebar_menu_category.php:75
+#: src/Widget/Category.php:85
 msgid "Use this plugins styling"
 msgstr ""
 
-#: src/widgets/advanced_sidebar_menu_category.php:81
-msgid "Display Categories on Single Posts"
+#: src/Widget/Category.php:91
+msgid "Display categories on single posts"
 msgstr ""
 
-#: src/widgets/advanced_sidebar_menu_category.php:94
-msgid "Display Each Single Post's Category"
+#: src/Widget/Category.php:104
+msgid "Display each single post's category"
 msgstr ""
 
-#: src/widgets/advanced_sidebar_menu_category.php:111
-msgid "Categories to Exclude, Comma Separated"
+#: src/Widget/Category.php:111 src/Widget/Category.php:120
+msgid "In a new widget"
 msgstr ""
 
-#: src/widgets/advanced_sidebar_menu_category.php:116
-msgid "Always Display Child Categories"
+#: src/Widget/Category.php:114 src/Widget/Category.php:123
+msgid "In another list in the same widget"
 msgstr ""
 
-#: src/widgets/advanced_sidebar_menu_category.php:129
-#: src/widgets/advanced_sidebar_menu_page.php:121
-msgid "Levels to Display"
+#: src/Widget/Category.php:134
+msgid "Categories to exclude (ids), comma separated"
 msgstr ""
 
-#: src/widgets/advanced_sidebar_menu_page.php:33
+#: src/Widget/Category.php:139
+msgid "Always display child categories"
+msgstr ""
+
+#: src/Widget/Category.php:153 src/Widget/Page.php:131
+msgid "Levels to display"
+msgstr ""
+
+#: src/Widget/Page.php:38
 msgid "Creates a menu of all the pages using the child/parent relationship"
 msgstr ""
 
-#: src/widgets/advanced_sidebar_menu_page.php:40
+#: src/Widget/Page.php:44
 msgid "Advanced Sidebar Pages Menu"
 msgstr ""
 
-#: src/widgets/advanced_sidebar_menu_page.php:65
-msgid "Include Parent Page"
+#: src/Widget/Page.php:71
+msgid "Display parent page"
 msgstr ""
 
-#: src/widgets/advanced_sidebar_menu_page.php:78
+#: src/Widget/Page.php:78
+msgid "Display menu when there is only the parent page"
+msgstr ""
+
+#: src/Widget/Page.php:84
 msgid "Order By"
 msgstr ""
 
-#: src/widgets/advanced_sidebar_menu_page.php:97
+#: src/Widget/Page.php:103
 msgid "Use this Plugin's Styling"
 msgstr ""
 
-#: src/widgets/advanced_sidebar_menu_page.php:103
-msgid "Pages to Exclude (ids), Comma Separated"
+#: src/Widget/Page.php:109
+msgid "Pages to exclude (ids), comma separated"
 msgstr ""
 
-#: src/widgets/advanced_sidebar_menu_page.php:108
-msgid "Always Display Child Pages"
+#: src/Widget/Page.php:114
+msgid "Always display child pages"
 msgstr ""
 
 #. Plugin Name of the plugin/theme

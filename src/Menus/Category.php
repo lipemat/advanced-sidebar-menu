@@ -508,7 +508,7 @@ class Advanced_Sidebar_Menu_Menus_Category extends Advanced_Sidebar_Menu_Menus_A
 	/******************** static ****************************/
 
 	/**
-	 * Mostly here to call the paretn _factory in a PHP 5.2 structure
+	 * Mostly here to call the parent _factory in a PHP 5.2 structure
 	 *
 	 * @param array $widget_instance
 	 * @param array $widget_args
