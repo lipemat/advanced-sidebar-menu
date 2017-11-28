@@ -12,12 +12,13 @@ class Advanced_Sidebar_Menu_Cache {
 	const CACHE_GROUP = 'advanced-sidebar-menu';
 	const CHILD_PAGES_KEY = 'child-pages';
 
-	private function __construct(){
+
+	private function __construct() {
 		$this->hooks();
 	}
 
 
-	private function hooks(){
+	private function hooks() {
 		add_action( 'save_post', array( $this, 'clear_cache_group' ) );
 	}
 
@@ -27,8 +28,28 @@ class Advanced_Sidebar_Menu_Cache {
 	 *
 	 * @return void
 	 */
-	public function clear_cache_group(){
-		wp_cache_delete( self::CHILD_PAGES_KEY, self::CACHE_GROUP );
+	public function clear_cache_group() {
+		if( function_exists( 'wp_cache_get_last_changed' ) ){
+			wp_cache_set( 'last_changed', microtime(), self::CACHE_GROUP . ':' . ADVANCED_SIDEBAR_BASIC_VERSION );
+		} else {
+			wp_cache_delete( self::CHILD_PAGES_KEY, $this->get_cache_group() );
+		}
+	}
+
+
+	/**
+	 * Get unique key for this group
+	 * Use wp_cache_get_last_changed() if on WP 4.7+
+	 *
+	 * @return string
+	 */
+	public function get_cache_group() {
+		$key = '';
+		if( function_exists( 'wp_cache_get_last_changed' ) ){
+			$key = wp_cache_get_last_changed( self::CACHE_GROUP . '|' . ADVANCED_SIDEBAR_BASIC_VERSION );
+		}
+
+		return self::CACHE_GROUP . ':' . ADVANCED_SIDEBAR_BASIC_VERSION . ':' . $key;
 	}
 
 
@@ -40,14 +61,13 @@ class Advanced_Sidebar_Menu_Cache {
 	 *
 	 * @return array|false
 	 */
-	public function get_child_pages( $class ){
+	public function get_child_pages( $class ) {
 		$key = $this->get_key_from_asm( $class );
-		$all_child_pages = (array)wp_cache_get( self::CHILD_PAGES_KEY, self::CACHE_GROUP );
+		$all_child_pages = (array) wp_cache_get( self::CHILD_PAGES_KEY, $this->get_cache_group() );
 		if( isset( $all_child_pages[ $key ] ) ){
 			return $all_child_pages[ $key ];
-		} else {
-			return false;
 		}
+		return false;
 	}
 
 
@@ -60,11 +80,11 @@ class Advanced_Sidebar_Menu_Cache {
 	 *
 	 * @return void
 	 */
-	public function add_child_pages( $class,  $child_pages ){
+	public function add_child_pages( $class, $child_pages ) {
 		$key = $this->get_key_from_asm( $class );
-		$all_child_pages = (array)wp_cache_get( self::CHILD_PAGES_KEY, self::CACHE_GROUP );
+		$all_child_pages = (array) wp_cache_get( self::CHILD_PAGES_KEY, $this->get_cache_group() );
 		$all_child_pages[ $key ] = $child_pages;
-		wp_cache_set( self::CHILD_PAGES_KEY, $all_child_pages, self::CACHE_GROUP );
+		wp_cache_set( self::CHILD_PAGES_KEY, $all_child_pages, $this->get_cache_group() );
 	}
 
 
@@ -79,14 +99,14 @@ class Advanced_Sidebar_Menu_Cache {
 	 *
 	 * @return string
 	 */
-	private function get_key_from_asm( $class ){
+	private function get_key_from_asm( $class ) {
 		$string = serialize( $class );
-		$hash = md5( $string );
-		return $hash;
+		return md5( $string );
 	}
 
 
 	//********** SINGLETON FUNCTIONS **********/
+
 
 	/**
 	 * Instance of this class for use as singleton
@@ -100,7 +120,7 @@ class Advanced_Sidebar_Menu_Cache {
 	 * @static
 	 * @return void
 	 */
-	public static function init(){
+	public static function init() {
 		self::$instance = self::get_instance();
 	}
 
@@ -112,7 +132,7 @@ class Advanced_Sidebar_Menu_Cache {
 	 * @static
 	 * @return self
 	 */
-	public static function get_instance(){
+	public static function get_instance() {
 		if( !is_a( self::$instance, __CLASS__ ) ){
 			self::$instance = new self();
 		}
