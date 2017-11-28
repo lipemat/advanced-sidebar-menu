@@ -46,7 +46,7 @@ class Advanced_Sidebar_Menu_Cache {
 	public function get_cache_group() {
 		$key = '';
 		if( function_exists( 'wp_cache_get_last_changed' ) ){
-			$key = wp_cache_get_last_changed( self::CACHE_GROUP . '|' . ADVANCED_SIDEBAR_BASIC_VERSION );
+			$key = wp_cache_get_last_changed( self::CACHE_GROUP . ':' . ADVANCED_SIDEBAR_BASIC_VERSION );
 		}
 
 		return self::CACHE_GROUP . ':' . ADVANCED_SIDEBAR_BASIC_VERSION . ':' . $key;
