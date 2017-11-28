@@ -232,10 +232,6 @@ abstract class Advanced_Sidebar_Menu_Menus_Abstract {
 	public static function _factory( $class, array $widget_instance, array $widget_args ) {
 		$menu = new $class( $widget_instance, $widget_args );
 		self::$current = $menu;
-
-		//backward compatibility
-		Advanced_Sidebar_Menu_Menu::set_current( $menu );
-
 		return $menu;
 	}
 }
