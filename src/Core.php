@@ -22,23 +22,36 @@ class Advanced_Sidebar_Menu_Core {
 
 
 	/**
+	 * The plugin styles are universal
+	 * This ensures that we only include them once on a single request
+	 *
+	 * @return void
+	 */
+	public function include_plugin_styles() {
+		static $included;
+		if( $included ){
+			return;
+		}
+		$included = true;
+
+		?>
+		<style>
+			<?php include $this->get_template_part( 'sidebar-menu.css' ); ?>
+		</style>
+		<?php
+	}
+
+	/**
 	 * Retrieve a template file from either the theme's 'advanced-sidebar-menu' directory
 	 * or this plugins views folder if one does not exist
 	 *
 	 * @since 6.0.0
 	 *
 	 * @param string $file_name
-	 * @param bool $include_once
 	 *
 	 * @return string
 	 */
-	public function get_template_part( $file_name, $include_once = false ){
-		static $included = array();
-		if( $include_once && isset( $included[ $file_name ] ) ){
-			return '';
-		}
-		$included[ $file_name ] = true;
-
+	public function get_template_part( $file_name ){
 		$file = locate_template( 'advanced-sidebar-menu/' . $file_name );
 		if( empty( $file ) ){
 			$file = ADVANCED_SIDEBAR_DIR . 'views/' . $file_name;

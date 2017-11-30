@@ -451,11 +451,7 @@ class Advanced_Sidebar_Menu_Menus_Category extends Advanced_Sidebar_Menu_Menus_A
 					//must remain in the loop vs the template
 					$this->title();
 					if( $this->checked( self::USE_PLUGIN_STYLES ) ){
-						?>
-                        <style>
-                            <?php include Advanced_Sidebar_Menu_Core::instance()->get_template_part( 'sidebar-menu.css', true ); ?>
-                        </style>
-						<?php
+						Advanced_Sidebar_Menu_Core::instance()->include_plugin_styles();
 					}
 
 					$menu_open = true;
