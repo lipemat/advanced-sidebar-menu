@@ -28,15 +28,9 @@ class Advanced_Sidebar_Menu_Core {
 	 * @return void
 	 */
 	public function include_plugin_styles() {
-		static $included;
-		if( $included ){
-			return;
-		}
-		$included = true;
-
 		?>
 		<style>
-			<?php include $this->get_template_part( 'sidebar-menu.css' ); ?>
+			<?php include_once $this->get_template_part( 'sidebar-menu.css' ); ?>
 		</style>
 		<?php
 	}
