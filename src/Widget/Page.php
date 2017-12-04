@@ -165,7 +165,7 @@ class Advanced_Sidebar_Menu_Widget_Page extends WP_Widget {
 
 
 	/**
-	 * Widget Ouput
+	 * Widget Output
 	 *
 	 * @since 7.0.0
 	 *
