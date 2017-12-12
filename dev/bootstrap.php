@@ -10,4 +10,4 @@ require 'wp-tests-config.php';
 
 global $wp_version; // wp's test suite doesn't globalize this, but we depend on it for loading core
 
-require 'E:/SVN/wordpress-tests/includes/bootstrap-no-install.php';
+require 'E:/SVN/wp-unit/includes/bootstrap-no-install.php';

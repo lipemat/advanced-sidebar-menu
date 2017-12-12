@@ -119,7 +119,7 @@ class Advanced_Sidebar_Menu_Widget_Page extends WP_Widget {
                     value="checked"
                     data-js="advanced-sidebar-menu/widget/page/display_all"
                     onclick="javascript:asm_reveal_element( 'levels-<?php echo $this->get_field_id( self::LEVELS ); ?>' )"
-				<?= $instance[ self::DISPLAY_ALL ]; ?>/>
+				<?php echo  $instance[ self::DISPLAY_ALL ]; ?>/>
         </p>
 
     <span id="levels-<?php echo $this->get_field_id( self::LEVELS ); ?>" style="<?php

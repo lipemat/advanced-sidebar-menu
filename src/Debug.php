@@ -27,10 +27,10 @@ class Advanced_Sidebar_Menu_Debug {
 	 */
 	public function print_instance( $asm, $widget ){
 		?>
-		<script class="<?= self::DEBUG_PARAM; ?>">
-			var <?= self::DEBUG_PARAM; ?> = window.<?= self::DEBUG_PARAM; ?> || {};
-			    <?= self::DEBUG_PARAM; ?>['version'] = '<?= ADVANCED_SIDEBAR_BASIC_VERSION; ?>';
-                <?= self::DEBUG_PARAM; ?>['<?= $widget->id; ?>'] = <?= json_encode( $asm->instance ); ?>;
+		<script class="<?php echo  self::DEBUG_PARAM; ?>">
+			var <?php echo  self::DEBUG_PARAM; ?> = window.<?php echo  self::DEBUG_PARAM; ?> || {};
+			    <?php echo  self::DEBUG_PARAM; ?>['version'] = '<?php echo  ADVANCED_SIDEBAR_BASIC_VERSION; ?>';
+                <?php echo  self::DEBUG_PARAM; ?>['<?php echo  $widget->id; ?>'] = <?php echo  json_encode( $asm->instance ); ?>;
 		</script>
 		<?php
 	}
