@@ -382,7 +382,7 @@ class Advanced_Sidebar_Menu_Menus_Category extends Advanced_Sidebar_Menu_Menus_A
 	 */
 	public function is_current_term_ancestor( WP_Term $term ) {
 		$return = false;
-		if( (int) $term->term_id === (int) $this->current_term || in_array( $term->term_id, $this->ancestors, false ) ){
+		if( (int) $term->term_id === (int) $this->current_term->term_id || in_array( $term->term_id, $this->ancestors, false ) ){
 			$all_children = get_terms( $this->get_taxonomy(), array(
 				'child_of' => $term->term_id,
 				'fields'   => 'ids',
