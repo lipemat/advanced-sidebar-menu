@@ -102,6 +102,19 @@ abstract class Advanced_Sidebar_Menu_Menus_Abstract {
 
 
 	/**
+	 * Return the type of widget we are working with
+	 * Used for comparisons like so
+	 *
+	 * $menu->get_widget_type() === Menus_Page::WIDGET
+	 *
+	 * @return string - 'page', 'widget',
+	 */
+	public function get_widget_type(){
+		return self::WIDGET;
+	}
+
+
+	/**
 	 * The instance arguments from the current widget
 	 *
 	 * @return array
