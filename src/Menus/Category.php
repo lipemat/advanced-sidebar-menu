@@ -190,6 +190,9 @@ class Advanced_Sidebar_Menu_Menus_Category extends Advanced_Sidebar_Menu_Menus_A
 
 
 	public function get_top_parent_id() {
+		if( empty( $this->current_term->term_id ) ){
+			return null;
+		}
 		return $this->current_term->term_id;
 	}
 
