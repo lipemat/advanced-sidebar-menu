@@ -1,24 +1,22 @@
 <?php
 
-
 /**
  * Advanced_Sidebar_Menu_Menus_Abstract
  *
  * @author Mat Lipe
  * @since  7.0.0
- *
  */
 abstract class Advanced_Sidebar_Menu_Menus_Abstract {
-	//both widgets
-	const TITLE = 'title';
-	const INCLUDE_PARENT = 'include_parent';
+	// keys available in both widgets.
+	const TITLE                    = 'title';
+	const INCLUDE_PARENT           = 'include_parent';
 	const INCLUDE_CHILDLESS_PARENT = 'include_childless_parent';
-	const ORDER = 'order';
-	const ORDER_BY = 'order_by';
-	const USE_PLUGIN_STYLES = 'css';
-	const EXCLUDE = 'exclude';
-	const DISPLAY_ALL = 'display_all';
-	const LEVELS = 'levels';
+	const ORDER                    = 'order';
+	const ORDER_BY                 = 'order_by';
+	const USE_PLUGIN_STYLES        = 'css';
+	const EXCLUDE                  = 'exclude';
+	const DISPLAY_ALL              = 'display_all';
+	const LEVELS                   = 'levels';
 
 	/**
 	 * args
@@ -65,6 +63,7 @@ abstract class Advanced_Sidebar_Menu_Menus_Abstract {
 
 	/**
 	 * order_by
+	 *
 	 * @deprecated 7.0.0
 	 *
 	 * @var string
@@ -83,7 +82,7 @@ abstract class Advanced_Sidebar_Menu_Menus_Abstract {
 
 	public function __construct( array $widget_instance, array $widget_args ) {
 		$this->instance = $widget_instance;
-		$this->args = $widget_args;
+		$this->args     = $widget_args;
 	}
 
 	abstract public function get_top_parent_id();
@@ -107,9 +106,9 @@ abstract class Advanced_Sidebar_Menu_Menus_Abstract {
 	 *
 	 * $menu->get_widget_type() === Menus_Page::WIDGET
 	 *
-	 * @return string - 'page', 'widget',
+	 * @return string - 'page', 'category',
 	 */
-	public function get_widget_type(){
+	public function get_widget_type() {
 		return self::WIDGET;
 	}
 
@@ -129,12 +128,12 @@ abstract class Advanced_Sidebar_Menu_Menus_Abstract {
 	 *
 	 * Checks first for a value then verifies the value = checked
 	 *
-	 * @param string $name - name of checkbox
+	 * @param string $name - name of checkbox.
 	 *
 	 * @return bool
 	 */
 	public function checked( $name ) {
-		return isset( $this->instance[ $name ] ) && $this->instance[ $name ] === 'checked';
+		return isset( $this->instance[ $name ] ) && 'checked' === $this->instance[ $name ];
 	}
 
 
@@ -154,7 +153,7 @@ abstract class Advanced_Sidebar_Menu_Menus_Abstract {
 	 * @return bool
 	 */
 	public function include_parent() {
-		if( $this->checked( self::INCLUDE_PARENT ) && !$this->is_excluded( $this->get_top_parent_id() ) ){
+		if ( $this->checked( self::INCLUDE_PARENT ) && ! $this->is_excluded( $this->get_top_parent_id() ) ) {
 			return true;
 		}
 
@@ -194,14 +193,13 @@ abstract class Advanced_Sidebar_Menu_Menus_Abstract {
 	 * Echos the title of the widget to the page
 	 *
 	 * @todo find somewhere more appropriate for this?
-	 *
 	 */
 	public function title() {
-		if( !empty( $this->instance[ self::TITLE ] ) ){
+		if ( ! empty( $this->instance[ self::TITLE ] ) ) {
 			$title = apply_filters( 'widget_title', $this->instance[ self::TITLE ], $this->args, $this->instance );
 			$title = apply_filters( 'advanced_sidebar_menu_widget_title', esc_html( $title ), $this->args, $this->instance, $this );
 
-			echo $this->args[ 'before_title' ] . $title . $this->args[ 'after_title' ];
+			echo $this->args['before_title'] . $title . $this->args['after_title'];
 		}
 	}
 
@@ -243,7 +241,7 @@ abstract class Advanced_Sidebar_Menu_Menus_Abstract {
 	 * @return mixed
 	 */
 	public static function _factory( $class, array $widget_instance, array $widget_args ) {
-		$menu = new $class( $widget_instance, $widget_args );
+		$menu          = new $class( $widget_instance, $widget_args );
 		self::$current = $menu;
 		return $menu;
 	}
