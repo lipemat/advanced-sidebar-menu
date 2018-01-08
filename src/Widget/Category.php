@@ -76,7 +76,7 @@ class Advanced_Sidebar_Menu_Widget_Category extends WP_Widget {
         </p>
 
 
-        <p> <?php _e( 'Display menu where there is only the parent category', 'advanced-sidebar-menu' ); ?>
+        <p> <?php _e( 'Display menu when there is only the parent category', 'advanced-sidebar-menu' ); ?>
             <input id="<?php echo $this->get_field_name( self::INCLUDE_CHILDLESS_PARENT ); ?>"
                     name="<?php echo $this->get_field_name( self::INCLUDE_CHILDLESS_PARENT ); ?>" type="checkbox" value="checked"
 				<?php echo $instance[ self::INCLUDE_CHILDLESS_PARENT ]; ?>/>
