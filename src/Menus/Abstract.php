@@ -122,6 +122,15 @@ abstract class Advanced_Sidebar_Menu_Menus_Abstract {
 		return $this->instance;
 	}
 
+	/**
+	 * The widget arguments from the current widget
+	 *
+	 * @return array
+	 */
+	public function get_widget_args() {
+		return $this->args;
+	}
+
 
 	/**
 	 * Checks if a widgets checkbox is checked.
