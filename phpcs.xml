@@ -23,12 +23,15 @@
 	<rule ref="WordPress">
 		<exclude name="WordPress.Files.FileName.InvalidClassFileName" />
 		<exclude name="WordPress.Files.FileName.NotHyphenatedLowercase" />
+		<exclude name="WordPress.Arrays.MultipleStatementAlignment.LongIndexSpaceBeforeDoubleArrow" />
+		<exclude name="WordPress.Arrays.MultipleStatementAlignment.DoubleArrowNotAligned" />
+		<exclude name="WordPress.NamingConventions.ValidHookName.UseUnderscores" />
 		<exclude name="Generic" />
 		<exclude name="Squiz" />
+		<exclude name="PEAR" />
 	</rule>
-
 	<rule ref="WordPress.XSS.EscapeOutput.OutputNotEscaped">
-		<type>warning</type>
+		<exclude-pattern>*/List_Pages\.php</exclude-pattern>
 	</rule>
 
     <rule ref="WordPress.WP.I18n">
