@@ -23,11 +23,8 @@
 	<rule ref="WordPress">
 		<exclude name="WordPress.Files.FileName.InvalidClassFileName" />
 		<exclude name="WordPress.Files.FileName.NotHyphenatedLowercase" />
-		<exclude name="Generic.Commenting.DocComment.MissingShort" />
-		<exclude name="Generic.Commenting.DocComment.ShortNotCapital" />
-		<exclude name="Squiz.Commenting.FunctionComment.Missing" />
-		<exclude name="Squiz.Commenting.FileComment.Missing" />
-		<exclude name="Squiz.Commenting.FunctionComment.MissingParamComment" />
+		<exclude name="Generic" />
+		<exclude name="Squiz" />
 	</rule>
 
 	<rule ref="WordPress.XSS.EscapeOutput.OutputNotEscaped">
