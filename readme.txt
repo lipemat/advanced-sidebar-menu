@@ -5,7 +5,7 @@ Donate link: https://www.paypal.com/cgi-bin/webscr?cmd=_donations&business=paypa
 Tags: menus, sidebar menu, hierarchy, category menu, pages menu
 Requires at least: 4.6.0
 Tested up to: 4.9.1
-Stable tag: 7.0.3
+Stable tag: 7.1.0
 
 == Description ==
 
@@ -18,6 +18,10 @@ Keeps the menu clean and usable. Only related items display so you don't have to
 
 <blockquote><a href="https://matlipe.com/product/advanced-sidebar-menu-pro/" target="_blank">Pro version 2.4.0</a> just dropped with lots of great new stuff!</blockquote>
 
+<h4>Languages</h4>
+Currently ships with the following languages
+* English (US)
+* German
 	
 <h4>Page Widget Options</h4>
 * Add a title to the widget
@@ -92,10 +96,6 @@ Manual Installation
 Developer docs may be found here:
 <a href="https://matlipe.com/advanced-sidebar-menu/developer-docs/" target="_blank">https://matlipe.com/advanced-sidebar-menu/developer-docs/</a>
 
-= What text domain do I use for translation and where is the .pot file? =
-
-The .pot file may be found in the plugins' languages folder. Use the 'advanced-sidebar-menu' text domain.
-
 
 = How do I change the styling of the current page? =
 
@@ -135,6 +135,11 @@ You can add classes to your theme's style.css file to style it accordingly.
 You may want to use something like margins to set the levels apart.
 
 == Changelog ==
+= 7.1.0 =
+* Support Pro Version 3.0.0
+* Add German translations
+* Begin converting code formatting to strict WordPress standards
+
 = 7.0.0 =
 * Restructure the codebase to a more modern PSR4 structure
 * Improve cache handling

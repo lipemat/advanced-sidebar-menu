@@ -3,7 +3,7 @@ msgid ""
 msgstr ""
 "Plural-Forms: nplurals=INTEGER; plural=EXPRESSION;\n"
 "Project-Id-Version: Advanced Sidebar Menu\n"
-"POT-Creation-Date: 2018-01-09 07:15-0500\n"
+"POT-Creation-Date: 2018-01-09 09:48-0500\n"
 "PO-Revision-Date: 2018-01-09 07:14-0500\n"
 "Last-Translator: \n"
 "Language-Team: \n"
@@ -16,19 +16,21 @@ msgstr ""
 "X-Poedit-WPHeader: advanced-sidebar-menu.php\n"
 "X-Poedit-SourceCharset: UTF-8\n"
 "X-Poedit-KeywordsList: __;_e;_n:1,2;_x:1,2c;_ex:1,2c;_nx:4c,1,2;esc_attr__;"
-"esc_attr_e;esc_attr_x:1,2c;esc_html__;esc_html_e;esc_html_x:1,2c;_n_noop:1,2;"
-"_nx_noop:3c,1,2;__ngettext_noop:1,2\n"
+"esc_attr_e;esc_attr_x:1,2c;esc_html__;esc_html_e;esc_html_x:1,2c;"
+"_n_noop:1,2;_nx_noop:3c,1,2;__ngettext_noop:1,2\n"
 "X-Poedit-SearchPath-0: .\n"
 "X-Poedit-SearchPathExcluded-0: *.js\n"
 
-#: advanced-sidebar-menu.php:91
+#: advanced-sidebar-menu.php:90
 msgid "Checkout Advanced Sidebar Menu Pro!"
 msgstr ""
 
-#: advanced-sidebar-menu.php:94
+#. translators: {<a>}{</a>} links to https://matlipe.com/product/advanced-sidebar-menu-pro/
+#: advanced-sidebar-menu.php:95
 #, php-format
+msgctxt "{<a>}{</a>}"
 msgid ""
-"Upgrade to %sAdvanced Sidebar Menu Pro%s for Priority Support, Styles, "
+"Upgrade to %1$sAdvanced Sidebar Menu Pro%2$s for Priority Support, Styles, "
 "Custom Link Text, Accordions, Custom Post Types, and so much more!"
 msgstr ""
 
