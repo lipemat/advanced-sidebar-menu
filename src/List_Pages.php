@@ -329,7 +329,8 @@ class Advanced_Sidebar_Menu_List_Pages {
 		//we only filter the first level with this filter for backward pro compatibility
 		if ( $is_first_level ) {
 			if ( has_filter( 'advanced_sidebar_menu_child_pages' ) ) {
-				_deprecated_hook( 'advanced_sidebar_menu_child_pages', '7.1.0', 'advanced-sidebar-menu/list-pages/first-level-child-pages' );
+				//@todo uncomment deprecated hook notice once pro 3.0.0 is released
+				//_deprecated_hook( 'advanced_sidebar_menu_child_pages', '7.1.0', 'advanced-sidebar-menu/list-pages/first-level-child-pages' );
 				$child_pages = apply_filters( 'advanced_sidebar_menu_child_pages', $child_pages, $this->current_page, $this->menu->instance, $this->menu->args, $this->menu );
 			}
 
