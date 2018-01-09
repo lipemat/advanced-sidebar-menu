@@ -17,11 +17,6 @@ Keeps the menu clean and usable. Only related items display so you don't have to
 <strong>Check out <a href="https://matlipe.com/product/advanced-sidebar-menu-pro/">Advanced Sidebar Menu Pro</a> for more features including priority support, the ability to customize the look and feel, custom text for your links, excluding of pages, category link ordering, accordions, custom post types, and so much more!</strong>
 
 <blockquote><a href="https://matlipe.com/product/advanced-sidebar-menu-pro/" target="_blank">Pro version 2.4.0</a> just dropped with lots of great new stuff!</blockquote>
-
-<h4>Languages</h4>
-Currently ships with the following languages
-* English (US)
-* German
 	
 <h4>Page Widget Options</h4>
 * Add a title to the widget
@@ -66,6 +61,10 @@ Currently ships with the following languages
 * Number of levels of pages to show when always displayed child pages is not checked.
 * Ability to select and display custom post types **NEW**
 * Ability to select and display custom taxonomies **NEW**
+   
+<h4>Currently ships with the following languages</h4>
+* English (US)
+* German (de_DE)   
    
 <h4>Developers</h4>
 Developer docs may be found <a target="_blank" href="https://matlipe.com/advanced-sidebar-menu/developer-docs/">here</a>.
