@@ -16,7 +16,7 @@ Keeps the menu clean and usable. Only related items display so you don't have to
 
 <strong>Check out <a href="https://matlipe.com/product/advanced-sidebar-menu-pro/">Advanced Sidebar Menu Pro</a> for more features including priority support, the ability to customize the look and feel, custom text for your links, excluding of pages, category link ordering, accordions, custom post types, and so much more!</strong>
 
-<blockquote><a href="https://matlipe.com/product/advanced-sidebar-menu-pro/" target="_blank">Pro version 2.4.0</a> just dropped with lots of great new stuff!</blockquote>
+<blockquote><a href="https://matlipe.com/product/advanced-sidebar-menu-pro/" target="_blank">Pro version 3.0.0</a> just dropped with lots of great new stuff!</blockquote>
 	
 <h4>Page Widget Options</h4>
 * Add a title to the widget
