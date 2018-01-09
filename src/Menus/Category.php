@@ -31,11 +31,11 @@ class Advanced_Sidebar_Menu_Menus_Category extends Advanced_Sidebar_Menu_Menus_A
 	public $taxonomy = 'category';
 
 	/**
-	 * current_term
+	 * top_level_term
 	 *
 	 * @var WP_Term
 	 */
-	public $current_term;
+	public $top_level_term;
 
 
 	/**
@@ -44,20 +44,30 @@ class Advanced_Sidebar_Menu_Menus_Category extends Advanced_Sidebar_Menu_Menus_A
 	 * @return void
 	 */
 	public function hook() {
-        add_filter( 'category_css_class', array( $this, 'add_has_children_category_class' ), 2, 2 );
+		add_filter( 'category_css_class', array( $this, 'add_has_children_category_class' ), 2, 2 );
 	}
 
 
-	public function set_current_term( WP_Term $term ) {
-		$this->top_id = $term->term_id;
-		$this->current_term = $term;
+	/**
+	 * If we are on a post we could potentially have more than one
+	 * top level term so we end up calling this more than once.
+	 *
+	 *
+	 * @param WP_Term $term
+	 *
+	 * @return void
+	 */
+	public function set_current_top_level_term( WP_Term $term ) {
+		$this->top_id         = $term->term_id;
+		$this->top_level_term = $term;
 	}
+
 
 	/**
 	 * Return the list of args for wp_list_categories()
 	 *
-	 * @param string $level - level of menu so we have full control of updates
-     * @param WP_Term $term - Term for child and grandchild
+	 * @param string  $level - level of menu so we have full control of updates
+	 * @param WP_Term $term  - Term for child and grandchild
 	 *
 	 * @return array
 	 */
@@ -72,25 +82,25 @@ class Advanced_Sidebar_Menu_Menus_Category extends Advanced_Sidebar_Menu_Menus_A
 			'title_li'         => '',
 		);
 
-		if( null === $level ){
+		if ( null === $level ) {
 			return $args;
 		}
-		switch ( $level ){
+		switch ( $level ) {
 			case 'parent':
-			    $args[ 'hide_empty' ] = 0;
-				$args[ 'include' ] = trim( $this->get_top_parent_id() );
+				$args['hide_empty'] = 0;
+				$args['include']    = trim( $this->get_top_parent_id() );
 				break;
 			case 'display-all':
-				$args[ 'child_of' ] = $this->get_top_parent_id();
-				$args[ 'depth' ] = $this->get_levels_to_display();
+				$args['child_of'] = $this->get_top_parent_id();
+				$args['depth']    = $this->get_levels_to_display();
 				break;
-            case 'child':
-	            $args[ 'include' ] = $term->term_id;
-	            $args[ 'depth' ] = 1;
-	            break;
+			case 'child':
+				$args['include'] = $term->term_id;
+				$args['depth']   = 1;
+				break;
 			case 'grandchild':
-				$args[ 'child_of' ] = $term->term_id;
-				$args[ 'depth' ] = $this->get_menu_depth();
+				$args['child_of'] = $term->term_id;
+				$args['depth']    = $this->get_menu_depth();
 				break;
 		}
 
@@ -98,13 +108,25 @@ class Advanced_Sidebar_Menu_Menus_Category extends Advanced_Sidebar_Menu_Menus_A
 	}
 
 
+	/**
+	 * Get the first level child terms.
+	 *
+	 * $this->set_current_top_level_term() most likely should be called
+	 * before this.
+	 *
+	 * @see Advanced_Sidebar_Menu_Menus_Category::set_current_top_level_term()
+	 *
+	 *
+	 * @return array
+	 */
 	public function get_child_terms() {
 		$child_terms = array_filter(
 			get_terms(
-				$this->get_taxonomy(), array(
-					'parent'  => $this->get_top_parent_id(),
-					'orderby' => $this->get_order_by(),
-					'order'   => $this->get_order(),
+				array(
+					'taxonomy' => $this->get_taxonomy(),
+					'parent'   => $this->get_top_parent_id(),
+					'orderby'  => $this->get_order_by(),
+					'order'    => $this->get_order(),
 				)
 			)
 		);
@@ -141,13 +163,13 @@ class Advanced_Sidebar_Menu_Menus_Category extends Advanced_Sidebar_Menu_Menus_A
 	 * @return array
 	 */
 	public function get_top_level_terms() {
-		$child_term_ids = $this->get_included_term_ids();
+		$child_term_ids     = $this->get_included_term_ids();
 		$top_level_term_ids = array();
-		foreach( $child_term_ids as $_term_id ){
+		foreach ( $child_term_ids as $_term_id ) {
 			$top_level_term_ids[] = $this->get_highest_parent( $_term_id );
 		}
 		$terms = array();
-		if( !empty( $top_level_term_ids ) ){
+		if ( ! empty( $top_level_term_ids ) ) {
 			$terms = get_terms( array(
 				'include'    => array_unique( array_filter( $top_level_term_ids ) ),
 				'hide_empty' => false,
@@ -155,7 +177,7 @@ class Advanced_Sidebar_Menu_Menus_Category extends Advanced_Sidebar_Menu_Menus_A
 				'order'      => $this->get_order(),
 			) );
 		}
-		if( is_wp_error( $terms ) ){
+		if ( is_wp_error( $terms ) ) {
 			return array();
 		}
 
@@ -172,9 +194,9 @@ class Advanced_Sidebar_Menu_Menus_Category extends Advanced_Sidebar_Menu_Menus_A
 	 */
 	public function get_included_term_ids() {
 		$term_ids = array();
-		if( is_single() ){
+		if ( is_single() ) {
 			$term_ids = wp_get_object_terms( get_the_ID(), $this->get_taxonomy(), array( 'fields' => 'ids' ) );
-		} elseif( $this->is_tax() ) {
+		} elseif ( $this->is_tax() ) {
 			$term_ids[] = get_queried_object()->term_id;
 		}
 
@@ -190,10 +212,11 @@ class Advanced_Sidebar_Menu_Menus_Category extends Advanced_Sidebar_Menu_Menus_A
 
 
 	public function get_top_parent_id() {
-		if( empty( $this->current_term->term_id ) ){
+		if ( empty( $this->top_level_term->term_id ) ) {
 			return null;
 		}
-		return $this->current_term->term_id;
+
+		return $this->top_level_term->term_id;
 	}
 
 
@@ -213,15 +236,15 @@ class Advanced_Sidebar_Menu_Menus_Category extends Advanced_Sidebar_Menu_Menus_A
 
 	public function is_displayed() {
 		$display = false;
-		if( is_single() ){
-			if( $this->checked( self::DISPLAY_ON_SINGLE ) ){
+		if ( is_single() ) {
+			if ( $this->checked( self::DISPLAY_ON_SINGLE ) ) {
 				$display = true;
 			}
-			if( has_filter( 'advanced_sidebar_menu_proper_single' ) ){
+			if ( has_filter( 'advanced_sidebar_menu_proper_single' ) ) {
 				_deprecated_hook( 'advanced_sidebar_menu_proper_single', '7.0.0', 'advanced-sidebar-menu/menus/category/is-displayed' );
-				$display = !apply_filters( 'advanced_sidebar_menu_proper_single', !$display, $this->args, $this->instance, $this );
+				$display = ! apply_filters( 'advanced_sidebar_menu_proper_single', ! $display, $this->args, $this->instance, $this );
 			}
-		} elseif( $this->is_tax() ) {
+		} elseif ( $this->is_tax() ) {
 			$display = true;
 		}
 
@@ -243,11 +266,11 @@ class Advanced_Sidebar_Menu_Menus_Category extends Advanced_Sidebar_Menu_Menus_A
 	 * @return bool
 	 */
 	public function is_term_displayed( array $child_terms ) {
-		if( empty( $child_terms ) ){
-			if( !$this->checked( self::INCLUDE_PARENT ) || !$this->checked( self::INCLUDE_CHILDLESS_PARENT ) ){
+		if ( empty( $child_terms ) ) {
+			if ( ! $this->checked( self::INCLUDE_PARENT ) || ! $this->checked( self::INCLUDE_CHILDLESS_PARENT ) ) {
 				return false;
 			}
-			if( $this->is_excluded( $this->get_top_parent_id() ) ){
+			if ( $this->is_excluded( $this->get_top_parent_id() ) ) {
 				return false;
 			}
 		}
@@ -264,11 +287,11 @@ class Advanced_Sidebar_Menu_Menus_Category extends Advanced_Sidebar_Menu_Menus_A
 	 */
 	protected function is_tax() {
 		$taxonomy = $this->get_taxonomy();
-		if( 'category' === $taxonomy ){
-			if( is_category() ){
+		if ( 'category' === $taxonomy ) {
+			if ( is_category() ) {
 				return true;
 			}
-		} elseif( is_tax( $taxonomy ) ) {
+		} elseif ( is_tax( $taxonomy ) ) {
 			return true;
 		}
 
@@ -291,7 +314,7 @@ class Advanced_Sidebar_Menu_Menus_Category extends Advanced_Sidebar_Menu_Menus_A
 	 * @return string|bool
 	 */
 	public function openListItem( $item = false ) {
-		if( !$item ){
+		if ( ! $item ) {
 			return false;
 		}
 
@@ -308,18 +331,18 @@ class Advanced_Sidebar_Menu_Menus_Category extends Advanced_Sidebar_Menu_Menus_A
 	 * @return int
 	 */
 	public function get_highest_parent( $term_id ) {
-		$cat_ancestors = array();
+		$cat_ancestors   = array();
 		$cat_ancestors[] = $term_id;
 
 		do {
 			$term = get_term( $term_id, $this->get_taxonomy() );
-			if( !is_wp_error( $term ) ){
-				$term_id = $term->parent;
+			if ( ! is_wp_error( $term ) ) {
+				$term_id         = $term->parent;
 				$cat_ancestors[] = $term_id;
 			} else {
 				$term = false;
 			}
-		} while( $term );
+		} while ( $term );
 
 		//we only track the last calls ancestors because we only care
 		//about these when on a single term archive
@@ -345,7 +368,7 @@ class Advanced_Sidebar_Menu_Menus_Category extends Advanced_Sidebar_Menu_Menus_A
 			'hide_empty' => false,
 			'number'     => 1,
 		) );
-		if( !empty( $children ) ){
+		if ( ! empty( $children ) ) {
 			$classes[] = 'has_children';
 		}
 
@@ -367,7 +390,7 @@ class Advanced_Sidebar_Menu_Menus_Category extends Advanced_Sidebar_Menu_Menus_A
 	 */
 	public function is_first_level_term( WP_Term $term ) {
 		$return = false;
-		if( !$this->is_excluded( $term->term_id ) && (int) $term->parent === (int) $this->get_top_parent_id() ){
+		if ( ! $this->is_excluded( $term->term_id ) && (int) $term->parent === (int) $this->get_top_parent_id() ) {
 			$return = true;
 		}
 
@@ -385,17 +408,17 @@ class Advanced_Sidebar_Menu_Menus_Category extends Advanced_Sidebar_Menu_Menus_A
 	 */
 	public function is_current_term_ancestor( WP_Term $term ) {
 		$return = false;
-		if( (int) $term->term_id === (int) $this->current_term->term_id || in_array( $term->term_id, $this->ancestors, false ) ){
+		if ( (int) $term->term_id === (int) $this->top_level_term->term_id || in_array( $term->term_id, $this->ancestors, false ) ) {
 			$all_children = get_terms( $this->get_taxonomy(), array(
 				'child_of' => $term->term_id,
 				'fields'   => 'ids',
 			) );
-			if( !empty( $all_children ) ){
+			if ( ! empty( $all_children ) ) {
 				$return = true;
 			}
 		}
 
-		if( has_filter( 'advanced_sidebar_menu_second_level_category' ) ){
+		if ( has_filter( 'advanced_sidebar_menu_second_level_category' ) ) {
 			_deprecated_hook( 'advanced_sidebar_menu_second_level_category', '7.0.0', 'advanced-sidebar-menu/menus/category/is-current-term-ancestor' );
 			$return = apply_filters( 'advanced_sidebar_menu_second_level_category', $return, $term, $this );
 		}
@@ -413,9 +436,9 @@ class Advanced_Sidebar_Menu_Menus_Category extends Advanced_Sidebar_Menu_Menus_A
 	 * @return mixed
 	 */
 	public function has_children( WP_Term $term ) {
-		$return = false;
+		$return   = false;
 		$children = get_term_children( $term->term_id, $this->get_taxonomy() );
-		if( !empty( $children ) ){
+		if ( ! empty( $children ) ) {
 			$return = true;
 		}
 
@@ -429,37 +452,37 @@ class Advanced_Sidebar_Menu_Menus_Category extends Advanced_Sidebar_Menu_Menus_A
 	 * @return void
 	 */
 	public function render() {
-		if( !$this->is_displayed() ){
+		if ( ! $this->is_displayed() ) {
 			return;
 		}
 
-		$menu_open = false;
+		$menu_open  = false;
 		$close_menu = false;
 
-		foreach( $this->get_top_level_terms() as $_cat ){
-			$this->set_current_term( $_cat );
+		foreach ( $this->get_top_level_terms() as $_cat ) {
+			$this->set_current_top_level_term( $_cat );
 			//@deprecated 7.0.0 variable name
 			$all_categories = $this->get_child_terms();
-			if( !$this->is_term_displayed( $all_categories ) ){
+			if ( ! $this->is_term_displayed( $all_categories ) ) {
 				continue;
 			}
 
-			if( !$menu_open || ( $this->instance[ self::EACH_CATEGORY_DISPLAY ] === 'widget' ) ){
+			if ( ! $menu_open || ( 'widget' === $this->instance[ self::EACH_CATEGORY_DISPLAY ] ) ) {
 				//Start the menu
-				echo $this->args[ 'before_widget' ];
+				echo $this->args['before_widget'];
 
 				do_action( 'advanced-sidebar-menu/menus/category/render', $this );
 
-				if( !$menu_open ){
+				if ( ! $menu_open ) {
 					//must remain in the loop vs the template
 					$this->title();
-					if( $this->checked( self::USE_PLUGIN_STYLES ) ){
+					if ( $this->checked( self::USE_PLUGIN_STYLES ) ) {
 						Advanced_Sidebar_Menu_Core::instance()->include_plugin_styles();
 					}
 
-					$menu_open = true;
+					$menu_open  = true;
 					$close_menu = true;
-					if( $this->instance[ self::EACH_CATEGORY_DISPLAY ] === 'list' ){
+					if ( 'list' === $this->instance[ self::EACH_CATEGORY_DISPLAY ] ) {
 						$close_menu = false;
 					}
 				}
@@ -469,13 +492,13 @@ class Advanced_Sidebar_Menu_Menus_Category extends Advanced_Sidebar_Menu_Menus_A
 
 			echo apply_filters( 'advanced_sidebar_menu_category_widget_output', $output, $this->args, $this->instance, $this );
 
-			if( $close_menu ){
-				echo $this->args[ 'after_widget' ];
+			if ( $close_menu ) {
+				echo $this->args['after_widget'];
 			}
 		}
 
-		if( !$close_menu && $menu_open ){
-			echo $this->args[ 'after_widget' ];
+		if ( ! $close_menu && $menu_open ) {
+			echo $this->args['after_widget'];
 		}
 
 	}
