@@ -69,7 +69,7 @@ class Advanced_Sidebar_Menu_Widget_Category extends WP_Widget {
         </p>
 
 
-        <p> <?php _e( 'Display parent category', 'advanced-sidebar-menu' ); ?>
+        <p> <?php _e( 'Display highest level parent category', 'advanced-sidebar-menu' ); ?>
             <input id="<?php echo $this->get_field_name( self::INCLUDE_PARENT ); ?>"
                     name="<?php echo $this->get_field_name( self::INCLUDE_PARENT ); ?>" type="checkbox" value="checked"
 				<?php echo $instance[ self::INCLUDE_PARENT ]; ?>/>

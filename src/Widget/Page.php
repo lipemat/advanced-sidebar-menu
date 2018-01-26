@@ -68,7 +68,7 @@ class Advanced_Sidebar_Menu_Widget_Page extends WP_Widget {
                     name="<?php echo $this->get_field_name( self::TITLE ); ?>" class="widefat" type="text" value="<?php echo $instance[ self::TITLE ]; ?>"/>
         </p>
 
-        <p> <?php _e( 'Display parent page', 'advanced-sidebar-menu' ); ?>:
+        <p> <?php _e( 'Display highest level parent page', 'advanced-sidebar-menu' ); ?>:
             <input id="<?php echo $this->get_field_id( self::INCLUDE_PARENT ); ?>"
                     name="<?php echo $this->get_field_name( self::INCLUDE_PARENT ); ?>" type="checkbox" value="checked"
 				<?php echo $instance[ self::INCLUDE_PARENT ]; ?>/>
@@ -81,7 +81,7 @@ class Advanced_Sidebar_Menu_Widget_Page extends WP_Widget {
 				<?php echo $instance[ self::INCLUDE_CHILDLESS_PARENT ]; ?>/>
         </p>
 
-        <p> <?php _e( 'Order By', 'advanced-sidebar-menu' ); ?>:
+        <p> <?php _e( 'Order by', 'advanced-sidebar-menu' ); ?>:
             <select id="<?php echo $this->get_field_id( self::ORDER_BY ); ?>"
                     name="<?php echo $this->get_field_name( self::ORDER_BY ); ?>">
 				<?php
