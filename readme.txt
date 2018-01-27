@@ -97,8 +97,10 @@ Manual Installation
 
 == Screenshots ==
 
-1. Screenshot of the Page widget and options
-2. Screenshot of the Categories widget and options
+1. Page widget options
+2. Category widget options
+3. Example of a page menu using the 2017 theme and default styles
+3. Example of a category menu ordered by title using the 2017 theme and default styles
 
 
 == Frequently Asked Questions ==
