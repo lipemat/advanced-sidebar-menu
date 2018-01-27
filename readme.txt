@@ -4,17 +4,17 @@ Contributors: Mat Lipe
 Donate link: https://www.paypal.com/cgi-bin/webscr?cmd=_donations&business=paypal%40matlipe%2ecom&lc=US&item_name=Advanced%20Sidebar%20Menu&no_note=0&currency_code=USD&bn=PP%2dDonationsBF%3abtn_donateCC_LG%2egif%3aNonHostedGuest
 Tags: menus, sidebar menu, hierarchy, category menu, pages menu
 Requires at least: 4.6.0
-Tested up to: 4.9.1
-Stable tag: 7.1.0
+Tested up to: 4.9.2
+Requires PHP: 5.2.4
+Stable tag: 7.1.1
 
 == Description ==
 
-Uses the parent/child relationship of your pages or categories to generate menus based on the current section of your site. Simply assign a page or category to a parent and this will do the rest for you.
+Uses the parent/child relationship of your pages or categories to generate menus based on the current section of your site. Assign a page or category to a parent and this will do the rest for you.
 
-Keeps the menu clean and usable. Only related items display so you don't have to worry about keeping a custom menu up to date or displaying links to items that don't belong.
+Keeps the menu clean and usable. Only related items display so you don't have to worry about keeping a custom menu up to date or displaying links to items that don't belong. 
 
-
-<strong>Check out <a href="https://matlipe.com/product/advanced-sidebar-menu-pro/">Advanced Sidebar Menu Pro</a> for more features including priority support, the ability to customize the look and feel, custom text for your links, excluding of pages, category link ordering, accordions, custom post types, custom taxonomies, and so much more!</strong>
+<strong>Check out <a href="https://matlipe.com/product/advanced-sidebar-menu-pro/">Advanced Sidebar Menu Pro</a> for more features including priority support, the ability to customize the look and feel, custom link text, excluding of pages, category ordering, accordions, custom post types, custom taxonomies, and so much more!</strong>
 
 <blockquote><a href="https://matlipe.com/product/advanced-sidebar-menu-pro/" target="_blank">Pro version 3.0.0</a> just dropped with lots of great new stuff!</blockquote>
 
@@ -124,6 +124,7 @@ For Instance This would remove the dot and  change the color
 }
 </code>
 
+To style your menu without using any code <a href="https://matlipe.com/product/advanced-sidebar-menu-pro/" target="_blank">Go Pro!</a>
 
 = How do you get the categories to display on single post pages? =
 
@@ -132,19 +133,13 @@ There is a checkbox in the widget options that will display the same structure f
 = How do you edit the output or built in css? =
 
 Create a folder in your child theme named "advanced-sidebar-menu" copy any of the files from the "views" folder into
-the folder you just created. You may edit the files at will to change the output or css.
-You must have the option checked to use the built in CSS (in the widget) to be able to edit the css file in this way.
+the folder you just created. You may edit the files to change the output or css. You must have the option checked to use the built in CSS (in the widget) to be able to edit the css file in this way.
 
 
 = Does the menu change for each page you are on? =
 
-Yes. Based on whatever page you are on, the menu will change automatically to display the current parents and children.
+Yes. Based on whatever page, post, or category you are on, the menu will change automatically to display the current parents and children.
 
-= How does this work with styling the page? =
-
-This will automatically generate class names for each level for menu system.
-You can add classes to your theme's style.css file to style it accordingly. 
-You may want to use something like margins to set the levels apart.
 
 == Changelog ==
 = 7.1.0 =
