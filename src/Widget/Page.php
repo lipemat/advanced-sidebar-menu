@@ -100,7 +100,7 @@ class Advanced_Sidebar_Menu_Widget_Page extends WP_Widget {
             </select>
         </p>
 
-        <p> <?php _e( "Use this Plugin's Styling", 'advanced-sidebar-menu' ); ?>:
+        <p> <?php _e( "Use this plugin's default styling", 'advanced-sidebar-menu' ); ?>:
             <input id="<?php echo $this->get_field_id( self::USE_PLUGIN_STYLES ); ?>"
                     name="<?php echo $this->get_field_name( self::USE_PLUGIN_STYLES ); ?>" type="checkbox" value="checked"
 				<?php echo $instance[ self::USE_PLUGIN_STYLES ]; ?>/>
