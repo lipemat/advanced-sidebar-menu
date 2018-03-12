@@ -19,15 +19,15 @@ Keeps the menu clean and usable. Only related items display so you don't have to
 <blockquote><a href="https://matlipe.com/product/advanced-sidebar-menu-pro/" target="_blank">Pro version 3.0.0</a> just dropped with lots of great new stuff!</blockquote>
 
 <h4>Features</h4>
-* Page and Category widgets
-* Option to display or not display the highest level parent page or category
-* Option to display the menu when there is only the highest level parent
-* Ability to order pages by (date, title, page order)
-* Exclude pages or categories by entering a comma separated list of ids
-* Option to always display child pages or categories
-* Option to select the levels of pages or categories to display when always display child is used
-* Option to display or not display categories on single posts
-* Ability to display each single post's category in a new widget or in same list
+* Page and Category widgets.
+* Option to display or not display the highest level parent page or category.
+* Option to display the menu when there is only the highest level parent.
+* Ability to order pages by (date, title, page order).
+* Exclude pages or categories by entering a comma separated list of ids.
+* Option to always display child pages or categories.
+* Option to select the levels of pages or categories to display when always display child is used.
+* Option to display or not display categories on single posts.
+* Ability to display each single post's category in a new widget or in same list.
 
 <h4>Page Widget Options</h4>
 * Add a title to the widget
@@ -51,27 +51,28 @@ Keeps the menu clean and usable. Only related items display so you don't have to
 * Levels of Categories to display when always display child categories is checked
 
 <h4>Pro Features</h4>
-* Priority support
-* Ability to customize each page link’s text
-* Option to display the current page's parents and grandparents only
-* Number of levels of pages to show when always displayed child pages is not checked
-* Click and drag styling for both the page and category widgets
-* Styling options for links including color, background color, size, and font weight
-* Styling options for different levels of links
-* Styling options for the current page or category
-* Styling options for the parent of the current page or category
-* Block styling options including borders and border colors
-* Bullet style selection from 7 styles or select none to have no bullets
-* Accordion menu support for pages
-* Accordion menu support for categories
-* Accordion icon selection from 4 styles of icons
-* Accordion icon color selection
-* Accordion option to keep all sections closed until clicked
-* Accordion option to include highest level parent in accordion
-* Ability to exclude a page from all menus using a simple checkbox
-* Link ordering for the category widget
-* Ability to select and display custom post types **NEW**
-* Ability to select and display custom taxonomies **NEW**
+* Priority support.
+* Ability to customize each page link’s text.
+* Option to display the current page's parents and grandparents only.
+* Number of levels of pages to show when always displayed child pages is not checked.
+* Click and drag styling for both the page and category widgets.
+* Styling options for links including color, background color, size, and font weight.
+* Styling options for different levels of links.
+* Styling options for the current page or category.
+* Styling options for the parent of the current page or category.
+* Block styling options including borders and border colors.
+* Bullet style selection from 7 styles or select none to have no bullets.
+* Accordion menu support for pages.
+* Accordion menu support for categories.
+* Accordion icon selection from 4 styles of icons.
+* Accordion icon color selection.
+* Accordion option to keep all sections closed until clicked.
+* Accordion option to include highest level parent in accordion.
+* Ability to exclude a page from all menus using a simple checkbox.
+* Link ordering for the category widget.
+* Ability to select and display custom post types. **NEW**
+* Ability to select and display custom taxonomies. **NEW**
+* Access to members only support area.
 
 <h4>Currently ships with the following languages</h4>
 * English (US)
