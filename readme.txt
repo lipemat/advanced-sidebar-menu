@@ -52,7 +52,7 @@ Keeps the menu clean and usable. Only related items display so you don't have to
 
 <h4>Pro Features</h4>
 * Priority support.
-* Ability to customize each page link’s text.
+* Ability to customize each page link's text.
 * Number of levels of pages to show when always displayed child pages is not checked.
 * Click and drag styling for both the page and category widgets.
 * Styling options for links including color, background color, size, and font weight.
