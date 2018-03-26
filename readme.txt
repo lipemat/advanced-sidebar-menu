@@ -4,9 +4,9 @@ Contributors: Mat Lipe
 Donate link: https://www.paypal.com/cgi-bin/webscr?cmd=_donations&business=paypal%40matlipe%2ecom&lc=US&item_name=Advanced%20Sidebar%20Menu&no_note=0&currency_code=USD&bn=PP%2dDonationsBF%3abtn_donateCC_LG%2egif%3aNonHostedGuest
 Tags: menus, sidebar menu, hierarchy, category menu, pages menu
 Requires at least: 4.6.0
-Tested up to: 4.9.2
+Tested up to: 4.9.4
 Requires PHP: 5.2.4
-Stable tag: 7.1.1
+Stable tag: 7.1.2
 
 == Description ==
 
@@ -213,6 +213,9 @@ Yes. Based on whatever page, post, or category you are on, the menu will change 
 
 
 == Upgrade Notice ==
+= 7.1.2 =
+Update to support PRO version 3.1.0
+
 = 7.0.0 =
 The templates have been improved drastically. While the old version 6 templates will work for now they have been deprecated and will one day stop working. If you are using custom templates please being converting them to the new structure.
 
