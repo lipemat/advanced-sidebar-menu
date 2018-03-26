@@ -37,13 +37,13 @@ class Advanced_Sidebar_Menu_Menus_Page extends Advanced_Sidebar_Menu_Menus_Abstr
 
 	/**
 	 * Gets the current queried post unless it
-     * has been set explicitly.
+	 * has been set explicitly.
 	 *
 	 * @return \WP_Post
 	 */
 	public function get_current_post() {
-		if( null === $this->post ){
-			if( is_page() || is_singular() ){
+		if ( null === $this->post ) {
+			if ( is_page() || is_singular() ) {
 				$this->post = get_queried_object();
 			}
 		}
@@ -64,10 +64,10 @@ class Advanced_Sidebar_Menu_Menus_Page extends Advanced_Sidebar_Menu_Menus_Abstr
 
 	public function get_top_parent_id() {
 		$ancestors = get_post_ancestors( $this->get_current_post() );
-		if( !empty( $ancestors ) ){
+		if ( ! empty( $ancestors ) ) {
 			$top_id = end( $ancestors );
 		} else {
-		    $top_id = $this->get_current_post()->ID;
+			$top_id = $this->get_current_post()->ID;
 		}
 
 		//$this->top_id is deprecated since 7.0.0
@@ -79,29 +79,27 @@ class Advanced_Sidebar_Menu_Menus_Page extends Advanced_Sidebar_Menu_Menus_Abstr
 
 
 	public function is_displayed() {
-		$display = false;
+		$display   = false;
 		$post_type = $this->get_post_type();
-		if( is_page() || ( is_single() && $post_type === $this->get_current_post()->post_type ) ){
+		if ( is_page() || ( is_single() && $post_type === $this->get_current_post()->post_type ) ) {
 			//if we are on the correct post type
-			if( $post_type === get_post_type( $this->get_top_parent_id() ) ){
+			if ( get_post_type( $this->get_top_parent_id() ) === $post_type ) {
 				//if we have children
-				if( $this->has_pages() ){
+				if ( $this->has_pages() ) {
 					$display = true;
 					//no children + not excluded + include parent +include childless parent
-				} elseif( $this->checked( self::INCLUDE_CHILDLESS_PARENT )
-				          && $this->checked( self::INCLUDE_PARENT )
-				          && !$this->is_excluded( $this->get_top_parent_id() ) ) {
+				} elseif ( $this->checked( self::INCLUDE_CHILDLESS_PARENT ) && $this->checked( self::INCLUDE_PARENT ) && ! $this->is_excluded( $this->get_top_parent_id() ) ) {
 					$display = true;
 				}
 			}
 		}
 
-		if( has_filter( 'advanced_sidebar_menu_proper_single' ) ){
+		if ( has_filter( 'advanced_sidebar_menu_proper_single' ) ) {
 			_deprecated_hook( 'advanced_sidebar_menu_proper_single', '7.0.0', 'advanced-sidebar-menu/menus/page/is-displayed' );
-			$display = !apply_filters( 'advanced_sidebar_menu_proper_single', !$display, $this->args, $this->instance, $this );
+			$display = ! apply_filters( 'advanced_sidebar_menu_proper_single', ! $display, $this->args, $this->instance, $this );
 		}
 
-		return apply_filters( 'advanced-sidebar-menu/menus/page/is-displayed', $display );
+		return apply_filters( 'advanced-sidebar-menu/menus/page/is-displayed', $display, $this->args, $this->instance, $this );
 
 	}
 
@@ -116,9 +114,9 @@ class Advanced_Sidebar_Menu_Menus_Page extends Advanced_Sidebar_Menu_Menus_Abstr
 	 */
 	public function has_pages() {
 		$list_pages = Advanced_Sidebar_Menu_List_Pages::factory( $this );
-		$children = $list_pages->get_child_pages( $this->get_top_parent_id(), true );
+		$children   = $list_pages->get_child_pages( $this->get_top_parent_id(), true );
 
-		return !empty( $children );
+		return ! empty( $children );
 	}
 
 
@@ -151,7 +149,7 @@ class Advanced_Sidebar_Menu_Menus_Page extends Advanced_Sidebar_Menu_Menus_Abstr
 
 	public function get_excluded_ids() {
 		$excluded = parent::get_excluded_ids();
-		if( !empty( $this->exclude ) ){
+		if ( ! empty( $this->exclude ) ) {
 			//backward compatibility for PRO version
 			$excluded = array_merge( $excluded, $this->exclude );
 		}
@@ -166,22 +164,24 @@ class Advanced_Sidebar_Menu_Menus_Page extends Advanced_Sidebar_Menu_Menus_Abstr
 	 * @return void
 	 */
 	public function render() {
-		if( !$this->is_displayed() ){
+		if ( ! $this->is_displayed() ) {
 			return;
 		}
 
-		echo $this->args[ 'before_widget' ];
+        // phpcs:disable
+		echo $this->args['before_widget'];
 
 		do_action( 'advanced-sidebar-menu/menus/page/render', $this );
 
-		if( $this->checked( self::USE_PLUGIN_STYLES ) ){
+		if ( $this->checked( self::USE_PLUGIN_STYLES ) ) {
 			Advanced_Sidebar_Menu_Core::instance()->include_plugin_styles();
 		}
 
 		$output = require Advanced_Sidebar_Menu_Core::instance()->get_template_part( 'page_list.php' );
 		echo apply_filters( 'advanced_sidebar_menu_page_widget_output', $output, $this->get_current_post(), $this->args, $this->instance, $this );
 
-		echo $this->args[ 'after_widget' ];
+		echo $this->args['after_widget'];
+		// phpcs:enable
 	}
 
 
