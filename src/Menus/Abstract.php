@@ -8,15 +8,15 @@
  */
 abstract class Advanced_Sidebar_Menu_Menus_Abstract {
 	// keys available in both widgets.
-	const TITLE                    = 'title';
-	const INCLUDE_PARENT           = 'include_parent';
+	const TITLE = 'title';
+	const INCLUDE_PARENT = 'include_parent';
 	const INCLUDE_CHILDLESS_PARENT = 'include_childless_parent';
-	const ORDER                    = 'order';
-	const ORDER_BY                 = 'order_by';
-	const USE_PLUGIN_STYLES        = 'css';
-	const EXCLUDE                  = 'exclude';
-	const DISPLAY_ALL              = 'display_all';
-	const LEVELS                   = 'levels';
+	const ORDER = 'order';
+	const ORDER_BY = 'order_by';
+	const USE_PLUGIN_STYLES = 'css';
+	const EXCLUDE = 'exclude';
+	const DISPLAY_ALL = 'display_all';
+	const LEVELS = 'levels';
 
 	/**
 	 * args
@@ -85,17 +85,24 @@ abstract class Advanced_Sidebar_Menu_Menus_Abstract {
 		$this->args     = $widget_args;
 	}
 
+
 	abstract public function get_top_parent_id();
+
 
 	abstract public function get_order_by();
 
+
 	abstract public function get_order();
+
 
 	abstract public function render();
 
+
 	abstract public function is_displayed();
 
+
 	abstract public function get_levels_to_display();
+
 
 	abstract public function get_menu_depth();
 
@@ -121,6 +128,7 @@ abstract class Advanced_Sidebar_Menu_Menus_Abstract {
 	public function get_widget_instance() {
 		return $this->instance;
 	}
+
 
 	/**
 	 * The widget arguments from the current widget
@@ -192,6 +200,7 @@ abstract class Advanced_Sidebar_Menu_Menus_Abstract {
 	public function get_excluded_ids() {
 		$excluded = explode( ',', $this->instance[ self::EXCLUDE ] );
 		$excluded = array_filter( $excluded );
+		$excluded = array_filter( $excluded, 'is_numeric' );
 		$excluded = array_map( 'intval', $excluded );
 
 		return $excluded;
@@ -207,8 +216,10 @@ abstract class Advanced_Sidebar_Menu_Menus_Abstract {
 		if ( ! empty( $this->instance[ self::TITLE ] ) ) {
 			$title = apply_filters( 'widget_title', $this->instance[ self::TITLE ], $this->args, $this->instance );
 			$title = apply_filters( 'advanced_sidebar_menu_widget_title', esc_html( $title ), $this->args, $this->instance, $this );
-
+			
+			// phpcs:disable
 			echo $this->args['before_title'] . $title . $this->args['after_title'];
+			// phpcs:enable
 		}
 	}
 
@@ -252,6 +263,7 @@ abstract class Advanced_Sidebar_Menu_Menus_Abstract {
 	public static function _factory( $class, array $widget_instance, array $widget_args ) {
 		$menu          = new $class( $widget_instance, $widget_args );
 		self::$current = $menu;
+
 		return $menu;
 	}
 }
