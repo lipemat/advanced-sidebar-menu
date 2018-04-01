@@ -170,11 +170,7 @@ abstract class Advanced_Sidebar_Menu_Menus_Abstract {
 	 * @return bool
 	 */
 	public function include_parent() {
-		if ( $this->checked( self::INCLUDE_PARENT ) && ! $this->is_excluded( $this->get_top_parent_id() ) ) {
-			return true;
-		}
-
-		return false;
+		return $this->checked( self::INCLUDE_PARENT ) && ! $this->is_excluded( $this->get_top_parent_id() );
 	}
 
 
@@ -216,7 +212,7 @@ abstract class Advanced_Sidebar_Menu_Menus_Abstract {
 		if ( ! empty( $this->instance[ self::TITLE ] ) ) {
 			$title = apply_filters( 'widget_title', $this->instance[ self::TITLE ], $this->args, $this->instance );
 			$title = apply_filters( 'advanced_sidebar_menu_widget_title', esc_html( $title ), $this->args, $this->instance, $this );
-			
+
 			// phpcs:disable
 			echo $this->args['before_title'] . $title . $this->args['after_title'];
 			// phpcs:enable
