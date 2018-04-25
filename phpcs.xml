@@ -30,11 +30,6 @@
 		<exclude name="Squiz" />
 		<exclude name="PEAR" />
 	</rule>
-	<rule ref="WordPress.XSS.EscapeOutput.OutputNotEscaped">
-		<exclude-pattern>*/List_Pages\.php</exclude-pattern>
-		<exclude-pattern>*/Menus/Category\.php</exclude-pattern>
-	</rule>
-
     <rule ref="WordPress.WP.I18n">
         <properties>
             <property name="text_domain" type="array" value="advanced-sidebar-menu" />

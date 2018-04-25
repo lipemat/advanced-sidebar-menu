@@ -121,8 +121,8 @@ function advanced_sidebar_menu_upgrade_notice( array $instance, WP_Widget $widge
 				<li>Ability to select and display custom post types.</li>
 				<li>Option to display the current page’s parents and grandparents only</li>
 				<li>Option to display child page siblings when on a child page. <strong> NEW</strong></li>
-				<li>Option to display child page siblings when on a child page with no grandchild pages.
-					<strong> NEW</strong>
+				<li>Option to display child page siblings when on a child page with no grandchild pages.<strong>
+						NEW</strong></li>
 				<li>Accordion menu support for pages.</li>
 				<?php
 				//category widget options
@@ -131,11 +131,13 @@ function advanced_sidebar_menu_upgrade_notice( array $instance, WP_Widget $widge
 				<li>Link ordering for the category widget.</li>
 				<li>Ability to select and display custom taxonomies.</li>
 				<li>Accordion menu support for categories.</li>
-
 				<?php
 			}
 			?>
-			<li>Number of levels of pages to show when always displayed child pages is not checked.</li>
+			<li>Accordion icon selection from 4 styles of icons.</li>
+			<li>Accordion icon color selection.</li>
+			<li>Accordion option to keep all sections closed until clicked.</li>
+			<li>Accordion option to include highest level parent in accordion.</li>
 			<li>Click and drag styling for both the page and category widgets.</li>
 			<li>Styling options for links including color, background color, size, and font weight.</li>
 			<li>Styling options for different levels of links.</li>
@@ -143,14 +145,9 @@ function advanced_sidebar_menu_upgrade_notice( array $instance, WP_Widget $widge
 			<li>Styling options for the parent of the current page or category.</li>
 			<li>Block styling options including borders and border colors.</li>
 			<li>Bullet style selection from 7 styles or select none to have no bullets.</li>
-			<li>Accordion icon selection from 4 styles of icons.</li>
-			<li>Accordion icon color selection.</li>
-			<li>Accordion option to keep all sections closed until clicked.</li>
-			<li>Accordion option to include highest level parent in accordion.</li>
-			</li>
 			<li>Ability to display the widgets everywhere the sidebar display. <strong> NEW</strong></li>
-			<li>Ability to select the parent page/category when using the display widget everywhere option.
-				<strong> NEW</strong></li>
+			<li>Ability to select the parent page/category when using the display widget everywhere option.<strong>
+					NEW</strong></li>
 			<li>Access to members only support area.</li>
 		</ol>
 		<p>

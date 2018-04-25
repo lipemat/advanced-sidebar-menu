@@ -258,7 +258,9 @@ class Advanced_Sidebar_Menu_List_Pages {
 		if ( ! $this->args['echo'] ) {
 			return $this->output;
 		}
+		// phpcs:disable WordPress.XSS.EscapeOutput.OutputNotEscaped
 		echo $this->output;
+		// phpcs:enable
 	}
 
 

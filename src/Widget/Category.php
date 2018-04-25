@@ -59,19 +59,20 @@ class Advanced_Sidebar_Menu_Widget_Category extends Advanced_Sidebar_Menu__Widge
 	public function form( $instance ) {
 		$instance = $this->set_instance( $instance, self::$defaults );
 		?>
+		<p>
+			<label>
+				<?php esc_html_e( 'Title', 'advanced-sidebar-menu' ); ?>:
+			</label>
+
+			<input
+				id="<?php echo esc_attr( $this->get_field_id( self::TITLE ) ); ?>"
+				name="<?php echo esc_attr( $this->get_field_name( self::TITLE ) ); ?>"
+				class="widefat"
+				type="text"
+				value="<?php echo esc_attr( $instance[ self::TITLE ] ); ?>"/>
+		</p>
 		<div class="advanced-sidebar-menu-column">
 			<div class="advanced-sidebar-menu-column-box">
-				<p> <?php esc_html_e( 'Title', 'advanced-sidebar-menu' ); ?>:
-					<br>
-					<input
-						id="<?php echo esc_attr( $this->get_field_id( self::TITLE ) ); ?>"
-						name="<?php echo esc_attr( $this->get_field_name( self::TITLE ) ); ?>"
-						class="widefat"
-						type="text"
-						value="<?php echo esc_attr( $instance[ self::TITLE ] ); ?>"/>
-				</p>
-
-
 				<p>
 					<?php $this->checkbox( self::INCLUDE_PARENT ); ?>
 					<label>
@@ -178,7 +179,6 @@ class Advanced_Sidebar_Menu_Widget_Category extends Advanced_Sidebar_Menu__Widge
 			}
 
 			?>
-		</div>
 		</div>
 
 		<div class="advanced-sidebar-menu-column advanced-sidebar-menu-column-right">
