@@ -95,7 +95,7 @@ class Advanced_Sidebar_Menu_Widget_Category extends Advanced_Sidebar_Menu__Widge
 					</label>
 				</p>
 				<div
-					id="<?php echo esc_attr( $this->get_field_id( self::LEVELS ) ); ?>"
+					data-js="<?php echo esc_attr( $this->get_field_id( self::LEVELS ) ); ?>"
 					<?php $this->hide_element( self::DISPLAY_ALL ); ?>>
 					<p>
 						<label>
@@ -130,7 +130,7 @@ class Advanced_Sidebar_Menu_Widget_Category extends Advanced_Sidebar_Menu__Widge
 				</p>
 
 				<div
-					id="<?php echo esc_attr( $this->get_field_id( self::EACH_CATEGORY_DISPLAY ) ); ?>" <?php $this->hide_element( self::DISPLAY_ON_SINGLE, $instance ); ?>>
+					data-js="<?php echo esc_attr( $this->get_field_id( self::EACH_CATEGORY_DISPLAY ) ); ?>" <?php $this->hide_element( self::DISPLAY_ON_SINGLE, $instance ); ?>>
 					<p>
 						<label><?php esc_html_e( "Display each single post's category", 'advanced-sidebar-menu' ); ?>
 							:</label>

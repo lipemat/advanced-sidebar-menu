@@ -5,15 +5,14 @@
  *
  **/
 function asm_reveal_element(this_element_id) {
-	if (document.getElementById(this_element_id).style.display === 'none') {
-		document.getElementById(this_element_id).style.display = 'block';
-
-		//action fires when this element is shown
-		jQuery( document ).trigger('advanced-sidebar-menu/reveal-element', [this_element_id, 'show']);
-	} else {
-		document.getElementById(this_element_id).style.display = 'none';
-
-		//action fires when this element is hidden
-		jQuery( document ).trigger('advanced-sidebar-menu/reveal-element', [this_element_id, 'hide']);
+	//old used ids. New use data-js so multiple may be used specifically
+	//@todo remove this select of id once PRO has been converted over
+	var el = jQuery( '[id="' + this_element_id + '"]:first');
+	console.info( el.length );
+	if( ! el.length ){
+		el = jQuery( '[data-js="' + this_element_id + '"]' );
 	}
+	el.toggle();
+	var status = el.is(':visible') ? 'show' : 'hide';
+	jQuery( document ).trigger('advanced-sidebar-menu/reveal-element', [this_element_id,  status]);
 }

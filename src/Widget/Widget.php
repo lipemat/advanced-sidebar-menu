@@ -11,6 +11,7 @@
 abstract class Advanced_Sidebar_Menu__Widget__Widget extends WP_Widget {
 	protected $_instance;
 
+
 	/**
 	 * Store the instance to this class.
 	 * We do this manually because there are filters etc which
@@ -26,8 +27,9 @@ abstract class Advanced_Sidebar_Menu__Widget__Widget extends WP_Widget {
 	 * @return array
 	 */
 	protected function set_instance( array $instance, array $defaults ) {
-		$instance = wp_parse_args( $instance, $defaults );
+		$instance        = wp_parse_args( $instance, $defaults );
 		$this->_instance = $instance;
+
 		return $instance;
 
 	}
@@ -50,18 +52,24 @@ abstract class Advanced_Sidebar_Menu__Widget__Widget extends WP_Widget {
 
 
 	/**
-	 * If an element is shown based on the value of another
-	 * elements checkbox
+	 * Hide an element if a checkbox is checked.
 	 *
 	 * @param string $checkbox - name of checkbox element which controls this one
+	 * @param bool   $reverse  - hide on check instead of show on check
 	 *
 	 * @since 7.2.0
 	 *
 	 * @return void
 	 */
-	public function hide_element( $checkbox ) {
-		if ( ! $this->checked( $checkbox ) ) {
-			?>style="display:none"<?php
+	public function hide_element( $checkbox, $reverse = false ) {
+		if ( $reverse ) {
+			if ( $this->checked( $checkbox ) ) {
+				?>style="display:none"<?php
+			}
+		} else {
+			if ( ! $this->checked( $checkbox ) ) {
+				?>style="display:none"<?php
+			}
 		}
 	}
 

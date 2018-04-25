@@ -99,7 +99,7 @@ class Advanced_Sidebar_Menu_Widget_Page extends Advanced_Sidebar_Menu__Widget__W
 				</p>
 
 				<div
-					id="<?php echo esc_attr( $this->get_field_id( self::LEVELS ) ); ?>"
+					data-js="<?php echo esc_attr( $this->get_field_id( self::LEVELS ) ); ?>"
 					<?php $this->hide_element( self::DISPLAY_ALL ); ?>>
 					<p>
 						<label>
