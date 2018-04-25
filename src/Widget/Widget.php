@@ -53,14 +53,14 @@ abstract class Advanced_Sidebar_Menu__Widget__Widget extends WP_Widget {
 	 * If an element is shown based on the value of another
 	 * elements checkbox
 	 *
-	 * @param string $name - name of checkbox element which controls this one
+	 * @param string $checkbox - name of checkbox element which controls this one
 	 *
 	 * @since 7.2.0
 	 *
 	 * @return void
 	 */
-	public function shown( $name ) {
-		if ( ! $this->checked( $name ) ) {
+	public function hide_element( $checkbox ) {
+		if ( ! $this->checked( $checkbox ) ) {
 			?>style="display:none"<?php
 		}
 	}

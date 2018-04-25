@@ -89,51 +89,14 @@ class Advanced_Sidebar_Menu_Widget_Category extends Advanced_Sidebar_Menu__Widge
 				</p>
 
 				<p>
-					<?php $this->checkbox( self::USE_PLUGIN_STYLES ); ?>
-					<label>
-						<?php esc_html_e( "Use this plugin's default styling", 'advanced-sidebar-menu' ); ?>
-					</label>
-				</p>
-
-			</div>
-			<div class="advanced-sidebar-menu-column-box">
-				<p>
-
-					<?php $this->checkbox( self::DISPLAY_ON_SINGLE, self::EACH_CATEGORY_DISPLAY ); ?>
-					<label>
-						<?php esc_html_e( 'Display categories on single posts', 'advanced-sidebar-menu' ); ?>
-					</label>
-				</p>
-
-				<div
-					id="<?php echo esc_attr( $this->get_field_id( self::EACH_CATEGORY_DISPLAY ) ); ?>" <?php $this->shown( self::DISPLAY_ON_SINGLE, $instance ); ?>>
-					<p>
-						<label><?php esc_html_e( "Display each single post's category", 'advanced-sidebar-menu' ); ?>
-							:</label>
-						<select
-							name="<?php echo esc_attr( $this->get_field_name( self::EACH_CATEGORY_DISPLAY ) ); ?>">
-							<option
-								value="widget" <?php selected( 'widget', $instance[ self::EACH_CATEGORY_DISPLAY ] ); ?>>
-								<?php esc_html_e( 'In a new widget', 'advanced-sidebar-menu' ); ?>
-							</option>
-							<option value="list" <?php selected( 'list', $instance[ self::EACH_CATEGORY_DISPLAY ] ); ?>>
-								<?php esc_html_e( 'In another list in the same widget', 'advanced-sidebar-menu' ); ?>
-							</option>
-						</select>
-					</p>
-				</div>
-
-				<p>
 					<?php $this->checkbox( self::DISPLAY_ALL, self::LEVELS ); ?>
 					<label>
 						<?php esc_html_e( 'Always display child categories', 'advanced-sidebar-menu' ); ?>
 					</label>
 				</p>
-
-
 				<div
 					id="<?php echo esc_attr( $this->get_field_id( self::LEVELS ) ); ?>"
-					<?php $this->shown( self::DISPLAY_ALL ); ?>>
+					<?php $this->hide_element( self::DISPLAY_ALL ); ?>>
 					<p>
 						<label>
 							<?php esc_html_e( 'Levels to display', 'advanced-sidebar-menu' ); ?>:</label>
@@ -153,6 +116,45 @@ class Advanced_Sidebar_Menu_Widget_Category extends Advanced_Sidebar_Menu__Widge
 						</select>
 					</p>
 				</div>
+
+			</div>
+			<div class="advanced-sidebar-menu-column-box">
+				<p>
+					<?php $this->checkbox( self::USE_PLUGIN_STYLES ); ?>
+					<label>
+						<?php esc_html_e( "Use this plugin's default styling", 'advanced-sidebar-menu' ); ?>
+					</label>
+				</p>
+
+			</div>
+			<div class="advanced-sidebar-menu-column-box">
+				<p>
+
+					<?php $this->checkbox( self::DISPLAY_ON_SINGLE, self::EACH_CATEGORY_DISPLAY ); ?>
+					<label>
+						<?php esc_html_e( 'Display categories on single posts', 'advanced-sidebar-menu' ); ?>
+					</label>
+				</p>
+
+				<div
+					id="<?php echo esc_attr( $this->get_field_id( self::EACH_CATEGORY_DISPLAY ) ); ?>" <?php $this->hide_element( self::DISPLAY_ON_SINGLE, $instance ); ?>>
+					<p>
+						<label><?php esc_html_e( "Display each single post's category", 'advanced-sidebar-menu' ); ?>
+							:</label>
+						<select
+							name="<?php echo esc_attr( $this->get_field_name( self::EACH_CATEGORY_DISPLAY ) ); ?>">
+							<option
+								value="widget" <?php selected( 'widget', $instance[ self::EACH_CATEGORY_DISPLAY ] ); ?>>
+								<?php esc_html_e( 'In a new widget', 'advanced-sidebar-menu' ); ?>
+							</option>
+							<option value="list" <?php selected( 'list', $instance[ self::EACH_CATEGORY_DISPLAY ] ); ?>>
+								<?php esc_html_e( 'In another list in the same widget', 'advanced-sidebar-menu' ); ?>
+							</option>
+						</select>
+					</p>
+				</div>
+
+
 			</div>
 
 			<div class="advanced-sidebar-menu-column-box">
