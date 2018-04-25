@@ -38,21 +38,22 @@ if ( ! function_exists( 'advanced_sidebar_menu_load' ) ) {
 function advanced_sidebar_menu_autoload( $class ) {
 	$classes = array(
 		//widgets
-		'Advanced_Sidebar_Menu_Widget_Page'     => 'Widget/Page.php',
-		'Advanced_Sidebar_Menu_Widget_Category' => 'Widget/Category.php',
+		'Advanced_Sidebar_Menu__Widget__Widget' => 'Widget/Widget.php',
+		'Advanced_Sidebar_Menu_Widget_Page'      => 'Widget/Page.php',
+		'Advanced_Sidebar_Menu_Widget_Category'  => 'Widget/Category.php',
 
 		//core
-		'Advanced_Sidebar_Menu_Cache'           => 'Cache.php',
-		'Advanced_Sidebar_Menu_Core'            => 'Core.php',
-		'Advanced_Sidebar_Menu_Debug'           => 'Debug.php',
-		'Advanced_Sidebar_Menu_List_Pages'      => 'List_Pages.php',
-		'Advanced_Sidebar_Menu_Menu'            => 'Menu.php',
-		'Advanced_Sidebar_Menu_Page_Walker'     => 'Page_Walker.php',
+		'Advanced_Sidebar_Menu_Cache'            => 'Cache.php',
+		'Advanced_Sidebar_Menu_Core'             => 'Core.php',
+		'Advanced_Sidebar_Menu_Debug'            => 'Debug.php',
+		'Advanced_Sidebar_Menu_List_Pages'       => 'List_Pages.php',
+		'Advanced_Sidebar_Menu_Menu'             => 'Menu.php',
+		'Advanced_Sidebar_Menu_Page_Walker'      => 'Page_Walker.php',
 
 		//menus
-		'Advanced_Sidebar_Menu_Menus_Category'  => 'Menus/Category.php',
-		'Advanced_Sidebar_Menu_Menus_Abstract'  => 'Menus/Abstract.php',
-		'Advanced_Sidebar_Menu_Menus_Page'      => 'Menus/Page.php',
+		'Advanced_Sidebar_Menu_Menus_Category'   => 'Menus/Category.php',
+		'Advanced_Sidebar_Menu_Menus_Abstract'   => 'Menus/Abstract.php',
+		'Advanced_Sidebar_Menu_Menus_Page'       => 'Menus/Page.php',
 	);
 	if ( isset( $classes[ $class ] ) ) {
 		require dirname( __FILE__ ) . '/src/' . $classes[ $class ];
