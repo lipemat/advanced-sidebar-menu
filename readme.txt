@@ -145,7 +145,7 @@ Yes. Based on whatever page, post, or category you are on, the menu will change 
 
 
 == Changelog ==
-= 7.2.0
+= 7.2.0 =
 * New improved widget structure
 
 = 7.1.0 =
