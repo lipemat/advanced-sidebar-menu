@@ -52,7 +52,7 @@ Keeps the menu clean and usable. Only related items display so you don't have to
 
 <h4>Pro Features</h4>
 * Priority support.
-* Ability to customize each page link's text.
+* Ability to customize each page's link text.
 * Number of levels of pages to show when always displayed child pages is not checked.
 * Click and drag styling for both the page and category widgets.
 * Styling options for links including color, background color, size, and font weight.
@@ -71,11 +71,11 @@ Keeps the menu clean and usable. Only related items display so you don't have to
 * Link ordering for the category widget.
 * Ability to select and display custom post types. 
 * Ability to select and display custom taxonomies.
-* Option to display the current page's parents and grandparents only
-* Option to display child page siblings when on a child page **NEW**
-* Option to display child page siblings when on a child page with no grandchild pages **NEW**
-* Ability to display the widgets everywhere the sidebar display **NEW**
-* Ability to select the parent page/category when using the display widget everywhere option **NEW**
+* Option to display the current page's parents and grandparents only.
+* Option to display child page siblings when on a child page. **NEW**
+* Option to display child page siblings when on a child page with no grandchild pages. **NEW**
+* Ability to display the widgets everywhere the sidebar display. **NEW**
+* Ability to select the parent page/category when using the display widget everywhere option. **NEW**
 * Access to members only support area.
 
 <h4>Currently ships with the following languages</h4>

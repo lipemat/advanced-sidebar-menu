@@ -86,7 +86,7 @@ abstract class Advanced_Sidebar_Menu__Widget__Widget extends WP_Widget {
 			name="<?php echo esc_attr( $this->get_field_name( $name ) ); ?>"
 			type="checkbox"
 			value="checked"
-			data-js="advanced-sidebar-menu-pro/widget/<?php echo esc_attr( $this->id ); ?>/<?php echo esc_attr( $name ); ?>"
+			data-js="advanced-sidebar-menu/widget/<?php echo esc_attr( $this->id_base ); ?>/<?php echo esc_attr( $name ); ?>"
 			<?php echo ( null !== $reveal_element ) ? 'onclick="asm_reveal_element( \'' . esc_attr( $this->get_field_id( $reveal_element ) ) . '\')"' : ''; ?>
 			<?php echo esc_html( $this->_instance[ $name ] ); ?>
 		/>

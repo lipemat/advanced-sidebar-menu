@@ -1,0 +1,21 @@
+.advanced-sidebar-menu-column {
+	float: left;
+	width: 49%;
+}
+
+.advanced-sidebar-menu-column-right {
+	margin-left: 2%;
+}
+
+.advanced-sidebar-menu-column-box {
+	margin-top: 10px;
+	padding: 10px 10px 0;
+	border: 1px solid #ddd;
+	background: #f1f1f1;
+}
+
+@media all and ( max-width: 620px  ) {
+	.advanced-sidebar-menu-column {
+		width: 100%;
+	}
+}
