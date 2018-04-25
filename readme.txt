@@ -34,7 +34,6 @@ Keeps the menu clean and usable. Only related items display so you don't have to
 * Display highest level parent page
 * Display menu when there is only the parent page
 * Order pages by (date, title, page order)
-* Use built in styling (very plain styling, for more advanced styling <a href="https://matlipe.com/product/advanced-sidebar-menu-pro/" target="_blank">Go Pro!</a>)
 * Exclude pages
 * Always display child Pages
 * Number of levels of child pages to display when always display child pages is checked
@@ -43,7 +42,6 @@ Keeps the menu clean and usable. Only related items display so you don't have to
 * Add a title to the widget
 * Display highest level parent category
 * Display menu when there is only the parent category
-* Use built in styling (very plain styling, for more advanced styling <a href="https://matlipe.com/product/advanced-sidebar-menu-pro/" target="_blank">Go Pro!</a>)
 * Display categories on single posts
 * Display each single post's category in a new widget or in same list
 * Exclude categories

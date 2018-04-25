@@ -452,6 +452,7 @@ class Advanced_Sidebar_Menu_Menus_Category extends Advanced_Sidebar_Menu_Menus_A
 	 * @return void
 	 */
 	public function render() {
+		// phpcs:disable WordPress.XSS.EscapeOutput.OutputNotEscaped
 		if ( ! $this->is_displayed() ) {
 			return;
 		}
@@ -461,14 +462,12 @@ class Advanced_Sidebar_Menu_Menus_Category extends Advanced_Sidebar_Menu_Menus_A
 
 		foreach ( $this->get_top_level_terms() as $_cat ) {
 			$this->set_current_top_level_term( $_cat );
-			//@deprecated 7.0.0 variable name
-			$all_categories = $this->get_child_terms();
-			if ( ! $this->is_term_displayed( $all_categories ) ) {
+			if ( ! $this->is_term_displayed( $this->get_child_terms() ) ) {
 				continue;
 			}
 
 			if ( ! $menu_open || ( 'widget' === $this->instance[ self::EACH_CATEGORY_DISPLAY ] ) ) {
-				//Start the menu
+				//phpcs
 				echo $this->args['before_widget'];
 
 				do_action( 'advanced-sidebar-menu/menus/category/render', $this );
@@ -476,9 +475,6 @@ class Advanced_Sidebar_Menu_Menus_Category extends Advanced_Sidebar_Menu_Menus_A
 				if ( ! $menu_open ) {
 					//must remain in the loop vs the template
 					$this->title();
-					if ( $this->checked( self::USE_PLUGIN_STYLES ) ) {
-						Advanced_Sidebar_Menu_Core::instance()->include_plugin_styles();
-					}
 
 					$menu_open  = true;
 					$close_menu = true;
@@ -500,6 +496,7 @@ class Advanced_Sidebar_Menu_Menus_Category extends Advanced_Sidebar_Menu_Menus_A
 		if ( ! $close_menu && $menu_open ) {
 			echo $this->args['after_widget'];
 		}
+		// phpcs:enable WordPress.XSS.EscapeOutput.OutputNotEscaped
 
 	}
 

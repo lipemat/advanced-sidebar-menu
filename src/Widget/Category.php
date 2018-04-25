@@ -120,15 +120,6 @@ class Advanced_Sidebar_Menu_Widget_Category extends Advanced_Sidebar_Menu__Widge
 			</div>
 			<div class="advanced-sidebar-menu-column-box">
 				<p>
-					<?php $this->checkbox( self::USE_PLUGIN_STYLES ); ?>
-					<label>
-						<?php esc_html_e( "Use this plugin's default styling", 'advanced-sidebar-menu' ); ?>
-					</label>
-				</p>
-
-			</div>
-			<div class="advanced-sidebar-menu-column-box">
-				<p>
 
 					<?php $this->checkbox( self::DISPLAY_ON_SINGLE, self::EACH_CATEGORY_DISPLAY ); ?>
 					<label>

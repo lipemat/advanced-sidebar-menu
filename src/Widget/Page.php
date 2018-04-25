@@ -125,16 +125,6 @@ class Advanced_Sidebar_Menu_Widget_Page extends Advanced_Sidebar_Menu__Widget__W
 			<div class="advanced-sidebar-menu-column-box">
 
 				<p>
-					<?php $this->checkbox( self::USE_PLUGIN_STYLES ); ?>
-					<label>
-						<?php esc_html_e( "Use this plugin's default styling", 'advanced-sidebar-menu' ); ?>:
-					</label>
-				</p>
-
-			</div>
-			<div class="advanced-sidebar-menu-column-box">
-
-				<p>
 					<label>
 						<?php esc_html_e( 'Order by', 'advanced-sidebar-menu' ); ?>:
 					</label>
