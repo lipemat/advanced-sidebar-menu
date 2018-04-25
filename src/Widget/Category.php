@@ -117,6 +117,8 @@ class Advanced_Sidebar_Menu_Widget_Category extends Advanced_Sidebar_Menu__Widge
 					</p>
 				</div>
 
+				<?php do_action( 'advanced-sidebar-menu/widget/category/display-box', $instance, $this ); ?>
+
 			</div>
 			<div class="advanced-sidebar-menu-column-box">
 				<p>
@@ -145,6 +147,7 @@ class Advanced_Sidebar_Menu_Widget_Category extends Advanced_Sidebar_Menu__Widge
 					</p>
 				</div>
 
+				<?php do_action( 'advanced-sidebar-menu/widget/category/singles-box', $instance, $this ); ?>
 
 			</div>
 
@@ -160,6 +163,10 @@ class Advanced_Sidebar_Menu_Widget_Category extends Advanced_Sidebar_Menu__Widge
 						class="widefat"
 						value="<?php echo esc_attr( $instance[ self::EXCLUDE ] ); ?>"/>
 				</p>
+
+				<?php
+				do_action( 'advanced-sidebar-menu/widget/category/exclude-box', $instance, $this );
+				?>
 			</div>
 
 			<?php

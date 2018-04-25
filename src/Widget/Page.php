@@ -121,9 +121,10 @@ class Advanced_Sidebar_Menu_Widget_Page extends Advanced_Sidebar_Menu__Widget__W
 					</p>
 				</div>
 
+				<?php do_action( 'advanced-sidebar-menu/widget/page/display-box', $instance, $this ); ?>
+
 			</div>
 			<div class="advanced-sidebar-menu-column-box">
-
 				<p>
 					<label>
 						<?php esc_html_e( 'Order by', 'advanced-sidebar-menu' ); ?>:
@@ -144,11 +145,12 @@ class Advanced_Sidebar_Menu_Widget_Page extends Advanced_Sidebar_Menu__Widget__W
 						?>
 					</select>
 				</p>
+				<?php do_action( 'advanced-sidebar-menu/widget/page/order-box', $instance, $this ); ?>
 
 			</div>
 			<div class="advanced-sidebar-menu-column-box">
-
-				<p><label>
+				<p>
+					<label>
 						<?php esc_html_e( 'Pages to exclude (ids), comma separated', 'advanced-sidebar-menu' ); ?>:
 					</label>
 					<input
@@ -159,15 +161,18 @@ class Advanced_Sidebar_Menu_Widget_Page extends Advanced_Sidebar_Menu__Widget__W
 						value="<?php echo esc_attr( $instance[ self::EXCLUDE ] ); ?>"/>
 				</p>
 				<?php
-				if ( has_action( 'advanced_sidebar_menu_page_widget_form' ) ) {
-					?>
-					<div class="advanced-sidebar-menu-column-box">
-						<?php do_action( 'advanced_sidebar_menu_page_widget_form', $this->get_field_id( 'parent_only' ), $this, $instance ); ?>
-					</div>
-					<?php
-				}
+				do_action( 'advanced-sidebar-menu/widget/page/exclude-box', $instance, $this );
 				?>
 			</div>
+			<?php
+			if ( has_action( 'advanced_sidebar_menu_page_widget_form' ) ) {
+				?>
+				<div class="advanced-sidebar-menu-column-box">
+					<?php do_action( 'advanced_sidebar_menu_page_widget_form', $this->get_field_id( 'parent_only' ), $this, $instance ); ?>
+				</div>
+				<?php
+			}
+			?>
 		</div>
 		<div class="advanced-sidebar-menu-column advanced-sidebar-menu-column-right">
 			<?php
