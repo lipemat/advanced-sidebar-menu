@@ -171,8 +171,9 @@ class Advanced_Sidebar_Menu_List_Pages {
 				$args['include'] = $this->menu->get_top_parent_id();
 				break;
 			case 'display-all':
-				$args['child_of'] = $this->menu->get_top_parent_id();
-				$args['depth']    = $this->menu->get_levels_to_display();
+				$args['child_of']    = $this->menu->get_top_parent_id();
+				$args['depth']       = $this->menu->get_levels_to_display();
+				$args['sort_column'] = $this->menu->get_order_by();
 				break;
 		}
 
@@ -215,7 +216,7 @@ class Advanced_Sidebar_Menu_List_Pages {
 			'exclude'          => '',
 			'echo'             => 0,
 			'order'            => 'ASC',
-			'orderby'          => 'menu_order, post_title',
+			'orderby'          => 'menu_order, title',
 			'walker'           => new Advanced_Sidebar_Menu_Page_Walker(),
 			'link_before'      => '',
 			'link_after'       => '',
@@ -318,10 +319,11 @@ class Advanced_Sidebar_Menu_List_Pages {
 		$cache       = Advanced_Sidebar_Menu_Cache::instance();
 		$child_pages = $cache->get_child_pages( $this );
 		if ( false === $child_pages ) {
-			$args                = $this->args;
-			$args['post_parent'] = $parent_page_id;
-			$args['fields']      = 'ids';
-			$child_pages         = get_posts( $args );
+			$args                     = $this->args;
+			$args['post_parent']      = $parent_page_id;
+			$args['fields']           = 'ids';
+			$args['suppress_filters'] = false;
+			$child_pages              = get_posts( $args );
 
 			$cache->add_child_pages( $this, $child_pages );
 		}
