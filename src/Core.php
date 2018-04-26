@@ -10,12 +10,12 @@
  */
 class Advanced_Sidebar_Menu_Core {
 
-	protected function hook(){
+	protected function hook() {
 		add_action( 'widgets_init', array( $this, 'register_widgets' ) );
 	}
 
 
-	public function register_widgets(){
+	public function register_widgets() {
 		register_widget( 'Advanced_Sidebar_Menu_Widget_Page' );
 		register_widget( 'Advanced_Sidebar_Menu_Widget_Category' );
 	}
@@ -35,6 +35,7 @@ class Advanced_Sidebar_Menu_Core {
 		<?php
 	}
 
+
 	/**
 	 * Retrieve a template file from either the theme's 'advanced-sidebar-menu' directory
 	 * or this plugins views folder if one does not exist
@@ -45,9 +46,9 @@ class Advanced_Sidebar_Menu_Core {
 	 *
 	 * @return string
 	 */
-	public function get_template_part( $file_name ){
+	public function get_template_part( $file_name ) {
 		$file = locate_template( 'advanced-sidebar-menu/' . $file_name );
-		if( empty( $file ) ){
+		if ( empty( $file ) ) {
 			$file = ADVANCED_SIDEBAR_DIR . 'views/' . $file_name;
 		}
 
@@ -57,6 +58,7 @@ class Advanced_Sidebar_Menu_Core {
 	}
 
 	//********** SINGLETON FUNCTIONS **********/
+
 
 	/**
 	 * Instance of this class for use as singleton
@@ -70,7 +72,7 @@ class Advanced_Sidebar_Menu_Core {
 	 * @static
 	 * @return void
 	 */
-	public static function init(){
+	public static function init() {
 		self::instance()->hook();
 	}
 
@@ -82,8 +84,8 @@ class Advanced_Sidebar_Menu_Core {
 	 * @static
 	 * @return self
 	 */
-	public static function instance(){
-		if( !is_a( self::$instance, __CLASS__ ) ){
+	public static function instance() {
+		if ( ! is_a( self::$instance, __CLASS__ ) ) {
 			self::$instance = new self();
 		}
 

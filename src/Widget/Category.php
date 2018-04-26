@@ -128,6 +128,7 @@ class Advanced_Sidebar_Menu_Widget_Category extends Advanced_Sidebar_Menu__Widge
 					</label>
 				</p>
 
+				<?php do_action( 'advanced-sidebar-menu/widget/category/styles-box', $instance, $this ); ?>
 			</div>
 			<div class="advanced-sidebar-menu-column-box">
 				<p>
