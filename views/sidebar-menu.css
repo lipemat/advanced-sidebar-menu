@@ -16,14 +16,11 @@
 .advanced-sidebar-menu ul{
 	margin: 0 0 0 18px;
 	list-style: none;
-	list-style-type: none;
 }
 
 .advanced-sidebar-menu ul li{
 	list-style:none;
-	list-style-type: none;
 	margin: 0;
-	
 }
 
 .advanced-sidebar-menu li.current_page_item{
