@@ -123,7 +123,7 @@ class Advanced_Sidebar_Menu_Widget_Page extends Advanced_Sidebar_Menu__Widget__W
 			<p>
 				<?php $this->checkbox( self::USE_PLUGIN_STYLES ); ?>
 				<label>
-					<?php esc_html_e( "Use this plugin's default styling", 'advanced-sidebar-menu' ); ?>:
+					<?php esc_html_e( "Use this plugin's default styling", 'advanced-sidebar-menu' ); ?>
 				</label>
 			</p>
 			<?php do_action( 'advanced-sidebar-menu/widget/page/styles-box', $instance, $this ); ?>
