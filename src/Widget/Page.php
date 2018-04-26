@@ -89,7 +89,7 @@ class Advanced_Sidebar_Menu_Widget_Page extends Advanced_Sidebar_Menu__Widget__W
 
 			<div
 				data-js="<?php echo esc_attr( $this->get_field_id( self::LEVELS ) ); ?>"
-				<?php $this->hide_element( self::DISPLAY_ALL ); ?>>
+				<?php $this->hide_element( self::DISPLAY_ALL, self::LEVELS ); ?>>
 				<p>
 					<label>
 						<?php esc_html_e( 'Levels to display', 'advanced-sidebar-menu' ); ?>:</label>

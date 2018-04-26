@@ -52,16 +52,21 @@ abstract class Advanced_Sidebar_Menu__Widget__Widget extends WP_Widget {
 
 
 	/**
-	 * Hide an element if a checkbox is checked.
+	 * Hide an reveal_element if a checkbox is checked.
 	 *
-	 * @param string $checkbox - name of checkbox element which controls this one
-	 * @param bool   $reverse  - hide on check instead of show on check
+	 * @param string $checkbox       - name of checkbox reveal_element which controls this one
+	 * @param string $reveal_element - match the reveal element passed to checkbox which reveals this
+	 * @param bool $reverse - hide on check instead of show on check
+	 *
+	 *
+	 * @todo Convert all uses of this method to supply the $reveal_element
 	 *
 	 * @since 7.2.0
+	 * @since 7.2.2 Added the `reveal_element` argument.
 	 *
 	 * @return void
 	 */
-	public function hide_element( $checkbox, $reverse = false ) {
+	public function hide_element( $checkbox, $reveal_element = null, $reverse = false ) {
 		if ( $reverse ) {
 			if ( $this->checked( $checkbox ) ) {
 				?>style="display:none"<?php
@@ -70,6 +75,9 @@ abstract class Advanced_Sidebar_Menu__Widget__Widget extends WP_Widget {
 			if ( ! $this->checked( $checkbox ) ) {
 				?>style="display:none"<?php
 			}
+		}
+		if ( null !== $reveal_element ) {
+			?> data-js="<?php echo esc_attr( $this->get_field_id( $reveal_element ) ); ?>"<?php
 		}
 	}
 
