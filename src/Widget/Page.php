@@ -83,7 +83,7 @@ class Advanced_Sidebar_Menu_Widget_Page extends Advanced_Sidebar_Menu__Widget__W
 			<p>
 				<?php $this->checkbox( self::DISPLAY_ALL, self::LEVELS ); ?>
 				<label>
-					<?php esc_html_e( 'Always display child pages', 'advanced-sidebar-menu' ); ?>:
+					<?php esc_html_e( 'Always display child pages', 'advanced-sidebar-menu' ); ?>
 				</label>
 			</p>
 
