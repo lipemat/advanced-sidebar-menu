@@ -87,7 +87,8 @@ function advanced_sidebar_menu_script() {
 }
 
 
-add_action( 'advanced_sidebar_menu_after_widget_form', 'advanced_sidebar_menu_upgrade_notice', 1, 2 );
+add_action( 'advanced-sidebar-menu/widget/category/right-column', 'advanced_sidebar_menu_upgrade_notice', 1, 2 );
+add_action( 'advanced-sidebar-menu/widget/page/right-column', 'advanced_sidebar_menu_upgrade_notice', 1, 2 );
 /**
  * @todo translate these features
  *
