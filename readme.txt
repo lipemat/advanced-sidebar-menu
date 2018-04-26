@@ -6,7 +6,7 @@ Tags: menus, sidebar menu, hierarchy, category menu, pages menu
 Requires at least: 4.6.0
 Tested up to: 4.9.6
 Requires PHP: 5.2.4
-Stable tag: 7.2.0
+Stable tag: 7.2.1
 
 == Description ==
 
@@ -220,6 +220,9 @@ Yes. Based on whatever page, post, or category you are on, the menu will change 
 
 
 == Upgrade Notice ==
+= 7.2.1 =
+Update to fix misc bugs and support PRO version 3.2.0
+
 = 7.1.2 =
 Update to support PRO version 3.1.0
 
