@@ -168,10 +168,14 @@ class Advanced_Sidebar_Menu_Menus_Page extends Advanced_Sidebar_Menu_Menus_Abstr
 			return;
 		}
 
-		// phpcs:disable WordPress.XSS.EscapeOutput.OutputNotEscaped
+        // phpcs:disable
 		echo $this->args['before_widget'];
 
 		do_action( 'advanced-sidebar-menu/menus/page/render', $this );
+
+		if ( $this->checked( self::USE_PLUGIN_STYLES ) ) {
+			Advanced_Sidebar_Menu_Core::instance()->include_plugin_styles();
+		}
 
 		$output = require Advanced_Sidebar_Menu_Core::instance()->get_template_part( 'page_list.php' );
 		echo apply_filters( 'advanced_sidebar_menu_page_widget_output', $output, $this->get_current_post(), $this->args, $this->instance, $this );
