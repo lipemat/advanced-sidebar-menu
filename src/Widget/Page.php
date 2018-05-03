@@ -231,6 +231,7 @@ class Advanced_Sidebar_Menu_Widget_Page extends Advanced_Sidebar_Menu__Widget__W
 			do_action( 'advanced-sidebar-menu/widget/page/right-column', $instance, $this );
 			?>
 		</div>
+		<div class="advanced-sidebar-menu-full-width"><!-- clear --></div>
 		<?php
 		do_action( 'advanced-sidebar-menu/widget/page/after-form', $instance, $this );
 	}

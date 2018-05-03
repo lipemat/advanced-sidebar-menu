@@ -234,6 +234,7 @@ class Advanced_Sidebar_Menu_Widget_Category extends Advanced_Sidebar_Menu__Widge
 			do_action( 'advanced_sidebar_menu_after_widget_form', $instance, $this );
 			?>
 		</div>
+		<div class="advanced-sidebar-menu-full-width"><!-- clear --></div>
 
 		<?php
 		do_action( 'advanced-sidebar-menu/widget/category/after-form', $instance, $this );

@@ -89,8 +89,10 @@ function advanced_sidebar_menu_script() {
 
 add_action( 'advanced-sidebar-menu/widget/category/right-column', 'advanced_sidebar_menu_upgrade_notice', 1, 2 );
 add_action( 'advanced-sidebar-menu/widget/page/right-column', 'advanced_sidebar_menu_upgrade_notice', 1, 2 );
+
+
 /**
- * @todo translate these features
+ * Notify widget users about the PRO options
  *
  * @param array     $instance
  * @param WP_Widget $widget
@@ -108,54 +110,34 @@ function advanced_sidebar_menu_upgrade_notice( array $instance, WP_Widget $widge
 			<strong>
 				<?php
 				/* translators: {<a>}{</a>} links to https://matlipe.com/product/advanced-sidebar-menu-pro/ */
-				printf( esc_html_x( 'Upgrade to %1$sAdvanced Sidebar Menu Pro%2$s for these features:', '{<a>}{</a>}', 'advanced-sidebar-menu' ), '<a target="blank" href="https://matlipe.com/product/advanced-sidebar-menu-pro/">', '</a>' ); ?>
+				printf( esc_html_x( 'Upgrade to %1$sAdvanced Sidebar Menu Pro%2$s for these features and so much more!', '{<a>}{</a>}', 'advanced-sidebar-menu' ), '<a target="blank" href="https://matlipe.com/product/advanced-sidebar-menu-pro/">', '</a>' ); ?>
 			</strong>
-		<ol>
-			<li>Priority support.</li>
+		<ol style="list-style: disc">
+			<li><?php esc_html_e( 'Priority support, including access to Members Only Support Area.', 'advanced-sidebar-menu' ); ?></li>
+			<li><?php esc_html_e( 'Accordion menu support.', 'advanced-sidebar-menu' ); ?></li>
+			<li><?php esc_html_e( 'Click and drag menu styling including bullets, colors, sizes, block styles, borders, and border colors.', 'advanced-sidebar-menu' ); ?></li>
 			<?php
 			//page widget options
 			if ( 'advanced_sidebar_menu' === $widget->id_base ) {
 				?>
-				<li>Ability to customize each page's link text.</li>
-				<li>Ability to exclude a page from all menus using a simple checkbox.</li>
-				<li>Number of levels of pages to show when always displayed child pages is not checked.</li>
-				<li>Ability to select and display custom post types.</li>
-				<li>Option to display the current page’s parents and grandparents only</li>
-				<li>Option to display child page siblings when on a child page. <strong> NEW</strong></li>
-				<li>Option to display child page siblings when on a child page with no grandchild pages.<strong>
-						NEW</strong></li>
-				<li>Accordion menu support for pages.</li>
+				<li><?php esc_html_e( "Ability to customize each page's link text.", 'advanced-sidebar-menu' ); ?></li>
+				<li><?php esc_html_e( 'Ability to exclude a page from all menus using a simple checkbox.', 'advanced-sidebar-menu' ); ?></li>
+				<li><?php esc_html_e( 'Number of levels of pages to show when always displayed child pages is not checked.', 'advanced-sidebar-menu' ); ?></li>
+				<li><?php esc_html_e( 'Ability to select and display custom post types.', 'advanced-sidebar-menu' ); ?></li>
+				<li><?php esc_html_e( 'Option to display the current page’s parents and grandparents only, as well as siblings options.', 'advanced-sidebar-menu' ); ?></li>
 				<?php
 				//category widget options
 			} else {
 				?>
-				<li>Link ordering for the category widget.</li>
-				<li>Ability to select and display custom taxonomies.</li>
-				<li>Accordion menu support for categories.</li>
+				<li><?php esc_html_e( 'Link ordering for the category widget.', 'advanced-sidebar-menu' ); ?></li>
+				<li><?php esc_html_e( 'Ability to select and display custom taxonomies.', 'advanced-sidebar-menu' ); ?></li>
 				<?php
 			}
 			?>
-			<li>Accordion icon selection from 4 styles of icons.</li>
-			<li>Accordion icon color selection.</li>
-			<li>Accordion option to keep all sections closed until clicked.</li>
-			<li>Accordion option to include highest level parent in accordion.</li>
-			<li>Click and drag styling for both the page and category widgets.</li>
-			<li>Styling options for links including color, background color, size, and font weight.</li>
-			<li>Styling options for different levels of links.</li>
-			<li>Styling options for the current page or category.</li>
-			<li>Styling options for the parent of the current page or category.</li>
-			<li>Block styling options including borders and border colors.</li>
-			<li>Bullet style selection from 7 styles or select none to have no bullets.</li>
-			<li>Ability to display the widgets everywhere the sidebar display. <strong> NEW</strong></li>
-			<li>Ability to select the parent page/category when using the display widget everywhere option.<strong>
-					NEW</strong></li>
-			<li>Access to members only support area.</li>
+			<li><?php esc_html_e( 'Ability to display the widgets everywhere the sidebar display.', 'advanced-sidebar-menu' ); ?>
+				<strong> NEW</strong></li>
 		</ol>
 		<p>
 	</div>
 	<?php
 }
-
-
-
-
