@@ -3,7 +3,7 @@ msgid ""
 msgstr ""
 "Plural-Forms: nplurals=INTEGER; plural=EXPRESSION;\n"
 "Project-Id-Version: Advanced Sidebar Menu\n"
-"POT-Creation-Date: 2018-04-25 16:28-0400\n"
+"POT-Creation-Date: 2018-05-03 12:37-0400\n"
 "PO-Revision-Date: 2018-01-09 07:14-0500\n"
 "Last-Translator: \n"
 "Language-Team: \n"
@@ -21,91 +21,147 @@ msgstr ""
 "X-Poedit-SearchPath-0: .\n"
 "X-Poedit-SearchPathExcluded-0: *.js\n"
 
-#: advanced-sidebar-menu.php:105
+#: advanced-sidebar-menu.php:108
 msgid "Checkout Advanced Sidebar Menu Pro!"
 msgstr ""
 
 #. translators: {<a>}{</a>} links to https://matlipe.com/product/advanced-sidebar-menu-pro/
-#: advanced-sidebar-menu.php:110
+#: advanced-sidebar-menu.php:113
 #, php-format
 msgctxt "{<a>}{</a>}"
-msgid "Upgrade to %1$sAdvanced Sidebar Menu Pro%2$s for these features:"
+msgid ""
+"Upgrade to %1$sAdvanced Sidebar Menu Pro%2$s for these features and so "
+"much more!"
 msgstr ""
 
-#: src/Widget/Category.php:42
+#: advanced-sidebar-menu.php:116
+msgid "Priority support, including access to Members Only Support Area."
+msgstr ""
+
+#: advanced-sidebar-menu.php:117
+msgid "Accordion menu support."
+msgstr ""
+
+#: advanced-sidebar-menu.php:118
+msgid ""
+"Click and drag menu styling including bullets, colors, sizes, block "
+"styles, borders, and border colors."
+msgstr ""
+
+#: advanced-sidebar-menu.php:123
+msgid "Ability to customize each page's link text."
+msgstr ""
+
+#: advanced-sidebar-menu.php:124
+msgid "Ability to exclude a page from all menus using a simple checkbox."
+msgstr ""
+
+#: advanced-sidebar-menu.php:125
+msgid ""
+"Number of levels of pages to show when always displayed child pages is not "
+"checked."
+msgstr ""
+
+#: advanced-sidebar-menu.php:126
+msgid "Ability to select and display custom post types."
+msgstr ""
+
+#: advanced-sidebar-menu.php:127
+msgid ""
+"Option to display the current page’s parents and grandparents only, as "
+"well as siblings options."
+msgstr ""
+
+#: advanced-sidebar-menu.php:132
+msgid "Link ordering for the category widget."
+msgstr ""
+
+#: advanced-sidebar-menu.php:133
+msgid "Ability to select and display custom taxonomies."
+msgstr ""
+
+#: advanced-sidebar-menu.php:137
+msgid "Ability to display the widgets everywhere the sidebar display."
+msgstr ""
+
+#: src/Widget/Category.php:44
 msgid ""
 "Creates a menu of all the categories using the child/parent relationship"
 msgstr ""
 
-#: src/Widget/Category.php:46
+#: src/Widget/Category.php:48
 msgid "Advanced Sidebar Categories Menu"
 msgstr ""
 
-#: src/Widget/Category.php:64 src/Widget/Page.php:67
-msgid "Title"
-msgstr ""
-
-#: src/Widget/Category.php:79
+#: src/Widget/Category.php:72
 msgid "Display highest level parent category"
 msgstr ""
 
-#: src/Widget/Category.php:87
+#: src/Widget/Category.php:78
 msgid "Display menu when there is only the parent category"
 msgstr ""
 
-#: src/Widget/Category.php:94
+#: src/Widget/Category.php:84
 msgid "Always display child categories"
 msgstr ""
 
-#: src/Widget/Category.php:102 src/Widget/Page.php:106
+#: src/Widget/Category.php:90 src/Widget/Page.php:95
 msgid "Levels to display"
 msgstr ""
 
-#: src/Widget/Category.php:128
+#: src/Widget/Category.php:121 src/Widget/Page.php:126
+msgid "Use this plugin's default styling"
+msgstr ""
+
+#: src/Widget/Category.php:138
 msgid "Display categories on single posts"
 msgstr ""
 
-#: src/Widget/Category.php:135
+#: src/Widget/Category.php:144
 msgid "Display each single post's category"
 msgstr ""
 
-#: src/Widget/Category.php:141
+#: src/Widget/Category.php:150
 msgid "In a new widget"
 msgstr ""
 
-#: src/Widget/Category.php:144
+#: src/Widget/Category.php:153
 msgid "In another list in the same widget"
 msgstr ""
 
-#: src/Widget/Category.php:157
+#: src/Widget/Category.php:171
 msgid "Categories to exclude (ids), comma separated"
 msgstr ""
 
-#: src/Widget/Page.php:38
+#: src/Widget/Category.php:204 src/Widget/Page.php:203
+msgid "Title"
+msgstr ""
+
+#: src/Widget/Page.php:40
 msgid "Creates a menu of all the pages using the child/parent relationship"
 msgstr ""
 
-#: src/Widget/Page.php:44
+#: src/Widget/Page.php:46
 msgid "Advanced Sidebar Pages Menu"
 msgstr ""
 
-#: src/Widget/Page.php:82
+#: src/Widget/Page.php:71
 msgid "Display highest level parent page"
 msgstr ""
 
-#: src/Widget/Page.php:90
+#: src/Widget/Page.php:79
 msgid "Display menu when there is only the parent page"
 msgstr ""
 
-#: src/Widget/Page.php:97
+#: src/Widget/Page.php:86
 msgid "Always display child pages"
 msgstr ""
 
-#: src/Widget/Page.php:130
+#: src/Widget/Page.php:141
 msgid "Order by"
 msgstr ""
 
-#: src/Widget/Page.php:154
+#: src/Widget/Page.php:171
 msgid "Pages to exclude (ids), comma separated"
 msgstr ""
 
