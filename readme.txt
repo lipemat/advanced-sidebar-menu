@@ -76,7 +76,9 @@ Keeps the menu clean and usable. Only related items display so you don't have to
 * Option to display child page siblings when on a child page with no grandchild pages. 
 * Ability to display the widgets everywhere the sidebar display.
 * Ability to select the parent page/category when using the display widget everywhere option. **NEW**
-* Ability to display assigned posts or custom post types under categories. **NEW**
+* Ability to display assigned posts under categories. **NEW**
+* Ability to display assigned custom post types under categories. **NEW**
+* Ability to limit the number of posts to display under categories or custom post types. **NEW**
 * Access to members only support area.
 
 <h4>Currently ships with the following languages</h4>
