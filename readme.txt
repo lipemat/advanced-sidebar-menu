@@ -4,9 +4,9 @@ Contributors: Mat Lipe
 Donate link: https://www.paypal.com/cgi-bin/webscr?cmd=_donations&business=paypal%40matlipe%2ecom&lc=US&item_name=Advanced%20Sidebar%20Menu&no_note=0&currency_code=USD&bn=PP%2dDonationsBF%3abtn_donateCC_LG%2egif%3aNonHostedGuest
 Tags: menus, sidebar menu, hierarchy, category menu, pages menu
 Requires at least: 4.6.0
-Tested up to: 4.9.6
+Tested up to: 4.9.5
 Requires PHP: 5.2.4
-Stable tag: 7.2.3
+Stable tag: 7.2.4
 
 == Description ==
 
@@ -16,7 +16,7 @@ Keeps the menu clean and usable. Only related items display so you don't have to
 
 <strong>Check out <a href="https://matlipe.com/product/advanced-sidebar-menu-pro/">Advanced Sidebar Menu Pro</a> for more features including priority support, the ability to customize the look and feel, custom link text, excluding of pages, category ordering, accordions, custom post types, custom taxonomies, and so much more!</strong>
 
-<blockquote><a href="https://matlipe.com/product/advanced-sidebar-menu-pro/" target="_blank">Pro version 3.1.0</a> just dropped with lots of great new stuff!</blockquote>
+<blockquote><a href="https://matlipe.com/product/advanced-sidebar-menu-pro/" target="_blank">Pro version 3.2.0</a> just dropped with lots of great new stuff!</blockquote>
 
 <h4>Features</h4>
 * Page and Category widgets.
@@ -72,10 +72,11 @@ Keeps the menu clean and usable. Only related items display so you don't have to
 * Ability to select and display custom post types. 
 * Ability to select and display custom taxonomies.
 * Option to display the current page's parents and grandparents only.
-* Option to display child page siblings when on a child page. **NEW**
-* Option to display child page siblings when on a child page with no grandchild pages. **NEW**
-* Ability to display the widgets everywhere the sidebar display. **NEW**
+* Option to display child page siblings when on a child page.
+* Option to display child page siblings when on a child page with no grandchild pages. 
+* Ability to display the widgets everywhere the sidebar display.
 * Ability to select the parent page/category when using the display widget everywhere option. **NEW**
+* Ability to display assigned posts or custom post types under categories. **NEW**
 * Access to members only support area.
 
 <h4>Currently ships with the following languages</h4>
