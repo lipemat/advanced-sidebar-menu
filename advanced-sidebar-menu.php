@@ -135,7 +135,7 @@ function advanced_sidebar_menu_upgrade_notice( array $instance, WP_Widget $widge
 				<?php
 			}
 			?>
-			<li><?php esc_html_e( 'Ability to display the widgets everywhere the sidebar display.', 'advanced-sidebar-menu' ); ?>
+			<li><?php esc_html_e( 'Ability to display the widgets everywhere the sidebar displays.', 'advanced-sidebar-menu' ); ?>
 				<strong> NEW</strong></li>
 			<li><?php esc_html_e( 'Support for custom navigation menus from Appearance -> Menus.', 'advanced-sidebar-menu' ); ?><strong> NEW</strong></li>
 		</ol>

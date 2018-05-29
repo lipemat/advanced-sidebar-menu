@@ -53,8 +53,7 @@ Keeps the menu clean and usable. Only related items display so you don't have to
 <h4>Pro Features</h4>
 * Priority support.
 * Ability to customize each page's link text.
-* Number of levels of pages to show when always displayed child pages is not checked.
-* Click and drag styling for both the page and category widgets.
+* Click and drag styling for page, category, and navigation menu widgets.
 * Styling options for links including color, background color, size, and font weight.
 * Styling options for different levels of links.
 * Styling options for the current page or category.
@@ -62,22 +61,21 @@ Keeps the menu clean and usable. Only related items display so you don't have to
 * Block styling options including borders and border colors.
 * Bullet style selection from 7 styles or select none to have no bullets.
 * Accordion menu support for pages, categories, and navigation menus. 
-* Accordion icon selection from 4 styles of icons.
-* Accordion icon color selection.
+* Accordion icon style and color selection.
 * Accordion option to keep all sections closed until clicked.
 * Accordion option to include highest level parent in accordion.
 * Ability to exclude a page from all menus using a simple checkbox.
 * Link ordering for the category widget.
+* Number of levels of pages to show when always displayed child pages is not checked.
 * Ability to select and display custom post types. 
 * Ability to select and display custom taxonomies.
 * Option to display the current page's parents and grandparents only.
 * Option to display child page siblings when on a child page.
 * Option to display child page siblings when on a child page with no grandchild pages. 
-* Ability to display the widgets everywhere the sidebar display.
+* Ability to display the widgets everywhere the sidebar displays. **NEW**
 * Ability to select the parent page/category when using the display widget everywhere option. **NEW**
-* Ability to display assigned posts under categories. **NEW**
-* Ability to display assigned custom post types under categories. **NEW**
-* Ability to limit the number of posts to display under categories or custom post types. **NEW**
+* Ability to display assigned posts or custom post types under categories. **NEW**
+* Ability to limit the number of posts or custom post types to display under categories. **NEW**
 * Support for custom navigation menus from Appearance -> Menus **NEW**
 * Access to members only support area.
 
