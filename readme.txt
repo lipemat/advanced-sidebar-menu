@@ -4,9 +4,9 @@ Contributors: Mat Lipe
 Donate link: https://www.paypal.com/cgi-bin/webscr?cmd=_donations&business=paypal%40matlipe%2ecom&lc=US&item_name=Advanced%20Sidebar%20Menu&no_note=0&currency_code=USD&bn=PP%2dDonationsBF%3abtn_donateCC_LG%2egif%3aNonHostedGuest
 Tags: menus, sidebar menu, hierarchy, category menu, pages menu
 Requires at least: 4.6.0
-Tested up to: 4.9.5
+Tested up to: 4.9.6
 Requires PHP: 5.2.4
-Stable tag: 7.2.4
+Stable tag: 7.2.5
 
 == Description ==
 
@@ -16,7 +16,7 @@ Keeps the menu clean and usable. Only related items display so you don't have to
 
 <strong>Check out <a href="https://matlipe.com/product/advanced-sidebar-menu-pro/">Advanced Sidebar Menu Pro</a> for more features including priority support, the ability to customize the look and feel, custom link text, excluding of pages, category ordering, accordions, custom post types, custom taxonomies, and so much more!</strong>
 
-<blockquote><a href="https://matlipe.com/product/advanced-sidebar-menu-pro/" target="_blank">Pro version 3.2.0</a> just dropped with lots of great new stuff!</blockquote>
+<blockquote><a href="https://matlipe.com/product/advanced-sidebar-menu-pro/" target="_blank">Pro version 3.3.0</a> just dropped with support for custom navigation menus from Appearance -> Menus!</blockquote>
 
 <h4>Features</h4>
 * Page and Category widgets.
@@ -61,8 +61,7 @@ Keeps the menu clean and usable. Only related items display so you don't have to
 * Styling options for the parent of the current page or category.
 * Block styling options including borders and border colors.
 * Bullet style selection from 7 styles or select none to have no bullets.
-* Accordion menu support for pages.
-* Accordion menu support for categories.
+* Accordion menu support for pages, categories, and navigation menus. 
 * Accordion icon selection from 4 styles of icons.
 * Accordion icon color selection.
 * Accordion option to keep all sections closed until clicked.
@@ -79,6 +78,7 @@ Keeps the menu clean and usable. Only related items display so you don't have to
 * Ability to display assigned posts under categories. **NEW**
 * Ability to display assigned custom post types under categories. **NEW**
 * Ability to limit the number of posts to display under categories or custom post types. **NEW**
+* Support for custom navigation menus from Appearance -> Menus **NEW**
 * Access to members only support area.
 
 <h4>Currently ships with the following languages</h4>
