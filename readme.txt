@@ -69,14 +69,15 @@ Keeps the menu clean and usable. Only related items display so you don't have to
 * Number of levels of pages to show when always displayed child pages is not checked.
 * Ability to select and display custom post types. 
 * Ability to select and display custom taxonomies.
-* Option to display the current page's parents and grandparents only.
-* Option to display child page siblings when on a child page.
-* Option to display child page siblings when on a child page with no grandchild pages. 
+* Optionally display the current page's parents, grandparents, and children only.
+* Optionally display child page siblings when on a child page. With our without grandchildren available. .
 * Ability to display the widgets everywhere the sidebar displays. **NEW**
 * Ability to select the parent page/category when using the display widget everywhere option. **NEW**
 * Ability to display assigned posts or custom post types under categories. **NEW**
 * Ability to limit the number of posts or custom post types to display under categories. **NEW**
-* Support for custom navigation menus from Appearance -> Menus **NEW**
+* Support for custom navigation menus from Appearance -> Menus. **NEW**
+* Ability to display the current Navigation Menu's items parents and children only. **NEW**
+* Optionally display the top level Navigation Menu's items when there are no child items or not viewing a menu item.  **NEW**
 * Access to members only support area.
 
 <h4>Currently ships with the following languages</h4>
