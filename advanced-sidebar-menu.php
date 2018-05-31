@@ -124,7 +124,7 @@ function advanced_sidebar_menu_upgrade_notice( array $instance, WP_Widget $widge
 				<li><?php esc_html_e( 'Ability to exclude a page from all menus using a simple checkbox.', 'advanced-sidebar-menu' ); ?></li>
 				<li><?php esc_html_e( 'Number of levels of pages to show when always displayed child pages is not checked.', 'advanced-sidebar-menu' ); ?></li>
 				<li><?php esc_html_e( 'Ability to select and display custom post types.', 'advanced-sidebar-menu' ); ?></li>
-				<li><?php esc_html_e( 'Option to display the current page’s parents and grandparents only, as well as siblings options.', 'advanced-sidebar-menu' ); ?></li>
+				<li><?php esc_html_e( 'Option to display the current page’s parents, grandparents, and children only, as well as siblings options.', 'advanced-sidebar-menu' ); ?></li>
 				<?php
 				//category widget options
 			} else {
