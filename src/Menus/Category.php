@@ -21,14 +21,6 @@ class Advanced_Sidebar_Menu_Menus_Category extends Advanced_Sidebar_Menu_Menus_A
 	 */
 	public $ancestors = array();
 
-	/**
-	 * taxonomy
-	 *
-	 * @deprecated 7.0.0
-	 *
-	 * @var string
-	 */
-	public $taxonomy = 'category';
 
 	/**
 	 * top_level_term
@@ -58,7 +50,6 @@ class Advanced_Sidebar_Menu_Menus_Category extends Advanced_Sidebar_Menu_Menus_A
 	 * @return void
 	 */
 	public function set_current_top_level_term( WP_Term $term ) {
-		$this->top_id         = $term->term_id;
 		$this->top_level_term = $term;
 	}
 
@@ -205,9 +196,7 @@ class Advanced_Sidebar_Menu_Menus_Category extends Advanced_Sidebar_Menu_Menus_A
 
 
 	public function get_taxonomy() {
-		$this->taxonomy = apply_filters( 'advanced_sidebar_menu_taxonomy', 'category', $this->args, $this->instance, $this );
-
-		return $this->taxonomy;
+		return apply_filters( 'advanced_sidebar_menu_taxonomy', 'category', $this->args, $this->instance, $this );
 	}
 
 
@@ -221,16 +210,12 @@ class Advanced_Sidebar_Menu_Menus_Category extends Advanced_Sidebar_Menu_Menus_A
 
 
 	public function get_order_by() {
-		$this->order_by = apply_filters( 'advanced_sidebar_menu_category_orderby', 'name', $this->args, $this->instance, $this );
-
-		return $this->order_by;
+		return apply_filters( 'advanced_sidebar_menu_category_orderby', 'name', $this->args, $this->instance, $this );
 	}
 
 
 	public function get_order() {
-		$this->order = apply_filters( 'advanced_sidebar_menu_category_order', 'ASC', $this->args, $this->instance, $this );
-
-		return $this->order;
+		return apply_filters( 'advanced_sidebar_menu_category_order', 'ASC', $this->args, $this->instance, $this );
 	}
 
 
@@ -239,10 +224,6 @@ class Advanced_Sidebar_Menu_Menus_Category extends Advanced_Sidebar_Menu_Menus_A
 		if ( is_single() ) {
 			if ( $this->checked( self::DISPLAY_ON_SINGLE ) ) {
 				$display = true;
-			}
-			if ( has_filter( 'advanced_sidebar_menu_proper_single' ) ) {
-				_deprecated_hook( 'advanced_sidebar_menu_proper_single', '7.0.0', 'advanced-sidebar-menu/menus/category/is-displayed' );
-				$display = ! apply_filters( 'advanced_sidebar_menu_proper_single', ! $display, $this->args, $this->instance, $this );
 			}
 		} elseif ( $this->is_tax() ) {
 			$display = true;
@@ -363,12 +344,7 @@ class Advanced_Sidebar_Menu_Menus_Category extends Advanced_Sidebar_Menu_Menus_A
 	 * @return array
 	 */
 	public function add_has_children_category_class( $classes, $category ) {
-		$children = get_terms( $category->taxonomy, array(
-			'parent'     => $category->term_id,
-			'hide_empty' => false,
-			'number'     => 1,
-		) );
-		if ( ! empty( $children ) ) {
+		if ( $this->has_children( $category ) ) {
 			$classes[] = 'has_children';
 		}
 
@@ -409,18 +385,10 @@ class Advanced_Sidebar_Menu_Menus_Category extends Advanced_Sidebar_Menu_Menus_A
 	public function is_current_term_ancestor( WP_Term $term ) {
 		$return = false;
 		if ( (int) $term->term_id === (int) $this->top_level_term->term_id || in_array( $term->term_id, $this->ancestors, false ) ) {
-			$all_children = get_terms( $this->get_taxonomy(), array(
-				'child_of' => $term->term_id,
-				'fields'   => 'ids',
-			) );
-			if ( ! empty( $all_children ) ) {
+			$children = get_term_children( $term->term_id, $this->get_taxonomy() );
+			if ( ! empty( $children) ) {
 				$return = true;
 			}
-		}
-
-		if ( has_filter( 'advanced_sidebar_menu_second_level_category' ) ) {
-			_deprecated_hook( 'advanced_sidebar_menu_second_level_category', '7.0.0', 'advanced-sidebar-menu/menus/category/is-current-term-ancestor' );
-			$return = apply_filters( 'advanced_sidebar_menu_second_level_category', $return, $term, $this );
 		}
 
 		return apply_filters( 'advanced-sidebar-menu/menus/category/is-current-term-ancestor', $return, $term, $this );
@@ -461,14 +429,12 @@ class Advanced_Sidebar_Menu_Menus_Category extends Advanced_Sidebar_Menu_Menus_A
 
 		foreach ( $this->get_top_level_terms() as $_cat ) {
 			$this->set_current_top_level_term( $_cat );
-			//@deprecated 7.0.0 variable name
-			$all_categories = $this->get_child_terms();
-			if ( ! $this->is_term_displayed( $all_categories ) ) {
+			if ( ! $this->is_term_displayed( $this->get_child_terms() ) ) {
 				continue;
 			}
 
 			if ( ! $menu_open || ( 'widget' === $this->instance[ self::EACH_CATEGORY_DISPLAY ] ) ) {
-				//Start the menu
+				//phpcs:disable
 				echo $this->args['before_widget'];
 
 				do_action( 'advanced-sidebar-menu/menus/category/render', $this );
@@ -501,31 +467,10 @@ class Advanced_Sidebar_Menu_Menus_Category extends Advanced_Sidebar_Menu_Menus_A
 			echo $this->args['after_widget'];
 		}
 
-	}
-
-
-	/**
-	 * @deprecated
-	 *
-	 */
-	public function first_level_category( WP_Term $term ) {
-		_deprecated_function( 'Advanced_Sidebar_Menu_Menus_Category::first_level_category', '7.0.0', 'Advanced_Sidebar_Menu_Menus_Category::is_first_level_term' );
-
-		return $this->is_first_level_term( $term );
-	}
-
-
-	/**
-	 * @deprecated
-	 */
-	public function second_level_cat( WP_Term $term ) {
-		_deprecated_function( 'Advanced_Sidebar_Menu_Menus_Category::second_level_cat', '7.0.0', 'Advanced_Sidebar_Menu_Menus_Category::is_current_term_ancestor' );
-
-		$return = ( $this->is_current_term_ancestor( $term ) && $this->has_children( $term ) );
-
-		return apply_filters( 'advanced_sidebar_menu_second_level_category', $return, $term, $this );
+		//phpcs:enable
 
 	}
+
 
 	/******************** static ****************************/
 
