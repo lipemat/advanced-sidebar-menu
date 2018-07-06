@@ -242,12 +242,12 @@ class Advanced_Sidebar_Menu_Menus_Category extends Advanced_Sidebar_Menu_Menus_A
 	 * 4. If children empty and the top parent is excluded we don't display
 	 *
 	 *
-	 * @param array $child_terms
+	 * @param \WP_Term $term
 	 *
 	 * @return bool
 	 */
-	public function is_term_displayed( array $child_terms ) {
-		if ( empty( $child_terms ) ) {
+	public function is_term_displayed( $term ) {
+		if ( ! $this->has_children( $term ) ) {
 			if ( ! $this->checked( self::INCLUDE_PARENT ) || ! $this->checked( self::INCLUDE_CHILDLESS_PARENT ) ) {
 				return false;
 			}
@@ -429,7 +429,7 @@ class Advanced_Sidebar_Menu_Menus_Category extends Advanced_Sidebar_Menu_Menus_A
 
 		foreach ( $this->get_top_level_terms() as $_cat ) {
 			$this->set_current_top_level_term( $_cat );
-			if ( ! $this->is_term_displayed( $this->get_child_terms() ) ) {
+			if ( ! $this->is_term_displayed( $_cat ) ) {
 				continue;
 			}
 
