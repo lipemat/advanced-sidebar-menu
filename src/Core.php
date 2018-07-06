@@ -49,7 +49,10 @@ class Advanced_Sidebar_Menu_Core {
 	public function get_template_part( $file_name ) {
 		$file = locate_template( 'advanced-sidebar-menu/' . $file_name );
 		if ( empty( $file ) ) {
+			?><!-- asm/core-template --><?php
 			$file = ADVANCED_SIDEBAR_DIR . 'views/' . $file_name;
+		} else {
+			?><!-- asm/template-override --><?php
 		}
 
 		$file = apply_filters( 'advanced_sidebar_menu_template_part', $file, $file_name, $this );
