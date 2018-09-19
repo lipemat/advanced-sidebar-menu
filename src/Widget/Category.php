@@ -53,43 +53,54 @@ class Advanced_Sidebar_Menu_Widget_Category extends Advanced_Sidebar_Menu__Widge
 		}
 	}
 
-
+	/**
+	 * @notice Anything using the column actions must use the $widget class passed
+	 *         via do_action instead of $this
+	 *
+	 * @return void
+	 */
 	protected function hook() {
-		add_action( 'advanced-sidebar-menu/widget/category/left-column', array( $this, 'box_display' ), 5, 1 );
-		add_action( 'advanced-sidebar-menu/widget/category/left-column', array( $this, 'box_styles' ), 10, 1 );
-		add_action( 'advanced-sidebar-menu/widget/category/left-column', array( $this, 'box_singles' ), 15, 1 );
-		add_action( 'advanced-sidebar-menu/widget/category/left-column', array( $this, 'box_exclude' ), 20, 1 );
+		add_action( 'advanced-sidebar-menu/widget/category/left-column', array( $this, 'box_display' ), 5, 2 );
+		add_action( 'advanced-sidebar-menu/widget/category/left-column', array( $this, 'box_styles' ), 10, 2 );
+		add_action( 'advanced-sidebar-menu/widget/category/left-column', array( $this, 'box_singles' ), 15, 2 );
+		add_action( 'advanced-sidebar-menu/widget/category/left-column', array( $this, 'box_exclude' ), 20, 2 );
 
 	}
 
-
-	public function box_display( array $instance ) {
+	/**
+	 *
+	 * @param array                                  $instance
+	 * @param \Advanced_Sidebar_Menu__Widget__Widget $widget
+	 *
+	 * @return void
+	 */
+	public function box_display( array $instance, $widget ) {
 		?>
 		<div class="advanced-sidebar-menu-column-box">
 			<p>
-				<?php $this->checkbox( self::INCLUDE_PARENT ); ?>
+				<?php $widget->checkbox( self::INCLUDE_PARENT ); ?>
 				<label>
 					<?php esc_html_e( 'Display highest level parent category', 'advanced-sidebar-menu' ); ?>
 				</label>
 			</p>
 			<p>
-				<?php $this->checkbox( self::INCLUDE_CHILDLESS_PARENT ); ?>
+				<?php $widget->checkbox( self::INCLUDE_CHILDLESS_PARENT ); ?>
 				<label>
 					<?php esc_html_e( 'Display menu when there is only the parent category', 'advanced-sidebar-menu' ); ?>
 				</label>
 			</p>
 			<p>
-				<?php $this->checkbox( self::DISPLAY_ALL, self::LEVELS ); ?>
+				<?php $widget->checkbox( self::DISPLAY_ALL, self::LEVELS ); ?>
 				<label>
 					<?php esc_html_e( 'Always display child categories', 'advanced-sidebar-menu' ); ?>
 				</label>
 			</p>
-			<div <?php $this->hide_element( self::DISPLAY_ALL, self::LEVELS ); ?>>
+			<div <?php $widget->hide_element( self::DISPLAY_ALL, self::LEVELS ); ?>>
 				<p>
 					<label>
 						<?php esc_html_e( 'Levels to display', 'advanced-sidebar-menu' ); ?>:</label>
 					<select
-						name="<?php echo esc_attr( $this->get_field_name( self::LEVELS ) ); ?>">
+						name="<?php echo esc_attr( $widget->get_field_name( self::LEVELS ) ); ?>">
 						<?php
 						for ( $i = 1; $i < 6; $i ++ ) {
 							?>
@@ -105,46 +116,58 @@ class Advanced_Sidebar_Menu_Widget_Category extends Advanced_Sidebar_Menu__Widge
 				</p>
 			</div>
 
-			<?php do_action( 'advanced-sidebar-menu/widget/category/display-box', $instance, $this ); ?>
+			<?php do_action( 'advanced-sidebar-menu/widget/category/display-box', $instance, $widget ); ?>
 
 		</div>
 		<?php
 	}
 
-
-	public function box_styles( array $instance ) {
+	/**
+	 *
+	 * @param array                                  $instance
+	 * @param \Advanced_Sidebar_Menu__Widget__Widget $widget
+	 *
+	 * @return void
+	 */
+	public function box_styles( array $instance, $widget ) {
 		?>
 		<div class="advanced-sidebar-menu-column-box">
 			<p>
-				<?php $this->checkbox( self::USE_PLUGIN_STYLES ); ?>
+				<?php $widget->checkbox( self::USE_PLUGIN_STYLES ); ?>
 				<label>
 					<?php esc_html_e( "Use this plugin's default styling", 'advanced-sidebar-menu' ); ?>
 				</label>
 			</p>
 
-			<?php do_action( 'advanced-sidebar-menu/widget/category/styles-box', $instance, $this ); ?>
+			<?php do_action( 'advanced-sidebar-menu/widget/category/styles-box', $instance, $widget ); ?>
 		</div>
 		<?php
 	}
 
-
-	public function box_singles( array $instance ) {
+	/**
+	 *
+	 * @param array                                  $instance
+	 * @param \Advanced_Sidebar_Menu__Widget__Widget $widget
+	 *
+	 * @return void
+	 */
+	public function box_singles( array $instance, $widget ) {
 		?>
 		<div class="advanced-sidebar-menu-column-box">
 			<p>
 
-				<?php $this->checkbox( self::DISPLAY_ON_SINGLE, self::EACH_CATEGORY_DISPLAY ); ?>
+				<?php $widget->checkbox( self::DISPLAY_ON_SINGLE, self::EACH_CATEGORY_DISPLAY ); ?>
 				<label>
 					<?php esc_html_e( 'Display categories on single posts', 'advanced-sidebar-menu' ); ?>
 				</label>
 			</p>
 
-			<div <?php $this->hide_element( self::DISPLAY_ON_SINGLE, self::EACH_CATEGORY_DISPLAY ); ?>>
+			<div <?php $widget->hide_element( self::DISPLAY_ON_SINGLE, self::EACH_CATEGORY_DISPLAY ); ?>>
 				<p>
 					<label><?php esc_html_e( "Display each single post's category", 'advanced-sidebar-menu' ); ?>
 						:</label>
 					<select
-						name="<?php echo esc_attr( $this->get_field_name( self::EACH_CATEGORY_DISPLAY ) ); ?>">
+						name="<?php echo esc_attr( $widget->get_field_name( self::EACH_CATEGORY_DISPLAY ) ); ?>">
 						<option
 							value="widget" <?php selected( 'widget', $instance[ self::EACH_CATEGORY_DISPLAY ] ); ?>>
 							<?php esc_html_e( 'In a new widget', 'advanced-sidebar-menu' ); ?>
@@ -156,14 +179,20 @@ class Advanced_Sidebar_Menu_Widget_Category extends Advanced_Sidebar_Menu__Widge
 				</p>
 			</div>
 
-			<?php do_action( 'advanced-sidebar-menu/widget/category/singles-box', $instance, $this ); ?>
+			<?php do_action( 'advanced-sidebar-menu/widget/category/singles-box', $instance, $widget ); ?>
 
 		</div>
 		<?php
 	}
 
-
-	public function box_exclude( array $instance ) {
+	/**
+	 *
+	 * @param array                                  $instance
+	 * @param \Advanced_Sidebar_Menu__Widget__Widget $widget
+	 *
+	 * @return void
+	 */
+	public function box_exclude( array $instance, $widget ) {
 		?>
 		<div class="advanced-sidebar-menu-column-box">
 			<p>
@@ -171,15 +200,15 @@ class Advanced_Sidebar_Menu_Widget_Category extends Advanced_Sidebar_Menu__Widge
 					<?php esc_html_e( 'Categories to exclude (ids), comma separated', 'advanced-sidebar-menu' ); ?>:
 				</label>
 				<input
-					id="<?php echo esc_attr( $this->get_field_id( self::EXCLUDE ) ); ?>"
-					name="<?php echo esc_attr( $this->get_field_name( self::EXCLUDE ) ); ?>"
+					id="<?php echo esc_attr( $widget->get_field_id( self::EXCLUDE ) ); ?>"
+					name="<?php echo esc_attr( $widget->get_field_name( self::EXCLUDE ) ); ?>"
 					type="text"
 					class="widefat"
 					value="<?php echo esc_attr( $instance[ self::EXCLUDE ] ); ?>"/>
 			</p>
 
 			<?php
-			do_action( 'advanced-sidebar-menu/widget/category/exclude-box', $instance, $this );
+			do_action( 'advanced-sidebar-menu/widget/category/exclude-box', $instance, $widget );
 			?>
 		</div>
 		<?php
