@@ -15,7 +15,7 @@ abstract class Advanced_Sidebar_Menu__Widget__Widget extends WP_Widget {
 	/**
 	 * Store the instance to this class.
 	 * We do this manually because there are filters etc which
-	 * hit the instance before we get in in self::form() and self::widget()
+	 * hit the instance before we get to self::form() and self::widget()
 	 *
 	 * @see   WP_Widget::form_callback()
 	 *
