@@ -6,7 +6,7 @@ Tags: menus, sidebar menu, hierarchy, category menu, pages menu
 Requires at least: 4.6.0
 Tested up to: 4.9.8
 Requires PHP: 5.2.4
-Stable tag: 7.3.1
+Stable tag: 7.4.0
 
 == Description ==
 
@@ -149,6 +149,9 @@ Yes. Based on whatever page, post, or category you are on, the menu will change 
 
 
 == Changelog ==
+= 7.4.0 =
+* Added support for Beaver Builder
+
 = 7.3.0 =
 * Greatly improve category widget performance
 
@@ -225,6 +228,9 @@ Yes. Based on whatever page, post, or category you are on, the menu will change 
 
 
 == Upgrade Notice ==
+= 7.4.0 =
+Update to support PRO version 3.4.0
+
 = 7.2.2 =
 Update to support PRO version 3.2.0
 
