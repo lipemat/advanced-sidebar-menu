@@ -210,7 +210,7 @@ class Advanced_Sidebar_Menu_Widget_Page extends Advanced_Sidebar_Menu__Widget__W
 				type="text"
 				value="<?php echo esc_attr( $instance[ self::TITLE ] ); ?>"/>
 		</p>
-		<div class="advanced-sidebar-menu-column">
+		<div class="advanced-sidebar-menu-column advanced-sidebar-menu-column-left">
 			<?php
 			do_action( 'advanced-sidebar-menu/widget/page/left-column', $instance, $this );
 			if ( has_action( 'advanced_sidebar_menu_page_widget_form' ) ) {
@@ -246,7 +246,9 @@ class Advanced_Sidebar_Menu_Widget_Page extends Advanced_Sidebar_Menu__Widget__W
 	 * @return array|mixed
 	 */
 	public function update( $new_instance, $old_instance ) {
-		$new_instance['exclude'] = strip_tags( $new_instance['exclude'] );
+		if ( isset( $new_instance['exclude'] ) ) {
+			$new_instance['exclude'] = wp_strip_all_tags( $new_instance['exclude'] );
+		}
 
 		return apply_filters( 'advanced_sidebar_menu_page_widget_update', $new_instance, $old_instance );
 	}
