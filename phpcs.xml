@@ -21,6 +21,8 @@
     <rule ref="PHPCompatibility"/>
 
 	<rule ref="WordPress">
+		<exclude name="PEAR.NamingConventions.ValidClassName.Invalid" />
+		<exclude name="Squiz.Commenting.FileComment.Missing" />
 		<exclude name="WordPress.Files.FileName.InvalidClassFileName" />
 		<exclude name="WordPress.Files.FileName.NotHyphenatedLowercase" />
 		<exclude name="WordPress.Arrays.MultipleStatementAlignment.LongIndexSpaceBeforeDoubleArrow" />
