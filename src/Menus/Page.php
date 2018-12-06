@@ -94,10 +94,13 @@ class Advanced_Sidebar_Menu_Menus_Page extends Advanced_Sidebar_Menu_Menus_Abstr
 			}
 		}
 
-		if ( has_filter( 'advanced_sidebar_menu_proper_single' ) ) {
-			_deprecated_hook( 'advanced_sidebar_menu_proper_single', '7.0.0', 'advanced-sidebar-menu/menus/page/is-displayed' );
-			$display = ! apply_filters( 'advanced_sidebar_menu_proper_single', ! $display, $this->args, $this->instance, $this );
-		}
+		$display = ! apply_filters_deprecated( 'advanced_sidebar_menu_proper_single', array(
+			! $display,
+			$this->args,
+			$this->instance,
+			$this,
+		), '7.0.0', 'advanced-sidebar-menu/menus/page/is-displayed' );
+
 
 		return apply_filters( 'advanced-sidebar-menu/menus/page/is-displayed', $display, $this->args, $this->instance, $this );
 
