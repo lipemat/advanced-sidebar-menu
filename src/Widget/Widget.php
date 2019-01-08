@@ -55,27 +55,27 @@ abstract class Advanced_Sidebar_Menu__Widget__Widget extends WP_Widget {
 
 
 	/**
-	 * Hide an reveal_element if a checkbox is checked.
+	 * Hide an element_key if a controlling_checkbox is checked.
 	 *
-	 * @param string $checkbox       - name of checkbox reveal_element which controls this one.
-	 * @param string $reveal_element - match the reveal element passed to checkbox which reveals this.
-	 * @param bool   $reverse        - hide on check instead of show on check.
+	 * @param string $controlling_checkbox - Name of controlling_checkbox field which controls whether to hide this element or not.
+	 * @param string $element_key          - Match the `element_to_reveal` passed to $this->checkbox() for the checkbox which controls this.
+	 * @param bool   $reverse              - hide on check instead of show on check.
 	 *
-	 * @todo  Convert all uses of this method to supply the $reveal_element
+	 * @todo  Convert all uses of this method to supply the $element_key
 	 *
 	 * @since 7.2.0
-	 * @since 7.2.2 Added the `reveal_element` argument.
+	 * @since 7.2.2 Added the `element_key` argument.
 	 *
 	 * @return void
 	 */
-	public function hide_element( $checkbox, $reveal_element = null, $reverse = false ) {
+	public function hide_element( $controlling_checkbox, $element_key = null, $reverse = false ) {
 		$hide = false;
-		if ( ( $reverse && $this->checked( $checkbox ) ) || ( ! $reverse && ! $this->checked( $checkbox ) ) ) {
+		if ( ( $reverse && $this->checked( $controlling_checkbox ) ) || ( ! $reverse && ! $this->checked( $controlling_checkbox ) ) ) {
 			$hide = true;
 		}
 
-		if ( null !== $reveal_element ) {
-			?> data-js="<?php echo esc_attr( $this->get_field_id( $reveal_element ) ); ?>"
+		if ( null !== $element_key ) {
+			?> data-js="<?php echo esc_attr( $this->get_field_id( $element_key ) ); ?>"
 			<?php
 		}
 		// Append the hide to a global variable so it can be picked up only if the advanced-sidebar-menu JS is present.
