@@ -8,17 +8,16 @@
  *
  * @author Mat Lipe
  * @since  7.0.0
- *
  */
 class Advanced_Sidebar_Menu_Widget_Page extends Advanced_Sidebar_Menu__Widget__Widget {
-	const TITLE = Advanced_Sidebar_Menu_Menus_Abstract::TITLE;
-	const INCLUDE_PARENT = Advanced_Sidebar_Menu_Menus_Abstract::INCLUDE_PARENT;
+	const TITLE                    = Advanced_Sidebar_Menu_Menus_Abstract::TITLE;
+	const INCLUDE_PARENT           = Advanced_Sidebar_Menu_Menus_Abstract::INCLUDE_PARENT;
 	const INCLUDE_CHILDLESS_PARENT = Advanced_Sidebar_Menu_Menus_Abstract::INCLUDE_CHILDLESS_PARENT;
-	const ORDER_BY = Advanced_Sidebar_Menu_Menus_Abstract::ORDER_BY;
-	const USE_PLUGIN_STYLES = Advanced_Sidebar_Menu_Menus_Abstract::USE_PLUGIN_STYLES;
-	const EXCLUDE = Advanced_Sidebar_Menu_Menus_Abstract::EXCLUDE;
-	const DISPLAY_ALL = Advanced_Sidebar_Menu_Menus_Abstract::DISPLAY_ALL;
-	const LEVELS = Advanced_Sidebar_Menu_Menus_Abstract::LEVELS;
+	const ORDER_BY                 = Advanced_Sidebar_Menu_Menus_Abstract::ORDER_BY;
+	const USE_PLUGIN_STYLES        = Advanced_Sidebar_Menu_Menus_Abstract::USE_PLUGIN_STYLES;
+	const EXCLUDE                  = Advanced_Sidebar_Menu_Menus_Abstract::EXCLUDE;
+	const DISPLAY_ALL              = Advanced_Sidebar_Menu_Menus_Abstract::DISPLAY_ALL;
+	const LEVELS                   = Advanced_Sidebar_Menu_Menus_Abstract::LEVELS;
 
 	protected static $defaults = array(
 		self::TITLE                    => false,
@@ -99,9 +98,7 @@ class Advanced_Sidebar_Menu_Widget_Page extends Advanced_Sidebar_Menu__Widget__W
 				</label>
 			</p>
 
-			<div
-				data-js="<?php echo esc_attr( $widget->get_field_id( self::LEVELS ) ); ?>"
-				<?php $widget->hide_element( self::DISPLAY_ALL, self::LEVELS ); ?>>
+			<div <?php $widget->hide_element( self::DISPLAY_ALL, self::LEVELS ); ?>>
 				<p>
 					<label>
 						<?php esc_html_e( 'Levels to display', 'advanced-sidebar-menu' ); ?>:</label>
@@ -168,11 +165,14 @@ class Advanced_Sidebar_Menu_Widget_Page extends Advanced_Sidebar_Menu__Widget__W
 					id="<?php echo esc_attr( $widget->get_field_id( self::ORDER_BY ) ); ?>"
 					name="<?php echo esc_attr( $widget->get_field_name( self::ORDER_BY ) ); ?>">
 					<?php
-					$order_by = (array) apply_filters( 'advanced-sidebar-menu/widget/page/order-by-options', array(
-						'menu_order' => 'Page Order',
-						'post_title' => 'Title',
-						'post_date'  => 'Published Date',
-					) );
+					$order_by = (array) apply_filters(
+						'advanced-sidebar-menu/widget/page/order-by-options',
+						array(
+							'menu_order' => 'Page Order',
+							'post_title' => 'Title',
+							'post_date'  => 'Published Date',
+						)
+					);
 
 					foreach ( $order_by as $key => $order ) {
 						printf( '<option value="%s" %s>%s</option>', esc_attr( $key ), selected( $instance[ self::ORDER_BY ], $key, false ), esc_html( $order ) );
@@ -255,7 +255,7 @@ class Advanced_Sidebar_Menu_Widget_Page extends Advanced_Sidebar_Menu__Widget__W
 		<div class="advanced-sidebar-menu-column advanced-sidebar-menu-column-right">
 			<?php
 
-			//@deprecated action
+			// @deprecated action
 			do_action( 'advanced_sidebar_menu_after_widget_form', $instance, $this );
 
 			do_action( 'advanced-sidebar-menu/widget/page/right-column', $instance, $this );
