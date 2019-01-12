@@ -4,7 +4,7 @@
  * Plugin URI: https://matlipe.com/advanced-sidebar-menu/
  * Description: Creates dynamic menus based on parent/child relationship of your pages or categories.
  * Author: Mat Lipe
- * Version: 7.4.4
+ * Version: 7.4.5
  * Author URI: https://matlipe.com
  * Text Domain: advanced-sidebar-menu
  *
@@ -15,7 +15,7 @@ if ( defined( 'ADVANCED_SIDEBAR_BASIC_VERSION' ) ) {
 	return;
 }
 
-define( 'ADVANCED_SIDEBAR_BASIC_VERSION', '7.4.4' );
+define( 'ADVANCED_SIDEBAR_BASIC_VERSION', '7.4.5' );
 define( 'ADVANCED_SIDEBAR_DIR', plugin_dir_path( __FILE__ ) );
 
 if ( ! function_exists( 'advanced_sidebar_menu_load' ) ) {
@@ -80,8 +80,12 @@ function advanced_sidebar_menu_translate() {
 }
 
 add_action( 'admin_print_scripts', 'advanced_sidebar_menu_script' );
+// UGH! Beaver Builder hack.
+if ( isset( $_GET['fl_builder'] ) ) {
+	add_action( 'wp_enqueue_scripts', 'advanced_sidebar_menu_script' );
+}
 /**
- * Add js and css to the admin
+ * Add js and css to the admin and in specific cases the front-end.
  *
  * @return void
  */
@@ -98,9 +102,36 @@ function advanced_sidebar_menu_script() {
 		apply_filters( 'asm_style', 'advanced-sidebar-menu-style' ),
 		plugins_url( 'resources/css/advanced-sidebar-menu.css', __FILE__ ),
 		array(),
-		ADVANCED_SIDEBAR_BASIC_VERSION,
-		false
+		ADVANCED_SIDEBAR_BASIC_VERSION
 	);
+}
+
+add_action( 'advanced-sidebar-menu/widget/category/after-form', 'advanced_sidebar_menu_init_widget_js', 1000 );
+add_action( 'advanced-sidebar-menu/widget/page/after-form', 'advanced_sidebar_menu_init_widget_js', 1000 );
+add_action( 'advanced-sidebar-menu/widget/navigation-menu/after-form', 'advanced_sidebar_menu_init_widget_js', 1000 );
+
+/**
+ * Trigger any JS needed by the widgets.
+ * This is outputted into the markup for each widget so it may be
+ * trigger whether the widget is loaded on the front-end by
+ * page builders or the backend by standard WordPress or
+ * really anywhere.
+ *
+ * @return void
+ */
+function advanced_sidebar_menu_init_widget_js() {
+	if ( WP_DEBUG ) {
+		?>
+		<!-- <?php echo __FILE__; ?>-->
+		<?php
+	}
+	?>
+	<script>
+		if (typeof (advanced_sidebar_menu) !== 'undefined') {
+			advanced_sidebar_menu.init()
+		}
+	</script>
+	<?php
 }
 
 
@@ -153,8 +184,7 @@ function advanced_sidebar_menu_upgrade_notice( array $instance, WP_Widget $widge
 				<?php
 			}
 			?>
-			<li><?php esc_html_e( 'Ability to display the widgets everywhere the sidebar displays.', 'advanced-sidebar-menu' ); ?>
-				<strong> NEW</strong></li>
+			<li><?php esc_html_e( 'Ability to display the widgets everywhere the sidebar displays.', 'advanced-sidebar-menu' ); ?></li>
 			<li><?php esc_html_e( 'Support for custom navigation menus from Appearance -> Menus.', 'advanced-sidebar-menu' ); ?></li>
 		</ol>
 		<p>
