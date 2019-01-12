@@ -242,13 +242,13 @@ class Advanced_Sidebar_Menu_Widget_Category extends Advanced_Sidebar_Menu__Widge
 		</p>
 
 		<div class="advanced-sidebar-menu-column">
-			<?php do_action( 'advanced-sidebar-menu/widget/category/left-column', $instance, $this );
+			<?php
+			do_action( 'advanced-sidebar-menu/widget/category/left-column', $instance, $this );
 
 			if ( has_action( 'advanced_sidebar_menu_category_widget_form' ) ) {
 				?>
 				<div class="advanced-sidebar-menu-column-box">
-					<?php
-					do_action( 'advanced_sidebar_menu_category_widget_form', $instance, $this ); ?>
+					<?php do_action( 'advanced_sidebar_menu_category_widget_form', $instance, $this ); ?>
 				</div>
 				<?php
 			}
@@ -259,7 +259,7 @@ class Advanced_Sidebar_Menu_Widget_Category extends Advanced_Sidebar_Menu__Widge
 		<div class="advanced-sidebar-menu-column advanced-sidebar-menu-column-right">
 			<?php
 			do_action( 'advanced-sidebar-menu/widget/category/right-column', $instance, $this );
-			//@deprecated action
+			// @deprecated action.
 			do_action( 'advanced_sidebar_menu_after_widget_form', $instance, $this );
 			?>
 		</div>
