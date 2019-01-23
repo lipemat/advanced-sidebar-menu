@@ -61,7 +61,7 @@ var advanced_sidebar_menu = {
 	 */
 	show_hide_elements: function () {
 		jQuery('[data-advanced-sidebar-menu-hide]').each(function () {
-			var el = $(this);
+			var el = jQuery(this);
 			if (el.data('advanced-sidebar-menu-hide')) {
 				el.hide();
 			} else {
