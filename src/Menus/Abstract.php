@@ -76,7 +76,7 @@ abstract class Advanced_Sidebar_Menu_Menus_Abstract {
 
 
 	public function __construct( array $widget_instance, array $widget_args ) {
-		$this->instance = $widget_instance;
+		$this->instance = apply_filters( 'advanced-sidebar-menu/menus/widget-instance', $widget_instance, $widget_args, $this );
 		$this->args     = $widget_args;
 	}
 
