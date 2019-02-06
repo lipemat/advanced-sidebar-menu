@@ -6,7 +6,7 @@ Tags: menus, sidebar menu, hierarchy, category menu, pages menu
 Requires at least: 4.7.0
 Tested up to: 5.0.3
 Requires PHP: 5.2.4
-Stable tag: 7.4.6
+Stable tag: 7.4.7
 
 == Description ==
 
@@ -16,7 +16,7 @@ Keeps the menu clean and usable. Only related items display so you don't have to
 
 <strong>Check out <a href="https://matlipe.com/product/advanced-sidebar-menu-pro/">Advanced Sidebar Menu Pro</a> for more features including priority support, the ability to customize the look and feel, custom link text, excluding of pages, category ordering, accordions, custom post types, custom taxonomies, and so much more!</strong>
 
-<blockquote><a href="https://matlipe.com/product/advanced-sidebar-menu-pro/" target="_blank">Pro version 3.4.0</a> is now available with support for Beaver Builder!</blockquote>
+<blockquote><a href="https://matlipe.com/product/advanced-sidebar-menu-pro/" target="_blank">Pro version 3.5.0</a> is now available with support for displaying posts under categories on any level!</blockquote>
 
 <h4>Features</h4>
 * Page and Category widgets.
@@ -71,12 +71,13 @@ Keeps the menu clean and usable. Only related items display so you don't have to
 * Ability to select and display custom taxonomies.
 * Optionally display the current page's parents, grandparents, and children only.
 * Optionally display child page siblings when on a child page. With our without grandchildren available. .
-* Ability to display the widgets everywhere the sidebar displays. **NEW**
-* Ability to select the parent page/category when using the display widget everywhere option. **NEW**
+* Ability to display the widgets everywhere the sidebar displays.
+* Ability to select the parent page/category when using the display widget everywhere option.
 * Ability to display assigned posts or custom post types under categories. **NEW**
-* Ability to limit the number of posts or custom post types to display under categories. **NEW**
-* Support for custom navigation menus from Appearance -> Menus. **NEW**
-* Ability to display the current Navigation Menu's items parents and children only. **NEW**
+* Ability to select which levels of categories assigned posts should display under. **NEW**
+* Ability to limit the number of posts or custom post types to display under categories. 
+* Support for custom navigation menus from Appearance -> Menus. 
+* Ability to display the current Navigation Menu's items parents and children only. 
 * Optionally display the top level Navigation Menu's items when there are no child items or not viewing a menu item.  **NEW**
 * Access to members only support area.
 
@@ -228,6 +229,9 @@ Yes. Based on whatever page, post, or category you are on, the menu will change 
 
 
 == Upgrade Notice ==
+= 7.4.7 =
+Update to support PRO version 3.5.0
+
 = 7.4.2 =
 Update to support PRO version 3.4.3
 
