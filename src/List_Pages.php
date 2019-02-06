@@ -16,7 +16,6 @@
  * @author  Mat Lipe <mat@matlipe.com>
  *
  * @since   5.0.0
- *
  */
 class Advanced_Sidebar_Menu_List_Pages {
 
@@ -123,7 +122,6 @@ class Advanced_Sidebar_Menu_List_Pages {
 	/**
 	 * Add the custom classes to the list items
 	 *
-	 *
 	 * @param array    $classes
 	 * @param \WP_Post $post
 	 *
@@ -139,7 +137,7 @@ class Advanced_Sidebar_Menu_List_Pages {
 			$classes[] = 'has_children';
 		}
 
-		//page posts are handled by wp core. This is for custom post types
+		// page posts are handled by wp core. This is for custom post types
 		if ( 'page' !== $post->post_type ) {
 			$ancestors = get_post_ancestors( $post );
 			if ( ! empty( $ancestors ) && in_array( $this->current_page->ID, $ancestors, false ) ) {
@@ -167,10 +165,10 @@ class Advanced_Sidebar_Menu_List_Pages {
 		}
 		$args = $this->args;
 		switch ( $level ) {
-			case 'parent':
+			case Advanced_Sidebar_Menu_Menus_Page::LEVEL_PARENT:
 				$args['include'] = $this->menu->get_top_parent_id();
 				break;
-			case 'display-all':
+			case Advanced_Sidebar_Menu_Menus_Page::LEVEL_DISPLAY_ALL:
 				$args['child_of']    = $this->menu->get_top_parent_id();
 				$args['depth']       = $this->menu->get_levels_to_display();
 				$args['sort_column'] = $this->menu->get_order_by();
@@ -232,7 +230,7 @@ class Advanced_Sidebar_Menu_List_Pages {
 		if ( is_string( $args['exclude'] ) ) {
 			$args['exclude'] = explode( ',', $args['exclude'] );
 		}
-		//sanitize, mostly to keep spaces out
+		// sanitize, mostly to keep spaces out
 		$args['exclude'] = preg_replace( '/[^0-9,]/', '', implode( ',', apply_filters( 'wp_list_pages_excludes', $args['exclude'] ) ) );
 
 		return apply_filters( 'advanced_sidebar_menu_list_pages_args', $args, $this );
@@ -313,7 +311,7 @@ class Advanced_Sidebar_Menu_List_Pages {
 	 * @return WP_Post[]
 	 */
 	public function get_child_pages( $parent_page_id, $is_first_level = false ) {
-		//holds a unique key so Cache can distinguish calls
+		// holds a unique key so Cache can distinguish calls
 		$this->current_children_parent = $parent_page_id;
 
 		$cache       = Advanced_Sidebar_Menu_Cache::instance();
@@ -332,14 +330,18 @@ class Advanced_Sidebar_Menu_List_Pages {
 
 		// We only filter the first level with this filter for backward pro compatibility.
 		if ( $is_first_level ) {
-			$child_pages = apply_filters_deprecated( 'advanced_sidebar_menu_child_pages', array(
-				$child_pages,
-				$this->current_page,
-				$this->menu->instance,
-				$this->menu->args,
-				$this->menu,
-			), '7.1.0', 'advanced-sidebar-menu/list-pages/first-level-child-pages' );
-
+			$child_pages = apply_filters_deprecated(
+				'advanced_sidebar_menu_child_pages',
+				array(
+					$child_pages,
+					$this->current_page,
+					$this->menu->instance,
+					$this->menu->args,
+					$this->menu,
+				),
+				'7.1.0',
+				'advanced-sidebar-menu/list-pages/first-level-child-pages'
+			);
 
 			$child_pages = apply_filters( 'advanced-sidebar-menu/list-pages/first-level-child-pages', $child_pages, $this, $this->menu );
 		}

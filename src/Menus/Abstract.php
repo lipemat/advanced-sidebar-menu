@@ -8,19 +8,22 @@
  */
 abstract class Advanced_Sidebar_Menu_Menus_Abstract {
 	// keys available in both widgets.
-	const TITLE = 'title';
-	const INCLUDE_PARENT = 'include_parent';
+	const TITLE                    = 'title';
+	const INCLUDE_PARENT           = 'include_parent';
 	const INCLUDE_CHILDLESS_PARENT = 'include_childless_parent';
-	const ORDER = 'order';
-	const ORDER_BY = 'order_by';
-	const USE_PLUGIN_STYLES = 'css';
-	const EXCLUDE = 'exclude';
-	const DISPLAY_ALL = 'display_all';
-	const LEVELS = 'levels';
+	const ORDER                    = 'order';
+	const ORDER_BY                 = 'order_by';
+	const USE_PLUGIN_STYLES        = 'css';
+	const EXCLUDE                  = 'exclude';
+	const DISPLAY_ALL              = 'display_all';
+	const LEVELS                   = 'levels';
+
+	const LEVEL_CHILD       = 'child';
+	const LEVEL_DISPLAY_ALL = 'display-all';
+	const LEVEL_GRANDCHILD  = 'grandchild';
+	const LEVEL_PARENT      = 'parent';
 
 	/**
-	 * args
-	 *
 	 * Widget Args
 	 *
 	 * @var array
@@ -28,8 +31,6 @@ abstract class Advanced_Sidebar_Menu_Menus_Abstract {
 	public $args = array();
 
 	/**
-	 * exclude
-	 *
 	 * @deprecated
 	 *
 	 * @var array
@@ -44,8 +45,6 @@ abstract class Advanced_Sidebar_Menu_Menus_Abstract {
 	public $instance;
 
 	/**
-	 * levels
-	 *
 	 * @deprecated
 	 *
 	 * @var int
@@ -53,8 +52,6 @@ abstract class Advanced_Sidebar_Menu_Menus_Abstract {
 	public $levels = 100;
 
 	/**
-	 * order
-	 *
 	 * @deprecated 7.0.0
 	 *
 	 * @var string
@@ -62,8 +59,6 @@ abstract class Advanced_Sidebar_Menu_Menus_Abstract {
 	public $order = 'ASC';
 
 	/**
-	 * order_by
-	 *
 	 * @deprecated 7.0.0
 	 *
 	 * @var string
@@ -219,7 +214,6 @@ abstract class Advanced_Sidebar_Menu_Menus_Abstract {
 		}
 	}
 
-	/********************* static *******************************/
 
 	/**
 	 *
