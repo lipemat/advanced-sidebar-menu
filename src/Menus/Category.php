@@ -130,7 +130,7 @@ class Advanced_Sidebar_Menu_Menus_Category extends Advanced_Sidebar_Menu_Menus_A
 	 */
 	public function get_levels_to_display() {
 		$depth = 3;
-		if ( $this->checked( self::DISPLAY_ALL ) ) {
+		if ( $this->display_all() ) {
 			$depth = $this->instance[ self::LEVELS ];
 		}
 

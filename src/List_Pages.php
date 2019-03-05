@@ -271,7 +271,7 @@ class Advanced_Sidebar_Menu_List_Pages {
 		if ( $this->level >= (int) $this->args['levels'] ) {
 			return '';
 		}
-		if ( ! $this->menu->checked( Advanced_Sidebar_Menu_Menus_Page::DISPLAY_ALL ) && ! $this->is_current_page_ancestor( $parent_page_id ) ) {
+		if ( ! $this->menu->display_all() && ! $this->is_current_page_ancestor( $parent_page_id ) ) {
 			return '';
 		}
 		$pages = $this->get_child_pages( $parent_page_id );

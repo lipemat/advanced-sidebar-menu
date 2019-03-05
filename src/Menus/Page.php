@@ -130,8 +130,9 @@ class Advanced_Sidebar_Menu_Menus_Page extends Advanced_Sidebar_Menu_Menus_Abstr
 	 */
 	public function get_levels_to_display() {
 		$levels = 100;
-		if ( $this->checked( self::DISPLAY_ALL ) ) {
-			$levels = $this->instance[ self::LEVELS ];
+		if ( $this->display_all() ) {
+			// Subtract 1 level to account for the first level children.
+			$levels = $this->instance[ self::LEVELS ] - 1;
 		}
 		return apply_filters( 'advanced-sidebar-menu/menus/page/levels', $levels, $this->args, $this->instance, $this );
 	}
