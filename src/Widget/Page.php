@@ -98,10 +98,16 @@ class Advanced_Sidebar_Menu_Widget_Page extends Advanced_Sidebar_Menu__Widget__W
 				</label>
 			</p>
 
-			<div <?php $widget->hide_element( self::DISPLAY_ALL, self::LEVELS ); ?>>
+			<div
+				<?php
+				if ( apply_filters( 'advanced-sidebar-menu/widget/page/hide-levels-field', true ) ) {
+					$widget->hide_element( self::DISPLAY_ALL, self::LEVELS );
+				}
+				?>
+			>
 				<p>
 					<label>
-						<?php esc_html_e( 'Levels of child pages to display', 'advanced-sidebar-menu' ); ?>:</label>
+						<?php esc_html_e( 'Maximum level of child pages to display', 'advanced-sidebar-menu' ); ?>:</label>
 					<select
 						name="<?php echo esc_attr( $widget->get_field_name( self::LEVELS ) ); ?>">
 						<option value="100">
