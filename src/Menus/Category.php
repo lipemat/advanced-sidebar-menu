@@ -89,7 +89,7 @@ class Advanced_Sidebar_Menu_Menus_Category extends Advanced_Sidebar_Menu_Menus_A
 				break;
 			case self::LEVEL_GRANDCHILD:
 				$args['child_of'] = $term->term_id;
-				$args['depth']    = $this->get_menu_depth();
+				$args['depth']    = $this->get_levels_to_display();
 				break;
 		}
 
@@ -129,17 +129,21 @@ class Advanced_Sidebar_Menu_Menus_Category extends Advanced_Sidebar_Menu_Menus_A
 	 * @return int
 	 */
 	public function get_levels_to_display() {
-		return apply_filters( 'advanced-sidebar-menu/menus/category/levels', $this->instance[ self::LEVELS ], $this->args, $this->instance, $this );
+		$depth = 3;
+		if ( $this->checked( self::DISPLAY_ALL ) ) {
+			$depth = $this->instance[ self::LEVELS ];
+		}
+
+		return apply_filters( 'advanced-sidebar-menu/menus/category/levels', $depth, $this->args, $this->instance, $this );
 	}
 
 
 	/**
-	 * Gets the number of levels to display when not doing 'Always display'
-	 *
-	 * @return int
+	 * @deprecated
 	 */
 	public function get_menu_depth() {
-		return apply_filters( 'advanced-sidebar-menu/menus/category/depth', 3, $this->args, $this->instance, $this );
+		_deprecated_function( 'get_menu_depth', '7.5.0', 'get_levels_to_display' );
+		return apply_filters( 'advanced-sidebar-menu/menus/category/depth', $this->get_levels_to_display(), $this->args, $this->instance, $this );
 	}
 
 

@@ -4,7 +4,7 @@
  *
  * @author  Mat Lipe
  *
- * @since   7.4.7
+ * @since   7.5.0
  * @package advanced-sidebar-menu
  *
  * @example to edit, create a file named page_list.php and
@@ -30,17 +30,8 @@ if ( $current_menu->include_parent() ) {
 
 if ( ! empty( $child_pages ) ) {
 	$content .= '<ul class="child-sidebar-menu">';
-
-	// Always display child pages.
-	if ( $current_menu->display_all() ) {
-		$list_args = $list_pages->get_args( Advanced_Sidebar_Menu_Menus_Page::LEVEL_DISPLAY_ALL );
-		$content  .= wp_list_pages( $list_args );
-
-	} else {
 		// Child and grandchild pages.
 		$content .= $list_pages->list_pages();
-	}
-
 	$content .= '</ul><!-- End .child-sidebar-menu -->';
 
 }

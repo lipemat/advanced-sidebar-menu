@@ -129,19 +129,20 @@ class Advanced_Sidebar_Menu_Menus_Page extends Advanced_Sidebar_Menu_Menus_Abstr
 	 * @return int
 	 */
 	public function get_levels_to_display() {
-		return apply_filters( 'advanced-sidebar-menu/menus/page/levels', $this->instance[ self::LEVELS ], $this->args, $this->instance, $this );
+		$levels = 100;
+		if ( $this->checked( self::DISPLAY_ALL ) ) {
+			$levels = $this->instance[ self::LEVELS ];
+		}
+		return apply_filters( 'advanced-sidebar-menu/menus/page/levels', $levels, $this->args, $this->instance, $this );
 	}
 
 
 	/**
-	 * Gets the number of levels to display when not doing 'Always display'
-	 *
-	 * @todo convert pro over to this filter
-	 *
-	 * @return int
+	 * @deprecated
 	 */
 	public function get_menu_depth() {
-		return apply_filters( 'advanced-sidebar-menu/menus/page/depth', $this->levels, $this->args, $this->instance, $this );
+		_deprecated_function( 'get_menu_depth', '7.5.0', 'get_levels_to_display' );
+		return apply_filters( 'advanced-sidebar-menu/menus/page/depth', $this->get_levels_to_display(), $this->args, $this->instance, $this );
 	}
 
 

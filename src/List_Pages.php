@@ -99,7 +99,7 @@ class Advanced_Sidebar_Menu_List_Pages {
 			'orderby'   => $menu->get_order_by(),
 			'order'     => $menu->get_order(),
 			'exclude'   => $menu->get_excluded_ids(),
-			'levels'    => $menu->get_menu_depth(),
+			'levels'    => $menu->get_levels_to_display(),
 		);
 
 		$this->args = $this->parse_args( $args );
@@ -155,7 +155,7 @@ class Advanced_Sidebar_Menu_List_Pages {
 	 * Return the list of args that have been populated by this class
 	 * For use with wp_list_pages()
 	 *
-	 * @param string $level - level of menu so we have full control of updates
+	 * @param string $level - level of menu so we have full control of updates.
 	 *
 	 * @return array
 	 */
@@ -202,10 +202,9 @@ class Advanced_Sidebar_Menu_List_Pages {
 
 
 	/**
-	 *
 	 * Do any adjustments to class args here
 	 *
-	 * @param array $args
+	 * @param array $args - Arguments for walk_page_tree.
 	 *
 	 * @return array
 	 */
@@ -230,7 +229,7 @@ class Advanced_Sidebar_Menu_List_Pages {
 		if ( is_string( $args['exclude'] ) ) {
 			$args['exclude'] = explode( ',', $args['exclude'] );
 		}
-		// sanitize, mostly to keep spaces out
+		// sanitize, mostly to keep spaces out.
 		$args['exclude'] = preg_replace( '/[^0-9,]/', '', implode( ',', apply_filters( 'wp_list_pages_excludes', $args['exclude'] ) ) );
 
 		return apply_filters( 'advanced_sidebar_menu_list_pages_args', $args, $this );
@@ -239,9 +238,7 @@ class Advanced_Sidebar_Menu_List_Pages {
 
 
 	/**
-	 * list_pages
-	 *
-	 * List the pages very similar to wp_list_pages
+	 * List the pages very similar to wp_list_pages.
 	 *
 	 * @return string
 	 */
@@ -257,18 +254,16 @@ class Advanced_Sidebar_Menu_List_Pages {
 		if ( ! $this->args['echo'] ) {
 			return $this->output;
 		}
-		// phpcs:disable WordPress.XSS.EscapeOutput.OutputNotEscaped
+		// phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped
 		echo $this->output;
-		// phpcs:enable
 	}
 
 
 	/**
-	 * list_grandchild_pages
+	 * List all levels of grandchild pages up to the limit set in the widget.
+	 * All grandchild pages will be rendered inside `grandchild-sidebar-menu` uls.
 	 *
-	 * List as many levels as exist within the grandchild-sidebar-menu ul
-	 *
-	 * @param int $parent_page_id
+	 * @param int $parent_page_id - Id of the page we are getting the grandchildren of.
 	 *
 	 * @return string
 	 */
@@ -276,7 +271,7 @@ class Advanced_Sidebar_Menu_List_Pages {
 		if ( $this->level >= (int) $this->args['levels'] ) {
 			return '';
 		}
-		if ( ! $this->is_current_page_ancestor( $parent_page_id ) ) {
+		if ( ! $this->menu->checked( Advanced_Sidebar_Menu_Menus_Page::DISPLAY_ALL ) && ! $this->is_current_page_ancestor( $parent_page_id ) ) {
 			return '';
 		}
 		$pages = $this->get_child_pages( $parent_page_id );
@@ -305,13 +300,13 @@ class Advanced_Sidebar_Menu_List_Pages {
 	/**
 	 * Retrieve the child pages of specific page_id
 	 *
-	 * @param int  $parent_page_id
-	 * @param bool $is_first_level
+	 * @param int  $parent_page_id - Page id we are getting children of.
+	 * @param bool $is_first_level - Is this the first level of child pages?.
 	 *
 	 * @return WP_Post[]
 	 */
 	public function get_child_pages( $parent_page_id, $is_first_level = false ) {
-		// holds a unique key so Cache can distinguish calls
+		// holds a unique key so Cache can distinguish calls.
 		$this->current_children_parent = $parent_page_id;
 
 		$cache       = Advanced_Sidebar_Menu_Cache::instance();
@@ -330,19 +325,6 @@ class Advanced_Sidebar_Menu_List_Pages {
 
 		// We only filter the first level with this filter for backward pro compatibility.
 		if ( $is_first_level ) {
-			$child_pages = apply_filters_deprecated(
-				'advanced_sidebar_menu_child_pages',
-				array(
-					$child_pages,
-					$this->current_page,
-					$this->menu->instance,
-					$this->menu->args,
-					$this->menu,
-				),
-				'7.1.0',
-				'advanced-sidebar-menu/list-pages/first-level-child-pages'
-			);
-
 			$child_pages = apply_filters( 'advanced-sidebar-menu/list-pages/first-level-child-pages', $child_pages, $this, $this->menu );
 		}
 

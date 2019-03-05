@@ -101,11 +101,14 @@ class Advanced_Sidebar_Menu_Widget_Page extends Advanced_Sidebar_Menu__Widget__W
 			<div <?php $widget->hide_element( self::DISPLAY_ALL, self::LEVELS ); ?>>
 				<p>
 					<label>
-						<?php esc_html_e( 'Levels to display', 'advanced-sidebar-menu' ); ?>:</label>
+						<?php esc_html_e( 'Levels of child pages to display', 'advanced-sidebar-menu' ); ?>:</label>
 					<select
 						name="<?php echo esc_attr( $widget->get_field_name( self::LEVELS ) ); ?>">
+						<option value="100">
+							<?php esc_html_e( ' - All - ', 'advanced-sidebar-menu' ); ?>
+						</option>
 						<?php
-						for ( $i = 1; $i < 6; $i ++ ) {
+						for ( $i = 1; $i < 10; $i ++ ) {
 							?>
 							<option
 								value="<?php echo esc_attr( $i ); ?>" <?php selected( $i, (int) $instance[ self::LEVELS ] ); ?>>

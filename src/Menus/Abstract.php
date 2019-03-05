@@ -45,13 +45,6 @@ abstract class Advanced_Sidebar_Menu_Menus_Abstract {
 	public $instance;
 
 	/**
-	 * @deprecated
-	 *
-	 * @var int
-	 */
-	public $levels = 100;
-
-	/**
 	 * @deprecated 7.0.0
 	 *
 	 * @var string
@@ -97,9 +90,6 @@ abstract class Advanced_Sidebar_Menu_Menus_Abstract {
 
 
 	abstract public function get_levels_to_display();
-
-
-	abstract public function get_menu_depth();
 
 
 	/**
