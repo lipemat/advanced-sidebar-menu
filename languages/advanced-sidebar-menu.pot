@@ -3,85 +3,94 @@ msgid ""
 msgstr ""
 "Plural-Forms: nplurals=INTEGER; plural=EXPRESSION;\n"
 "Project-Id-Version: Advanced Sidebar Menu\n"
-"POT-Creation-Date: 2018-05-03 12:37-0400\n"
-"PO-Revision-Date: 2018-01-09 07:14-0500\n"
+"POT-Creation-Date: 2019-03-05 12:29-0500\n"
+"PO-Revision-Date: 2019-03-05 12:29-0500\n"
 "Last-Translator: \n"
 "Language-Team: \n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Generator: Poedit 2.0.7\n"
+"X-Generator: Poedit 2.2.1\n"
 "X-Poedit-Basepath: ..\n"
 "X-Poedit-Flags-xgettext: --add-comments=translators:\n"
 "X-Poedit-WPHeader: advanced-sidebar-menu.php\n"
 "X-Poedit-SourceCharset: UTF-8\n"
 "X-Poedit-KeywordsList: __;_e;_n:1,2;_x:1,2c;_ex:1,2c;_nx:4c,1,2;esc_attr__;"
-"esc_attr_e;esc_attr_x:1,2c;esc_html__;esc_html_e;esc_html_x:1,2c;"
-"_n_noop:1,2;_nx_noop:3c,1,2;__ngettext_noop:1,2\n"
+"esc_attr_e;esc_attr_x:1,2c;esc_html__;esc_html_e;esc_html_x:1,2c;_n_noop:1,2;"
+"_nx_noop:3c,1,2;__ngettext_noop:1,2\n"
 "X-Poedit-SearchPath-0: .\n"
 "X-Poedit-SearchPathExcluded-0: *.js\n"
 
-#: advanced-sidebar-menu.php:108
+#: advanced-sidebar-menu.php:156
 msgid "Checkout Advanced Sidebar Menu Pro!"
 msgstr ""
 
 #. translators: {<a>}{</a>} links to https://matlipe.com/product/advanced-sidebar-menu-pro/
-#: advanced-sidebar-menu.php:113
+#: advanced-sidebar-menu.php:161
 #, php-format
 msgctxt "{<a>}{</a>}"
 msgid ""
-"Upgrade to %1$sAdvanced Sidebar Menu Pro%2$s for these features and so "
-"much more!"
+"Upgrade to %1$sAdvanced Sidebar Menu Pro%2$s for these features and so much "
+"more!"
 msgstr ""
 
-#: advanced-sidebar-menu.php:116
+#: advanced-sidebar-menu.php:165
 msgid "Priority support, including access to Members Only Support Area."
 msgstr ""
 
-#: advanced-sidebar-menu.php:117
+#: advanced-sidebar-menu.php:166
 msgid "Accordion menu support."
 msgstr ""
 
-#: advanced-sidebar-menu.php:118
+#: advanced-sidebar-menu.php:167
 msgid ""
-"Click and drag menu styling including bullets, colors, sizes, block "
-"styles, borders, and border colors."
+"Click and drag menu styling including bullets, colors, sizes, block styles, "
+"borders, and border colors."
 msgstr ""
 
-#: advanced-sidebar-menu.php:123
+#: advanced-sidebar-menu.php:172
 msgid "Ability to customize each page's link text."
 msgstr ""
 
-#: advanced-sidebar-menu.php:124
+#: advanced-sidebar-menu.php:173
 msgid "Ability to exclude a page from all menus using a simple checkbox."
 msgstr ""
 
-#: advanced-sidebar-menu.php:125
+#: advanced-sidebar-menu.php:174
 msgid ""
 "Number of levels of pages to show when always displayed child pages is not "
 "checked."
 msgstr ""
 
-#: advanced-sidebar-menu.php:126
+#: advanced-sidebar-menu.php:175
 msgid "Ability to select and display custom post types."
 msgstr ""
 
-#: advanced-sidebar-menu.php:127
+#: advanced-sidebar-menu.php:176
 msgid ""
-"Option to display the current page’s parents and grandparents only, as "
-"well as siblings options."
+"Option to display the current page’s parents, grandparents, and children "
+"only, as well as siblings options."
 msgstr ""
 
-#: advanced-sidebar-menu.php:132
+#: advanced-sidebar-menu.php:181
 msgid "Link ordering for the category widget."
 msgstr ""
 
-#: advanced-sidebar-menu.php:133
+#: advanced-sidebar-menu.php:182
 msgid "Ability to select and display custom taxonomies."
 msgstr ""
 
-#: advanced-sidebar-menu.php:137
-msgid "Ability to display the widgets everywhere the sidebar display."
+#: advanced-sidebar-menu.php:183
+msgid ""
+"Ability to display assigned posts or custom post types under categories."
+msgstr ""
+
+#: advanced-sidebar-menu.php:187
+msgid "Ability to display the widgets everywhere the sidebar displays."
+msgstr ""
+
+#: advanced-sidebar-menu.php:188
+msgid "Support for custom navigation menus from Appearance -> Menus."
 msgstr ""
 
 #: src/Widget/Category.php:44
@@ -93,75 +102,83 @@ msgstr ""
 msgid "Advanced Sidebar Categories Menu"
 msgstr ""
 
-#: src/Widget/Category.php:72
+#: src/Widget/Category.php:83
 msgid "Display highest level parent category"
 msgstr ""
 
-#: src/Widget/Category.php:78
+#: src/Widget/Category.php:89
 msgid "Display menu when there is only the parent category"
 msgstr ""
 
-#: src/Widget/Category.php:84
+#: src/Widget/Category.php:95
 msgid "Always display child categories"
 msgstr ""
 
-#: src/Widget/Category.php:90 src/Widget/Page.php:95
-msgid "Levels to display"
+#: src/Widget/Category.php:101
+msgid "Levels of child categories to display"
 msgstr ""
 
-#: src/Widget/Category.php:121 src/Widget/Page.php:126
+#: src/Widget/Category.php:138 src/Widget/Page.php:150
 msgid "Use this plugin's default styling"
 msgstr ""
 
-#: src/Widget/Category.php:138
+#: src/Widget/Category.php:161
 msgid "Display categories on single posts"
 msgstr ""
 
-#: src/Widget/Category.php:144
+#: src/Widget/Category.php:167
 msgid "Display each single post's category"
 msgstr ""
 
-#: src/Widget/Category.php:150
+#: src/Widget/Category.php:173
 msgid "In a new widget"
 msgstr ""
 
-#: src/Widget/Category.php:153
+#: src/Widget/Category.php:176
 msgid "In another list in the same widget"
 msgstr ""
 
-#: src/Widget/Category.php:171
+#: src/Widget/Category.php:200
 msgid "Categories to exclude (ids), comma separated"
 msgstr ""
 
-#: src/Widget/Category.php:204 src/Widget/Page.php:203
+#: src/Widget/Category.php:233 src/Widget/Page.php:242
 msgid "Title"
 msgstr ""
 
-#: src/Widget/Page.php:40
+#: src/Widget/Page.php:39
 msgid "Creates a menu of all the pages using the child/parent relationship"
 msgstr ""
 
-#: src/Widget/Page.php:46
+#: src/Widget/Page.php:45
 msgid "Advanced Sidebar Pages Menu"
 msgstr ""
 
-#: src/Widget/Page.php:71
+#: src/Widget/Page.php:82
 msgid "Display highest level parent page"
 msgstr ""
 
-#: src/Widget/Page.php:79
+#: src/Widget/Page.php:90
 msgid "Display menu when there is only the parent page"
 msgstr ""
 
-#: src/Widget/Page.php:86
+#: src/Widget/Page.php:97
 msgid "Always display child pages"
 msgstr ""
 
-#: src/Widget/Page.php:141
-msgid "Order by"
+#: src/Widget/Page.php:110
+msgid "Maximum level of child pages to display"
+msgstr ""
+
+#: src/Widget/Page.php:114
+msgid " - All - "
 msgstr ""
 
 #: src/Widget/Page.php:171
+msgid "Order by"
+msgstr ""
+
+#: src/Widget/Page.php:210
 msgid "Pages to exclude (ids), comma separated"
 msgstr ""
 
