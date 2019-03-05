@@ -20,8 +20,6 @@
 class Advanced_Sidebar_Menu_List_Pages {
 
 	/**
-	 * output
-	 *
 	 * The page list
 	 *
 	 * @var string
@@ -29,8 +27,6 @@ class Advanced_Sidebar_Menu_List_Pages {
 	public $output = '';
 
 	/**
-	 * current_page
-	 *
 	 * Used when walking the list
 	 *
 	 * @var WP_Post
@@ -38,8 +34,6 @@ class Advanced_Sidebar_Menu_List_Pages {
 	protected $current_page;
 
 	/**
-	 * top_parent_id
-	 *
 	 * The top level parent id according to the menu class
 	 *
 	 * @var int
@@ -47,22 +41,11 @@ class Advanced_Sidebar_Menu_List_Pages {
 	protected $top_parent_id;
 
 	/**
-	 * args
-	 *
 	 * Passed during construct given to walker and used for queries
 	 *
 	 * @var array
 	 */
 	protected $args = array();
-
-	/**
-	 * level
-	 *
-	 * Level of grandchild pages we are on
-	 *
-	 * @var int
-	 */
-	protected $level = 0;
 
 	/**
 	 * Used exclusively for caching
@@ -75,8 +58,6 @@ class Advanced_Sidebar_Menu_List_Pages {
 	protected $current_children_parent = 0;
 
 	/**
-	 * menu
-	 *
 	 * Menu class
 	 *
 	 * @var \Advanced_Sidebar_Menu_Menus_Page
@@ -87,7 +68,7 @@ class Advanced_Sidebar_Menu_List_Pages {
 	/**
 	 * Constructor
 	 *
-	 * @param \Advanced_Sidebar_Menu_Menus_Page $menu
+	 * @param \Advanced_Sidebar_Menu_Menus_Page $menu - The menu class.
 	 */
 	protected function __construct( Advanced_Sidebar_Menu_Menus_Page $menu ) {
 		$this->menu          = $menu;
@@ -122,8 +103,8 @@ class Advanced_Sidebar_Menu_List_Pages {
 	/**
 	 * Add the custom classes to the list items
 	 *
-	 * @param array    $classes
-	 * @param \WP_Post $post
+	 * @param array    $classes - Provided classes for item.
+	 * @param \WP_Post $post - The item.
 	 *
 	 * @return array
 	 */
@@ -137,10 +118,10 @@ class Advanced_Sidebar_Menu_List_Pages {
 			$classes[] = 'has_children';
 		}
 
-		// page posts are handled by wp core. This is for custom post types
+		// page posts are handled by wp core. This is for custom post types.
 		if ( 'page' !== $post->post_type ) {
 			$ancestors = get_post_ancestors( $post );
-			if ( ! empty( $ancestors ) && in_array( $this->current_page->ID, $ancestors, false ) ) {
+			if ( ! empty( $ancestors ) && in_array( $this->current_page->ID, $ancestors, false ) ) { //phpcs:ignore
 				$classes[] = 'current_page_ancestor';
 			} elseif ( $this->current_page->ID === $post->post_parent ) {
 				$classes[] = 'current_page_parent';
@@ -246,7 +227,7 @@ class Advanced_Sidebar_Menu_List_Pages {
 		$pages = $this->get_child_pages( $this->top_parent_id, true );
 		foreach ( $pages as $page ) {
 			$this->output .= walk_page_tree( array( $page ), 1, $this->current_page->ID, $this->args );
-			$this->output .= $this->list_grandchild_pages( $page->ID );
+			$this->output .= $this->list_grandchild_pages( $page->ID, 0 );
 			$this->output .= '</li>' . "\n";
 		}
 
@@ -256,6 +237,7 @@ class Advanced_Sidebar_Menu_List_Pages {
 		}
 		// phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped
 		echo $this->output;
+		return '';
 	}
 
 
@@ -264,11 +246,12 @@ class Advanced_Sidebar_Menu_List_Pages {
 	 * All grandchild pages will be rendered inside `grandchild-sidebar-menu` uls.
 	 *
 	 * @param int $parent_page_id - Id of the page we are getting the grandchildren of.
+	 * @param int $level - Level of grandchild pages we are displaying.
 	 *
 	 * @return string
 	 */
-	protected function list_grandchild_pages( $parent_page_id ) {
-		if ( $this->level >= (int) $this->args['levels'] ) {
+	protected function list_grandchild_pages( $parent_page_id, $level ) {
+		if ( $level >= (int) $this->args['levels'] ) {
 			return '';
 		}
 		if ( ! $this->menu->display_all() && ! $this->is_current_page_ancestor( $parent_page_id ) ) {
@@ -279,13 +262,12 @@ class Advanced_Sidebar_Menu_List_Pages {
 			return '';
 		}
 
-		$this->level ++;
-		$content = sprintf( '<ul class="grandchild-sidebar-menu level-%s children">', $this->level );
+		$content = sprintf( '<ul class="grandchild-sidebar-menu level-%s children">', $level );
 
 		$inside = '';
 		foreach ( $pages as $page ) {
 			$inside .= walk_page_tree( array( $page ), 1, $this->current_page->ID, $this->args );
-			$inside .= $this->list_grandchild_pages( $page->ID );
+			$inside .= $this->list_grandchild_pages( $page->ID, $level + 1 );
 			$inside .= "</li>\n";
 		}
 
@@ -334,11 +316,9 @@ class Advanced_Sidebar_Menu_List_Pages {
 
 
 	/**
-	 * is_current_page_ancestor
+	 * Is the specified page an ancestor of the current page?
 	 *
-	 * Is the current page and ancestor of the specified page?
-	 *
-	 * @param $page_id
+	 * @param int $page_id - Post id to check against.
 	 *
 	 * @return bool
 	 */
@@ -362,8 +342,9 @@ class Advanced_Sidebar_Menu_List_Pages {
 
 
 	/**
+	 * List Pages Factory
 	 *
-	 * @param \Advanced_Sidebar_Menu_Menus_Page $menu
+	 * @param \Advanced_Sidebar_Menu_Menus_Page $menu - The menu class.
 	 *
 	 * @static
 	 *
