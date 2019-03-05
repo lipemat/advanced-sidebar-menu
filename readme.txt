@@ -150,6 +150,10 @@ Yes. Based on whatever page, post, or category you are on, the menu will change 
 
 
 == Changelog ==
+= 7.5.0 =
+* Convert "Always display child pages" to use our List_Pages structure and support all widget options.
+* Bump required PHP version to 5.4.4.
+
 = 7.4.0 =
 * Added support for Beaver Builder
 
@@ -229,6 +233,9 @@ Yes. Based on whatever page, post, or category you are on, the menu will change 
 
 
 == Upgrade Notice ==
+= 7.5.0 =
+Update to support PRO version 3.6.0
+
 = 7.4.7 =
 Update to support PRO version 3.5.0
 
