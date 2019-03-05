@@ -98,7 +98,7 @@ class Advanced_Sidebar_Menu_Widget_Category extends Advanced_Sidebar_Menu__Widge
 			<div <?php $widget->hide_element( self::DISPLAY_ALL, self::LEVELS ); ?>>
 				<p>
 					<label>
-						<?php esc_html_e( 'Levels to display', 'advanced-sidebar-menu' ); ?>:</label>
+						<?php esc_html_e( 'Levels of child categories to display', 'advanced-sidebar-menu' ); ?>:</label>
 					<select
 						name="<?php echo esc_attr( $widget->get_field_name( self::LEVELS ) ); ?>">
 						<?php

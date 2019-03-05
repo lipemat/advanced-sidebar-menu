@@ -20,8 +20,6 @@
 class Advanced_Sidebar_Menu_List_Pages {
 
 	/**
-	 * output
-	 *
 	 * The page list
 	 *
 	 * @var string
@@ -29,8 +27,6 @@ class Advanced_Sidebar_Menu_List_Pages {
 	public $output = '';
 
 	/**
-	 * current_page
-	 *
 	 * Used when walking the list
 	 *
 	 * @var WP_Post
@@ -38,8 +34,6 @@ class Advanced_Sidebar_Menu_List_Pages {
 	protected $current_page;
 
 	/**
-	 * top_parent_id
-	 *
 	 * The top level parent id according to the menu class
 	 *
 	 * @var int
@@ -47,22 +41,11 @@ class Advanced_Sidebar_Menu_List_Pages {
 	protected $top_parent_id;
 
 	/**
-	 * args
-	 *
 	 * Passed during construct given to walker and used for queries
 	 *
 	 * @var array
 	 */
 	protected $args = array();
-
-	/**
-	 * level
-	 *
-	 * Level of grandchild pages we are on
-	 *
-	 * @var int
-	 */
-	protected $level = 0;
 
 	/**
 	 * Used exclusively for caching
@@ -75,8 +58,6 @@ class Advanced_Sidebar_Menu_List_Pages {
 	protected $current_children_parent = 0;
 
 	/**
-	 * menu
-	 *
 	 * Menu class
 	 *
 	 * @var \Advanced_Sidebar_Menu_Menus_Page
@@ -87,7 +68,7 @@ class Advanced_Sidebar_Menu_List_Pages {
 	/**
 	 * Constructor
 	 *
-	 * @param \Advanced_Sidebar_Menu_Menus_Page $menu
+	 * @param \Advanced_Sidebar_Menu_Menus_Page $menu - The menu class.
 	 */
 	protected function __construct( Advanced_Sidebar_Menu_Menus_Page $menu ) {
 		$this->menu          = $menu;
@@ -99,7 +80,7 @@ class Advanced_Sidebar_Menu_List_Pages {
 			'orderby'   => $menu->get_order_by(),
 			'order'     => $menu->get_order(),
 			'exclude'   => $menu->get_excluded_ids(),
-			'levels'    => $menu->get_menu_depth(),
+			'levels'    => $menu->get_levels_to_display(),
 		);
 
 		$this->args = $this->parse_args( $args );
@@ -122,8 +103,8 @@ class Advanced_Sidebar_Menu_List_Pages {
 	/**
 	 * Add the custom classes to the list items
 	 *
-	 * @param array    $classes
-	 * @param \WP_Post $post
+	 * @param array    $classes - Provided classes for item.
+	 * @param \WP_Post $post - The item.
 	 *
 	 * @return array
 	 */
@@ -137,10 +118,10 @@ class Advanced_Sidebar_Menu_List_Pages {
 			$classes[] = 'has_children';
 		}
 
-		// page posts are handled by wp core. This is for custom post types
+		// page posts are handled by wp core. This is for custom post types.
 		if ( 'page' !== $post->post_type ) {
 			$ancestors = get_post_ancestors( $post );
-			if ( ! empty( $ancestors ) && in_array( $this->current_page->ID, $ancestors, false ) ) {
+			if ( ! empty( $ancestors ) && in_array( $this->current_page->ID, $ancestors, false ) ) { //phpcs:ignore
 				$classes[] = 'current_page_ancestor';
 			} elseif ( $this->current_page->ID === $post->post_parent ) {
 				$classes[] = 'current_page_parent';
@@ -155,7 +136,7 @@ class Advanced_Sidebar_Menu_List_Pages {
 	 * Return the list of args that have been populated by this class
 	 * For use with wp_list_pages()
 	 *
-	 * @param string $level - level of menu so we have full control of updates
+	 * @param string $level - level of menu so we have full control of updates.
 	 *
 	 * @return array
 	 */
@@ -202,10 +183,9 @@ class Advanced_Sidebar_Menu_List_Pages {
 
 
 	/**
-	 *
 	 * Do any adjustments to class args here
 	 *
-	 * @param array $args
+	 * @param array $args - Arguments for walk_page_tree.
 	 *
 	 * @return array
 	 */
@@ -230,7 +210,7 @@ class Advanced_Sidebar_Menu_List_Pages {
 		if ( is_string( $args['exclude'] ) ) {
 			$args['exclude'] = explode( ',', $args['exclude'] );
 		}
-		// sanitize, mostly to keep spaces out
+		// sanitize, mostly to keep spaces out.
 		$args['exclude'] = preg_replace( '/[^0-9,]/', '', implode( ',', apply_filters( 'wp_list_pages_excludes', $args['exclude'] ) ) );
 
 		return apply_filters( 'advanced_sidebar_menu_list_pages_args', $args, $this );
@@ -239,9 +219,7 @@ class Advanced_Sidebar_Menu_List_Pages {
 
 
 	/**
-	 * list_pages
-	 *
-	 * List the pages very similar to wp_list_pages
+	 * List the pages very similar to wp_list_pages.
 	 *
 	 * @return string
 	 */
@@ -249,7 +227,7 @@ class Advanced_Sidebar_Menu_List_Pages {
 		$pages = $this->get_child_pages( $this->top_parent_id, true );
 		foreach ( $pages as $page ) {
 			$this->output .= walk_page_tree( array( $page ), 1, $this->current_page->ID, $this->args );
-			$this->output .= $this->list_grandchild_pages( $page->ID );
+			$this->output .= $this->list_grandchild_pages( $page->ID, 0 );
 			$this->output .= '</li>' . "\n";
 		}
 
@@ -257,26 +235,26 @@ class Advanced_Sidebar_Menu_List_Pages {
 		if ( ! $this->args['echo'] ) {
 			return $this->output;
 		}
-		// phpcs:disable WordPress.XSS.EscapeOutput.OutputNotEscaped
+		// phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped
 		echo $this->output;
-		// phpcs:enable
+		return '';
 	}
 
 
 	/**
-	 * list_grandchild_pages
+	 * List all levels of grandchild pages up to the limit set in the widget.
+	 * All grandchild pages will be rendered inside `grandchild-sidebar-menu` uls.
 	 *
-	 * List as many levels as exist within the grandchild-sidebar-menu ul
-	 *
-	 * @param int $parent_page_id
+	 * @param int $parent_page_id - Id of the page we are getting the grandchildren of.
+	 * @param int $level - Level of grandchild pages we are displaying.
 	 *
 	 * @return string
 	 */
-	protected function list_grandchild_pages( $parent_page_id ) {
-		if ( $this->level >= (int) $this->args['levels'] ) {
+	protected function list_grandchild_pages( $parent_page_id, $level ) {
+		if ( $level >= (int) $this->args['levels'] ) {
 			return '';
 		}
-		if ( ! $this->is_current_page_ancestor( $parent_page_id ) ) {
+		if ( ! $this->menu->display_all() && ! $this->is_current_page_ancestor( $parent_page_id ) ) {
 			return '';
 		}
 		$pages = $this->get_child_pages( $parent_page_id );
@@ -284,13 +262,12 @@ class Advanced_Sidebar_Menu_List_Pages {
 			return '';
 		}
 
-		$this->level ++;
-		$content = sprintf( '<ul class="grandchild-sidebar-menu level-%s children">', $this->level );
+		$content = sprintf( '<ul class="grandchild-sidebar-menu level-%s children">', $level );
 
 		$inside = '';
 		foreach ( $pages as $page ) {
 			$inside .= walk_page_tree( array( $page ), 1, $this->current_page->ID, $this->args );
-			$inside .= $this->list_grandchild_pages( $page->ID );
+			$inside .= $this->list_grandchild_pages( $page->ID, $level + 1 );
 			$inside .= "</li>\n";
 		}
 
@@ -305,13 +282,13 @@ class Advanced_Sidebar_Menu_List_Pages {
 	/**
 	 * Retrieve the child pages of specific page_id
 	 *
-	 * @param int  $parent_page_id
-	 * @param bool $is_first_level
+	 * @param int  $parent_page_id - Page id we are getting children of.
+	 * @param bool $is_first_level - Is this the first level of child pages?.
 	 *
 	 * @return WP_Post[]
 	 */
 	public function get_child_pages( $parent_page_id, $is_first_level = false ) {
-		// holds a unique key so Cache can distinguish calls
+		// holds a unique key so Cache can distinguish calls.
 		$this->current_children_parent = $parent_page_id;
 
 		$cache       = Advanced_Sidebar_Menu_Cache::instance();
@@ -330,19 +307,6 @@ class Advanced_Sidebar_Menu_List_Pages {
 
 		// We only filter the first level with this filter for backward pro compatibility.
 		if ( $is_first_level ) {
-			$child_pages = apply_filters_deprecated(
-				'advanced_sidebar_menu_child_pages',
-				array(
-					$child_pages,
-					$this->current_page,
-					$this->menu->instance,
-					$this->menu->args,
-					$this->menu,
-				),
-				'7.1.0',
-				'advanced-sidebar-menu/list-pages/first-level-child-pages'
-			);
-
 			$child_pages = apply_filters( 'advanced-sidebar-menu/list-pages/first-level-child-pages', $child_pages, $this, $this->menu );
 		}
 
@@ -352,11 +316,9 @@ class Advanced_Sidebar_Menu_List_Pages {
 
 
 	/**
-	 * is_current_page_ancestor
+	 * Is the specified page an ancestor of the current page?
 	 *
-	 * Is the current page and ancestor of the specified page?
-	 *
-	 * @param $page_id
+	 * @param int $page_id - Post id to check against.
 	 *
 	 * @return bool
 	 */
@@ -380,8 +342,9 @@ class Advanced_Sidebar_Menu_List_Pages {
 
 
 	/**
+	 * List Pages Factory
 	 *
-	 * @param \Advanced_Sidebar_Menu_Menus_Page $menu
+	 * @param \Advanced_Sidebar_Menu_Menus_Page $menu - The menu class.
 	 *
 	 * @static
 	 *

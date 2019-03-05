@@ -5,8 +5,8 @@ Donate link: https://www.paypal.com/cgi-bin/webscr?cmd=_donations&business=paypa
 Tags: menus, sidebar menu, hierarchy, category menu, pages menu
 Requires at least: 4.7.0
 Tested up to: 5.1.0
-Requires PHP: 5.2.4
-Stable tag: 7.4.8
+Requires PHP: 5.4.4
+Stable tag: 7.5.0
 
 == Description ==
 
@@ -16,7 +16,7 @@ Keeps the menu clean and usable. Only related items display so you don't have to
 
 <strong>Check out <a href="https://matlipe.com/product/advanced-sidebar-menu-pro/">Advanced Sidebar Menu Pro</a> for more features including priority support, the ability to customize the look and feel, custom link text, excluding of pages, category ordering, accordions, custom post types, custom taxonomies, and so much more!</strong>
 
-<blockquote><a href="https://matlipe.com/product/advanced-sidebar-menu-pro/" target="_blank">Pro version 3.5.0</a> is now available with support for displaying posts under categories on any level!</blockquote>
+<blockquote><a href="https://matlipe.com/product/advanced-sidebar-menu-pro/" target="_blank">Pro version 3.6.0</a> is now available with support for displaying the current page's parents only when "Always display child pages" is checked!</blockquote>
 
 <h4>Features</h4>
 * Page and Category widgets.
@@ -150,6 +150,10 @@ Yes. Based on whatever page, post, or category you are on, the menu will change 
 
 
 == Changelog ==
+= 7.5.0 =
+* Convert "Always display child pages" to use our List_Pages structure and support all widget options.
+* Bump required PHP version to 5.4.4.
+
 = 7.4.0 =
 * Added support for Beaver Builder
 
@@ -229,6 +233,9 @@ Yes. Based on whatever page, post, or category you are on, the menu will change 
 
 
 == Upgrade Notice ==
+= 7.5.0 =
+Update to support PRO version 3.6.0
+
 = 7.4.7 =
 Update to support PRO version 3.5.0
 
