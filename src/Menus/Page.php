@@ -124,7 +124,7 @@ class Advanced_Sidebar_Menu_Menus_Page extends Advanced_Sidebar_Menu_Menus_Abstr
 
 
 	/**
-	 * Gets the number of levels ot display when doing 'Alwasy display'
+	 * Gets the number of levels ot display when doing 'Always display'
 	 *
 	 * @return int
 	 */
