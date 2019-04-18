@@ -6,7 +6,7 @@ Tags: menus, sidebar menu, hierarchy, category menu, pages menu
 Requires at least: 4.7.0
 Tested up to: 5.1.1
 Requires PHP: 5.4.4
-Stable tag: 7.5.1
+Stable tag: 7.5.2
 
 == Description ==
 
