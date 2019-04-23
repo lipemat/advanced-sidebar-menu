@@ -6,11 +6,11 @@ Tags: menus, sidebar menu, hierarchy, category menu, pages menu
 Requires at least: 4.7.0
 Tested up to: 5.1.1
 Requires PHP: 5.4.4
-Stable tag: 7.5.2
+Stable tag: 7.5.3
 
 == Description ==
 
-Uses the parent and relationships of your pages or categories to generate menus based on the current section of your site. Assign a page or category to a parent and this will do the rest for you.
+Uses the parent/child relationship of your pages or categories to generate menus based on the current section of your site. Assign a page or category to a parent and this will do the rest for you.
 
 Keeps the menu clean and usable. Only related items display so you don't have to worry about keeping a custom menu up to date or displaying links to items that don't belong. 
 
