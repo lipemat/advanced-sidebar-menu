@@ -231,7 +231,7 @@ class Advanced_Sidebar_Menu_List_Pages {
 			$this->output .= '</li>' . "\n";
 		}
 
-		$this->output = apply_filters( 'wp_list_pages', $this->output, $this->args );
+		$this->output = apply_filters( 'wp_list_pages', $this->output, $this->args, $pages );
 		if ( ! $this->args['echo'] ) {
 			return $this->output;
 		}
