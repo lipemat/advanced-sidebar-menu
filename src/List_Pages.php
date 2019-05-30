@@ -285,6 +285,8 @@ class Advanced_Sidebar_Menu_List_Pages {
 	 * @param int  $parent_page_id - Page id we are getting children of.
 	 * @param bool $is_first_level - Is this the first level of child pages?.
 	 *
+	 * @since 7.5.5 - Add 'advanced-sidebar-menu/list-pages/grandchild-pages' filter.
+	 *
 	 * @return WP_Post[]
 	 */
 	public function get_child_pages( $parent_page_id, $is_first_level = false ) {
@@ -307,10 +309,11 @@ class Advanced_Sidebar_Menu_List_Pages {
 
 		// We only filter the first level with this filter for backward pro compatibility.
 		if ( $is_first_level ) {
-			$child_pages = apply_filters( 'advanced-sidebar-menu/list-pages/first-level-child-pages', $child_pages, $this, $this->menu );
+			return apply_filters( 'advanced-sidebar-menu/list-pages/first-level-child-pages', $child_pages, $this, $this->menu );
 		}
 
-		return $child_pages;
+		// @since 7.5.5
+		return apply_filters( 'advanced-sidebar-menu/list-pages/grandchild-pages', $child_pages, $this, $this->menu );
 
 	}
 
