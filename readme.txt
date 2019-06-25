@@ -3,10 +3,10 @@
 Contributors: Mat Lipe
 Donate link: https://www.paypal.com/cgi-bin/webscr?cmd=_donations&business=paypal%40matlipe%2ecom&lc=US&item_name=Advanced%20Sidebar%20Menu&no_note=0&currency_code=USD&bn=PP%2dDonationsBF%3abtn_donateCC_LG%2egif%3aNonHostedGuest
 Tags: menus, sidebar menu, hierarchy, category menu, pages menu
-Requires at least: 4.7.0
-Tested up to: 5.2.1
+Requires at least: 4.8.0
+Tested up to: 5.2.2
 Requires PHP: 5.4.4
-Stable tag: 7.5.5
+Stable tag: 7.6.0
 
 == Description ==
 
@@ -150,6 +150,11 @@ Yes. Based on whatever page, post, or category you are on, the menu will change 
 
 
 == Changelog ==
+= 7.6.0 =
+* Elementor support for multiple widgets of the same type on the same page.
+* Automatically increment widget ids under any cases where they would duplicate.
+* Bump required WordPress Core version to 4.8.0.
+
 = 7.5.0 =
 * Convert "Always display child pages" to use our List_Pages structure and support all widget options.
 * Bump required PHP version to 5.4.4.
