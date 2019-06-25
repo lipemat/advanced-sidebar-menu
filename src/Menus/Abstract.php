@@ -1,5 +1,7 @@
 <?php
 
+use Prophecy\Argument\Token\StringContainsToken;
+
 /**
  * Advanced_Sidebar_Menu_Menus_Abstract
  *
@@ -67,10 +69,23 @@ abstract class Advanced_Sidebar_Menu_Menus_Abstract {
 	 */
 	public $top_id;
 
+	/**
+	 * Track the ids which have been used in case of
+	 * plugins like Elementor that we need to manually increment.
+	 *
+	 * @since 7.6.0
+	 * @ticket #4775
+	 *
+	 * @var string[]
+	 */
+	protected static $unique_widget_ids = array();
+
 
 	public function __construct( array $widget_instance, array $widget_args ) {
 		$this->instance = apply_filters( 'advanced-sidebar-menu/menus/widget-instance', $widget_instance, $widget_args, $this );
 		$this->args     = $widget_args;
+
+		$this->increment_widget_id();
 	}
 
 
@@ -90,6 +105,37 @@ abstract class Advanced_Sidebar_Menu_Menus_Abstract {
 
 
 	abstract public function get_levels_to_display();
+
+
+	/**
+	 * Increment the widget id until it is unique to all widgets being displayed
+	 * in the current context.
+	 *
+	 * Required because plugins like Elementor will reuse the same generic id for
+	 * widgets within page content and we need a unique id to properly target with
+	 * styles, accordions, etc.
+	 *
+	 * @since 7.6.0
+	 * @ticket #4775
+	 *
+	 * @return void
+	 */
+	protected function increment_widget_id() {
+		if ( ! isset( $this->args['widget_id'] ) ) {
+			return;
+		}
+		if ( in_array( $this->args['widget_id'], self::$unique_widget_ids, true ) ) {
+			$suffix = 2;
+			do {
+				$alt_widget_id = $this->args['widget_id'] . "-$suffix";
+				$suffix ++;
+			} while ( in_array( $alt_widget_id, self::$unique_widget_ids, true ) );
+			$this->args['widget_id']   = $alt_widget_id;
+			self::$unique_widget_ids[] = $alt_widget_id;
+		} else {
+			self::$unique_widget_ids[] = $this->args['widget_id'];
+		}
+	}
 
 
 	/**
