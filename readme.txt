@@ -113,9 +113,14 @@ Manual Installation
 
 == Frequently Asked Questions ==
 
-Developer docs may be found here:
-<a href="https://matlipe.com/advanced-sidebar-menu/developer-docs/" target="_blank">https://matlipe.com/advanced-sidebar-menu/developer-docs/</a>
+= The widget won't show up?
 
+The widgets in this plugin are smart enough to not show up on pages or categories where the only thing that would display is the title. While it may appear like the widget is broken, it is actually doing what it is intended to do.
+
+The most common causes for this confusion come from one of these reasons:
+1. The incorrect widget was selected (there are different widgets for categories or pages).
+2. "Display highest level parent page" or "Display highest level parent category" is not checked.
+3. The widget is currently not being viewed on a Page (for the pages widget) or Category (for the categories widget).
 
 = How do I change the styling of the current page? =
 
