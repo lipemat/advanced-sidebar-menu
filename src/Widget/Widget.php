@@ -2,7 +2,7 @@
 /**
  * Advanced_Sidebar_Menu__Widget__Widget
  *
- * @author Mat Lipe
+ * @author OnPoint Plugins
  *
  * @since  7.2.0
  */

@@ -3,7 +3,7 @@
 /**
  * Advanced_Sidebar_Menu_Debug
  *
- * @author Mat Lipe
+ * @author OnPoint Plugins
  * @since  6.3.1
  * @since  7.4.8 - Use URL arguments to test different configurations.
  */

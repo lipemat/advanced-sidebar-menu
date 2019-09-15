@@ -5,7 +5,7 @@ use Prophecy\Argument\Token\StringContainsToken;
 /**
  * Advanced_Sidebar_Menu_Menus_Abstract
  *
- * @author Mat Lipe
+ * @author OnPoint Plugins
  * @since  7.0.0
  */
 abstract class Advanced_Sidebar_Menu_Menus_Abstract {

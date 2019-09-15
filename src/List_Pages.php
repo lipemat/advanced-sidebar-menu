@@ -13,7 +13,7 @@
  *
  * @package Advanced Sidebar Menu
  *
- * @author  Mat Lipe <mat@matlipe.com>
+ * @author  OnPoint Plugins <mat@onpointplugins.com>
  *
  * @since   5.0.0
  */

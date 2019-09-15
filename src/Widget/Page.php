@@ -6,7 +6,7 @@
  *
  * Parent child menu based on pages.
  *
- * @author Mat Lipe
+ * @author OnPoint Plugins
  * @since  7.0.0
  */
 class Advanced_Sidebar_Menu_Widget_Page extends Advanced_Sidebar_Menu__Widget__Widget {

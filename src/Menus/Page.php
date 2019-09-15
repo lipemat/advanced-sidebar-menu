@@ -4,7 +4,7 @@
 /**
  * Advanced_Sidebar_Menu_Menus_Page
  *
- * @author Mat Lipe
+ * @author OnPoint Plugins
  * @since  7.0.0
  *
  */

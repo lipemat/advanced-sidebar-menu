@@ -2,7 +2,7 @@
 /**
  * The Output of the Advanced Sidebar Page Widget
  *
- * @author  Mat Lipe
+ * @author  OnPoint Plugins
  *
  * @since   7.5.0
  * @package advanced-sidebar-menu
