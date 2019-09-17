@@ -3,7 +3,7 @@ msgstr ""
 "Project-Id-Version: Advanced Sidebar Menu\n"
 "POT-Creation-Date: 2019-03-05 12:29-0500\n"
 "PO-Revision-Date: 2019-03-05 12:30-0500\n"
-"Last-Translator: Mat Lipe <mat@matlipe.com>\n"
+"Last-Translator: Mat Lipe <support@onpointplugins.com>\n"
 "Language-Team: \n"
 "Language: de\n"
 "MIME-Version: 1.0\n"
@@ -25,7 +25,7 @@ msgstr ""
 msgid "Checkout Advanced Sidebar Menu Pro!"
 msgstr "Kasse Advanced Sidebar Menu Pro!"
 
-#. translators: {<a>}{</a>} links to https://matlipe.com/product/advanced-sidebar-menu-pro/
+#. translators: {<a>}{</a>} links to https://onpointplugins.com/product/advanced-sidebar-menu-pro/
 #: advanced-sidebar-menu.php:161
 #, php-format
 msgctxt "{<a>}{</a>}"
@@ -207,8 +207,8 @@ msgid "Advanced Sidebar Menu"
 msgstr "Advanced Sidebar Menu"
 
 #. Plugin URI of the plugin/theme
-msgid "https://matlipe.com/advanced-sidebar-menu/"
-msgstr "https://matlipe.com/advanced-sidebar-menu/"
+msgid "https://onpointplugins.com/advanced-sidebar-menu/"
+msgstr "https://onpointplugins.com/advanced-sidebar-menu/"
 
 #. Description of the plugin/theme
 msgid ""
@@ -223,8 +223,8 @@ msgid "Mat Lipe"
 msgstr "Mat Lipe"
 
 #. Author URI of the plugin/theme
-msgid "https://matlipe.com"
-msgstr "https://matlipe.com"
+msgid "https://onpointplugins.com"
+msgstr "https://onpointplugins.com"
 
 #~ msgid "Use this Plugin's Styling"
 #~ msgstr "Benutze das Plugin Styling"

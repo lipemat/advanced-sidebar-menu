@@ -1,12 +1,12 @@
 === Advanced Sidebar Menu ===
 
-Contributors: Mat Lipe
+Contributors: Mat Lipe, onpointplugins
 Donate link: https://www.paypal.com/cgi-bin/webscr?cmd=_donations&business=paypal%40matlipe%2ecom&lc=US&item_name=Advanced%20Sidebar%20Menu&no_note=0&currency_code=USD&bn=PP%2dDonationsBF%3abtn_donateCC_LG%2egif%3aNonHostedGuest
 Tags: menus, sidebar menu, hierarchy, category menu, pages menu
 Requires at least: 4.8.0
 Tested up to: 5.2.3
 Requires PHP: 5.6.0
-Stable tag: 7.6.2
+Stable tag: 7.6.3
 
 == Description ==
 
@@ -14,9 +14,9 @@ Uses the parent/child relationship of your pages or categories to generate menus
 
 Keeps the menu clean and usable. Only related items display so you don't have to worry about keeping a custom menu up to date or displaying links to items that don't belong. 
 
-<strong>Check out <a href="https://matlipe.com/product/advanced-sidebar-menu-pro/">Advanced Sidebar Menu Pro</a> for more features including priority support, the ability to customize the look and feel, custom link text, excluding of pages, category ordering, accordions, custom post types, custom taxonomies, and so much more!</strong>
+<strong>Check out <a href="https://onpointplugins.com/product/advanced-sidebar-menu-pro/">Advanced Sidebar Menu Pro</a> for more features including priority support, the ability to customize the look and feel, custom link text, excluding of pages, category ordering, accordions, custom post types, custom taxonomies, and so much more!</strong>
 
-<blockquote><a href="https://matlipe.com/product/advanced-sidebar-menu-pro/" target="_blank">Pro version 3.9.0</a> is now available with support to exclude and change titles of navigation menu items using each page's settings!</blockquote>
+<blockquote><a href="https://onpointplugins.com/product/advanced-sidebar-menu-pro/" target="_blank">Pro version 3.9.0</a> is now available with support to exclude and change titles of navigation menu items using each page's settings!</blockquote>
 
 <h4>Features</h4>
 * Page and Category widgets.
@@ -34,7 +34,7 @@ Keeps the menu clean and usable. Only related items display so you don't have to
 * Display highest level parent page
 * Display menu when there is only the parent page
 * Order pages by (date, title, page order)
-* Use built in styling (very plain styling, for more advanced styling <a href="https://matlipe.com/product/advanced-sidebar-menu-pro/" target="_blank">Go Pro!</a>)
+* Use built in styling (very plain styling, for more advanced styling <a href="https://onpointplugins.com/product/advanced-sidebar-menu-pro/" target="_blank">Go Pro!</a>)
 * Exclude pages
 * Always display child Pages
 * Number of levels of child pages to display when always display child pages is checked
@@ -43,7 +43,7 @@ Keeps the menu clean and usable. Only related items display so you don't have to
 * Add a title to the widget
 * Display highest level parent category
 * Display menu when there is only the parent category
-* Use built in styling (very plain styling, for more advanced styling <a href="https://matlipe.com/product/advanced-sidebar-menu-pro/" target="_blank">Go Pro!</a>)
+* Use built in styling (very plain styling, for more advanced styling <a href="https://onpointplugins.com/product/advanced-sidebar-menu-pro/" target="_blank">Go Pro!</a>)
 * Display categories on single posts
 * Display each single post's category in a new widget or in same list
 * Exclude categories
@@ -86,7 +86,7 @@ Keeps the menu clean and usable. Only related items display so you don't have to
 * German (de_DE)
    
 <h4>Developers</h4>
-Developer docs may be found <a target="_blank" href="https://matlipe.com/advanced-sidebar-menu/developer-docs/">here</a>.
+Developer docs may be found <a target="_blank" href="https://onpointplugins.com/advanced-sidebar-menu/developer-docs/">here</a>.
 
 <h4>Contribute</h4>
 Send pull requests via the <a target="_blank" href="https://github.com/lipemat/advanced-sidebar-menu">GitHub Repo</a>
@@ -113,9 +113,14 @@ Manual Installation
 
 == Frequently Asked Questions ==
 
-Developer docs may be found here:
-<a href="https://matlipe.com/advanced-sidebar-menu/developer-docs/" target="_blank">https://matlipe.com/advanced-sidebar-menu/developer-docs/</a>
+= The widget won't show up?
 
+The widgets in this plugin are smart enough to not show up on pages or categories where the only thing that would display is the title. While it may appear like the widget is broken, it is actually doing what it is intended to do.
+
+The most common causes for this confusion come from one of these reasons:
+1. The incorrect widget was selected (there are different widgets for categories or pages).
+2. "Display highest level parent page" or "Display highest level parent category" is not checked.
+3. The widget is currently not being viewed on a Page (for the pages widget) or Category (for the categories widget).
 
 = How do I change the styling of the current page? =
 
@@ -132,7 +137,7 @@ For Instance This would remove the dot and  change the color
 }
 </code>
 
-To style your menu without using any code <a href="https://matlipe.com/product/advanced-sidebar-menu-pro/" target="_blank">Go Pro!</a>
+To style your menu without using any code <a href="https://onpointplugins.com/product/advanced-sidebar-menu-pro/" target="_blank">Go Pro!</a>
 
 = How do you get the categories to display on single post pages? =
 

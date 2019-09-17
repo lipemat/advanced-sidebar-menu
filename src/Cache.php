@@ -4,7 +4,7 @@
 /**
  * Advanced_Sidebar_Menu_Cache
  *
- * @author Mat Lipe
+ * @author OnPoint Plugins
  * @since  12/19/2015
  *
  */

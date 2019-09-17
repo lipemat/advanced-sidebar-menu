@@ -1,11 +1,11 @@
 <?php
 /**
  * Plugin Name: Advanced Sidebar Menu
- * Plugin URI: https://matlipe.com/advanced-sidebar-menu/
+ * Plugin URI: https://onpointplugins.com/advanced-sidebar-menu/
  * Description: Creates dynamic menus based on parent/child relationship of your pages or categories.
- * Author: Mat Lipe
- * Version: 7.6.2
- * Author URI: https://matlipe.com
+ * Author: OnPoint Plugins
+ * Version: 7.6.3
+ * Author URI: https://onpointplugins.com
  * Text Domain: advanced-sidebar-menu
  *
  * @package advanced-sidebar-menu
@@ -15,7 +15,7 @@ if ( defined( 'ADVANCED_SIDEBAR_BASIC_VERSION' ) ) {
 	return;
 }
 
-define( 'ADVANCED_SIDEBAR_BASIC_VERSION', '7.6.2' );
+define( 'ADVANCED_SIDEBAR_BASIC_VERSION', '7.6.3' );
 define( 'ADVANCED_SIDEBAR_DIR', plugin_dir_path( __FILE__ ) );
 
 if ( ! function_exists( 'advanced_sidebar_menu_load' ) ) {
@@ -157,8 +157,8 @@ function advanced_sidebar_menu_upgrade_notice( array $instance, WP_Widget $widge
 		<p>
 			<strong>
 				<?php
-				/* translators: {<a>}{</a>} links to https://matlipe.com/product/advanced-sidebar-menu-pro/ */
-				printf( esc_html_x( 'Upgrade to %1$sAdvanced Sidebar Menu Pro%2$s for these features and so much more!', '{<a>}{</a>}', 'advanced-sidebar-menu' ), '<a target="blank" href="https://matlipe.com/product/advanced-sidebar-menu-pro/">', '</a>' );
+				/* translators: {<a>}{</a>} links to https://onpointplugins.com/product/advanced-sidebar-menu-pro/ */
+				printf( esc_html_x( 'Upgrade to %1$sAdvanced Sidebar Menu Pro%2$s for these features and so much more!', '{<a>}{</a>}', 'advanced-sidebar-menu' ), '<a target="blank" href="https://onpointplugins.com/product/advanced-sidebar-menu-pro/">', '</a>' );
 				?>
 			</strong>
 		<ol style="list-style: disc">

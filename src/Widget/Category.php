@@ -4,7 +4,7 @@
 /**
  * Creates a Widget of parent Child Categories
  *
- * @author  Mat Lipe
+ * @author  OnPoint Plugins
  * @since   7.0.0
  * @package Advanced Sidebar Menu
  *
