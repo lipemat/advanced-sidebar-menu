@@ -305,6 +305,10 @@ class Advanced_Sidebar_Menu_Widget_Category extends Advanced_Sidebar_Menu__Widge
 		do_action( 'advanced_sidebar_menu_widget_pre_render', $asm, $this );
 
 		$asm->render();
+
+		// @since 7.6.6.
+		do_action( 'advanced-sidebar-menu/widget/after-render', $asm, $this );
+
 	}
 
 }

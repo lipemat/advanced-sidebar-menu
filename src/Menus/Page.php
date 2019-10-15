@@ -185,7 +185,7 @@ class Advanced_Sidebar_Menu_Menus_Page extends Advanced_Sidebar_Menu_Menus_Abstr
 		$output = require Advanced_Sidebar_Menu_Core::instance()->get_template_part( 'page_list.php' );
 		echo apply_filters( 'advanced_sidebar_menu_page_widget_output', $output, $this->get_current_post(), $this->args, $this->instance, $this );
 
-		// @since 7.6.5
+		// @since 7.6.5.
 		do_action( 'advanced-sidebar-menu/menus/page/render/after', $this );
 
 		echo $this->args['after_widget'];

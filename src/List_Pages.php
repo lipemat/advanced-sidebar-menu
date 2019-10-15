@@ -307,7 +307,6 @@ class Advanced_Sidebar_Menu_List_Pages {
 
 		$child_pages = array_map( 'get_post', (array) $child_pages );
 
-		// We only filter the first level with this filter for backward pro compatibility.
 		if ( $is_first_level ) {
 			return apply_filters( 'advanced-sidebar-menu/list-pages/first-level-child-pages', $child_pages, $this, $this->menu );
 		}

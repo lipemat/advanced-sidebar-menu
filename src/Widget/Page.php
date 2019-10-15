@@ -313,5 +313,8 @@ class Advanced_Sidebar_Menu_Widget_Page extends Advanced_Sidebar_Menu__Widget__W
 
 		$asm->render();
 
+		// @since 7.6.6.
+		do_action( 'advanced-sidebar-menu/widget/after-render', $asm, $this );
+
 	}
 }
