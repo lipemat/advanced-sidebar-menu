@@ -461,7 +461,7 @@ class Advanced_Sidebar_Menu_Menus_Category extends Advanced_Sidebar_Menu_Menus_A
 			echo apply_filters( 'advanced_sidebar_menu_category_widget_output', $output, $this->args, $this->instance, $this );
 
 			if ( $close_menu ) {
-				// @since 7.6.5
+				// @since 7.6.5.
 				do_action( 'advanced-sidebar-menu/menus/category/render/after', $this );
 
 				echo $this->args['after_widget'];
@@ -469,7 +469,7 @@ class Advanced_Sidebar_Menu_Menus_Category extends Advanced_Sidebar_Menu_Menus_A
 		}
 
 		if ( ! $close_menu && $menu_open ) {
-			// @since 7.6.5
+			// @since 7.6.5.
 			do_action( 'advanced-sidebar-menu/menus/category/render/after', $this );
 
 			echo $this->args['after_widget'];
