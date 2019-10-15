@@ -1,7 +1,5 @@
 <?php
 
-use Prophecy\Argument\Token\StringContainsToken;
-
 /**
  * Advanced_Sidebar_Menu_Menus_Abstract
  *
