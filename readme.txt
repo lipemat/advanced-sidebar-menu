@@ -243,6 +243,9 @@ Yes. Based on whatever page, post, or category you are on, the menu will change 
 
 
 == Upgrade Notice ==
+= 7.6.6 =
+Update to support PRO version 3.9.3
+
 = 7.5.0 =
 Update to support PRO version 3.6.0
 
