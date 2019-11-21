@@ -27,7 +27,7 @@ class Advanced_Sidebar_Menu_Widget_Page extends Advanced_Sidebar_Menu__Widget__W
 		self::USE_PLUGIN_STYLES        => false,
 		self::EXCLUDE                  => false,
 		self::DISPLAY_ALL              => false,
-		self::LEVELS                   => 1,
+		self::LEVELS                   => 100,
 	);
 
 	protected static $hooked = false;
