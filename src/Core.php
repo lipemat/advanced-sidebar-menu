@@ -9,6 +9,7 @@
  *
  */
 class Advanced_Sidebar_Menu_Core {
+	use \Advanced_Sidebar_Menu\Traits\Singleton;
 
 	protected function hook() {
 		add_action( 'widgets_init', array( $this, 'register_widgets' ) );
@@ -55,40 +56,5 @@ class Advanced_Sidebar_Menu_Core {
 		$file = apply_filters( 'advanced_sidebar_menu_template_part', $file, $file_name, $this );
 
 		return $file;
-	}
-
-	//********** SINGLETON FUNCTIONS **********/
-
-
-	/**
-	 * Instance of this class for use as singleton
-	 */
-	protected static $instance;
-
-
-	/**
-	 * Create the instance of the class
-	 *
-	 * @static
-	 * @return void
-	 */
-	public static function init() {
-		self::instance()->hook();
-	}
-
-
-	/**
-	 * Get (and instantiate, if necessary) the instance of the
-	 * class
-	 *
-	 * @static
-	 * @return self
-	 */
-	public static function instance() {
-		if ( ! is_a( self::$instance, __CLASS__ ) ) {
-			self::$instance = new self();
-		}
-
-		return self::$instance;
 	}
 }
