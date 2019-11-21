@@ -11,12 +11,15 @@
  * @package advanced-sidebar-menu
  */
 
+use Advanced_Sidebar_Menu\Scripts;
+
 if ( defined( 'ADVANCED_SIDEBAR_BASIC_VERSION' ) ) {
 	return;
 }
 
 define( 'ADVANCED_SIDEBAR_BASIC_VERSION', '7.6.6' );
 define( 'ADVANCED_SIDEBAR_DIR', plugin_dir_path( __FILE__ ) );
+define( 'ADVANCED_SIDEBAR_MENU_URL', plugin_dir_url( __FILE__ ) );
 
 if ( ! function_exists( 'advanced_sidebar_menu_load' ) ) {
 	/**
@@ -28,6 +31,7 @@ if ( ! function_exists( 'advanced_sidebar_menu_load' ) ) {
 		Advanced_Sidebar_Menu_Core::init();
 		Advanced_Sidebar_Menu_Cache::init();
 		Advanced_Sidebar_Menu_Debug::init();
+		Scripts::init();
 	}
 
 	add_action( 'plugins_loaded', 'advanced_sidebar_menu_load' );
@@ -55,14 +59,18 @@ function advanced_sidebar_menu_autoload( $class ) {
 		'Advanced_Sidebar_Menu_List_Pages'      => 'List_Pages.php',
 		'Advanced_Sidebar_Menu_Menu'            => 'Menu.php',
 		'Advanced_Sidebar_Menu_Page_Walker'     => 'Page_Walker.php',
+		'Advanced_Sidebar_Menu\Scripts'         => 'Scripts.php',
 
 		// menus.
 		'Advanced_Sidebar_Menu_Menus_Category'  => 'Menus/Category.php',
 		'Advanced_Sidebar_Menu_Menus_Abstract'  => 'Menus/Abstract.php',
 		'Advanced_Sidebar_Menu_Menus_Page'      => 'Menus/Page.php',
+
+		// Traits.
+		'Advanced_Sidebar_Menu\Traits\Singleton' => 'Traits/Singleton.php',
 	);
 	if ( isset( $classes[ $class ] ) ) {
-		require dirname( __FILE__ ) . '/src/' . $classes[ $class ];
+		require __DIR__ . '/src/' . $classes[ $class ];
 	}
 }
 
@@ -77,61 +85,6 @@ add_action( 'plugins_loaded', 'advanced_sidebar_menu_translate' );
  */
 function advanced_sidebar_menu_translate() {
 	load_plugin_textdomain( 'advanced-sidebar-menu', false, 'advanced-sidebar-menu/languages' );
-}
-
-add_action( 'admin_print_scripts', 'advanced_sidebar_menu_script' );
-// UGH! Beaver Builder hack.
-if ( isset( $_GET['fl_builder'] ) ) {
-	add_action( 'wp_enqueue_scripts', 'advanced_sidebar_menu_script' );
-}
-/**
- * Add js and css to the admin and in specific cases the front-end.
- *
- * @return void
- */
-function advanced_sidebar_menu_script() {
-	wp_enqueue_script(
-		apply_filters( 'asm_script', 'advanced-sidebar-menu-script' ),
-		plugins_url( 'resources/js/advanced-sidebar-menu.js', __FILE__ ),
-		array( 'jquery' ),
-		ADVANCED_SIDEBAR_BASIC_VERSION,
-		false
-	);
-
-	wp_enqueue_style(
-		apply_filters( 'asm_style', 'advanced-sidebar-menu-style' ),
-		plugins_url( 'resources/css/advanced-sidebar-menu.css', __FILE__ ),
-		array(),
-		ADVANCED_SIDEBAR_BASIC_VERSION
-	);
-}
-
-add_action( 'advanced-sidebar-menu/widget/category/after-form', 'advanced_sidebar_menu_init_widget_js', 1000 );
-add_action( 'advanced-sidebar-menu/widget/page/after-form', 'advanced_sidebar_menu_init_widget_js', 1000 );
-add_action( 'advanced-sidebar-menu/widget/navigation-menu/after-form', 'advanced_sidebar_menu_init_widget_js', 1000 );
-
-/**
- * Trigger any JS needed by the widgets.
- * This is outputted into the markup for each widget so it may be
- * trigger whether the widget is loaded on the front-end by
- * page builders or the backend by standard WordPress or
- * really anywhere.
- *
- * @return void
- */
-function advanced_sidebar_menu_init_widget_js() {
-	if ( WP_DEBUG ) {
-		?>
-		<!-- <?php echo __FILE__; ?>-->
-		<?php
-	}
-	?>
-	<script>
-		if (typeof (advanced_sidebar_menu) !== 'undefined') {
-			advanced_sidebar_menu.init()
-		}
-	</script>
-	<?php
 }
 
 
