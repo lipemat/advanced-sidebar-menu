@@ -91,6 +91,15 @@ function advanced_sidebar_menu_translate() {
 add_action( 'advanced-sidebar-menu/widget/category/right-column', 'advanced_sidebar_menu_upgrade_notice', 1, 2 );
 add_action( 'advanced-sidebar-menu/widget/page/right-column', 'advanced_sidebar_menu_upgrade_notice', 1, 2 );
 
+/**
+ * Legacy method now deprecated.
+ *
+ * @deprecated In favor of \Advanced_Sidebar_Menu\Scripts::instance()->admin_scripts()
+ */
+function advanced_sidebar_menu_script() {
+	_deprecated_function( 'advanced_sidebar_menu_script', '7.8.0', '\Advanced_Sidebar_Menu\Scripts::instance()->admin_scripts()' );
+	\Advanced_Sidebar_Menu\Scripts::instance()->admin_scripts();
+}
 
 /**
  * Notify widget users about the PRO options
