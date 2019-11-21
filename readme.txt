@@ -6,7 +6,7 @@ Tags: menus, sidebar menu, hierarchy, category menu, pages menu
 Requires at least: 4.8.0
 Tested up to: 5.3.0
 Requires PHP: 5.6.0
-Stable tag: 7.6.6
+Stable tag: 7.7.0
 
 == Description ==
 
@@ -16,7 +16,7 @@ Keeps the menu clean and usable. Only related items display so you don't have to
 
 <strong>Check out <a href="https://onpointplugins.com/product/advanced-sidebar-menu-pro/">Advanced Sidebar Menu Pro</a> for more features including priority support, the ability to customize the look and feel, custom link text, excluding of pages, category ordering, accordions, custom post types, custom taxonomies, and so much more!</strong>
 
-<blockquote><a href="https://onpointplugins.com/product/advanced-sidebar-menu-pro/" target="_blank">Pro version 3.9.0</a> is now available with support to exclude and change titles of navigation menu items using each page's settings!</blockquote>
+<blockquote><a href="https://onpointplugins.com/product/advanced-sidebar-menu-pro/" target="_blank">Pro version 3.10.0</a> is now available with support to exclude and change titles of navigation menu items using each page's settings!</blockquote>
 
 <h4>Features</h4>
 * Page and Category widgets.
@@ -155,6 +155,13 @@ Yes. Based on whatever page, post, or category you are on, the menu will change 
 
 
 == Changelog ==
+= 7.7.0 =
+* Enable accordion previews when editing via Beaver Builder.
+* Greatly improve widget styles and UI when using Elementor.
+* Overall third party page builder improvements.
+* Move scripts and styles into new Scripts class.
+* Introduce a new Singleton trait.
+
 = 7.6.0 =
 * Elementor support for multiple widgets of the same type on the same page.
 * Automatically increment widget ids under any cases where they would duplicate.
@@ -243,6 +250,9 @@ Yes. Based on whatever page, post, or category you are on, the menu will change 
 
 
 == Upgrade Notice ==
+= 7.7.0 =
+Update to support PRO version 3.10.0
+
 = 7.6.6 =
 Update to support PRO version 3.9.3
 
