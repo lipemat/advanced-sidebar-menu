@@ -152,14 +152,13 @@ class Advanced_Sidebar_Menu_Menus_Page extends Advanced_Sidebar_Menu_Menus_Abstr
 	}
 
 
+	/**
+	 * Get ids of any pages excluded via widget settings.
+	 *
+	 * @return array|mixed
+	 */
 	public function get_excluded_ids() {
-		$excluded = parent::get_excluded_ids();
-		if ( ! empty( $this->exclude ) ) {
-			//backward compatibility for PRO version
-			$excluded = array_merge( $excluded, $this->exclude );
-		}
-
-		return apply_filters( 'advanced_sidebar_menu_excluded_pages', $excluded, $this->get_current_post(), $this->args, $this->instance, $this );
+		return apply_filters( 'advanced_sidebar_menu_excluded_pages', parent::get_excluded_ids(), $this->get_current_post(), $this->args, $this->instance, $this );
 	}
 
 
