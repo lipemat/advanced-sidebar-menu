@@ -31,13 +31,6 @@ abstract class Advanced_Sidebar_Menu_Menus_Abstract {
 	public $args = array();
 
 	/**
-	 * @deprecated
-	 *
-	 * @var array
-	 */
-	public $exclude = array();
-
-	/**
 	 * Widget instance
 	 *
 	 * @var array
@@ -206,7 +199,7 @@ abstract class Advanced_Sidebar_Menu_Menus_Abstract {
 	/**
 	 * Is this id excluded from this menu?
 	 *
-	 * @param int $id
+	 * @param int $id ID of the object.
 	 *
 	 * @return bool
 	 */

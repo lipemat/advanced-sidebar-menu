@@ -54,8 +54,8 @@ class Advanced_Sidebar_Menu_Menus_Category extends Advanced_Sidebar_Menu_Menus_A
 	/**
 	 * Return the list of args for wp_list_categories()
 	 *
-	 * @param string  $level - level of menu so we have full control of updates
-	 * @param WP_Term $term  - Term for child and grandchild
+	 * @param string  $level - level of menu so we have full control of updates.
+	 * @param WP_Term $term  - Term for child and grandchild.
 	 *
 	 * @return array
 	 */
@@ -73,7 +73,7 @@ class Advanced_Sidebar_Menu_Menus_Category extends Advanced_Sidebar_Menu_Menus_A
 		if ( null === $level ) {
 			return $args;
 		}
-		// @todo switch these to constants to be use across basic and pro.
+
 		switch ( $level ) {
 			case self::LEVEL_PARENT:
 				$args['hide_empty'] = 0;

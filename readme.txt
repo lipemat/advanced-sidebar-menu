@@ -4,9 +4,9 @@ Contributors: Mat Lipe, onpointplugins
 Donate link: https://www.paypal.com/cgi-bin/webscr?cmd=_donations&business=paypal%40onpointplugins%2ecom&lc=US&item_name=Advanced%20Sidebar%20Menu&no_note=0&currency_code=USD&bn=PP%2dDonationsBF%3abtn_donateCC_LG%2egif%3aNonHostedGuest
 Tags: menus, sidebar menu, hierarchy, category menu, pages menu
 Requires at least: 4.8.0
-Tested up to: 5.3.0
+Tested up to: 5.3.3
 Requires PHP: 5.6.0
-Stable tag: 7.7.0
+Stable tag: 7.7.1
 
 == Description ==
 
@@ -73,12 +73,12 @@ Keeps the menu clean and usable. Only related items display so you don't have to
 * Optionally display child page siblings when on a child page. With our without grandchildren available. .
 * Ability to display the widgets everywhere the sidebar displays.
 * Ability to select the parent page/category when using the display widget everywhere option.
-* Ability to display assigned posts or custom post types under categories. **NEW**
+* Ability to display assigned posts or custom post types under categories.
 * Ability to select which levels of categories assigned posts should display under. **NEW**
 * Ability to limit the number of posts or custom post types to display under categories. 
 * Support for custom navigation menus from Appearance -> Menus. 
-* Ability to display the current Navigation Menu's items parents and children only. 
-* Optionally display the top level Navigation Menu's items when there are no child items or not viewing a menu item.  **NEW**
+* Ability to display the current Navigation Menu's items parents, siblings and children only. 
+* Optionally display the top level Navigation Menu's items when there are no child items or not viewing a menu item.
 * Access to members only support area.
 
 <h4>Currently ships with the following languages</h4>
@@ -155,6 +155,10 @@ Yes. Based on whatever page, post, or category you are on, the menu will change 
 
 
 == Changelog ==
+= 7.7.1 =
+* Tested to 5.3.3.
+* Change default "levels to display" to All.
+
 = 7.7.0 =
 * Enable accordion previews when editing via Beaver Builder.
 * Greatly improve widget styles and UI when using Elementor.
@@ -224,62 +228,10 @@ Yes. Based on whatever page, post, or category you are on, the menu will change 
 * Greatly improved performance
 * Improved code structure 
 
-= 4.7.0 =
-* Added Internationalization (I18n) support
-
-= 4.6.0 =
-* Added support for Pro Version
-
-= 4.5.0 =
-* Improved filter structure to allow for add-ons to work more effectively
-
-
-= 4.4.0 =
-* Added a has_children class to page links with hidden children
-
-= 4.3.0 =
-* Added many filters into the category widget for things like taxonomies, parent category, display on override, order by, and much more. There is no UI support for any of this yet, but developers may now tap into this. 
-
-= 4.2.0 =
-* Added Order By Selection in Page Widget
-
-= 4.0.0 =
-* Added support for an unlimited number of page levels
-* Change structure slightly for future enhancements
-* Added Legacy Mode for backwards compatibility
-
-
 == Upgrade Notice ==
 = 7.7.0 =
 Update to support PRO version 3.10.0
 
 = 7.6.6 =
 Update to support PRO version 3.9.3
-
-= 7.5.0 =
-Update to support PRO version 3.6.0
-
-= 7.4.7 =
-Update to support PRO version 3.5.0
-
-= 7.4.2 =
-Update to support PRO version 3.4.3
-
-= 7.4.0 =
-Update to support PRO version 3.4.0
-
-= 7.2.2 =
-Update to support PRO version 3.2.0
-
-= 7.1.2 =
-Update to support PRO version 3.1.0
-
-= 7.0.0 =
-The templates have been improved drastically. While the old version 6 templates will work for now they have been deprecated and will one day stop working. If you are using custom templates please being converting them to the new structure.
-
-= 6.0.0 =
-If you are using the Pro version of this plugin be sure to update to Pro version 1.4.4 to keep all functionality intact with this version.
-
-= 5.0.0 =
-If you used a custom page_list.php template previously you may want to redo it on this version to take advantage of the new structure.
 
