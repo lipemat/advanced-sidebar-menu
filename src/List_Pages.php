@@ -29,7 +29,7 @@ class Advanced_Sidebar_Menu_List_Pages {
 	/**
 	 * Used when walking the list
 	 *
-	 * @var WP_Post
+	 * @var null|\WP_Post
 	 */
 	protected $current_page;
 
@@ -121,9 +121,9 @@ class Advanced_Sidebar_Menu_List_Pages {
 		// page posts are handled by wp core. This is for custom post types.
 		if ( 'page' !== $post->post_type ) {
 			$ancestors = get_post_ancestors( $post );
-			if ( ! empty( $ancestors ) && in_array( $this->current_page->ID, $ancestors, false ) ) { //phpcs:ignore
+			if ( ! empty( $ancestors ) && in_array( $this->get_current_page_id(), $ancestors, false ) ) { //phpcs:ignore
 				$classes[] = 'current_page_ancestor';
-			} elseif ( $this->current_page->ID === $post->post_parent ) {
+			} elseif ( $this->get_current_page_id() === $post->post_parent ) {
 				$classes[] = 'current_page_parent';
 			}
 		}
@@ -219,14 +219,29 @@ class Advanced_Sidebar_Menu_List_Pages {
 
 
 	/**
+	 * Return the ID of the current page or 0 if not on a page.
+	 * Helper method to prevent a bunch of conditionals throughout.
+	 *
+	 * @since 7.7.2
+	 */
+	public function get_current_page_id() {
+		if ( null !== $this->current_page ) {
+			return $this->current_page->ID;
+		}
+		return 0;
+	}
+
+
+	/**
 	 * List the pages very similar to wp_list_pages.
 	 *
 	 * @return string
 	 */
 	public function list_pages() {
+
 		$pages = $this->get_child_pages( $this->top_parent_id, true );
 		foreach ( $pages as $page ) {
-			$this->output .= walk_page_tree( array( $page ), 1, $this->current_page->ID, $this->args );
+			$this->output .= walk_page_tree( array( $page ), 1, $this->get_current_page_id(), $this->args );
 			$this->output .= $this->list_grandchild_pages( $page->ID, 0 );
 			$this->output .= '</li>' . "\n";
 		}
@@ -266,7 +281,7 @@ class Advanced_Sidebar_Menu_List_Pages {
 
 		$inside = '';
 		foreach ( $pages as $page ) {
-			$inside .= walk_page_tree( array( $page ), 1, $this->current_page->ID, $this->args );
+			$inside .= walk_page_tree( [ $page ], 1, $this->get_current_page_id(), $this->args );
 			$inside .= $this->list_grandchild_pages( $page->ID, $level + 1 );
 			$inside .= "</li>\n";
 		}
@@ -326,8 +341,9 @@ class Advanced_Sidebar_Menu_List_Pages {
 	 */
 	public function is_current_page_ancestor( $page_id ) {
 		$return = false;
-		if ( ! empty( $this->current_page->ID ) ) {
-			if ( (int) $page_id === $this->current_page->ID ) {
+		$current_page_id = $this->get_current_page_id();
+		if ( ! empty( $current_page_id ) ) {
+			if ( (int) $page_id === $current_page_id ) {
 				$return = true;
 			} elseif ( $this->current_page->post_parent === (int) $page_id ) {
 				$return = true;
@@ -339,7 +355,7 @@ class Advanced_Sidebar_Menu_List_Pages {
 			}
 		}
 
-		return apply_filters( 'advanced_sidebar_menu_page_ancestor', $return, $this->current_page->ID, $this );
+		return apply_filters( 'advanced_sidebar_menu_page_ancestor', $return, $current_page_id, $this );
 	}
 
 
