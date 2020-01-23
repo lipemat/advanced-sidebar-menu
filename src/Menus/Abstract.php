@@ -52,15 +52,6 @@ abstract class Advanced_Sidebar_Menu_Menus_Abstract {
 	public $order_by;
 
 	/**
-	 * Top post_id or term_id
-	 *
-	 * @deprecated 7.0.0
-	 *
-	 * @var int
-	 */
-	public $top_id;
-
-	/**
 	 * Track the ids which have been used in case of
 	 * plugins like Elementor that we need to manually increment.
 	 *

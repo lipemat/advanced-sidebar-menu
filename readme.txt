@@ -6,7 +6,7 @@ Tags: menus, sidebar menu, hierarchy, category menu, pages menu
 Requires at least: 4.8.0
 Tested up to: 5.3.3
 Requires PHP: 5.6.0
-Stable tag: 7.7.1
+Stable tag: 7.7.2
 
 == Description ==
 
@@ -155,9 +155,10 @@ Yes. Based on whatever page, post, or category you are on, the menu will change 
 
 
 == Changelog ==
-= 7.7.1 =
+= 7.7.2 =
 * Tested to 5.3.3.
 * Change default "levels to display" to All.
+* Fix notice level errors when retrieving current page.
 
 = 7.7.0 =
 * Enable accordion previews when editing via Beaver Builder.

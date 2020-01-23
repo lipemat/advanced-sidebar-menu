@@ -21,9 +21,8 @@ class Advanced_Sidebar_Menu_Menus_Page extends Advanced_Sidebar_Menu_Menus_Abstr
 	public $post_type = 'page';
 
 	/**
-	 * post
 	 *
-	 * @var \WP_Post
+	 * @var null|\WP_Post
 	 */
 	protected $post;
 
@@ -39,7 +38,7 @@ class Advanced_Sidebar_Menu_Menus_Page extends Advanced_Sidebar_Menu_Menus_Abstr
 	 * Gets the current queried post unless it
 	 * has been set explicitly.
 	 *
-	 * @return \WP_Post
+	 * @return null|\WP_Post
 	 */
 	public function get_current_post() {
 		if ( null === $this->post ) {
@@ -62,19 +61,24 @@ class Advanced_Sidebar_Menu_Menus_Page extends Advanced_Sidebar_Menu_Menus_Abstr
 	}
 
 
+	/**
+	 * Get the id of page which is the top level parent of
+	 * the page we are currently on.
+	 *
+	 * Returns -1 if we don't have one.
+	 *
+	 * @return int
+	 */
 	public function get_top_parent_id() {
+		$top_id = - 1;
 		$ancestors = get_post_ancestors( $this->get_current_post() );
 		if ( ! empty( $ancestors ) ) {
 			$top_id = end( $ancestors );
-		} else {
+		} elseif ( null !== $this->get_current_post() ) {
 			$top_id = $this->get_current_post()->ID;
 		}
 
-		//$this->top_id is deprecated since 7.0.0
-		$this->top_id = apply_filters( 'advanced_sidebar_menu_top_parent', $top_id, $this->args, $this->instance, $this );
-
-		return $this->top_id;
-
+		return apply_filters( 'advanced_sidebar_menu_top_parent', $top_id, $this->args, $this->instance, $this );
 	}
 
 
