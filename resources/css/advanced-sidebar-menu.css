@@ -24,6 +24,10 @@
 	.advanced-sidebar-menu-column {
 		width: 100%;
 	}
+
+	.advanced-sidebar-menu-column-right {
+		margin-left: 0;
+	}
 }
 
 /** Elementor specific styles **/
