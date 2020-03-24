@@ -90,6 +90,25 @@ function advanced_sidebar_menu_translate() {
 
 add_action( 'advanced-sidebar-menu/widget/category/right-column', 'advanced_sidebar_menu_upgrade_notice', 1, 2 );
 add_action( 'advanced-sidebar-menu/widget/page/right-column', 'advanced_sidebar_menu_upgrade_notice', 1, 2 );
+add_action( 'advanced-sidebar-menu/widget/page/after-form', 'advanced_sidebar_menu_widget_docs', 99, 2 );
+add_action( 'advanced-sidebar-menu/widget/category/after-form', 'advanced_sidebar_menu_widget_docs', 99, 2 );
+
+/**
+ * Add a link to widget docs inside the widget.
+ *
+ * @param array     $instance - Widget settings.
+ * @param WP_Widget $widget   - Current widget.
+ */
+function advanced_sidebar_menu_widget_docs( $instance, WP_Widget $widget ) {
+	$anchor = 'advanced_sidebar_menu_category' === $widget->id_base ? 'categories-menu' : 'pages-menu';
+	?>
+	<p style="text-align: right">
+		<a href="https://onpointplugins.com/advanced-sidebar-menu/#advanced-sidebar-<?php echo esc_attr( $anchor ); ?>" target="blank">
+			<?php esc_html_e( 'widget documentation', 'advanced-sidebar-menu' ); ?>
+		</a>
+	</p>
+	<?php
+}
 
 /**
  * Legacy method now deprecated.
