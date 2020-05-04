@@ -37,13 +37,17 @@ class Advanced_Sidebar_Menu_Widget_Category extends Advanced_Sidebar_Menu__Widge
 
 	protected static $hooked = false;
 
-
+	/**
+	 * Register the widget.
+	 */
 	public function __construct() {
-		$widget_ops  = array(
+		$widget_ops = [
 			'classname'   => 'advanced-sidebar-menu advanced-sidebar-category',
 			'description' => __( 'Creates a menu of all the categories using the child/parent relationship', 'advanced-sidebar-menu' ),
-		);
-		$control_ops = array( 'width' => 620 );
+		];
+		$control_ops = [
+			'width' => wp_is_mobile() ? false : 620,
+		];
 
 		parent::__construct( 'advanced_sidebar_menu_category', __( 'Advanced Sidebar Categories Menu', 'advanced-sidebar-menu' ), $widget_ops, $control_ops );
 
@@ -52,6 +56,7 @@ class Advanced_Sidebar_Menu_Widget_Category extends Advanced_Sidebar_Menu__Widge
 			$this->hook();
 		}
 	}
+
 
 	/**
 	 * @notice Anything using the column actions must use the $widget class passed

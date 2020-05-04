@@ -33,14 +33,17 @@ class Advanced_Sidebar_Menu_Widget_Page extends Advanced_Sidebar_Menu__Widget__W
 	protected static $hooked = false;
 
 
+	/**
+	 * Register the widget.
+	 */
 	public function __construct() {
-		$widget_ops  = array(
+		$widget_ops = [
 			'classname'   => 'advanced-sidebar-menu',
 			'description' => __( 'Creates a menu of all the pages using the child/parent relationship', 'advanced-sidebar-menu' ),
-		);
-		$control_ops = array(
-			'width' => 620,
-		);
+		];
+		$control_ops = [
+			'width' => wp_is_mobile() ? false : 620,
+		];
 
 		parent::__construct( 'advanced_sidebar_menu', __( 'Advanced Sidebar Pages Menu', 'advanced-sidebar-menu' ), $widget_ops, $control_ops );
 
@@ -48,7 +51,6 @@ class Advanced_Sidebar_Menu_Widget_Page extends Advanced_Sidebar_Menu__Widget__W
 			self::$hooked = true;
 			$this->hook();
 		}
-
 	}
 
 

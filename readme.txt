@@ -4,9 +4,9 @@ Contributors: Mat Lipe, onpointplugins
 Donate link: https://www.paypal.com/cgi-bin/webscr?cmd=_donations&business=paypal%40onpointplugins%2ecom&lc=US&item_name=Advanced%20Sidebar%20Menu&no_note=0&currency_code=USD&bn=PP%2dDonationsBF%3abtn_donateCC_LG%2egif%3aNonHostedGuest
 Tags: menus, sidebar menu, hierarchy, category menu, pages menu
 Requires at least: 4.8.0
-Tested up to: 5.3.3
+Tested up to: 5.4.1
 Requires PHP: 5.6.0
-Stable tag: 7.7.2
+Stable tag: 7.7.3
 
 == Description ==
 
@@ -155,6 +155,12 @@ Yes. Based on whatever page, post, or category you are on, the menu will change 
 
 
 == Changelog ==
+= 7.7.3 =
+* Fix widget info pane links.
+* Fix widget editing on mobile devices.
+* Tested up to PHP 7.4
+* Tested up to WordPress Core version 5.4.1 
+
 = 7.7.2 =
 * Tested to 5.3.3.
 * Change default "levels to display" to All.
@@ -203,31 +209,6 @@ Yes. Based on whatever page, post, or category you are on, the menu will change 
 = 6.4.0 =
 * Code improvements
 * Performance improvements via shared child retrieval
-
-= 6.3.0
-* Improve category class handling for pro version accordion support
-
-= 6.2.0 =
-* Improve sorting of categories
-
-= 6.1.0 =
-* Improve page list view
-* Add advanced_sidebar_menu_list_pages_args filter
-
-= 6.0.0 =
-* Remove legacy template support
-* Restructure plugin
-* Introduce 'advanced_sidebar_menu_template_part' filter
-
-
-= 5.1.0 =
-* Convert query over to get_posts() to allow for more extendability
-* Implement object caching to improve performance for environments using external object caches
-* Begin modernizing the naming conventions of methods and improving PHPdocs
-
-= 5.0.0 =
-* Greatly improved performance
-* Improved code structure 
 
 == Upgrade Notice ==
 = 7.7.0 =
