@@ -18,7 +18,7 @@ Keeps the menu clean and usable. Only related items display so you don't have to
 
 <blockquote><a href="https://onpointplugins.com/product/advanced-sidebar-menu-pro/" target="_blank">Pro version 3.10.0</a> is now available with support to exclude and change titles of navigation menu items using each page's settings!</blockquote>
 
-<h4>Features</h4>
+<h3>Features</h3>
 * Page and Category widgets.
 * Option to display or not display the highest level parent page or category.
 * Option to display the menu when there is only the highest level parent.
@@ -29,7 +29,7 @@ Keeps the menu clean and usable. Only related items display so you don't have to
 * Option to display or not display categories on single posts.
 * Ability to display each single post's category in a new widget or in same list.
 
-<h4>Page Widget Options</h4>
+<h3>Page Widget Options</h3>
 * Add a title to the widget
 * Display highest level parent page
 * Display menu when there is only the parent page
@@ -39,7 +39,7 @@ Keeps the menu clean and usable. Only related items display so you don't have to
 * Always display child Pages
 * Number of levels of child pages to display when always display child pages is checked
 
-<h4>Category Widget Options</h4>
+<h3>Category Widget Options</h3>
 * Add a title to the widget
 * Display highest level parent category
 * Display menu when there is only the parent category
@@ -50,7 +50,7 @@ Keeps the menu clean and usable. Only related items display so you don't have to
 * Always display child categories
 * Levels of Categories to display when always display child categories is checked
 
-<h4>Pro Features</h4>
+<h3>Pro Features</h3>
 * Priority support.
 * Ability to customize each page's link text.
 * Click and drag styling for page, category, and navigation menu widgets.
@@ -81,14 +81,14 @@ Keeps the menu clean and usable. Only related items display so you don't have to
 * Optionally display the top level Navigation Menu's items when there are no child items or not viewing a menu item.
 * Access to members only support area.
 
-<h4>Currently ships with the following languages</h4>
+<h3>Currently ships with the following languages</h3>
 * English (US)
 * German (de_DE)
    
-<h4>Developers</h4>
+<h3>Developers</h3>
 Developer docs may be found <a target="_blank" href="https://onpointplugins.com/advanced-sidebar-menu/developer-docs/">here</a>.
 
-<h4>Contribute</h4>
+<h3>Contribute</h3>
 Send pull requests via the <a target="_blank" href="https://github.com/lipemat/advanced-sidebar-menu">GitHub Repo</a>
 
 
