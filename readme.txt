@@ -4,9 +4,9 @@ Contributors: Mat Lipe, onpointplugins
 Donate link: https://www.paypal.com/cgi-bin/webscr?cmd=_donations&business=paypal%40onpointplugins%2ecom&lc=US&item_name=Advanced%20Sidebar%20Menu&no_note=0&currency_code=USD&bn=PP%2dDonationsBF%3abtn_donateCC_LG%2egif%3aNonHostedGuest
 Tags: menus, sidebar menu, hierarchy, category menu, pages menu
 Requires at least: 4.8.0
-Tested up to: 5.4.1
+Tested up to: 5.4.2
 Requires PHP: 5.6.0
-Stable tag: 7.7.3
+Stable tag: 7.7.4
 
 == Description ==
 
@@ -18,7 +18,7 @@ Keeps the menu clean and usable. Only related items display so you don't have to
 
 <blockquote><a href="https://onpointplugins.com/product/advanced-sidebar-menu-pro/" target="_blank">Pro version 3.10.0</a> is now available with support to exclude and change titles of navigation menu items using each page's settings!</blockquote>
 
-<h4>Features</h4>
+<h3>Features</h3>
 * Page and Category widgets.
 * Option to display or not display the highest level parent page or category.
 * Option to display the menu when there is only the highest level parent.
@@ -29,9 +29,9 @@ Keeps the menu clean and usable. Only related items display so you don't have to
 * Option to display or not display categories on single posts.
 * Ability to display each single post's category in a new widget or in same list.
 
-<h4>Page Widget Options</h4>
+<h3>Page Widget Options</h3>
 * Add a title to the widget
-* Display highest level parent page
+* Display the highest level parent page
 * Display menu when there is only the parent page
 * Order pages by (date, title, page order)
 * Use built in styling (very plain styling, for more advanced styling <a href="https://onpointplugins.com/product/advanced-sidebar-menu-pro/" target="_blank">Go Pro!</a>)
@@ -39,9 +39,9 @@ Keeps the menu clean and usable. Only related items display so you don't have to
 * Always display child Pages
 * Number of levels of child pages to display when always display child pages is checked
 
-<h4>Category Widget Options</h4>
+<h3>Category Widget Options</h3>
 * Add a title to the widget
-* Display highest level parent category
+* Display the highest level parent category
 * Display menu when there is only the parent category
 * Use built in styling (very plain styling, for more advanced styling <a href="https://onpointplugins.com/product/advanced-sidebar-menu-pro/" target="_blank">Go Pro!</a>)
 * Display categories on single posts
@@ -50,7 +50,7 @@ Keeps the menu clean and usable. Only related items display so you don't have to
 * Always display child categories
 * Levels of Categories to display when always display child categories is checked
 
-<h4>Pro Features</h4>
+<h3>Pro Features</h3>
 * Priority support.
 * Ability to customize each page's link text.
 * Click and drag styling for page, category, and navigation menu widgets.
@@ -63,7 +63,7 @@ Keeps the menu clean and usable. Only related items display so you don't have to
 * Accordion menu support for pages, categories, and navigation menus. 
 * Accordion icon style and color selection.
 * Accordion option to keep all sections closed until clicked.
-* Accordion option to include highest level parent in accordion.
+* Accordion option to include the highest level parent in accordion.
 * Ability to exclude a page from all menus using a simple checkbox.
 * Link ordering for the category widget.
 * Number of levels of pages to show when always displayed child pages is not checked.
@@ -78,29 +78,29 @@ Keeps the menu clean and usable. Only related items display so you don't have to
 * Ability to limit the number of posts or custom post types to display under categories. 
 * Support for custom navigation menus from Appearance -> Menus. 
 * Ability to display the current Navigation Menu's items parents, siblings and children only. 
-* Optionally display the top level Navigation Menu's items when there are no child items or not viewing a menu item.
+* Optionally display the top-level Navigation Menu's items when there are no child items or not viewing a menu item.
 * Access to members only support area.
 
-<h4>Currently ships with the following languages</h4>
+<h3>Currently ships with the following languages</h3>
 * English (US)
 * German (de_DE)
    
-<h4>Developers</h4>
+<h3>Developers</h3>
 Developer docs may be found <a target="_blank" href="https://onpointplugins.com/advanced-sidebar-menu/developer-docs/">here</a>.
 
-<h4>Contribute</h4>
+<h3>Contribute</h3>
 Send pull requests via the <a target="_blank" href="https://github.com/lipemat/advanced-sidebar-menu">GitHub Repo</a>
 
 
 == Installation ==
 
-Use the standard WordPress plugins search and install feature.
+Use the standard WordPress plugins search and install.
 
 Manual Installation
 
 1. Upload the `advanced-sidebar-menu` folder to the `/wp-content/plugins/` directory
 1. Activate the plugin through the 'Plugins' menu in WordPress
-1. Drag the "Advanced Sidebar Pages Menu" widget or the "Advanced Sidebar Categories Menu" widget into a sidebar.
+1. Drag the "Advanced Sidebar Pages Menu" widget, or the "Advanced Sidebar Categories Menu" widget into a sidebar.
 
 
 == Screenshots ==
@@ -119,8 +119,8 @@ The widgets in this plugin are smart enough to not show up on pages or categorie
 
 The most common causes for this confusion come from one of these reasons:
 1. The incorrect widget was selected (there are different widgets for categories or pages).
-2. "Display highest level parent page" or "Display highest level parent category" is not checked.
-3. The widget is currently not being viewed on a Page (for the pages widget) or Category (for the categories widget).
+2. "Display the highest level parent page" or "Display the highest level parent category" is not checked.
+3. The widget is currently not being viewed on a Page (for the pages' widget) or Category (for the categories' widget).
 
 = How do I change the styling of the current page? =
 
@@ -199,7 +199,7 @@ Yes. Based on whatever page, post, or category you are on, the menu will change 
 = 7.0.0 =
 * Restructure the codebase to a more modern PSR4 structure
 * Improve cache handling
-* Improve verbiage in admin
+* Improve verbiage in the admin
 * Implement new actions and filters
 * Rebuild templates for improved stability and future changes
 * Improve performance

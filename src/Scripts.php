@@ -8,7 +8,7 @@ use Advanced_Sidebar_Menu\Traits\Singleton;
  * Scripts and styles.
  *
  * @author Mat Lipe
- * @since  7.8.0
+ * @since  7.7.0
  */
 class Scripts {
 	use Singleton;
