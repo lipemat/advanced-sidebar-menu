@@ -4,7 +4,7 @@
  * Plugin URI: https://onpointplugins.com/advanced-sidebar-menu/
  * Description: Creates dynamic menus based on parent/child relationship of your pages or categories.
  * Author: OnPoint Plugins
- * Version: 7.7.3
+ * Version: 7.7.4
  * Author URI: https://onpointplugins.com
  * Text Domain: advanced-sidebar-menu
  *
@@ -12,12 +12,13 @@
  */
 
 use Advanced_Sidebar_Menu\Scripts;
+use Advanced_Sidebar_Menu\Traits\Singleton;
 
 if ( defined( 'ADVANCED_SIDEBAR_BASIC_VERSION' ) ) {
 	return;
 }
 
-define( 'ADVANCED_SIDEBAR_BASIC_VERSION', '7.7.3' );
+define( 'ADVANCED_SIDEBAR_BASIC_VERSION', '7.7.4' );
 define( 'ADVANCED_SIDEBAR_DIR', plugin_dir_path( __FILE__ ) );
 define( 'ADVANCED_SIDEBAR_MENU_URL', plugin_dir_url( __FILE__ ) );
 
@@ -46,7 +47,7 @@ if ( ! function_exists( 'advanced_sidebar_menu_load' ) ) {
  * @return void
  */
 function advanced_sidebar_menu_autoload( $class ) {
-	$classes = array(
+	$classes = [
 		// widgets.
 		'Advanced_Sidebar_Menu__Widget__Widget' => 'Widget/Widget.php',
 		'Advanced_Sidebar_Menu_Widget_Page'     => 'Widget/Page.php',
@@ -59,7 +60,7 @@ function advanced_sidebar_menu_autoload( $class ) {
 		'Advanced_Sidebar_Menu_List_Pages'      => 'List_Pages.php',
 		'Advanced_Sidebar_Menu_Menu'            => 'Menu.php',
 		'Advanced_Sidebar_Menu_Page_Walker'     => 'Page_Walker.php',
-		'Advanced_Sidebar_Menu\Scripts'         => 'Scripts.php',
+		Scripts::class                          => 'Scripts.php',
 
 		// menus.
 		'Advanced_Sidebar_Menu_Menus_Category'  => 'Menus/Category.php',
@@ -67,8 +68,8 @@ function advanced_sidebar_menu_autoload( $class ) {
 		'Advanced_Sidebar_Menu_Menus_Page'      => 'Menus/Page.php',
 
 		// Traits.
-		'Advanced_Sidebar_Menu\Traits\Singleton' => 'Traits/Singleton.php',
-	);
+		Singleton::class                        => 'Traits/Singleton.php',
+	];
 	if ( isset( $classes[ $class ] ) ) {
 		require __DIR__ . '/src/' . $classes[ $class ];
 	}
@@ -108,16 +109,6 @@ function advanced_sidebar_menu_widget_docs( $instance, WP_Widget $widget ) {
 		</a>
 	</p>
 	<?php
-}
-
-/**
- * Legacy method now deprecated.
- *
- * @deprecated In favor of \Advanced_Sidebar_Menu\Scripts::instance()->admin_scripts()
- */
-function advanced_sidebar_menu_script() {
-	_deprecated_function( 'advanced_sidebar_menu_script', '7.8.0', '\Advanced_Sidebar_Menu\Scripts::instance()->admin_scripts()' );
-	\Advanced_Sidebar_Menu\Scripts::instance()->admin_scripts();
 }
 
 /**
