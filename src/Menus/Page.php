@@ -184,10 +184,6 @@ class Page extends Menu_Abstract {
 
 		do_action( 'advanced-sidebar-menu/menus/page/render', $this );
 
-		if ( $this->checked( self::USE_PLUGIN_STYLES ) ) {
-			Advanced_Sidebar_Menu_Core::instance()->include_plugin_styles();
-		}
-
 		$output = require Advanced_Sidebar_Menu_Core::instance()->get_template_part( 'page_list.php' );
 		echo apply_filters( 'advanced-sidebar-menu/menus/page/output', $output, $this->get_current_post(), $this->args, $this->instance, $this );
 

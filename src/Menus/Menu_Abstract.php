@@ -21,7 +21,6 @@ abstract class Menu_Abstract {
 	const ORDER                    = 'order';
 	const ORDER_BY                 = 'order_by';
 	const TITLE                    = 'title';
-	const USE_PLUGIN_STYLES        = 'css';
 
 	/**
 	 * Widget Args

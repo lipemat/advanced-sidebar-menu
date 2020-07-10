@@ -2,6 +2,7 @@
 
 use Advanced_Sidebar_Menu\Menus\Menu_Abstract;
 use Advanced_Sidebar_Menu\Menus\Page;
+use Advanced_Sidebar_Menu\Traits\Memoize;
 
 /**
  * Advanced_Sidebar_Menu_Widgets_Page
@@ -12,27 +13,30 @@ use Advanced_Sidebar_Menu\Menus\Page;
  * @since  7.0.0
  */
 class Advanced_Sidebar_Menu_Widget_Page extends Advanced_Sidebar_Menu__Widget__Widget {
+	use Memoize;
+
 	const TITLE                    = Menu_Abstract::TITLE;
 	const INCLUDE_PARENT           = Menu_Abstract::INCLUDE_PARENT;
 	const INCLUDE_CHILDLESS_PARENT = Menu_Abstract::INCLUDE_CHILDLESS_PARENT;
 	const ORDER_BY                 = Menu_Abstract::ORDER_BY;
-	const USE_PLUGIN_STYLES        = Menu_Abstract::USE_PLUGIN_STYLES;
 	const EXCLUDE                  = Menu_Abstract::EXCLUDE;
 	const DISPLAY_ALL              = Menu_Abstract::DISPLAY_ALL;
 	const LEVELS                   = Menu_Abstract::LEVELS;
 
+	/**
+	 * Default values for the widget.
+	 *
+	 * @var array
+	 */
 	protected static $defaults = [
 		self::TITLE                    => false,
 		self::INCLUDE_PARENT           => false,
 		self::INCLUDE_CHILDLESS_PARENT => false,
 		self::ORDER_BY                 => 'menu_order',
-		self::USE_PLUGIN_STYLES        => false,
 		self::EXCLUDE                  => false,
 		self::DISPLAY_ALL              => false,
 		self::LEVELS                   => 100,
 	];
-
-	protected static $hooked = false;
 
 
 	/**
@@ -49,31 +53,31 @@ class Advanced_Sidebar_Menu_Widget_Page extends Advanced_Sidebar_Menu__Widget__W
 
 		parent::__construct( 'advanced_sidebar_menu', __( 'Advanced Sidebar Pages Menu', 'advanced-sidebar-menu' ), $widget_ops, $control_ops );
 
-		if ( ! self::$hooked ) {
-			self::$hooked = true;
-			$this->hook();
-		}
+		$this->hook();
 	}
 
 
 	/**
+	 * Add the sections to the widget via actions.
+	 *
 	 * @notice Anything using the column actions must use the $widget class passed
 	 *         via do_action instead of $this
 	 *
 	 * @return void
 	 */
 	protected function hook() {
-		add_action( 'advanced-sidebar-menu/widget/page/left-column', [ $this, 'box_display' ], 5, 2 );
-		add_action( 'advanced-sidebar-menu/widget/page/left-column', [ $this, 'box_styles' ], 10, 2 );
-		add_action( 'advanced-sidebar-menu/widget/page/left-column', [ $this, 'box_order' ], 15, 2 );
-		add_action( 'advanced-sidebar-menu/widget/page/left-column', [ $this, 'box_exclude' ], 20, 2 );
+		$this->once( function () {
+			add_action( 'advanced-sidebar-menu/widget/page/left-column', [ $this, 'box_display' ], 5, 2 );
+			add_action( 'advanced-sidebar-menu/widget/page/left-column', [ $this, 'box_order' ], 15, 2 );
+			add_action( 'advanced-sidebar-menu/widget/page/left-column', [ $this, 'box_exclude' ], 20, 2 );
+		}, __METHOD__, [] );
 	}
 
 
 	/**
 	 *
-	 * @param array                                  $instance
-	 * @param \Advanced_Sidebar_Menu__Widget__Widget $widget
+	 * @param array                                  $instance - Widget settings.
+	 * @param \Advanced_Sidebar_Menu__Widget__Widget $widget   - Registered widget arguments.
 	 *
 	 * @return void
 	 */
@@ -142,30 +146,8 @@ class Advanced_Sidebar_Menu_Widget_Page extends Advanced_Sidebar_Menu__Widget__W
 
 	/**
 	 *
-	 * @param array                                  $instance
-	 * @param \Advanced_Sidebar_Menu__Widget__Widget $widget
-	 *
-	 * @return void
-	 */
-	public function box_styles( array $instance, $widget ) {
-		?>
-		<div class="advanced-sidebar-menu-column-box">
-			<p>
-				<?php $widget->checkbox( self::USE_PLUGIN_STYLES ); ?>
-				<label>
-					<?php esc_html_e( "Use this plugin's default styling", 'advanced-sidebar-menu' ); ?>
-				</label>
-			</p>
-			<?php do_action( 'advanced-sidebar-menu/widget/page/styles-box', $instance, $widget ); ?>
-		</div>
-		<?php
-	}
-
-
-	/**
-	 *
-	 * @param array                                  $instance
-	 * @param \Advanced_Sidebar_Menu__Widget__Widget $widget
+	 * @param array                                  $instance - Widget settings.
+	 * @param \Advanced_Sidebar_Menu__Widget__Widget $widget   - Registered widget arguments.
 	 *
 	 * @return void
 	 */
@@ -205,8 +187,8 @@ class Advanced_Sidebar_Menu_Widget_Page extends Advanced_Sidebar_Menu__Widget__W
 
 	/**
 	 *
-	 * @param array                                  $instance
-	 * @param \Advanced_Sidebar_Menu__Widget__Widget $widget
+	 * @param array                                  $instance - Widget settings.
+	 * @param \Advanced_Sidebar_Menu__Widget__Widget $widget   - Registered widget arguments.
 	 *
 	 * @return void
 	 */

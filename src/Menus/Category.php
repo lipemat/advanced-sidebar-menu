@@ -452,9 +452,6 @@ class Category extends Menu_Abstract {
 				if ( ! $menu_open ) {
 					// Must remain in the loop vs the template.
 					$this->title();
-					if ( $this->checked( self::USE_PLUGIN_STYLES ) ) {
-						Advanced_Sidebar_Menu_Core::instance()->include_plugin_styles();
-					}
 
 					$menu_open = true;
 					$close_menu = true;

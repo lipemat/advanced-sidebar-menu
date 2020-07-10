@@ -30,25 +30,10 @@ class Advanced_Sidebar_Menu_Core {
 
 
 	/**
-	 * The plugin styles are universal
-	 * This ensures that we only include them once on a single request
-	 *
-	 * @return void
-	 */
-	public function include_plugin_styles() {
-		?>
-		<style>
-			<?php include_once $this->get_template_part( 'sidebar-menu.css' ); ?>
-		</style>
-		<?php
-	}
-
-
-	/**
 	 * Retrieve a template file from either the theme's 'advanced-sidebar-menu' directory
 	 * or this plugins views folder if one does not exist
 	 *
-	 * @param string $file_name
+	 * @param string $file_name - Name of template file without the PHP extension.
 	 *
 	 * @since 6.0.0
 	 *
