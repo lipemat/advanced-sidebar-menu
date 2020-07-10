@@ -1,18 +1,20 @@
 <?php
+namespace Advanced_Sidebar_Menu\Widget;
+
 /**
- * Advanced_Sidebar_Menu__Widget__Widget
+ * Base class for this plugin's widgets.
  *
  * @author OnPoint Plugins
  *
  * @since  7.2.0
  */
-abstract class Advanced_Sidebar_Menu__Widget__Widget extends WP_Widget {
+abstract class Widget_Abstract extends \WP_Widget {
 	/**
 	 * The current widget instance
 	 *
 	 * @var array
 	 */
-	protected $_instance;
+	protected $widget_settings;
 
 
 	/**
@@ -20,26 +22,24 @@ abstract class Advanced_Sidebar_Menu__Widget__Widget extends WP_Widget {
 	 * We do this manually because there are filters etc which
 	 * hit the instance before we get to self::form() and self::widget()
 	 *
-	 * @see   WP_Widget::form_callback()
-	 *
 	 * @param array $instance - widget settings.
 	 * @param array $defaults - defaults for all widgets.
+	 *
+	 * @see   \WP_Widget::form_callback()
 	 *
 	 * @since 7.2.0
 	 *
 	 * @return array
 	 */
 	protected function set_instance( array $instance, array $defaults ) {
-		$instance        = wp_parse_args( $instance, $defaults );
-		$this->_instance = $instance;
+		$this->widget_settings = (array) wp_parse_args( $instance, $defaults );
 
-		return $instance;
-
+		return $this->widget_settings;
 	}
 
 
 	/**
-	 * Checks if a widgets checkbox is checked.
+	 * Checks if a widget's checkbox is checked.
 	 *
 	 * Checks first for a value then verifies the value = checked
 	 *
@@ -50,15 +50,17 @@ abstract class Advanced_Sidebar_Menu__Widget__Widget extends WP_Widget {
 	 * @return bool
 	 */
 	public function checked( $name ) {
-		return isset( $this->_instance[ $name ] ) && 'checked' === $this->_instance[ $name ];
+		return isset( $this->widget_settings[ $name ] ) && 'checked' === $this->widget_settings[ $name ];
 	}
 
 
 	/**
 	 * Hide an element_key if a controlling_checkbox is checked.
 	 *
-	 * @param string $controlling_checkbox - Name of controlling_checkbox field which controls whether to hide this element or not.
-	 * @param string $element_key          - Match the `element_to_reveal` passed to $this->checkbox() for the checkbox which controls this.
+	 * @param string $controlling_checkbox - Name of controlling_checkbox field which controls whether to hide this
+	 *                                     element or not.
+	 * @param string $element_key          - Match the `element_to_reveal` passed to $this->checkbox() for the checkbox
+	 *                                     which controls this.
 	 * @param bool   $reverse              - hide on check instead of show on check.
 	 *
 	 * @todo  Convert all uses of this method to supply the $element_key
@@ -97,8 +99,8 @@ abstract class Advanced_Sidebar_Menu__Widget__Widget extends WP_Widget {
 	 * @since 7.2.0
 	 */
 	public function checkbox( $name, $element_to_reveal = null ) {
-		if ( empty( $this->_instance[ $name ] ) ) {
-			$this->_instance[ $name ] = null;
+		if ( empty( $this->widget_settings[ $name ] ) ) {
+			$this->widget_settings[ $name ] = null;
 		}
 
 		?>
@@ -109,9 +111,8 @@ abstract class Advanced_Sidebar_Menu__Widget__Widget extends WP_Widget {
 			value="checked"
 			data-js="advanced-sidebar-menu/widget/<?php echo esc_attr( $this->id_base ); ?>/<?php echo esc_attr( $name ); ?>"
 			<?php echo ( null !== $element_to_reveal ) ? 'onclick="asm_reveal_element( \'' . esc_attr( $this->get_field_id( $element_to_reveal ) ) . '\')"' : ''; ?>
-			<?php echo esc_html( $this->_instance[ $name ] ); ?>
+			<?php echo esc_html( $this->widget_settings[ $name ] ); ?>
 		/>
 		<?php
-
 	}
 }

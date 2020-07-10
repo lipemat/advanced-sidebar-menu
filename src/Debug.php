@@ -1,6 +1,7 @@
 <?php
 
 use Advanced_Sidebar_Menu\Menus\Menu_Abstract;
+use Advanced_Sidebar_Menu\Widget\Page;
 
 /**
  * Advanced_Sidebar_Menu_Debug
@@ -47,8 +48,8 @@ class Advanced_Sidebar_Menu_Debug {
 	/**
 	 * Print the widget settings as a js variable.
 	 *
-	 * @param Menu_Abstract                     $asm    - Menu class.
-	 * @param Advanced_Sidebar_Menu_Widget_Page $widget - Widget class.
+	 * @param Menu_Abstract $asm    - Menu class.
+	 * @param Page          $widget - Widget class.
 	 *
 	 * @return void
 	 */

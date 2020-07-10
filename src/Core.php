@@ -24,8 +24,8 @@ class Advanced_Sidebar_Menu_Core {
 	 * @return void
 	 */
 	public function register_widgets() {
-		register_widget( \Advanced_Sidebar_Menu_Widget_Page::class );
-		register_widget( \Advanced_Sidebar_Menu_Widget_Category::class );
+		register_widget( \Advanced_Sidebar_Menu\Widget\Page::class );
+		register_widget( \Advanced_Sidebar_Menu\Widget\Category::class );
 	}
 
 

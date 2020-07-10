@@ -434,6 +434,8 @@ class Category extends Menu_Abstract {
 			return;
 		}
 
+		add_filter( 'category_css_class', [ $this, 'add_has_children_category_class' ], 11, 2 );
+
 		$menu_open = false;
 		$close_menu = false;
 

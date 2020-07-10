@@ -1,14 +1,4 @@
 <?php
-
-use Advanced_Sidebar_Menu\Cache;
-use Advanced_Sidebar_Menu\List_Pages;
-use Advanced_Sidebar_Menu\Menus\Category;
-use Advanced_Sidebar_Menu\Menus\Menu_Abstract;
-use Advanced_Sidebar_Menu\Menus\Page;
-use Advanced_Sidebar_Menu\Scripts;
-use Advanced_Sidebar_Menu\Traits\Memoize;
-use Advanced_Sidebar_Menu\Traits\Singleton;
-
 /**
  * Plugin Name: Advanced Sidebar Menu
  * Plugin URI: https://onpointplugins.com/advanced-sidebar-menu/
@@ -24,6 +14,16 @@ use Advanced_Sidebar_Menu\Traits\Singleton;
 if ( defined( 'ADVANCED_SIDEBAR_BASIC_VERSION' ) ) {
 	return;
 }
+
+use Advanced_Sidebar_Menu\Cache;
+use Advanced_Sidebar_Menu\List_Pages;
+use Advanced_Sidebar_Menu\Menus\Category;
+use Advanced_Sidebar_Menu\Menus\Menu_Abstract;
+use Advanced_Sidebar_Menu\Menus\Page;
+use Advanced_Sidebar_Menu\Scripts;
+use Advanced_Sidebar_Menu\Traits\Memoize;
+use Advanced_Sidebar_Menu\Traits\Singleton;
+use Advanced_Sidebar_Menu\Widget\Widget_Abstract;
 
 define( 'ADVANCED_SIDEBAR_BASIC_VERSION', '7.7.4' );
 define( 'ADVANCED_SIDEBAR_DIR', plugin_dir_path( __FILE__ ) );
@@ -56,26 +56,26 @@ if ( ! function_exists( 'advanced_sidebar_menu_load' ) ) {
 function advanced_sidebar_menu_autoload( $class ) {
 	$classes = [
 		// widgets.
-		'Advanced_Sidebar_Menu__Widget__Widget'       => 'Widget/Widget.php',
-		\Advanced_Sidebar_Menu_Widget_Page::class     => 'Widget/Page.php',
-		\Advanced_Sidebar_Menu_Widget_Category::class => 'Widget/Category.php',
+		Widget_Abstract::class                        => 'Widget/Widget_Abstract.php',
+		\Advanced_Sidebar_Menu\Widget\Page::class     => 'Widget/Page.php',
+		\Advanced_Sidebar_Menu\Widget\Category::class => 'Widget/Category.php',
 
 		// core.
-		Cache::class                        => 'Cache.php',
-		'Advanced_Sidebar_Menu_Core'        => 'Core.php',
-		'Advanced_Sidebar_Menu_Debug'       => 'Debug.php',
-		List_Pages::class                   => 'List_Pages.php',
-		'Advanced_Sidebar_Menu_Page_Walker' => 'Page_Walker.php',
-		Scripts::class                      => 'Scripts.php',
+		Cache::class                                  => 'Cache.php',
+		'Advanced_Sidebar_Menu_Core'                  => 'Core.php',
+		'Advanced_Sidebar_Menu_Debug'                 => 'Debug.php',
+		List_Pages::class                             => 'List_Pages.php',
+		'Advanced_Sidebar_Menu_Page_Walker'           => 'Page_Walker.php',
+		Scripts::class                                => 'Scripts.php',
 
 		// menus.
-		Category::class                     => 'Menus/Category.php',
-		Menu_Abstract::class                => 'Menus/Menu_Abstract.php',
-		Page::class                         => 'Menus/Page.php',
+		Category::class                               => 'Menus/Category.php',
+		Menu_Abstract::class                          => 'Menus/Menu_Abstract.php',
+		Page::class                                   => 'Menus/Page.php',
 
 		// Traits.
-		Memoize::class                      => 'Traits/Memoize.php',
-		Singleton::class                    => 'Traits/Singleton.php',
+		Memoize::class                                => 'Traits/Memoize.php',
+		Singleton::class                              => 'Traits/Singleton.php',
 	];
 	if ( isset( $classes[ $class ] ) ) {
 		require __DIR__ . '/src/' . $classes[ $class ];

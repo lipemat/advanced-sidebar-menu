@@ -1,6 +1,7 @@
 <?php
 
-use Advanced_Sidebar_Menu\Menus\Category;
+namespace Advanced_Sidebar_Menu\Widget;
+
 use Advanced_Sidebar_Menu\Menus\Menu_Abstract;
 use Advanced_Sidebar_Menu\Traits\Memoize;
 
@@ -12,7 +13,7 @@ use Advanced_Sidebar_Menu\Traits\Memoize;
  *
  * @package Advanced Sidebar Menu
  */
-class Advanced_Sidebar_Menu_Widget_Category extends Advanced_Sidebar_Menu__Widget__Widget {
+class Category extends Widget_Abstract {
 	use Memoize;
 
 	const TITLE                    = Menu_Abstract::TITLE;
@@ -23,8 +24,8 @@ class Advanced_Sidebar_Menu_Widget_Category extends Advanced_Sidebar_Menu__Widge
 	const DISPLAY_ALL              = Menu_Abstract::DISPLAY_ALL;
 	const LEVELS                   = Menu_Abstract::LEVELS;
 
-	const DISPLAY_ON_SINGLE     = Category::DISPLAY_ON_SINGLE;
-	const EACH_CATEGORY_DISPLAY = Category::EACH_CATEGORY_DISPLAY;
+	const DISPLAY_ON_SINGLE     = \Advanced_Sidebar_Menu\Menus\Category::DISPLAY_ON_SINGLE;
+	const EACH_CATEGORY_DISPLAY = \Advanced_Sidebar_Menu\Menus\Category::EACH_CATEGORY_DISPLAY;
 
 	/**
 	 * Default widget values.
@@ -84,8 +85,8 @@ class Advanced_Sidebar_Menu_Widget_Category extends Advanced_Sidebar_Menu__Widge
 	/**
 	 * Display options.
 	 *
-	 * @param array                                  $instance - Widget settings.
-	 * @param \Advanced_Sidebar_Menu__Widget__Widget $widget   - Registered widget arguments.
+	 * @param array                                         $instance - Widget settings.
+	 * @param \Advanced_Sidebar_Menu\Widget\Widget_Abstract $widget   - Registered widget arguments.
 	 *
 	 * @return void
 	 */
@@ -112,10 +113,11 @@ class Advanced_Sidebar_Menu_Widget_Category extends Advanced_Sidebar_Menu__Widge
 			</p>
 			<div <?php $widget->hide_element( self::DISPLAY_ALL, self::LEVELS ); ?>>
 				<p>
-					<label>
-						<?php esc_html_e( 'Levels of child categories to display', 'advanced-sidebar-menu' ); ?>
-						:</label>
+					<label for="<?php echo esc_attr( $widget->get_field_id( self::LEVELS ) ); ?>">
+						<?php esc_html_e( 'Levels of child categories to display', 'advanced-sidebar-menu' ); ?>:
+					</label>
 					<select
+						id="<?php echo esc_attr( $widget->get_field_id( self::LEVELS ) ); ?>"
 						name="<?php echo esc_attr( $widget->get_field_name( self::LEVELS ) ); ?>">
 						<?php
 						for ( $i = 1; $i < 6; $i ++ ) {
@@ -142,8 +144,8 @@ class Advanced_Sidebar_Menu_Widget_Category extends Advanced_Sidebar_Menu__Widge
 	/**
 	 * Display categories on single post settings.
 	 *
-	 * @param array                                  $instance - Widget settings.
-	 * @param \Advanced_Sidebar_Menu__Widget__Widget $widget   - Registered widget arguments.
+	 * @param array                                         $instance - Widget settings.
+	 * @param \Advanced_Sidebar_Menu\Widget\Widget_Abstract $widget   - Registered widget arguments.
 	 *
 	 * @return void
 	 */
@@ -160,9 +162,11 @@ class Advanced_Sidebar_Menu_Widget_Category extends Advanced_Sidebar_Menu__Widge
 
 			<div <?php $widget->hide_element( self::DISPLAY_ON_SINGLE, self::EACH_CATEGORY_DISPLAY ); ?>>
 				<p>
-					<label><?php esc_html_e( "Display each single post's category", 'advanced-sidebar-menu' ); ?>
-						:</label>
+					<label for="<?php echo esc_attr( $widget->get_field_id( self::EACH_CATEGORY_DISPLAY ) ); ?>">
+						<?php esc_html_e( "Display each single post's category", 'advanced-sidebar-menu' ); ?>:
+					</label>
 					<select
+						id="<?php echo esc_attr( $widget->get_field_id( self::EACH_CATEGORY_DISPLAY ) ); ?>"
 						name="<?php echo esc_attr( $widget->get_field_name( self::EACH_CATEGORY_DISPLAY ) ); ?>">
 						<option
 							value="widget" <?php selected( 'widget', $instance[ self::EACH_CATEGORY_DISPLAY ] ); ?>>
@@ -185,8 +189,8 @@ class Advanced_Sidebar_Menu_Widget_Category extends Advanced_Sidebar_Menu__Widge
 	/**
 	 * Categories to exclude settings.
 	 *
-	 * @param array                                  $instance - Widget settings.
-	 * @param \Advanced_Sidebar_Menu__Widget__Widget $widget   - Registered widget arguments.
+	 * @param array                                         $instance - Widget settings.
+	 * @param \Advanced_Sidebar_Menu\Widget\Widget_Abstract $widget   - Registered widget arguments.
 	 *
 	 * @return void
 	 */
@@ -194,7 +198,7 @@ class Advanced_Sidebar_Menu_Widget_Category extends Advanced_Sidebar_Menu__Widge
 		?>
 		<div class="advanced-sidebar-menu-column-box">
 			<p>
-				<label>
+				<label for="<?php echo esc_attr( $widget->get_field_id( self::EXCLUDE ) ); ?>">
 					<?php esc_html_e( 'Categories to exclude (ids), comma separated', 'advanced-sidebar-menu' ); ?>:
 				</label>
 				<input
@@ -239,18 +243,7 @@ class Advanced_Sidebar_Menu_Widget_Category extends Advanced_Sidebar_Menu__Widge
 		</p>
 
 		<div class="advanced-sidebar-menu-column">
-			<?php
-			do_action( 'advanced-sidebar-menu/widget/category/left-column', $instance, $this );
-
-			if ( has_action( 'advanced_sidebar_menu_category_widget_form' ) ) {
-				?>
-				<div class="advanced-sidebar-menu-column-box">
-					<?php do_action( 'advanced_sidebar_menu_category_widget_form', $instance, $this ); ?>
-				</div>
-				<?php
-			}
-
-			?>
+			<?php do_action( 'advanced-sidebar-menu/widget/category/left-column', $instance, $this ); ?>
 		</div>
 
 		<div class="advanced-sidebar-menu-column advanced-sidebar-menu-column-right">
@@ -274,7 +267,7 @@ class Advanced_Sidebar_Menu_Widget_Category extends Advanced_Sidebar_Menu__Widge
 	public function update( $new_instance, $old_instance ) {
 		$new_instance['exclude'] = wp_strip_all_tags( $new_instance['exclude'] );
 
-		return apply_filters( 'advanced_sidebar_menu_category_widget_update', $new_instance, $old_instance );
+		return apply_filters( 'advanced-sidebar-menu/widget/category/update', $new_instance, $old_instance );
 	}
 
 
@@ -288,9 +281,7 @@ class Advanced_Sidebar_Menu_Widget_Category extends Advanced_Sidebar_Menu__Widge
 	 */
 	public function widget( $args, $instance ) {
 		$instance = $this->set_instance( $instance, self::$defaults );
-		$menu = Category::factory( $instance, $args );
-
-		add_filter( 'category_css_class', [ $menu, 'add_has_children_category_class' ], 11, 2 );
+		$menu = \Advanced_Sidebar_Menu\Menus\Category::factory( $instance, $args );
 
 		do_action( 'advanced-sidebar-menu/widget/before-render', $menu, $this );
 

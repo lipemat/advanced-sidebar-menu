@@ -1,7 +1,8 @@
 <?php
 
+namespace Advanced_Sidebar_Menu\Widget;
+
 use Advanced_Sidebar_Menu\Menus\Menu_Abstract;
-use Advanced_Sidebar_Menu\Menus\Page;
 use Advanced_Sidebar_Menu\Traits\Memoize;
 
 /**
@@ -12,7 +13,7 @@ use Advanced_Sidebar_Menu\Traits\Memoize;
  * @author OnPoint Plugins
  * @since  7.0.0
  */
-class Advanced_Sidebar_Menu_Widget_Page extends Advanced_Sidebar_Menu__Widget__Widget {
+class Page extends Widget_Abstract {
 	use Memoize;
 
 	const TITLE                    = Menu_Abstract::TITLE;
@@ -75,9 +76,10 @@ class Advanced_Sidebar_Menu_Widget_Page extends Advanced_Sidebar_Menu__Widget__W
 
 
 	/**
+	 * Display options.
 	 *
-	 * @param array                                  $instance - Widget settings.
-	 * @param \Advanced_Sidebar_Menu__Widget__Widget $widget   - Registered widget arguments.
+	 * @param array                                         $instance - Widget settings.
+	 * @param \Advanced_Sidebar_Menu\Widget\Widget_Abstract $widget   - Registered widget arguments.
 	 *
 	 * @return void
 	 */
@@ -114,10 +116,11 @@ class Advanced_Sidebar_Menu_Widget_Page extends Advanced_Sidebar_Menu__Widget__W
 				?>
 			>
 				<p>
-					<label>
-						<?php esc_html_e( 'Maximum level of child pages to display', 'advanced-sidebar-menu' ); ?>
-						:</label>
+					<label for="<?php echo esc_attr( $widget->get_field_id( self::LEVELS ) ); ?>">
+						<?php esc_html_e( 'Maximum level of child pages to display', 'advanced-sidebar-menu' ); ?>:
+					</label>
 					<select
+						id="<?php echo esc_attr( $widget->get_field_id( self::LEVELS ) ); ?>"
 						name="<?php echo esc_attr( $widget->get_field_name( self::LEVELS ) ); ?>">
 						<option value="100">
 							<?php esc_html_e( ' - All - ', 'advanced-sidebar-menu' ); ?>
@@ -145,9 +148,10 @@ class Advanced_Sidebar_Menu_Widget_Page extends Advanced_Sidebar_Menu__Widget__W
 
 
 	/**
+	 * Order options.
 	 *
-	 * @param array                                  $instance - Widget settings.
-	 * @param \Advanced_Sidebar_Menu__Widget__Widget $widget   - Registered widget arguments.
+	 * @param array                                         $instance - Widget settings.
+	 * @param \Advanced_Sidebar_Menu\Widget\Widget_Abstract $widget   - Registered widget arguments.
 	 *
 	 * @return void
 	 */
@@ -156,7 +160,7 @@ class Advanced_Sidebar_Menu_Widget_Page extends Advanced_Sidebar_Menu__Widget__W
 		<div class="advanced-sidebar-menu-column-box">
 
 			<p>
-				<label>
+				<label for="<?php echo esc_attr( $widget->get_field_id( self::ORDER_BY ) ); ?>">
 					<?php esc_html_e( 'Order by', 'advanced-sidebar-menu' ); ?>:
 				</label>
 				<select
@@ -186,9 +190,10 @@ class Advanced_Sidebar_Menu_Widget_Page extends Advanced_Sidebar_Menu__Widget__W
 
 
 	/**
+	 * Exclude options.
 	 *
-	 * @param array                                  $instance - Widget settings.
-	 * @param \Advanced_Sidebar_Menu__Widget__Widget $widget   - Registered widget arguments.
+	 * @param array                                         $instance - Widget settings.
+	 * @param \Advanced_Sidebar_Menu\Widget\Widget_Abstract $widget   - Registered widget arguments.
 	 *
 	 * @return void
 	 */
@@ -196,7 +201,7 @@ class Advanced_Sidebar_Menu_Widget_Page extends Advanced_Sidebar_Menu__Widget__W
 		?>
 		<div class="advanced-sidebar-menu-column-box">
 			<p>
-				<label>
+				<label for="<?php echo esc_attr( $widget->get_field_id( self::EXCLUDE ) ); ?>">
 					<?php esc_html_e( 'Pages to exclude (ids), comma separated', 'advanced-sidebar-menu' ); ?>:
 				</label>
 				<input
@@ -215,9 +220,9 @@ class Advanced_Sidebar_Menu_Widget_Page extends Advanced_Sidebar_Menu__Widget__W
 
 
 	/**
-	 * Form
+	 * Widget form.
 	 *
-	 * @param array $instance
+	 * @param array $instance - Widget settings.
 	 *
 	 * @since 7.2.1
 	 *
@@ -228,10 +233,9 @@ class Advanced_Sidebar_Menu_Widget_Page extends Advanced_Sidebar_Menu__Widget__W
 		do_action( 'advanced-sidebar-menu/widget/page/before-form', $instance, $this );
 		?>
 		<p xmlns="http://www.w3.org/1999/html">
-			<label>
+			<label for="<?php echo esc_attr( $this->get_field_id( self::TITLE ) ); ?>">
 				<?php esc_html_e( 'Title', 'advanced-sidebar-menu' ); ?>:
 			</label>
-
 			<input
 				id="<?php echo esc_attr( $this->get_field_id( self::TITLE ) ); ?>"
 				name="<?php echo esc_attr( $this->get_field_name( self::TITLE ) ); ?>"
@@ -240,16 +244,7 @@ class Advanced_Sidebar_Menu_Widget_Page extends Advanced_Sidebar_Menu__Widget__W
 				value="<?php echo esc_attr( $instance[ self::TITLE ] ); ?>" />
 		</p>
 		<div class="advanced-sidebar-menu-column advanced-sidebar-menu-column-left">
-			<?php
-			do_action( 'advanced-sidebar-menu/widget/page/left-column', $instance, $this );
-			if ( has_action( 'advanced_sidebar_menu_page_widget_form' ) ) {
-				?>
-				<div class="advanced-sidebar-menu-column-box">
-					<?php do_action( 'advanced_sidebar_menu_page_widget_form', $this->get_field_id( 'parent_only' ), $this, $instance ); ?>
-				</div>
-				<?php
-			}
-			?>
+			<?php do_action( 'advanced-sidebar-menu/widget/page/left-column', $instance, $this ); ?>
 		</div>
 		<div class="advanced-sidebar-menu-column advanced-sidebar-menu-column-right">
 			<?php do_action( 'advanced-sidebar-menu/widget/page/right-column', $instance, $this ); ?>
@@ -273,12 +268,12 @@ class Advanced_Sidebar_Menu_Widget_Page extends Advanced_Sidebar_Menu__Widget__W
 			$new_instance['exclude'] = wp_strip_all_tags( $new_instance['exclude'] );
 		}
 
-		return apply_filters( 'advanced_sidebar_menu_page_widget_update', $new_instance, $old_instance );
+		return apply_filters( 'advanced-sidebar-menu/widget/page/update', $new_instance, $old_instance );
 	}
 
 
 	/**
-	 * Widget Output
+	 * Widget Output.
 	 *
 	 * @param array $args     - Widget registration args.
 	 * @param array $instance - Widget settings.
@@ -291,7 +286,7 @@ class Advanced_Sidebar_Menu_Widget_Page extends Advanced_Sidebar_Menu__Widget__W
 	 */
 	public function widget( $args, $instance ) {
 		$instance = (array) wp_parse_args( $instance, self::$defaults );
-		$asm = Page::factory( $instance, $args );
+		$asm = \Advanced_Sidebar_Menu\Menus\Page::factory( $instance, $args );
 
 		do_action( 'advanced-sidebar-menu/widget/before-render', $asm, $this );
 
