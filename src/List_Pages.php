@@ -3,6 +3,7 @@
 namespace Advanced_Sidebar_Menu;
 
 use Advanced_Sidebar_Menu\Menus\Page;
+use Advanced_Sidebar_Menu\Walkers\Page_Walker;
 
 /**
  * Parse and build the child and grandchild menus

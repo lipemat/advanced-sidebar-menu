@@ -22,10 +22,10 @@ use Advanced_Sidebar_Menu\List_Pages;
 use Advanced_Sidebar_Menu\Menus\Category;
 use Advanced_Sidebar_Menu\Menus\Menu_Abstract;
 use Advanced_Sidebar_Menu\Menus\Page;
-use Advanced_Sidebar_Menu\Page_Walker;
 use Advanced_Sidebar_Menu\Scripts;
 use Advanced_Sidebar_Menu\Traits\Memoize;
 use Advanced_Sidebar_Menu\Traits\Singleton;
+use Advanced_Sidebar_Menu\Walkers\Page_Walker;
 use Advanced_Sidebar_Menu\Widget\Widget_Abstract;
 
 define( 'ADVANCED_SIDEBAR_BASIC_VERSION', '8.0.0' );

@@ -1,6 +1,6 @@
 <?php
 
-namespace Advanced_Sidebar_Menu;
+namespace Advanced_Sidebar_Menu\Walkers;
 
 /**
  * This walker's only purpose is to allow us to close our menus only when needed.
