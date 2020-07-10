@@ -1,5 +1,7 @@
 <?php
 
+use Advanced_Sidebar_Menu\Menus\Menu_Abstract;
+
 /**
  * Advanced_Sidebar_Menu_Debug
  *
@@ -18,7 +20,7 @@ class Advanced_Sidebar_Menu_Debug {
 	 */
 	protected function hook() {
 		if ( ! empty( $_GET[ self::DEBUG_PARAM ] ) ) { //phpcs:ignore
-			add_action( 'advanced_sidebar_menu_widget_pre_render', array( $this, 'print_instance' ), 1, 2 );
+			add_action( 'advanced-sidebar-menu/widget/before-render', array( $this, 'print_instance' ), 1, 2 );
 
 			if ( is_array( $_GET[ self::DEBUG_PARAM ] ) ) { //phpcs:ignore
 				add_filter( 'advanced-sidebar-menu/menus/widget-instance', array( $this, 'adjust_widget_settings' ) );
@@ -45,8 +47,8 @@ class Advanced_Sidebar_Menu_Debug {
 	/**
 	 * Print the widget settings as a js variable.
 	 *
-	 * @param Advanced_Sidebar_Menu_Menus_Abstract $asm    - Menu class.
-	 * @param Advanced_Sidebar_Menu_Widget_Page    $widget - Widget class.
+	 * @param Menu_Abstract                     $asm    - Menu class.
+	 * @param Advanced_Sidebar_Menu_Widget_Page $widget - Widget class.
 	 *
 	 * @return void
 	 */

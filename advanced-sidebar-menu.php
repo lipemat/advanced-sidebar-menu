@@ -1,4 +1,13 @@
 <?php
+
+use Advanced_Sidebar_Menu\Cache;
+use Advanced_Sidebar_Menu\List_Pages;
+use Advanced_Sidebar_Menu\Menus\Category;
+use Advanced_Sidebar_Menu\Menus\Menu_Abstract;
+use Advanced_Sidebar_Menu\Menus\Page;
+use Advanced_Sidebar_Menu\Scripts;
+use Advanced_Sidebar_Menu\Traits\Singleton;
+
 /**
  * Plugin Name: Advanced Sidebar Menu
  * Plugin URI: https://onpointplugins.com/advanced-sidebar-menu/
@@ -10,9 +19,6 @@
  *
  * @package advanced-sidebar-menu
  */
-
-use Advanced_Sidebar_Menu\Scripts;
-use Advanced_Sidebar_Menu\Traits\Singleton;
 
 if ( defined( 'ADVANCED_SIDEBAR_BASIC_VERSION' ) ) {
 	return;
@@ -30,7 +36,7 @@ if ( ! function_exists( 'advanced_sidebar_menu_load' ) ) {
 	 */
 	function advanced_sidebar_menu_load() {
 		Advanced_Sidebar_Menu_Core::init();
-		Advanced_Sidebar_Menu_Cache::init();
+		Cache::init();
 		Advanced_Sidebar_Menu_Debug::init();
 		Scripts::init();
 	}
@@ -49,26 +55,25 @@ if ( ! function_exists( 'advanced_sidebar_menu_load' ) ) {
 function advanced_sidebar_menu_autoload( $class ) {
 	$classes = [
 		// widgets.
-		'Advanced_Sidebar_Menu__Widget__Widget' => 'Widget/Widget.php',
-		'Advanced_Sidebar_Menu_Widget_Page'     => 'Widget/Page.php',
-		'Advanced_Sidebar_Menu_Widget_Category' => 'Widget/Category.php',
+		'Advanced_Sidebar_Menu__Widget__Widget'       => 'Widget/Widget.php',
+		\Advanced_Sidebar_Menu_Widget_Page::class     => 'Widget/Page.php',
+		\Advanced_Sidebar_Menu_Widget_Category::class => 'Widget/Category.php',
 
 		// core.
-		'Advanced_Sidebar_Menu_Cache'           => 'Cache.php',
-		'Advanced_Sidebar_Menu_Core'            => 'Core.php',
-		'Advanced_Sidebar_Menu_Debug'           => 'Debug.php',
-		'Advanced_Sidebar_Menu_List_Pages'      => 'List_Pages.php',
-		'Advanced_Sidebar_Menu_Menu'            => 'Menu.php',
-		'Advanced_Sidebar_Menu_Page_Walker'     => 'Page_Walker.php',
-		Scripts::class                          => 'Scripts.php',
+		Cache::class                        => 'Cache.php',
+		'Advanced_Sidebar_Menu_Core'        => 'Core.php',
+		'Advanced_Sidebar_Menu_Debug'       => 'Debug.php',
+		List_Pages::class                   => 'List_Pages.php',
+		'Advanced_Sidebar_Menu_Page_Walker' => 'Page_Walker.php',
+		Scripts::class                      => 'Scripts.php',
 
 		// menus.
-		'Advanced_Sidebar_Menu_Menus_Category'  => 'Menus/Category.php',
-		'Advanced_Sidebar_Menu_Menus_Abstract'  => 'Menus/Abstract.php',
-		'Advanced_Sidebar_Menu_Menus_Page'      => 'Menus/Page.php',
+		Category::class                     => 'Menus/Category.php',
+		Menu_Abstract::class                => 'Menus/Menu_Abstract.php',
+		Page::class                         => 'Menus/Page.php',
 
 		// Traits.
-		Singleton::class                        => 'Traits/Singleton.php',
+		Singleton::class                    => 'Traits/Singleton.php',
 	];
 	if ( isset( $classes[ $class ] ) ) {
 		require __DIR__ . '/src/' . $classes[ $class ];
@@ -76,7 +81,6 @@ function advanced_sidebar_menu_autoload( $class ) {
 }
 
 spl_autoload_register( 'advanced_sidebar_menu_autoload' );
-
 
 add_action( 'plugins_loaded', 'advanced_sidebar_menu_translate' );
 /**
@@ -87,7 +91,6 @@ add_action( 'plugins_loaded', 'advanced_sidebar_menu_translate' );
 function advanced_sidebar_menu_translate() {
 	load_plugin_textdomain( 'advanced-sidebar-menu', false, 'advanced-sidebar-menu/languages' );
 }
-
 
 add_action( 'advanced-sidebar-menu/widget/category/right-column', 'advanced_sidebar_menu_upgrade_notice', 1, 2 );
 add_action( 'advanced-sidebar-menu/widget/page/right-column', 'advanced_sidebar_menu_upgrade_notice', 1, 2 );
@@ -104,7 +107,8 @@ function advanced_sidebar_menu_widget_docs( $instance, WP_Widget $widget ) {
 	$anchor = 'advanced_sidebar_menu_category' === $widget->id_base ? 'categories-menu' : 'pages-menu';
 	?>
 	<p style="text-align: right">
-		<a href="https://onpointplugins.com/advanced-sidebar-menu/#advanced-sidebar-<?php echo esc_attr( $anchor ); ?>" target="blank">
+		<a href="https://onpointplugins.com/advanced-sidebar-menu/#advanced-sidebar-<?php echo esc_attr( $anchor ); ?>"
+		   target="blank">
 			<?php esc_html_e( 'widget documentation', 'advanced-sidebar-menu' ); ?>
 		</a>
 	</p>
@@ -115,7 +119,7 @@ function advanced_sidebar_menu_widget_docs( $instance, WP_Widget $widget ) {
  * Notify widget users about the PRO options
  *
  * @param array     $instance - widget instance.
- * @param WP_Widget $widget - widget class.
+ * @param WP_Widget $widget   - widget class.
  *
  * @return void
  */

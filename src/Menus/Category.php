@@ -1,52 +1,45 @@
 <?php
 
+namespace Advanced_Sidebar_Menu\Menus;
+
+use Advanced_Sidebar_Menu_Core;
+
 /**
- * Advanced_Sidebar_Menu_Menus_Category
+ * Category menu.
  *
  * @author OnPoint Plugins
  * @since  7.0.0
  */
-class Advanced_Sidebar_Menu_Menus_Category extends Advanced_Sidebar_Menu_Menus_Abstract {
+class Category extends Menu_Abstract {
 	const WIDGET = 'category';
 
 	const DISPLAY_ON_SINGLE     = 'single';
 	const EACH_CATEGORY_DISPLAY = 'new_widget';
 
 	/**
-	 * ancestors
+	 * Parents and grandparents fo current term.
 	 *
 	 * @var array
 	 */
-	public $ancestors = array();
-
+	public $ancestors = [];
 
 	/**
-	 * top_level_term
+	 * Top_level_term.
 	 *
-	 * @var WP_Term
+	 * @var \WP_Term
 	 */
 	public $top_level_term;
 
 
 	/**
-	 * @todo find a more appropriate place for this
-	 *
-	 * @return void
-	 */
-	public function hook() {
-		add_filter( 'category_css_class', array( $this, 'add_has_children_category_class' ), 2, 2 );
-	}
-
-
-	/**
 	 * If we are on a post we could potentially have more than one
-	 * top level term so we end up calling this more than once.
+	 * top-level term, so we end up calling this more than once.
 	 *
-	 * @param WP_Term $term
+	 * @param \WP_Term $term - The highest level term.
 	 *
 	 * @return void
 	 */
-	public function set_current_top_level_term( WP_Term $term ) {
+	public function set_current_top_level_term( \WP_Term $term ) {
 		$this->top_level_term = $term;
 	}
 
@@ -54,13 +47,13 @@ class Advanced_Sidebar_Menu_Menus_Category extends Advanced_Sidebar_Menu_Menus_A
 	/**
 	 * Return the list of args for wp_list_categories()
 	 *
-	 * @param string  $level - level of menu so we have full control of updates.
-	 * @param WP_Term $term  - Term for child and grandchild.
+	 * @param string   $level - level of menu, so we have full control of updates.
+	 * @param \WP_Term $term  - Term to use for this level.
 	 *
 	 * @return array
 	 */
 	public function get_list_categories_args( $level = null, $term = null ) {
-		$args = array(
+		$args = [
 			'echo'             => 0,
 			'exclude'          => $this->get_excluded_ids(),
 			'order'            => $this->get_order(),
@@ -68,7 +61,7 @@ class Advanced_Sidebar_Menu_Menus_Category extends Advanced_Sidebar_Menu_Menus_A
 			'show_option_none' => false,
 			'taxonomy'         => $this->get_taxonomy(),
 			'title_li'         => '',
-		);
+		];
 
 		if ( null === $level ) {
 			return $args;
@@ -77,19 +70,19 @@ class Advanced_Sidebar_Menu_Menus_Category extends Advanced_Sidebar_Menu_Menus_A
 		switch ( $level ) {
 			case self::LEVEL_PARENT:
 				$args['hide_empty'] = 0;
-				$args['include']    = trim( $this->get_top_parent_id() );
+				$args['include'] = trim( $this->get_top_parent_id() );
 				break;
 			case self::LEVEL_DISPLAY_ALL:
 				$args['child_of'] = $this->get_top_parent_id();
-				$args['depth']    = $this->get_levels_to_display();
+				$args['depth'] = $this->get_levels_to_display();
 				break;
 			case self::LEVEL_CHILD:
 				$args['include'] = $term->term_id;
-				$args['depth']   = 1;
+				$args['depth'] = 1;
 				break;
 			case self::LEVEL_GRANDCHILD:
 				$args['child_of'] = $term->term_id;
-				$args['depth']    = $this->get_levels_to_display();
+				$args['depth'] = $this->get_levels_to_display();
 				break;
 		}
 
@@ -103,23 +96,21 @@ class Advanced_Sidebar_Menu_Menus_Category extends Advanced_Sidebar_Menu_Menus_A
 	 * $this->set_current_top_level_term() most likely should be called
 	 * before this.
 	 *
-	 * @see Advanced_Sidebar_Menu_Menus_Category::set_current_top_level_term()
+	 * @see \Advanced_Sidebar_Menu\Menus\Category::set_current_top_level_term()
 	 *
-	 * @return array
+	 * @return \WP_Term[]
 	 */
 	public function get_child_terms() {
-		$child_terms = array_filter(
+		return array_filter(
 			get_terms(
-				array(
+				[
 					'taxonomy' => $this->get_taxonomy(),
 					'parent'   => $this->get_top_parent_id(),
 					'orderby'  => $this->get_order_by(),
 					'order'    => $this->get_order(),
-				)
+				]
 			)
 		);
-
-		return $child_terms;
 	}
 
 
@@ -139,70 +130,71 @@ class Advanced_Sidebar_Menu_Menus_Category extends Advanced_Sidebar_Menu_Menus_A
 
 
 	/**
-	 * @deprecated
-	 */
-	public function get_menu_depth() {
-		_deprecated_function( 'get_menu_depth', '7.5.0', 'get_levels_to_display' );
-		return apply_filters( 'advanced-sidebar-menu/menus/category/depth', $this->get_levels_to_display(), $this->args, $this->instance, $this );
-	}
-
-
-	/**
-	 * Get the top level terms for current page
+	 * Get the top-level terms for the current page.
 	 * If on a single this could be multiple.
 	 * If on an archive this will be one.
 	 *
 	 * @return array
 	 */
 	public function get_top_level_terms() {
-		$child_term_ids     = $this->get_included_term_ids();
-		$top_level_term_ids = array();
+		$child_term_ids = $this->get_included_term_ids();
+		$top_level_term_ids = [];
 		foreach ( $child_term_ids as $_term_id ) {
 			$top_level_term_ids[] = $this->get_highest_parent( $_term_id );
 		}
-		$terms = array();
+		$terms = [];
 		if ( ! empty( $top_level_term_ids ) ) {
 			$terms = get_terms(
-				array(
+				[
 					'include'    => array_unique( array_filter( $top_level_term_ids ) ),
 					'hide_empty' => false,
 					'orderby'    => $this->get_order_by(),
 					'order'      => $this->get_order(),
-				)
+				]
 			);
 		}
 		if ( is_wp_error( $terms ) ) {
-			return array();
+			return [];
 		}
 
 		return $terms;
-
 	}
 
 
 	/**
-	 * Get the term ids for either the current term archive
+	 * Get the term ids for either the current term archive,
 	 * or the terms attached to the current post
 	 *
 	 * @return array
 	 */
 	public function get_included_term_ids() {
-		$term_ids = array();
+		$term_ids = [];
 		if ( is_single() ) {
-			$term_ids = wp_get_object_terms( get_the_ID(), $this->get_taxonomy(), array( 'fields' => 'ids' ) );
+			$term_ids = wp_get_object_terms( get_the_ID(), $this->get_taxonomy(), [ 'fields' => 'ids' ] );
 		} elseif ( $this->is_tax() ) {
 			$term_ids[] = get_queried_object()->term_id;
 		}
 
-		return (array) apply_filters( 'advanced_sidebar_menu_category_ids', $term_ids, $this->args, $this->instance, $this );
+		return (array) apply_filters( 'advanced-sidebar-menu/menus/category/included-term-ids', $term_ids, $this->args, $this->instance, $this );
 	}
 
 
+	/**
+	 * Get this menu's taxonomy.
+	 * Defaults to 'category'.
+	 *
+	 * @return int
+	 */
 	public function get_taxonomy() {
-		return apply_filters( 'advanced_sidebar_menu_taxonomy', 'category', $this->args, $this->instance, $this );
+		return apply_filters( 'advanced-sidebar-menu/menus/category/taxonomy', 'category', $this->args, $this->instance, $this );
 	}
 
 
+	/**
+	 * Get id of the highest level parent item.
+	 *
+	 * @return int
+	 */
 	public function get_top_parent_id() {
 		if ( empty( $this->top_level_term->term_id ) ) {
 			return null;
@@ -212,16 +204,31 @@ class Advanced_Sidebar_Menu_Menus_Category extends Advanced_Sidebar_Menu_Menus_A
 	}
 
 
+	/**
+	 * Get key to order the menu items by.
+	 *
+	 * @return string
+	 */
 	public function get_order_by() {
-		return apply_filters( 'advanced_sidebar_menu_category_orderby', 'name', $this->args, $this->instance, $this );
+		return apply_filters( 'advanced-sidebar-menu/menus/category/order-by', 'name', $this->args, $this->instance, $this );
 	}
 
 
+	/**
+	 * Get order of the menu (ASC|DESC).
+	 *
+	 * @return string
+	 */
 	public function get_order() {
-		return apply_filters( 'advanced_sidebar_menu_category_order', 'ASC', $this->args, $this->instance, $this );
+		return apply_filters( 'advanced-sidebar-menu/menus/category/order', 'ASC', $this->args, $this->instance, $this );
 	}
 
 
+	/**
+	 * Is this menu displayed?
+	 *
+	 * @return bool
+	 */
 	public function is_displayed() {
 		$display = false;
 		if ( is_single() ) {
@@ -237,14 +244,14 @@ class Advanced_Sidebar_Menu_Menus_Category extends Advanced_Sidebar_Menu_Menus_A
 
 
 	/**
-	 * Is this term and it's children displayed
+	 * Is this term, and it's children displayed
 	 *
-	 * 1. If children not empty we always display (or at least let the view handle it)
-	 * 2. If children empty and not include parent we don't display
-	 * 3. If children empty and not include childless parent we don't display
-	 * 4. If children empty and the top parent is excluded we don't display
+	 * 1. If children not empty we always display (or at least let the view handle it).
+	 * 2. If children empty and not include a parent we don't display.
+	 * 3. If children empty and not include a childless parent we don't display.
+	 * 4. If children empty, and the top parent is excluded we don't display.
 	 *
-	 * @param array $child_terms
+	 * @param \WP_Term[] $child_terms - The current child terms.
 	 *
 	 * @return bool
 	 */
@@ -282,17 +289,20 @@ class Advanced_Sidebar_Menu_Menus_Category extends Advanced_Sidebar_Menu_Menus_A
 	}
 
 
+	/**
+	 * Get list of excluded ids from widget settings.
+	 *
+	 * @return array
+	 */
 	public function get_excluded_ids() {
-		$excluded = parent::get_excluded_ids();
-
-		return apply_filters( 'advanced_sidebar_menu_excluded_categories', $excluded, $this->args, $this->instance, $this );
+		return apply_filters( 'advanced-sidebar-menu/menus/category/excluded', parent::get_excluded_ids(), $this->args, $this->instance, $this );
 	}
 
 
 	/**
 	 * Removes the closing </li> tag from a list item to allow for child menus inside of it
 	 *
-	 * @param string|bool $item - an <li></li> item
+	 * @param string|bool $item - An <li></li> item.
 	 *
 	 * @return string|bool
 	 */
@@ -306,42 +316,41 @@ class Advanced_Sidebar_Menu_Menus_Category extends Advanced_Sidebar_Menu_Menus_A
 
 
 	/**
-	 * Retrieve the lights level term_id based on the a given
+	 * Retrieve the highest level term_id based on the given
 	 * term's ancestors
 	 *
-	 * @param int $term_id
+	 * @param int $term_id - Provided term's id.
 	 *
 	 * @return int
 	 */
 	public function get_highest_parent( $term_id ) {
-		$cat_ancestors   = array();
+		$cat_ancestors = [];
 		$cat_ancestors[] = $term_id;
 
 		do {
 			$term = get_term( $term_id, $this->get_taxonomy() );
 			if ( ! is_wp_error( $term ) ) {
-				$term_id         = $term->parent;
+				$term_id = $term->parent;
 				$cat_ancestors[] = $term_id;
 			} else {
 				$term = false;
 			}
 		} while ( $term );
 
-		// we only track the last calls ancestors because we only care
-		// about these when on a single term archive
-		$this->ancestors     = array_reverse( $cat_ancestors );
-		list( $_, $top_cat ) = $this->ancestors;
-
-		return $top_cat;
-
+		// We only track the last calls ancestors because we only care about these when on a single term archive.
+		$this->ancestors = array_reverse( $cat_ancestors );
+		return $this->ancestors[1];
 	}
 
 
 	/**
-	 * If a category has children add the has_children class
+	 * If a category has children add the 'has_children' class
+	 * to the list item.
 	 *
-	 * @param []       $classes
-	 * @param \WP_Term $category
+	 * @param  []       $classes - List of classes added to category list item.
+	 * @param \WP_Term $category - Current category.
+	 *
+	 * @filter category_css_class 11 2
 	 *
 	 * @return array
 	 */
@@ -362,11 +371,11 @@ class Advanced_Sidebar_Menu_Menus_Category extends Advanced_Sidebar_Menu_Menus_A
 	 * When looping through the view via the terms from $this->get_child_terms()
 	 * the term->parent conditions will most likely always be true.
 	 *
-	 * @param \WP_Term $term
+	 * @param \WP_Term $term - Category or term.
 	 *
 	 * @return bool
 	 */
-	public function is_first_level_term( WP_Term $term ) {
+	public function is_first_level_term( \WP_Term $term ) {
 		$return = false;
 		if ( ! $this->is_excluded( $term->term_id ) && (int) $term->parent === (int) $this->get_top_parent_id() ) {
 			$return = true;
@@ -380,13 +389,13 @@ class Advanced_Sidebar_Menu_Menus_Category extends Advanced_Sidebar_Menu_Menus_A
 	 * Is this term an ancestor of the current term?
 	 * Does this term have children?
 	 *
-	 * @param \WP_Term $term
+	 * @param \WP_Term $term - Category or term.
 	 *
 	 * @return mixed
 	 */
-	public function is_current_term_ancestor( WP_Term $term ) {
+	public function is_current_term_ancestor( \WP_Term $term ) {
 		$return = false;
-		if ( (int) $term->term_id === (int) $this->top_level_term->term_id || in_array( $term->term_id, $this->ancestors, false ) ) {
+		if ( (int) $term->term_id === (int) $this->top_level_term->term_id || in_array( $term->term_id, $this->ancestors, false ) ) { //phpcs:ignore WordPress.PHP.StrictInArray.FoundNonStrictFalse
 			$children = get_term_children( $term->term_id, $this->get_taxonomy() );
 			if ( ! empty( $children ) ) {
 				$return = true;
@@ -394,19 +403,18 @@ class Advanced_Sidebar_Menu_Menus_Category extends Advanced_Sidebar_Menu_Menus_A
 		}
 
 		return apply_filters( 'advanced-sidebar-menu/menus/category/is-current-term-ancestor', $return, $term, $this );
-
 	}
 
 
 	/**
 	 * Does this term have children?
 	 *
-	 * @param \WP_Term $term
+	 * @param \WP_Term $term - Current category or term.
 	 *
 	 * @return mixed
 	 */
-	public function has_children( WP_Term $term ) {
-		$return   = false;
+	public function has_children( \WP_Term $term ) {
+		$return = false;
 		$children = get_term_children( $term->term_id, $this->get_taxonomy() );
 		if ( ! empty( $children ) ) {
 			$return = true;
@@ -426,7 +434,7 @@ class Advanced_Sidebar_Menu_Menus_Category extends Advanced_Sidebar_Menu_Menus_A
 			return;
 		}
 
-		$menu_open  = false;
+		$menu_open = false;
 		$close_menu = false;
 
 		foreach ( $this->get_top_level_terms() as $_cat ) {
@@ -436,19 +444,19 @@ class Advanced_Sidebar_Menu_Menus_Category extends Advanced_Sidebar_Menu_Menus_A
 			}
 
 			if ( ! $menu_open || ( 'widget' === $this->instance[ self::EACH_CATEGORY_DISPLAY ] ) ) {
-				//phpcs:disable
+				//phpcs:disable WordPress.Security.EscapeOutput.OutputNotEscaped
 				echo $this->args['before_widget'];
 
 				do_action( 'advanced-sidebar-menu/menus/category/render', $this );
 
 				if ( ! $menu_open ) {
-					//must remain in the loop vs the template
+					// Must remain in the loop vs the template.
 					$this->title();
 					if ( $this->checked( self::USE_PLUGIN_STYLES ) ) {
 						Advanced_Sidebar_Menu_Core::instance()->include_plugin_styles();
 					}
 
-					$menu_open  = true;
+					$menu_open = true;
 					$close_menu = true;
 					if ( 'list' === $this->instance[ self::EACH_CATEGORY_DISPLAY ] ) {
 						$close_menu = false;
@@ -458,45 +466,19 @@ class Advanced_Sidebar_Menu_Menus_Category extends Advanced_Sidebar_Menu_Menus_A
 
 			$output = require Advanced_Sidebar_Menu_Core::instance()->get_template_part( 'category_list.php' );
 
-			echo apply_filters( 'advanced_sidebar_menu_category_widget_output', $output, $this->args, $this->instance, $this );
+			echo apply_filters( 'advanced-sidebar-menu/menus/category/output', $output, $this->args, $this->instance, $this );
 
 			if ( $close_menu ) {
-				// @since 7.6.5.
 				do_action( 'advanced-sidebar-menu/menus/category/render/after', $this );
-
 				echo $this->args['after_widget'];
 			}
 		}
 
 		if ( ! $close_menu && $menu_open ) {
-			// @since 7.6.5.
 			do_action( 'advanced-sidebar-menu/menus/category/render/after', $this );
-
 			echo $this->args['after_widget'];
 		}
-
-		//phpcs:enable
-
-	}
-
-
-	/******************** static ****************************/
-
-	/**
-	 * Mostly here to call the parent _factory in a PHP 5.2 structure
-	 *
-	 * @param array $widget_instance
-	 * @param array $widget_args
-	 *
-	 * @static
-	 *
-	 * @return \Advanced_Sidebar_Menu_Menus_Category
-	 */
-	public static function factory( array $widget_instance, array $widget_args ) {
-		$class = parent::_factory( __CLASS__, $widget_instance, $widget_args );
-		$class->hook();
-
-		return $class;
+		//phpcs:enable WordPress.Security.EscapeOutput.OutputNotEscaped
 	}
 
 }

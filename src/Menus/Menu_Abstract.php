@@ -1,34 +1,34 @@
 <?php
 
+namespace Advanced_Sidebar_Menu\Menus;
+
 /**
- * Advanced_Sidebar_Menu_Menus_Abstract
+ * Base for Menu classes.
  *
  * @author OnPoint Plugins
  * @since  7.0.0
  */
-abstract class Advanced_Sidebar_Menu_Menus_Abstract {
-	// keys available in both widgets.
-	const TITLE                    = 'title';
-	const INCLUDE_PARENT           = 'include_parent';
+abstract class Menu_Abstract {
+	const DISPLAY_ALL              = 'display_all';
+	const EXCLUDE                  = 'exclude';
 	const INCLUDE_CHILDLESS_PARENT = 'include_childless_parent';
+	const INCLUDE_PARENT           = 'include_parent';
+	const LEVELS                   = 'levels';
+	const LEVEL_CHILD              = 'child';
+	const LEVEL_DISPLAY_ALL        = 'display-all';
+	const LEVEL_GRANDCHILD         = 'grandchild';
+	const LEVEL_PARENT             = 'parent';
 	const ORDER                    = 'order';
 	const ORDER_BY                 = 'order_by';
+	const TITLE                    = 'title';
 	const USE_PLUGIN_STYLES        = 'css';
-	const EXCLUDE                  = 'exclude';
-	const DISPLAY_ALL              = 'display_all';
-	const LEVELS                   = 'levels';
-
-	const LEVEL_CHILD       = 'child';
-	const LEVEL_DISPLAY_ALL = 'display-all';
-	const LEVEL_GRANDCHILD  = 'grandchild';
-	const LEVEL_PARENT      = 'parent';
 
 	/**
 	 * Widget Args
 	 *
 	 * @var array
 	 */
-	public $args = array();
+	public $args = [];
 
 	/**
 	 * Widget instance
@@ -36,20 +36,6 @@ abstract class Advanced_Sidebar_Menu_Menus_Abstract {
 	 * @var array
 	 */
 	public $instance;
-
-	/**
-	 * @deprecated 7.0.0
-	 *
-	 * @var string
-	 */
-	public $order = 'ASC';
-
-	/**
-	 * @deprecated 7.0.0
-	 *
-	 * @var string
-	 */
-	public $order_by;
 
 	/**
 	 * Track the ids which have been used in case of
@@ -60,33 +46,69 @@ abstract class Advanced_Sidebar_Menu_Menus_Abstract {
 	 *
 	 * @var string[]
 	 */
-	protected static $unique_widget_ids = array();
+	protected static $unique_widget_ids = [];
 
 
-	public function __construct( array $widget_instance, array $widget_args ) {
-		$this->instance = apply_filters( 'advanced-sidebar-menu/menus/widget-instance', $widget_instance, $widget_args, $this );
-		$this->args     = $widget_args;
+	/**
+	 * Construct a new instance of this widget.
+	 *
+	 * @param array $instance - Widget settings.
+	 * @param array $args     - Widget registration arguments.
+	 */
+	public function __construct( array $instance, array $args ) {
+		$this->instance = apply_filters( 'advanced-sidebar-menu/menus/widget-instance', $instance, $args, $this );
+		$this->args = $args;
 
 		$this->increment_widget_id();
 	}
 
 
+	/**
+	 * Get id of the highest level parent item.
+	 *
+	 * @return int
+	 */
 	abstract public function get_top_parent_id();
 
 
+	/**
+	 * Get key to order the menu items by.
+	 *
+	 * @return string
+	 */
 	abstract public function get_order_by();
 
 
+	/**
+	 * Get order of the menu (ASC|DESC).
+	 *
+	 * @return string
+	 */
 	abstract public function get_order();
 
 
-	abstract public function render();
-
-
+	/**
+	 * Should this widget be displayed.
+	 *
+	 * @return bool
+	 */
 	abstract public function is_displayed();
 
 
+	/**
+	 * How many levels should be displayed.
+	 *
+	 * @return int
+	 */
 	abstract public function get_levels_to_display();
+
+
+	/**
+	 * Render the widget
+	 *
+	 * @return void
+	 */
+	abstract public function render();
 
 
 	/**
@@ -94,7 +116,7 @@ abstract class Advanced_Sidebar_Menu_Menus_Abstract {
 	 * in the current context.
 	 *
 	 * Required because plugins like Elementor will reuse the same generic id for
-	 * widgets within page content and we need a unique id to properly target with
+	 * widgets within page content, and we need a unique id to properly target with
 	 * styles, accordions, etc.
 	 *
 	 * @since 7.6.0
@@ -112,7 +134,7 @@ abstract class Advanced_Sidebar_Menu_Menus_Abstract {
 				$alt_widget_id = $this->args['widget_id'] . "-$suffix";
 				$suffix ++;
 			} while ( in_array( $alt_widget_id, self::$unique_widget_ids, true ) );
-			$this->args['widget_id']   = $alt_widget_id;
+			$this->args['widget_id'] = $alt_widget_id;
 			self::$unique_widget_ids[] = $alt_widget_id;
 		} else {
 			self::$unique_widget_ids[] = $this->args['widget_id'];
@@ -121,20 +143,7 @@ abstract class Advanced_Sidebar_Menu_Menus_Abstract {
 
 
 	/**
-	 * Return the type of widget we are working with
-	 * Used for comparisons like so
-	 *
-	 * $menu->get_widget_type() === Menus_Page::WIDGET
-	 *
-	 * @return string - 'page', 'category',
-	 */
-	public function get_widget_type() {
-		return self::WIDGET;
-	}
-
-
-	/**
-	 * The instance arguments from the current widget
+	 * The instance arguments from the current widget.
 	 *
 	 * @return array
 	 */
@@ -144,7 +153,7 @@ abstract class Advanced_Sidebar_Menu_Menus_Abstract {
 
 
 	/**
-	 * The widget arguments from the current widget
+	 * The widget arguments from the current widget.
 	 *
 	 * @return array
 	 */
@@ -154,11 +163,11 @@ abstract class Advanced_Sidebar_Menu_Menus_Abstract {
 
 
 	/**
-	 * Checks if a widgets checkbox is checked.
+	 * Checks if a widget's checkbox is checked.
 	 *
 	 * Checks first for a value then verifies the value = checked
 	 *
-	 * @param string $name - name of checkbox.
+	 * @param string $name - Name of checkbox.
 	 *
 	 * @return bool
 	 */
@@ -168,7 +177,7 @@ abstract class Advanced_Sidebar_Menu_Menus_Abstract {
 
 
 	/**
-	 * Determines if all the children should be included
+	 * Determines if all the children should be included.
 	 *
 	 * @return bool
 	 */
@@ -178,7 +187,7 @@ abstract class Advanced_Sidebar_Menu_Menus_Abstract {
 
 
 	/**
-	 * Determines if the parent page or cat should be included
+	 * Determines if the parent page or cat should be included.
 	 *
 	 * @return bool
 	 */
@@ -202,17 +211,12 @@ abstract class Advanced_Sidebar_Menu_Menus_Abstract {
 
 
 	/**
-	 * Retrieve the excluded items' ids
+	 * Retrieve the excluded items' ids.
 	 *
 	 * @return array
 	 */
 	public function get_excluded_ids() {
-		$excluded = explode( ',', $this->instance[ self::EXCLUDE ] );
-		$excluded = array_filter( $excluded );
-		$excluded = array_filter( $excluded, 'is_numeric' );
-		$excluded = array_map( 'intval', $excluded );
-
-		return $excluded;
+		return array_map( 'intval', array_filter( explode( ',', $this->instance[ self::EXCLUDE ] ), 'is_numeric' ) );
 	}
 
 
@@ -224,7 +228,7 @@ abstract class Advanced_Sidebar_Menu_Menus_Abstract {
 	public function title() {
 		if ( ! empty( $this->instance[ self::TITLE ] ) ) {
 			$title = apply_filters( 'widget_title', $this->instance[ self::TITLE ], $this->args, $this->instance );
-			$title = apply_filters( 'advanced_sidebar_menu_widget_title', esc_html( $title ), $this->args, $this->instance, $this );
+			$title = apply_filters( 'advanced-sidebar-menu/menus/widget-title', esc_html( $title ), $this->args, $this->instance, $this );
 
 			// phpcs:disable
 			echo $this->args['before_title'] . $title . $this->args['after_title'];
@@ -234,19 +238,21 @@ abstract class Advanced_Sidebar_Menu_Menus_Abstract {
 
 
 	/**
+	 * Store current menu instance.
 	 *
 	 * @static
 	 *
-	 * @var \Advanced_Sidebar_Menu_Menus_Page|\Advanced_Sidebar_Menu_Menus_Category
+	 * @var Page|Category
 	 */
 	protected static $current;
 
 
 	/**
+	 * Get current menu instance.
 	 *
 	 * @static
 	 *
-	 * @return \Advanced_Sidebar_Menu_Menus_Page|\Advanced_Sidebar_Menu_Menus_Category
+	 * @return Page|Category
 	 */
 	public static function get_current() {
 		return self::$current;
@@ -254,23 +260,18 @@ abstract class Advanced_Sidebar_Menu_Menus_Abstract {
 
 
 	/**
-	 * static() does not exist until PHP 5.3 which means we have to do
-	 * this hideous thing where we call the factory method from the child
-	 * class and pass it's name.
-	 * Chose to handle it this way instead of trying to maintain 2 separate
-	 * factory methods with logic.
+	 * Construct a new instance of this class.
 	 *
-	 * @param string $class
-	 * @param array  $widget_instance
-	 * @param array  $widget_args
+	 * @param array $widget_instance - Widget settings.
+	 * @param array $widget_args     - Widget registration args.
 	 *
 	 * @static
 	 *
-	 * @return mixed
+	 * @return static
 	 */
-	public static function _factory( $class, array $widget_instance, array $widget_args ) {
-		$menu          = new $class( $widget_instance, $widget_args );
-		self::$current = $menu;
+	public static function factory( array $widget_instance, array $widget_args ) {
+		$menu = new static( $widget_instance, $widget_args );
+		static::$current = $menu;
 
 		return $menu;
 	}

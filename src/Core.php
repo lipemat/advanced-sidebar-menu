@@ -1,6 +1,5 @@
 <?php
 
-
 /**
  * Advanced_Sidebar_Menu
  *
@@ -11,14 +10,22 @@
 class Advanced_Sidebar_Menu_Core {
 	use \Advanced_Sidebar_Menu\Traits\Singleton;
 
+	/**
+	 * Actions
+	 */
 	protected function hook() {
-		add_action( 'widgets_init', array( $this, 'register_widgets' ) );
+		add_action( 'widgets_init', [ $this, 'register_widgets' ] );
 	}
 
 
+	/**
+	 * Register the page and category widgets.
+	 *
+	 * @return void
+	 */
 	public function register_widgets() {
-		register_widget( 'Advanced_Sidebar_Menu_Widget_Page' );
-		register_widget( 'Advanced_Sidebar_Menu_Widget_Category' );
+		register_widget( \Advanced_Sidebar_Menu_Widget_Page::class );
+		register_widget( \Advanced_Sidebar_Menu_Widget_Category::class );
 	}
 
 
@@ -41,9 +48,9 @@ class Advanced_Sidebar_Menu_Core {
 	 * Retrieve a template file from either the theme's 'advanced-sidebar-menu' directory
 	 * or this plugins views folder if one does not exist
 	 *
-	 * @since 6.0.0
-	 *
 	 * @param string $file_name
+	 *
+	 * @since 6.0.0
 	 *
 	 * @return string
 	 */
