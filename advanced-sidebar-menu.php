@@ -6,6 +6,7 @@ use Advanced_Sidebar_Menu\Menus\Category;
 use Advanced_Sidebar_Menu\Menus\Menu_Abstract;
 use Advanced_Sidebar_Menu\Menus\Page;
 use Advanced_Sidebar_Menu\Scripts;
+use Advanced_Sidebar_Menu\Traits\Memoize;
 use Advanced_Sidebar_Menu\Traits\Singleton;
 
 /**
@@ -73,6 +74,7 @@ function advanced_sidebar_menu_autoload( $class ) {
 		Page::class                         => 'Menus/Page.php',
 
 		// Traits.
+		Memoize::class                      => 'Traits/Memoize.php',
 		Singleton::class                    => 'Traits/Singleton.php',
 	];
 	if ( isset( $classes[ $class ] ) ) {
