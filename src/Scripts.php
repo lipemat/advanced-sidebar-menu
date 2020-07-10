@@ -13,7 +13,6 @@ use Advanced_Sidebar_Menu\Traits\Singleton;
 class Scripts {
 	use Singleton;
 
-
 	/**
 	 * Add various scripts to the cue.
 	 */
@@ -39,7 +38,7 @@ class Scripts {
 	 */
 	public function admin_scripts() {
 		wp_enqueue_script(
-			apply_filters( 'asm_script', 'advanced-sidebar-menu-script' ),
+			'advanced-sidebar-menu-script',
 			\trailingslashit( ADVANCED_SIDEBAR_MENU_URL ) . 'resources/js/advanced-sidebar-menu.js',
 			[ 'jquery' ],
 			ADVANCED_SIDEBAR_BASIC_VERSION,
@@ -47,7 +46,7 @@ class Scripts {
 		);
 
 		wp_enqueue_style(
-			apply_filters( 'asm_style', 'advanced-sidebar-menu-style' ),
+			'advanced-sidebar-menu-style',
 			\trailingslashit( ADVANCED_SIDEBAR_MENU_URL ) . 'resources/css/advanced-sidebar-menu.css',
 			[],
 			ADVANCED_SIDEBAR_BASIC_VERSION
@@ -57,7 +56,7 @@ class Scripts {
 
 	/**
 	 * Trigger any JS needed by the widgets.
-	 * This is outputted into the markup for each widget so it may be
+	 * This is outputted into the markup for each widget, so it may be
 	 * trigger whether the widget is loaded on the front-end by
 	 * page builders or the backend by standard WordPress or
 	 * really anywhere.

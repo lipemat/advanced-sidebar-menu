@@ -16,10 +16,13 @@ if ( defined( 'ADVANCED_SIDEBAR_BASIC_VERSION' ) ) {
 }
 
 use Advanced_Sidebar_Menu\Cache;
+use Advanced_Sidebar_Menu\Core;
+use Advanced_Sidebar_Menu\Debug;
 use Advanced_Sidebar_Menu\List_Pages;
 use Advanced_Sidebar_Menu\Menus\Category;
 use Advanced_Sidebar_Menu\Menus\Menu_Abstract;
 use Advanced_Sidebar_Menu\Menus\Page;
+use Advanced_Sidebar_Menu\Page_Walker;
 use Advanced_Sidebar_Menu\Scripts;
 use Advanced_Sidebar_Menu\Traits\Memoize;
 use Advanced_Sidebar_Menu\Traits\Singleton;
@@ -36,9 +39,9 @@ if ( ! function_exists( 'advanced_sidebar_menu_load' ) ) {
 	 * @return void
 	 */
 	function advanced_sidebar_menu_load() {
-		Advanced_Sidebar_Menu_Core::init();
+		Core::init();
 		Cache::init();
-		Advanced_Sidebar_Menu_Debug::init();
+		Debug::init();
 		Scripts::init();
 	}
 
@@ -55,20 +58,20 @@ if ( ! function_exists( 'advanced_sidebar_menu_load' ) ) {
  */
 function advanced_sidebar_menu_autoload( $class ) {
 	$classes = [
-		// widgets.
+		// Widgets.
 		Widget_Abstract::class                        => 'Widget/Widget_Abstract.php',
 		\Advanced_Sidebar_Menu\Widget\Page::class     => 'Widget/Page.php',
 		\Advanced_Sidebar_Menu\Widget\Category::class => 'Widget/Category.php',
 
-		// core.
+		// Core.
 		Cache::class                                  => 'Cache.php',
-		'Advanced_Sidebar_Menu_Core'                  => 'Core.php',
-		'Advanced_Sidebar_Menu_Debug'                 => 'Debug.php',
+		Core::class                                   => 'Core.php',
+		Debug::class                                  => 'Debug.php',
 		List_Pages::class                             => 'List_Pages.php',
-		'Advanced_Sidebar_Menu_Page_Walker'           => 'Page_Walker.php',
+		Page_Walker::class                            => 'Page_Walker.php',
 		Scripts::class                                => 'Scripts.php',
 
-		// menus.
+		// Menus.
 		Category::class                               => 'Menus/Category.php',
 		Menu_Abstract::class                          => 'Menus/Menu_Abstract.php',
 		Page::class                                   => 'Menus/Page.php',
@@ -109,8 +112,10 @@ function advanced_sidebar_menu_widget_docs( $instance, WP_Widget $widget ) {
 	$anchor = 'advanced_sidebar_menu_category' === $widget->id_base ? 'categories-menu' : 'pages-menu';
 	?>
 	<p style="text-align: right">
-		<a href="https://onpointplugins.com/advanced-sidebar-menu/#advanced-sidebar-<?php echo esc_attr( $anchor ); ?>"
-		   target="blank">
+		<a
+			href="https://onpointplugins.com/advanced-sidebar-menu/#advanced-sidebar-<?php echo esc_attr( $anchor ); ?>"
+			target="_blank"
+			rel="noopener noreferrer">
 			<?php esc_html_e( 'widget documentation', 'advanced-sidebar-menu' ); ?>
 		</a>
 	</p>

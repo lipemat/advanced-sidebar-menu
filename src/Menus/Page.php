@@ -2,8 +2,8 @@
 
 namespace Advanced_Sidebar_Menu\Menus;
 
+use Advanced_Sidebar_Menu\Core;
 use Advanced_Sidebar_Menu\List_Pages;
-use Advanced_Sidebar_Menu_Core;
 
 /**
  * Page menu.
@@ -184,7 +184,7 @@ class Page extends Menu_Abstract {
 
 		do_action( 'advanced-sidebar-menu/menus/page/render', $this );
 
-		$output = require Advanced_Sidebar_Menu_Core::instance()->get_template_part( 'page_list.php' );
+		$output = require Core::instance()->get_template_part( 'page_list.php' );
 		echo apply_filters( 'advanced-sidebar-menu/menus/page/output', $output, $this->get_current_post(), $this->args, $this->instance, $this );
 
 		do_action( 'advanced-sidebar-menu/menus/page/render/after', $this );

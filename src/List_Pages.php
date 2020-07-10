@@ -3,7 +3,6 @@
 namespace Advanced_Sidebar_Menu;
 
 use Advanced_Sidebar_Menu\Menus\Page;
-use Advanced_Sidebar_Menu_Page_Walker;
 
 /**
  * Parse and build the child and grandchild menus
@@ -60,7 +59,7 @@ class List_Pages {
 	/**
 	 * Menu class
 	 *
-	 * @var \Advanced_Sidebar_Menu\Menus\Page
+	 * @var Page
 	 */
 	protected $menu;
 
@@ -68,7 +67,7 @@ class List_Pages {
 	/**
 	 * Constructor
 	 *
-	 * @param \Advanced_Sidebar_Menu\Menus\Page $menu - The menu class.
+	 * @param Page $menu - The menu class.
 	 */
 	protected function __construct( Page $menu ) {
 		$this->menu = $menu;
@@ -89,9 +88,7 @@ class List_Pages {
 
 
 	/**
-	 * Hooks should only hook once
-	 *
-	 * @todo find a more appropriate place for this?
+	 * Filters
 	 *
 	 * @return void
 	 */
@@ -195,7 +192,7 @@ class List_Pages {
 			'echo'             => 0,
 			'order'            => 'ASC',
 			'orderby'          => 'menu_order, title',
-			'walker'           => new Advanced_Sidebar_Menu_Page_Walker(),
+			'walker'           => new Page_Walker(),
 			'link_before'      => '',
 			'link_after'       => '',
 			'title_li'         => '',
@@ -213,7 +210,7 @@ class List_Pages {
 		// Sanitize, mostly to keep spaces out.
 		$args['exclude'] = preg_replace( '/[^0-9,]/', '', implode( ',', apply_filters( 'wp_list_pages_excludes', $args['exclude'] ) ) );
 
-		return apply_filters( 'advanced_sidebar_menu_list_pages_args', $args, $this );
+		return apply_filters( 'advanced-sidebar-menu/list-pages/parse-args', $args, $this );
 	}
 
 
@@ -248,8 +245,8 @@ class List_Pages {
 		if ( ! $this->args['echo'] ) {
 			return $this->output;
 		}
-		// phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped
-		echo $this->output;
+
+		echo $this->output; // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped
 		return '';
 	}
 
@@ -351,18 +348,18 @@ class List_Pages {
 			}
 		}
 
-		return apply_filters( 'advanced_sidebar_menu_page_ancestor', $return, $current_page_id, $this );
+		return apply_filters( 'advanced-sidebar-menu/list-pages/is-current-page-ancestor', $return, $current_page_id, $this );
 	}
 
 
 	/**
 	 * List Pages Factory
 	 *
-	 * @param Page $menu
+	 * @param Page $menu - Menu class.
 	 *
-	 * @return List_Pages
 	 * @static
 	 *
+	 * @return List_Pages
 	 */
 	public static function factory( Page $menu ) {
 		return new self( $menu );

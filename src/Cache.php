@@ -46,8 +46,8 @@ class Cache {
 
 
 	/**
-	 * Retrieve a posts child pages from the cache
-	 * If no exist in the cache will return false
+	 * Retrieve a post's child pages from the cache.
+	 * If no exist in the cache will return false.
 	 *
 	 * @param List_Pages $class - Full menu class with all properties set.
 	 *

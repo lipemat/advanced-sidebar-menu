@@ -1,14 +1,19 @@
 <?php
 
+namespace Advanced_Sidebar_Menu;
+
+use Advanced_Sidebar_Menu\Traits\Singleton;
+use Advanced_Sidebar_Menu\Widget\Category;
+use Advanced_Sidebar_Menu\Widget\Page;
+
 /**
- * Advanced_Sidebar_Menu
+ * Core functionality for Advanced Sidebar Menu Plugin
  *
  * @author OnPoint Plugins
  * @since  7.0.0
- *
  */
-class Advanced_Sidebar_Menu_Core {
-	use \Advanced_Sidebar_Menu\Traits\Singleton;
+class Core {
+	use Singleton;
 
 	/**
 	 * Actions
@@ -24,14 +29,14 @@ class Advanced_Sidebar_Menu_Core {
 	 * @return void
 	 */
 	public function register_widgets() {
-		register_widget( \Advanced_Sidebar_Menu\Widget\Page::class );
-		register_widget( \Advanced_Sidebar_Menu\Widget\Category::class );
+		register_widget( Page::class );
+		register_widget( Category::class );
 	}
 
 
 	/**
 	 * Retrieve a template file from either the theme's 'advanced-sidebar-menu' directory
-	 * or this plugins views folder if one does not exist
+	 * or this plugin's view folder if one does not exist.
 	 *
 	 * @param string $file_name - Name of template file without the PHP extension.
 	 *
@@ -45,8 +50,6 @@ class Advanced_Sidebar_Menu_Core {
 			$file = ADVANCED_SIDEBAR_DIR . 'views/' . $file_name;
 		}
 
-		$file = apply_filters( 'advanced_sidebar_menu_template_part', $file, $file_name, $this );
-
-		return $file;
+		return apply_filters( 'advanced-sidebar-menu/core/get-template-part', $file, $file_name, $this );
 	}
 }

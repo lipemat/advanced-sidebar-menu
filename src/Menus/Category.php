@@ -2,7 +2,7 @@
 
 namespace Advanced_Sidebar_Menu\Menus;
 
-use Advanced_Sidebar_Menu_Core;
+use Advanced_Sidebar_Menu\Core;
 
 /**
  * Category menu.
@@ -463,7 +463,7 @@ class Category extends Menu_Abstract {
 				}
 			}
 
-			$output = require Advanced_Sidebar_Menu_Core::instance()->get_template_part( 'category_list.php' );
+			$output = require Core::instance()->get_template_part( 'category_list.php' );
 
 			echo apply_filters( 'advanced-sidebar-menu/menus/category/output', $output, $this->args, $this->instance, $this );
 
