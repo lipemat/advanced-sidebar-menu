@@ -28,7 +28,8 @@ use Advanced_Sidebar_Menu\Traits\Memoize;
 use Advanced_Sidebar_Menu\Traits\Singleton;
 use Advanced_Sidebar_Menu\Widget\Widget_Abstract;
 
-define( 'ADVANCED_SIDEBAR_BASIC_VERSION', '7.7.4' );
+define( 'ADVANCED_SIDEBAR_BASIC_VERSION', '8.0.0' );
+define( 'ADVANCED_SIDEBAR_MENU_REQUIRED_PRO_VERSION', '8.0.0' );
 define( 'ADVANCED_SIDEBAR_DIR', plugin_dir_path( __FILE__ ) );
 define( 'ADVANCED_SIDEBAR_MENU_URL', plugin_dir_url( __FILE__ ) );
 
@@ -43,6 +44,11 @@ if ( ! function_exists( 'advanced_sidebar_menu_load' ) ) {
 		Cache::init();
 		Debug::init();
 		Scripts::init();
+
+		if ( defined( 'ADVANCED_SIDEBAR_MENU_PRO_VERSION' ) && version_compare( ADVANCED_SIDEBAR_MENU_REQUIRED_PRO_VERSION, ADVANCED_SIDEBAR_MENU_PRO_VERSION, '>' ) ) {
+			add_action( 'admin_notices', 'advanced_sidebar_menu_pro_version_warning' );
+			remove_action( 'plugins_loaded', 'advanced_sidebar_menu_pro_init', 11 );
+		}
 	}
 
 	add_action( 'plugins_loaded', 'advanced_sidebar_menu_load' );
@@ -171,6 +177,26 @@ function advanced_sidebar_menu_upgrade_notice( array $instance, WP_Widget $widge
 			<li><?php esc_html_e( 'Support for custom navigation menus from Appearance -> Menus.', 'advanced-sidebar-menu' ); ?></li>
 		</ol>
 		<p>
+	</div>
+	<?php
+}
+
+/**
+ * Display a warning if we don't have the required PRO version installed.
+ *
+ * @since 8.0.0
+ *
+ * @return void
+ */
+function advanced_sidebar_menu_pro_version_warning() {
+	?>
+	<div id="message" class="error">
+		<p>
+			<?php
+			/* translators: {%1$s}[<a>]{%2$s}[</a>] https://wordpress.org/plugins/advanced-sidebar-menu/ */ //phpcs:disable
+			printf( esc_html_x( 'Advanced Sidebar Menu requires %1$sAdvanced Sidebar Menu PRO%2$s version %3$s+. Please update or deactivate the PRO version.', '{<a>}{</a>}', 'advanced-sidebar-menu' ), '<a target="_blank" rel="noreferrer noopener" href="https://onpointplugins.com/product/advanced-sidebar-menu-pro/">', '</a>', esc_attr( ADVANCED_SIDEBAR_MENU_REQUIRED_PRO_VERSION ) );
+			?>
+		</p>
 	</div>
 	<?php
 }
