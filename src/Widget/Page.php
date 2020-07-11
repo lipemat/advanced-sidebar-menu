@@ -13,6 +13,8 @@ use Advanced_Sidebar_Menu\Menus\Menu_Abstract;
  * @since  7.0.0
  */
 class Page extends Widget_Abstract {
+	const NAME = 'advanced_sidebar_menu';
+
 	const TITLE                    = Menu_Abstract::TITLE;
 	const INCLUDE_PARENT           = Menu_Abstract::INCLUDE_PARENT;
 	const INCLUDE_CHILDLESS_PARENT = Menu_Abstract::INCLUDE_CHILDLESS_PARENT;
@@ -49,7 +51,7 @@ class Page extends Widget_Abstract {
 			'width' => wp_is_mobile() ? false : 620,
 		];
 
-		parent::__construct( 'advanced_sidebar_menu', __( 'Advanced Sidebar Pages Menu', 'advanced-sidebar-menu' ), $widget_ops, $control_ops );
+		parent::__construct( self::NAME, __( 'Advanced Sidebar Pages Menu', 'advanced-sidebar-menu' ), $widget_ops, $control_ops );
 
 		$this->hook();
 	}

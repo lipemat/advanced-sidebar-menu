@@ -23,7 +23,6 @@ use Advanced_Sidebar_Menu\Menus\Category;
 use Advanced_Sidebar_Menu\Menus\Menu_Abstract;
 use Advanced_Sidebar_Menu\Menus\Page;
 use Advanced_Sidebar_Menu\Scripts;
-use Advanced_Sidebar_Menu\Traits\Memoize;
 use Advanced_Sidebar_Menu\Traits\Singleton;
 use Advanced_Sidebar_Menu\Walkers\Page_Walker;
 use Advanced_Sidebar_Menu\Widget\Widget_Abstract;
@@ -117,7 +116,7 @@ add_action( 'advanced-sidebar-menu/widget/category/after-form', 'advanced_sideba
  * @param WP_Widget $widget   - Current widget.
  */
 function advanced_sidebar_menu_widget_docs( $instance, WP_Widget $widget ) {
-	$anchor = 'advanced_sidebar_menu_category' === $widget->id_base ? 'categories-menu' : 'pages-menu';
+	$anchor = \Advanced_Sidebar_Menu\Widget\Category::NAME === $widget->id_base ? 'categories-menu' : 'pages-menu';
 	?>
 	<p style="text-align: right">
 		<a

@@ -13,6 +13,8 @@ use Advanced_Sidebar_Menu\Menus\Menu_Abstract;
  * @package Advanced Sidebar Menu
  */
 class Category extends Widget_Abstract {
+	const NAME = 'advanced_sidebar_menu_category';
+
 	const TITLE                    = Menu_Abstract::TITLE;
 	const INCLUDE_PARENT           = Menu_Abstract::INCLUDE_PARENT;
 	const INCLUDE_CHILDLESS_PARENT = Menu_Abstract::INCLUDE_CHILDLESS_PARENT;
@@ -53,7 +55,7 @@ class Category extends Widget_Abstract {
 			'width' => wp_is_mobile() ? false : 620,
 		];
 
-		parent::__construct( 'advanced_sidebar_menu_category', __( 'Advanced Sidebar Categories Menu', 'advanced-sidebar-menu' ), $widget_ops, $control_ops );
+		parent::__construct( self::NAME, __( 'Advanced Sidebar Categories Menu', 'advanced-sidebar-menu' ), $widget_ops, $control_ops );
 
 		$this->hook();
 	}
@@ -69,10 +71,7 @@ class Category extends Widget_Abstract {
 	 */
 	protected function hook() {
 		add_action( 'advanced-sidebar-menu/widget/category/left-column', [ $this, 'box_display' ], 5, 2 );
-		add_action( 'advanced-sidebar-menu/widget/category/left-column', [
-			$this,
-			'box_display_on_single_posts',
-		], 15, 2 );
+		add_action( 'advanced-sidebar-menu/widget/category/left-column', [ $this, 'box_display_on_single_posts' ], 15, 2 );
 		add_action( 'advanced-sidebar-menu/widget/category/left-column', [ $this, 'box_exclude' ], 20, 2 );
 	}
 
