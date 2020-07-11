@@ -143,12 +143,12 @@ function advanced_sidebar_menu_upgrade_notice( array $instance, WP_Widget $widge
 	}
 	?>
 	<div class="advanced-sidebar-menu-column-box">
-		<h3><?php esc_html_e( 'Checkout Advanced Sidebar Menu Pro!', 'advanced-sidebar-menu' ); ?></h3>
+		<h3><?php esc_html_e( 'Advanced Sidebar Menu PRO!', 'advanced-sidebar-menu' ); ?></h3>
 		<p>
 			<strong>
 				<?php
 				/* translators: {<a>}{</a>} links to https://onpointplugins.com/product/advanced-sidebar-menu-pro/ */
-				printf( esc_html_x( 'Upgrade to %1$sAdvanced Sidebar Menu Pro%2$s for these features and so much more!', '{<a>}{</a>}', 'advanced-sidebar-menu' ), '<a target="blank" href="https://onpointplugins.com/product/advanced-sidebar-menu-pro/">', '</a>' );
+				printf( esc_html_x( 'Upgrade to %1$sAdvanced Sidebar Menu PRO%2$s for these features and so much more!', '{<a>}{</a>}', 'advanced-sidebar-menu' ), '<a target="blank" href="https://onpointplugins.com/product/advanced-sidebar-menu-pro/">', '</a>' );
 				?>
 			</strong>
 		<ol style="list-style: disc">
@@ -156,8 +156,7 @@ function advanced_sidebar_menu_upgrade_notice( array $instance, WP_Widget $widge
 			<li><?php esc_html_e( 'Accordion menu support.', 'advanced-sidebar-menu' ); ?></li>
 			<li><?php esc_html_e( 'Click and drag menu styling including bullets, colors, sizes, block styles, borders, and border colors.', 'advanced-sidebar-menu' ); ?></li>
 			<?php
-			// page widget options.
-			if ( 'advanced_sidebar_menu' === $widget->id_base ) {
+			if ( \Advanced_Sidebar_Menu\Widget\Page::NAME === $widget->id_base ) {
 				?>
 				<li><?php esc_html_e( "Ability to customize each page's link text.", 'advanced-sidebar-menu' ); ?></li>
 				<li><?php esc_html_e( 'Ability to exclude a page from all menus using a simple checkbox.', 'advanced-sidebar-menu' ); ?></li>
@@ -165,7 +164,6 @@ function advanced_sidebar_menu_upgrade_notice( array $instance, WP_Widget $widge
 				<li><?php esc_html_e( 'Ability to select and display custom post types.', 'advanced-sidebar-menu' ); ?></li>
 				<li><?php esc_html_e( 'Option to display the current page’s parents, grandparents, and children only, as well as siblings options.', 'advanced-sidebar-menu' ); ?></li>
 				<?php
-				// category widget options.
 			} else {
 				?>
 				<li><?php esc_html_e( 'Link ordering for the category widget.', 'advanced-sidebar-menu' ); ?></li>

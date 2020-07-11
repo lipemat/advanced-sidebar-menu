@@ -1,8 +1,8 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: Advanced Sidebar Menu\n"
-"POT-Creation-Date: 2019-03-05 12:29-0500\n"
-"PO-Revision-Date: 2019-03-05 12:30-0500\n"
+"POT-Creation-Date: 2020-07-10 21:16-0600\n"
+"PO-Revision-Date: 2020-07-10 21:16-0600\n"
 "Last-Translator: Mat Lipe <support@onpointplugins.com>\n"
 "Language-Team: \n"
 "Language: de\n"
@@ -10,7 +10,7 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
-"X-Generator: Poedit 2.2.1\n"
+"X-Generator: Poedit 2.3.1\n"
 "X-Poedit-Basepath: ..\n"
 "X-Poedit-Flags-xgettext: --add-comments=translators:\n"
 "X-Poedit-WPHeader: advanced-sidebar-menu.php\n"
@@ -21,32 +21,36 @@ msgstr ""
 "X-Poedit-SearchPath-0: .\n"
 "X-Poedit-SearchPathExcluded-0: *.js\n"
 
-#: advanced-sidebar-menu.php:156
-msgid "Checkout Advanced Sidebar Menu Pro!"
-msgstr "Kasse Advanced Sidebar Menu Pro!"
+#: advanced-sidebar-menu.php:126
+msgid "widget documentation"
+msgstr "widget-dokumentation"
+
+#: advanced-sidebar-menu.php:146
+msgid "Advanced Sidebar Menu PRO!"
+msgstr "Advanced Sidebar Menu PRO!"
 
 #. translators: {<a>}{</a>} links to https://onpointplugins.com/product/advanced-sidebar-menu-pro/
-#: advanced-sidebar-menu.php:161
+#: advanced-sidebar-menu.php:151
 #, php-format
 msgctxt "{<a>}{</a>}"
 msgid ""
-"Upgrade to %1$sAdvanced Sidebar Menu Pro%2$s for these features and so much "
+"Upgrade to %1$sAdvanced Sidebar Menu PRO%2$s for these features and so much "
 "more!"
 msgstr ""
-"Upgrade auf %1$sAdvanced Sidebar Menu Pro%2$s für diese Funktionen und "
+"Upgrade auf %1$sAdvanced Sidebar Menu PRO%2$s für diese Funktionen und "
 "vieles mehr!"
 
-#: advanced-sidebar-menu.php:165
+#: advanced-sidebar-menu.php:155
 msgid "Priority support, including access to Members Only Support Area."
 msgstr ""
 "Prioritätsunterstützung, einschließlich Zugang zum Supportbereich für "
 "Mitglieder."
 
-#: advanced-sidebar-menu.php:166
+#: advanced-sidebar-menu.php:156
 msgid "Accordion menu support."
 msgstr "Akkordeon-Menü-Unterstützung."
 
-#: advanced-sidebar-menu.php:167
+#: advanced-sidebar-menu.php:157
 msgid ""
 "Click and drag menu styling including bullets, colors, sizes, block styles, "
 "borders, and border colors."
@@ -54,17 +58,17 @@ msgstr ""
 "Klicken und ziehen Sie das Menü-Styling, einschließlich Aufzählungszeichen, "
 "Farben, Größen, Blockstile, Rahmen und Rahmenfarben."
 
-#: advanced-sidebar-menu.php:172
+#: advanced-sidebar-menu.php:161
 msgid "Ability to customize each page's link text."
 msgstr "Möglichkeit, den Linktext jeder Seite anzupassen."
 
-#: advanced-sidebar-menu.php:173
+#: advanced-sidebar-menu.php:162
 msgid "Ability to exclude a page from all menus using a simple checkbox."
 msgstr ""
 "Möglichkeit, eine Seite mit einem einfachen Kontrollkästchen aus allen Menüs "
 "auszuschließen."
 
-#: advanced-sidebar-menu.php:174
+#: advanced-sidebar-menu.php:163
 msgid ""
 "Number of levels of pages to show when always displayed child pages is not "
 "checked."
@@ -72,12 +76,12 @@ msgstr ""
 "Anzahl der Seitenebenen, die angezeigt werden sollen, wenn immer "
 "untergeordnete Seiten angezeigt werden, ist nicht aktiviert."
 
-#: advanced-sidebar-menu.php:175
+#: advanced-sidebar-menu.php:164
 msgid "Ability to select and display custom post types."
 msgstr ""
 "Möglichkeit, benutzerdefinierte Beitragstypen auszuwählen und anzuzeigen."
 
-#: advanced-sidebar-menu.php:176
+#: advanced-sidebar-menu.php:165
 msgid ""
 "Option to display the current page’s parents, grandparents, and children "
 "only, as well as siblings options."
@@ -85,120 +89,128 @@ msgstr ""
 "Option, um die Eltern, Großeltern und Kinder der aktuellen Seite anzuzeigen, "
 "sowie Geschwisteroptionen."
 
-#: advanced-sidebar-menu.php:181
+#: advanced-sidebar-menu.php:169
 msgid "Link ordering for the category widget."
 msgstr "Verknüpfungsreihenfolge für das Kategorie-Widget."
 
-#: advanced-sidebar-menu.php:182
+#: advanced-sidebar-menu.php:170
 msgid "Ability to select and display custom taxonomies."
 msgstr "Möglichkeit, benutzerdefinierte Taxonomien auszuwählen und anzuzeigen."
 
-#: advanced-sidebar-menu.php:183
+#: advanced-sidebar-menu.php:171
 msgid ""
 "Ability to display assigned posts or custom post types under categories."
 msgstr ""
 "Fähigkeit, zugewiesene Beiträge oder benutzerdefinierte Posttypen unter "
 "Kategorien anzuzeigen."
 
-#: advanced-sidebar-menu.php:187
+#: advanced-sidebar-menu.php:175
 msgid "Ability to display the widgets everywhere the sidebar displays."
 msgstr "Die Fähigkeit, die Widgets überall in der Sidebar-Anzeige anzuzeigen."
 
-#: advanced-sidebar-menu.php:188
+#: advanced-sidebar-menu.php:176
 msgid "Support for custom navigation menus from Appearance -> Menus."
 msgstr ""
 "Unterstützung für kundenspezifische Navigationsmenüs von Appearance-> Menü."
 
-#: src/Widget/Category.php:44
+#. translators: {%1$s}[<a>]{%2$s}[</a>] https://wordpress.org/plugins/advanced-sidebar-menu/
+#. phpcs:disable
+#: advanced-sidebar-menu.php:196
+#, php-format
+msgctxt "{<a>}{</a>}"
+msgid ""
+"Advanced Sidebar Menu requires %1$sAdvanced Sidebar Menu PRO%2$s version %3$s"
+"+. Please update or deactivate the PRO version."
+msgstr ""
+"Das Advanced Sidebar Menu erfordert %1$s sAdvanced Sidebar Menu PRO%2$s es "
+"Version %3$s+. Bitte aktualisieren oder deaktivieren Sie die PRO-Version."
+
+#: src/Widget/Category.php:52
 msgid ""
 "Creates a menu of all the categories using the child/parent relationship"
 msgstr ""
 "Erstellt ein Menü aller Kategorien, die unter Zugrundelegung der Eltern-Kind-"
 "Beziehung"
 
-#: src/Widget/Category.php:48
+#: src/Widget/Category.php:58
 msgid "Advanced Sidebar Categories Menu"
 msgstr "Advanced Sidebar Kategorien-Menü"
 
-#: src/Widget/Category.php:83
-msgid "Display highest level parent category"
+#: src/Widget/Category.php:93
+msgid "Display the highest level parent category"
 msgstr "Anzeige der übergeordneten Kategorie der höchsten Ebene"
 
-#: src/Widget/Category.php:89
+#: src/Widget/Category.php:99
 msgid "Display menu when there is only the parent category"
 msgstr "Menü \"Anzeige\" wird nur die übergeordnete Kategorie"
 
-#: src/Widget/Category.php:95
+#: src/Widget/Category.php:105
 msgid "Always display child categories"
 msgstr "Immer untergeordnete Kategorien anzeigen"
 
-#: src/Widget/Category.php:101
+#: src/Widget/Category.php:111
 msgid "Levels of child categories to display"
 msgstr "Niveau der Kinderkategorien zu zeigen"
 
-#: src/Widget/Category.php:138 src/Widget/Page.php:150
-msgid "Use this plugin's default styling"
-msgstr "Verwenden Sie das Standardstyling dieses Plugins"
-
-#: src/Widget/Category.php:161
+#: src/Widget/Category.php:153
 msgid "Display categories on single posts"
 msgstr "Kategorien auf einzelne Beiträge anzeigen"
 
-#: src/Widget/Category.php:167
+#: src/Widget/Category.php:160
 msgid "Display each single post's category"
 msgstr "Zeigen Sie die einzelnen Kategorien der einzelnen Posts an"
 
-#: src/Widget/Category.php:173
+#: src/Widget/Category.php:167
 msgid "In a new widget"
 msgstr "In einem neuen Widget"
 
-#: src/Widget/Category.php:176
+#: src/Widget/Category.php:170
 msgid "In another list in the same widget"
 msgstr "In einer anderen Liste im selben Widget"
 
-#: src/Widget/Category.php:200
+#: src/Widget/Category.php:196
 msgid "Categories to exclude (ids), comma separated"
 msgstr "Kategorien ausschließen (Ids), durch Kommata getrennt"
 
-#: src/Widget/Category.php:233 src/Widget/Page.php:242
+#: src/Widget/Category.php:229 src/Widget/Page.php:234
 msgid "Title"
 msgstr "Titel"
 
-#: src/Widget/Page.php:39
+#: src/Widget/Page.php:48
 msgid "Creates a menu of all the pages using the child/parent relationship"
 msgstr ""
 "Erstellt ein Menü mit allen Seiten, die die Child / Parent-Beziehung "
 "verwenden"
 
-#: src/Widget/Page.php:45
+#: src/Widget/Page.php:54
 msgid "Advanced Sidebar Pages Menu"
 msgstr "Advanced Sidebar Seitenmenü"
 
-#: src/Widget/Page.php:82
+#: src/Widget/Page.php:89
 msgid "Display highest level parent page"
 msgstr "Zeigt die oberste Seite der obersten Ebene an"
 
-#: src/Widget/Page.php:90
+#: src/Widget/Page.php:97
 msgid "Display menu when there is only the parent page"
 msgstr "Menü \"Anzeige\" wird nur die übergeordnete Seite"
 
-#: src/Widget/Page.php:97
+#: src/Widget/Page.php:104
 msgid "Always display child pages"
 msgstr "Immer untergeordnete Seiten anzeigen"
 
-#: src/Widget/Page.php:110
+#: src/Widget/Page.php:117
 msgid "Maximum level of child pages to display"
 msgstr "Maximale Höhe der zu zeigestellenden Kinderseiten"
 
-#: src/Widget/Page.php:114
+#: src/Widget/Page.php:123
 msgid " - All - "
 msgstr " Alle "
 
-#: src/Widget/Page.php:171
+#: src/Widget/Page.php:161
 msgid "Order by"
 msgstr "Sortieren nach"
 
-#: src/Widget/Page.php:210
+#: src/Widget/Page.php:202
 msgid "Pages to exclude (ids), comma separated"
 msgstr "Auszuschließende Seiten (IDs), durch Kommas getrennt"
 
@@ -219,12 +231,21 @@ msgstr ""
 "Kategorien erstellt."
 
 #. Author of the plugin/theme
-msgid "Mat Lipe"
-msgstr "Mat Lipe"
+msgid "OnPoint Plugins"
+msgstr ""
 
 #. Author URI of the plugin/theme
 msgid "https://onpointplugins.com"
 msgstr "https://onpointplugins.com"
+
+#~ msgid "Checkout Advanced Sidebar Menu Pro!"
+#~ msgstr "Kasse Advanced Sidebar Menu Pro!"
+
+#~ msgid "Use this plugin's default styling"
+#~ msgstr "Verwenden Sie das Standardstyling dieses Plugins"
+
+#~ msgid "Mat Lipe"
+#~ msgstr "Mat Lipe"
 
 #~ msgid "Use this Plugin's Styling"
 #~ msgstr "Benutze das Plugin Styling"
