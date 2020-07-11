@@ -3,7 +3,6 @@
 namespace Advanced_Sidebar_Menu\Widget;
 
 use Advanced_Sidebar_Menu\Menus\Menu_Abstract;
-use Advanced_Sidebar_Menu\Traits\Memoize;
 
 /**
  * Creates a Widget of parent Child Categories
@@ -14,8 +13,6 @@ use Advanced_Sidebar_Menu\Traits\Memoize;
  * @package Advanced Sidebar Menu
  */
 class Category extends Widget_Abstract {
-	use Memoize;
-
 	const TITLE                    = Menu_Abstract::TITLE;
 	const INCLUDE_PARENT           = Menu_Abstract::INCLUDE_PARENT;
 	const INCLUDE_CHILDLESS_PARENT = Menu_Abstract::INCLUDE_CHILDLESS_PARENT;
@@ -71,22 +68,20 @@ class Category extends Widget_Abstract {
 	 * @return void
 	 */
 	protected function hook() {
-		$this->once( function () {
-			add_action( 'advanced-sidebar-menu/widget/category/left-column', [ $this, 'box_display' ], 5, 2 );
-			add_action( 'advanced-sidebar-menu/widget/category/left-column', [
-				$this,
-				'box_display_on_single_posts',
-			], 15, 2 );
-			add_action( 'advanced-sidebar-menu/widget/category/left-column', [ $this, 'box_exclude' ], 20, 2 );
-		}, __METHOD__, [] );
+		add_action( 'advanced-sidebar-menu/widget/category/left-column', [ $this, 'box_display' ], 5, 2 );
+		add_action( 'advanced-sidebar-menu/widget/category/left-column', [
+			$this,
+			'box_display_on_single_posts',
+		], 15, 2 );
+		add_action( 'advanced-sidebar-menu/widget/category/left-column', [ $this, 'box_exclude' ], 20, 2 );
 	}
 
 
 	/**
 	 * Display options.
 	 *
-	 * @param array                                         $instance - Widget settings.
-	 * @param \Advanced_Sidebar_Menu\Widget\Widget_Abstract $widget   - Registered widget arguments.
+	 * @param array           $instance - Widget settings.
+	 * @param Widget_Abstract $widget   - Registered widget arguments.
 	 *
 	 * @return void
 	 */
@@ -144,8 +139,8 @@ class Category extends Widget_Abstract {
 	/**
 	 * Display categories on single post settings.
 	 *
-	 * @param array                                         $instance - Widget settings.
-	 * @param \Advanced_Sidebar_Menu\Widget\Widget_Abstract $widget   - Registered widget arguments.
+	 * @param array           $instance - Widget settings.
+	 * @param Widget_Abstract $widget   - Registered widget arguments.
 	 *
 	 * @return void
 	 */
@@ -189,8 +184,8 @@ class Category extends Widget_Abstract {
 	/**
 	 * Categories to exclude settings.
 	 *
-	 * @param array                                         $instance - Widget settings.
-	 * @param \Advanced_Sidebar_Menu\Widget\Widget_Abstract $widget   - Registered widget arguments.
+	 * @param array           $instance - Widget settings.
+	 * @param Widget_Abstract $widget   - Registered widget arguments.
 	 *
 	 * @return void
 	 */

@@ -3,7 +3,6 @@
 namespace Advanced_Sidebar_Menu\Widget;
 
 use Advanced_Sidebar_Menu\Menus\Menu_Abstract;
-use Advanced_Sidebar_Menu\Traits\Memoize;
 
 /**
  * Advanced_Sidebar_Menu_Widgets_Page
@@ -14,8 +13,6 @@ use Advanced_Sidebar_Menu\Traits\Memoize;
  * @since  7.0.0
  */
 class Page extends Widget_Abstract {
-	use Memoize;
-
 	const TITLE                    = Menu_Abstract::TITLE;
 	const INCLUDE_PARENT           = Menu_Abstract::INCLUDE_PARENT;
 	const INCLUDE_CHILDLESS_PARENT = Menu_Abstract::INCLUDE_CHILDLESS_PARENT;
@@ -67,19 +64,17 @@ class Page extends Widget_Abstract {
 	 * @return void
 	 */
 	protected function hook() {
-		$this->once( function () {
-			add_action( 'advanced-sidebar-menu/widget/page/left-column', [ $this, 'box_display' ], 5, 2 );
-			add_action( 'advanced-sidebar-menu/widget/page/left-column', [ $this, 'box_order' ], 15, 2 );
-			add_action( 'advanced-sidebar-menu/widget/page/left-column', [ $this, 'box_exclude' ], 20, 2 );
-		}, __METHOD__, [] );
+		add_action( 'advanced-sidebar-menu/widget/page/left-column', [ $this, 'box_display' ], 5, 2 );
+		add_action( 'advanced-sidebar-menu/widget/page/left-column', [ $this, 'box_order' ], 15, 2 );
+		add_action( 'advanced-sidebar-menu/widget/page/left-column', [ $this, 'box_exclude' ], 20, 2 );
 	}
 
 
 	/**
 	 * Display options.
 	 *
-	 * @param array                                         $instance - Widget settings.
-	 * @param \Advanced_Sidebar_Menu\Widget\Widget_Abstract $widget   - Registered widget arguments.
+	 * @param array           $instance - Widget settings.
+	 * @param Widget_Abstract $widget   - Registered widget arguments.
 	 *
 	 * @return void
 	 */
@@ -150,8 +145,8 @@ class Page extends Widget_Abstract {
 	/**
 	 * Order options.
 	 *
-	 * @param array                                         $instance - Widget settings.
-	 * @param \Advanced_Sidebar_Menu\Widget\Widget_Abstract $widget   - Registered widget arguments.
+	 * @param array           $instance - Widget settings.
+	 * @param Widget_Abstract $widget   - Registered widget arguments.
 	 *
 	 * @return void
 	 */
@@ -192,8 +187,8 @@ class Page extends Widget_Abstract {
 	/**
 	 * Exclude options.
 	 *
-	 * @param array                                         $instance - Widget settings.
-	 * @param \Advanced_Sidebar_Menu\Widget\Widget_Abstract $widget   - Registered widget arguments.
+	 * @param array           $instance - Widget settings.
+	 * @param Widget_Abstract $widget   - Registered widget arguments.
 	 *
 	 * @return void
 	 */

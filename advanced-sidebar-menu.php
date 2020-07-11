@@ -74,7 +74,6 @@ function advanced_sidebar_menu_autoload( $class ) {
 		Core::class                                   => 'Core.php',
 		Debug::class                                  => 'Debug.php',
 		List_Pages::class                             => 'List_Pages.php',
-		Page_Walker::class                            => 'Page_Walker.php',
 		Scripts::class                                => 'Scripts.php',
 
 		// Menus.
@@ -83,8 +82,11 @@ function advanced_sidebar_menu_autoload( $class ) {
 		Page::class                                   => 'Menus/Page.php',
 
 		// Traits.
-		Memoize::class                                => 'Traits/Memoize.php',
 		Singleton::class                              => 'Traits/Singleton.php',
+
+		// Walkers.
+		Page_Walker::class                            => 'Walkers/Page_Walker.php',
+
 	];
 	if ( isset( $classes[ $class ] ) ) {
 		require __DIR__ . '/src/' . $classes[ $class ];
