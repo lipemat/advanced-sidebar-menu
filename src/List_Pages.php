@@ -1,9 +1,11 @@
 <?php
 
+namespace Advanced_Sidebar_Menu;
+
+use Advanced_Sidebar_Menu\Menus\Page;
+use Advanced_Sidebar_Menu\Walkers\Page_Walker;
 
 /**
- * Advanced_Sidebar_Menu_List_Pages
- *
  * Parse and build the child and grandchild menus
  * Create the opening and closing <ul class="child-sidebar-menu">
  * in the view and this will fill in the guts.
@@ -11,13 +13,11 @@
  * Send the args ( similar to wp_list_pages ) to the constructor and then
  * display by calling list_pages()
  *
- * @package Advanced Sidebar Menu
- *
  * @author  OnPoint Plugins <support@onpointplugins.com>
  *
  * @since   5.0.0
  */
-class Advanced_Sidebar_Menu_List_Pages {
+class List_Pages {
 
 	/**
 	 * The page list
@@ -34,7 +34,7 @@ class Advanced_Sidebar_Menu_List_Pages {
 	protected $current_page;
 
 	/**
-	 * The top level parent id according to the menu class
+	 * The top-level parent id according to the menu class
 	 *
 	 * @var int
 	 */
@@ -45,7 +45,7 @@ class Advanced_Sidebar_Menu_List_Pages {
 	 *
 	 * @var array
 	 */
-	protected $args = array();
+	protected $args = [];
 
 	/**
 	 * Used exclusively for caching
@@ -60,7 +60,7 @@ class Advanced_Sidebar_Menu_List_Pages {
 	/**
 	 * Menu class
 	 *
-	 * @var \Advanced_Sidebar_Menu_Menus_Page
+	 * @var Page
 	 */
 	protected $menu;
 
@@ -68,20 +68,20 @@ class Advanced_Sidebar_Menu_List_Pages {
 	/**
 	 * Constructor
 	 *
-	 * @param \Advanced_Sidebar_Menu_Menus_Page $menu - The menu class.
+	 * @param Page $menu - The menu class.
 	 */
-	protected function __construct( Advanced_Sidebar_Menu_Menus_Page $menu ) {
-		$this->menu          = $menu;
+	protected function __construct( Page $menu ) {
+		$this->menu = $menu;
 		$this->top_parent_id = $menu->get_top_parent_id();
-		$this->current_page  = $menu->get_current_post();
+		$this->current_page = $menu->get_current_post();
 
-		$args = array(
+		$args = [
 			'post_type' => $menu->get_post_type(),
 			'orderby'   => $menu->get_order_by(),
 			'order'     => $menu->get_order(),
 			'exclude'   => $menu->get_excluded_ids(),
 			'levels'    => $menu->get_levels_to_display(),
-		);
+		];
 
 		$this->args = $this->parse_args( $args );
 		$this->hook();
@@ -89,14 +89,12 @@ class Advanced_Sidebar_Menu_List_Pages {
 
 
 	/**
-	 * Hooks should only hook once
-	 *
-	 * @todo find a more appropriate place for this?
+	 * Filters
 	 *
 	 * @return void
 	 */
 	protected function hook() {
-		add_filter( 'page_css_class', array( $this, 'add_list_item_classes' ), 2, 2 );
+		add_filter( 'page_css_class', [ $this, 'add_list_item_classes' ], 2, 2 );
 	}
 
 
@@ -104,11 +102,11 @@ class Advanced_Sidebar_Menu_List_Pages {
 	 * Add the custom classes to the list items
 	 *
 	 * @param array    $classes - Provided classes for item.
-	 * @param \WP_Post $post - The item.
+	 * @param \WP_Post $post    - The item.
 	 *
 	 * @return array
 	 */
-	public function add_list_item_classes( $classes, WP_Post $post ) {
+	public function add_list_item_classes( $classes, \WP_Post $post ) {
 		if ( $post->ID === $this->top_parent_id ) {
 			$children = $this->get_child_pages( $post->ID, true );
 		} else {
@@ -136,7 +134,7 @@ class Advanced_Sidebar_Menu_List_Pages {
 	 * Return the list of args that have been populated by this class
 	 * For use with wp_list_pages()
 	 *
-	 * @param string $level - level of menu so we have full control of updates.
+	 * @param string $level - Level of menu to retrieve arguments for.
 	 *
 	 * @return array
 	 */
@@ -146,12 +144,12 @@ class Advanced_Sidebar_Menu_List_Pages {
 		}
 		$args = $this->args;
 		switch ( $level ) {
-			case Advanced_Sidebar_Menu_Menus_Page::LEVEL_PARENT:
+			case Page::LEVEL_PARENT:
 				$args['include'] = $this->menu->get_top_parent_id();
 				break;
-			case Advanced_Sidebar_Menu_Menus_Page::LEVEL_DISPLAY_ALL:
-				$args['child_of']    = $this->menu->get_top_parent_id();
-				$args['depth']       = $this->menu->get_levels_to_display();
+			case Page::LEVEL_DISPLAY_ALL:
+				$args['child_of'] = $this->menu->get_top_parent_id();
+				$args['depth'] = $this->menu->get_levels_to_display();
 				$args['sort_column'] = $this->menu->get_order_by();
 				break;
 		}
@@ -163,7 +161,7 @@ class Advanced_Sidebar_Menu_List_Pages {
 	/**
 	 * Return menu which was passed to this class
 	 *
-	 * @return Advanced_Sidebar_Menu_Menus_Page
+	 * @return Page
 	 */
 	public function get_menu() {
 		return $this->menu;
@@ -183,19 +181,19 @@ class Advanced_Sidebar_Menu_List_Pages {
 
 
 	/**
-	 * Do any adjustments to class args here
+	 * Do any adjustments to list page arguments here.
 	 *
-	 * @param array $args - Arguments for walk_page_tree.
+	 * @param array $args - Arguments for the walk_page_tree function.
 	 *
 	 * @return array
 	 */
 	protected function parse_args( $args ) {
-		$defaults = array(
+		$defaults = [
 			'exclude'          => '',
 			'echo'             => 0,
 			'order'            => 'ASC',
 			'orderby'          => 'menu_order, title',
-			'walker'           => new Advanced_Sidebar_Menu_Page_Walker(),
+			'walker'           => new Page_Walker(),
 			'link_before'      => '',
 			'link_after'       => '',
 			'title_li'         => '',
@@ -203,23 +201,22 @@ class Advanced_Sidebar_Menu_List_Pages {
 			'item_spacing'     => 'preserve',
 			'posts_per_page'   => 100,
 			'suppress_filters' => false,
-		);
+		];
 
-		$args = wp_parse_args( $args, $defaults );
+		$args = (array) wp_parse_args( $args, $defaults );
 
 		if ( is_string( $args['exclude'] ) ) {
 			$args['exclude'] = explode( ',', $args['exclude'] );
 		}
-		// sanitize, mostly to keep spaces out.
+		// Sanitize, mostly to keep spaces out.
 		$args['exclude'] = preg_replace( '/[^0-9,]/', '', implode( ',', apply_filters( 'wp_list_pages_excludes', $args['exclude'] ) ) );
 
-		return apply_filters( 'advanced_sidebar_menu_list_pages_args', $args, $this );
-
+		return apply_filters( 'advanced-sidebar-menu/list-pages/parse-args', $args, $this );
 	}
 
 
 	/**
-	 * Return the ID of the current page or 0 if not on a page.
+	 * Return the ID of the current page if we are on a page.
 	 * Helper method to prevent a bunch of conditionals throughout.
 	 *
 	 * @since 7.7.2
@@ -238,10 +235,9 @@ class Advanced_Sidebar_Menu_List_Pages {
 	 * @return string
 	 */
 	public function list_pages() {
-
 		$pages = $this->get_child_pages( $this->top_parent_id, true );
 		foreach ( $pages as $page ) {
-			$this->output .= walk_page_tree( array( $page ), 1, $this->get_current_page_id(), $this->args );
+			$this->output .= walk_page_tree( [ $page ], 1, $this->get_current_page_id(), $this->args );
 			$this->output .= $this->list_grandchild_pages( $page->ID, 0 );
 			$this->output .= '</li>' . "\n";
 		}
@@ -250,8 +246,8 @@ class Advanced_Sidebar_Menu_List_Pages {
 		if ( ! $this->args['echo'] ) {
 			return $this->output;
 		}
-		// phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped
-		echo $this->output;
+
+		echo $this->output; // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped
 		return '';
 	}
 
@@ -260,8 +256,8 @@ class Advanced_Sidebar_Menu_List_Pages {
 	 * List all levels of grandchild pages up to the limit set in the widget.
 	 * All grandchild pages will be rendered inside `grandchild-sidebar-menu` uls.
 	 *
-	 * @param int $parent_page_id - Id of the page we are getting the grandchildren of.
-	 * @param int $level - Level of grandchild pages we are displaying.
+	 * @param int $parent_page_id - ID of the page we are getting the grandchildren of.
+	 * @param int $level          - Level of grandchild pages we are displaying.
 	 *
 	 * @return string
 	 */
@@ -302,20 +298,20 @@ class Advanced_Sidebar_Menu_List_Pages {
 	 *
 	 * @since 7.5.5 - Add 'advanced-sidebar-menu/list-pages/grandchild-pages' filter.
 	 *
-	 * @return WP_Post[]
+	 * @return \WP_Post[]
 	 */
 	public function get_child_pages( $parent_page_id, $is_first_level = false ) {
-		// holds a unique key so Cache can distinguish calls.
+		// Holds a unique key so cache can distinguish calls.
 		$this->current_children_parent = $parent_page_id;
 
-		$cache       = Advanced_Sidebar_Menu_Cache::instance();
+		$cache = Cache::instance();
 		$child_pages = $cache->get_child_pages( $this );
 		if ( false === $child_pages ) {
-			$args                     = $this->args;
-			$args['post_parent']      = $parent_page_id;
-			$args['fields']           = 'ids';
+			$args = $this->args;
+			$args['post_parent'] = $parent_page_id;
+			$args['fields'] = 'ids';
 			$args['suppress_filters'] = false;
-			$child_pages              = get_posts( $args );
+			$child_pages = get_posts( $args );
 
 			$cache->add_child_pages( $this, $child_pages );
 		}
@@ -326,9 +322,7 @@ class Advanced_Sidebar_Menu_List_Pages {
 			return apply_filters( 'advanced-sidebar-menu/list-pages/first-level-child-pages', $child_pages, $this, $this->menu );
 		}
 
-		// @since 7.5.5
 		return apply_filters( 'advanced-sidebar-menu/list-pages/grandchild-pages', $child_pages, $this, $this->menu );
-
 	}
 
 
@@ -355,20 +349,20 @@ class Advanced_Sidebar_Menu_List_Pages {
 			}
 		}
 
-		return apply_filters( 'advanced_sidebar_menu_page_ancestor', $return, $current_page_id, $this );
+		return apply_filters( 'advanced-sidebar-menu/list-pages/is-current-page-ancestor', $return, $current_page_id, $this );
 	}
 
 
 	/**
 	 * List Pages Factory
 	 *
-	 * @param \Advanced_Sidebar_Menu_Menus_Page $menu - The menu class.
+	 * @param Page $menu - Menu class.
 	 *
 	 * @static
 	 *
-	 * @return Advanced_Sidebar_Menu_List_Pages
+	 * @return List_Pages
 	 */
-	public static function factory( Advanced_Sidebar_Menu_Menus_Page $menu ) {
+	public static function factory( Page $menu ) {
 		return new self( $menu );
 	}
 

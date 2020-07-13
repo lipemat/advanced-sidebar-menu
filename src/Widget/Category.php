@@ -1,41 +1,47 @@
 <?php
 
+namespace Advanced_Sidebar_Menu\Widget;
+
+use Advanced_Sidebar_Menu\Menus\Menu_Abstract;
 
 /**
  * Creates a Widget of parent Child Categories
  *
  * @author  OnPoint Plugins
  * @since   7.0.0
+ *
  * @package Advanced Sidebar Menu
- *
- *
  */
-class Advanced_Sidebar_Menu_Widget_Category extends Advanced_Sidebar_Menu__Widget__Widget {
-	const TITLE = Advanced_Sidebar_Menu_Menus_Abstract::TITLE;
-	const INCLUDE_PARENT = Advanced_Sidebar_Menu_Menus_Abstract::INCLUDE_PARENT;
-	const INCLUDE_CHILDLESS_PARENT = Advanced_Sidebar_Menu_Menus_Abstract::INCLUDE_CHILDLESS_PARENT;
-	const ORDER_BY = Advanced_Sidebar_Menu_Menus_Abstract::ORDER_BY;
-	const USE_PLUGIN_STYLES = Advanced_Sidebar_Menu_Menus_Abstract::USE_PLUGIN_STYLES;
-	const EXCLUDE = Advanced_Sidebar_Menu_Menus_Abstract::EXCLUDE;
-	const DISPLAY_ALL = Advanced_Sidebar_Menu_Menus_Abstract::DISPLAY_ALL;
-	const LEVELS = Advanced_Sidebar_Menu_Menus_Abstract::LEVELS;
+class Category extends Widget_Abstract {
+	const NAME = 'advanced_sidebar_menu_category';
 
-	const DISPLAY_ON_SINGLE = Advanced_Sidebar_Menu_Menus_Category::DISPLAY_ON_SINGLE;
-	const EACH_CATEGORY_DISPLAY = Advanced_Sidebar_Menu_Menus_Category::EACH_CATEGORY_DISPLAY;
+	const TITLE                    = Menu_Abstract::TITLE;
+	const INCLUDE_PARENT           = Menu_Abstract::INCLUDE_PARENT;
+	const INCLUDE_CHILDLESS_PARENT = Menu_Abstract::INCLUDE_CHILDLESS_PARENT;
+	const ORDER_BY                 = Menu_Abstract::ORDER_BY;
+	const EXCLUDE                  = Menu_Abstract::EXCLUDE;
+	const DISPLAY_ALL              = Menu_Abstract::DISPLAY_ALL;
+	const LEVELS                   = Menu_Abstract::LEVELS;
 
-	protected static $defaults = array(
+	const DISPLAY_ON_SINGLE     = \Advanced_Sidebar_Menu\Menus\Category::DISPLAY_ON_SINGLE;
+	const EACH_CATEGORY_DISPLAY = \Advanced_Sidebar_Menu\Menus\Category::EACH_CATEGORY_DISPLAY;
+
+	/**
+	 * Default widget values.
+	 *
+	 * @var array
+	 */
+	protected static $defaults = [
 		self::TITLE                    => '',
 		self::INCLUDE_PARENT           => false,
 		self::INCLUDE_CHILDLESS_PARENT => false,
-		self::USE_PLUGIN_STYLES        => false,
 		self::DISPLAY_ON_SINGLE        => false,
 		self::EACH_CATEGORY_DISPLAY    => 'widget',
 		self::EXCLUDE                  => '',
 		self::DISPLAY_ALL              => false,
 		self::LEVELS                   => 1,
-	);
+	];
 
-	protected static $hooked = false;
 
 	/**
 	 * Register the widget.
@@ -49,33 +55,32 @@ class Advanced_Sidebar_Menu_Widget_Category extends Advanced_Sidebar_Menu__Widge
 			'width' => wp_is_mobile() ? false : 620,
 		];
 
-		parent::__construct( 'advanced_sidebar_menu_category', __( 'Advanced Sidebar Categories Menu', 'advanced-sidebar-menu' ), $widget_ops, $control_ops );
+		parent::__construct( self::NAME, __( 'Advanced Sidebar Categories Menu', 'advanced-sidebar-menu' ), $widget_ops, $control_ops );
 
-		if ( ! self::$hooked ) {
-			self::$hooked = true;
-			$this->hook();
-		}
+		$this->hook();
 	}
 
 
 	/**
+	 * Add the sections to the widget via actions.
+	 *
 	 * @notice Anything using the column actions must use the $widget class passed
 	 *         via do_action instead of $this
 	 *
 	 * @return void
 	 */
 	protected function hook() {
-		add_action( 'advanced-sidebar-menu/widget/category/left-column', array( $this, 'box_display' ), 5, 2 );
-		add_action( 'advanced-sidebar-menu/widget/category/left-column', array( $this, 'box_styles' ), 10, 2 );
-		add_action( 'advanced-sidebar-menu/widget/category/left-column', array( $this, 'box_singles' ), 15, 2 );
-		add_action( 'advanced-sidebar-menu/widget/category/left-column', array( $this, 'box_exclude' ), 20, 2 );
-
+		add_action( 'advanced-sidebar-menu/widget/category/left-column', [ $this, 'box_display' ], 5, 2 );
+		add_action( 'advanced-sidebar-menu/widget/category/left-column', [ $this, 'box_display_on_single_posts' ], 15, 2 );
+		add_action( 'advanced-sidebar-menu/widget/category/left-column', [ $this, 'box_exclude' ], 20, 2 );
 	}
 
+
 	/**
+	 * Display options.
 	 *
-	 * @param array                                  $instance
-	 * @param \Advanced_Sidebar_Menu__Widget__Widget $widget
+	 * @param array           $instance - Widget settings.
+	 * @param Widget_Abstract $widget   - Registered widget arguments.
 	 *
 	 * @return void
 	 */
@@ -85,7 +90,7 @@ class Advanced_Sidebar_Menu_Widget_Category extends Advanced_Sidebar_Menu__Widge
 			<p>
 				<?php $widget->checkbox( self::INCLUDE_PARENT ); ?>
 				<label>
-					<?php esc_html_e( 'Display highest level parent category', 'advanced-sidebar-menu' ); ?>
+					<?php esc_html_e( 'Display the highest level parent category', 'advanced-sidebar-menu' ); ?>
 				</label>
 			</p>
 			<p>
@@ -102,9 +107,11 @@ class Advanced_Sidebar_Menu_Widget_Category extends Advanced_Sidebar_Menu__Widge
 			</p>
 			<div <?php $widget->hide_element( self::DISPLAY_ALL, self::LEVELS ); ?>>
 				<p>
-					<label>
-						<?php esc_html_e( 'Levels of child categories to display', 'advanced-sidebar-menu' ); ?>:</label>
+					<label for="<?php echo esc_attr( $widget->get_field_id( self::LEVELS ) ); ?>">
+						<?php esc_html_e( 'Levels of child categories to display', 'advanced-sidebar-menu' ); ?>:
+					</label>
 					<select
+						id="<?php echo esc_attr( $widget->get_field_id( self::LEVELS ) ); ?>"
 						name="<?php echo esc_attr( $widget->get_field_name( self::LEVELS ) ); ?>">
 						<?php
 						for ( $i = 1; $i < 6; $i ++ ) {
@@ -127,36 +134,16 @@ class Advanced_Sidebar_Menu_Widget_Category extends Advanced_Sidebar_Menu__Widge
 		<?php
 	}
 
+
 	/**
+	 * Display categories on single post settings.
 	 *
-	 * @param array                                  $instance
-	 * @param \Advanced_Sidebar_Menu__Widget__Widget $widget
+	 * @param array           $instance - Widget settings.
+	 * @param Widget_Abstract $widget   - Registered widget arguments.
 	 *
 	 * @return void
 	 */
-	public function box_styles( array $instance, $widget ) {
-		?>
-		<div class="advanced-sidebar-menu-column-box">
-			<p>
-				<?php $widget->checkbox( self::USE_PLUGIN_STYLES ); ?>
-				<label>
-					<?php esc_html_e( "Use this plugin's default styling", 'advanced-sidebar-menu' ); ?>
-				</label>
-			</p>
-
-			<?php do_action( 'advanced-sidebar-menu/widget/category/styles-box', $instance, $widget ); ?>
-		</div>
-		<?php
-	}
-
-	/**
-	 *
-	 * @param array                                  $instance
-	 * @param \Advanced_Sidebar_Menu__Widget__Widget $widget
-	 *
-	 * @return void
-	 */
-	public function box_singles( array $instance, $widget ) {
+	public function box_display_on_single_posts( array $instance, $widget ) {
 		?>
 		<div class="advanced-sidebar-menu-column-box">
 			<p>
@@ -169,9 +156,11 @@ class Advanced_Sidebar_Menu_Widget_Category extends Advanced_Sidebar_Menu__Widge
 
 			<div <?php $widget->hide_element( self::DISPLAY_ON_SINGLE, self::EACH_CATEGORY_DISPLAY ); ?>>
 				<p>
-					<label><?php esc_html_e( "Display each single post's category", 'advanced-sidebar-menu' ); ?>
-						:</label>
+					<label for="<?php echo esc_attr( $widget->get_field_id( self::EACH_CATEGORY_DISPLAY ) ); ?>">
+						<?php esc_html_e( "Display each single post's category", 'advanced-sidebar-menu' ); ?>:
+					</label>
 					<select
+						id="<?php echo esc_attr( $widget->get_field_id( self::EACH_CATEGORY_DISPLAY ) ); ?>"
 						name="<?php echo esc_attr( $widget->get_field_name( self::EACH_CATEGORY_DISPLAY ) ); ?>">
 						<option
 							value="widget" <?php selected( 'widget', $instance[ self::EACH_CATEGORY_DISPLAY ] ); ?>>
@@ -190,10 +179,12 @@ class Advanced_Sidebar_Menu_Widget_Category extends Advanced_Sidebar_Menu__Widge
 		<?php
 	}
 
+
 	/**
+	 * Categories to exclude settings.
 	 *
-	 * @param array                                  $instance
-	 * @param \Advanced_Sidebar_Menu__Widget__Widget $widget
+	 * @param array           $instance - Widget settings.
+	 * @param Widget_Abstract $widget   - Registered widget arguments.
 	 *
 	 * @return void
 	 */
@@ -201,7 +192,7 @@ class Advanced_Sidebar_Menu_Widget_Category extends Advanced_Sidebar_Menu__Widge
 		?>
 		<div class="advanced-sidebar-menu-column-box">
 			<p>
-				<label>
+				<label for="<?php echo esc_attr( $widget->get_field_id( self::EXCLUDE ) ); ?>">
 					<?php esc_html_e( 'Categories to exclude (ids), comma separated', 'advanced-sidebar-menu' ); ?>:
 				</label>
 				<input
@@ -209,7 +200,7 @@ class Advanced_Sidebar_Menu_Widget_Category extends Advanced_Sidebar_Menu__Widge
 					name="<?php echo esc_attr( $widget->get_field_name( self::EXCLUDE ) ); ?>"
 					type="text"
 					class="widefat"
-					value="<?php echo esc_attr( $instance[ self::EXCLUDE ] ); ?>"/>
+					value="<?php echo esc_attr( $instance[ self::EXCLUDE ] ); ?>" />
 			</p>
 
 			<?php
@@ -221,11 +212,11 @@ class Advanced_Sidebar_Menu_Widget_Category extends Advanced_Sidebar_Menu__Widge
 
 
 	/**
-	 * Form
+	 * Widget form.
+	 *
+	 * @param array $instance - Widget settings.
 	 *
 	 * @since 7.2.1
-	 *
-	 * @param array $instance
 	 *
 	 * @return void
 	 */
@@ -234,86 +225,63 @@ class Advanced_Sidebar_Menu_Widget_Category extends Advanced_Sidebar_Menu__Widge
 		do_action( 'advanced-sidebar-menu/widget/category/before-form', $instance, $this );
 		?>
 		<p>
-			<label>
+			<label for="<?php echo esc_attr( $this->get_field_id( self::TITLE ) ); ?>">
 				<?php esc_html_e( 'Title', 'advanced-sidebar-menu' ); ?>:
 			</label>
-
 			<input
 				id="<?php echo esc_attr( $this->get_field_id( self::TITLE ) ); ?>"
 				name="<?php echo esc_attr( $this->get_field_name( self::TITLE ) ); ?>"
 				class="widefat"
 				type="text"
-				value="<?php echo esc_attr( $instance[ self::TITLE ] ); ?>"/>
+				value="<?php echo esc_attr( $instance[ self::TITLE ] ); ?>" />
 		</p>
 
 		<div class="advanced-sidebar-menu-column">
-			<?php
-			do_action( 'advanced-sidebar-menu/widget/category/left-column', $instance, $this );
-
-			if ( has_action( 'advanced_sidebar_menu_category_widget_form' ) ) {
-				?>
-				<div class="advanced-sidebar-menu-column-box">
-					<?php do_action( 'advanced_sidebar_menu_category_widget_form', $instance, $this ); ?>
-				</div>
-				<?php
-			}
-
-			?>
+			<?php do_action( 'advanced-sidebar-menu/widget/category/left-column', $instance, $this ); ?>
 		</div>
 
 		<div class="advanced-sidebar-menu-column advanced-sidebar-menu-column-right">
-			<?php
-			do_action( 'advanced-sidebar-menu/widget/category/right-column', $instance, $this );
-			// @deprecated action.
-			do_action( 'advanced_sidebar_menu_after_widget_form', $instance, $this );
-			?>
+			<?php do_action( 'advanced-sidebar-menu/widget/category/right-column', $instance, $this ); ?>
 		</div>
 		<div class="advanced-sidebar-menu-full-width"><!-- clear --></div>
 
 		<?php
 		do_action( 'advanced-sidebar-menu/widget/category/after-form', $instance, $this );
-
 	}
 
 
 	/**
-	 * Update
+	 * Save the widget settings.
 	 *
-	 * @param array $new_instance
-	 * @param array $old_instance
+	 * @param array $new_instance - New widget settings.
+	 * @param array $old_instance - Old widget settings.
 	 *
 	 * @return array|mixed
 	 */
 	public function update( $new_instance, $old_instance ) {
-		$new_instance['exclude'] = strip_tags( $new_instance['exclude'] );
+		$new_instance['exclude'] = wp_strip_all_tags( $new_instance['exclude'] );
 
-		return apply_filters( 'advanced_sidebar_menu_category_widget_update', $new_instance, $old_instance );
+		return apply_filters( 'advanced-sidebar-menu/widget/category/update', $new_instance, $old_instance );
 	}
 
 
 	/**
 	 * Widget Output
 	 *
-	 * @since 7.0.0
-	 *
-	 * @see   \Advanced_Sidebar_Menu_Menus_Category
-	 *
-	 * @param array $args
-	 * @param array $instance
+	 * @param array $args     - Widget registration args.
+	 * @param array $instance - Widget settings.
 	 *
 	 * @return void
 	 */
 	public function widget( $args, $instance ) {
 		$instance = $this->set_instance( $instance, self::$defaults );
-		$asm      = Advanced_Sidebar_Menu_Menus_Category::factory( $instance, $args );
+		$menu = \Advanced_Sidebar_Menu\Menus\Category::factory( $instance, $args );
 
-		do_action( 'advanced_sidebar_menu_widget_pre_render', $asm, $this );
+		do_action( 'advanced-sidebar-menu/widget/before-render', $menu, $this );
 
-		$asm->render();
+		$menu->render();
 
-		// @since 7.6.6.
-		do_action( 'advanced-sidebar-menu/widget/after-render', $asm, $this );
-
+		do_action( 'advanced-sidebar-menu/widget/after-render', $menu, $this );
 	}
 
 }

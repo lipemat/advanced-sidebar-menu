@@ -6,7 +6,7 @@ Tags: menus, sidebar menu, hierarchy, category menu, pages menu
 Requires at least: 4.8.0
 Tested up to: 5.4.2
 Requires PHP: 5.6.0
-Stable tag: 7.7.4
+Stable tag: 8.0.0
 
 == Description ==
 
@@ -155,6 +155,15 @@ Yes. Based on whatever page, post, or category you are on, the menu will change 
 
 
 == Changelog ==
+= 8.0.0 =
+Major version update. See <a href="https://onpointplugins.com/advanced-sidebar-menu/advanced-sidebar-menu-version-8-migration-guide/">migration guide</a> if you are extending the plugin's functionality via action, filters, or calling plugin classes.
+
+* Entirely new code structure.
+* Removed all deprecated code and filters.
+* Improved filter and action names.
+* Improved performance.
+* Remove default plugin styling.
+
 = 7.7.3 =
 * Fix widget info pane links.
 * Fix widget editing on mobile devices.
@@ -206,11 +215,11 @@ Yes. Based on whatever page, post, or category you are on, the menu will change 
 * Kill conflicting backward compatibility with version 5
 * Open up more extendability possibilities
 
-= 6.4.0 =
-* Code improvements
-* Performance improvements via shared child retrieval
 
 == Upgrade Notice ==
+= 8.0.0 =
+Major version update. Not fully backward compatible with version 7 filters or code. Please see migration guide if you are extending the plugin via code.
+
 = 7.7.0 =
 Update to support PRO version 3.10.0
 

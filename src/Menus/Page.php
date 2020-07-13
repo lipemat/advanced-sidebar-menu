@@ -1,35 +1,36 @@
 <?php
 
+namespace Advanced_Sidebar_Menu\Menus;
+
+use Advanced_Sidebar_Menu\Core;
+use Advanced_Sidebar_Menu\List_Pages;
 
 /**
- * Advanced_Sidebar_Menu_Menus_Page
+ * Page menu.
  *
  * @author OnPoint Plugins
  * @since  7.0.0
- *
  */
-class Advanced_Sidebar_Menu_Menus_Page extends Advanced_Sidebar_Menu_Menus_Abstract {
+class Page extends Menu_Abstract {
 	const WIDGET = 'page';
 
 	/**
-	 * post_type
-	 *
-	 * @deprecated
-	 *
-	 * @var string
-	 */
-	public $post_type = 'page';
-
-	/**
+	 * The current post
 	 *
 	 * @var null|\WP_Post
 	 */
 	protected $post;
 
-	protected $ancestors;
 
+	/**
+	 * Used for setting the current post during unit testing
+	 * or special extending.
+	 *
+	 * @param \WP_Post $post - New current post.
 
-	public function set_current_post( WP_Post $post ) {
+	 * @return void
+	 */
+	public function set_current_post( \WP_Post $post ) {
 		$this->post = $post;
 	}
 
@@ -51,18 +52,28 @@ class Advanced_Sidebar_Menu_Menus_Page extends Advanced_Sidebar_Menu_Menus_Abstr
 	}
 
 
+	/**
+	 * Get key to order the menu items by.
+	 *
+	 * @return string
+	 */
 	public function get_order_by() {
-		return apply_filters( 'advanced_sidebar_menu_order_by', $this->instance[ self::ORDER_BY ], $this->get_current_post(), $this->args, $this->instance, $this );
-	}
-
-
-	public function get_order() {
-		return apply_filters( 'advanced_sidebar_menu_page_order', 'ASC', $this->get_current_post(), $this->args, $this->instance, $this );
+		return apply_filters( 'advanced-sidebar-menu/menus/page/order-by', $this->instance[ self::ORDER_BY ], $this->get_current_post(), $this->args, $this->instance, $this );
 	}
 
 
 	/**
-	 * Get the id of page which is the top level parent of
+	 * Get order of the menu (ASC|DESC).
+	 *
+	 * @return string
+	 */
+	public function get_order() {
+		return apply_filters( 'advanced-sidebar-menu/menus/page/order', 'ASC', $this->get_current_post(), $this->args, $this->instance, $this );
+	}
+
+
+	/**
+	 * Get the id of page which is the top-level parent of
 	 * the page we are currently on.
 	 *
 	 * Returns -1 if we don't have one.
@@ -78,36 +89,32 @@ class Advanced_Sidebar_Menu_Menus_Page extends Advanced_Sidebar_Menu_Menus_Abstr
 			$top_id = $this->get_current_post()->ID;
 		}
 
-		return apply_filters( 'advanced_sidebar_menu_top_parent', $top_id, $this->args, $this->instance, $this );
+		return apply_filters( 'advanced-sidebar-menu/menus/page/top-parent', $top_id, $this->args, $this->instance, $this );
 	}
 
 
+	/**
+	 * Is this menu displayed?
+	 *
+	 * @return bool
+	 */
 	public function is_displayed() {
-		$display   = false;
+		$display = false;
 		$post_type = $this->get_post_type();
 		if ( is_page() || ( is_single() && $post_type === $this->get_current_post()->post_type ) ) {
-			//if we are on the correct post type
+			// If we are on the correct post type.
 			if ( get_post_type( $this->get_top_parent_id() ) === $post_type ) {
-				//if we have children
+				// Ff we have children.
 				if ( $this->has_pages() ) {
 					$display = true;
-					//no children + not excluded + include parent +include childless parent
+					// No children + not excluded + include parent +include childless parent.
 				} elseif ( $this->checked( self::INCLUDE_CHILDLESS_PARENT ) && $this->checked( self::INCLUDE_PARENT ) && ! $this->is_excluded( $this->get_top_parent_id() ) ) {
 					$display = true;
 				}
 			}
 		}
 
-		$display = ! apply_filters_deprecated( 'advanced_sidebar_menu_proper_single', array(
-			! $display,
-			$this->args,
-			$this->instance,
-			$this,
-		), '7.0.0', 'advanced-sidebar-menu/menus/page/is-displayed' );
-
-
 		return apply_filters( 'advanced-sidebar-menu/menus/page/is-displayed', $display, $this->args, $this->instance, $this );
-
 	}
 
 
@@ -120,8 +127,8 @@ class Advanced_Sidebar_Menu_Menus_Page extends Advanced_Sidebar_Menu_Menus_Abstr
 	 * @return bool
 	 */
 	public function has_pages() {
-		$list_pages = Advanced_Sidebar_Menu_List_Pages::factory( $this );
-		$children   = $list_pages->get_child_pages( $this->get_top_parent_id(), true );
+		$list_pages = List_Pages::factory( $this );
+		$children = $list_pages->get_child_pages( $this->get_top_parent_id(), true );
 
 		return ! empty( $children );
 	}
@@ -143,16 +150,12 @@ class Advanced_Sidebar_Menu_Menus_Page extends Advanced_Sidebar_Menu_Menus_Abstr
 
 
 	/**
-	 * @deprecated
+	 * Get the post type of this menu.
+	 *
+	 * @return string
 	 */
-	public function get_menu_depth() {
-		_deprecated_function( 'get_menu_depth', '7.5.0', 'get_levels_to_display' );
-		return apply_filters( 'advanced-sidebar-menu/menus/page/depth', $this->get_levels_to_display(), $this->args, $this->instance, $this );
-	}
-
-
 	public function get_post_type() {
-		return apply_filters( 'advanced_sidebar_menu_post_type', $this->post_type, $this->args, $this->instance, $this );
+		return apply_filters( 'advanced-sidebar-menu/menus/page/post-type', 'page', $this->args, $this->instance, $this );
 	}
 
 
@@ -162,7 +165,7 @@ class Advanced_Sidebar_Menu_Menus_Page extends Advanced_Sidebar_Menu_Menus_Abstr
 	 * @return array|mixed
 	 */
 	public function get_excluded_ids() {
-		return apply_filters( 'advanced_sidebar_menu_excluded_pages', parent::get_excluded_ids(), $this->get_current_post(), $this->args, $this->instance, $this );
+		return apply_filters( 'advanced-sidebar-menu/menus/page/excluded', parent::get_excluded_ids(), $this->get_current_post(), $this->args, $this->instance, $this );
 	}
 
 
@@ -176,38 +179,18 @@ class Advanced_Sidebar_Menu_Menus_Page extends Advanced_Sidebar_Menu_Menus_Abstr
 			return;
 		}
 
-        // phpcs:disable
+		// phpcs:disable WordPress.Security.EscapeOutput.OutputNotEscaped
 		echo $this->args['before_widget'];
 
 		do_action( 'advanced-sidebar-menu/menus/page/render', $this );
 
-		if ( $this->checked( self::USE_PLUGIN_STYLES ) ) {
-			Advanced_Sidebar_Menu_Core::instance()->include_plugin_styles();
-		}
+		$output = require Core::instance()->get_template_part( 'page_list.php' );
+		echo apply_filters( 'advanced-sidebar-menu/menus/page/output', $output, $this->get_current_post(), $this->args, $this->instance, $this );
 
-		$output = require Advanced_Sidebar_Menu_Core::instance()->get_template_part( 'page_list.php' );
-		echo apply_filters( 'advanced_sidebar_menu_page_widget_output', $output, $this->get_current_post(), $this->args, $this->instance, $this );
-
-		// @since 7.6.5.
 		do_action( 'advanced-sidebar-menu/menus/page/render/after', $this );
 
 		echo $this->args['after_widget'];
-		// phpcs:enable
-	}
 
-
-	/**************** static *****************/
-	/**
-	 * Mostly here to call the parent _factory() in a PHP 5.2 structure
-	 *
-	 * @param array $widget_instance
-	 * @param array $widget_args
-	 *
-	 * @static
-	 *
-	 * @return \Advanced_Sidebar_Menu_Menus_Page
-	 */
-	public static function factory( array $widget_instance, array $widget_args ) {
-		return parent::_factory( __CLASS__, $widget_instance, $widget_args );
+		// phpcs:enable WordPress.Security.EscapeOutput.OutputNotEscaped
 	}
 }
