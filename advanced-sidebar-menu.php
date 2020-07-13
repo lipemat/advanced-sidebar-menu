@@ -32,26 +32,24 @@ define( 'ADVANCED_SIDEBAR_MENU_REQUIRED_PRO_VERSION', '8.0.0' );
 define( 'ADVANCED_SIDEBAR_DIR', plugin_dir_path( __FILE__ ) );
 define( 'ADVANCED_SIDEBAR_MENU_URL', plugin_dir_url( __FILE__ ) );
 
-if ( ! function_exists( 'advanced_sidebar_menu_load' ) ) {
-	/**
-	 * Load the plugin
-	 *
-	 * @return void
-	 */
-	function advanced_sidebar_menu_load() {
-		Core::init();
-		Cache::init();
-		Debug::init();
-		Scripts::init();
+/**
+ * Load the plugin
+ *
+ * @return void
+ */
+function advanced_sidebar_menu_load() {
+	Core::init();
+	Cache::init();
+	Debug::init();
+	Scripts::init();
 
-		if ( defined( 'ADVANCED_SIDEBAR_MENU_PRO_VERSION' ) && version_compare( ADVANCED_SIDEBAR_MENU_REQUIRED_PRO_VERSION, ADVANCED_SIDEBAR_MENU_PRO_VERSION, '>' ) ) {
-			add_action( 'admin_notices', 'advanced_sidebar_menu_pro_version_warning' );
-			remove_action( 'plugins_loaded', 'advanced_sidebar_menu_pro_init', 11 );
-		}
+	if ( defined( 'ADVANCED_SIDEBAR_MENU_PRO_VERSION' ) && version_compare( ADVANCED_SIDEBAR_MENU_REQUIRED_PRO_VERSION, ADVANCED_SIDEBAR_MENU_PRO_VERSION, '>' ) ) {
+		add_action( 'admin_notices', 'advanced_sidebar_menu_pro_version_warning' );
+		remove_action( 'plugins_loaded', 'advanced_sidebar_menu_pro_init', 11 );
 	}
-
-	add_action( 'plugins_loaded', 'advanced_sidebar_menu_load' );
 }
+
+add_action( 'plugins_loaded', 'advanced_sidebar_menu_load' );
 
 /**
  * Autoload classes from PSR4 src directory
@@ -139,6 +137,14 @@ function advanced_sidebar_menu_widget_docs( $instance, WP_Widget $widget ) {
  */
 function advanced_sidebar_menu_upgrade_notice( array $instance, WP_Widget $widget ) {
 	if ( defined( 'ADVANCED_SIDEBAR_MENU_PRO_VERSION' ) ) {
+		if ( version_compare( ADVANCED_SIDEBAR_MENU_REQUIRED_PRO_VERSION, ADVANCED_SIDEBAR_MENU_PRO_VERSION, '>' ) ) {
+			?>
+			<div class="advanced-sidebar-menu-column-box" style="border-color: red">
+				<?php advanced_sidebar_menu_pro_version_warning( true ); ?>
+			</div>
+			<?php
+		}
+
 		return;
 	}
 	?>
@@ -183,13 +189,15 @@ function advanced_sidebar_menu_upgrade_notice( array $instance, WP_Widget $widge
 /**
  * Display a warning if we don't have the required PRO version installed.
  *
+ * @param bool $no_banner - Display as "message" banner.
+ *
  * @since 8.0.0
  *
  * @return void
  */
-function advanced_sidebar_menu_pro_version_warning() {
+function advanced_sidebar_menu_pro_version_warning( $no_banner = false ) {
 	?>
-	<div id="message" class="error">
+	<div class="<?php echo true === $no_banner ? '' : 'error'; ?>">
 		<p>
 			<?php
 			/* translators: {%1$s}[<a>]{%2$s}[</a>] https://wordpress.org/plugins/advanced-sidebar-menu/ */ //phpcs:disable
