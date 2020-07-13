@@ -47,10 +47,14 @@ class Core {
 	public function get_template_part( $file_name ) {
 		$file = locate_template( 'advanced-sidebar-menu/' . $file_name );
 		if ( empty( $file ) ) {
-			?><!-- asm/core-template --><?php
+			?>
+			<!-- advanced-sidebar-menu/core-template -->
+			<?php
 			$file = ADVANCED_SIDEBAR_DIR . 'views/' . $file_name;
 		} else {
-			?><!-- asm/template-override --><?php
+			?>
+			<!-- advanced-sidebar-menu/template-override -->
+			<?php
 		}
 
 		return apply_filters( 'advanced-sidebar-menu/core/get-template-part', $file, $file_name, $this );
