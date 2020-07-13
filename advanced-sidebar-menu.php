@@ -4,7 +4,7 @@
  * Plugin URI: https://onpointplugins.com/advanced-sidebar-menu/
  * Description: Creates dynamic menus based on parent/child relationship of your pages or categories.
  * Author: OnPoint Plugins
- * Version: 7.7.4
+ * Version: 8.0.0
  * Author URI: https://onpointplugins.com
  * Text Domain: advanced-sidebar-menu
  *
@@ -14,6 +14,11 @@
 if ( defined( 'ADVANCED_SIDEBAR_BASIC_VERSION' ) ) {
 	return;
 }
+
+define( 'ADVANCED_SIDEBAR_BASIC_VERSION', '8.0.0' );
+define( 'ADVANCED_SIDEBAR_MENU_REQUIRED_PRO_VERSION', '8.0.0' );
+define( 'ADVANCED_SIDEBAR_DIR', plugin_dir_path( __FILE__ ) );
+define( 'ADVANCED_SIDEBAR_MENU_URL', plugin_dir_url( __FILE__ ) );
 
 use Advanced_Sidebar_Menu\Cache;
 use Advanced_Sidebar_Menu\Core;
@@ -25,12 +30,9 @@ use Advanced_Sidebar_Menu\Menus\Page;
 use Advanced_Sidebar_Menu\Scripts;
 use Advanced_Sidebar_Menu\Traits\Singleton;
 use Advanced_Sidebar_Menu\Walkers\Page_Walker;
+use Advanced_Sidebar_Menu\Widget\Category as Widget_Category;
+use Advanced_Sidebar_Menu\Widget\Page as Widget_Page;
 use Advanced_Sidebar_Menu\Widget\Widget_Abstract;
-
-define( 'ADVANCED_SIDEBAR_BASIC_VERSION', '8.0.0' );
-define( 'ADVANCED_SIDEBAR_MENU_REQUIRED_PRO_VERSION', '8.0.0' );
-define( 'ADVANCED_SIDEBAR_DIR', plugin_dir_path( __FILE__ ) );
-define( 'ADVANCED_SIDEBAR_MENU_URL', plugin_dir_url( __FILE__ ) );
 
 /**
  * Load the plugin
@@ -62,27 +64,27 @@ add_action( 'plugins_loaded', 'advanced_sidebar_menu_load' );
 function advanced_sidebar_menu_autoload( $class ) {
 	$classes = [
 		// Widgets.
-		Widget_Abstract::class                        => 'Widget/Widget_Abstract.php',
-		\Advanced_Sidebar_Menu\Widget\Page::class     => 'Widget/Page.php',
-		\Advanced_Sidebar_Menu\Widget\Category::class => 'Widget/Category.php',
+		Widget_Abstract::class => 'Widget/Widget_Abstract.php',
+		Widget_Page::class     => 'Widget/Page.php',
+		Widget_Category::class => 'Widget/Category.php',
 
 		// Core.
-		Cache::class                                  => 'Cache.php',
-		Core::class                                   => 'Core.php',
-		Debug::class                                  => 'Debug.php',
-		List_Pages::class                             => 'List_Pages.php',
-		Scripts::class                                => 'Scripts.php',
+		Cache::class           => 'Cache.php',
+		Core::class            => 'Core.php',
+		Debug::class           => 'Debug.php',
+		List_Pages::class      => 'List_Pages.php',
+		Scripts::class         => 'Scripts.php',
 
 		// Menus.
-		Category::class                               => 'Menus/Category.php',
-		Menu_Abstract::class                          => 'Menus/Menu_Abstract.php',
-		Page::class                                   => 'Menus/Page.php',
+		Category::class        => 'Menus/Category.php',
+		Menu_Abstract::class   => 'Menus/Menu_Abstract.php',
+		Page::class            => 'Menus/Page.php',
 
 		// Traits.
-		Singleton::class                              => 'Traits/Singleton.php',
+		Singleton::class       => 'Traits/Singleton.php',
 
 		// Walkers.
-		Page_Walker::class                            => 'Walkers/Page_Walker.php',
+		Page_Walker::class     => 'Walkers/Page_Walker.php',
 
 	];
 	if ( isset( $classes[ $class ] ) ) {
