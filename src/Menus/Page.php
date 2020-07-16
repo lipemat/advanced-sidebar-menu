@@ -104,7 +104,7 @@ class Page extends Menu_Abstract {
 		if ( is_page() || ( is_single() && $post_type === $this->get_current_post()->post_type ) ) {
 			// If we are on the correct post type.
 			if ( get_post_type( $this->get_top_parent_id() ) === $post_type ) {
-				// Ff we have children.
+				// If we have children.
 				if ( $this->has_pages() ) {
 					$display = true;
 					// No children + not excluded + include parent +include childless parent.

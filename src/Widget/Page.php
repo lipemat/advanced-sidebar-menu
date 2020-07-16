@@ -66,6 +66,12 @@ class Page extends Widget_Abstract {
 	 * @return void
 	 */
 	protected function hook() {
+		static $hooked;
+		if ( null !== $hooked ) {
+			return;
+		}
+		$hooked = true;
+
 		add_action( 'advanced-sidebar-menu/widget/page/left-column', [ $this, 'box_display' ], 5, 2 );
 		add_action( 'advanced-sidebar-menu/widget/page/left-column', [ $this, 'box_order' ], 15, 2 );
 		add_action( 'advanced-sidebar-menu/widget/page/left-column', [ $this, 'box_exclude' ], 20, 2 );
