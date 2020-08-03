@@ -101,7 +101,7 @@ class Category extends Menu_Abstract {
 	 * @return \WP_Term[]
 	 */
 	public function get_child_terms() {
-		return array_filter(
+		$terms = array_filter(
 			get_terms(
 				[
 					'taxonomy' => $this->get_taxonomy(),
@@ -111,6 +111,7 @@ class Category extends Menu_Abstract {
 				]
 			)
 		);
+		return apply_filters( 'advanced-sidebar-menu/menus/category/get-child-terms', $terms, $this );
 	}
 
 
@@ -381,7 +382,7 @@ class Category extends Menu_Abstract {
 			$return = true;
 		}
 
-		return apply_filters( 'advanced_sidebar_menu_first_level_category', $return, $term, $this );
+		return apply_filters( 'advanced-sidebar-menu/menus/category/is-first-level-term', $return, $term, $this );
 	}
 
 

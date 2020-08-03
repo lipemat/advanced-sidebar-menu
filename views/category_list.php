@@ -2,7 +2,7 @@
 /**
  * The output of the "Advanced Sidebar Categories Menu" widget
  *
- * @since   8.0.0
+ * @since   8.0.2
  *
  * To edit copy this file to a folder in your theme called 'advanced-sidebar-menu' and edit at will.
  *
@@ -35,7 +35,7 @@ if ( ! empty( $child_terms ) ) {
 	} else {
 		foreach ( $child_terms as $_term ) {
 			// Child terms.
-			if ( $current_menu->is_first_level_term( $_term ) ) {
+			if ( ! $current_menu->is_excluded( $_term->term_id ) ) {
 				$list_args = $current_menu->get_list_categories_args( Category::LEVEL_CHILD, $_term );
 				$content .= $current_menu->openListItem( wp_list_categories( $list_args ) );
 
