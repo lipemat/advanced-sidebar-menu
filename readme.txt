@@ -4,9 +4,9 @@ Contributors: Mat Lipe, onpointplugins
 Donate link: https://www.paypal.com/cgi-bin/webscr?cmd=_donations&business=paypal%40onpointplugins%2ecom&lc=US&item_name=Advanced%20Sidebar%20Menu&no_note=0&currency_code=USD&bn=PP%2dDonationsBF%3abtn_donateCC_LG%2egif%3aNonHostedGuest
 Tags: menus, sidebar menu, hierarchy, category menu, pages menu
 Requires at least: 4.8.0
-Tested up to: 5.4.2
+Tested up to: 5.5.0
 Requires PHP: 5.6.0
-Stable tag: 8.0.1
+Stable tag: 8.0.2
 
 == Description ==
 
@@ -155,6 +155,11 @@ Yes. Based on whatever page, post, or category you are on, the menu will change 
 
 
 == Changelog ==
+= 8.0.2 = 
+* Introduce new `advanced-sidebar-menu/menus/category/get-child-terms` filter
+* Support filtering the first level of categories.
+* Use `is_excluded` vs `is_first_level_category` in category view.
+
 = 8.0.0 =
 Major version update. See <a href="https://onpointplugins.com/advanced-sidebar-menu/advanced-sidebar-menu-version-8-migration-guide/">migration guide</a> if you are extending the plugin's functionality via action, filters, or calling plugin classes.
 
