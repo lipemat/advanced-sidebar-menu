@@ -58,28 +58,19 @@ class Debug {
 	 * @return void
 	 */
 	public function print_instance( $asm, $widget ) {
-		static $printed = false;
 		$data = [
 			'version'   => ADVANCED_SIDEBAR_BASIC_VERSION,
-			$widget->id => $asm->instance,
 		];
 		if ( defined( 'ADVANCED_SIDEBAR_MENU_PRO_VERSION' ) ) {
 			$data['pro_version'] = ADVANCED_SIDEBAR_MENU_PRO_VERSION;
 		}
-
-		if ( ! $printed ) {
-			?>
-			<script class="<?php echo esc_attr( self::DEBUG_PARAM ); ?>">
+		?>
+		<script class="<?php echo esc_attr( self::DEBUG_PARAM ); ?>">
+			if ( 'undefined' === typeof( <?php echo esc_attr( self::DEBUG_PARAM ); ?> ) ){
 				var <?php echo esc_attr( self::DEBUG_PARAM ); ?> = <?php echo wp_json_encode( $data ); ?>;
-			</script>
-			<?php
-			$printed = true;
-		} else {
-			?>
-			<script class="<?php echo esc_attr( self::DEBUG_PARAM ); ?>">
-					<?php echo esc_attr( self::DEBUG_PARAM ); ?>[ '<?php echo esc_js( $widget->id ); ?>' ] = <?php echo wp_json_encode( $asm->instance ); ?>;
-			</script>
-			<?php
-		}
+			}
+			<?php echo esc_attr( self::DEBUG_PARAM ); ?>[ '<?php echo esc_js( $widget->id ); ?>' ] = <?php echo wp_json_encode( $asm->instance ); ?>;
+		</script>
+		<?php
 	}
 }
