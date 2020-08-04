@@ -139,9 +139,6 @@ class List_Pages {
 	 * @return array
 	 */
 	public function get_args( $level = null ) {
-		if ( null === $level ) {
-			return $this->args;
-		}
 		$args = $this->args;
 		switch ( $level ) {
 			case Page::LEVEL_PARENT:
