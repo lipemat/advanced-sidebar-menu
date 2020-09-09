@@ -222,7 +222,7 @@ Major version update. See <a href="https://onpointplugins.com/advanced-sidebar-m
 
 
 == Upgrade Notice ==
-= 8.0.1 =
+= 8.0.0 =
 Major version update. Not fully backward compatible with version 7 filters or code. Please see migration guide if you are extending the plugin via code.
 
 = 7.7.0 =
