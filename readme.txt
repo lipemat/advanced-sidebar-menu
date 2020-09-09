@@ -155,6 +155,10 @@ Yes. Based on whatever page, post, or category you are on, the menu will change 
 
 
 == Changelog ==
+= 8.0.3 =
+* Allow `List_Pages::get_args()` to be filtered on any level.
+* Make debugging functionality more stable.
+
 = 8.0.2 = 
 * Introduce new `advanced-sidebar-menu/menus/category/get-child-terms` filter
 * Support filtering the first level of categories.
