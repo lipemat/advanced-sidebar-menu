@@ -6,7 +6,7 @@ Tags: menus, sidebar menu, hierarchy, category menu, pages menu
 Requires at least: 5.0.0
 Tested up to: 5.5.1
 Requires PHP: 5.6.0
-Stable tag: 8.0.3
+Stable tag: 8.0.4
 
 == Description ==
 
@@ -155,6 +155,10 @@ Yes. Based on whatever page, post, or category you are on, the menu will change 
 
 
 == Changelog ==
+= 8.0.4 =
+* Improve styles when used with Beaver Builder.
+* Require WordPress version 5.0.0+.
+
 = 8.0.3 =
 * Allow `List_Pages::get_args()` to be filtered on any level.
 * Make debugging functionality more stable.
