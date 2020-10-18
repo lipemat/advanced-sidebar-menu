@@ -55,3 +55,39 @@
 .elementor-control-content .advanced-sidebar-menu-column-box .wp-picker-container.wp-picker-active {
 	top: auto;
 }
+
+/** Beaver Builder specific styles **/
+.fl-field-control-wrapper .advanced-sidebar-menu-column {
+	width: calc( 100% + 30px ) !important;
+	margin-left: -30px !important;
+}
+
+.fl-field-control-wrapper .advanced-sidebar-menu-column-right {
+	margin-left: 0;
+}
+
+.fl-field-control-wrapper .advanced-sidebar-menu-column-box .widefat {
+	width: 100%;
+}
+
+.fl-field-control-wrapper .advanced-sidebar-menu-column-box .wp-picker-container input[type="text"].wp-color-picker {
+	min-height: auto;
+	padding: 6px 3px;
+	font-weight: 600;
+}
+
+
+.fl-field-control-wrapper .advanced-sidebar-menu-column-box .wp-picker-container {
+	float: none;
+}
+
+.fl-field-control-wrapper .advanced-sidebar-menu-column-box .advanced-sidebar-menu-border-color .wp-picker-container.wp-picker-active .wp-color-result {
+	position: relative;
+	top: 7px;
+}
+
+
+.fl-field-control-wrapper .advanced-sidebar-menu-column-box .wp-color-result-text {
+	color: #555;
+	line-height: 2.545;
+}
