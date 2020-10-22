@@ -204,7 +204,7 @@ function advanced_sidebar_menu_pro_version_warning( $no_banner = false ) {
 	<div class="<?php echo true === $no_banner ? '' : 'error'; ?>">
 		<p>
 			<?php
-			/* translators: {%1$s}[<a>]{%2$s}[</a>] https://wordpress.org/plugins/advanced-sidebar-menu/ */ //phpcs:disable
+			/* translators: {%1$s}[<a>]{%2$s}[</a>] https://wordpress.org/plugins/advanced-sidebar-menu/ */ //phpcs:ignore
 			printf( esc_html_x( 'Advanced Sidebar Menu requires %1$sAdvanced Sidebar Menu PRO%2$s version %3$s+. Please update or deactivate the PRO version.', '{<a>}{</a>}', 'advanced-sidebar-menu' ), '<a target="_blank" rel="noreferrer noopener" href="https://onpointplugins.com/product/advanced-sidebar-menu-pro/">', '</a>', esc_attr( ADVANCED_SIDEBAR_MENU_REQUIRED_PRO_VERSION ) );
 			?>
 		</p>
