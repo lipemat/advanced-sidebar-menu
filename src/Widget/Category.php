@@ -241,7 +241,7 @@ class Category extends Widget_Abstract {
 				type="text"
 				value="<?php echo esc_attr( $instance[ self::TITLE ] ); ?>" />
 		</p>
-
+		<?php do_action( 'advanced-sidebar-menu/widget/category/before-columns', $instance, $this ); ?>
 		<div class="advanced-sidebar-menu-column">
 			<?php do_action( 'advanced-sidebar-menu/widget/category/left-column', $instance, $this ); ?>
 		</div>

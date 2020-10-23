@@ -246,6 +246,7 @@ class Page extends Widget_Abstract {
 				type="text"
 				value="<?php echo esc_attr( $instance[ self::TITLE ] ); ?>" />
 		</p>
+		<?php do_action( 'advanced-sidebar-menu/widget/page/before-columns', $instance, $this ); ?>
 		<div class="advanced-sidebar-menu-column advanced-sidebar-menu-column-left">
 			<?php do_action( 'advanced-sidebar-menu/widget/page/left-column', $instance, $this ); ?>
 		</div>
