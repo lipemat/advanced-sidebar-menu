@@ -27,6 +27,7 @@ use Advanced_Sidebar_Menu\List_Pages;
 use Advanced_Sidebar_Menu\Menus\Category;
 use Advanced_Sidebar_Menu\Menus\Menu_Abstract;
 use Advanced_Sidebar_Menu\Menus\Page;
+use Advanced_Sidebar_Menu\Notice;
 use Advanced_Sidebar_Menu\Scripts;
 use Advanced_Sidebar_Menu\Traits\Memoize;
 use Advanced_Sidebar_Menu\Traits\Singleton;
@@ -44,6 +45,7 @@ function advanced_sidebar_menu_load() {
 	Core::init();
 	Cache::init();
 	Debug::init();
+	Notice::init();
 	Scripts::init();
 
 	if ( defined( 'ADVANCED_SIDEBAR_MENU_PRO_VERSION' ) && version_compare( ADVANCED_SIDEBAR_MENU_REQUIRED_PRO_VERSION, ADVANCED_SIDEBAR_MENU_PRO_VERSION, '>' ) ) {
@@ -74,6 +76,7 @@ function advanced_sidebar_menu_autoload( $class ) {
 		Core::class            => 'Core.php',
 		Debug::class           => 'Debug.php',
 		List_Pages::class      => 'List_Pages.php',
+		Notice::class          => 'Notice.php',
 		Scripts::class         => 'Scripts.php',
 
 		// Menus.
@@ -185,7 +188,34 @@ function advanced_sidebar_menu_upgrade_notice( array $instance, WP_Widget $widge
 				</a>
 			</li>
 		</ol>
-		<p>
+		<a
+			class="button-primary"
+			style="width:100%; text-align: center; margin: 15px 0 15px 0;"
+			href="https://onpointplugins.com/product/advanced-sidebar-menu-pro/?trigger_buy_now=1"
+			target="_blank">
+			<?php esc_html_e( 'Upgrade', 'advanced-sidebar-menu' ); ?>
+		</a>
+		<div
+			data-js="advanced-sidebar-menu/pro/preview/trigger"
+			data-target="advanced-sidebar-menu/pro/preview/<?php echo esc_attr( $widget->id ); ?>"
+			class="advanced-sidebar-desktop-only">
+			<?php
+			if ( Widget_Page::NAME === $widget->id_base ) {
+				?>
+				<button class="button-secondary" style="width:100%; text-align: center; margin: 0 0 23px 0;" >
+					<?php esc_html_e( 'Preview', 'advanced-sidebar-menu' ); ?>
+				</button>
+				<?php
+			} else {
+				?>
+				<button class="button-secondary" style="width:100%; text-align: center; margin: 0 0 14px 0;">
+					<?php esc_html_e( 'Preview', 'advanced-sidebar-menu' ); ?>
+				</button>
+				<?php
+			}
+			?>
+		</div>
+
 	</div>
 	<?php
 }

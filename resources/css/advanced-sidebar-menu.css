@@ -3,7 +3,6 @@
 	width: 49%;
 }
 
-
 .advanced-sidebar-menu-column-right {
 	margin-left: 2%;
 }
@@ -20,6 +19,30 @@
 	clear: both;
 }
 
+.advanced-sidebar-menu-close-icon {
+	transition: all 300ms linear;
+	position: absolute;
+	font-size: 40px;
+	top: 130px;
+	right: 50px;
+	cursor: pointer;
+	display: none;
+}
+
+.advanced-sidebar-menu-close-icon:hover {
+	color: #000;
+}
+
+.advanced-sidebar-menu-preview-image {
+	transition: width 300ms linear;
+	background: #fff;
+	width: 0;
+}
+
+.advanced-sidebar-menu-open .advanced-sidebar-menu-column-box {
+	display: none;
+}
+
 @media all and ( max-width: 620px  ) {
 	.advanced-sidebar-menu-column {
 		width: 100%;
@@ -27,6 +50,16 @@
 
 	.advanced-sidebar-menu-column-right {
 		margin-left: 0;
+	}
+}
+
+@media all and ( max-width: 1024px  ) {
+	.advanced-sidebar-desktop-only {
+		display: none !important;
+	}
+
+	.advanced-sidebar-menu-open .advanced-sidebar-menu-column-box {
+		display: inherit;
 	}
 }
 

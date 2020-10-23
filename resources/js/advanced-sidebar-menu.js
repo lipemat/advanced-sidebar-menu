@@ -28,6 +28,7 @@ var advanced_sidebar_menu = {
 	 * @since 7.4.5
 	 */
 	init: function () {
+		this.handlePreviews();
 		this.show_hide_elements();
 		jQuery(document).trigger('advanced-sidebar-menu/init');
 	},
@@ -67,6 +68,32 @@ var advanced_sidebar_menu = {
 			} else {
 				el.show();
 			}
+		});
+	},
+
+	/**
+	 * Display the preview image and close icon when the "Preview"
+	 * button is clicked.
+	 *
+	 * Adds a class to the wrap which allows hiding the existing options
+	 * to prevent inconistant margin requirements.
+	 *
+	 * @since 8.1.0
+	 */
+	handlePreviews: function () {
+		jQuery( '[data-js="advanced-sidebar-menu/pro/preview/trigger"]' ).on( 'click', function( ev ) {
+			ev.preventDefault();
+			var el = jQuery( '[data-js="' + jQuery( this ).data( 'target' ) + '"]' );
+			el.parent().addClass( 'advanced-sidebar-menu-open' );
+			var close = el.find( '.advanced-sidebar-menu-close-icon' );
+			var img = el.find( 'img' );
+			img.css( 'width', '100%' );
+			close.css( 'display', 'block' );
+			close.on( 'click', function() {
+				img.css( 'width', 0 );
+				close.css( 'display', 'none' );
+				el.parent().removeClass( 'advanced-sidebar-menu-open' );
+			} );
 		});
 	}
 };
