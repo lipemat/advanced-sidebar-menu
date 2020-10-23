@@ -118,7 +118,7 @@ add_action( 'advanced-sidebar-menu/widget/category/after-form', 'advanced_sideba
  * @param WP_Widget $widget   - Current widget.
  */
 function advanced_sidebar_menu_widget_docs( $instance, WP_Widget $widget ) {
-	$anchor = \Advanced_Sidebar_Menu\Widget\Category::NAME === $widget->id_base ? 'categories-menu' : 'pages-menu';
+	$anchor = Widget_Category::NAME === $widget->id_base ? 'categories-menu' : 'pages-menu';
 	?>
 	<p style="text-align: right">
 		<a
@@ -153,37 +153,37 @@ function advanced_sidebar_menu_upgrade_notice( array $instance, WP_Widget $widge
 	}
 	?>
 	<div class="advanced-sidebar-menu-column-box">
-		<h3><?php esc_html_e( 'Advanced Sidebar Menu PRO!', 'advanced-sidebar-menu' ); ?></h3>
-		<p>
-			<strong>
-				<?php
-				/* translators: {<a>}{</a>} links to https://onpointplugins.com/product/advanced-sidebar-menu-pro/ */
-				printf( esc_html_x( 'Upgrade to %1$sAdvanced Sidebar Menu PRO%2$s for these features and so much more!', '{<a>}{</a>}', 'advanced-sidebar-menu' ), '<a target="blank" href="https://onpointplugins.com/product/advanced-sidebar-menu-pro/">', '</a>' );
-				?>
-			</strong>
-		<ol style="list-style: disc">
-			<li><?php esc_html_e( 'Priority support, including access to Members Only Support Area.', 'advanced-sidebar-menu' ); ?></li>
-			<li><?php esc_html_e( 'Accordion menu support.', 'advanced-sidebar-menu' ); ?></li>
-			<li><?php esc_html_e( 'Click and drag menu styling including bullets, colors, sizes, block styles, borders, and border colors.', 'advanced-sidebar-menu' ); ?></li>
+		<h3 style="margin: 0 0 0 3px;">
+			<a
+				href="https://onpointplugins.com/product/advanced-sidebar-menu-pro/"
+				style="text-decoration: none; color: inherit;">
+				<?php esc_html_e( 'Advanced Sidebar Menu PRO', 'advanced-sidebar-menu' ); ?>
+			</a>
+		</h3>
+		<ol style="list-style: disc;">
+			<li><?php esc_html_e( 'Styling options including borders, bullets, colors, backgrounds, size, and font weight', 'advanced-sidebar-menu' ); ?></li>
+			<li><?php esc_html_e( 'Accordion menus.', 'advanced-sidebar-menu' ); ?></li>
+			<li><?php esc_html_e( 'Support for custom navigation menus from Appearance -> Menus.', 'advanced-sidebar-menu' ); ?></li>
 			<?php
-			if ( \Advanced_Sidebar_Menu\Widget\Page::NAME === $widget->id_base ) {
+			if ( Widget_Page::NAME === $widget->id_base ) {
 				?>
-				<li><?php esc_html_e( "Ability to customize each page's link text.", 'advanced-sidebar-menu' ); ?></li>
-				<li><?php esc_html_e( 'Ability to exclude a page from all menus using a simple checkbox.', 'advanced-sidebar-menu' ); ?></li>
-				<li><?php esc_html_e( 'Number of levels of pages to show when always displayed child pages is not checked.', 'advanced-sidebar-menu' ); ?></li>
-				<li><?php esc_html_e( 'Ability to select and display custom post types.', 'advanced-sidebar-menu' ); ?></li>
-				<li><?php esc_html_e( 'Option to display the current page’s parents, grandparents, and children only, as well as siblings options.', 'advanced-sidebar-menu' ); ?></li>
+				<li><?php esc_html_e( 'Select and display custom post types.', 'advanced-sidebar-menu' ); ?></li>
 				<?php
 			} else {
 				?>
-				<li><?php esc_html_e( 'Link ordering for the category widget.', 'advanced-sidebar-menu' ); ?></li>
-				<li><?php esc_html_e( 'Ability to select and display custom taxonomies.', 'advanced-sidebar-menu' ); ?></li>
-				<li><?php esc_html_e( 'Ability to display assigned posts or custom post types under categories.', 'advanced-sidebar-menu' ); ?></li>
+				<li><?php esc_html_e( 'Select and display custom taxonomies.', 'advanced-sidebar-menu' ); ?></li>
 				<?php
 			}
 			?>
-			<li><?php esc_html_e( 'Ability to display the widgets everywhere the sidebar displays.', 'advanced-sidebar-menu' ); ?></li>
-			<li><?php esc_html_e( 'Support for custom navigation menus from Appearance -> Menus.', 'advanced-sidebar-menu' ); ?></li>
+			<li><?php esc_html_e( 'Priority support with access to members only support area.', 'advanced-sidebar-menu' ); ?></li>
+			<li>
+				<a
+					href="https://onpointplugins.com/product/advanced-sidebar-menu-pro/"
+					target="_blank"
+					style="text-decoration: none;">
+					<?php esc_html_e( 'So much more...', 'advanced-sidebar-menu' ); ?>
+				</a>
+			</li>
 		</ol>
 		<p>
 	</div>
@@ -204,7 +204,7 @@ function advanced_sidebar_menu_pro_version_warning( $no_banner = false ) {
 	<div class="<?php echo true === $no_banner ? '' : 'error'; ?>">
 		<p>
 			<?php
-			/* translators: {%1$s}[<a>]{%2$s}[</a>] https://wordpress.org/plugins/advanced-sidebar-menu/ */ //phpcs:ignore
+			/* translators: Link to PRO plugin {%1$s}[<a href="https://onpointplugins.com/product/advanced-sidebar-menu-pro/">]{%2$s}[</a>] */
 			printf( esc_html_x( 'Advanced Sidebar Menu requires %1$sAdvanced Sidebar Menu PRO%2$s version %3$s+. Please update or deactivate the PRO version.', '{<a>}{</a>}', 'advanced-sidebar-menu' ), '<a target="_blank" rel="noreferrer noopener" href="https://onpointplugins.com/product/advanced-sidebar-menu-pro/">', '</a>', esc_attr( ADVANCED_SIDEBAR_MENU_REQUIRED_PRO_VERSION ) );
 			?>
 		</p>
