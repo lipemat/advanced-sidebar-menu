@@ -160,7 +160,7 @@ class Notice {
 		?>
 		<div
 			data-js="advanced-sidebar-menu/pro/preview/<?php echo esc_attr( $widget->id ); ?>"
-			class="advanced-sidebar-desktop-only advanced-sidebar-menu-full-width">
+			class="advanced-sidebar-desktop-only advanced-sidebar-menu-full-width advanced-sidebar-menu-preview-wrap">
 			<div class="dashicons dashicons-no-alt advanced-sidebar-menu-close-icon"></div>
 			<img
 				class="advanced-sidebar-menu-preview-image"

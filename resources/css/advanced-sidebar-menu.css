@@ -39,6 +39,14 @@
 	width: 0;
 }
 
+.advanced-sidebar-menu-preview-wrap {
+	height: 0;
+}
+
+.advanced-sidebar-menu-open .advanced-sidebar-menu-preview-wrap {
+	height: auto;
+}
+
 .advanced-sidebar-menu-open .advanced-sidebar-menu-column-box {
 	display: none;
 }
