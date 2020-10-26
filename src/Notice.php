@@ -153,9 +153,9 @@ class Notice {
 	 * @param \WP_Widget $widget   - Widget class.
 	 */
 	public function preview( array $instance, \WP_Widget $widget ) {
-		$src = 'pages-widget.png';
+		$src = 'pages-widget-min.png';
 		if ( Category::NAME === $widget->id_base ) {
-			$src = 'category-widget.png';
+			$src = 'category-widget-min.png';
 		}
 		?>
 		<div
