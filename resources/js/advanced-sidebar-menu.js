@@ -84,7 +84,8 @@ var advanced_sidebar_menu = {
 		jQuery( '[data-js="advanced-sidebar-menu/pro/preview/trigger"]' ).on( 'click', function( ev ) {
 			ev.preventDefault();
 			var el = jQuery( '[data-js="' + jQuery( this ).data( 'target' ) + '"]' );
-			el.parent().addClass( 'advanced-sidebar-menu-open' );
+			var form = el.parents( 'form' );
+			form.addClass( 'advanced-sidebar-menu-open' );
 			var close = el.find( '.advanced-sidebar-menu-close-icon' );
 			var img = el.find( 'img' );
 			img.css( 'width', '100%' );
@@ -92,7 +93,7 @@ var advanced_sidebar_menu = {
 			close.on( 'click', function() {
 				img.css( 'width', 0 );
 				close.css( 'display', 'none' );
-				el.parent().removeClass( 'advanced-sidebar-menu-open' );
+				form.removeClass( 'advanced-sidebar-menu-open' );
 			} );
 		});
 	}

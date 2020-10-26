@@ -47,7 +47,8 @@
 	height: auto;
 }
 
-.advanced-sidebar-menu-open .advanced-sidebar-menu-column-box {
+.advanced-sidebar-menu-open .advanced-sidebar-menu-column-box,
+.advanced-sidebar-menu-open .widget-control-actions {
 	display: none;
 }
 
