@@ -89,7 +89,7 @@ class Notice {
 				</a>
 			</h3>
 			<ol style="list-style: disc;">
-				<li><?php esc_html_e( 'Styling options including borders, bullets, colors, backgrounds, size, and font weight', 'advanced-sidebar-menu' ); ?></li>
+				<li><?php esc_html_e( 'Styling options including borders, bullets, colors, backgrounds, size, and font weight.', 'advanced-sidebar-menu' ); ?></li>
 				<li><?php esc_html_e( 'Accordion menus.', 'advanced-sidebar-menu' ); ?></li>
 				<li><?php esc_html_e( 'Support for custom navigation menus from Appearance -> Menus.', 'advanced-sidebar-menu' ); ?></li>
 				<?php
