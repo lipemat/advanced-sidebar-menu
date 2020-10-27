@@ -165,6 +165,7 @@ class Notice {
 			<img
 				class="advanced-sidebar-menu-preview-image"
 				src="<?php echo esc_url( ADVANCED_SIDEBAR_MENU_URL . 'resources/img/' . $src ); ?>"
+				srcset="<?php echo esc_url( ADVANCED_SIDEBAR_MENU_URL . 'resources/img/' . str_replace( '.png', '-1x.png', $src ) ); ?> 1x, <?php echo esc_url( ADVANCED_SIDEBAR_MENU_URL . 'resources/img/' . $src ); ?> 2x"
 				alt="PRO version widget options" />
 		</div>
 		<?php
