@@ -34,7 +34,6 @@ Keeps the menu clean and usable. Only related items display so you don't have to
 * Display the highest level parent page
 * Display menu when there is only the parent page
 * Order pages by (date, title, page order)
-* Use built in styling (very plain styling, for more advanced styling <a href="https://onpointplugins.com/product/advanced-sidebar-menu-pro/" target="_blank">Go Pro!</a>)
 * Exclude pages
 * Always display child Pages
 * Number of levels of child pages to display when always display child pages is checked
@@ -43,14 +42,13 @@ Keeps the menu clean and usable. Only related items display so you don't have to
 * Add a title to the widget
 * Display the highest level parent category
 * Display menu when there is only the parent category
-* Use built in styling (very plain styling, for more advanced styling <a href="https://onpointplugins.com/product/advanced-sidebar-menu-pro/" target="_blank">Go Pro!</a>)
 * Display categories on single posts
 * Display each single post's category in a new widget or in same list
 * Exclude categories
 * Always display child categories
 * Levels of Categories to display when always display child categories is checked
 
-<h3>Pro Features</h3>
+<h3>PRO Features</h3>
 * Priority support.
 * Ability to customize each page's link text.
 * Click and drag styling for page, category, and navigation menu widgets.
@@ -120,7 +118,7 @@ The widgets in this plugin are smart enough to not show up on pages or categorie
 The most common causes for this confusion come from one of these reasons:
 1. The incorrect widget was selected (there are different widgets for categories or pages).
 2. "Display the highest level parent page" or "Display the highest level parent category" is not checked.
-3. The widget is currently not being viewed on a Page (for the pages' widget) or Category (for the categories' widget).
+3. The widget is currently not being viewed on a page (for the pages widget) or category (for the categories widget).
 
 = How do I change the styling of the current page? =
 
@@ -137,7 +135,7 @@ For Instance This would remove the dot and change the color
 }
 </code>
 
-To style your menu without using any code <a href="https://onpointplugins.com/product/advanced-sidebar-menu-pro/" target="_blank">Go Pro!</a>
+To style your menu without using any code <a href="https://onpointplugins.com/product/advanced-sidebar-menu-pro/" target="_blank">upgrade to PRO</a>.
 
 = How do you get the categories to display on single post pages? =
 
