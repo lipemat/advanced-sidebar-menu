@@ -6,7 +6,7 @@ Tags: menus, sidebar menu, hierarchy, category menu, pages menu
 Requires at least: 5.0.0
 Tested up to: 5.5.1
 Requires PHP: 5.6.0
-Stable tag: 8.0.4
+Stable tag: 8.1.0
 
 == Description ==
 
@@ -126,7 +126,7 @@ The most common causes for this confusion come from one of these reasons:
 
 You may add css to your theme's style.css to change the way the menu looks
 
-For Instance This would remove the dot and  change the color
+For Instance This would remove the dot and change the color
 <code>
 .advanced-sidebar-menu li.current_page_item a {
     color: black;
@@ -155,6 +155,14 @@ Yes. Based on whatever page, post, or category you are on, the menu will change 
 
 
 == Changelog ==
+= 8.1.0 =
+* Restructure widget info panels.
+* Introduced new `advanced-sidebar-menu/widget/page/before-columns` action.
+* Introduced new `advanced-sidebar-menu/widget/category/before-columns` action.
+* Improved PHPCS exclusion declarations.
+* Improved CSS structure.
+* Improved JavaScript structure.
+
 = 8.0.4 =
 * Improve styles when used with Beaver Builder.
 * Require WordPress version 5.0.0+.
