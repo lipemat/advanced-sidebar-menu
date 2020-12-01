@@ -6,7 +6,7 @@ Tags: menus, sidebar menu, hierarchy, category menu, pages menu
 Requires at least: 5.0.0
 Tested up to: 5.6.0
 Requires PHP: 5.6.0
-Stable tag: 8.1.0
+Stable tag: 8.1.1
 
 == Description ==
 
@@ -153,6 +153,10 @@ Yes. Based on whatever page, post, or category you are on, the menu will change 
 
 
 == Changelog ==
+= 8.1.1 =
+* Improve readme.
+* Tested to WordPress 5.6.0.
+
 = 8.1.0 =
 * Restructure widget info panels.
 * Introduced new `advanced-sidebar-menu/widget/page/before-columns` action.
