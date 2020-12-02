@@ -76,7 +76,7 @@ var advanced_sidebar_menu = {
 	 * button is clicked.
 	 *
 	 * Adds a class to the wrap which allows hiding the existing options
-	 * to prevent inconistant margin requirements.
+	 * to prevent inconsistent margin requirements.
 	 *
 	 * @since 8.1.0
 	 */
