@@ -19,6 +19,12 @@
 	clear: both;
 }
 
+.advanced-sidebar-menu-styles-box select,
+.advanced-sidebar-menu-styles-box input {
+	width: 103px;
+	margin: 0 0 6px;
+}
+
 .advanced-sidebar-menu-column .description {
 	padding: 0 !important;
 	margin: 4px 0 0 0 !important;
