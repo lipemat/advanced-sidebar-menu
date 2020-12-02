@@ -205,7 +205,7 @@ class Page extends Widget_Abstract {
 		<div class="advanced-sidebar-menu-column-box">
 			<p>
 				<label for="<?php echo esc_attr( $widget->get_field_id( self::EXCLUDE ) ); ?>">
-					<?php esc_html_e( 'Pages to exclude (ids), comma separated', 'advanced-sidebar-menu' ); ?>:
+					<?php esc_html_e( 'Pages to exclude (ids), comma separated', 'advanced-sidebar-menu' ); ?>
 				</label>
 				<input
 					id="<?php echo esc_attr( $widget->get_field_id( self::EXCLUDE ) ); ?>"
