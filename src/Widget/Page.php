@@ -79,6 +79,27 @@ class Page extends Widget_Abstract {
 
 
 	/**
+	 * Get the label for used post type.
+	 *
+	 * For adjusting widget option labels.
+	 *
+	 * @param array $instance - Widget settings.
+	 * @param bool  $single   - Singular label or plural.
+	 *
+	 * @since 8.2.0
+	 *
+	 * @return mixed
+	 */
+	public function get_post_type_label( $instance, $single = true ) {
+		$post_type = get_post_type_object( apply_filters( 'advanced-sidebar-menu/widget/page/post-type-for-label', 'page', $this->control_options, $instance ) );
+		if ( null === $post_type ) {
+			$post_type = get_post_type_object( 'page' ); // Sensible fallback.
+		}
+
+		return $single ? $post_type->labels->singular_name : $post_type->labels->name;
+	}
+
+	/**
 	 * Display options.
 	 *
 	 * @param array           $instance - Widget settings.
@@ -92,7 +113,10 @@ class Page extends Widget_Abstract {
 			<p>
 				<?php $widget->checkbox( self::INCLUDE_PARENT ); ?>
 				<label>
-					<?php esc_html_e( 'Display highest level parent page', 'advanced-sidebar-menu' ); ?>
+					<?php
+					/* translators: Selected post type single label */
+					printf( esc_html__( 'Display highest level parent %s', 'advanced-sidebar-menu' ), esc_html( strtolower( $this->get_post_type_label( $instance ) ) ) );
+					?>
 				</label>
 			</p>
 
@@ -100,14 +124,20 @@ class Page extends Widget_Abstract {
 			<p>
 				<?php $widget->checkbox( self::INCLUDE_CHILDLESS_PARENT ); ?>
 				<label>
-					<?php esc_html_e( 'Display menu when there is only the parent page', 'advanced-sidebar-menu' ); ?>
+					<?php
+					/* translators: Selected post type single label */
+					printf( esc_html__( 'Display menu when there is only the parent %s', 'advanced-sidebar-menu' ), esc_html( strtolower( $this->get_post_type_label( $instance ) ) ) );
+					?>
 				</label>
 			</p>
 
 			<p>
 				<?php $widget->checkbox( self::DISPLAY_ALL, self::LEVELS ); ?>
 				<label>
-					<?php esc_html_e( 'Always display child pages', 'advanced-sidebar-menu' ); ?>
+					<?php
+					/* translators: Selected post type plural label */
+					printf( esc_html__( 'Always display child %s', 'advanced-sidebar-menu' ), esc_html( strtolower( $this->get_post_type_label( $instance, false ) ) ) );
+					?>
 				</label>
 			</p>
 
@@ -120,7 +150,10 @@ class Page extends Widget_Abstract {
 			>
 				<p>
 					<label for="<?php echo esc_attr( $widget->get_field_id( self::LEVELS ) ); ?>">
-						<?php esc_html_e( 'Maximum level of child pages to display', 'advanced-sidebar-menu' ); ?>:
+						<?php
+						/* translators: Selected post type plural label */
+						printf( esc_html__( 'Maximum level of child %s to display', 'advanced-sidebar-menu' ), esc_html( strtolower( $this->get_post_type_label( $instance, false ) ) ) );
+						?>
 					</label>
 					<select
 						id="<?php echo esc_attr( $widget->get_field_id( self::LEVELS ) ); ?>"
@@ -205,7 +238,10 @@ class Page extends Widget_Abstract {
 		<div class="advanced-sidebar-menu-column-box">
 			<p>
 				<label for="<?php echo esc_attr( $widget->get_field_id( self::EXCLUDE ) ); ?>">
-					<?php esc_html_e( 'Pages to exclude (ids), comma separated', 'advanced-sidebar-menu' ); ?>
+					<?php
+					/* translators: Selected post type plural label */
+					printf( esc_html__( '%s to exclude (ids), comma separated', 'advanced-sidebar-menu' ), esc_html( $this->get_post_type_label( $instance, false ) ) );
+					?>
 				</label>
 				<input
 					id="<?php echo esc_attr( $widget->get_field_id( self::EXCLUDE ) ); ?>"
