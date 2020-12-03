@@ -19,6 +19,10 @@
 	clear: both;
 }
 
+.advanced-sidebar-menu-styles-box {
+	padding: 0 10px 10px;
+}
+
 .advanced-sidebar-menu-styles-box .advanced-sidebar-menu-column select,
 .advanced-sidebar-menu-styles-box .advanced-sidebar-menu-column input {
 	width: 103px;
