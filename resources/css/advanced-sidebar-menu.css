@@ -37,6 +37,10 @@
 	display: block;
 }
 
+.advanced-sidebar-menu-column .wp-color-result-text {
+	background: #fff;
+}
+
 .advanced-sidebar-menu-block-field {
 	display: block;
 	width: 100%;
