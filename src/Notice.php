@@ -153,9 +153,9 @@ class Notice {
 	 * @param \WP_Widget $widget   - Widget class.
 	 */
 	public function preview( array $instance, \WP_Widget $widget ) {
-		$src = 'pages-widget-min.png';
+		$src = 'pages-widget-min.png?version=' . ADVANCED_SIDEBAR_BASIC_VERSION;
 		if ( Category::NAME === $widget->id_base ) {
-			$src = 'category-widget-min.png';
+			$src = 'category-widget-min.png?version=' . ADVANCED_SIDEBAR_BASIC_VERSION;
 		}
 		?>
 		<div
@@ -164,8 +164,8 @@ class Notice {
 			<div class="dashicons dashicons-no-alt advanced-sidebar-menu-close-icon"></div>
 			<img
 				class="advanced-sidebar-menu-preview-image"
-				src="<?php echo esc_url( ADVANCED_SIDEBAR_MENU_URL . 'resources/img/' . $src ); ?>"
-				srcset="<?php echo esc_url( ADVANCED_SIDEBAR_MENU_URL . 'resources/img/' . str_replace( '.png', '-1x.png', $src ) ); ?> 1x, <?php echo esc_url( ADVANCED_SIDEBAR_MENU_URL . 'resources/img/' . $src ); ?> 2x"
+				src="https://onpointplugins.com/plugins/assets/shared/<?php echo esc_attr( $src ); ?>"
+				srcset="https://onpointplugins.com/plugins/assets/shared/<?php echo esc_attr( str_replace( '.png', '-1x.png', $src ) ); ?> 1x, https://onpointplugins.com/plugins/assets/shared/<?php echo esc_attr( $src ); ?> 2x"
 				alt="PRO version widget options" />
 		</div>
 		<?php
