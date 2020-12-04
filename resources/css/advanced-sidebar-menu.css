@@ -41,6 +41,16 @@
 	background: #fff;
 }
 
+.advanced-sidebar-menu-icon-preview {
+	display: inline-block;
+	margin: 0 0 0 5px;
+}
+
+.advanced-sidebar-menu-icon-preview .dashicons {
+	font-size: 25px;
+	outline: none !important;
+}
+
 .advanced-sidebar-menu-block-field {
 	display: block;
 	width: 100%;
