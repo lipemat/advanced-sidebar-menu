@@ -37,6 +37,12 @@
 	display: block;
 }
 
+.advanced-sidebar-menu-block-field {
+	display: block;
+	width: 100%;
+	margin: 5px 0 0 0;
+}
+
 .advanced-sidebar-menu-styles-button {
 	text-align: center;
 }

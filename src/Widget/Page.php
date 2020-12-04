@@ -99,6 +99,7 @@ class Page extends Widget_Abstract {
 		return $single ? $post_type->labels->singular_name : $post_type->labels->name;
 	}
 
+
 	/**
 	 * Display options.
 	 *
@@ -151,28 +152,29 @@ class Page extends Widget_Abstract {
 				<p>
 					<label for="<?php echo esc_attr( $widget->get_field_id( self::LEVELS ) ); ?>">
 						<?php
-						/* translators: Selected post type plural label */
-						printf( esc_html__( 'Maximum level of child %s to display', 'advanced-sidebar-menu' ), esc_html( strtolower( $this->get_post_type_label( $instance, false ) ) ) );
+						ob_start();
+						?>
+						<select
+							id="<?php echo esc_attr( $widget->get_field_id( self::LEVELS ) ); ?>"
+							name="<?php echo esc_attr( $widget->get_field_name( self::LEVELS ) ); ?>">
+							<option value="100">
+								<?php esc_html_e( '- All -', 'advanced-sidebar-menu' ); ?>
+							</option>
+							<?php
+							for ( $i = 1; $i < 10; $i ++ ) {
+								?>
+								<option value="<?php echo esc_attr( $i ); ?>" <?php selected( $i, (int) $instance[ self::LEVELS ] ); ?>>
+									<?php echo (int) $i; ?>
+								</option>
+								<?php
+							}
+							?>
+						</select>
+						<?php
+						/* translators: {select html input}, {Selected post type plural label} */
+						printf( esc_html__( 'Display %1$s levels of child %2$s', 'advanced-sidebar-menu' ), ob_get_clean(), esc_html( strtolower( $this->get_post_type_label( $instance, false ) ) ) ); //phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped
 						?>
 					</label>
-					<select
-						id="<?php echo esc_attr( $widget->get_field_id( self::LEVELS ) ); ?>"
-						name="<?php echo esc_attr( $widget->get_field_name( self::LEVELS ) ); ?>">
-						<option value="100">
-							<?php esc_html_e( ' - All - ', 'advanced-sidebar-menu' ); ?>
-						</option>
-						<?php
-						for ( $i = 1; $i < 10; $i ++ ) {
-							?>
-							<option
-								value="<?php echo esc_attr( $i ); ?>" <?php selected( $i, (int) $instance[ self::LEVELS ] ); ?>>
-								<?php echo esc_html( $i ); ?>
-							</option>
-
-							<?php
-						}
-						?>
-					</select>
 				</p>
 			</div>
 
@@ -197,7 +199,7 @@ class Page extends Widget_Abstract {
 
 			<p>
 				<label for="<?php echo esc_attr( $widget->get_field_id( self::ORDER_BY ) ); ?>">
-					<?php esc_html_e( 'Order by', 'advanced-sidebar-menu' ); ?>:
+					<?php esc_html_e( 'Order by', 'advanced-sidebar-menu' ); ?>
 				</label>
 				<select
 					id="<?php echo esc_attr( $widget->get_field_id( self::ORDER_BY ) ); ?>"
@@ -240,19 +242,19 @@ class Page extends Widget_Abstract {
 				<label for="<?php echo esc_attr( $widget->get_field_id( self::EXCLUDE ) ); ?>">
 					<?php
 					/* translators: Selected post type plural label */
-					printf( esc_html__( '%s to exclude (ids), comma separated', 'advanced-sidebar-menu' ), esc_html( $this->get_post_type_label( $instance, false ) ) );
+					printf( esc_html__( '%s to exclude (ids, comma separated)', 'advanced-sidebar-menu' ), esc_html( $this->get_post_type_label( $instance, false ) ) );
 					?>
 				</label>
 				<input
 					id="<?php echo esc_attr( $widget->get_field_id( self::EXCLUDE ) ); ?>"
 					name="<?php echo esc_attr( $widget->get_field_name( self::EXCLUDE ) ); ?>"
-					class="widefat"
+					class="widefat advanced-sidebar-menu-block-field"
 					type="text"
 					value="<?php echo esc_attr( $instance[ self::EXCLUDE ] ); ?>" />
+				<?php
+				do_action( 'advanced-sidebar-menu/widget/page/exclude-box', $instance, $widget );
+				?>
 			</p>
-			<?php
-			do_action( 'advanced-sidebar-menu/widget/page/exclude-box', $instance, $widget );
-			?>
 		</div>
 		<?php
 	}
