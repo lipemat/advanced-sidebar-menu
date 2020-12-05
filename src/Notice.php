@@ -81,7 +81,7 @@ class Notice {
 
 		?>
 		<div class="advanced-sidebar-menu-column-box">
-			<h3 style="margin: 0 0 0 3px;">
+			<h3 style="margin: 8px 0 0 3px;">
 				<a
 					href="https://onpointplugins.com/product/advanced-sidebar-menu-pro/"
 					style="text-decoration: none; color: inherit;">
@@ -127,13 +127,13 @@ class Notice {
 				<?php
 				if ( Widget_Page::NAME === $widget->id_base ) {
 					?>
-					<button class="button-secondary" style="width:100%; text-align: center; margin: 0 0 23px 0;">
+					<button class="button-secondary" style="width:100%; text-align: center; margin: 0 0 20px 0;">
 						<?php esc_html_e( 'Preview', 'advanced-sidebar-menu' ); ?>
 					</button>
 					<?php
 				} else {
 					?>
-					<button class="button-secondary" style="width:100%; text-align: center; margin: 0 0 14px 0;">
+					<button class="button-secondary" style="width:100%; text-align: center; margin: 0 0 11px 0;">
 						<?php esc_html_e( 'Preview', 'advanced-sidebar-menu' ); ?>
 					</button>
 					<?php
