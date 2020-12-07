@@ -160,9 +160,10 @@ class Notice {
 			class="advanced-sidebar-desktop-only advanced-sidebar-menu-full-width advanced-sidebar-menu-preview-wrap">
 			<div class="dashicons dashicons-no-alt advanced-sidebar-menu-close-icon"></div>
 			<img
+				data-js="advanced-sidebar-menu/pro/preview/image"
 				class="advanced-sidebar-menu-preview-image"
 				src="https://onpointplugins.com/plugins/assets/shared/<?php echo esc_attr( $src ); ?>"
-				srcset="https://onpointplugins.com/plugins/assets/shared/<?php echo esc_attr( str_replace( '.png', '-1x.png', $src ) ); ?> 1x, https://onpointplugins.com/plugins/assets/shared/<?php echo esc_attr( $src ); ?> 2x"
+				srcset="https://onpointplugins.com/plugins/assets/shared/<?php echo esc_attr( str_replace( '-min.png', '-1x-min.png', $src ) ); ?> 1x, https://onpointplugins.com/plugins/assets/shared/<?php echo esc_attr( $src ); ?> 2x"
 				alt="PRO version widget options" />
 		</div>
 		<?php
