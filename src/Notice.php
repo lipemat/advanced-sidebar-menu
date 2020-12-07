@@ -126,19 +126,16 @@ class Notice {
 				class="advanced-sidebar-desktop-only">
 				<?php
 				if ( Widget_Page::NAME === $widget->id_base ) {
-					?>
-					<button class="button-secondary" style="width:100%; text-align: center; margin: 0 0 20px 0;">
-						<?php esc_html_e( 'Preview', 'advanced-sidebar-menu' ); ?>
-					</button>
-					<?php
+					$margin = '20px';
 				} else {
-					?>
-					<button class="button-secondary" style="width:100%; text-align: center; margin: 0 0 11px 0;">
-						<?php esc_html_e( 'Preview', 'advanced-sidebar-menu' ); ?>
-					</button>
-					<?php
+					$margin = '11px';
 				}
 				?>
+				<button
+					class="button-secondary"
+					style="width:100%; text-align: center; margin: 0 0 <?php echo esc_attr( $margin ); ?> 0;">
+					<?php esc_html_e( 'Preview', 'advanced-sidebar-menu' ); ?>
+				</button>
 			</div>
 		</div>
 		<?php
