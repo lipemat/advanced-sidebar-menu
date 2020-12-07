@@ -1,8 +1,8 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: Advanced Sidebar Menu\n"
-"POT-Creation-Date: 2020-12-02 14:29-0700\n"
-"PO-Revision-Date: 2020-12-02 14:30-0700\n"
+"POT-Creation-Date: 2020-12-07 10:17-0700\n"
+"PO-Revision-Date: 2020-12-07 10:20-0700\n"
 "Last-Translator: Mat Lipe <support@onpointplugins.com>\n"
 "Language-Team: \n"
 "Language: de\n"
@@ -79,7 +79,7 @@ msgstr "So viel mehr..."
 msgid "Upgrade"
 msgstr "Aktualisierung"
 
-#: src/Notice.php:131 src/Notice.php:137
+#: src/Notice.php:137
 msgid "Preview"
 msgstr "Vorschau"
 
@@ -95,57 +95,63 @@ msgid "Advanced Sidebar Categories Menu"
 msgstr "Advanced Sidebar Kategorien-Menü"
 
 #. translators: Selected taxonomy single label
-#: src/Widget/Category.php:126
+#: src/Widget/Category.php:123
 #, php-format
 msgid "Display the highest level parent %s"
 msgstr "Anzeige der übergeordneten %s der höchsten Ebene"
 
 #. translators: Selected taxonomy single label
 #. translators: Selected post type single label
-#: src/Widget/Category.php:135 src/Widget/Page.php:129
+#: src/Widget/Category.php:132 src/Widget/Page.php:130
 #, php-format
 msgid "Display menu when there is only the parent %s"
 msgstr "Menü \"Anzeige\" wird nur die übergeordnete %s"
 
 #. translators: Selected taxonomy plural label
 #. translators: Selected post type plural label
-#: src/Widget/Category.php:144 src/Widget/Page.php:139
+#: src/Widget/Category.php:141 src/Widget/Page.php:140
 #, php-format
 msgid "Always display child %s"
 msgstr "Immer untergeordnete %s anzeigen"
 
-#. translators: Selected taxonomy plural label
-#: src/Widget/Category.php:153
+#: src/Widget/Category.php:155 src/Widget/Page.php:161
+msgid "- All -"
+msgstr "- Alle -"
+
+#. translators: {select html input}, {Selected post type plural label}
+#: src/Widget/Category.php:170 src/Widget/Page.php:175
 #, php-format
-msgid "Levels of child %s to display"
-msgstr "Niveau der Kinder %s zu zeigen"
+msgid "Display %1$s levels of child %2$s"
+msgstr "Anzeigen %1$s Ebenen der %2$s"
 
 #. translators: Selected taxonomy plural label
-#: src/Widget/Category.php:198
+#: src/Widget/Category.php:200
 #, php-format
 msgid "Display %s on single posts"
 msgstr "%s auf einzelne Beiträge anzeigen"
 
-#: src/Widget/Category.php:206
-msgid "Display each single post's category"
-msgstr "Zeigen Sie die einzelnen Kategorien der einzelnen Posts an"
+#. translators: Selected taxonomy single label
+#: src/Widget/Category.php:210
+#, php-format
+msgid "Display each single post's %s"
+msgstr "Anzeigen der %s jedes einzelnen Beitrags"
 
-#: src/Widget/Category.php:213
+#: src/Widget/Category.php:220
 msgid "In a new widget"
 msgstr "In einem neuen Widget"
 
-#: src/Widget/Category.php:216
+#: src/Widget/Category.php:223
 msgid "In another list in the same widget"
 msgstr "In einer anderen Liste im selben Widget"
 
 #. translators: Selected taxonomy plural label
 #. translators: Selected post type plural label
-#: src/Widget/Category.php:244 src/Widget/Page.php:243
+#: src/Widget/Category.php:251 src/Widget/Page.php:245
 #, php-format
-msgid "%s to exclude (ids), comma separated"
+msgid "%s to exclude (ids, comma separated)"
 msgstr "Auszuschließende %s (IDs), durch Kommas getrennt"
 
-#: src/Widget/Category.php:278 src/Widget/Page.php:276
+#: src/Widget/Category.php:285 src/Widget/Page.php:278
 msgid "Title"
 msgstr "Titel"
 
@@ -160,22 +166,12 @@ msgid "Advanced Sidebar Pages Menu"
 msgstr "Advanced Sidebar Seitenmenü"
 
 #. translators: Selected post type single label
-#: src/Widget/Page.php:118
+#: src/Widget/Page.php:119
 #, php-format
 msgid "Display highest level parent %s"
 msgstr "Anzeige der übergeordneten %s der höchsten Ebene"
 
-#. translators: Selected post type plural label
-#: src/Widget/Page.php:155
-#, php-format
-msgid "Maximum level of child %s to display"
-msgstr "Maximale Höhe der zu zeigestellenden %s Kinder"
-
-#: src/Widget/Page.php:162
-msgid " - All - "
-msgstr " Alle "
-
-#: src/Widget/Page.php:200
+#: src/Widget/Page.php:202
 msgid "Order by"
 msgstr "Sortieren nach"
 
@@ -202,6 +198,14 @@ msgstr "OnPoint Plugins"
 #. Author URI of the plugin/theme
 msgid "https://onpointplugins.com"
 msgstr "https://onpointplugins.com"
+
+#, php-format
+#~ msgid "Levels of child %s to display"
+#~ msgstr "Niveau der Kinder %s zu zeigen"
+
+#, php-format
+#~ msgid "Maximum level of child %s to display"
+#~ msgstr "Maximale Höhe der zu zeigestellenden %s Kinder"
 
 #~ msgid "Display highest level parent page"
 #~ msgstr "Zeigt die oberste Seite der obersten Ebene an"
