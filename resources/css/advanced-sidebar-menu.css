@@ -113,8 +113,16 @@
 		width: 100%;
 	}
 
+	.advanced-sidebar-menu-column .advanced-sidebar-menu-column {
+		width: 49%;
+	}
+
 	.advanced-sidebar-menu-column-right {
 		margin-left: 0;
+	}
+
+	.advanced-sidebar-menu-column .advanced-sidebar-menu-column-right {
+		margin-left: 2%;
 	}
 
 	.advanced-sidebar-desktop-only {
