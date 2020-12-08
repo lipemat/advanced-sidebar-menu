@@ -135,8 +135,14 @@
 .elementor-control-content .advanced-sidebar-menu-column-right {
 	margin-left: 0;
 }
+
+.elementor-control-content .advanced-sidebar-menu-column-box select,
+.elementor-control-content .advanced-sidebar-menu-column-box input[type='text'],
+.elementor-control-content .advanced-sidebar-menu-column-box input[type='number'],
 .elementor-control-content .advanced-sidebar-menu-column-box .widefat {
 	width: 100%;
+	background: #fff;
+	color: #000;
 }
 .elementor-control-content .advanced-sidebar-menu-column-box .wp-picker-container input[type='text'].wp-color-picker {
 	min-height: auto;
@@ -146,7 +152,7 @@
 	position: relative;
 	top: 7px;
 }
-.elementor-control-content .advanced-sidebar-menu-column-box .wp-picker-container{
+.elementor-control-content .advanced-sidebar-menu-column-box .wp-picker-container {
 	float: none;
 }
 .elementor-control-content .advanced-sidebar-menu-column-box .wp-picker-container.wp-picker-active {
