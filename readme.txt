@@ -6,7 +6,7 @@ Tags: menus, sidebar menu, hierarchy, category menu, pages menu
 Requires at least: 5.0.0
 Tested up to: 5.6.0
 Requires PHP: 5.6.0
-Stable tag: 8.1.1
+Stable tag: 8.2.0
 
 == Description ==
 
@@ -152,6 +152,12 @@ Yes. Based on whatever page, post, or category you are on, the menu will change 
 
 
 == Changelog ==
+= 8.2.0 =
+* Improve widget labels, descriptions and styles.
+* Support blocked styling borders on all levels.
+* Improve Beaver Builder and Elementor styles.
+* Improve info panel.
+
 = 8.1.1 =
 * Improve readme.
 * Tested to WordPress 5.6.0.
@@ -239,6 +245,9 @@ Major version update. See <a href="https://onpointplugins.com/advanced-sidebar-m
 
 
 == Upgrade Notice ==
+= 8.2.0 =
+Update to support PRO version 8.2.0
+
 = 8.0.0 =
 Major version update. Not fully backward compatible with version 7 filters or code. Please see migration guide if you are extending the plugin via code.
 
