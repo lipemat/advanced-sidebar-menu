@@ -131,6 +131,7 @@
 .elementor-control-content .advanced-sidebar-menu-column {
 	width: 100%;
 }
+
 .elementor-control-content .advanced-sidebar-menu-column-right {
 	margin-left: 0;
 }
@@ -167,6 +168,13 @@
 
 .elementor-control-content .advanced-sidebar-menu-icon-preview {
 	margin: 5px 0 0 !important;
+}
+
+@media (prefers-color-scheme: dark) {
+	.elementor-control-content .advanced-sidebar-menu-column-box {
+		background-color: #404349 !important;
+		color: #e0e1e3 !important;
+	}
 }
 
 /** Beaver Builder specific styles **/
