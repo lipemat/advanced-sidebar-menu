@@ -170,6 +170,11 @@
 	margin: 5px 0 0 !important;
 }
 
+.elementor-control-content .advanced-sidebar-menu-column-box h3 {
+	font-size: 17px;
+	margin: 10px 0;
+}
+
 @media (prefers-color-scheme: dark) {
 	.elementor-control-content .advanced-sidebar-menu-column-box {
 		background-color: #404349 !important;
