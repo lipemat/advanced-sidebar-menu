@@ -153,13 +153,13 @@ Yes. Based on whatever page, post, or category you are on, the menu will change 
 
 == Changelog ==
 = 8.2.0 =
-* Improve widget labels, descriptions and styles.
+* Improved widget labels, descriptions and styles.
 * Support blocked styling borders on all levels.
-* Improve Beaver Builder and Elementor styles.
-* Improve info panel.
+* Improved Beaver Builder and Elementor styles.
+* Improved info panel.
 
 = 8.1.1 =
-* Improve readme.
+* Improved readme.
 * Tested to WordPress 5.6.0.
 
 = 8.1.0 =
@@ -171,7 +171,7 @@ Yes. Based on whatever page, post, or category you are on, the menu will change 
 * Improved JavaScript structure.
 
 = 8.0.4 =
-* Improve styles when used with Beaver Builder.
+* Improved styles when used with Beaver Builder.
 * Require WordPress version 5.0.0+.
 
 = 8.0.3 =
@@ -179,7 +179,7 @@ Yes. Based on whatever page, post, or category you are on, the menu will change 
 * Make debugging functionality more stable.
 
 = 8.0.2 = 
-* Introduce new `advanced-sidebar-menu/menus/category/get-child-terms` filter
+* Introduced new `advanced-sidebar-menu/menus/category/get-child-terms` filter
 * Support filtering the first level of categories.
 * Use `is_excluded` vs `is_first_level_category` in category view.
 
@@ -205,10 +205,10 @@ Major version update. See <a href="https://onpointplugins.com/advanced-sidebar-m
 
 = 7.7.0 =
 * Enable accordion previews when editing via Beaver Builder.
-* Greatly improve widget styles and UI when using Elementor.
+* Greatly improved widget styles and UI when using Elementor.
 * Overall third party page builder improvements.
 * Move scripts and styles into new Scripts class.
-* Introduce a new Singleton trait.
+* Introduced a new Singleton trait.
 
 = 7.6.0 =
 * Elementor support for multiple widgets of the same type on the same page.
@@ -223,7 +223,7 @@ Major version update. See <a href="https://onpointplugins.com/advanced-sidebar-m
 * Added support for Beaver Builder
 
 = 7.3.0 =
-* Greatly improve category widget performance
+* Greatly improved category widget performance
 
 = 7.2.0 =
 * New improved widget structure
@@ -235,11 +235,11 @@ Major version update. See <a href="https://onpointplugins.com/advanced-sidebar-m
 
 = 7.0.0 =
 * Restructure the codebase to a more modern PSR4 structure
-* Improve cache handling
-* Improve verbiage in the admin
+* Improved cache handling
+* Improved verbiage in the admin
 * Implement new actions and filters
 * Rebuild templates for improved stability and future changes
-* Improve performance
+* Improved performance
 * Kill conflicting backward compatibility with version 5
 * Open up more extendability possibilities
 
