@@ -7,6 +7,10 @@
  * Version: 8.2.0
  * Author URI: https://onpointplugins.com
  * Text Domain: advanced-sidebar-menu
+ * Domain Path: /languages/
+ * Network: false
+ * Requires at least: 5.0
+ * Requires PHP: 5.6.0
  *
  * @package advanced-sidebar-menu
  */
