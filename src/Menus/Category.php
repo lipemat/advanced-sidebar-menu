@@ -271,12 +271,11 @@ class Category extends Menu_Abstract {
 
 
 	/**
-	 * Simplified way to verify if we are on a taxonomy
-	 * archive
+	 * Simplified way to verify if we are on a taxonomy archive.
 	 *
 	 * @return bool
 	 */
-	protected function is_tax() {
+	public function is_tax() {
 		$taxonomy = $this->get_taxonomy();
 		if ( 'category' === $taxonomy ) {
 			if ( is_category() ) {
