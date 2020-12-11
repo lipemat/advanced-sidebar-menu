@@ -184,7 +184,7 @@ class Category extends Menu_Abstract {
 	 * Get this menu's taxonomy.
 	 * Defaults to 'category'.
 	 *
-	 * @return int
+	 * @return string
 	 */
 	public function get_taxonomy() {
 		return apply_filters( 'advanced-sidebar-menu/menus/category/taxonomy', 'category', $this->args, $this->instance, $this );
@@ -194,7 +194,7 @@ class Category extends Menu_Abstract {
 	/**
 	 * Get id of the highest level parent item.
 	 *
-	 * @return int
+	 * @return ?int
 	 */
 	public function get_top_parent_id() {
 		if ( empty( $this->top_level_term->term_id ) ) {
