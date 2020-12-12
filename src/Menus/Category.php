@@ -70,7 +70,7 @@ class Category extends Menu_Abstract {
 		switch ( $level ) {
 			case self::LEVEL_PARENT:
 				$args['hide_empty'] = 0;
-				$args['include'] = trim( $this->get_top_parent_id() );
+				$args['include'] = trim( (string) $this->get_top_parent_id() );
 				break;
 			case self::LEVEL_DISPLAY_ALL:
 				$args['child_of'] = $this->get_top_parent_id();
@@ -347,7 +347,7 @@ class Category extends Menu_Abstract {
 	 * If a category has children add the 'has_children' class
 	 * to the list item.
 	 *
-	 * @param  []       $classes - List of classes added to category list item.
+	 * @param array    $classes - List of classes added to category list item.
 	 * @param \WP_Term $category - Current category.
 	 *
 	 * @filter category_css_class 11 2
