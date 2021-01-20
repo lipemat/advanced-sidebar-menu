@@ -78,9 +78,12 @@ Keeps the menu clean and usable. Only related items display so you don't have to
 * Option to display the top-level navigation menu items when there are no child items or not viewing a menu item.
 * Priority support with access to members only support area.
 
-<h3>Currently ships with the following languages</h3>
-* English (US)
+<h3>Translations</h3>
+This plugin includes the following languages:
+* English (en_US)
+* French (fr_FR)
 * German (de_DE)
+* Spanish (es_ES)
    
 <h3>Developers</h3>
 Developer docs may be found <a target="_blank" href="https://onpointplugins.com/advanced-sidebar-menu/developer-docs/">here</a>.
