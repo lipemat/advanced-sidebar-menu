@@ -6,7 +6,7 @@ Tags: menus, sidebar menu, hierarchy, category menu, pages menu
 Requires at least: 5.0.0
 Tested up to: 5.6.0
 Requires PHP: 5.6.0
-Stable tag: 8.2.0
+Stable tag: 8.3.0
 
 == Description ==
 
@@ -155,6 +155,14 @@ Yes. Based on whatever page, post, or category you are on, the menu will change 
 
 
 == Changelog ==
+= 8.3.0 =
+* Improved plugin headers.
+* Added translations for French (fr_FR).
+* Added translations for Spanish (es_ES).
+* Expose `Category::is_tax` method for public filters.
+* Improved type casting and PHPStan static type checking.
+* Fix tense in readme.txt words.
+
 = 8.2.0 =
 * Improved widget labels, descriptions and styles.
 * Support blocked styling borders on all levels.
@@ -221,31 +229,6 @@ Major version update. See <a href="https://onpointplugins.com/advanced-sidebar-m
 = 7.5.0 =
 * Convert "Always display child pages" to use our List_Pages structure and support all widget options.
 * Bump required PHP version to 5.4.4.
-
-= 7.4.0 =
-* Added support for Beaver Builder
-
-= 7.3.0 =
-* Greatly improved category widget performance
-
-= 7.2.0 =
-* New improved widget structure
-
-= 7.1.0 =
-* Support Pro Version 3.0.0
-* Add German translations
-* Begin converting code formatting to strict WordPress standards
-
-= 7.0.0 =
-* Restructure the codebase to a more modern PSR4 structure
-* Improved cache handling
-* Improved verbiage in the admin
-* Implement new actions and filters
-* Rebuild templates for improved stability and future changes
-* Improved performance
-* Kill conflicting backward compatibility with version 5
-* Open up more extendability possibilities
-
 
 == Upgrade Notice ==
 = 8.2.0 =
