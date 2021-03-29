@@ -20,7 +20,10 @@
 	<rule ref="PHPCompatibilityWP" />
 
 	<rule ref="WordPress">
+		<exclude-pattern>*/js/*</exclude-pattern>
+
 		<exclude name="Generic.Arrays.DisallowShortArraySyntax.Found" />
+		<exclude name="Generic.Formatting.MultipleStatementAlignment" />
 
 		<exclude name="PEAR.NamingConventions.ValidClassName.Invalid" />
 
@@ -32,6 +35,12 @@
 		<exclude name="WordPress.Arrays.MultipleStatementAlignment.DoubleArrowNotAligned" />
 		<exclude name="WordPress.NamingConventions.ValidHookName.UseUnderscores" />
 	</rule>
+
+	<!-- Test against JS XXS https://vip.wordpress.com/documentation/vip-go/vip-code-review/javascript-security-best-practices/ -->
+	<rule ref="WordPressVIPMinimum.JS">
+		<type>error</type>
+	</rule>
+
     <rule ref="WordPress.WP.I18n">
         <properties>
             <property name="text_domain" type="array" value="advanced-sidebar-menu" />
