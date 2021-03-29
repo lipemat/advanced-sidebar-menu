@@ -3,10 +3,10 @@
 Contributors: Mat Lipe, onpointplugins
 Donate link: https://www.paypal.com/cgi-bin/webscr?cmd=_donations&business=paypal%40onpointplugins%2ecom&lc=US&item_name=Advanced%20Sidebar%20Menu&no_note=0&currency_code=USD&bn=PP%2dDonationsBF%3abtn_donateCC_LG%2egif%3aNonHostedGuest
 Tags: menus, sidebar menu, hierarchy, category menu, pages menu, dynamic
-Requires at least: 5.0.0
+Requires at least: 5.2.0
 Tested up to: 5.7.0
 Requires PHP: 5.6.0
-Stable tag: 8.3.0
+Stable tag: 8.3.1
 
 == Description ==
 
@@ -14,9 +14,9 @@ Uses the parent/child relationship of your pages or categories to generate menus
 
 Keeps the menu clean and usable. Only related items display so you don't have to worry about keeping a custom menu up to date or displaying links to items that don't belong. 
 
-<strong>Check out <a href="https://onpointplugins.com/product/advanced-sidebar-menu-pro/">Advanced Sidebar Menu PRO</a> for more features including priority support, the ability to customize the look and feel, custom link text, excluding of pages, category ordering, accordions, custom post types, custom taxonomies, and so much more!</strong>
+<strong>Check out <a href="https://onpointplugins.com/product/advanced-sidebar-menu-pro/">Advanced Sidebar Menu PRO</a> for more features including accordion menus, menu colors and styles, custom link text, excluding of pages, category ordering, custom post types, custom taxonomies, priority support, and so much more!</strong>
 
-<blockquote><a href="https://onpointplugins.com/product/advanced-sidebar-menu-pro/" target="_blank">PRO version 8.2.0</a> is now available with improved style targeting including hover styles and border widths!</blockquote>
+<blockquote><a href="https://onpointplugins.com/product/advanced-sidebar-menu-pro/" target="_blank">PRO version 8.3.0</a> is now available with improved style targeting including hover styles and border widths!</blockquote>
 
 <h3>Features</h3>
 * Page and Category widgets.
@@ -155,6 +155,12 @@ Yes. Based on whatever page, post, or category you are on, the menu will change 
 
 
 == Changelog ==
+= 8.3.1 =
+* Add readme for translations.
+* Tested to WordPress 5.7.
+* Require WordPress core 5.2+.
+* Improved PHPCS configuration.
+
 = 8.3.0 =
 * Improved plugin headers.
 * Added translations for French (fr_FR).
