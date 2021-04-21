@@ -5,8 +5,8 @@ Donate link: https://www.paypal.com/cgi-bin/webscr?cmd=_donations&business=paypa
 Tags: menus, sidebar menu, hierarchy, category menu, pages menu, dynamic
 Requires at least: 5.2.0
 Tested up to: 5.7.1
-Requires PHP: 5.6.10
-Stable tag: 8.3.1
+Requires PHP: 5.6.0
+Stable tag: 8.3.2
 
 == Description ==
 
@@ -155,6 +155,10 @@ Yes. Based on whatever page, post, or category you are on, the menu will change 
 
 
 == Changelog ==
+= 8.3.2 =
+* Fully compatible with PHP8.
+* Tested to WordPress 5.7.1.
+
 = 8.3.1 =
 * Add readme for translations.
 * Tested to WordPress 5.7.
