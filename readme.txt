@@ -5,7 +5,7 @@ Donate link: https://www.paypal.com/cgi-bin/webscr?cmd=_donations&business=paypa
 Tags: menus, sidebar menu, hierarchy, category menu, pages menu, dynamic
 Requires at least: 5.2.0
 Tested up to: 5.7.1
-Requires PHP: 5.6.0
+Requires PHP: 5.6.10
 Stable tag: 8.3.1
 
 == Description ==
