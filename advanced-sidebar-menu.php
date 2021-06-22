@@ -35,6 +35,7 @@ use Advanced_Sidebar_Menu\Notice;
 use Advanced_Sidebar_Menu\Scripts;
 use Advanced_Sidebar_Menu\Traits\Memoize;
 use Advanced_Sidebar_Menu\Traits\Singleton;
+use Advanced_Sidebar_Menu\Walkers\Category_Walker;
 use Advanced_Sidebar_Menu\Walkers\Page_Walker;
 use Advanced_Sidebar_Menu\Widget\Category as Widget_Category;
 use Advanced_Sidebar_Menu\Widget\Page as Widget_Page;
@@ -92,6 +93,7 @@ function advanced_sidebar_menu_autoload( $class ) {
 		Singleton::class       => 'Traits/Singleton.php',
 
 		// Walkers.
+		Category_Walker::class => 'Walkers/Category_Walker.php',
 		Page_Walker::class     => 'Walkers/Page_Walker.php',
 
 	];
