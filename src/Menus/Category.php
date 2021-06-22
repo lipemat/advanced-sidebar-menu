@@ -3,6 +3,7 @@
 namespace Advanced_Sidebar_Menu\Menus;
 
 use Advanced_Sidebar_Menu\Core;
+use Advanced_Sidebar_Menu\Walkers\Category_Walker;
 
 /**
  * Category menu.
@@ -61,6 +62,7 @@ class Category extends Menu_Abstract {
 			'show_option_none' => false,
 			'taxonomy'         => $this->get_taxonomy(),
 			'title_li'         => '',
+			'walker'           => new Category_Walker(),
 		];
 
 		if ( null === $level ) {
