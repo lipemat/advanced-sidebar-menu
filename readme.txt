@@ -6,7 +6,7 @@ Tags: menus, sidebar menu, hierarchy, category menu, pages menu, dynamic
 Requires at least: 5.2.0
 Tested up to: 5.7.2
 Requires PHP: 5.6.0
-Stable tag: 8.3.3
+Stable tag: 8.3.4
 
 == Description ==
 
@@ -155,9 +155,12 @@ Yes. Based on whatever page, post, or category you are on, the menu will change 
 
 
 == Changelog ==
+= 8.3.4 =
+* Support widget fields with array values.
+* Minimum required version for PRO 8.4.0.
+
 = 8.3.3 =
 * Introduce `data-level` on all menu levels for specific targeting.
-* Minimum required version for PRO 8.4.0.
 * Tested to WordPress 5.7.2.
 
 = 8.3.2 =
@@ -246,7 +249,7 @@ Major version update. See <a href="https://onpointplugins.com/advanced-sidebar-m
 * Bump required PHP version to 5.4.4.
 
 == Upgrade Notice ==
-= 8.3.3 =
+= 8.3.4 =
 Update to support PRO version 8.4.0.
 
 = 8.2.0 =
