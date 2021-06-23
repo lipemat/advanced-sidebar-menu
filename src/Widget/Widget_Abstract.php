@@ -1,6 +1,8 @@
 <?php
 namespace Advanced_Sidebar_Menu\Widget;
 
+use Advanced_Sidebar_Menu\Utils;
+
 /**
  * Base class for this plugin's widgets.
  *
@@ -27,7 +29,7 @@ abstract class Widget_Abstract extends \WP_Widget {
 	 *
 	 * @return array
 	 */
-	protected function set_instance( array $instance, array $defaults ) {
+	public function set_instance( array $instance, array $defaults ) {
 		$this->widget_settings = (array) wp_parse_args( $instance, $defaults );
 
 		return $this->widget_settings;
@@ -44,14 +46,7 @@ abstract class Widget_Abstract extends \WP_Widget {
 	 * @return bool
 	 */
 	public function checked( $name ) {
-		// Handle array type names (e.g. open-links[all]).
-		preg_match( '/(?<field>\S*?)\[(?<key>\S*?)]/', $name, $array );
-		if ( ! empty( $array['field'] ) && ! empty( $array['key'] ) ) {
-			return isset( $this->widget_settings[ $array['field'] ][ $array['key'] ] ) && 'checked' === $this->widget_settings[ $array['field'] ][ $array['key'] ];
-		}
-
-		// Standard non array names.
-		return isset( $this->widget_settings[ $name ] ) && 'checked' === $this->widget_settings[ $name ];
+		return Utils::instance()->is_checked( $name, $this->widget_settings );
 	}
 
 
