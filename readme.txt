@@ -6,7 +6,7 @@ Tags: menus, sidebar menu, hierarchy, category menu, pages menu, dynamic
 Requires at least: 5.2.0
 Tested up to: 5.7.2
 Requires PHP: 5.6.0
-Stable tag: 8.4.0
+Stable tag: 8.5.0
 
 == Description ==
 
@@ -155,11 +155,16 @@ Yes. Based on whatever page, post, or category you are on, the menu will change 
 
 
 == Changelog ==
+= 8.5.0 =
+* Introduce `Utils` class for shared non specific functionality.
+* Introduce `is_checked` method for determining checkbox state from anywhere.
+* Make `Widget_Abstract::set_instance` public for external use.
+* Complete preparations for PRO version 8.4.
+* Minimum required version for PRO 8.4.
+
 = 8.4.0 =
 * Introduce new Category Walker to increase extensibility.
 * Support `data-level` on all widgets.
-* Complete preparations for PRO version 8.4.
-* Minimum required version for PRO 8.4.
 
 = 8.3.4 =
 * Support widget fields with array values.
@@ -254,7 +259,7 @@ Major version update. See <a href="https://onpointplugins.com/advanced-sidebar-m
 * Bump required PHP version to 5.4.4.
 
 == Upgrade Notice ==
-= 8.4.0 =
+= 8.5.0 =
 Update to support PRO version 8.4.0.
 
 = 8.2.0 =
