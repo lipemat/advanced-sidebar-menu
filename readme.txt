@@ -16,7 +16,7 @@ Keeps the menu clean and usable. Only related items display so you don't have to
 
 <strong>Check out <a href="https://onpointplugins.com/product/advanced-sidebar-menu-pro/">Advanced Sidebar Menu PRO</a> for more features including accordion menus, menu colors and styles, custom link text, excluding of pages, category ordering, custom post types, custom taxonomies, priority support, and so much more!</strong>
 
-<blockquote><a href="https://onpointplugins.com/product/advanced-sidebar-menu-pro/" target="_blank">PRO version 8.3.0</a> is now available with improved style targeting including hover styles and border widths!</blockquote>
+<blockquote><a href="https://onpointplugins.com/product/advanced-sidebar-menu-pro/" target="_blank">PRO version 8.4.0</a> is now available with accordion options to use links for open/close!</blockquote>
 
 <h3>Features</h3>
 * Page and Category widgets.
@@ -61,6 +61,7 @@ Keeps the menu clean and usable. Only related items display so you don't have to
 * Accordion icon style and color selection.
 * Accordion option to keep all sections closed until clicked.
 * Accordion option to include highest level parent in accordion.
+* Accordion option to use links for open/close. **NEW**
 * Ability to exclude a page from all menus using a simple checkbox.
 * Link ordering for the category widget.
 * Number of levels of pages to show when "always display child pages" is not checked.
