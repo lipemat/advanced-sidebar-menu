@@ -128,7 +128,7 @@ add_action( 'advanced-sidebar-menu/widget/category/after-form', 'advanced_sideba
 function advanced_sidebar_menu_widget_docs( $instance, WP_Widget $widget ) {
 	$anchor = Widget_Category::NAME === $widget->id_base ? 'categories-menu' : 'pages-menu';
 	?>
-	<p style="text-align: right">
+	<p class="advanced-sidebar-widget-documentation">
 		<a
 			href="https://onpointplugins.com/advanced-sidebar-menu/#advanced-sidebar-<?php echo esc_attr( $anchor ); ?>"
 			target="_blank"
