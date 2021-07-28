@@ -4,9 +4,9 @@ Contributors: Mat Lipe, onpointplugins
 Donate link: https://www.paypal.com/cgi-bin/webscr?cmd=_donations&business=paypal%40onpointplugins%2ecom&lc=US&item_name=Advanced%20Sidebar%20Menu&no_note=0&currency_code=USD&bn=PP%2dDonationsBF%3abtn_donateCC_LG%2egif%3aNonHostedGuest
 Tags: menus, sidebar menu, hierarchy, category menu, pages menu, dynamic
 Requires at least: 5.2.0
-Tested up to: 5.7.2
+Tested up to: 5.8.0
 Requires PHP: 5.6.0
-Stable tag: 8.5.0
+Stable tag: 8.6.0
 
 == Description ==
 
@@ -156,6 +156,11 @@ Yes. Based on whatever page, post, or category you are on, the menu will change 
 
 
 == Changelog ==
+= 8.6.0 =
+* Support WordPress version 5.8.
+* Support Gutenberg widgets screen.
+* Minimum required version for PRO 8.5.
+
 = 8.5.0 =
 * Introduce `Utils` class for shared non specific functionality.
 * Introduce `is_checked` method for determining checkbox state from anywhere.
@@ -260,18 +265,9 @@ Major version update. See <a href="https://onpointplugins.com/advanced-sidebar-m
 * Bump required PHP version to 5.4.4.
 
 == Upgrade Notice ==
+= 8.6.0 = 
+Update to support WordPress version 5.8.
+
 = 8.5.0 =
 Update to support PRO version 8.4.0.
-
-= 8.2.0 =
-Update to support PRO version 8.2.0
-
-= 8.0.0 =
-Major version update. Not fully backward compatible with version 7 filters or code. Please see migration guide if you are extending the plugin via code.
-
-= 7.7.0 =
-Update to support PRO version 3.10.0
-
-= 7.6.6 =
-Update to support PRO version 3.9.3
 
