@@ -279,10 +279,6 @@ class List_Pages {
 			$inside .= "</li>\n";
 		}
 
-		if ( '' === $inside ) {
-			return '';
-		}
-
 		return $content . $inside . "</ul>\n";
 	}
 
