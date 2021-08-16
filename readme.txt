@@ -6,7 +6,7 @@ Tags: menus, sidebar menu, hierarchy, category menu, pages menu, dynamic
 Requires at least: 5.2.0
 Tested up to: 5.8.0
 Requires PHP: 5.6.0
-Stable tag: 8.6.0
+Stable tag: 8.6.1
 
 == Description ==
 
@@ -156,6 +156,11 @@ Yes. Based on whatever page, post, or category you are on, the menu will change 
 
 
 == Changelog ==
+= 8.6.1 = 
+* Improved widget interaction handling.
+* Synced styles between block, classic, and customizer widgets.
+* Fixed customizer widget buttons.
+
 = 8.6.0 =
 * Support WordPress version 5.8.
 * Support Gutenberg widgets screen.
