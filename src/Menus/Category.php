@@ -320,29 +320,21 @@ class Category extends Menu_Abstract {
 
 	/**
 	 * Retrieve the highest level term_id based on the given
-	 * term's ancestors
+	 * term's ancestors.
+	 *
+	 * Track the latest call's ancestors on the class for use
+	 * on the single term's archive.
 	 *
 	 * @param int $term_id - Provided term's id.
 	 *
 	 * @return int
 	 */
 	public function get_highest_parent( $term_id ) {
-		$cat_ancestors = [];
-		$cat_ancestors[] = $term_id;
+		$this->ancestors = \array_reverse( get_ancestors( $term_id, $this->get_taxonomy(), 'taxonomy' ) );
+		// Store current term at the end ancestors for backward compatibility.
+		$this->ancestors[] = $term_id;
 
-		do {
-			$term = get_term( $term_id, $this->get_taxonomy() );
-			if ( is_a( $term, \WP_Term::class ) ) {
-				$term_id = $term->parent;
-				$cat_ancestors[] = $term_id;
-			} else {
-				$term = false;
-			}
-		} while ( $term );
-
-		// We only track the last calls ancestors because we only care about these when on a single term archive.
-		$this->ancestors = array_reverse( $cat_ancestors );
-		return $this->ancestors[1];
+		return reset( $this->ancestors );
 	}
 
 
