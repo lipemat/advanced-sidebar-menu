@@ -18,7 +18,7 @@ class Category extends Menu_Abstract {
 	const EACH_CATEGORY_DISPLAY = 'new_widget';
 
 	/**
-	 * Parents and grandparents fo current term.
+	 * Parents and grandparents of current term.
 	 *
 	 * @var array
 	 */
@@ -103,8 +103,8 @@ class Category extends Menu_Abstract {
 	 * @return \WP_Term[]
 	 */
 	public function get_child_terms() {
-		$terms = array_filter(
-			get_terms(
+		$terms = get_terms(
+			\array_filter(
 				[
 					'taxonomy' => $this->get_taxonomy(),
 					'parent'   => $this->get_top_parent_id(),
@@ -113,7 +113,8 @@ class Category extends Menu_Abstract {
 				]
 			)
 		);
-		return apply_filters( 'advanced-sidebar-menu/menus/category/get-child-terms', $terms, $this );
+
+		return apply_filters( 'advanced-sidebar-menu/menus/category/get-child-terms', \array_filter( $terms ), $this );
 	}
 
 
@@ -149,7 +150,7 @@ class Category extends Menu_Abstract {
 		if ( ! empty( $top_level_term_ids ) ) {
 			$terms = get_terms(
 				[
-					'include'    => array_unique( array_filter( $top_level_term_ids ) ),
+					'include'    => \array_unique( \array_filter( $top_level_term_ids ) ),
 					'hide_empty' => false,
 					'orderby'    => $this->get_order_by(),
 					'order'      => $this->get_order(),
