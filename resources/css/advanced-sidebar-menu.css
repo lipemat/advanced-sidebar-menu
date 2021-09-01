@@ -315,11 +315,8 @@ select.advanced-sidebar-menu-block-field {
 
 .elementor-control-content .advanced-sidebar-menu-column-box .wp-picker-container.wp-picker-active {
 	top: auto;
-}
-
-.elementor-control-content .advanced-sidebar-menu-styles-box .wp-picker-active {
 	width: 100%;
-	margin: 5px 0 10px 0;
+	margin: 5px 0 10px 0 !important;
 }
 
 .elementor-control-content .advanced-sidebar-menu-column-box .wp-picker-container input[type='text'].wp-color-picker {
