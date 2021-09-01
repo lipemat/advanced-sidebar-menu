@@ -6,7 +6,7 @@ Tags: menus, sidebar menu, hierarchy, category menu, pages menu, dynamic
 Requires at least: 5.2.0
 Tested up to: 5.8.0
 Requires PHP: 5.6.0
-Stable tag: 8.6.1
+Stable tag: 8.6.2
 
 == Description ==
 
@@ -156,6 +156,14 @@ Yes. Based on whatever page, post, or category you are on, the menu will change 
 
 
 == Changelog ==
+= 8.6.2 =
+* Assured consistency for levels of page menu's CSS classes.
+* Converted category get highest parent logic to `get_ancestors`.
+* Gracefully handle invalid taxonomies in Category widgets.
+* Gracefully handle widgets without ids.
+* Fixed color pickers in Elementor.
+* Fixed color pickers in Beaver Builder.
+
 = 8.6.1 = 
 * Improved widget interaction handling.
 * Synced styles between block, classic, and customizer widgets.
