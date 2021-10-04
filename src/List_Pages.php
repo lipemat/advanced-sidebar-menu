@@ -120,7 +120,7 @@ class List_Pages {
 		if ( ! empty( $this->get_current_page_id() ) ) {
 			if ( $this->get_current_page_id() === $post->ID ) {
 				$classes[] = 'current_page_item';
-			} elseif ( $this->get_current_page_id() === $post->post_parent ) {
+			} elseif ( $this->current_page->post_parent === $post->ID ) {
 				$classes[] = 'current_page_parent';
 				$classes[] = 'current_page_ancestor';
 			} else {
