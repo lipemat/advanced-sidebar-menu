@@ -6,7 +6,7 @@ Tags: menus, sidebar menu, hierarchy, category menu, pages menu, dynamic
 Requires at least: 5.2.0
 Tested up to: 5.8.1
 Requires PHP: 5.6.0
-Stable tag: 8.6.2
+Stable tag: 8.6.3
 
 == Description ==
 
@@ -156,6 +156,9 @@ Yes. Based on whatever page, post, or category you are on, the menu will change 
 
 
 == Changelog ==
+= 8.6.3 =
+* Fix issue with CSS classnames on current page's children.
+
 = 8.6.2 =
 * Assured consistency for levels of page menu's CSS classes.
 * Converted category get highest parent logic to `get_ancestors`.
