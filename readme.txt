@@ -119,22 +119,33 @@ Manual Installation
 The widgets in this plugin are smart enough to not show up on pages or categories where the only thing that would display is the title. While it may appear like the widget is broken, it is actually doing what it is intended to do.
 
 The most common causes for this confusion come from one of these reasons:
-1. The incorrect widget was selected (there are different widgets for categories or pages).
+1. The incorrect widget was selected. Categories have their own widget as pages have their own widget.
 2. "Display the highest level parent page" or "Display the highest level parent category" is not checked.
 3. The widget is currently not being viewed on a page (for the pages widget) or category (for the categories widget).
 
 = How do I change the styling of the current page? =
 
-You may add css to your theme's style.css to change the way the menu looks
+You may add CSS to your theme’s style.css to change the way the menu looks.
 
-For Instance This would remove the dot and change the color
+For example the following CSS would:
+1. Remove the dot to the left of the menu item.
+2. Change the link color.
+3. Add a background on hover.
+
 <code>
+.advanced-sidebar-menu li.current-cat a,
 .advanced-sidebar-menu li.current_page_item a {
     color: black;
 }
 
+.advanced-sidebar-menu li.current-cat,
 .advanced-sidebar-menu li.current_page_item {
-    list-style-type:  none !important;
+    list-style-type: none !important;
+}
+
+.advanced-sidebar-menu li.current-cat > a:hover,
+.advanced-sidebar-menu li.current_page_item > a:hover {
+	background: teal;
 }
 </code>
 
@@ -286,4 +297,3 @@ Update to support WordPress version 5.8.
 
 = 8.5.0 =
 Update to support PRO version 8.4.0.
-
