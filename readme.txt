@@ -125,7 +125,7 @@ The most common causes for this confusion come from one of these reasons:
 
 = How do I change the styling of the current page? =
 
-You may add CSS to your theme’s style.css to change the way the menu looks.
+You may add CSS to your theme's style.css to change the way the menu looks.
 
 For example the following CSS would:
 1. Remove the dot to the left of the menu item.
@@ -153,17 +153,11 @@ To style your menu without using any code <a href="https://onpointplugins.com/pr
 
 = How do you get the categories to display on single post pages? =
 
-There is a checkbox in the widget options that will display the same structure for the categories the post is in.
-
-= How do you edit the output or built in css? =
-
-Create a folder in your child theme named "advanced-sidebar-menu" copy any of the files from the "views" folder into
-the folder you just created. You may edit the files to change the output or css. You must have the option checked to use the built in CSS (in the widget) to be able to edit the css file in this way.
-
+The Categories Menu widget contains a "Display categories on single posts" checkbox, which will display the category menus based on the categories the current post is assigned to.
 
 = Does the menu change for each page you are on? =
 
-Yes. Based on whatever page, post, or category you are on, the menu will change automatically to display the current parents and children.
+Yes. Based on whatever page, post or category you are on, the menu will change automatically to display the current parents and children.
 
 
 == Changelog ==
