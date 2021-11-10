@@ -6,7 +6,7 @@ Tags: menus, sidebar menu, hierarchy, category menu, pages menu, dynamic
 Requires at least: 5.2.0
 Tested up to: 5.8.1
 Requires PHP: 5.6.0
-Stable tag: 8.6.3
+Stable tag: 8.6.4
 
 == Description ==
 
@@ -49,7 +49,7 @@ Keeps the menu clean and usable. Only related items display so you don't have to
 * Levels of Categories to display when always display child categories is checked
 
 <h3>PRO Features</h3>
-* Ability to customize each page or navigation menu item link’s text.
+* Ability to customize each page or navigation menu item link's text.
 * Click-and-drag styling for page, category, and navigation menu widgets.
 * Styling options for links including color, background color, size, hover, and font weight.
 * Styling options for different levels of links.
@@ -161,12 +161,17 @@ Yes. Based on whatever page, post or category you are on, the menu will change a
 
 
 == Changelog ==
+= 8.6.4 = 
+* Introduced `advanced-sidebar-menu/debug/print-instance` filter.
+* Improved FAQ information.
+* Remove dangling reference to old built in styles from FAQ.
+
 = 8.6.3 =
-* Fix issue with CSS classnames on current page's children.
+* Fix issue with CSS classnames on the current page's children.
 
 = 8.6.2 =
 * Assured consistency for levels of page menu's CSS classes.
-* Converted category get highest parent logic to `get_ancestors`.
+* Converted category get the highest parent logic to `get_ancestors`.
 * Gracefully handle invalid taxonomies in Category widgets.
 * Gracefully handle widgets without ids.
 * Fixed color pickers in Elementor.
@@ -174,7 +179,7 @@ Yes. Based on whatever page, post or category you are on, the menu will change a
 
 = 8.6.1 = 
 * Improved widget interaction handling.
-* Synced styles between block, classic, and customizer widgets.
+* Synced styles between block, classic and customizer widgets.
 * Fixed customizer widget buttons.
 
 = 8.6.0 =
@@ -274,7 +279,7 @@ Major version update. See <a href="https://onpointplugins.com/advanced-sidebar-m
 * Greatly improved widget styles and UI when using Elementor.
 * Overall third party page builder improvements.
 * Move scripts and styles into new Scripts class.
-* Introduced a new Singleton trait.
+* Introduced a Singleton trait.
 
 = 7.6.0 =
 * Elementor support for multiple widgets of the same type on the same page.
