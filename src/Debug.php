@@ -7,11 +7,12 @@ use Advanced_Sidebar_Menu\Traits\Singleton;
 use Advanced_Sidebar_Menu\Widget\Page;
 
 /**
- * Advanced_Sidebar_Menu\Advanced_Sidebar_Menu_Debug
+ * Widget Debugging
+ *
+ * Passed an `asm_debug` URL parameter to print a JS
+ * variable including information about a page's widgets.
  *
  * @author OnPoint Plugins
- * @since  6.3.1
- * @since  7.4.8 - Use URL arguments to test different configurations.
  */
 class Debug {
 	use Singleton;
@@ -36,7 +37,7 @@ class Debug {
 
 
 	/**
-	 * Adjust widget settings using the URL.
+	 * Adjust widget settings using the URL parameters.
 	 *
 	 * @param array $instance - Widget settings.
 	 *
@@ -50,7 +51,7 @@ class Debug {
 
 
 	/**
-	 * Print the widget settings as a js variable.
+	 * Print the widget settings as a JS variable.
 	 *
 	 * @param Menu_Abstract $asm    - Menu class.
 	 * @param Page          $widget - Widget class.
@@ -64,6 +65,7 @@ class Debug {
 		if ( defined( 'ADVANCED_SIDEBAR_MENU_PRO_VERSION' ) ) {
 			$data['pro_version'] = ADVANCED_SIDEBAR_MENU_PRO_VERSION;
 		}
+		$data = apply_filters( 'advanced-sidebar-menu/debug/print-instance', $data );
 		?>
 		<script class="<?php echo esc_attr( self::DEBUG_PARAM ); ?>">
 			if ( 'undefined' === typeof( <?php echo esc_attr( self::DEBUG_PARAM ); ?> ) ){
