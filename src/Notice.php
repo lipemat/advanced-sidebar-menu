@@ -133,16 +133,16 @@ class Notice {
 
 
 	/**
-	 * Display a preview image which covers the widget when the "Preview"
+	 * Display a preview image, which covers the widget when the "Preview"
 	 * button is clicked.
 	 *
 	 * @param array      $instance - Widgets settings.
 	 * @param \WP_Widget $widget   - Widget class.
 	 */
 	public function preview( array $instance, \WP_Widget $widget ) {
-		$src = 'pages-widget-min.png?version=' . ADVANCED_SIDEBAR_BASIC_VERSION;
+		$src = 'pages-widget-min.webp?version=' . ADVANCED_SIDEBAR_BASIC_VERSION;
 		if ( Category::NAME === $widget->id_base ) {
-			$src = 'category-widget-min.png?version=' . ADVANCED_SIDEBAR_BASIC_VERSION;
+			$src = 'category-widget-min.webp?version=' . ADVANCED_SIDEBAR_BASIC_VERSION;
 		}
 		?>
 		<div
@@ -153,8 +153,8 @@ class Notice {
 				data-js="advanced-sidebar-menu/pro/preview/image"
 				class="advanced-sidebar-menu-preview-image"
 				src="https://onpointplugins.com/plugins/assets/shared/<?php echo esc_attr( $src ); ?>"
-				srcset="https://onpointplugins.com/plugins/assets/shared/<?php echo esc_attr( str_replace( '-min.png', '-1x-min.png', $src ) ); ?> 1x, https://onpointplugins.com/plugins/assets/shared/<?php echo esc_attr( $src ); ?> 2x"
-				alt="PRO version widget options" />
+				srcset="https://onpointplugins.com/plugins/assets/shared/<?php echo esc_attr( str_replace( '-min.webp', '-1x-min.webp', $src ) ); ?> 1x, https://onpointplugins.com/plugins/assets/shared/<?php echo esc_attr( $src ); ?> 2x"
+				alt="<?php esc_attr_e( 'PRO version widget options', 'advanced-sidebar-menu' ); ?>" />
 		</div>
 		<?php
 	}
