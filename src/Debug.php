@@ -45,7 +45,10 @@ class Debug {
 	 * @return array
 	 */
 	public function adjust_widget_settings( array $instance ) {
-		$overrides = array_map( 'sanitize_text_field', (array) $_GET[ self::DEBUG_PARAM ] ); //phpcs:ignore
+		if ( empty( $_GET[ self::DEBUG_PARAM ] ) ) { //phpcs:ignore
+			return $instance;
+		}
+		$overrides = Utils::instance()->array_map_recursive( 'sanitize_text_field', (array) $_GET[ self::DEBUG_PARAM ] ); //phpcs:ignore
 
 		return wp_parse_args( $overrides, $instance );
 	}
