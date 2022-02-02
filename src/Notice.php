@@ -106,7 +106,7 @@ class Notice {
 				<li><?php esc_html_e( 'Priority support with access to members only support area.', 'advanced-sidebar-menu' ); ?></li>
 				<li>
 					<a
-						href="https://onpointplugins.com/product/advanced-sidebar-menu-pro/"
+						href="https://onpointplugins.com/product/advanced-sidebar-menu-pro/?utm_source=widget-more&utm_campaign=gopro&utm_medium=wp-dash"
 						target="_blank"
 						style="text-decoration: none;">
 						<?php esc_html_e( 'So much more...', 'advanced-sidebar-menu' ); ?>
@@ -115,7 +115,7 @@ class Notice {
 			</ol>
 			<a
 				class="button-primary"
-				href="https://onpointplugins.com/product/advanced-sidebar-menu-pro/?trigger_buy_now=1"
+				href="https://onpointplugins.com/product/advanced-sidebar-menu-pro/?trigger_buy_now=1&utm_source=widget-upgrade&utm_campaign=gopro&utm_medium=wp-dash"
 				target="_blank"
 			>
 				<?php esc_html_e( 'Upgrade', 'advanced-sidebar-menu' ); ?>
