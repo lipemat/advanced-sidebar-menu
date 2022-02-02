@@ -15,6 +15,9 @@ use Advanced_Sidebar_Menu\Widget\Page;
 class Core {
 	use Singleton;
 
+	const PLUGIN_FILE = 'advanced-sidebar-menu/advanced-sidebar-menu.php';
+
+
 	/**
 	 * Actions
 	 */

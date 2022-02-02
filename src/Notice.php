@@ -24,6 +24,8 @@ class Notice {
 		add_action( 'advanced-sidebar-menu/widget/category/right-column', [ $this, 'info_panel' ], 1, 2 );
 		add_action( 'advanced-sidebar-menu/widget/page/right-column', [ $this, 'info_panel' ], 1, 2 );
 
+		add_filter( 'plugin_action_links_' . Core::PLUGIN_FILE, [ $this, 'plugin_action_link' ] );
+
 		if ( $this->is_conflicting_pro_version() ) {
 			add_action( 'all_admin_notices', [ $this, 'pro_version_warning' ] );
 		}
@@ -157,6 +159,21 @@ class Notice {
 				alt="<?php esc_attr_e( 'PRO version widget options', 'advanced-sidebar-menu' ); ?>" />
 		</div>
 		<?php
+	}
+
+
+	/**
+	 * Display a "Go PRO" action link in plugins list.
+	 *
+	 * @param array $actions - Array of actions and their link.
+	 *
+	 * @return array
+	 */
+	public function plugin_action_link( array $actions ) {
+		if ( ! \defined( 'ADVANCED_SIDEBAR_MENU_PRO_VERSION' ) ) {
+			$actions['go-pro'] = sprintf( '<a href="%1$s" target="_blank" style="color:#3db634;font-weight:700;">%2$s</a>', 'https://onpointplugins.com/product/advanced-sidebar-menu-pro/?utm_source=wp-plugins&utm_campaign=gopro&utm_medium=wp-dash', __( 'Go PRO', 'advanced-sidebar-menu' ) );
+		}
+		return $actions;
 	}
 
 }
