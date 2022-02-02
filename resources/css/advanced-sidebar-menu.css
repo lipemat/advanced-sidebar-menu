@@ -180,10 +180,14 @@ select.advanced-sidebar-menu-block-field {
 	transition: all 300ms linear;
 	position: absolute;
 	font-size: 40px;
-	/* top: 130px; */
-	right: 50px;
+	margin: 5px 0 0 0;
+	right: 40px;
 	cursor: pointer;
 	display: none;
+}
+
+.block-editor-page .advanced-sidebar-menu-close-icon {
+	right: 25px;
 }
 
 .advanced-sidebar-menu-close-icon:hover {
