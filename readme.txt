@@ -6,7 +6,7 @@ Tags: menus, sidebar menu, hierarchy, category menu, pages menu, dynamic
 Requires at least: 5.2.0
 Tested up to: 5.9.0
 Requires PHP: 5.6.0
-Stable tag: 8.7.1
+Stable tag: 8.7.2
 
 == Description ==
 
@@ -161,6 +161,12 @@ Yes. Based on whatever page, post or category you are on, the menu will change a
 
 
 == Changelog ==
+= 8.7.2 = 
+* Improved position of close icon in widget previews.
+* Improved plugin links utm structure.
+* Added a "Go PRO" action to the plugins list.
+* Prevented overrides of non-public post types during debugging.
+
 = 8.7.1 =
 * Fine tune widgets styles for WordPress 5.9.
 * Tested to WordPress 5.9.
