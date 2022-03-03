@@ -73,7 +73,8 @@ class Debug {
 	 */
 	public function print_instance( $menu, $widget ) {
 		$data = [
-			'version' => ADVANCED_SIDEBAR_BASIC_VERSION,
+			'version'    => ADVANCED_SIDEBAR_BASIC_VERSION,
+			'wp-version' => get_bloginfo( 'version' ),
 		];
 		if ( defined( 'ADVANCED_SIDEBAR_MENU_PRO_VERSION' ) ) {
 			$data['pro_version'] = ADVANCED_SIDEBAR_MENU_PRO_VERSION;
