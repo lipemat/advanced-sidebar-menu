@@ -84,7 +84,7 @@ class Notice {
 		?>
 		<div class="advanced-sidebar-menu-column-box advanced-sidebar-info-panel">
 			<h3>
-				<a href="https://onpointplugins.com/product/advanced-sidebar-menu-pro/">
+				<a href="https://onpointplugins.com/product/advanced-sidebar-menu-pro/?utm_source=widget-title&utm_campaign=gopro&utm_medium=wp-dash">
 					<?php esc_html_e( 'Advanced Sidebar Menu PRO', 'advanced-sidebar-menu' ); ?>
 				</a>
 			</h3>
