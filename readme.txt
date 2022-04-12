@@ -133,18 +133,15 @@ For example the following CSS would:
 3. Add a background on hover.
 
 <code>
-.advanced-sidebar-menu li.current-cat a,
-.advanced-sidebar-menu li.current_page_item a {
+.advanced-sidebar-menu li.current-menu-item a {
     color: black;
 }
 
-.advanced-sidebar-menu li.current-cat,
-.advanced-sidebar-menu li.current_page_item {
+.advanced-sidebar-menu li.current-menu-item {
     list-style-type: none !important;
 }
 
-.advanced-sidebar-menu li.current-cat > a:hover,
-.advanced-sidebar-menu li.current_page_item > a:hover {
+.advanced-sidebar-menu li.current-menu-item > a:hover {
 	background: teal;
 }
 </code>
