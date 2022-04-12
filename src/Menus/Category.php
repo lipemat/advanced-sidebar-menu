@@ -3,6 +3,7 @@
 namespace Advanced_Sidebar_Menu\Menus;
 
 use Advanced_Sidebar_Menu\Core;
+use Advanced_Sidebar_Menu\Traits\Memoize;
 use Advanced_Sidebar_Menu\Walkers\Category_Walker;
 
 /**
@@ -12,17 +13,12 @@ use Advanced_Sidebar_Menu\Walkers\Category_Walker;
  * @since  7.0.0
  */
 class Category extends Menu_Abstract {
+	use Memoize;
+
 	const WIDGET = 'category';
 
 	const DISPLAY_ON_SINGLE     = 'single';
 	const EACH_CATEGORY_DISPLAY = 'new_widget';
-
-	/**
-	 * Parents and grandparents of current term.
-	 *
-	 * @var array
-	 */
-	public $ancestors = [];
 
 	/**
 	 * Top_level_term.
@@ -93,12 +89,33 @@ class Category extends Menu_Abstract {
 
 
 	/**
+	 * Get all ancestor of the current term or terms assigned
+	 * to the current post.
+	 *
+	 * @since 8.8.0
+	 *
+	 * @return array
+	 */
+	public function get_current_ancestors() {
+		return $this->once( function() {
+			$included = $this->get_included_term_ids();
+			$ancestors = [];
+			foreach ( $included as $term_id ) {
+				$term_ancestors = \array_reverse( get_ancestors( $term_id, $this->get_taxonomy(), 'taxonomy' ) );
+				// All the post's assigned categories are considered ancestors.
+				if ( ! $this->is_tax() ) {
+					$term_ancestors[] = $term_id;
+				}
+				$ancestors[] = $term_ancestors;
+			}
+
+			return \array_merge( ...$ancestors );
+		}, __METHOD__, [] );
+	}
+
+
+	/**
 	 * Get the first level child terms.
-	 *
-	 * $this->set_current_top_level_term() most likely should be called
-	 * before this.
-	 *
-	 * @see \Advanced_Sidebar_Menu\Menus\Category::set_current_top_level_term()
 	 *
 	 * @return \WP_Term[]
 	 */
@@ -326,11 +343,11 @@ class Category extends Menu_Abstract {
 	 * @return int
 	 */
 	public function get_highest_parent( $term_id ) {
-		$this->ancestors = \array_reverse( get_ancestors( $term_id, $this->get_taxonomy(), 'taxonomy' ) );
-		// Store current term at the end ancestors for backward compatibility.
-		$this->ancestors[] = $term_id;
+		$ancestors = \array_reverse( get_ancestors( $term_id, $this->get_taxonomy(), 'taxonomy' ) );
+		// Use current term if no ancestors available.
+		$ancestors[] = $term_id;
 
-		return reset( $this->ancestors );
+		return reset( $ancestors );
 	}
 
 
