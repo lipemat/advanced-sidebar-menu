@@ -281,14 +281,10 @@ class Category extends Menu_Abstract {
 	public function is_tax() {
 		$taxonomy = $this->get_taxonomy();
 		if ( 'category' === $taxonomy ) {
-			if ( is_category() ) {
-				return true;
-			}
-		} elseif ( is_tax( $taxonomy ) ) {
-			return true;
+			return is_category();
 		}
 
-		return false;
+		return is_tax( $taxonomy );
 	}
 
 
@@ -381,6 +377,23 @@ class Category extends Menu_Abstract {
 
 
 	/**
+	 * Is a term the currently viewed term?
+	 *
+	 * @param \WP_Term $term - Term to check against.
+	 *
+	 * @since 8.8.0
+	 *
+	 * @return bool
+	 */
+	public function is_current_term( \WP_Term $term ) {
+		if ( ! $this->is_tax() ) {
+			return false;
+		}
+		return get_queried_object_id() === $term->term_id;
+	}
+
+
+	/**
 	 * Is this term an ancestor of the current term?
 	 * Does this term have children?
 	 *
@@ -390,7 +403,7 @@ class Category extends Menu_Abstract {
 	 */
 	public function is_current_term_ancestor( \WP_Term $term ) {
 		$return = false;
-		if ( (int) $term->term_id === (int) $this->top_level_term->term_id || in_array( $term->term_id, $this->ancestors, false ) ) { //phpcs:ignore WordPress.PHP.StrictInArray.FoundNonStrictFalse
+		if ( (int) $term->term_id === (int) $this->top_level_term->term_id || \in_array( $term->term_id, $this->ancestors, false ) ) { //phpcs:ignore WordPress.PHP.StrictInArray.FoundNonStrictFalse
 			$children = get_term_children( $term->term_id, $this->get_taxonomy() );
 			if ( ! empty( $children ) ) {
 				$return = true;
