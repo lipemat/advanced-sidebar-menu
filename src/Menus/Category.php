@@ -115,6 +115,21 @@ class Category extends Menu_Abstract {
 
 
 	/**
+	 * Get the current item if available.
+	 *
+	 * @since 8.8.0
+	 *
+	 * @return ?\WP_Term
+	 */
+	public function get_current_term() {
+		if ( $this->is_tax() ) {
+			return get_queried_object();
+		}
+		return null;
+	}
+
+
+	/**
 	 * Get the first level child terms.
 	 *
 	 * @return \WP_Term[]
@@ -369,22 +384,32 @@ class Category extends Menu_Abstract {
 
 
 	/**
-	 * If a category has children add the 'has_children' class
-	 * to the list item.
+	 * Add various classes to category item to define it among levels
+	 * as well as current item state.
 	 *
-	 * @param array    $classes - List of classes added to category list item.
+	 * @param array    $classes  - List of classes added to category list item.
 	 * @param \WP_Term $category - Current category.
 	 *
 	 * @filter category_css_class 11 2
 	 *
 	 * @return array
 	 */
-	public function add_has_children_category_class( $classes, $category ) {
+	public function add_list_item_classes( $classes, $category ) {
+		$classes[] = 'menu-item';
 		if ( $this->has_children( $category ) ) {
 			$classes[] = 'has_children';
 		}
 
-		return array_unique( $classes );
+		if ( $this->is_current_term( $category ) ) {
+			$classes[] = 'current-menu-item';
+		} else {
+			$current = $this->get_current_term();
+			if ( null !== $current && $current->parent === $category->term_id ) {
+				$classes[] = 'current-menu-parent';
+			}
+		}
+
+		return \array_unique( $classes );
 	}
 
 
@@ -477,7 +502,7 @@ class Category extends Menu_Abstract {
 			return;
 		}
 
-		add_filter( 'category_css_class', [ $this, 'add_has_children_category_class' ], 11, 2 );
+		add_filter( 'category_css_class', [ $this, 'add_list_item_classes' ], 11, 2 );
 
 		$menu_open = false;
 		$close_menu = false;
