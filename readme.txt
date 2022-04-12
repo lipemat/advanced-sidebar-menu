@@ -6,7 +6,7 @@ Tags: menus, sidebar menu, hierarchy, category menu, pages menu, dynamic
 Requires at least: 5.4.0
 Tested up to: 5.9.3
 Requires PHP: 5.6.0
-Stable tag: 8.7.3
+Stable tag: 8.8.0
 
 == Description ==
 
@@ -161,6 +161,15 @@ Yes. Based on whatever page, post or category you are on, the menu will change a
 
 
 == Changelog ==
+= 8.8.0 =
+* Implement universal 'menu-item' style CSS classes to all menus.
+* Introduced `Category::is_current_top_level_term` method.
+* Introduced `Category::get_current_ancestors` method.
+* Introduced `Category::is_current_term` method.
+* Enabled PHPCS caching.
+* Required WordPress core version 5.4.0+.
+* Tested to WordPress 5.9.3.
+
 = 8.7.3 = 
 * Include WP core version in debug info.
 * Tested to WordPress 5.9.2.
