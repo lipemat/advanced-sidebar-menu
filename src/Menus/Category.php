@@ -306,6 +306,23 @@ class Category extends Menu_Abstract {
 
 
 	/**
+	 * Is a term our current top level term?
+	 *
+	 * @param \WP_Term $term - Term to check against.
+	 *
+	 * @since 8.8.0
+	 *
+	 * @return bool
+	 */
+	public function is_current_top_level_term( \WP_Term $term ) {
+		if ( null === $this->top_level_term ) {
+			return false;
+		}
+		return ( (int) $term->term_id ) === ( (int) $this->top_level_term->term_id );
+	}
+
+
+	/**
 	 * Get list of excluded ids from widget settings.
 	 *
 	 * @return array
@@ -420,7 +437,8 @@ class Category extends Menu_Abstract {
 	 */
 	public function is_current_term_ancestor( \WP_Term $term ) {
 		$return = false;
-		if ( (int) $term->term_id === (int) $this->top_level_term->term_id || \in_array( $term->term_id, $this->ancestors, false ) ) { //phpcs:ignore WordPress.PHP.StrictInArray.FoundNonStrictFalse
+
+		if ( $this->is_current_top_level_term( $term ) || \in_array( $term->term_id, $this->get_current_ancestors(), true ) ) {
 			$children = get_term_children( $term->term_id, $this->get_taxonomy() );
 			if ( ! empty( $children ) ) {
 				$return = true;

@@ -34,6 +34,7 @@
 		<exclude name="Generic.Arrays.DisallowShortArraySyntax.Found" />
 		<exclude name="Generic.Formatting.MultipleStatementAlignment" />
 
+		<exclude name="PEAR.Functions.FunctionCallSignature" />
 		<exclude name="PEAR.NamingConventions.ValidClassName.Invalid" />
 
 		<exclude name="Squiz.Commenting.FileComment.Missing" />
