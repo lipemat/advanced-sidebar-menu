@@ -9,6 +9,8 @@ namespace Advanced_Sidebar_Menu\Menus;
  * @since  7.0.0
  */
 abstract class Menu_Abstract {
+	const WIDGET = 'menu-abstract';
+
 	const DISPLAY_ALL              = 'display_all';
 	const EXCLUDE                  = 'exclude';
 	const INCLUDE_CHILDLESS_PARENT = 'include_childless_parent';
@@ -37,7 +39,7 @@ abstract class Menu_Abstract {
 	public $instance;
 
 	/**
-	 * Track the ids which have been used in case of
+	 * Track the ids, which have been used in case of
 	 * plugins like Elementor that we need to manually increment.
 	 *
 	 * @since 7.6.0
@@ -204,9 +206,8 @@ abstract class Menu_Abstract {
 	 * @return bool
 	 */
 	public function is_excluded( $id ) {
-		$exclude = $this->get_excluded_ids();
-
-		return in_array( (int) $id, $exclude, true );
+		$excluded = \in_array( (int) $id, $this->get_excluded_ids(), true );
+		return apply_filters( 'advanced-sidebar-menu/menus/' . static::WIDGET . '/is-excluded', $excluded, $id, $this->get_widget_args(), $this->get_widget_instance(), $this );
 	}
 
 
@@ -216,7 +217,7 @@ abstract class Menu_Abstract {
 	 * @return array
 	 */
 	public function get_excluded_ids() {
-		return array_map( 'intval', array_filter( explode( ',', $this->instance[ self::EXCLUDE ] ), 'is_numeric' ) );
+		return \array_map( 'intval', \array_filter( \explode( ',', $this->instance[ self::EXCLUDE ] ), 'is_numeric' ) );
 	}
 
 
@@ -242,7 +243,7 @@ abstract class Menu_Abstract {
 	 *
 	 * @static
 	 *
-	 * @var Page|Category
+	 * @var Page|Category|null
 	 */
 	protected static $current;
 
@@ -252,7 +253,7 @@ abstract class Menu_Abstract {
 	 *
 	 * @static
 	 *
-	 * @return Page|Category
+	 * @return Page|Category|null
 	 */
 	public static function get_current() {
 		return self::$current;
