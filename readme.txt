@@ -6,7 +6,7 @@ Tags: menus, sidebar menu, hierarchy, category menu, pages menu, dynamic
 Requires at least: 5.4.0
 Tested up to: 6.0.0
 Requires PHP: 5.6.0
-Stable tag: 8.8.0
+Stable tag: 8.8.1
 
 == Description ==
 
@@ -158,6 +158,12 @@ Yes. Based on whatever page, post or category you are on, the menu will change a
 
 
 == Changelog ==
+= 8.8.1 = 
+* Introduced `advanced-sidebar-menu/menus/page/is-excluded` filter.
+* Introduced `advanced-sidebar-menu/menus/category/is-excluded` filter.
+* Tested to WordPress Core 6.0.0.
+* Required PRO version 8.7.0+.
+
 = 8.8.0 =
 * Implement universal 'menu-item' style CSS classes to all menus.
 * Introduced `Category::is_current_top_level_term` method.
