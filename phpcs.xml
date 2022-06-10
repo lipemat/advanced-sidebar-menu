@@ -1,10 +1,11 @@
 <?xml version="1.0"?>
 <ruleset name="WordPress Coding Standards">
 	<!-- See https://github.com/squizlabs/PHP_CodeSniffer/wiki/Annotated-ruleset.xml -->
-	<!-- See https://github.com/WordPress-Coding-Standards/WordPress-Coding-Standards -->
-	<!-- See https://github.com/WordPress-Coding-Standards/WordPress-Coding-Standards/blob/develop/WordPress-Core/ruleset.xml -->
 
 	<description>Advanced Sidebar Menu - Rules</description>
+
+	<!-- Include when not specified -->
+	<file>./src</file>
 
 	<!-- Show file path based on project root. -->
 	<arg name="basepath" value="." />
@@ -47,7 +48,7 @@
 	</rule>
 
 	<!-- Test against JS XXS https://vip.wordpress.com/documentation/vip-go/vip-code-review/javascript-security-best-practices/ -->
-	<rule ref="WordPressVIPMinimum.JS">
+	<rule ref="Lipe.JS">
 		<type>error</type>
 	</rule>
 

@@ -9,5 +9,3 @@ parameters:
     paths:
         - advanced-sidebar-menu.php
         - src
-    scanFiles:
-        - ../advanced-sidebar-menu-pro/advanced-sidebar-menu-pro.php
