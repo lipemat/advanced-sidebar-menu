@@ -49,12 +49,15 @@ class Core {
 	 */
 	public function get_template_part( $file_name ) {
 		$file = locate_template( 'advanced-sidebar-menu/' . $file_name );
+		$comments = apply_filters( 'advanced-sidebar-menu/core/include-template-parts-comments', true, $file_name );
 		if ( empty( $file ) ) {
-			?>
-			<!-- advanced-sidebar-menu/core-template -->
-			<?php
+			if ( $comments ) {
+				?>
+				<!-- advanced-sidebar-menu/core-template -->
+				<?php
+			}
 			$file = ADVANCED_SIDEBAR_DIR . 'views/' . $file_name;
-		} else {
+		} elseif ( $comments ) {
 			?>
 			<!-- advanced-sidebar-menu/template-override -->
 			<?php
