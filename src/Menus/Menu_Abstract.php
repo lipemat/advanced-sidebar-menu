@@ -131,7 +131,8 @@ abstract class Menu_Abstract {
 	protected function increment_widget_id() {
 		// Block widgets loaded via the REST API don't have full widget args.
 		if ( ! isset( $this->args['widget_id'] ) ) {
-			$this->args['widget_id'] = wp_hash( microtime() );
+			// Prefix any leading digits or hyphens with '_'.
+			$this->args['widget_id'] = \preg_replace( '/^([\d-])/', '_$1', wp_hash( microtime() ) );
 		}
 		if ( \in_array( $this->args['widget_id'], self::$unique_widget_ids, true ) ) {
 			$suffix = 2;
