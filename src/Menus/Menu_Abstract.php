@@ -11,18 +11,21 @@ namespace Advanced_Sidebar_Menu\Menus;
 abstract class Menu_Abstract {
 	const WIDGET = 'menu-abstract';
 
+	// Options shared between menus.
 	const DISPLAY_ALL              = 'display_all';
 	const EXCLUDE                  = 'exclude';
 	const INCLUDE_CHILDLESS_PARENT = 'include_childless_parent';
 	const INCLUDE_PARENT           = 'include_parent';
 	const LEVELS                   = 'levels';
-	const LEVEL_CHILD              = 'child';
-	const LEVEL_DISPLAY_ALL        = 'display-all';
-	const LEVEL_GRANDCHILD         = 'grandchild';
-	const LEVEL_PARENT             = 'parent';
 	const ORDER                    = 'order';
 	const ORDER_BY                 = 'order_by';
 	const TITLE                    = 'title';
+
+	// Possible level values.
+	const LEVEL_CHILD       = 'child';
+	const LEVEL_DISPLAY_ALL = 'display-all';
+	const LEVEL_GRANDCHILD  = 'grandchild';
+	const LEVEL_PARENT      = 'parent';
 
 	/**
 	 * Widget Args
