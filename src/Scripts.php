@@ -20,7 +20,7 @@ class Scripts {
 	 * Add various scripts to the cue.
 	 */
 	public function hook() {
-		add_action( 'admin_print_scripts', [ $this, 'admin_scripts' ] );
+		add_action( 'admin_enqueue_scripts', [ $this, 'admin_scripts' ] );
 		// Elementor support.
 		add_action( 'elementor/editor/after_enqueue_scripts', [ $this, 'admin_scripts' ] );
 		// UGH! Beaver Builder hack.
@@ -67,9 +67,9 @@ class Scripts {
 			'react-dom',
 		], ADVANCED_SIDEBAR_BASIC_VERSION, true );
 
-		wp_enqueue_style( 'advanced-sidebar-menu/master-css', $js_dir . 'master.css', [], ADVANCED_SIDEBAR_BASIC_VERSION );
-
 		wp_localize_script( self::ADMIN_HANDLE, 'ADVANCED_SIDEBAR_MENU', $this->js_config() );
+
+		wp_enqueue_style( 'advanced-sidebar-menu/master-css', $js_dir . 'master.css', [], ADVANCED_SIDEBAR_BASIC_VERSION );
 	}
 
 
