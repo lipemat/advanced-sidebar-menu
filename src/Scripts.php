@@ -13,6 +13,9 @@ use Advanced_Sidebar_Menu\Traits\Singleton;
 class Scripts {
 	use Singleton;
 
+	const ADMIN_HANDLE = 'advanced-sidebar-menu/scripts/admin-js';
+
+
 	/**
 	 * Add various scripts to the cue.
 	 */
@@ -32,7 +35,7 @@ class Scripts {
 
 
 	/**
-	 * Add js and css to the admin and in specific cases the front-end.
+	 * Add JS and CSS to the admin and in specific cases the front-end.
 	 *
 	 * @return void
 	 */
@@ -51,6 +54,32 @@ class Scripts {
 			[],
 			ADVANCED_SIDEBAR_BASIC_VERSION
 		);
+
+		$screen = get_current_screen();
+		if ( null === $screen || ! $screen->is_block_editor ) {
+			return;
+		}
+		$js_dir = apply_filters( 'advanced-sidebar-menu/js-dir', ADVANCED_SIDEBAR_MENU_URL . 'js/dist/' );
+
+		wp_enqueue_script( self::ADMIN_HANDLE, $js_dir . 'admin.js', [
+			'jquery',
+			'react',
+			'react-dom',
+		], ADVANCED_SIDEBAR_BASIC_VERSION, true );
+
+		wp_enqueue_style( 'advanced-sidebar-menu/master-css', $js_dir . 'master.css', [], ADVANCED_SIDEBAR_BASIC_VERSION );
+
+		wp_localize_script( self::ADMIN_HANDLE, 'ADVANCED_SIDEBAR_MENU', $this->js_config() );
+	}
+
+
+	/**
+	 * Configuration passed from PHP to JavaScript.
+	 *
+	 * @return array
+	 */
+	public function js_config() {
+		return apply_filters( 'advanced-sidebar-menu/scripts/js-config', [] );
 	}
 
 

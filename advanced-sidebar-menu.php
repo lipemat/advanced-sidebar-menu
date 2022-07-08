@@ -24,6 +24,8 @@ define( 'ADVANCED_SIDEBAR_MENU_REQUIRED_PRO_VERSION', '8.7.0' );
 define( 'ADVANCED_SIDEBAR_DIR', plugin_dir_path( __FILE__ ) );
 define( 'ADVANCED_SIDEBAR_MENU_URL', plugin_dir_url( __FILE__ ) );
 
+use Advanced_Sidebar_Menu\Blocks\Block_Abstract;
+use Advanced_Sidebar_Menu\Blocks\Pages;
 use Advanced_Sidebar_Menu\Cache;
 use Advanced_Sidebar_Menu\Core;
 use Advanced_Sidebar_Menu\Debug;
@@ -49,6 +51,9 @@ use Advanced_Sidebar_Menu\Widget\Widget_Abstract;
  */
 function advanced_sidebar_menu_load() {
 	Core::init();
+	// Blocks.
+	Pages::init();
+
 	Cache::init();
 	Debug::init();
 	Notice::init();
@@ -75,6 +80,10 @@ function advanced_sidebar_menu_autoload( $class ) {
 		Widget_Abstract::class => 'Widget/Widget_Abstract.php',
 		Widget_Page::class     => 'Widget/Page.php',
 		Widget_Category::class => 'Widget/Category.php',
+
+		// Blocks.
+		Block_Abstract::class  => 'Blocks/Block_Abstract.php',
+		Pages::class           => 'Blocks/Pages.php',
 
 		// Core.
 		Cache::class           => 'Cache.php',
