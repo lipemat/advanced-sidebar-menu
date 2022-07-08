@@ -1,7 +1,7 @@
 {
-  "name": "@onpointplugins/go-live-update-urls-pro",
-  "version": "6.3.2",
-  "description": "Admin UI for Go Live Update Urls PRO.",
+  "name": "@onpointplugins/advanced-sidebar-menu",
+  "version": "5.1.0",
+  "description": "Gutenberg blocks for the Advanced Sidebar Menu plugin.",
   "author": "OnPoint Plugins <support@onpointplugins.com>",
   "license": "UNLICENSED",
   "url": "http://plugins.matlipe.com",
@@ -15,22 +15,20 @@
   },
   "dependencies": {
     "@lipemat/js-boilerplate": "^8.5.0",
-    "@lipemat/js-boilerplate-gutenberg": "^2.8.0",
+    "@lipemat/js-boilerplate-gutenberg": "^2.9.0",
     "classnames": "^2.3.1"
   },
   "devDependencies": {
-    "@lipemat/stylelint-config": "^1.3.0",
+    "@lipemat/stylelint-config": "^1.4.1",
     "@types/jquery": "^3",
     "@types/lipemat__js-boilerplate": "lipemat/types-js-boilerplate#semver:^1",
     "@types/react": "^17",
     "eslint": "^8",
-    "stylelint": "^13",
+    "stylelint": "^14",
     "typescript": "^4"
   },
   "resolutions": {
-    "@types/react": "^17",
-    "react": "17.0.2",
-    "react-dom": "17.0.2"
+    "@types/react": "^17"
   },
   "packageManager": "yarn@3.2.1"
 }

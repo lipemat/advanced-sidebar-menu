@@ -2,8 +2,6 @@ import {useBlockProps} from '@wordpress/block-editor';
 import {BlockSettings} from '@wordpress/blocks';
 import {CONFIG, I18N} from '../../../globals/config';
 import Edit from './Edit';
-import {AccordionOptions} from '../Accordion';
-import {StyleOptions} from '../WidgetStyles';
 import {PreviewOptions} from '../Preview';
 
 /**
@@ -21,7 +19,11 @@ export type Attr = {
 	levels: number;
 	order_by: string;
 	title: string;
-} & AccordionOptions & StyleOptions & PreviewOptions;
+} & PreviewOptions;
+
+export type setAttributes = ( newValue: {
+	[attribute in keyof Attr]?: Attr[attribute]
+} ) => void;
 
 export const block = CONFIG.blocks.pages;
 

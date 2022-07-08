@@ -37,6 +37,8 @@ class Scripts {
 	/**
 	 * Add JS and CSS to the admin and in specific cases the front-end.
 	 *
+	 * @action admin_enqueue_scripts 10 0
+	 *
 	 * @return void
 	 */
 	public function admin_scripts() {
@@ -79,7 +81,11 @@ class Scripts {
 	 * @return array
 	 */
 	public function js_config() {
-		return apply_filters( 'advanced-sidebar-menu/scripts/js-config', [] );
+		return apply_filters( 'advanced-sidebar-menu/scripts/js-config', [
+			'i18n' => [
+				'widgetPages' => __( 'Advanced Sidebar - Pages', 'advanced-sidebar-menu' ),
+			],
+		] );
 	}
 
 

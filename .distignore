@@ -1,8 +1,10 @@
 /.wordpress-org
 /.github
 /.git
-/dev
 
+
+# dev related
+/dev
 .editorconfig
 composer.json
 phpcs.xml
@@ -11,3 +13,5 @@ phpcs.xml
 .gitignore
 Readme.md
 phpstan.neon.dist
+/js/*
+!/js/dist
