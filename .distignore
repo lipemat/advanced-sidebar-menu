@@ -13,5 +13,17 @@ phpcs.xml
 .gitignore
 Readme.md
 phpstan.neon.dist
-/js/*
-!/js/dist
+
+# Node related
+.eslintrc
+.nvmrc
+.pnp.cjs
+.stylelintrc
+.yarnrc.yml
+package.json
+tsconfig.json
+yarn.lock
+node_modules
+/js/src
+/js/config
+/js/.yarn
