@@ -1,4 +1,7 @@
 name: Deploy to WordPress.org
+env:
+  NODE_VERSION: '16.14.2'
+
 on:
   push:
     tags:
@@ -9,6 +12,16 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@master
+      - uses: actions/setup-node@v2
+        with:
+          node-version: ${{env.NODE_VERSION}}
+          registry-url: 'https://registry.npmjs.org'
+      - name: Install yarn
+        shell: bash
+        run: npm i -g yarn
+      - name: Compile JS
+        shell: bash
+        run: cd ${{github.workspace}}/js && yarn dist
       - name: WordPress Plugin Deploy
         uses: 10up/action-wordpress-plugin-deploy@stable
         env:
