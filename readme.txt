@@ -158,6 +158,12 @@ Yes. Based on whatever page, post or category you are on, the menu will change a
 
 
 == Changelog ==
+= 8.8.2 =
+* Fixed widget id generation with block based widgets.
+* Introduced `advanced-sidebar-menu/core/include-template-parts-comments` filter.
+* Organized the `Menu_Abtract` class constants.
+* Tested to WordPress Core 6.0.1.
+
 = 8.8.1 = 
 * Introduced `advanced-sidebar-menu/menus/page/is-excluded` filter.
 * Introduced `advanced-sidebar-menu/menus/category/is-excluded` filter.
