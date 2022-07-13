@@ -27,7 +27,7 @@ fi
 # Extract the commit message
 MESSAGE=$(cat "$1")
 
-if [[ $MESSAGE =~ ^\[#[0-9]+\] ]]; then
+if [[ $MESSAGE =~ \[#[0-9]+\] ]]; then
     # Must use -e to make the reset colors work.
     echo -e "${YELLOW}[prepare-commit-msg]${BLUE} Skipping the message prefixing because the current message already has [#${MESSAGE//[!0-9]/}] ${RESET_COLOR}"
     exit 0
