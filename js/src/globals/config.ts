@@ -4,6 +4,7 @@ interface JSConfig {
 			id: string;
 		}
 	};
+	isPro: boolean;
 	i18n: {
 		widgetPages: string;
 	};

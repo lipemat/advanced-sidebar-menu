@@ -85,6 +85,7 @@ class Scripts {
 			'i18n' => [
 				'widgetPages' => __( 'Advanced Sidebar - Pages', 'advanced-sidebar-menu' ),
 			],
+			'isPro' => false,
 		] );
 	}
 
