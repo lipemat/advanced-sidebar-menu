@@ -6,6 +6,14 @@ interface JSConfig {
 	};
 	isPro: boolean;
 	i18n: {
+		display: {
+			title: string;
+			highest: string;
+			childless: string;
+			always: string;
+			levels: string;
+			all: string;
+		};
 		widgetPages: string;
 	};
 }

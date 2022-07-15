@@ -12,14 +12,19 @@ import {PreviewOptions} from '../Preview';
  * @see \Advanced_Sidebar_Menu\Blocks\Pages::get_attributes
  */
 export type Attr = {
-	display_all: string;
+	display_all: boolean;
 	exclude: string;
 	include_childless_parent: boolean;
 	include_parent: boolean;
-	levels: number;
+	levels: string;
 	order_by: string;
 	title: string;
-} & PreviewOptions;
+} & ProRegistered & PreviewOptions;
+
+// Options used by basic when available from PRO.
+type ProRegistered = {
+	post_type: string;
+}
 
 export type setAttributes = ( newValue: {
 	[attribute in keyof Attr]?: Attr[attribute]

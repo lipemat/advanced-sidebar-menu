@@ -83,6 +83,18 @@ class Scripts {
 	public function js_config() {
 		return apply_filters( 'advanced-sidebar-menu/scripts/js-config', [
 			'i18n' => [
+				'display'     => [
+					'title'     => __( 'Display', 'advanced-sidebar-menu' ),
+					/* translators: Selected taxonomy single label */
+					'highest'   => __( 'Display the highest level parent %s', 'advanced-sidebar-menu' ),
+					/* translators: Selected taxonomy single label */
+					'childless' => __( 'Display menu when there is only the parent %s', 'advanced-sidebar-menu' ),
+					/* translators: Selected taxonomy plural label */
+					'always'    => __( 'Always display child %s', 'advanced-sidebar-menu' ),
+					/* translators: {select html input}, {Selected post type plural label} */
+					'levels'    => __( 'Display %1$s levels of child %2$s', 'advanced-sidebar-menu' ),
+					'all'       => __( '- All -', 'advanced-sidebar-menu' ),
+				],
 				'widgetPages' => __( 'Advanced Sidebar - Pages', 'advanced-sidebar-menu' ),
 			],
 			'isPro' => false,
