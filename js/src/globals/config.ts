@@ -14,6 +14,10 @@ interface JSConfig {
 			levels: string;
 			all: string;
 		};
+		features: Array<string>;
+		goPro: string;
+		soMuchMore: string;
+		upgrade: string;
 		widgetPages: string;
 	};
 }

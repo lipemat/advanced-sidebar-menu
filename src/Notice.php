@@ -4,7 +4,6 @@ namespace Advanced_Sidebar_Menu;
 
 use Advanced_Sidebar_Menu\Traits\Singleton;
 use Advanced_Sidebar_Menu\Widget\Category;
-use Advanced_Sidebar_Menu\Widget\Page as Widget_Page;
 
 /**
  * Various notice handling for the admin and widgets.
@@ -89,21 +88,15 @@ class Notice {
 				</a>
 			</h3>
 			<ol>
-				<li><?php esc_html_e( 'Styling options including borders, bullets, colors, backgrounds, size, and font weight.', 'advanced-sidebar-menu' ); ?></li>
-				<li><?php esc_html_e( 'Accordion menus.', 'advanced-sidebar-menu' ); ?></li>
-				<li><?php esc_html_e( 'Support for custom navigation menus from Appearance -> Menus.', 'advanced-sidebar-menu' ); ?></li>
 				<?php
-				if ( Widget_Page::NAME === $widget->id_base ) {
+				foreach ( $this->get_features() as $feature ) {
 					?>
-					<li><?php esc_html_e( 'Select and display custom post types.', 'advanced-sidebar-menu' ); ?></li>
-					<?php
-				} else {
-					?>
-					<li><?php esc_html_e( 'Select and display custom taxonomies.', 'advanced-sidebar-menu' ); ?></li>
+					<li>
+						<?php echo esc_html( $feature ); ?>
+					</li>
 					<?php
 				}
 				?>
-				<li><?php esc_html_e( 'Priority support with access to members only support area.', 'advanced-sidebar-menu' ); ?></li>
 				<li>
 					<a
 						href="https://onpointplugins.com/product/advanced-sidebar-menu-pro/?utm_source=widget-more&utm_campaign=gopro&utm_medium=wp-dash"
@@ -174,6 +167,23 @@ class Notice {
 			$actions['go-pro'] = sprintf( '<a href="%1$s" target="_blank" style="color:#3db634;font-weight:700;">%2$s</a>', 'https://onpointplugins.com/product/advanced-sidebar-menu-pro/?utm_source=wp-plugins&utm_campaign=gopro&utm_medium=wp-dash', __( 'Go PRO', 'advanced-sidebar-menu' ) );
 		}
 		return $actions;
+	}
+
+
+	/**
+	 * Get a list of PRO plugin features for display in
+	 * the info panel for widgets and blocks.
+	 *
+	 * @return array
+	 */
+	public function get_features() {
+		return [
+			__( 'Styling options including borders, bullets, colors, backgrounds, size, and font weight.', 'advanced-sidebar-menu' ),
+			__( 'Accordion menus.', 'advanced-sidebar-menu' ),
+			__( 'Support for custom navigation menus from Appearance -> Menus.', 'advanced-sidebar-menu' ),
+			__( 'Select and display custom post types and taxonomies.', 'advanced-sidebar-menu' ),
+			__( 'Priority support with access to members only support area.', 'advanced-sidebar-menu' ),
+		];
 	}
 
 }
