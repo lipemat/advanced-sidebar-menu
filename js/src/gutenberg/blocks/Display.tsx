@@ -52,17 +52,22 @@ const Display = ( {attributes, setAttributes, type}: Props ) => {
 					}}
 				/>;
 			} )}
-			{( CONFIG.isPro || attributes.display_all ) && reactStringReplace( I18N.display.levels.replace( '%2$s', type.labels?.name.toLowerCase() ?? '' ), '%1$s',
-				() => <select onChange={ev => setAttributes( {levels: ev.target.value} )}>
-					<option value="100">
-						{I18N.display.all}
-					</option>
-					{range( 1, 10 ).map( n => <option
-						key={n}
-						value={n}
-						selected={attributes.levels === n.toString()}>{n}</option> )}
-				</select>
-			)}
+			{( CONFIG.isPro || attributes.display_all ) &&
+				reactStringReplace( I18N.display.levels.replace( '%2$s', type.labels?.name.toLowerCase() ?? '' ), '%1$s',
+					() => (
+						<select
+							key={'levels'}
+							value={attributes.levels}
+							onChange={ev => setAttributes( {levels: ev.target.value} )}
+						>
+							<option value="100">
+								{I18N.display.all}
+							</option>
+							{range( 1, 10 ).map( n => <option
+								key={n}
+								value={n}>{n}</option> )}
+						</select>
+					) )}
 		</PanelBody>
 	);
 };
