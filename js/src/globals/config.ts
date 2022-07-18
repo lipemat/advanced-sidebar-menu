@@ -17,9 +17,13 @@ interface JSConfig {
 		};
 		features: Array<string>;
 		goPro: string;
+		pages: {
+			title: string;
+			description: string;
+			keywords: Array<string>;
+		}
 		soMuchMore: string;
 		upgrade: string;
-		widgetPages: string;
 	};
 }
 

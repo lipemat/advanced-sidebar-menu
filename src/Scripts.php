@@ -84,7 +84,7 @@ class Scripts {
 		return apply_filters( 'advanced-sidebar-menu/scripts/js-config', [
 			'error' => apply_filters( 'advanced-sidebar-menu/scripts/js-config/error', '' ),
 			'i18n'  => [
-				'display'     => [
+				'display'    => [
 					'title'     => __( 'Display', 'advanced-sidebar-menu' ),
 					/* translators: Selected taxonomy single label */
 					'highest'   => __( 'Display the highest level parent %s', 'advanced-sidebar-menu' ),
@@ -96,11 +96,24 @@ class Scripts {
 					'levels'    => __( 'Display %1$s levels of child %2$s', 'advanced-sidebar-menu' ),
 					'all'       => __( '- All -', 'advanced-sidebar-menu' ),
 				],
-				'features'    => Notice::instance()->get_features(),
-				'goPro'       => __( 'Advanced Sidebar Menu PRO', 'advanced-sidebar-menu' ),
-				'soMuchMore'  => __( 'So much more...', 'advanced-sidebar-menu' ),
-				'upgrade'     => __( 'Upgrade', 'advanced-sidebar-menu' ),
-				'widgetPages' => __( 'Advanced Sidebar - Pages', 'advanced-sidebar-menu' ),
+				'features'   => Notice::instance()->get_features(),
+				'goPro'      => __( 'Advanced Sidebar Menu PRO', 'advanced-sidebar-menu' ),
+				'pages'      => [
+					'title'       => __( 'Advanced Sidebar - Pages', 'advanced-sidebar-menu' ),
+					'description' => __( 'Creates a menu of all the pages using the child/parent relationship', 'advanced-sidebar-menu' ),
+					// English and translated so both will be searchable.
+					'keywords'    => [
+						'Advanced Sidebar',
+						'menu',
+						'sidebar',
+						'pages',
+						__( 'menu', 'advanced-sidebar-menu' ),
+						__( 'sidebar', 'advanced-sidebar-menu' ),
+						__( 'pages', 'advanced-sidebar-menu' ),
+					],
+				],
+				'soMuchMore' => __( 'So much more...', 'advanced-sidebar-menu' ),
+				'upgrade'    => __( 'Upgrade', 'advanced-sidebar-menu' ),
 			],
 			'isPro' => false,
 		] );

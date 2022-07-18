@@ -35,7 +35,7 @@ export type setAttributes = ( newValue: {
  * Combines some PRO and basic attributes.
  * The PRO attributes will only be sent if PRO is active.
  */
-const example = {
+export const example = {
 	include_parent: true,
 	include_childless_parent: true,
 	display_all: true,
@@ -64,20 +64,11 @@ export const block = CONFIG.blocks.pages;
 export const name = block.id;
 
 export const settings: BlockSettings<Attr> = {
-
-
-	// @todo - Translate all strings here
-	title: I18N.widgetPages,
-	description: 'Creates a menu of all the pages using the child/parent relationship',
+	title: I18N.pages.title,
+	description: I18N.pages.description,
 	icon: 'welcome-widgets-menus',
 	category: 'widgets',
-	// @todo - Translated and english keywords so both will be searchable.
-	keywords: [
-		'Advanced Sidebar',
-		'menu',
-		'sidebar',
-		'pages',
-	],
+	keywords: I18N.pages.keywords,
 	example: {
 		attributes: example as any,
 	},
