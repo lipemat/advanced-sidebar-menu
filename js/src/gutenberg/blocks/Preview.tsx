@@ -4,6 +4,7 @@ import {CONFIG, I18N} from '../../globals/config';
 import ServerSideRender from '@wordpress/server-side-render';
 import {Placeholder} from '@wordpress/components';
 import {useBlockProps} from '@wordpress/block-editor';
+import {sanitize} from 'dompurify';
 
 import styles from './preview.pcss';
 
@@ -40,6 +41,12 @@ const Preview = ( {attributes, block}: Props ) => {
 	const blockProps = useBlockProps( {
 		className: styles.wrap,
 	} );
+
+	if ( '' !== CONFIG.error ) {
+		return <div
+			className={styles.error}
+			dangerouslySetInnerHTML={{__html: sanitize( CONFIG.error )}} />;
+	}
 
 	return (
 		<div {...blockProps}>

@@ -82,7 +82,8 @@ class Scripts {
 	 */
 	public function js_config() {
 		return apply_filters( 'advanced-sidebar-menu/scripts/js-config', [
-			'i18n' => [
+			'error' => apply_filters( 'advanced-sidebar-menu/scripts/js-config/error', '' ),
+			'i18n'  => [
 				'display'     => [
 					'title'     => __( 'Display', 'advanced-sidebar-menu' ),
 					/* translators: Selected taxonomy single label */

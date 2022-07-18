@@ -27,6 +27,7 @@ class Notice {
 
 		if ( $this->is_conflicting_pro_version() ) {
 			add_action( 'all_admin_notices', [ $this, 'pro_version_warning' ] );
+			add_filter( 'advanced-sidebar-menu/scripts/js-config/error', [ $this, 'get_pro_version_warning_message' ] );
 		}
 	}
 
@@ -50,13 +51,22 @@ class Notice {
 		?>
 		<div class="<?php echo true === $no_banner ? '' : 'error'; ?>">
 			<p>
-				<?php
-				/* translators: Link to PRO plugin {%1$s}[<a href="https://onpointplugins.com/product/advanced-sidebar-menu-pro/">]{%2$s}[</a>] */
-				printf( esc_html_x( 'Advanced Sidebar Menu requires %1$sAdvanced Sidebar Menu PRO%2$s version %3$s+. Please update or deactivate the PRO version.', '{<a>}{</a>}', 'advanced-sidebar-menu' ), '<a target="_blank" rel="noreferrer noopener" href="https://onpointplugins.com/product/advanced-sidebar-menu-pro/">', '</a>', esc_attr( ADVANCED_SIDEBAR_MENU_REQUIRED_PRO_VERSION ) );
-				?>
+				<?php echo $this->get_pro_version_warning_message(); //phpcs:ignore ?>
 			</p>
 		</div>
 		<?php
+	}
+
+
+	/**
+	 * Get message to display in various admin locations if
+	 * basic version of the plugin is unsupported.
+	 *
+	 * @return string
+	 */
+	public function get_pro_version_warning_message() {
+		/* translators: Link to PRO plugin {%1$s}[<a href="https://onpointplugins.com/product/advanced-sidebar-menu-pro/">]{%2$s}[</a>] */
+		return sprintf( esc_html_x( 'Advanced Sidebar Menu requires %1$sAdvanced Sidebar Menu PRO%2$s version %3$s+. Please update or deactivate the PRO version.', '{<a>}{</a>}', 'advanced-sidebar-menu' ), '<a target="_blank" rel="noreferrer noopener" href="https://onpointplugins.com/product/advanced-sidebar-menu-pro/">', '</a>', esc_attr( ADVANCED_SIDEBAR_MENU_REQUIRED_PRO_VERSION ) );
 	}
 
 

@@ -1859,6 +1859,10 @@ function $$SETUP_STATE(hydrateRuntimeState, basePath) {
         "npm:5.0.3"\
       ],\
       [\
+        "dompurify",\
+        "npm:2.3.10"\
+      ],\
+      [\
         "domutils",\
         "npm:3.0.1"\
       ],\
@@ -4688,6 +4692,7 @@ function $$SETUP_STATE(hydrateRuntimeState, basePath) {
             ["@types/lodash", "npm:4.14.182"],\
             ["@types/react", "npm:17.0.47"],\
             ["classnames", "npm:2.3.1"],\
+            ["dompurify", "npm:2.3.10"],\
             ["eslint", "npm:8.18.0"],\
             ["react-string-replace", "npm:1.1.0"],\
             ["stylelint", "npm:14.9.1"],\
@@ -8360,6 +8365,7 @@ function $$SETUP_STATE(hydrateRuntimeState, basePath) {
             ["@types/lodash", "npm:4.14.182"],\
             ["@types/react", "npm:17.0.47"],\
             ["classnames", "npm:2.3.1"],\
+            ["dompurify", "npm:2.3.10"],\
             ["eslint", "npm:8.18.0"],\
             ["react-string-replace", "npm:1.1.0"],\
             ["stylelint", "npm:14.9.1"],\
@@ -12357,6 +12363,15 @@ function $$SETUP_STATE(hydrateRuntimeState, basePath) {
           "packageDependencies": [\
             ["domhandler", "npm:5.0.3"],\
             ["domelementtype", "npm:2.3.0"]\
+          ],\
+          "linkType": "HARD"\
+        }]\
+      ]],\
+      ["dompurify", [\
+        ["npm:2.3.10", {\
+          "packageLocation": "./.yarn/cache/dompurify-npm-2.3.10-6db07a88c6-ee343876b4.zip/node_modules/dompurify/",\
+          "packageDependencies": [\
+            ["dompurify", "npm:2.3.10"]\
           ],\
           "linkType": "HARD"\
         }]\

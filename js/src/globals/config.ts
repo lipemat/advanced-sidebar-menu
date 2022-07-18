@@ -4,6 +4,7 @@ interface JSConfig {
 			id: string;
 		}
 	};
+	error: false | string;
 	isPro: boolean;
 	i18n: {
 		display: {

@@ -1,4 +1,4 @@
-import {BlockControls, InspectorControls} from '@wordpress/block-editor';
+import {InspectorControls} from '@wordpress/block-editor';
 import {withFilters} from '@wordpress/components';
 import {BlockEditProps} from '@wordpress/blocks';
 import {Attr, block} from './block';
@@ -6,6 +6,10 @@ import Preview from '../Preview';
 import Display from '../Display';
 import {select} from '@wordpress/data';
 import InfoPanel from '../InfoPanel';
+import {CONFIG} from '../../../globals/config';
+import {sanitize} from 'dompurify';
+
+import styles from './edit.pcss';
 
 type Props = BlockEditProps<Attr>;
 
@@ -18,6 +22,19 @@ const ProFields = withFilters<Partial<Props>>( 'advanced-sidebar-menu.blocks.pag
 const Edit = ( {attributes, setAttributes}: Props ) => {
 	const postType = select( 'core' ).getPostType( attributes.post_type ?? 'page' );
 
+	// We have a version conflict or license error.
+	if ( '' !== CONFIG.error ) {
+		return ( <>
+			<InspectorControls>
+				<div
+					className={styles.error}
+					dangerouslySetInnerHTML={{__html: sanitize( CONFIG.error )}} />
+			</InspectorControls>
+			<Preview attributes={attributes} block={block.id} />
+		</> );
+	}
+
+
 	// @todo - Finish building the various inputs.
 	// @todo - Make reusable components for other blocks where possible.
 	return ( <>
@@ -27,9 +44,6 @@ const Edit = ( {attributes, setAttributes}: Props ) => {
 				setAttributes={setAttributes}
 				type={postType} />
 		</InspectorControls>
-
-		<BlockControls>
-		</BlockControls>
 
 		<ProFields attributes={attributes} setAttributes={setAttributes} />
 

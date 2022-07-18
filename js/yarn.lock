@@ -2218,6 +2218,7 @@ __metadata:
     "@types/lodash": ^4.14.182
     "@types/react": ^17
     classnames: ^2.3.1
+    dompurify: ^2.3.10
     eslint: ^8
     react-string-replace: ^1.1.0
     stylelint: ^14
@@ -5428,6 +5429,13 @@ __metadata:
   dependencies:
     domelementtype: ^2.3.0
   checksum: 0f58f4a6af63e6f3a4320aa446d28b5790a009018707bce2859dcb1d21144c7876482b5188395a188dfa974238c019e0a1e610d2fc269a12b2c192ea2b0b131c
+  languageName: node
+  linkType: hard
+
+"dompurify@npm:^2.3.10":
+  version: 2.3.10
+  resolution: "dompurify@npm:2.3.10"
+  checksum: ee343876b4c065e82d194818c66af76a6d2290264c7db583ad71761c11781fd626f0245f9f4670175d5707c4b8fcfb89adae80bed0418a9426a47ee7f36b0ffc
   languageName: node
   linkType: hard
 
