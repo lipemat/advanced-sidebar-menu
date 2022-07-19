@@ -4,24 +4,28 @@ import {BlockEditProps} from '@wordpress/blocks';
 import {Attr, block} from './block';
 import Preview from '../Preview';
 import Display from '../Display';
-import {select} from '@wordpress/data';
+import {useSelect} from '@wordpress/data';
 import InfoPanel from '../InfoPanel';
 import {CONFIG, I18N} from '../../../globals/config';
 import {sanitize} from 'dompurify';
 import {sprintf} from '@wordpress/i18n';
+import {Type} from '@wordpress/api/types';
 
 import styles from './edit.pcss';
 
 type Props = BlockEditProps<Attr>;
 
-const ProFields = withFilters<Partial<Props>>( 'advanced-sidebar-menu.blocks.pages.pro-fields' )( () =>
+const ProFields = withFilters<Partial<Props> & { postType: Type }>( 'advanced-sidebar-menu.blocks.pages.pro-fields' )( () =>
 	<InfoPanel /> );
 
 /**
  * Pages block content in the editor.
  */
 const Edit = ( {attributes, setAttributes, clientId}: Props ) => {
-	const postType = select( 'core' ).getPostType( attributes.post_type ?? 'page' );
+	const postType = useSelect( select => {
+		const type = select( 'core' ).getPostType( attributes.post_type ?? 'page' );
+		return type ?? select( 'core' ).getPostType( 'page' );
+	}, [ attributes.post_type ] );
 
 	// We have a version conflict or license error.
 	if ( '' !== CONFIG.error ) {
@@ -79,7 +83,8 @@ const Edit = ( {attributes, setAttributes, clientId}: Props ) => {
 		<ProFields
 			attributes={attributes}
 			setAttributes={setAttributes}
-			clientId={clientId} />
+			clientId={clientId}
+			postType={postType} />
 
 		<Preview<Attr> attributes={attributes} block={block.id} clientId={clientId} />
 	</> );
