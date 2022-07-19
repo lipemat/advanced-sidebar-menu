@@ -3,6 +3,7 @@
 namespace Advanced_Sidebar_Menu\Blocks;
 
 use Advanced_Sidebar_Menu\Traits\Singleton;
+use Advanced_Sidebar_Menu\Utils;
 use Advanced_Sidebar_Menu\Widget\Category;
 use Advanced_Sidebar_Menu\Widget\Page;
 
@@ -153,7 +154,7 @@ abstract class Block_Abstract {
 		}
 
 		// Map the boolean values to widget style 'checked'.
-		$attr = \array_map( function( $value ) {
+		$attr = Utils::instance()->array_map_recursive( function( $value ) {
 			if ( true === $value ) {
 				return 'checked';
 			}
