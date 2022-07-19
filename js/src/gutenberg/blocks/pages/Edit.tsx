@@ -1,13 +1,14 @@
 import {InspectorControls} from '@wordpress/block-editor';
-import {withFilters} from '@wordpress/components';
+import {SelectControl, TextControl, withFilters} from '@wordpress/components';
 import {BlockEditProps} from '@wordpress/blocks';
 import {Attr, block} from './block';
 import Preview from '../Preview';
 import Display from '../Display';
 import {select} from '@wordpress/data';
 import InfoPanel from '../InfoPanel';
-import {CONFIG} from '../../../globals/config';
+import {CONFIG, I18N} from '../../../globals/config';
 import {sanitize} from 'dompurify';
+import {sprintf} from '@wordpress/i18n';
 
 import styles from './edit.pcss';
 
@@ -34,15 +35,42 @@ const Edit = ( {attributes, setAttributes, clientId}: Props ) => {
 		</> );
 	}
 
-
-	// @todo - Finish building the various inputs.
-	// @todo - Make reusable components for other blocks where possible.
 	return ( <>
 		<InspectorControls>
 			<Display
 				attributes={attributes}
 				setAttributes={setAttributes}
 				type={postType} />
+			<div className={'components-panel__body is-opened'}>
+				<SelectControl
+					label={I18N.pages.orderBy.title}
+					value={attributes.order_by}
+					// @ts-ignore
+					labelPosition={'side'}
+					options={Object.entries( I18N.pages.orderBy.options ).map( ( [ value, label ] ) => ( {
+						value,
+						label,
+					} ) )}
+					onChange={value => {
+						setAttributes( {
+							order_by: value,
+						} );
+					}} />
+				<TextControl
+					//eslint-disable-next-line @wordpress/valid-sprintf
+					label={sprintf( I18N.pages.exclude, postType?.labels?.name ?? '' )}
+					value={attributes.exclude}
+					onChange={value => {
+						setAttributes( {
+							exclude: value,
+						} );
+					}} />
+				<p>
+					<a href={I18N.docs.page} target="_blank" rel="noopener noreferrer">
+						{I18N.docs.title}
+					</a>
+				</p>
+			</div>
 		</InspectorControls>
 
 		<ProFields

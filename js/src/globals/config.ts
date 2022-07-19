@@ -25,7 +25,12 @@ interface JSConfig {
 		pages: {
 			title: string;
 			description: string;
+			exclude: string;
 			keywords: Array<string>;
+			orderBy: {
+				title: string,
+				options: { [ option: string ]: string }
+			}
 		}
 		soMuchMore: string;
 		upgrade: string;

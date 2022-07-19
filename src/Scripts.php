@@ -3,6 +3,7 @@
 namespace Advanced_Sidebar_Menu;
 
 use Advanced_Sidebar_Menu\Traits\Singleton;
+use Advanced_Sidebar_Menu\Widget\Page;
 
 /**
  * Scripts and styles.
@@ -105,6 +106,8 @@ class Scripts {
 				'pages'      => [
 					'title'       => __( 'Advanced Sidebar - Pages', 'advanced-sidebar-menu' ),
 					'description' => __( 'Creates a menu of all the pages using the child/parent relationship', 'advanced-sidebar-menu' ),
+					/* translators: Selected post type plural label */
+					'exclude'     => __( '%s to exclude (ids, comma separated)', 'advanced-sidebar-menu' ),
 					// English and translated so both will be searchable.
 					'keywords'    => [
 						'Advanced Sidebar',
@@ -114,6 +117,10 @@ class Scripts {
 						__( 'menu', 'advanced-sidebar-menu' ),
 						__( 'sidebar', 'advanced-sidebar-menu' ),
 						__( 'pages', 'advanced-sidebar-menu' ),
+					],
+					'orderBy'     => [
+						'title'   => __( 'Order by', 'advanced-sidebar-menu' ),
+						'options' => Page::get_order_by_options(),
 					],
 				],
 				'soMuchMore' => __( 'So much more...', 'advanced-sidebar-menu' ),

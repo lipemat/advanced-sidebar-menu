@@ -101,6 +101,25 @@ class Page extends Widget_Abstract {
 
 
 	/**
+	 * Get available options to order the pages by.
+	 *
+	 * @since 9.0.0
+	 *
+	 * @return array
+	 */
+	public static function get_order_by_options() {
+		return (array) apply_filters(
+			'advanced-sidebar-menu/widget/page/order-by-options',
+			[
+				'menu_order' => __( 'Page Order', 'advanced-sidebar-menu' ),
+				'post_title' => __( 'Title', 'advanced-sidebar-menu' ),
+				'post_date'  => __( 'Published Date', 'advanced-sidebar-menu' ),
+			]
+		);
+	}
+
+
+	/**
 	 * Display options.
 	 *
 	 * @param array           $instance - Widget settings.
@@ -196,32 +215,22 @@ class Page extends Widget_Abstract {
 	public function box_order( array $instance, $widget ) {
 		?>
 		<div class="advanced-sidebar-menu-column-box">
-
 			<p>
 				<label for="<?php echo esc_attr( $widget->get_field_id( self::ORDER_BY ) ); ?>">
 					<?php esc_html_e( 'Order by', 'advanced-sidebar-menu' ); ?>
 				</label>
 				<select
 					id="<?php echo esc_attr( $widget->get_field_id( self::ORDER_BY ) ); ?>"
-					name="<?php echo esc_attr( $widget->get_field_name( self::ORDER_BY ) ); ?>">
+					name="<?php echo esc_attr( $widget->get_field_name( self::ORDER_BY ) ); ?>"
+				>
 					<?php
-					$order_by = (array) apply_filters(
-						'advanced-sidebar-menu/widget/page/order-by-options',
-						[
-							'menu_order' => 'Page Order',
-							'post_title' => 'Title',
-							'post_date'  => 'Published Date',
-						]
-					);
-
-					foreach ( $order_by as $key => $order ) {
+					foreach ( static::get_order_by_options() as $key => $order ) {
 						printf( '<option value="%s" %s>%s</option>', esc_attr( $key ), selected( $instance[ self::ORDER_BY ], $key, false ), esc_html( $order ) );
 					}
 					?>
 				</select>
 			</p>
 			<?php do_action( 'advanced-sidebar-menu/widget/page/order-box', $instance, $widget ); ?>
-
 		</div>
 		<?php
 	}
