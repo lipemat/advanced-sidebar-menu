@@ -10,11 +10,13 @@ import styles from './preview.pcss';
 
 export type PreviewOptions = {
 	isServerSideRenderRequest: boolean;
+	clientId: string;
 }
 
 type Props<A> = {
 	attributes: A;
 	block: string;
+	clientId: string;
 };
 
 /**
@@ -96,6 +98,7 @@ const Preview = <A, >( {attributes, block, clientId}: Props<A> ) => {
 					...attributes,
 					// Send custom attribute to determine server side renders.
 					isServerSideRenderRequest: true,
+					clientId,
 				}}
 				block={block}
 				httpMethod={'POST'}

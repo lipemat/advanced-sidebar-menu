@@ -19,7 +19,7 @@ const ProFields = withFilters<Partial<Props>>( 'advanced-sidebar-menu.blocks.pag
 /**
  * Pages block content in the editor.
  */
-const Edit = ( {attributes, setAttributes}: Props ) => {
+const Edit = ( {attributes, setAttributes, clientId}: Props ) => {
 	const postType = select( 'core' ).getPostType( attributes.post_type ?? 'page' );
 
 	// We have a version conflict or license error.
@@ -30,7 +30,7 @@ const Edit = ( {attributes, setAttributes}: Props ) => {
 					className={styles.error}
 					dangerouslySetInnerHTML={{__html: sanitize( CONFIG.error )}} />
 			</InspectorControls>
-			<Preview attributes={attributes} block={block.id} />
+			<Preview<Attr> attributes={attributes} block={block.id} clientId={clientId} />
 		</> );
 	}
 
@@ -45,9 +45,12 @@ const Edit = ( {attributes, setAttributes}: Props ) => {
 				type={postType} />
 		</InspectorControls>
 
-		<ProFields attributes={attributes} setAttributes={setAttributes} />
+		<ProFields
+			attributes={attributes}
+			setAttributes={setAttributes}
+			clientId={clientId} />
 
-		<Preview attributes={attributes} block={block.id} />
+		<Preview<Attr> attributes={attributes} block={block.id} clientId={clientId} />
 	</> );
 };
 

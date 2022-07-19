@@ -88,6 +88,9 @@ abstract class Block_Abstract {
 			'backgroundColor'    => [
 				'type' => 'string',
 			],
+			'clientId'           => [
+				'type' => 'string',
+			],
 			'gradient'           => [
 				'type' => 'string',
 			],
@@ -159,12 +162,17 @@ abstract class Block_Abstract {
 
 		ob_start();
 		$widget = $this->get_widget_class();
-		$widget->widget( [
+		$widget_args = [
 			'before_widget' => $parts[0],
 			'after_widget'  => $parts[1],
 			'before_title'  => '',
 			'after_title'   => '',
-		], $attr );
+		];
+		// Passed via ServerSideRender, so we can enable accordions in Gutenberg editor.
+		if ( ! empty( $attr['clientId'] ) ) {
+			$widget_args['widget_id'] = $attr['clientId'];
+		}
+		$widget->widget( $widget_args, $attr );
 		return ob_get_clean();
 	}
 
