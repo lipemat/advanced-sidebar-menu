@@ -1,4 +1,4 @@
-import {CheckboxControl, PanelBody} from '@wordpress/components';
+import {CheckboxControl, PanelBody, Slot} from '@wordpress/components';
 import {CONFIG, I18N} from '../../globals/config';
 import type {Attr, setAttributes} from './pages/block';
 import {sprintf} from '@wordpress/i18n';
@@ -68,6 +68,9 @@ const Display = ( {attributes, setAttributes, type}: Props ) => {
 								value={n}>{n}</option> )}
 						</select>
 					) )}
+
+			<Slot name="AdvancedSidebarMenuPagesDisplay" />
+
 		</PanelBody>
 	);
 };

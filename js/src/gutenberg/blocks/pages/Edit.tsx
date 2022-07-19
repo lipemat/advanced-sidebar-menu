@@ -1,5 +1,5 @@
 import {InspectorControls} from '@wordpress/block-editor';
-import {SelectControl, TextControl, withFilters} from '@wordpress/components';
+import {SelectControl, Slot, TextControl, withFilters} from '@wordpress/components';
 import {BlockEditProps} from '@wordpress/blocks';
 import {Attr, block} from './block';
 import Preview from '../Preview';
@@ -42,6 +42,9 @@ const Edit = ( {attributes, setAttributes, clientId}: Props ) => {
 				setAttributes={setAttributes}
 				type={postType} />
 			<div className={'components-panel__body is-opened'}>
+
+				<Slot name="AdvancedSidebarMenuPages" />
+
 				<SelectControl
 					label={I18N.pages.orderBy.title}
 					value={attributes.order_by}
