@@ -57,8 +57,7 @@ class Scripts {
 			ADVANCED_SIDEBAR_BASIC_VERSION
 		);
 
-		$screen = get_current_screen();
-		if ( null === $screen || ! $screen->is_block_editor ) {
+		if ( ! wp_should_load_block_editor_scripts_and_styles() ) {
 			return;
 		}
 		$js_dir = apply_filters( 'advanced-sidebar-menu/js-dir', ADVANCED_SIDEBAR_MENU_URL . 'js/dist/' );
