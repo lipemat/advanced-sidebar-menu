@@ -15,6 +15,11 @@ interface JSConfig {
 			levels: string;
 			all: string;
 		};
+		docs: {
+			title: string;
+			page: string;
+			category: string;
+		}
 		features: Array<string>;
 		goPro: string;
 		pages: {

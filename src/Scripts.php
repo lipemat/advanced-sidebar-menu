@@ -95,6 +95,11 @@ class Scripts {
 					'levels'    => __( 'Display %1$s levels of child %2$s', 'advanced-sidebar-menu' ),
 					'all'       => __( '- All -', 'advanced-sidebar-menu' ),
 				],
+				'docs'       => [
+					'title'    => __( 'block documentation', 'advanced-sidebar-menu' ),
+					'page'     => 'https://onpointplugins.com/advanced-sidebar-menu/#advanced-sidebar-pages-menu',
+					'category' => 'https://onpointplugins.com/advanced-sidebar-menu/#advanced-sidebar-categories-menu',
+				],
 				'features'   => Notice::instance()->get_features(),
 				'goPro'      => __( 'Advanced Sidebar Menu PRO', 'advanced-sidebar-menu' ),
 				'pages'      => [
