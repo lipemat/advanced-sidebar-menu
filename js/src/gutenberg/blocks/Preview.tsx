@@ -1,10 +1,10 @@
-import {ReactElement} from 'react';
-import {Attr} from './pages/block';
+import {ReactElement, useEffect} from 'react';
 import {CONFIG, I18N} from '../../globals/config';
 import ServerSideRender from '@wordpress/server-side-render';
-import {Placeholder} from '@wordpress/components';
+import {Placeholder, Spinner} from '@wordpress/components';
 import {useBlockProps} from '@wordpress/block-editor';
 import {sanitize} from 'dompurify';
+import {doAction} from '@wordpress/hooks';
 
 import styles from './preview.pcss';
 
@@ -12,8 +12,8 @@ export type PreviewOptions = {
 	isServerSideRenderRequest: boolean;
 }
 
-type Props = {
-	attributes: Attr;
+type Props<A> = {
+	attributes: A;
 	block: string;
 };
 
@@ -25,7 +25,7 @@ type Props = {
 const Page = () => <Placeholder
 	className={styles.placeholder}
 	icon={'welcome-widgets-menus'}
-	label={I18N.widgetPages}
+	label={I18N.pages.title}
 />;
 
 
@@ -36,8 +36,47 @@ const placeholder = ( block ): () => ReactElement => {
 	}
 	return () => <></>;
 };
+/**
+ * Same as the `DefaultLoadingResponsePlaceholder` except we trigger
+ * an action when the loading component is unmounted to allow
+ * components to hook into when ServerSideRender has finished loading.
+ *
+ */
+const TriggerWhenLoadingFinished = attributes => {
+	return ( {children, showLoader} ) => {
+		// eslint-disable-next-line react-hooks/rules-of-hooks
+		useEffect( () => {
+			// Call action when the loading component unmounts because loading is finished.
+			return () => {
+				doAction( 'advanced-sidebar-menu.blocks.preview.loading-finished', attributes );
+			};
+		} );
 
-const Preview = ( {attributes, block}: Props ) => {
+		return (
+			<div style={{position: 'relative'}}>
+				{showLoader && (
+					<div
+						style={{
+							position: 'absolute',
+							top: '50%',
+							left: '50%',
+							marginTop: '-9px',
+							marginLeft: '-9px',
+						}}
+					>
+						<Spinner />
+					</div>
+				)}
+				<div style={{opacity: showLoader ? '0.3' : 1}}>
+					{children}
+				</div>
+			</div>
+		);
+	};
+};
+
+
+const Preview = <A, >( {attributes, block, clientId}: Props<A> ) => {
 	const blockProps = useBlockProps( {
 		className: styles.wrap,
 	} );
@@ -50,8 +89,9 @@ const Preview = ( {attributes, block}: Props ) => {
 
 	return (
 		<div {...blockProps}>
-			<ServerSideRender<Attr>
+			<ServerSideRender<A & PreviewOptions>
 				EmptyResponsePlaceholder={placeholder( block )}
+				LoadingResponsePlaceholder={TriggerWhenLoadingFinished( attributes )}
 				attributes={{
 					...attributes,
 					// Send custom attribute to determine server side renders.
