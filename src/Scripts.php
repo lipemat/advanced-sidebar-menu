@@ -61,17 +61,33 @@ class Scripts {
 		if ( ! wp_should_load_block_editor_scripts_and_styles() ) {
 			return;
 		}
-		$js_dir = apply_filters( 'advanced-sidebar-menu/js-dir', ADVANCED_SIDEBAR_MENU_URL . 'js/dist/' );
 
-		wp_enqueue_script( self::ADMIN_HANDLE, $js_dir . 'admin.js', [
+		$js_dir = apply_filters( 'advanced-sidebar-menu/js-dir', ADVANCED_SIDEBAR_MENU_URL . 'js/dist/' );
+		$file = $this->is_script_debug_enabled() ? 'admin' : 'admin.min';
+
+		wp_enqueue_script( self::ADMIN_HANDLE, "{$js_dir}{$file}.js", [
 			'jquery',
 			'react',
 			'react-dom',
+			'wp-url',
 		], ADVANCED_SIDEBAR_BASIC_VERSION, true );
 
 		wp_localize_script( self::ADMIN_HANDLE, 'ADVANCED_SIDEBAR_MENU', $this->js_config() );
 
-		wp_enqueue_style( 'advanced-sidebar-menu/master-css', $js_dir . 'master.css', [], ADVANCED_SIDEBAR_BASIC_VERSION );
+		wp_enqueue_style( 'advanced-sidebar-menu/admin-css', "{$js_dir}{$file}.css", [], ADVANCED_SIDEBAR_BASIC_VERSION );
+	}
+
+
+	/**
+	 * Is SCRIPT_DEBUG enabled or passed via URL argument.
+	 *
+	 * @since 9.0.0
+	 *
+	 * @return bool
+	 */
+	protected function is_script_debug_enabled() {
+		//phpcs:ignore WordPress.Security.NonceVerification.Recommended
+		return ( \defined( 'SCRIPT_DEBUG' ) && SCRIPT_DEBUG ) || ! empty( $_GET['script-debug'] );
 	}
 
 
