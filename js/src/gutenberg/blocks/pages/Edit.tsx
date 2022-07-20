@@ -10,6 +10,7 @@ import {CONFIG, I18N} from '../../../globals/config';
 import {sanitize} from 'dompurify';
 import {sprintf} from '@wordpress/i18n';
 import {Type} from '@wordpress/api/types';
+import ErrorBoundary from '../../../components/ErrorBoundary';
 
 import styles from './edit.pcss';
 
@@ -41,52 +42,60 @@ const Edit = ( {attributes, setAttributes, clientId}: Props ) => {
 
 	return ( <>
 		<InspectorControls>
-			<Display
-				attributes={attributes}
-				setAttributes={setAttributes}
-				type={postType} />
-			<div className={'components-panel__body is-opened'}>
+			<ErrorBoundary>
+				<Display
+					attributes={attributes}
+					setAttributes={setAttributes}
+					type={postType} />
+				<div className={'components-panel__body is-opened'}>
 
-				<Slot name="AdvancedSidebarMenuPages" />
+					<Slot name="AdvancedSidebarMenuPages" />
 
-				<SelectControl
-					label={I18N.pages.orderBy.title}
-					value={attributes.order_by}
-					// @ts-ignore
-					labelPosition={'side'}
-					options={Object.entries( I18N.pages.orderBy.options ).map( ( [ value, label ] ) => ( {
-						value,
-						label,
-					} ) )}
-					onChange={value => {
-						setAttributes( {
-							order_by: value,
-						} );
-					}} />
-				<TextControl
-					//eslint-disable-next-line @wordpress/valid-sprintf
-					label={sprintf( I18N.pages.exclude, postType?.labels?.name ?? '' )}
-					value={attributes.exclude}
-					onChange={value => {
-						setAttributes( {
-							exclude: value,
-						} );
-					}} />
-				<p>
-					<a href={I18N.docs.page} target="_blank" rel="noopener noreferrer">
-						{I18N.docs.title}
-					</a>
-				</p>
-			</div>
+					<SelectControl
+						label={I18N.pages.orderBy.title}
+						value={attributes.order_by}
+						// @ts-ignore
+						labelPosition={'side'}
+						options={Object.entries( I18N.pages.orderBy.options ).map( ( [ value, label ] ) => ( {
+							value,
+							label,
+						} ) )}
+						onChange={value => {
+							setAttributes( {
+								order_by: value,
+							} );
+						}} />
+					<TextControl
+						//eslint-disable-next-line @wordpress/valid-sprintf
+						label={sprintf( I18N.pages.exclude, postType?.labels?.name ?? '' )}
+						value={attributes.exclude}
+						onChange={value => {
+							setAttributes( {
+								exclude: value,
+							} );
+						}} />
+					<p>
+						<a
+							href={I18N.docs.page}
+							target="_blank"
+							rel="noopener noreferrer">
+							{I18N.docs.title}
+						</a>
+					</p>
+				</div>
+			</ErrorBoundary>
 		</InspectorControls>
 
-		<ProFields
-			attributes={attributes}
-			setAttributes={setAttributes}
-			clientId={clientId}
-			postType={postType} />
+		<ErrorBoundary>
+			<ProFields
+				attributes={attributes}
+				setAttributes={setAttributes}
+				clientId={clientId}
+				postType={postType} />
 
-		<Preview<Attr> attributes={attributes} block={block.id} clientId={clientId} />
+			<Preview<Attr> attributes={attributes} block={block.id} clientId={clientId} />
+		</ErrorBoundary>
+
 	</> );
 };
 

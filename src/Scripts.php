@@ -98,8 +98,8 @@ class Scripts {
 	 */
 	public function js_config() {
 		return apply_filters( 'advanced-sidebar-menu/scripts/js-config', [
-			'error' => apply_filters( 'advanced-sidebar-menu/scripts/js-config/error', '' ),
-			'i18n'  => [
+			'error'    => apply_filters( 'advanced-sidebar-menu/scripts/js-config/error', '' ),
+			'i18n'     => [
 				'display'    => [
 					'title'     => __( 'Display', 'advanced-sidebar-menu' ),
 					/* translators: Selected taxonomy single label */
@@ -142,7 +142,13 @@ class Scripts {
 				'soMuchMore' => __( 'So much more...', 'advanced-sidebar-menu' ),
 				'upgrade'    => __( 'Upgrade', 'advanced-sidebar-menu' ),
 			],
-			'isPro' => false,
+			'isPro'    => false,
+			'siteInfo' => [
+				'basic'       => ADVANCED_SIDEBAR_BASIC_VERSION,
+				'pro'         => false,
+				'scriptDebug' => $this->is_script_debug_enabled(),
+				'wordpress'   => get_bloginfo( 'version' ),
+			],
 		] );
 	}
 

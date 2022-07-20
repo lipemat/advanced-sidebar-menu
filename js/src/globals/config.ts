@@ -35,6 +35,12 @@ interface JSConfig {
 		soMuchMore: string;
 		upgrade: string;
 	};
+	siteInfo: {
+		basic: string;
+		pro: string;
+		scriptDebug: boolean;
+		wordpress: string;
+	};
 }
 
 
