@@ -1,5 +1,5 @@
 import {useBlockProps} from '@wordpress/block-editor';
-import {BlockSettings} from '@wordpress/blocks';
+import {BlockSettings, createBlock, LegacyWidget} from '@wordpress/blocks';
 import {CONFIG, I18N} from '../../../globals/config';
 import Edit from './Edit';
 import {PreviewOptions} from '../Preview';
@@ -29,6 +29,23 @@ type ProRegistered = {
 export type setAttributes = ( newValue: {
 	[attribute in keyof Attr]?: Attr[attribute]
 } ) => void;
+
+/**
+ * Translate the widget's "checked" to the boolean
+ * version used in the block.
+ *
+ */
+export const translateLegacyWidget = ( settings ): Attr => {
+	Object.entries( settings ).forEach( ( [ key, value ] ) => {
+		if ( 'checked' === value ) {
+			settings[ key ] = true;
+		}
+		if ( 'object' === typeof value ) {
+			translateLegacyWidget( settings[ key ] );
+		}
+	} );
+	return settings;
+};
 
 /**
  * Attributes used for the example preview.
@@ -63,7 +80,7 @@ export const block = CONFIG.blocks.pages;
 
 export const name = block.id;
 
-export const settings: BlockSettings<Attr> = {
+export const settings: BlockSettings<Attr, '', LegacyWidget<Attr>> = {
 	title: I18N.pages.title,
 	description: I18N.pages.description,
 	icon: 'welcome-widgets-menus',
@@ -71,6 +88,18 @@ export const settings: BlockSettings<Attr> = {
 	keywords: I18N.pages.keywords,
 	example: {
 		attributes: example as any,
+	},
+	transforms: {
+		from: [
+			{
+				type: 'block',
+				blocks: [ 'core/legacy-widget' ],
+				isMatch: ( {idBase} ) => 'advanced_sidebar_menu' === idBase,
+				transform: ( {instance} ) => {
+					return createBlock<Attr>( name, translateLegacyWidget( instance.raw ) );
+				},
+			},
+		],
 	},
 	// `attributes` are registered server side because we use ServerSideRender.
 	// `supports` are registered server side for easy overrides.
