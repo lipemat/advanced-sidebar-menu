@@ -20,6 +20,16 @@ type Props<A> = {
 };
 
 /**
+ * Sanitize a client id for use as an HTML id.
+ *
+ * Must not start with a `-` or a digit.
+ *
+ */
+export const sanitizeClientId = ( clientId: string ): string => {
+	return clientId.replace( /^([\d-])/, '_$1' );
+};
+
+/**
  * @notice Must use static constants, or the ServerSide requests
  *         will fire anytime something on the page is changed
  *         because the component re-renders.
@@ -43,14 +53,20 @@ const placeholder = ( block ): () => ReactElement => {
  * an action when the loading component is unmounted to allow
  * components to hook into when ServerSideRender has finished loading.
  *
+ * @param {Attr}   values   - Current attribute values.
+ * @param {string} clientId - ClientId sanitized for use as an HTML id.
+ *
  */
-const TriggerWhenLoadingFinished = attributes => {
+const TriggerWhenLoadingFinished = <A, >( values: A, clientId: string ) => {
 	return ( {children, showLoader} ) => {
 		// eslint-disable-next-line react-hooks/rules-of-hooks
 		useEffect( () => {
 			// Call action when the loading component unmounts because loading is finished.
 			return () => {
-				doAction( 'advanced-sidebar-menu.blocks.preview.loading-finished', attributes );
+				doAction( 'advanced-sidebar-menu.blocks.preview.loading-finished', {
+					values,
+					clientId,
+				} );
 			};
 		} );
 
@@ -89,16 +105,18 @@ const Preview = <A, >( {attributes, block, clientId}: Props<A> ) => {
 			dangerouslySetInnerHTML={{__html: sanitize( CONFIG.error )}} />;
 	}
 
+	const sanitizedClientId = sanitizeClientId( clientId );
+
 	return (
 		<div {...blockProps}>
 			<ServerSideRender<A & PreviewOptions>
 				EmptyResponsePlaceholder={placeholder( block )}
-				LoadingResponsePlaceholder={TriggerWhenLoadingFinished( attributes )}
+				LoadingResponsePlaceholder={TriggerWhenLoadingFinished<A>( attributes, sanitizedClientId )}
 				attributes={{
 					...attributes,
 					// Send custom attribute to determine server side renders.
 					isServerSideRenderRequest: true,
-					clientId,
+					clientId: sanitizedClientId,
 				}}
 				block={block}
 				httpMethod={'POST'}
