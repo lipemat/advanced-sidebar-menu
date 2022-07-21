@@ -64,11 +64,7 @@ class ErrorBoundary extends React.Component<{}, { hasError: boolean, error: Erro
 						Something went wrong!
 					</h4>
 					<p>
-						Please <a
-							target="_blank"
-							href={'https://onpointplugins.com/plugin-support/?trigger_request_form=1'}
-							rel="noreferrer"
-						>
+						Please <a target="_blank" href={CONFIG.support} rel="noreferrer">
 							create a support request
 						</a> with the following:
 					</p>

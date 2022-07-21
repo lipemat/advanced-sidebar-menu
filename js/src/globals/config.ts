@@ -41,6 +41,7 @@ interface JSConfig {
 		scriptDebug: boolean;
 		wordpress: string;
 	};
+	support: string;
 }
 
 

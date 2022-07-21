@@ -149,6 +149,7 @@ class Scripts {
 				'scriptDebug' => $this->is_script_debug_enabled(),
 				'wordpress'   => get_bloginfo( 'version' ),
 			],
+			'support'  => 'https://wordpress.org/support/plugin/advanced-sidebar-menu/#new-topic-0',
 		] );
 	}
 
