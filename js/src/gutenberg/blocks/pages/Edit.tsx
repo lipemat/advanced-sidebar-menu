@@ -1,5 +1,11 @@
 import {InspectorControls} from '@wordpress/block-editor';
-import {SelectControl, Slot, TextControl, withFilters} from '@wordpress/components';
+import {
+	SelectControl,
+	Slot,
+	Spinner,
+	TextControl,
+	withFilters,
+} from '@wordpress/components';
 import {BlockEditProps} from '@wordpress/blocks';
 import {Attr, block} from './block';
 import Preview from '../Preview';
@@ -38,6 +44,11 @@ const Edit = ( {attributes, setAttributes, clientId}: Props ) => {
 			</InspectorControls>
 			<Preview<Attr> attributes={attributes} block={block.id} clientId={clientId} />
 		</> );
+	}
+
+	// Widget transformations can happen faster than the post type loads.
+	if ( ! postType ) {
+		return <Spinner />;
 	}
 
 	return ( <>
