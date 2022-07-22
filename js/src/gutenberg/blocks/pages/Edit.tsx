@@ -1,11 +1,5 @@
 import {InspectorControls} from '@wordpress/block-editor';
-import {
-	SelectControl,
-	Slot,
-	Spinner,
-	TextControl,
-	withFilters,
-} from '@wordpress/components';
+import {SelectControl, Slot, TextControl, withFilters} from '@wordpress/components';
 import {BlockEditProps} from '@wordpress/blocks';
 import {Attr, block} from './block';
 import Preview from '../Preview';
@@ -22,14 +16,14 @@ import styles from './edit.pcss';
 
 type Props = BlockEditProps<Attr>;
 
-const ProFields = withFilters<Partial<Props> & { postType: Type }>( 'advanced-sidebar-menu.blocks.pages.pro-fields' )( () =>
+const ProFields = withFilters<Partial<Props> & { postType?: Type }>( 'advanced-sidebar-menu.blocks.pages.pro-fields' )( () =>
 	<InfoPanel /> );
 
 /**
  * Pages block content in the editor.
  */
 const Edit = ( {attributes, setAttributes, clientId}: Props ) => {
-	const postType = useSelect( select => {
+	const postType: Type | undefined = useSelect( select => {
 		const type = select( 'core' ).getPostType( attributes.post_type ?? 'page' );
 		return type ?? select( 'core' ).getPostType( 'page' );
 	}, [ attributes.post_type ] );
@@ -44,11 +38,6 @@ const Edit = ( {attributes, setAttributes, clientId}: Props ) => {
 			</InspectorControls>
 			<Preview<Attr> attributes={attributes} block={block.id} clientId={clientId} />
 		</> );
-	}
-
-	// Widget transformations can happen faster than the post type loads.
-	if ( ! postType ) {
-		return <Spinner />;
 	}
 
 	return ( <>

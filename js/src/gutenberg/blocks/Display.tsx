@@ -11,7 +11,7 @@ import {Taxonomy} from '@wordpress/api/taxonomies';
 type Props = {
 	attributes: Attr;
 	setAttributes: setAttributes;
-	type: Type | Taxonomy;
+	type?: Type | Taxonomy;
 };
 
 
@@ -36,9 +36,9 @@ const Display = ( {attributes, setAttributes, type}: Props ) => {
 			title={I18N.display.title}
 		>
 			{Object.keys( checkboxes ).map( item => {
-				let label = type.labels?.singular_name.toLowerCase() ?? '';
+				let label = type?.labels?.singular_name.toLowerCase() ?? '';
 				if ( 'display_all' === item ) {
-					label = type.labels?.name.toLowerCase() ?? '';
+					label = type?.labels?.name.toLowerCase() ?? '';
 				}
 				return <CheckboxControl
 					key={item}
@@ -53,7 +53,7 @@ const Display = ( {attributes, setAttributes, type}: Props ) => {
 				/>;
 			} )}
 			{( CONFIG.isPro || attributes.display_all ) &&
-				reactStringReplace( I18N.display.levels.replace( '%2$s', type.labels?.name.toLowerCase() ?? '' ), '%1$s',
+				reactStringReplace( I18N.display.levels.replace( '%2$s', type?.labels?.name.toLowerCase() ?? '' ), '%1$s',
 					() => (
 						<select
 							key={'levels'}

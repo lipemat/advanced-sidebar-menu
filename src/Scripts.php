@@ -143,6 +143,7 @@ class Scripts {
 				'upgrade'    => __( 'Upgrade', 'advanced-sidebar-menu' ),
 			],
 			'isPro'    => false,
+			'postType' => get_post_type_object( 'page' )->labels,
 			'siteInfo' => [
 				'basic'       => ADVANCED_SIDEBAR_BASIC_VERSION,
 				'pro'         => false,
