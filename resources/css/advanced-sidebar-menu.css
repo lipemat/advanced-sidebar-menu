@@ -34,7 +34,8 @@
 }
 
 .advanced-sidebar-menu-column-box select,
-.advanced-sidebar-menu-column-box input {
+.advanced-sidebar-menu-column-box input[type='number'],
+.advanced-sidebar-menu-column-box input[type='text'] {
 	background: #fff !important;
 }
 
