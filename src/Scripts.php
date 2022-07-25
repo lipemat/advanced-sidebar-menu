@@ -142,6 +142,7 @@ class Scripts {
 				'exclude'    => __( '%s to exclude (ids, comma separated)', 'advanced-sidebar-menu' ),
 				'features'   => Notice::instance()->get_features(),
 				'goPro'      => __( 'Advanced Sidebar Menu PRO', 'advanced-sidebar-menu' ),
+				'noPreview'  => __( 'No preview available', 'advanced-sidebar-menu' ),
 				'pages'      => [
 					'title'       => __( 'Advanced Sidebar - Pages', 'advanced-sidebar-menu' ),
 					'description' => __( 'Creates a menu of all the pages using the child/parent relationship', 'advanced-sidebar-menu' ),

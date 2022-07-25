@@ -38,12 +38,14 @@ const Page = () => <Placeholder
 	className={styles.placeholder}
 	icon={'welcome-widgets-menus'}
 	label={I18N.pages.title}
+	instructions={I18N.noPreview}
 />;
 
 const Category = () => <Placeholder
 	className={styles.placeholder}
 	icon={'welcome-widgets-menus'}
 	label={I18N.categories.title}
+	instructions={I18N.noPreview}
 />;
 
 
@@ -56,49 +58,67 @@ const placeholder = ( block ): () => ReactElement => {
 	}
 	return () => <></>;
 };
+
+/**
+ * Don't have an internal way to pass the values
+ * with using a construction function, which causes
+ * re-render on any block change.
+ */
+let passed = {
+	values: {},
+	clientId: '',
+};
+
+/**
+ * Set values we use in `TriggerWhenLoadingFinished`.
+ * Return `TriggerWhenLoadingFinished`
+ *
+ */
+const getLoader = <A, >( values: A, clientId: string ) => {
+	passed = {
+		values,
+		clientId,
+	};
+	return TriggerWhenLoadingFinished;
+};
+
+
 /**
  * Same as the `DefaultLoadingResponsePlaceholder` except we trigger
  * an action when the loading component is unmounted to allow
  * components to hook into when ServerSideRender has finished loading.
  *
- * @param {Attr}   values   - Current attribute values.
- * @param {string} clientId - ClientId sanitized for use as an HTML id.
+ * @notice Using a constant to prevent reload on every content change.
  *
  */
-const TriggerWhenLoadingFinished = <A, >( values: A, clientId: string ) => {
-	return ( {children, showLoader} ) => {
-		// eslint-disable-next-line react-hooks/rules-of-hooks
-		useEffect( () => {
-			// Call action when the loading component unmounts because loading is finished.
-			return () => {
-				doAction( 'advanced-sidebar-menu.blocks.preview.loading-finished', {
-					values,
-					clientId,
-				} );
-			};
-		} );
+const TriggerWhenLoadingFinished = ( {children, showLoader} ) => {
+	useEffect( () => {
+		// Call action when the loading component unmounts because loading is finished.
+		return () => {
+			doAction( 'advanced-sidebar-menu.blocks.preview.loading-finished', passed );
+		};
+	} );
 
-		return (
-			<div style={{position: 'relative'}}>
-				{showLoader && (
-					<div
-						style={{
-							position: 'absolute',
-							top: '50%',
-							left: '50%',
-							marginTop: '-9px',
-							marginLeft: '-9px',
-						}}
-					>
-						<Spinner />
-					</div>
-				)}
-				<div style={{opacity: showLoader ? '0.3' : 1}}>
-					{children}
+	return (
+		<div style={{position: 'relative'}}>
+			{showLoader && (
+				<div
+					style={{
+						position: 'absolute',
+						top: '50%',
+						left: '50%',
+						marginTop: '-9px',
+						marginLeft: '-9px',
+					}}
+				>
+					<Spinner />
 				</div>
+			)}
+			<div style={{opacity: showLoader ? '0.3' : 1}}>
+				{children}
 			</div>
-		);
-	};
+		</div>
+	);
 };
 
 
@@ -119,7 +139,7 @@ const Preview = <A, >( {attributes, block, clientId}: Props<A> ) => {
 		<div {...blockProps}>
 			<ServerSideRender<A & PreviewOptions>
 				EmptyResponsePlaceholder={placeholder( block )}
-				LoadingResponsePlaceholder={TriggerWhenLoadingFinished<A>( attributes, sanitizedClientId )}
+				LoadingResponsePlaceholder={getLoader<A>( attributes, sanitizedClientId )}
 				attributes={{
 					...attributes,
 					// Send custom attribute to determine server side renders.

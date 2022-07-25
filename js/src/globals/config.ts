@@ -30,6 +30,7 @@ interface JSConfig {
 		exclude: string;
 		features: Array<string>;
 		goPro: string;
+		noPreview: string;
 		pages: {
 			title: string;
 			description: string;
