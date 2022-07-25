@@ -22,6 +22,7 @@ class Scripts {
 	 */
 	public function hook() {
 		add_action( 'admin_enqueue_scripts', [ $this, 'admin_scripts' ] );
+		add_action( 'enqueue_block_editor_assets', [ $this, 'gutenberg_scripts' ] );
 		// Elementor support.
 		add_action( 'elementor/editor/after_enqueue_scripts', [ $this, 'admin_scripts' ] );
 		// UGH! Beaver Builder hack.
@@ -32,6 +33,32 @@ class Scripts {
 		add_action( 'advanced-sidebar-menu/widget/category/after-form', [ $this, 'init_widget_js' ], 1000 );
 		add_action( 'advanced-sidebar-menu/widget/page/after-form', [ $this, 'init_widget_js' ], 1000 );
 		add_action( 'advanced-sidebar-menu/widget/navigation-menu/after-form', [ $this, 'init_widget_js' ], 1000 );
+	}
+
+
+	/**
+	 * Load Gutenberg block scripts.
+	 *
+	 * @action enqueue_block_editor_assets 10 0
+	 *
+	 * @since  9.0.0
+	 *
+	 * @return void
+	 */
+	public function gutenberg_scripts() {
+		$js_dir = apply_filters( 'advanced-sidebar-menu/js-dir', ADVANCED_SIDEBAR_MENU_URL . 'js/dist/' );
+		$file = $this->is_script_debug_enabled() ? 'admin' : 'admin.min';
+
+		wp_enqueue_script( self::ADMIN_HANDLE, "{$js_dir}{$file}.js", [
+			'jquery',
+			'react',
+			'react-dom',
+			'wp-url',
+		], ADVANCED_SIDEBAR_BASIC_VERSION, true );
+
+		wp_localize_script( self::ADMIN_HANDLE, 'ADVANCED_SIDEBAR_MENU', $this->js_config() );
+
+		wp_enqueue_style( 'advanced-sidebar-menu/admin-css', "{$js_dir}{$file}.css", [], ADVANCED_SIDEBAR_BASIC_VERSION );
 	}
 
 
@@ -57,24 +84,6 @@ class Scripts {
 			[],
 			ADVANCED_SIDEBAR_BASIC_VERSION
 		);
-
-		if ( ! wp_should_load_block_editor_scripts_and_styles() ) {
-			return;
-		}
-
-		$js_dir = apply_filters( 'advanced-sidebar-menu/js-dir', ADVANCED_SIDEBAR_MENU_URL . 'js/dist/' );
-		$file = $this->is_script_debug_enabled() ? 'admin' : 'admin.min';
-
-		wp_enqueue_script( self::ADMIN_HANDLE, "{$js_dir}{$file}.js", [
-			'jquery',
-			'react',
-			'react-dom',
-			'wp-url',
-		], ADVANCED_SIDEBAR_BASIC_VERSION, true );
-
-		wp_localize_script( self::ADMIN_HANDLE, 'ADVANCED_SIDEBAR_MENU', $this->js_config() );
-
-		wp_enqueue_style( 'advanced-sidebar-menu/admin-css', "{$js_dir}{$file}.css", [], ADVANCED_SIDEBAR_BASIC_VERSION );
 	}
 
 
