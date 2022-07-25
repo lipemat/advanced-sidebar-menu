@@ -2063,14 +2063,14 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@lipemat/js-boilerplate-gutenberg@npm:^2.9.0":
-  version: 2.9.1
-  resolution: "@lipemat/js-boilerplate-gutenberg@npm:2.9.1"
+"@lipemat/js-boilerplate-gutenberg@npm:^2.9.2":
+  version: 2.9.2
+  resolution: "@lipemat/js-boilerplate-gutenberg@npm:2.9.2"
   dependencies:
     "@types/lipemat__js-boilerplate": "github:lipemat/types-js-boilerplate#semver:^1.23.0"
   peerDependencies:
     "@lipemat/js-boilerplate": ">=6.0.0"
-  checksum: eec2b21237153c3486617969f920dc3d7054e939d6cc4acfd779a1063e37802e77251a8d12e57194ee6e34d6e083b2aac83fdd1a0c6083b77f59db5df103b7c9
+  checksum: 55ffa3f9c2e4906c581c2171da6579241cf0e5d901ee9d8d8f493ec08e6d4197da4187025ba5685cb7cba077f5c1ade9002f572207085f1f27816bd62737bef1
   languageName: node
   linkType: hard
 
@@ -2211,7 +2211,7 @@ __metadata:
   resolution: "@onpointplugins/advanced-sidebar-menu@workspace:."
   dependencies:
     "@lipemat/js-boilerplate": ^8.6.1
-    "@lipemat/js-boilerplate-gutenberg": ^2.9.0
+    "@lipemat/js-boilerplate-gutenberg": ^2.9.2
     "@lipemat/stylelint-config": ^1.4.1
     "@types/jquery": ^3
     "@types/lipemat__js-boilerplate": "lipemat/types-js-boilerplate#semver:^1"
