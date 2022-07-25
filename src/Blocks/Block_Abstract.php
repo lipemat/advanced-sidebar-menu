@@ -94,12 +94,15 @@ abstract class Block_Abstract {
 	/**
 	 * Register the block.
 	 *
+	 * @link https://developer.wordpress.org/block-editor/reference-guides/block-api/block-metadata/
+	 *
 	 * @return void
 	 */
 	public function register() {
 		register_block_type( static::NAME, [
 			'api_version'     => 2,
 			'attributes'      => $this->get_all_attributes(),
+			'editor_style'    => 'dashicons',
 			'render_callback' => [ $this, 'render' ],
 			'supports'        => $this->get_block_support(),
 		] );
