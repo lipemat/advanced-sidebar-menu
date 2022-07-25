@@ -3,6 +3,7 @@ import {BlockSettings, CreateBlock, createBlock, LegacyWidget} from '@wordpress/
 import {CONFIG, I18N} from '../../../globals/config';
 import Edit from './Edit';
 import {PreviewOptions} from '../Preview';
+import {DisplayOptions} from '../Display';
 
 /**
  * Attributes specific to the widget as well as shared
@@ -12,13 +13,9 @@ import {PreviewOptions} from '../Preview';
  * @see \Advanced_Sidebar_Menu\Blocks\Pages::get_attributes
  */
 export type Attr = {
-	display_all: boolean;
 	exclude: string;
-	include_childless_parent: boolean;
-	include_parent: boolean;
-	levels: string;
 	order_by: string;
-} & ProRegistered & PreviewOptions;
+} & DisplayOptions & ProRegistered & PreviewOptions;
 
 // Options used by basic when available from PRO.
 type ProRegistered = {
@@ -47,11 +44,26 @@ export const translateLegacyWidget = ( settings ): Attr => {
 };
 
 /**
+ * Transform a legacy widget to the matching block.
+ *
+ */
+export const transformLegacyWidget = ( {instance} ) => {
+	const blocks: CreateBlock<any>[] = [];
+	if ( instance.raw.title ) {
+		blocks.push( createBlock<{ content: string }>( 'core/heading', {
+			content: instance.raw.title,
+		} ) );
+	}
+	blocks.push( createBlock<Attr>( name, translateLegacyWidget( instance.raw ) ) );
+	return blocks;
+};
+
+/**
  * Attributes used for the example preview.
  * Combines some PRO and basic attributes.
  * The PRO attributes will only be sent if PRO is active.
  */
-export const example = {
+export const EXAMPLE = {
 	include_parent: true,
 	include_childless_parent: true,
 	display_all: true,
@@ -86,7 +98,7 @@ export const settings: BlockSettings<Attr, '', LegacyWidget<Attr & { title: stri
 	category: 'widgets',
 	keywords: I18N.pages.keywords,
 	example: {
-		attributes: example as any,
+		attributes: EXAMPLE as any,
 	},
 	transforms: {
 		from: [
@@ -100,16 +112,7 @@ export const settings: BlockSettings<Attr, '', LegacyWidget<Attr & { title: stri
 					}
 					return 'advanced_sidebar_menu' === idBase;
 				},
-				transform: ( {instance} ) => {
-					const blocks: CreateBlock<any>[] = [];
-					if ( instance.raw.title ) {
-						blocks.push( createBlock<{ content: string }>( 'core/heading', {
-							content: instance.raw.title,
-						} ) );
-					}
-					blocks.push( createBlock<Attr>( name, translateLegacyWidget( instance.raw ) ) );
-					return blocks;
-				},
+				transform: transformLegacyWidget,
 			},
 		],
 	},

@@ -3,17 +3,17 @@
 namespace Advanced_Sidebar_Menu\Blocks;
 
 use Advanced_Sidebar_Menu\Traits\Singleton;
-use Advanced_Sidebar_Menu\Widget\Page;
+use Advanced_Sidebar_Menu\Widget\Category;
 
 /**
- * Advanced Sidebar - Pages, Gutenberg block.
+ * Advanced Sidebar - Categories, Gutenberg block.
  *
  * @since  9.0.0
  */
-class Pages extends Block_Abstract {
+class Categories extends Block_Abstract {
 	use Singleton;
 
-	const NAME = 'advanced-sidebar-menu/pages';
+	const NAME = 'advanced-sidebar-menu/categories';
 
 
 	/**
@@ -25,7 +25,7 @@ class Pages extends Block_Abstract {
 	 * @return array
 	 */
 	protected function get_block_support() {
-		return apply_filters( 'advanced-sidebar-menu/blocks/pages/supports', [
+		return apply_filters( 'advanced-sidebar-menu/blocks/categories/supports', [
 			'anchor' => true,
 		] );
 	}
@@ -41,36 +41,17 @@ class Pages extends Block_Abstract {
 	 * @return array
 	 */
 	protected function get_attributes() {
-		return apply_filters( 'advanced-sidebar-menu/blocks/pages/attributes', [
-			Page::INCLUDE_PARENT           => [
-				'type' => 'boolean',
-			],
-			Page::INCLUDE_CHILDLESS_PARENT => [
-				'type' => 'boolean',
-			],
-			Page::ORDER_BY                 => [
-				'type' => 'string',
-			],
-			Page::EXCLUDE                  => [
-				'type' => 'string',
-			],
-			Page::DISPLAY_ALL              => [
-				'type' => 'boolean',
-			],
-			Page::LEVELS                   => [
-				'type' => 'string',
-			],
-		] );
+		return apply_filters( 'advanced-sidebar-menu/blocks/categories/attributes', [] );
 	}
 
 
 	/**
 	 * Return a new instance of the Page widget.
 	 *
-	 * @return Page
+	 * @return Category
 	 */
 	protected function get_widget_class() {
-		return new Page();
+		return new Category();
 	}
 
 }

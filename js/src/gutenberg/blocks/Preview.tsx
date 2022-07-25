@@ -40,11 +40,19 @@ const Page = () => <Placeholder
 	label={I18N.pages.title}
 />;
 
+const Category = () => <Placeholder
+	className={styles.placeholder}
+	icon={'welcome-widgets-menus'}
+	label={I18N.categories.title}
+/>;
+
 
 const placeholder = ( block ): () => ReactElement => {
 	switch ( block ) {
 		case CONFIG.blocks.pages.id:
 			return Page;
+		case CONFIG.blocks.categories.id:
+			return Category;
 	}
 	return () => <></>;
 };

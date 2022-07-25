@@ -97,9 +97,30 @@ class Scripts {
 	 * @return array
 	 */
 	public function js_config() {
+		$category = get_taxonomy( 'category' );
 		return apply_filters( 'advanced-sidebar-menu/scripts/js-config', [
 			'error'    => apply_filters( 'advanced-sidebar-menu/scripts/js-config/error', '' ),
 			'i18n'     => [
+				'categories' => [
+					'title'       => __( 'Advanced Sidebar - Categories', 'advanced-sidebar-menu' ),
+					'description' => __( 'Creates a menu of all the categories using the child/parent relationship', 'advanced-sidebar-menu' ),
+					// English and translated so both will be searchable.
+					'keywords'    => [
+						'Advanced Sidebar',
+						'menu',
+						'sidebar',
+						'category',
+						'categories',
+						'taxonomy',
+						'term',
+						$category ? $category->labels->name : '',
+						$category ? $category->labels->singular_name : '',
+						__( 'menu', 'advanced-sidebar-menu' ),
+						__( 'sidebar', 'advanced-sidebar-menu' ),
+						__( 'taxonomy', 'advanced-sidebar-menu' ),
+						__( 'term', 'advanced-sidebar-menu' ),
+					],
+				],
 				'display'    => [
 					'title'     => __( 'Display', 'advanced-sidebar-menu' ),
 					/* translators: Selected taxonomy single label */
@@ -117,13 +138,13 @@ class Scripts {
 					'page'     => 'https://onpointplugins.com/advanced-sidebar-menu/#advanced-sidebar-pages-menu',
 					'category' => 'https://onpointplugins.com/advanced-sidebar-menu/#advanced-sidebar-categories-menu',
 				],
+				/* translators: Selected post type plural label */
+				'exclude'    => __( '%s to exclude (ids, comma separated)', 'advanced-sidebar-menu' ),
 				'features'   => Notice::instance()->get_features(),
 				'goPro'      => __( 'Advanced Sidebar Menu PRO', 'advanced-sidebar-menu' ),
 				'pages'      => [
 					'title'       => __( 'Advanced Sidebar - Pages', 'advanced-sidebar-menu' ),
 					'description' => __( 'Creates a menu of all the pages using the child/parent relationship', 'advanced-sidebar-menu' ),
-					/* translators: Selected post type plural label */
-					'exclude'     => __( '%s to exclude (ids, comma separated)', 'advanced-sidebar-menu' ),
 					// English and translated so both will be searchable.
 					'keywords'    => [
 						'Advanced Sidebar',

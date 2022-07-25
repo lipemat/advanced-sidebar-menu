@@ -25,6 +25,7 @@ define( 'ADVANCED_SIDEBAR_DIR', plugin_dir_path( __FILE__ ) );
 define( 'ADVANCED_SIDEBAR_MENU_URL', plugin_dir_url( __FILE__ ) );
 
 use Advanced_Sidebar_Menu\Blocks\Block_Abstract;
+use Advanced_Sidebar_Menu\Blocks\Categories;
 use Advanced_Sidebar_Menu\Blocks\Pages;
 use Advanced_Sidebar_Menu\Cache;
 use Advanced_Sidebar_Menu\Core;
@@ -52,6 +53,7 @@ use Advanced_Sidebar_Menu\Widget\Widget_Abstract;
 function advanced_sidebar_menu_load() {
 	Core::init();
 	// Blocks.
+	Categories::init();
 	Pages::init();
 
 	Cache::init();
@@ -83,6 +85,7 @@ function advanced_sidebar_menu_autoload( $class ) {
 
 		// Blocks.
 		Block_Abstract::class  => 'Blocks/Block_Abstract.php',
+		Categories::class      => 'Blocks/Categories.php',
 		Pages::class           => 'Blocks/Pages.php',
 
 		// Core.

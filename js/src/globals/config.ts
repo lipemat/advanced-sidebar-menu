@@ -1,11 +1,19 @@
 interface JSConfig {
 	blocks: {
+		categories: {
+			id: string;
+		};
 		pages: {
 			id: string;
-		}
+		};
 	};
 	error: false | string;
 	i18n: {
+		categories: {
+			title: string;
+			description: string;
+			keywords: Array<string>;
+		}
 		display: {
 			title: string;
 			highest: string;
@@ -19,12 +27,12 @@ interface JSConfig {
 			page: string;
 			category: string;
 		}
+		exclude: string;
 		features: Array<string>;
 		goPro: string;
 		pages: {
 			title: string;
 			description: string;
-			exclude: string;
 			keywords: Array<string>;
 			orderBy: {
 				title: string,

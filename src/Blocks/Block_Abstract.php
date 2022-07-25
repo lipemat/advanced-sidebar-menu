@@ -2,7 +2,6 @@
 
 namespace Advanced_Sidebar_Menu\Blocks;
 
-use Advanced_Sidebar_Menu\Traits\Singleton;
 use Advanced_Sidebar_Menu\Utils;
 use Advanced_Sidebar_Menu\Widget\Category;
 use Advanced_Sidebar_Menu\Widget\Page;
@@ -17,7 +16,6 @@ abstract class Block_Abstract {
 
 	const RENDER_REQUEST = 'isServerSideRenderRequest';
 
-	use Singleton;
 
 	/**
 	 * Get list of attributes and their types.
