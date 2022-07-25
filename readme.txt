@@ -22,6 +22,7 @@ Keeps the menu clean and usable. Only related items display so you don't have to
 
 <h3>Features</h3>
 * Page and Category widgets.
+* Page and Category blocks.
 * Option to display or not display the highest level parent page or category.
 * Option to display the menu when there is only the highest level parent.
 * Ability to order pages by (date, title, page order).
@@ -29,30 +30,28 @@ Keeps the menu clean and usable. Only related items display so you don't have to
 * Option to always display child pages or categories.
 * Option to select the levels of pages or categories to display when always display child is used.
 * Option to display or not display categories on single posts.
-* Ability to display each single post's category in a new widget or in same list.
+* Ability to display each single post's category in a new widget/block or in same list.
 
-<h3>Page Widget Options</h3>
-* Add a title to the widget
-* Display the highest level parent page
-* Display menu when there is only the parent page
-* Order pages by (date, title, page order)
-* Exclude pages
-* Always display child Pages
-* Number of levels of child pages to display when always display child pages is checked
+<h3>Page Menu Options</h3>
+* Display the highest level parent page.
+* Display menu when there is only the parent page.
+* Order pages by (date, title, page order).
+* Exclude pages.
+* Always display child Pages.
+* Levels of child pages to display when always display child pages is checked.
 
-<h3>Category Widget Options</h3>
-* Add a title to the widget
-* Display the highest level parent category
-* Display menu when there is only the parent category
-* Display categories on single posts
-* Display each single post's category in a new widget or in same list
-* Exclude categories
-* Always display child categories
-* Levels of Categories to display when always display child categories is checked
+<h3>Category Menu Options</h3>
+* Display the highest level parent category.
+* Display menu when there is only the parent category.
+* Display categories on single posts.
+* Display each single post's category in a new widget/block or in same list.
+* Exclude categories.
+* Always display child categories.
+* Levels of Categories to display when always display child categories is checked.
 
 <h3>PRO Features</h3>
 * Ability to customize each page or navigation menu item link's text.
-* Click-and-drag styling for page, category, and navigation menu widgets.
+* Click-and-drag styling for page, category, and navigation menus.
 * Styling options for links including color, background color, size, hover, and font weight.
 * Styling options for different levels of links.
 * Styling options for the current page or category.
@@ -65,13 +64,13 @@ Keeps the menu clean and usable. Only related items display so you don't have to
 * Accordion option to include highest level parent in accordion.
 * Accordion option to use links for open/close. **NEW**
 * Ability to exclude a page from all menus using a simple checkbox.
-* Link ordering for the category widget.
+* Link ordering for the category menus.
 * Number of levels of pages to show when "always display child pages" is not checked.
 * Ability to select and display custom post types.
 * Ability to select and display custom taxonomies.
 * Option to display only the current page's parents, grandparents, and children.
 * Option to display child page siblings when on a child page (with or without grandchildren available).
-* Ability to display the widgets everywhere the widget area is used (including homepage if applicable).
+* Ability to display the menu everywhere the widget area is used (including homepage if applicable).
 * Ability to select the highest level parent page/category.
 * Ability to select which levels of categories assigned posts will display under.
 * Ability to display assigned posts or custom post types under categories or taxonomies.
@@ -102,28 +101,31 @@ Use the standard WordPress plugins search and install.
 Manual Installation
 
 1. Upload the `advanced-sidebar-menu` folder to the `/wp-content/plugins/` directory
-1. Activate the plugin through the 'Plugins' menu in WordPress
-1. Drag the "Advanced Sidebar Pages Menu" widget, or the "Advanced Sidebar Categories Menu" widget into a sidebar.
+2. Activate the plugin through the 'Plugins' menu in WordPress
+3. Drag the "Advanced Sidebar - Pages" widget, or the "Advanced Sidebar - Categories" widget into a sidebar.
+4. Use the block inserter to insert the "Advanced Sidebar - Pages" block, or the "Advanced Sidebar - Categories" block into Gutenberg content.
+
 
 
 == Screenshots ==
 
-1. Page widget options
-2. Category widget options
-3. Example of a page menu using the 2017 theme and default styles
-3. Example of a category menu ordered by title using the 2017 theme and default styles
+1. Page widget options.
+2. Category widget options.
+3. Example of a page menu using the 2017 theme and default styles.
+3. Example of a category menu ordered by title using the 2017 theme and default styles.
 
 
 == Frequently Asked Questions ==
 
-= The widget won't show up?
+= The menu won't show up?
 
-The widgets in this plugin are smart enough to not show up on pages or categories where the only thing that would display is the title. While it may appear like the widget is broken, it is actually doing what it is intended to do.
+The menu in this plugin are smart enough to not show up on pages or categories where the only thing that would display is the title. While it may appear like the menu is broken, it is actually doing what it is intended to do.
 
 The most common causes for this confusion come from one of these reasons:
-1. The incorrect widget was selected. Categories have their own widget as pages have their own widget.
+1. The incorrect menu was selected. Categories have their own widget/block as pages have their own widget/block.
 2. "Display the highest level parent page" or "Display the highest level parent category" is not checked.
-3. The widget is currently not being viewed on a page (for the pages widget) or category (for the categories widget).
+3. The Pages menu is currently not being viewed on a page.
+4. The Categories menu is not currently being view on a category.
 
 = How do I change the styling of the current page? =
 
@@ -152,7 +154,7 @@ To style your menu without using any code <a href="https://onpointplugins.com/pr
 
 = How do you get the categories to display on single post pages? =
 
-The Categories Menu widget contains a "Display categories on single posts" checkbox, which will display the category menus based on the categories the current post is assigned to.
+The Categories Menu widget/block contains a "Display categories on single posts" checkbox, which will display the category menus based on the categories the current post is assigned to.
 
 = Does the menu change for each page you are on? =
 
