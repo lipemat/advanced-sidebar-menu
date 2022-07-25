@@ -10,7 +10,7 @@ use Advanced_Sidebar_Menu\Widget\Page;
 /**
  * Functionality shared by and required by all blocks.
  *
- * @since 8.10.0
+ * @since 9.0.0
  */
 abstract class Block_Abstract {
 	const NAME = 'block-abstract';
@@ -60,6 +60,36 @@ abstract class Block_Abstract {
 	public function hook() {
 		add_action( 'init', [ $this, 'register' ] );
 		add_filter( 'advanced-sidebar-menu/scripts/js-config', [ $this, 'js_config' ] );
+
+		/**
+		 * Programmatically opt in to exclude legacy widgets from the Block Inserter
+		 * if legacy widgets a not needed to match a theme's styles.
+		 *
+		 * In the future, this filter will be removed in favor of not allowing new legacy
+		 * widgets in the block inserter.
+		 *
+		 * @link https://developer.wordpress.org/block-editor/how-to-guides/widgets/legacy-widget-block/#3-hide-the-widget-from-the-legacy-widget-block
+		 */
+		if ( apply_filters( 'advanced-sidebar-menu/block-abstract/exclude-legacy-widgets', false ) ) {
+			add_filter( 'widget_types_to_hide_from_legacy_widget_block', [ $this, 'exclude_from_legacy_widgets' ] );
+		}
+	}
+
+
+	/**
+	 * Exclude this block from new Legacy Widgets.
+	 *
+	 * Leave existing intact while forcing users to use the block
+	 * instead for new Widgets.
+	 *
+	 * @param array $blocks - Excluded blocks.
+	 *
+	 * @return array
+	 */
+	public function exclude_from_legacy_widgets( $blocks ) {
+		$widget = $this->get_widget_class();
+		$blocks[] = $widget::NAME;
+		return $blocks;
 	}
 
 
@@ -100,6 +130,9 @@ abstract class Block_Abstract {
 			],
 			'style'              => [
 				'type' => 'object',
+			],
+			'title'              => [
+				'type' => 'string',
 			],
 		] );
 	}
@@ -166,8 +199,8 @@ abstract class Block_Abstract {
 		$widget_args = [
 			'before_widget' => $parts[0],
 			'after_widget'  => $parts[1],
-			'before_title'  => '',
-			'after_title'   => '',
+			'before_title'  => '<h2>',
+			'after_title'   => '</h2>',
 		];
 		// Passed via ServerSideRender, so we can enable accordions in Gutenberg editor.
 		if ( ! empty( $attr['clientId'] ) ) {
