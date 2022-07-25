@@ -5,7 +5,6 @@ interface JSConfig {
 		}
 	};
 	error: false | string;
-	isPro: boolean;
 	i18n: {
 		display: {
 			title: string;
@@ -35,6 +34,7 @@ interface JSConfig {
 		soMuchMore: string;
 		upgrade: string;
 	};
+	isPro: boolean;
 	siteInfo: {
 		basic: string;
 		pro: string;

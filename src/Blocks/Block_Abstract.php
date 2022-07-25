@@ -131,9 +131,6 @@ abstract class Block_Abstract {
 			'style'              => [
 				'type' => 'object',
 			],
-			'title'              => [
-				'type' => 'string',
-			],
 		] );
 	}
 
@@ -199,8 +196,8 @@ abstract class Block_Abstract {
 		$widget_args = [
 			'before_widget' => $parts[0],
 			'after_widget'  => $parts[1],
-			'before_title'  => '<h2>',
-			'after_title'   => '</h2>',
+			'before_title'  => '',
+			'after_title'   => '',
 		];
 		// Passed via ServerSideRender, so we can enable accordions in Gutenberg editor.
 		if ( ! empty( $attr['clientId'] ) ) {

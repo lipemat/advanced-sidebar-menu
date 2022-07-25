@@ -1,5 +1,5 @@
 import {useBlockProps} from '@wordpress/block-editor';
-import {BlockSettings, createBlock, LegacyWidget} from '@wordpress/blocks';
+import {BlockSettings, CreateBlock, createBlock, LegacyWidget} from '@wordpress/blocks';
 import {CONFIG, I18N} from '../../../globals/config';
 import Edit from './Edit';
 import {PreviewOptions} from '../Preview';
@@ -18,7 +18,6 @@ export type Attr = {
 	include_parent: boolean;
 	levels: string;
 	order_by: string;
-	title: string;
 } & ProRegistered & PreviewOptions;
 
 // Options used by basic when available from PRO.
@@ -80,7 +79,7 @@ export const block = CONFIG.blocks.pages;
 
 export const name = block.id;
 
-export const settings: BlockSettings<Attr, '', LegacyWidget<Attr>> = {
+export const settings: BlockSettings<Attr, '', LegacyWidget<Attr & { title: string }>> = {
 	title: I18N.pages.title,
 	description: I18N.pages.description,
 	icon: 'welcome-widgets-menus',
@@ -94,9 +93,22 @@ export const settings: BlockSettings<Attr, '', LegacyWidget<Attr>> = {
 			{
 				type: 'block',
 				blocks: [ 'core/legacy-widget' ],
-				isMatch: ( {idBase} ) => 'advanced_sidebar_menu' === idBase,
+				isMatch: ( {idBase, instance} ) => {
+					if ( ! instance?.raw ) {
+						// Can't transform if raw instance is not shown in REST API.
+						return false;
+					}
+					return 'advanced_sidebar_menu' === idBase;
+				},
 				transform: ( {instance} ) => {
-					return createBlock<Attr>( name, translateLegacyWidget( instance.raw ) );
+					const blocks: CreateBlock<any>[] = [];
+					if ( instance.raw.title ) {
+						blocks.push( createBlock<{ content: string }>( 'core/heading', {
+							content: instance.raw.title,
+						} ) );
+					}
+					blocks.push( createBlock<Attr>( name, translateLegacyWidget( instance.raw ) ) );
+					return blocks;
 				},
 			},
 		],

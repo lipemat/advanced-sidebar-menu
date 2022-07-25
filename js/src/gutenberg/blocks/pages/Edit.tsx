@@ -47,6 +47,7 @@ const Edit = ( {attributes, setAttributes, clientId}: Props ) => {
 					attributes={attributes}
 					setAttributes={setAttributes}
 					type={postType} />
+
 				<div className={'components-panel__body is-opened'}>
 
 					<Slot name="AdvancedSidebarMenuPages" />
