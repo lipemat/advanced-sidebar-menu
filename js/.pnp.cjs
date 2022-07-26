@@ -676,7 +676,7 @@ function $$SETUP_STATE(hydrateRuntimeState, basePath) {
       ],\
       [\
         "@lipemat/js-boilerplate-gutenberg",\
-        "virtual:3ba643f9797e66ff36745c8831d7b481c8461f8796976105d977ed697b1503bc1aac4e4723d6c88131f394a861739d3190eb8c5f40d049cf9141692aeb98caa3#npm:2.9.3"\
+        "virtual:3ba643f9797e66ff36745c8831d7b481c8461f8796976105d977ed697b1503bc1aac4e4723d6c88131f394a861739d3190eb8c5f40d049cf9141692aeb98caa3#npm:2.9.4"\
       ],\
       [\
         "@lipemat/stylelint-config",\
@@ -4685,7 +4685,7 @@ function $$SETUP_STATE(hydrateRuntimeState, basePath) {
           "packageLocation": "./",\
           "packageDependencies": [\
             ["@lipemat/js-boilerplate", "npm:8.6.2"],\
-            ["@lipemat/js-boilerplate-gutenberg", "virtual:3ba643f9797e66ff36745c8831d7b481c8461f8796976105d977ed697b1503bc1aac4e4723d6c88131f394a861739d3190eb8c5f40d049cf9141692aeb98caa3#npm:2.9.3"],\
+            ["@lipemat/js-boilerplate-gutenberg", "virtual:3ba643f9797e66ff36745c8831d7b481c8461f8796976105d977ed697b1503bc1aac4e4723d6c88131f394a861739d3190eb8c5f40d049cf9141692aeb98caa3#npm:2.9.4"],\
             ["@lipemat/stylelint-config", "virtual:3ba643f9797e66ff36745c8831d7b481c8461f8796976105d977ed697b1503bc1aac4e4723d6c88131f394a861739d3190eb8c5f40d049cf9141692aeb98caa3#npm:1.4.1"],\
             ["@types/jquery", "npm:3.5.14"],\
             ["@types/lipemat__js-boilerplate", "https://github.com/lipemat/types-js-boilerplate.git#commit=81f0124710c924b67912865d6998cabe918cb1d3"],\
@@ -8230,17 +8230,17 @@ function $$SETUP_STATE(hydrateRuntimeState, basePath) {
         }]\
       ]],\
       ["@lipemat/js-boilerplate-gutenberg", [\
-        ["npm:2.9.3", {\
-          "packageLocation": "./.yarn/cache/@lipemat-js-boilerplate-gutenberg-npm-2.9.3-83c2b031f4-d4d6272e2b.zip/node_modules/@lipemat/js-boilerplate-gutenberg/",\
+        ["npm:2.9.4", {\
+          "packageLocation": "./.yarn/cache/@lipemat-js-boilerplate-gutenberg-npm-2.9.4-3f4e889f2b-054900ed44.zip/node_modules/@lipemat/js-boilerplate-gutenberg/",\
           "packageDependencies": [\
-            ["@lipemat/js-boilerplate-gutenberg", "npm:2.9.3"]\
+            ["@lipemat/js-boilerplate-gutenberg", "npm:2.9.4"]\
           ],\
           "linkType": "SOFT"\
         }],\
-        ["virtual:3ba643f9797e66ff36745c8831d7b481c8461f8796976105d977ed697b1503bc1aac4e4723d6c88131f394a861739d3190eb8c5f40d049cf9141692aeb98caa3#npm:2.9.3", {\
-          "packageLocation": "./.yarn/__virtual__/@lipemat-js-boilerplate-gutenberg-virtual-85ff967e52/0/cache/@lipemat-js-boilerplate-gutenberg-npm-2.9.3-83c2b031f4-d4d6272e2b.zip/node_modules/@lipemat/js-boilerplate-gutenberg/",\
+        ["virtual:3ba643f9797e66ff36745c8831d7b481c8461f8796976105d977ed697b1503bc1aac4e4723d6c88131f394a861739d3190eb8c5f40d049cf9141692aeb98caa3#npm:2.9.4", {\
+          "packageLocation": "./.yarn/__virtual__/@lipemat-js-boilerplate-gutenberg-virtual-350aba6196/0/cache/@lipemat-js-boilerplate-gutenberg-npm-2.9.4-3f4e889f2b-054900ed44.zip/node_modules/@lipemat/js-boilerplate-gutenberg/",\
           "packageDependencies": [\
-            ["@lipemat/js-boilerplate-gutenberg", "virtual:3ba643f9797e66ff36745c8831d7b481c8461f8796976105d977ed697b1503bc1aac4e4723d6c88131f394a861739d3190eb8c5f40d049cf9141692aeb98caa3#npm:2.9.3"],\
+            ["@lipemat/js-boilerplate-gutenberg", "virtual:3ba643f9797e66ff36745c8831d7b481c8461f8796976105d977ed697b1503bc1aac4e4723d6c88131f394a861739d3190eb8c5f40d049cf9141692aeb98caa3#npm:2.9.4"],\
             ["@lipemat/js-boilerplate", "npm:8.6.2"],\
             ["@types/lipemat__js-boilerplate", "https://github.com/lipemat/types-js-boilerplate.git#commit=81f0124710c924b67912865d6998cabe918cb1d3"]\
           ],\
@@ -8358,7 +8358,7 @@ function $$SETUP_STATE(hydrateRuntimeState, basePath) {
           "packageDependencies": [\
             ["@onpointplugins/advanced-sidebar-menu", "workspace:."],\
             ["@lipemat/js-boilerplate", "npm:8.6.2"],\
-            ["@lipemat/js-boilerplate-gutenberg", "virtual:3ba643f9797e66ff36745c8831d7b481c8461f8796976105d977ed697b1503bc1aac4e4723d6c88131f394a861739d3190eb8c5f40d049cf9141692aeb98caa3#npm:2.9.3"],\
+            ["@lipemat/js-boilerplate-gutenberg", "virtual:3ba643f9797e66ff36745c8831d7b481c8461f8796976105d977ed697b1503bc1aac4e4723d6c88131f394a861739d3190eb8c5f40d049cf9141692aeb98caa3#npm:2.9.4"],\
             ["@lipemat/stylelint-config", "virtual:3ba643f9797e66ff36745c8831d7b481c8461f8796976105d977ed697b1503bc1aac4e4723d6c88131f394a861739d3190eb8c5f40d049cf9141692aeb98caa3#npm:1.4.1"],\
             ["@types/jquery", "npm:3.5.14"],\
             ["@types/lipemat__js-boilerplate", "https://github.com/lipemat/types-js-boilerplate.git#commit=81f0124710c924b67912865d6998cabe918cb1d3"],\

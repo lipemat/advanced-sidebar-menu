@@ -15,7 +15,7 @@
   },
   "dependencies": {
     "@lipemat/js-boilerplate": "^8.6.2",
-    "@lipemat/js-boilerplate-gutenberg": "^2.9.3",
+    "@lipemat/js-boilerplate-gutenberg": "^2.9.4",
     "classnames": "^2.3.1",
     "dompurify": "^2.3.10",
     "react-string-replace": "^1.1.0"
