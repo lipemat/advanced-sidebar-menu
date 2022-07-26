@@ -57,7 +57,7 @@ abstract class Block_Abstract {
 	 * @return void
 	 */
 	public function hook() {
-		add_action( 'init', [ $this, 'register' ] );
+		add_action( 'wp_loaded', [ $this, 'register' ], Scripts::PRIORITY + 1 );
 		add_filter( 'advanced-sidebar-menu/scripts/js-config', [ $this, 'js_config' ] );
 
 		/**

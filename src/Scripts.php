@@ -7,7 +7,6 @@ use Advanced_Sidebar_Menu\Widget\Page;
 
 /**
  * Scripts and styles.
- *
  */
 class Scripts {
 	use Singleton;
@@ -15,12 +14,13 @@ class Scripts {
 	const GUTENBERG_HANDLE     = 'advanced-sidebar-menu/gutenberg';
 	const GUTENBERG_CSS_HANDLE = 'advanced-sidebar-menu/gutenberg-css';
 
+	const PRIORITY = 11;
 
 	/**
 	 * Add various scripts to the cue.
 	 */
 	public function hook() {
-		add_action( 'init', [ $this, 'register_gutenberg_scripts' ], 9 );
+		add_action( 'wp_loaded', [ $this, 'register_gutenberg_scripts' ], self::PRIORITY );
 		add_action( 'admin_enqueue_scripts', [ $this, 'admin_scripts' ] );
 		// Elementor support.
 		add_action( 'elementor/editor/after_enqueue_scripts', [ $this, 'admin_scripts' ] );
@@ -41,7 +41,7 @@ class Scripts {
 	 * We register instead of enqueue so Gutenberg will load them
 	 * within the iframes of areas such as FSE.
 	 *
-	 * @action init 9 0
+	 * @action wp_loaded 11 0
 	 *
 	 * @since  9.0.0
 	 *
