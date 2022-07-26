@@ -6,4 +6,5 @@ js/dist
 
 # Yarn berry files
 install-state.gz
-node_modules
+build-state.yml
+js/node_modules
