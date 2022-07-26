@@ -2063,20 +2063,20 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@lipemat/js-boilerplate-gutenberg@npm:^2.9.2":
-  version: 2.9.2
-  resolution: "@lipemat/js-boilerplate-gutenberg@npm:2.9.2"
+"@lipemat/js-boilerplate-gutenberg@npm:^2.9.3":
+  version: 2.9.3
+  resolution: "@lipemat/js-boilerplate-gutenberg@npm:2.9.3"
   dependencies:
     "@types/lipemat__js-boilerplate": "github:lipemat/types-js-boilerplate#semver:^1.23.0"
   peerDependencies:
     "@lipemat/js-boilerplate": ">=6.0.0"
-  checksum: 55ffa3f9c2e4906c581c2171da6579241cf0e5d901ee9d8d8f493ec08e6d4197da4187025ba5685cb7cba077f5c1ade9002f572207085f1f27816bd62737bef1
+  checksum: d4d6272e2b62cde2b10b34be641f55b04bd44ec35754d0260a830a2cfe1af6fb84365b3b8fbe0ca54092ba6eeed31e2f68fd8ed222ea3cc7e4eb0a94c945eb50
   languageName: node
   linkType: hard
 
-"@lipemat/js-boilerplate@npm:^8.6.1":
-  version: 8.6.1
-  resolution: "@lipemat/js-boilerplate@npm:8.6.1"
+"@lipemat/js-boilerplate@npm:^8.6.2":
+  version: 8.6.2
+  resolution: "@lipemat/js-boilerplate@npm:8.6.2"
   dependencies:
     "@babel/core": ^7.4.3
     "@babel/plugin-syntax-dynamic-import": ^7.8.3
@@ -2131,7 +2131,7 @@ __metadata:
     webpack-subresource-integrity: ^1.5.2
   bin:
     lipemat-js-boilerplate: bin/lipemat-js-boilerplate.js
-  checksum: 1c3e1fc51171ad13270617e2e6aa8a35c731c96103e94ac935557361088f8cc1ff62d03f3f8b29dc8c19547307f53bc9ccca66a53dbdcefe4ce9b4d456b22bcd
+  checksum: be8ea7acf637495e51c7c659070c07b3874017fc7fa97c389957e2eacc9d3f780e0a786d298ff0df7a605911b756743b2eca28839cb1d6b805184a283b79dee8
   languageName: node
   linkType: hard
 
@@ -2210,8 +2210,8 @@ __metadata:
   version: 0.0.0-use.local
   resolution: "@onpointplugins/advanced-sidebar-menu@workspace:."
   dependencies:
-    "@lipemat/js-boilerplate": ^8.6.1
-    "@lipemat/js-boilerplate-gutenberg": ^2.9.2
+    "@lipemat/js-boilerplate": ^8.6.2
+    "@lipemat/js-boilerplate-gutenberg": ^2.9.3
     "@lipemat/stylelint-config": ^1.4.1
     "@types/jquery": ^3
     "@types/lipemat__js-boilerplate": "lipemat/types-js-boilerplate#semver:^1"
