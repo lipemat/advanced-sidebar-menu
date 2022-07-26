@@ -115,7 +115,7 @@ class Scripts {
 	 *
 	 * @return bool
 	 */
-	protected function is_script_debug_enabled() {
+	public function is_script_debug_enabled() {
 		//phpcs:ignore WordPress.Security.NonceVerification.Recommended
 		return ( \defined( 'SCRIPT_DEBUG' ) && SCRIPT_DEBUG ) || ! empty( $_GET['script-debug'] );
 	}
