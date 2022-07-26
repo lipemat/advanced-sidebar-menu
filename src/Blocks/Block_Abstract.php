@@ -2,6 +2,7 @@
 
 namespace Advanced_Sidebar_Menu\Blocks;
 
+use Advanced_Sidebar_Menu\Scripts;
 use Advanced_Sidebar_Menu\Utils;
 use Advanced_Sidebar_Menu\Widget\Category;
 use Advanced_Sidebar_Menu\Widget\Page;
@@ -96,16 +97,20 @@ abstract class Block_Abstract {
 	 *
 	 * @link https://developer.wordpress.org/block-editor/reference-guides/block-api/block-metadata/
 	 *
+	 * @see  Pro_Block_Abstract::register()
+	 *
 	 * @return void
 	 */
 	public function register() {
-		register_block_type( static::NAME, [
-			'api_version'     => 2,
-			'attributes'      => $this->get_all_attributes(),
-			'editor_style'    => 'dashicons',
-			'render_callback' => [ $this, 'render' ],
-			'supports'        => $this->get_block_support(),
-		] );
+		register_block_type( static::NAME,
+			apply_filters( 'advanced-sidebar-menu/block-register/' . static::NAME, [
+				'api_version'     => 2,
+				'attributes'      => $this->get_all_attributes(),
+				'editor_script'   => Scripts::GUTENBERG_HANDLE,
+				'editor_style'    => Scripts::GUTENBERG_CSS_HANDLE,
+				'render_callback' => [ $this, 'render' ],
+				'supports'        => $this->get_block_support(),
+			] ) );
 	}
 
 

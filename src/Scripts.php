@@ -8,21 +8,20 @@ use Advanced_Sidebar_Menu\Widget\Page;
 /**
  * Scripts and styles.
  *
- * @author Mat Lipe
- * @since  7.7.0
  */
 class Scripts {
 	use Singleton;
 
-	const ADMIN_HANDLE = 'advanced-sidebar-menu/scripts/admin-js';
+	const GUTENBERG_HANDLE     = 'advanced-sidebar-menu/gutenberg';
+	const GUTENBERG_CSS_HANDLE = 'advanced-sidebar-menu/gutenberg-css';
 
 
 	/**
 	 * Add various scripts to the cue.
 	 */
 	public function hook() {
+		add_action( 'init', [ $this, 'register_gutenberg_scripts' ], 9 );
 		add_action( 'admin_enqueue_scripts', [ $this, 'admin_scripts' ] );
-		add_action( 'enqueue_block_editor_assets', [ $this, 'gutenberg_scripts' ] );
 		// Elementor support.
 		add_action( 'elementor/editor/after_enqueue_scripts', [ $this, 'admin_scripts' ] );
 		// UGH! Beaver Builder hack.
@@ -37,28 +36,31 @@ class Scripts {
 
 
 	/**
-	 * Load Gutenberg block scripts.
+	 * Register Gutenberg block scripts.
 	 *
-	 * @action enqueue_block_editor_assets 10 0
+	 * We register instead of enqueue so Gutenberg will load them
+	 * within the iframes of areas such as FSE.
+	 *
+	 * @action init 9 0
 	 *
 	 * @since  9.0.0
 	 *
 	 * @return void
 	 */
-	public function gutenberg_scripts() {
+	public function register_gutenberg_scripts() {
 		$js_dir = apply_filters( 'advanced-sidebar-menu/js-dir', ADVANCED_SIDEBAR_MENU_URL . 'js/dist/' );
 		$file = $this->is_script_debug_enabled() ? 'admin' : 'admin.min';
 
-		wp_enqueue_script( self::ADMIN_HANDLE, "{$js_dir}{$file}.js", [
+		wp_register_script( self::GUTENBERG_HANDLE, "{$js_dir}{$file}.js", [
 			'jquery',
 			'react',
 			'react-dom',
 			'wp-url',
 		], ADVANCED_SIDEBAR_BASIC_VERSION, true );
 
-		wp_localize_script( self::ADMIN_HANDLE, 'ADVANCED_SIDEBAR_MENU', $this->js_config() );
+		wp_localize_script( self::GUTENBERG_HANDLE, 'ADVANCED_SIDEBAR_MENU', $this->js_config() );
 
-		wp_enqueue_style( 'advanced-sidebar-menu/admin-css', "{$js_dir}{$file}.css", [], ADVANCED_SIDEBAR_BASIC_VERSION );
+		wp_register_style( self::GUTENBERG_CSS_HANDLE, "{$js_dir}{$file}.css", [ 'dashicons' ], ADVANCED_SIDEBAR_BASIC_VERSION );
 	}
 
 
