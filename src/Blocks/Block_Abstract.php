@@ -57,7 +57,7 @@ abstract class Block_Abstract {
 	 * @return void
 	 */
 	public function hook() {
-		add_action( 'wp_loaded', [ $this, 'register' ], Scripts::PRIORITY + 1 );
+		add_action( 'init', [ $this, 'register' ] );
 		add_filter( 'advanced-sidebar-menu/scripts/js-config', [ $this, 'js_config' ] );
 
 		/**
@@ -95,9 +95,11 @@ abstract class Block_Abstract {
 	/**
 	 * Register the block.
 	 *
-	 * @link https://developer.wordpress.org/block-editor/reference-guides/block-api/block-metadata/
+	 * @link   https://developer.wordpress.org/block-editor/reference-guides/block-api/block-metadata/
 	 *
-	 * @see  Pro_Block_Abstract::register()
+	 * @see    Pro_Block_Abstract::register()
+	 *
+	 * @action init 10 0
 	 *
 	 * @return void
 	 */

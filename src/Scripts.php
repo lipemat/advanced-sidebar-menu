@@ -14,13 +14,12 @@ class Scripts {
 	const GUTENBERG_HANDLE     = 'advanced-sidebar-menu/gutenberg';
 	const GUTENBERG_CSS_HANDLE = 'advanced-sidebar-menu/gutenberg-css';
 
-	const PRIORITY = 11;
-
 	/**
 	 * Add various scripts to the cue.
 	 */
 	public function hook() {
-		add_action( 'wp_loaded', [ $this, 'register_gutenberg_scripts' ], self::PRIORITY );
+		add_action( 'init', [ $this, 'register_gutenberg_scripts' ] );
+		add_action( 'enqueue_block_editor_assets', [ $this, 'load_js_config' ], 1 );
 		add_action( 'admin_enqueue_scripts', [ $this, 'admin_scripts' ] );
 		// Elementor support.
 		add_action( 'elementor/editor/after_enqueue_scripts', [ $this, 'admin_scripts' ] );
@@ -41,7 +40,13 @@ class Scripts {
 	 * We register instead of enqueue so Gutenberg will load them
 	 * within the iframes of areas such as FSE.
 	 *
-	 * @action wp_loaded 11 0
+	 * @action init 10 0
+	 *
+	 * @notice Must be run before `get_block_editor_settings` is
+	 *         called to allow styles to be included in the Site
+	 *         Editor iframe.
+	 *
+	 * @see    Scripts::load_js_config()
 	 *
 	 * @since  9.0.0
 	 *
@@ -58,9 +63,23 @@ class Scripts {
 			'wp-url',
 		], ADVANCED_SIDEBAR_BASIC_VERSION, true );
 
-		wp_localize_script( self::GUTENBERG_HANDLE, 'ADVANCED_SIDEBAR_MENU', $this->js_config() );
-
 		wp_register_style( self::GUTENBERG_CSS_HANDLE, "{$js_dir}{$file}.css", [ 'dashicons' ], ADVANCED_SIDEBAR_BASIC_VERSION );
+	}
+
+
+	/**
+	 * Load the JS Config for the block script.
+	 *
+	 * Done separately because `$this->js_config()` is heavy, and
+	 * the block scripts must be registered before we have
+	 * access to `wp_should_load_block_editor_scripts_and_styles`.
+	 *
+	 * @action enqueue_block_editor_assets 1 0
+	 *
+	 * @return void
+	 */
+	public function load_js_config() {
+		wp_localize_script( self::GUTENBERG_HANDLE, 'ADVANCED_SIDEBAR_MENU', $this->js_config() );
 	}
 
 
