@@ -124,20 +124,11 @@ abstract class Block_Abstract {
 	 */
 	protected function get_all_attributes() {
 		return \array_merge( $this->get_attributes(), [
-			'backgroundColor'    => [
-				'type' => 'string',
-			],
 			'clientId'           => [
-				'type' => 'string',
-			],
-			'gradient'           => [
 				'type' => 'string',
 			],
 			self::RENDER_REQUEST => [
 				'type' => 'boolean',
-			],
-			'style'              => [
-				'type' => 'object',
 			],
 		] );
 	}
