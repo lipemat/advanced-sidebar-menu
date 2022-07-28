@@ -11,7 +11,7 @@ export type DisplayOptions = {
 	display_all: boolean;
 	include_childless_parent: boolean;
 	include_parent: boolean;
-	levels: string;
+	levels: number;
 }
 
 type Props = {
@@ -66,14 +66,14 @@ const Display = ( {attributes, setAttributes, type, name}: Props ) => {
 					<select
 						key={'levels'}
 						value={attributes.levels}
-						onChange={ev => setAttributes( {levels: ev.target.value} )}
+						onChange={ev => setAttributes( {levels: parseInt( ev.target.value )} )}
 					>
 						<option value="100">
 							{I18N.display.all}
 						</option>
-						{range( 1, 10 ).map( n => <option
-							key={n}
-							value={n}>{n}</option> )}
+						{range( 1, 10 ).map( n => <option key={n} value={n}>
+							{n}
+						</option> )}
 					</select>
 				) )}
 

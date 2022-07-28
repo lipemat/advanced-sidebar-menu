@@ -58,7 +58,7 @@ class Pages extends Block_Abstract {
 				'type' => 'boolean',
 			],
 			Page::LEVELS                   => [
-				'type' => 'string',
+				'type' => 'number',
 			],
 		] );
 	}
