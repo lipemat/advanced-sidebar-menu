@@ -41,7 +41,23 @@ class Categories extends Block_Abstract {
 	 * @return array
 	 */
 	protected function get_attributes() {
-		return apply_filters( 'advanced-sidebar-menu/blocks/categories/attributes', [] );
+		return apply_filters( 'advanced-sidebar-menu/blocks/categories/attributes', [
+			Category::INCLUDE_PARENT           => [
+				'type' => 'boolean',
+			],
+			Category::INCLUDE_CHILDLESS_PARENT => [
+				'type' => 'boolean',
+			],
+			Category::EXCLUDE                  => [
+				'type' => 'string',
+			],
+			Category::DISPLAY_ALL              => [
+				'type' => 'boolean',
+			],
+			Category::LEVELS                   => [
+				'type' => 'number',
+			],
+		] );
 	}
 
 
