@@ -2,6 +2,7 @@
 
 namespace Advanced_Sidebar_Menu;
 
+use Advanced_Sidebar_Menu\Blocks\Block_Abstract;
 use Advanced_Sidebar_Menu\Traits\Singleton;
 use Advanced_Sidebar_Menu\Widget\Page;
 
@@ -19,7 +20,6 @@ class Scripts {
 	 */
 	public function hook() {
 		add_action( 'init', [ $this, 'register_gutenberg_scripts' ] );
-		add_action( 'enqueue_block_editor_assets', [ $this, 'load_js_config' ], 1 );
 		add_action( 'admin_enqueue_scripts', [ $this, 'admin_scripts' ] );
 		// Elementor support.
 		add_action( 'elementor/editor/after_enqueue_scripts', [ $this, 'admin_scripts' ] );
@@ -40,13 +40,18 @@ class Scripts {
 	 * We register instead of enqueue so Gutenberg will load them
 	 * within the iframes of areas such as FSE.
 	 *
+	 * The actual script/style loading is done via `register_block_type`
+	 * using 'editor_script' and 'editor_style.
+	 *
 	 * @action init 10 0
 	 *
 	 * @notice Must be run before `get_block_editor_settings` is
 	 *         called to allow styles to be included in the Site
 	 *         Editor iframe.
 	 *
-	 * @see    Scripts::load_js_config()
+	 * @see    Block_Abstract::register()
+	 *
+	 * @link   https://developer.wordpress.org/block-editor/reference-guides/block-api/block-metadata/#wpdefinedasset
 	 *
 	 * @since  9.0.0
 	 *
@@ -64,22 +69,15 @@ class Scripts {
 		], ADVANCED_SIDEBAR_BASIC_VERSION, true );
 
 		wp_register_style( self::GUTENBERG_CSS_HANDLE, "{$js_dir}{$file}.css", [ 'dashicons' ], ADVANCED_SIDEBAR_BASIC_VERSION );
-	}
 
-
-	/**
-	 * Load the JS Config for the block script.
-	 *
-	 * Done separately because `$this->js_config()` is heavy, and
-	 * the block scripts must be registered before we have
-	 * access to `wp_should_load_block_editor_scripts_and_styles`.
-	 *
-	 * @action enqueue_block_editor_assets 1 0
-	 *
-	 * @return void
-	 */
-	public function load_js_config() {
-		wp_localize_script( self::GUTENBERG_HANDLE, 'ADVANCED_SIDEBAR_MENU', $this->js_config() );
+		/**
+		 * Load separately because `$this->js_config()` is heavy, and
+		 * the block scripts must be registered before we have
+		 * access to `wp_should_load_block_editor_scripts_and_styles`.
+		 */
+		add_action( 'enqueue_block_editor_assets', function() {
+			wp_localize_script( self::GUTENBERG_HANDLE, 'ADVANCED_SIDEBAR_MENU', $this->js_config() );
+		}, 1 );
 	}
 
 
