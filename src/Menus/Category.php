@@ -499,7 +499,25 @@ class Category extends Menu_Abstract {
 
 
 	/**
-	 * Render the widget output
+	 * Render the widget output.
+	 *
+	 * @example Display singe post categories in a new widget.
+	 *          ```html
+	 *          <div>
+	 *              <ul />
+	 *          </div>
+	 *          <div>
+	 *             <ul />
+	 *          </div>
+	 *          ```
+	 *
+	 * @example Display singe post categories in another list.
+	 *          ```html
+	 *          <div>
+	 *              <ul />
+	 *              <ul />
+	 *          </div>
+	 *          ```
 	 *
 	 * @return void
 	 */
@@ -512,6 +530,7 @@ class Category extends Menu_Abstract {
 
 		$menu_open = false;
 		$close_menu = false;
+		$output = '';
 
 		foreach ( $this->get_top_level_terms() as $_cat ) {
 			$this->set_current_top_level_term( $_cat );
@@ -520,8 +539,7 @@ class Category extends Menu_Abstract {
 			}
 
 			if ( ! $menu_open || ( static::EACH_WIDGET === $this->instance[ self::EACH_CATEGORY_DISPLAY ] ) ) {
-				//phpcs:disable WordPress.Security.EscapeOutput.OutputNotEscaped
-				echo $this->args['before_widget'];
+				echo $this->args['before_widget']; //phpcs:ignore
 
 				do_action( 'advanced-sidebar-menu/menus/category/render', $this );
 
@@ -537,21 +555,44 @@ class Category extends Menu_Abstract {
 				}
 			}
 
-			$output = require Core::instance()->get_template_part( 'category_list.php' );
+			$view = require Core::instance()->get_template_part( 'category_list.php' );
 
-			echo apply_filters( 'advanced-sidebar-menu/menus/category/output', $output, $this->args, $this->instance, $this );
+			$output .= apply_filters( 'advanced-sidebar-menu/menus/category/output', $view, $this->args, $this->instance, $this );
 
 			if ( $close_menu ) {
-				do_action( 'advanced-sidebar-menu/menus/category/render/after', $this );
-				echo $this->args['after_widget'];
+				$this->close_menu( $output );
+				$output = '';
 			}
 		}
 
 		if ( ! $close_menu && $menu_open ) {
-			do_action( 'advanced-sidebar-menu/menus/category/render/after', $this );
-			echo $this->args['after_widget'];
+			$this->close_menu( $output );
 		}
-		//phpcs:enable WordPress.Security.EscapeOutput.OutputNotEscaped
+	}
+
+
+	/**
+	 * Close the menu after applying final filters.
+	 *
+	 * Either we wrap each list when display each category in a
+	 * new widget, or we wrap all lists when displaying each
+	 * category in another list.
+	 *
+	 * The `advanced-sidebar-menu/menus/category/close-menu` filter lets
+	 * us target the inner content of each `<div>`.
+	 *
+	 * @param string $output - Contents of the widget `<div>`.
+	 *
+	 * @since   9.0.0
+	 *
+	 * @return void
+	 */
+	protected function close_menu( $output ) {
+		//phpcs:disable WordPress.Security.EscapeOutput
+		echo apply_filters( 'advanced-sidebar-menu/menus/category/close-menu', $output, $this->args, $this->instance, $this );
+		do_action( 'advanced-sidebar-menu/menus/category/render/after', $this );
+		echo $this->args['after_widget'];
+		//phpcs:enable WordPress.Security.EscapeOutput
 	}
 
 }
