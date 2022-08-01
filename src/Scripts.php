@@ -4,6 +4,7 @@ namespace Advanced_Sidebar_Menu;
 
 use Advanced_Sidebar_Menu\Blocks\Block_Abstract;
 use Advanced_Sidebar_Menu\Traits\Singleton;
+use Advanced_Sidebar_Menu\Widget\Category;
 use Advanced_Sidebar_Menu\Widget\Page;
 
 /**
@@ -130,10 +131,16 @@ class Scripts {
 			'error'    => apply_filters( 'advanced-sidebar-menu/scripts/js-config/error', '' ),
 			'i18n'     => [
 				'categories' => [
-					'title'       => __( 'Advanced Sidebar - Categories', 'advanced-sidebar-menu' ),
-					'description' => __( 'Creates a menu of all the categories using the child/parent relationship', 'advanced-sidebar-menu' ),
+					'title'        => __( 'Advanced Sidebar - Categories', 'advanced-sidebar-menu' ),
+					'description'  => __( 'Creates a menu of all the categories using the child/parent relationship',
+						'advanced-sidebar-menu' ),
+					'eachCategory' => [
+						/* translators: Selected taxonomy single label */
+						'title'   => __( "Display each single post's %s", 'advanced-sidebar-menu' ),
+						'options' => Category::get_display_each_options(),
+					],
 					// English and translated so both will be searchable.
-					'keywords'    => [
+					'keywords'     => [
 						'Advanced Sidebar',
 						'menu',
 						'sidebar',
@@ -148,6 +155,9 @@ class Scripts {
 						__( 'taxonomy', 'advanced-sidebar-menu' ),
 						__( 'term', 'advanced-sidebar-menu' ),
 					],
+					/* translators: Selected taxonomy plural label */
+					'onSingle'     => __( 'Display %s on single posts', 'advanced-sidebar-menu' ),
+
 				],
 				'display'    => [
 					'title'     => __( 'Display', 'advanced-sidebar-menu' ),

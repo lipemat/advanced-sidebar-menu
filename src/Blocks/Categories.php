@@ -54,6 +54,14 @@ class Categories extends Block_Abstract {
 			Category::DISPLAY_ALL              => [
 				'type' => 'boolean',
 			],
+			Category::DISPLAY_ON_SINGLE        => [
+				'type' => 'boolean',
+			],
+			// No block option available. We only support 'list'.
+			Category::EACH_CATEGORY_DISPLAY    => [
+				'type'    => 'string',
+				'default' => \Advanced_Sidebar_Menu\Menus\Category::EACH_LIST,
+			],
 			Category::LEVELS                   => [
 				'type' => 'number',
 			],

@@ -16,6 +16,8 @@ import {DisplayOptions} from '../Display';
 export type Attr = {
 	exclude: string;
 	order_by: string;
+	single: boolean;
+	new_widget: 'widget' | 'list';
 } & DisplayOptions & ProRegistered & PreviewOptions;
 
 // Options used by basic when available from PRO.

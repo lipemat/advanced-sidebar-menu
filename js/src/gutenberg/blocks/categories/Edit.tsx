@@ -8,7 +8,13 @@ import {Taxonomy} from '@wordpress/api/taxonomies';
 import {BlockEditProps} from '@wordpress/blocks';
 import ErrorBoundary from '../../../components/ErrorBoundary';
 import Display from '../Display';
-import {Slot, TextControl, withFilters} from '@wordpress/components';
+import {
+	CheckboxControl,
+	Fill,
+	Slot,
+	TextControl,
+	withFilters,
+} from '@wordpress/components';
 import {sprintf} from '@wordpress/i18n';
 import InfoPanel from '../InfoPanel';
 
@@ -16,6 +22,8 @@ import styles from '../pages/edit.pcss';
 
 
 type Props = BlockEditProps<Attr>;
+
+const labels = I18N.categories;
 
 const ProFields = withFilters<Partial<Props> & { taxonomy?: Taxonomy }>( 'advanced-sidebar-menu.blocks.categories.pro-fields' )( () =>
 	<InfoPanel /> );
@@ -70,6 +78,25 @@ const Edit = ( {attributes, setAttributes, clientId, name}: Props ) => {
 				</div>
 			</ErrorBoundary>
 		</InspectorControls>
+
+		<Fill name="AdvancedSidebarMenuCategoriesDisplay">
+			<CheckboxControl
+				//eslint-disable-next-line @wordpress/valid-sprintf
+				label={sprintf( labels.onSingle, taxonomy?.labels?.name.toLowerCase() ?? '' )}
+				checked={!! attributes.single}
+				onChange={value => {
+					setAttributes( {
+						single: !! value,
+					} );
+				}}
+			/>
+			{/* Not offering the option to display in a new widget
+				as we don't really have the widget wraps available
+				to repeat.
+
+				The value of the `new_widget` is set to `list` by default
+				by block attributes. */}
+		</Fill>
 
 		<ErrorBoundary>
 			<ProFields

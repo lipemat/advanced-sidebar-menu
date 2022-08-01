@@ -12,7 +12,12 @@ interface JSConfig {
 		categories: {
 			title: string;
 			description: string;
+			eachCategory: {
+				title: string;
+				options: { [ option: string ]: string }
+			};
 			keywords: Array<string>;
+			onSingle: string;
 		}
 		display: {
 			title: string;
@@ -26,7 +31,7 @@ interface JSConfig {
 			title: string;
 			page: string;
 			category: string;
-		}
+		};
 		exclude: string;
 		features: Array<string>;
 		goPro: string;
