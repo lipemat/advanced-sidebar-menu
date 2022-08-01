@@ -20,6 +20,9 @@ class Category extends Menu_Abstract {
 	const DISPLAY_ON_SINGLE     = 'single';
 	const EACH_CATEGORY_DISPLAY = 'new_widget';
 
+	const EACH_LIST   = 'list';
+	const EACH_WIDGET = 'widget';
+
 	/**
 	 * Top_level_term.
 	 *
@@ -516,7 +519,7 @@ class Category extends Menu_Abstract {
 				continue;
 			}
 
-			if ( ! $menu_open || ( 'widget' === $this->instance[ self::EACH_CATEGORY_DISPLAY ] ) ) {
+			if ( ! $menu_open || ( static::EACH_WIDGET === $this->instance[ self::EACH_CATEGORY_DISPLAY ] ) ) {
 				//phpcs:disable WordPress.Security.EscapeOutput.OutputNotEscaped
 				echo $this->args['before_widget'];
 
@@ -528,7 +531,7 @@ class Category extends Menu_Abstract {
 
 					$menu_open = true;
 					$close_menu = true;
-					if ( 'list' === $this->instance[ self::EACH_CATEGORY_DISPLAY ] ) {
+					if ( static::EACH_LIST === $this->instance[ self::EACH_CATEGORY_DISPLAY ] ) {
 						$close_menu = false;
 					}
 				}
