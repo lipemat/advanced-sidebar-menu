@@ -61,21 +61,23 @@ const Display = ( {attributes, setAttributes, type, name}: Props ) => {
 					}}
 				/>;
 			} )}
-			{showLevels && reactStringReplace( I18N.display.levels.replace( '%2$s', type?.labels?.name.toLowerCase() ?? '' ), '%1$s',
-				() => (
-					<select
-						key={'levels'}
-						value={attributes.levels}
-						onChange={ev => setAttributes( {levels: parseInt( ev.target.value )} )}
-					>
-						<option value="100">
-							{I18N.display.all}
-						</option>
-						{range( 1, 10 ).map( n => <option key={n} value={n}>
-							{n}
-						</option> )}
-					</select>
-				) )}
+			{showLevels && <div className={'components-base-control'}>
+				{reactStringReplace( I18N.display.levels.replace( '%2$s', type?.labels?.name.toLowerCase() ?? '' ), '%1$s',
+					() => (
+						<select
+							key={'levels'}
+							value={attributes.levels}
+							onChange={ev => setAttributes( {levels: parseInt( ev.target.value )} )}
+						>
+							<option value="100">
+								{I18N.display.all}
+							</option>
+							{range( 1, 10 ).map( n => <option key={n} value={n}>
+								{n}
+							</option> )}
+						</select>
+					) )}
+			</div>}
 
 			{CONFIG.blocks.pages.id === name &&
 				<Slot name="AdvancedSidebarMenuPagesDisplay" />}
