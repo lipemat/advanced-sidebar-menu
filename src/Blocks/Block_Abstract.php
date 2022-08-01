@@ -176,10 +176,14 @@ abstract class Block_Abstract {
 					$menu->set_current_post( get_post() );
 				}
 			} );
-			add_filter( 'advanced-sidebar-menu/menus/page/is-displayed', '__return_true' );
 			add_filter( 'advanced-sidebar-menu/core/include-template-parts-comments', '__return_false' );
 			$GLOBALS['wp_query']->queried_object = get_post();
 			$GLOBALS['wp_query']->queried_object_id = get_the_ID();
+			if ( get_post_type() === 'page' ) {
+				$GLOBALS['wp_query']->is_page = true;
+			} else {
+				$GLOBALS['wp_query']->is_single = true;
+			}
 		}
 
 		// Map the boolean values to widget style 'checked'.
