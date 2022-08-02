@@ -1,5 +1,5 @@
 import {InspectorControls} from '@wordpress/block-editor';
-import {SelectControl, Slot, TextControl, withFilters} from '@wordpress/components';
+import {SelectControl, Slot, TextControl} from '@wordpress/components';
 import {BlockEditProps} from '@wordpress/blocks';
 import {Attr, block} from './block';
 import Preview from '../Preview';
@@ -14,10 +14,11 @@ import ErrorBoundary from '../../../components/ErrorBoundary';
 
 import styles from './edit.pcss';
 
-type Props = BlockEditProps<Attr>;
+export type FillProps =
+	Pick<BlockEditProps<Attr>, 'clientId' | 'attributes' | 'setAttributes'>
+	& { type?: Type }
 
-const ProFields = withFilters<Partial<Props> & { postType?: Type }>( 'advanced-sidebar-menu.blocks.pages.pro-fields' )( () =>
-	<InfoPanel /> );
+type Props = BlockEditProps<Attr>;
 
 /**
  * Pages block content in the editor.
@@ -40,18 +41,30 @@ const Edit = ( {attributes, setAttributes, clientId, name}: Props ) => {
 		</> );
 	}
 
+	const fillProps: FillProps = {
+		type: postType,
+		attributes,
+		setAttributes,
+		clientId,
+	};
+
 	return ( <>
 		<InspectorControls>
 			<ErrorBoundary>
 				<Display
 					attributes={attributes}
+					clientId={clientId}
 					name={name}
 					setAttributes={setAttributes}
 					type={postType} />
 
 				<div className={'components-panel__body is-opened'}>
 
-					<Slot name="AdvancedSidebarMenuPages" />
+					<ErrorBoundary>
+						<Slot<FillProps>
+							name="AdvancedSidebarMenuPagesGeneral"
+							fillProps={fillProps} />
+					</ErrorBoundary>
 
 					<SelectControl
 						label={I18N.pages.orderBy.title}
@@ -88,13 +101,13 @@ const Edit = ( {attributes, setAttributes, clientId, name}: Props ) => {
 			</ErrorBoundary>
 		</InspectorControls>
 
-		<ErrorBoundary>
-			<ProFields
-				attributes={attributes}
-				setAttributes={setAttributes}
-				clientId={clientId}
-				postType={postType} />
+		<Slot<FillProps>
+			name="AdvancedSidebarMenuPages"
+			fillProps={fillProps} />
 
+		<InfoPanel />
+
+		<ErrorBoundary>
 			<Preview<Attr> attributes={attributes} block={block.id} clientId={clientId} />
 		</ErrorBoundary>
 

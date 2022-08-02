@@ -1,5 +1,5 @@
 import {I18N} from '../../globals/config';
-import {Button, PanelBody} from '@wordpress/components';
+import {Button, PanelBody, withFilters} from '@wordpress/components';
 import {InspectorControls} from '@wordpress/block-editor';
 import {decodeEntities} from '@wordpress/html-entities';
 
@@ -37,4 +37,4 @@ const InfoPanel = ( {}: Props ) => {
 	</InspectorControls> );
 };
 
-export default InfoPanel;
+export default withFilters( 'advanced-sidebar-menu.blocks.info-panel' )( InfoPanel );

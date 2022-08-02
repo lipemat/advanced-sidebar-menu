@@ -1,11 +1,15 @@
 import {CheckboxControl, PanelBody, Slot} from '@wordpress/components';
 import {CONFIG, I18N} from '../../globals/config';
-import type {setAttributes} from './pages/block';
+import type {Attr as PageAttr, setAttributes} from './pages/block';
+import type {Attr as CategoryAttr} from './categories/block';
 import {sprintf} from '@wordpress/i18n';
 import {Type} from '@wordpress/api/types';
 import {range} from 'lodash';
 import reactStringReplace from 'react-string-replace';
 import {Taxonomy} from '@wordpress/api/taxonomies';
+import ErrorBoundary from '../../components/ErrorBoundary';
+import {BlockEditProps} from '@wordpress/blocks';
+
 
 export type DisplayOptions = {
 	display_all: boolean;
@@ -14,13 +18,17 @@ export type DisplayOptions = {
 	levels: number;
 }
 
+export type FillProps =
+	Pick<BlockEditProps<PageAttr | CategoryAttr>, 'clientId' | 'attributes' | 'setAttributes'>
+	& { type?: Type | Taxonomy }
+
 type Props = {
-	attributes: DisplayOptions;
+	attributes: PageAttr | CategoryAttr;
 	setAttributes: setAttributes;
 	type?: Type | Taxonomy;
 	name: string;
+	clientId: string;
 };
-
 
 const checkboxes: { [attr in keyof Partial<DisplayOptions>]: string } = {
 	include_parent: I18N.display.highest,
@@ -29,7 +37,7 @@ const checkboxes: { [attr in keyof Partial<DisplayOptions>]: string } = {
 };
 
 /**
- * Display Options shared between all 3 widgets.
+ * Display Options shared between widgets.
  *
  * 1. Display the highest level parent page.
  * 2. Display menu when there is only the parent page.
@@ -37,8 +45,15 @@ const checkboxes: { [attr in keyof Partial<DisplayOptions>]: string } = {
  * 5. Display levels of child pages.
  *
  */
-const Display = ( {attributes, setAttributes, type, name}: Props ) => {
+const Display = ( {attributes, setAttributes, type, name, clientId}: Props ) => {
 	const showLevels = ( CONFIG.blocks.pages.id === name && CONFIG.isPro ) || attributes.display_all;
+
+	const fillProps: FillProps = {
+		type,
+		attributes,
+		setAttributes,
+		clientId,
+	};
 
 	return (
 		<PanelBody
@@ -79,10 +94,16 @@ const Display = ( {attributes, setAttributes, type, name}: Props ) => {
 					) )}
 			</div>}
 
-			{CONFIG.blocks.pages.id === name &&
-				<Slot name="AdvancedSidebarMenuPagesDisplay" />}
-			{CONFIG.blocks.categories.id === name &&
-				<Slot name="AdvancedSidebarMenuCategoriesDisplay" />}
+			<ErrorBoundary>
+				{CONFIG.blocks.pages.id === name &&
+					<Slot<FillProps>
+						name="AdvancedSidebarMenuPagesDisplay"
+						fillProps={fillProps} />}
+				{CONFIG.blocks.categories.id === name &&
+					<Slot<FillProps>
+						name="AdvancedSidebarMenuCategoriesDisplay"
+						fillProps={fillProps} />}
+			</ErrorBoundary>
 
 		</PanelBody>
 	);

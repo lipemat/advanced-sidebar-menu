@@ -8,25 +8,20 @@ import {Taxonomy} from '@wordpress/api/taxonomies';
 import {BlockEditProps} from '@wordpress/blocks';
 import ErrorBoundary from '../../../components/ErrorBoundary';
 import Display from '../Display';
-import {
-	CheckboxControl,
-	Fill,
-	Slot,
-	TextControl,
-	withFilters,
-} from '@wordpress/components';
+import {CheckboxControl, Fill, Slot, TextControl} from '@wordpress/components';
 import {sprintf} from '@wordpress/i18n';
 import InfoPanel from '../InfoPanel';
 
 import styles from '../pages/edit.pcss';
 
+export type FillProps =
+	Pick<BlockEditProps<Attr>, 'clientId' | 'attributes' | 'setAttributes'>
+	& { type?: Taxonomy }
 
 type Props = BlockEditProps<Attr>;
 
 const labels = I18N.categories;
 
-const ProFields = withFilters<Partial<Props> & { taxonomy?: Taxonomy }>( 'advanced-sidebar-menu.blocks.categories.pro-fields' )( () =>
-	<InfoPanel /> );
 
 const Edit = ( {attributes, setAttributes, clientId, name}: Props ) => {
 	const taxonomy: Taxonomy | undefined = useSelect( select => {
@@ -45,19 +40,25 @@ const Edit = ( {attributes, setAttributes, clientId, name}: Props ) => {
 			<Preview<Attr> attributes={attributes} block={block.id} clientId={clientId} />
 		</> );
 	}
+
+	const fillProps: FillProps = {
+		type: taxonomy,
+		attributes,
+		setAttributes,
+		clientId,
+	};
+
 	return ( <>
 		<InspectorControls>
 			<ErrorBoundary>
 				<Display
 					attributes={attributes}
+					clientId={clientId}
 					name={name}
 					setAttributes={setAttributes}
 					type={taxonomy} />
 
 				<div className={'components-panel__body is-opened'}>
-
-					<Slot name="AdvancedSidebarMenuCategories" />
-
 					<TextControl
 						//eslint-disable-next-line @wordpress/valid-sprintf
 						label={sprintf( I18N.exclude, taxonomy?.labels?.name ?? '' )}
@@ -104,13 +105,13 @@ const Edit = ( {attributes, setAttributes, clientId, name}: Props ) => {
 				by block attributes. */}
 		</Fill>}
 
-		<ErrorBoundary>
-			<ProFields
-				attributes={attributes}
-				setAttributes={setAttributes}
-				clientId={clientId}
-				taxonomy={taxonomy} />
+		<Slot<FillProps>
+			name="AdvancedSidebarMenuCategories"
+			fillProps={fillProps} />
 
+		<InfoPanel />
+
+		<ErrorBoundary>
 			<Preview<Attr> attributes={attributes} block={block.id} clientId={clientId} />
 		</ErrorBoundary>
 
