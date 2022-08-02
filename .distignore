@@ -10,6 +10,7 @@ composer.json
 phpcs.xml
 .phpcs.cache
 .distignore
+.gitattributes
 .gitignore
 Readme.md
 phpstan.neon.dist
