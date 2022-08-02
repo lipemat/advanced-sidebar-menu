@@ -69,7 +69,9 @@ class Scripts {
 			'wp-url',
 		], ADVANCED_SIDEBAR_BASIC_VERSION, true );
 
-		wp_register_style( self::GUTENBERG_CSS_HANDLE, "{$js_dir}{$file}.css", [ 'dashicons' ], ADVANCED_SIDEBAR_BASIC_VERSION );
+		if ( ! SCRIPT_DEBUG || ! has_filter( 'advanced-sidebar-menu/js-dir' ) ) {
+			wp_register_style( self::GUTENBERG_CSS_HANDLE, "{$js_dir}{$file}.css", [ 'dashicons' ], ADVANCED_SIDEBAR_BASIC_VERSION );
+		}
 
 		/**
 		 * Load separately because `$this->js_config()` is heavy, and
