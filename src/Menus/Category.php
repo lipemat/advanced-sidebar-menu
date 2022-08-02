@@ -112,6 +112,10 @@ class Category extends Menu_Abstract {
 				$ancestors[] = $term_ancestors;
 			}
 
+			if ( empty( $ancestors ) ) {
+				return [];
+			}
+
 			return \array_merge( ...$ancestors );
 		}, __METHOD__, [] );
 	}
