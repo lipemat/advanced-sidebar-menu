@@ -79,7 +79,13 @@ const Edit = ( {attributes, setAttributes, clientId, name}: Props ) => {
 			</ErrorBoundary>
 		</InspectorControls>
 
-		<Fill name="AdvancedSidebarMenuCategoriesDisplay">
+		{/* Not offering "Display categories on single posts"
+		    when editing a post because this must be true, or
+		    the block won't display.
+
+		    We default the attribute to `true` if we are editing
+		    a post during register of block attributes. */}
+		{! CONFIG.isPostEdit && <Fill name="AdvancedSidebarMenuCategoriesDisplay">
 			<CheckboxControl
 				//eslint-disable-next-line @wordpress/valid-sprintf
 				label={sprintf( labels.onSingle, taxonomy?.labels?.name.toLowerCase() ?? '' )}
@@ -96,7 +102,7 @@ const Edit = ( {attributes, setAttributes, clientId, name}: Props ) => {
 
 				The value of the `new_widget` is set to `list` by default
 				by block attributes. */}
-		</Fill>
+		</Fill>}
 
 		<ErrorBoundary>
 			<ProFields

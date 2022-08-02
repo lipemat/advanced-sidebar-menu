@@ -202,7 +202,9 @@ class Scripts {
 				'soMuchMore' => __( 'So much more...', 'advanced-sidebar-menu' ),
 				'upgrade'    => __( 'Upgrade', 'advanced-sidebar-menu' ),
 			],
-			'isPro'    => false,
+			// Are we editing a post?
+			'isPostEdit' => ! empty( $GLOBALS['pagenow'] ) && 'post.php' === $GLOBALS['pagenow'],
+			'isPro' => false,
 			'postType' => get_post_type_object( 'page' )->labels,
 			'siteInfo' => [
 				'basic'       => ADVANCED_SIDEBAR_BASIC_VERSION,
@@ -210,7 +212,7 @@ class Scripts {
 				'scriptDebug' => $this->is_script_debug_enabled(),
 				'wordpress'   => get_bloginfo( 'version' ),
 			],
-			'support'  => 'https://wordpress.org/support/plugin/advanced-sidebar-menu/#new-topic-0',
+			'support' => 'https://wordpress.org/support/plugin/advanced-sidebar-menu/#new-topic-0',
 		] );
 	}
 

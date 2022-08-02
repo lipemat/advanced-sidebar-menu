@@ -55,7 +55,9 @@ class Categories extends Block_Abstract {
 				'type' => 'boolean',
 			],
 			Category::DISPLAY_ON_SINGLE        => [
-				'type' => 'boolean',
+				'type'    => 'boolean',
+				// Default to true if on a single post.
+				'default' => ! empty( $GLOBALS['pagenow'] ) && 'post.php' === $GLOBALS['pagenow'],
 			],
 			// No block option available. We only support 'list'.
 			Category::EACH_CATEGORY_DISPLAY    => [

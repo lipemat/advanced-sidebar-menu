@@ -48,6 +48,7 @@ interface JSConfig {
 		soMuchMore: string;
 		upgrade: string;
 	};
+	isPostEdit: boolean;
 	isPro: boolean;
 	siteInfo: {
 		basic: string;
