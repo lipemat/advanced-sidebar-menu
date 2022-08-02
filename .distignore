@@ -6,7 +6,6 @@
 # dev related
 /dev
 .editorconfig
-composer.json
 phpcs.xml
 .phpcs.cache
 .distignore
