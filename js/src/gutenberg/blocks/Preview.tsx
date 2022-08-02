@@ -78,6 +78,10 @@ const TriggerWhenLoadingFinished = ( {
 	useEffect( () => {
 		// Call action when the loading component unmounts because loading is finished.
 		return () => {
+			$( '[data-preview="' + `${attributes.clientId}` + '"]' )
+				.find( 'a' )
+				.on( 'click', ev => ev.preventDefault() );
+
 			doAction( 'advanced-sidebar-menu.blocks.preview.loading-finished', {
 				values: attributes,
 				clientId: attributes.clientId,
@@ -122,7 +126,7 @@ const Preview = <A, >( {attributes, block, clientId}: Props<A> ) => {
 	const sanitizedClientId = sanitizeClientId( clientId );
 
 	return (
-		<div {...blockProps}>
+		<div {...blockProps} data-preview={sanitizedClientId}>
 			<ServerSideRender<A & PreviewOptions>
 				EmptyResponsePlaceholder={placeholder( block )}
 				LoadingResponsePlaceholder={TriggerWhenLoadingFinished}
