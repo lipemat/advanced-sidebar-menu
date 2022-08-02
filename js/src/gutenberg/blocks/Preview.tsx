@@ -59,29 +59,6 @@ const placeholder = ( block ): () => ReactElement => {
 	return () => <></>;
 };
 
-/**
- * Don't have an internal way to pass the values
- * with using a construction function, which causes
- * re-render on any block change.
- */
-let passed = {
-	values: {},
-	clientId: '',
-};
-
-/**
- * Set values we use in `TriggerWhenLoadingFinished`.
- * Return `TriggerWhenLoadingFinished`
- *
- */
-const getLoader = <A, >( values: A, clientId: string ) => {
-	passed = {
-		values,
-		clientId,
-	};
-	return TriggerWhenLoadingFinished;
-};
-
 
 /**
  * Same as the `DefaultLoadingResponsePlaceholder` except we trigger
@@ -91,11 +68,20 @@ const getLoader = <A, >( values: A, clientId: string ) => {
  * @notice Using a constant to prevent reload on every content change.
  *
  */
-const TriggerWhenLoadingFinished = ( {children, showLoader} ) => {
+const TriggerWhenLoadingFinished = ( {
+	children,
+	showLoader,
+	attributes = {
+		clientId: '',
+	},
+} ) => {
 	useEffect( () => {
 		// Call action when the loading component unmounts because loading is finished.
 		return () => {
-			doAction( 'advanced-sidebar-menu.blocks.preview.loading-finished', passed );
+			doAction( 'advanced-sidebar-menu.blocks.preview.loading-finished', {
+				values: attributes,
+				clientId: attributes.clientId,
+			} );
 		};
 	} );
 
@@ -139,7 +125,7 @@ const Preview = <A, >( {attributes, block, clientId}: Props<A> ) => {
 		<div {...blockProps}>
 			<ServerSideRender<A & PreviewOptions>
 				EmptyResponsePlaceholder={placeholder( block )}
-				LoadingResponsePlaceholder={getLoader<A>( attributes, sanitizedClientId )}
+				LoadingResponsePlaceholder={TriggerWhenLoadingFinished}
 				attributes={{
 					...attributes,
 					// Send custom attribute to determine server side renders.
