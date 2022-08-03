@@ -1,6 +1,6 @@
 import {CheckboxControl, PanelBody, Slot} from '@wordpress/components';
 import {CONFIG, I18N} from '../../globals/config';
-import type {Attr as PageAttr, setAttributes} from './pages/block';
+import type {Attr as PageAttr} from './pages/block';
 import type {Attr as CategoryAttr} from './categories/block';
 import {sprintf} from '@wordpress/i18n';
 import {Type} from '@wordpress/api/types';
@@ -9,6 +9,7 @@ import reactStringReplace from 'react-string-replace';
 import {Taxonomy} from '@wordpress/api/taxonomies';
 import ErrorBoundary from '../../components/ErrorBoundary';
 import {BlockEditProps} from '@wordpress/blocks';
+import {PropsWithChildren} from 'react';
 
 
 export type DisplayOptions = {
@@ -22,13 +23,13 @@ export type FillProps =
 	Pick<BlockEditProps<PageAttr | CategoryAttr>, 'clientId' | 'attributes' | 'setAttributes'>
 	& { type?: Type | Taxonomy }
 
-type Props = {
+type Props = PropsWithChildren<{
 	attributes: PageAttr | CategoryAttr;
-	setAttributes: setAttributes;
+	setAttributes: BlockEditProps<PageAttr | CategoryAttr>['setAttributes'];
 	type?: Type | Taxonomy;
 	name: string;
 	clientId: string;
-};
+}>;
 
 const checkboxes: { [attr in keyof Partial<DisplayOptions>]: string } = {
 	include_parent: I18N.display.highest,
@@ -45,7 +46,14 @@ const checkboxes: { [attr in keyof Partial<DisplayOptions>]: string } = {
  * 5. Display levels of child pages.
  *
  */
-const Display = ( {attributes, setAttributes, type, name, clientId}: Props ) => {
+const Display = ( {
+	attributes,
+	setAttributes,
+	type,
+	name,
+	clientId,
+	children,
+}: Props ) => {
 	const showLevels = ( CONFIG.blocks.pages.id === name && CONFIG.isPro ) || attributes.display_all;
 
 	const fillProps: FillProps = {
@@ -93,6 +101,8 @@ const Display = ( {attributes, setAttributes, type, name, clientId}: Props ) => 
 						</select>
 					) )}
 			</div>}
+
+			{children}
 
 			<ErrorBoundary>
 				{CONFIG.blocks.pages.id === name &&

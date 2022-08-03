@@ -8,7 +8,7 @@ import {Taxonomy} from '@wordpress/api/taxonomies';
 import {BlockEditProps} from '@wordpress/blocks';
 import ErrorBoundary from '../../../components/ErrorBoundary';
 import Display from '../Display';
-import {CheckboxControl, Fill, Slot, TextControl} from '@wordpress/components';
+import {CheckboxControl, Slot, TextControl} from '@wordpress/components';
 import {sprintf} from '@wordpress/i18n';
 import InfoPanel from '../InfoPanel';
 
@@ -56,7 +56,31 @@ const Edit = ( {attributes, setAttributes, clientId, name}: Props ) => {
 					clientId={clientId}
 					name={name}
 					setAttributes={setAttributes}
-					type={taxonomy} />
+					type={taxonomy}
+				>
+					{/* Not offering "Display categories on single posts"
+		                when editing a post because this must be true, or
+		                the block won't display.
+
+		                We default the attribute to `true` if we are editing
+		                a post during register of block attributes. */}
+					{! CONFIG.isPostEdit && <CheckboxControl
+						//eslint-disable-next-line @wordpress/valid-sprintf
+						label={sprintf( labels.onSingle, taxonomy?.labels?.name.toLowerCase() ?? '' )}
+						checked={!! attributes.single}
+						onChange={value => {
+							setAttributes( {
+								single: !! value,
+							} );
+						}}
+					/>}
+					{/* Not offering the option to display in a new widget
+						as we don't really have the widget wraps available
+						to repeat.
+
+						The value of the `new_widget` is set to `list` by default
+						by block attributes. */}
+				</Display>
 
 				<div className={'components-panel__body is-opened'}>
 					<TextControl
@@ -79,31 +103,6 @@ const Edit = ( {attributes, setAttributes, clientId, name}: Props ) => {
 				</div>
 			</ErrorBoundary>
 		</InspectorControls>
-
-		{/* Not offering "Display categories on single posts"
-		    when editing a post because this must be true, or
-		    the block won't display.
-
-		    We default the attribute to `true` if we are editing
-		    a post during register of block attributes. */}
-		{! CONFIG.isPostEdit && <Fill name="AdvancedSidebarMenuCategoriesDisplay">
-			<CheckboxControl
-				//eslint-disable-next-line @wordpress/valid-sprintf
-				label={sprintf( labels.onSingle, taxonomy?.labels?.name.toLowerCase() ?? '' )}
-				checked={!! attributes.single}
-				onChange={value => {
-					setAttributes( {
-						single: !! value,
-					} );
-				}}
-			/>
-			{/* Not offering the option to display in a new widget
-				as we don't really have the widget wraps available
-				to repeat.
-
-				The value of the `new_widget` is set to `list` by default
-				by block attributes. */}
-		</Fill>}
 
 		<Slot<FillProps>
 			name="AdvancedSidebarMenuCategories"
