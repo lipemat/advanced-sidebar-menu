@@ -48,26 +48,39 @@ class Categories extends Block_Abstract {
 			Category::INCLUDE_CHILDLESS_PARENT => [
 				'type' => 'boolean',
 			],
-			Category::EXCLUDE                  => [
+			Category::EXCLUDE               => [
 				'type' => 'string',
 			],
-			Category::DISPLAY_ALL              => [
+			Category::DISPLAY_ALL           => [
 				'type' => 'boolean',
 			],
-			Category::DISPLAY_ON_SINGLE        => [
+			Category::DISPLAY_ON_SINGLE     => [
 				'type'    => 'boolean',
 				// Default to true if on a single post.
-				'default' => ! empty( $GLOBALS['pagenow'] ) && 'post.php' === $GLOBALS['pagenow'],
+				'default' => $this->is_editing_post(),
 			],
 			// No block option available. We only support 'list'.
-			Category::EACH_CATEGORY_DISPLAY    => [
+			Category::EACH_CATEGORY_DISPLAY => [
 				'type'    => 'string',
 				'default' => \Advanced_Sidebar_Menu\Menus\Category::EACH_LIST,
 			],
-			Category::LEVELS                   => [
+			Category::LEVELS                => [
 				'type' => 'number',
 			],
 		] );
+	}
+
+
+	/**
+	 * Are we on a post edit screen?
+	 *
+	 * Done using the global as we call this function within the
+	 * `init` hook before the screen is available.
+	 *
+	 * @return bool
+	 */
+	public function is_editing_post() {
+		return ! empty( $GLOBALS['pagenow'] ) && 'post.php' === $GLOBALS['pagenow'];
 	}
 
 

@@ -3,6 +3,7 @@
 namespace Advanced_Sidebar_Menu;
 
 use Advanced_Sidebar_Menu\Blocks\Block_Abstract;
+use Advanced_Sidebar_Menu\Blocks\Categories;
 use Advanced_Sidebar_Menu\Traits\Singleton;
 use Advanced_Sidebar_Menu\Widget\Category;
 use Advanced_Sidebar_Menu\Widget\Page;
@@ -204,8 +205,7 @@ class Scripts {
 				'soMuchMore' => __( 'So much more...', 'advanced-sidebar-menu' ),
 				'upgrade'    => __( 'Upgrade', 'advanced-sidebar-menu' ),
 			],
-			// Are we editing a post?
-			'isPostEdit' => ! empty( $GLOBALS['pagenow'] ) && 'post.php' === $GLOBALS['pagenow'],
+			'isPostEdit' => Categories::instance()->is_editing_post(),
 			'isPro' => false,
 			'postType' => get_post_type_object( 'page' )->labels,
 			'siteInfo' => [
