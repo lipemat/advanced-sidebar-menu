@@ -131,8 +131,19 @@ class Scripts {
 	public function js_config() {
 		$category = get_taxonomy( 'category' );
 		return apply_filters( 'advanced-sidebar-menu/scripts/js-config', [
-			'error'    => apply_filters( 'advanced-sidebar-menu/scripts/js-config/error', '' ),
-			'i18n'     => [
+			'error' => apply_filters( 'advanced-sidebar-menu/scripts/js-config/error', '' ),
+
+			/**
+			 * We pass I18N data via the JS CONFIG instead of using JS side
+			 * translation support because:
+			 * 1. No secondary process required for generating translation files.
+			 * 2. JS translations are passed to the page anyway so no savings on data.
+			 * 3. Custom WP_Cli command required to work with Webpack and TS.
+			 * 4. Easy overrides via filters.
+			 * 5. Don't have to rename script handles into "slug" format.
+			 * 6. Larger JS bundle if it includes the strings and domain.
+			 */
+			'i18n'  => [
 				'categories' => [
 					'title'        => __( 'Advanced Sidebar - Categories', 'advanced-sidebar-menu' ),
 					'description'  => __( 'Creates a menu of all the categories using the child/parent relationship',
@@ -205,16 +216,18 @@ class Scripts {
 				'soMuchMore' => __( 'So much more...', 'advanced-sidebar-menu' ),
 				'upgrade'    => __( 'Upgrade', 'advanced-sidebar-menu' ),
 			],
+			/** End i18n */
+
 			'isPostEdit' => Categories::instance()->is_editing_post(),
-			'isPro' => false,
-			'postType' => get_post_type_object( 'page' )->labels,
-			'siteInfo' => [
+			'isPro'      => false,
+			'postType'   => get_post_type_object( 'page' )->labels,
+			'siteInfo'   => [
 				'basic'       => ADVANCED_SIDEBAR_BASIC_VERSION,
 				'pro'         => false,
 				'scriptDebug' => $this->is_script_debug_enabled(),
 				'wordpress'   => get_bloginfo( 'version' ),
 			],
-			'support' => 'https://wordpress.org/support/plugin/advanced-sidebar-menu/#new-topic-0',
+			'support'    => 'https://wordpress.org/support/plugin/advanced-sidebar-menu/#new-topic-0',
 		] );
 	}
 
