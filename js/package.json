@@ -4,7 +4,11 @@
   "description": "Gutenberg blocks for the Advanced Sidebar Menu plugin.",
   "author": "OnPoint Plugins <support@onpointplugins.com>",
   "license": "UNLICENSED",
-  "url": "http://plugins.matlipe.com",
+  "url": "https://plugins.matlipe.com",
+  "certificates": {
+    "cert": "D:/xampp/apache/certs/plugins.matlipe.com-crt.pem",
+    "key": "D:/xampp/apache/certs/plugins.matlipe.com-key.pem"
+  },
   "scripts": {
     "browserslist": "lipemat-js-boilerplate browserslist",
     "lint": "lipemat-js-boilerplate lint && stylelint src/**/*.pcss --fix",
