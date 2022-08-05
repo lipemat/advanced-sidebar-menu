@@ -2544,8 +2544,8 @@ __metadata:
   linkType: hard
 
 "@types/lipemat__js-boilerplate@github:lipemat/types-js-boilerplate#semver:^1.23.0, @types/lipemat__js-boilerplate@github:lipemat/types-js-boilerplate#semver:^1.3.0, @types/lipemat__js-boilerplate@lipemat/types-js-boilerplate#semver:^1":
-  version: 1.28.2
-  resolution: "@types/lipemat__js-boilerplate@https://github.com/lipemat/types-js-boilerplate.git#commit=ef102158f115e38be02491d536b667c72eed5802"
+  version: 1.30.2
+  resolution: "@types/lipemat__js-boilerplate@https://github.com/lipemat/types-js-boilerplate.git#commit=05fce563c87f9fc5d1a9845755d103dda20b7b2f"
   dependencies:
     "@types/codemirror": ^5.60.5
     "@types/jest": ^24.0.19
@@ -2558,7 +2558,7 @@ __metadata:
     "@types/react-transition-group": ^4.2.4
     "@types/tinymce": ^4.5.23
     "@types/webpack-env": ^1.16.0
-  checksum: d3105c0083256e11c5b1a86242aa7bfc18bf369fb43aed3f8c133ced09612a7c7df72fa7818ed8990a0a5322fe1caa72540d47a239acd5fdd8f1a404f67c2eee
+  checksum: 9ab5573ec5a238e82e82459e089a2a7df9b5d7fcc1a40d0f1181ea84dc2aaa29beb5eba73d4fdd00684293dc3554adb614fa9366e436a8c73f703e9d29b6ded0
   languageName: node
   linkType: hard
 
@@ -13087,7 +13087,7 @@ __metadata:
 
 "typescript@patch:typescript@^4#~builtin<compat/typescript>, typescript@patch:typescript@^4.2.4#~builtin<compat/typescript>":
   version: 4.7.4
-  resolution: "typescript@patch:typescript@npm%3A4.7.4#~builtin<compat/typescript>::version=4.7.4&hash=7ad353"
+  resolution: "typescript@patch:typescript@npm%3A4.7.4#~builtin<compat/typescript>::version=4.7.4&hash=f456af"
   bin:
     tsc: bin/tsc
     tsserver: bin/tsserver
