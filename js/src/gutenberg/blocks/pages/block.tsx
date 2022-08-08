@@ -1,9 +1,10 @@
 import {useBlockProps} from '@wordpress/block-editor';
-import {BlockSettings, CreateBlock, createBlock, LegacyWidget} from '@wordpress/blocks';
+import {BlockSettings, LegacyWidget} from '@wordpress/blocks';
 import {CONFIG, I18N} from '../../../globals/config';
 import Edit from './Edit';
 import {PreviewOptions} from '../Preview';
 import {DisplayOptions} from '../Display';
+import {transformLegacyWidget} from '../../helpers';
 
 /**
  * Attributes specific to the widget as well as shared
@@ -26,37 +27,6 @@ export type setAttributes = ( newValue: {
 	[attribute in keyof Attr]?: Attr[attribute]
 } ) => void;
 
-/**
- * Translate the widget's "checked" to the boolean
- * version used in the block.
- *
- */
-export const translateLegacyWidget = ( settings ): Attr => {
-	Object.entries( settings ).forEach( ( [ key, value ] ) => {
-		if ( 'checked' === value ) {
-			settings[ key ] = true;
-		}
-		if ( 'object' === typeof value ) {
-			translateLegacyWidget( settings[ key ] );
-		}
-	} );
-	return settings;
-};
-
-/**
- * Transform a legacy widget to the matching block.
- *
- */
-export const transformLegacyWidget = ( {instance} ) => {
-	const blocks: CreateBlock<any>[] = [];
-	if ( instance.raw.title ) {
-		blocks.push( createBlock<{ content: string }>( 'core/heading', {
-			content: instance.raw.title,
-		} ) );
-	}
-	blocks.push( createBlock<Attr>( name, translateLegacyWidget( instance.raw ) ) );
-	return blocks;
-};
 
 /**
  * Attributes used for the example preview.
@@ -112,7 +82,7 @@ export const settings: BlockSettings<Attr, '', LegacyWidget<Attr & { title: stri
 					}
 					return 'advanced_sidebar_menu' === idBase;
 				},
-				transform: transformLegacyWidget,
+				transform: transformLegacyWidget( name ),
 			},
 		],
 	},

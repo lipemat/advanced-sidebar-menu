@@ -3,8 +3,9 @@ import {CONFIG, I18N} from '../../../globals/config';
 import {BlockSettings, LegacyWidget} from '@wordpress/blocks';
 import Edit from './Edit';
 import {useBlockProps} from '@wordpress/block-editor';
-import {EXAMPLE, transformLegacyWidget} from '../pages/block';
+import {EXAMPLE} from '../pages/block';
 import {DisplayOptions} from '../Display';
+import {transformLegacyWidget} from '../../helpers';
 
 /**
  * Attributes specific to the widget as well as shared
@@ -55,7 +56,7 @@ export const settings: BlockSettings<Attr, '', LegacyWidget<Attr & { title: stri
 					}
 					return 'advanced_sidebar_menu_category' === idBase;
 				},
-				transform: transformLegacyWidget,
+				transform: transformLegacyWidget( name ),
 			},
 		],
 	},
