@@ -213,6 +213,7 @@ class Scripts {
 						'options' => Page::get_order_by_options(),
 					],
 				],
+				'postType'   => __( 'Post type', 'advanced-sidebar-menu' ),
 				'soMuchMore' => __( 'So much more...', 'advanced-sidebar-menu' ),
 				'upgrade'    => __( 'Upgrade', 'advanced-sidebar-menu' ),
 			],
@@ -220,7 +221,6 @@ class Scripts {
 
 			'isPostEdit' => Categories::instance()->is_editing_post(),
 			'isPro'      => false,
-			'postType'   => get_post_type_object( 'page' )->labels,
 			'siteInfo'   => [
 				'basic'       => ADVANCED_SIDEBAR_BASIC_VERSION,
 				'pro'         => false,

@@ -1,3 +1,8 @@
+type TitleOptions = {
+	title: string,
+	options: { [ value: string ]: string }
+}
+
 interface JSConfig {
 	blocks: {
 		categories: {
@@ -12,10 +17,7 @@ interface JSConfig {
 		categories: {
 			title: string;
 			description: string;
-			eachCategory: {
-				title: string;
-				options: { [ option: string ]: string }
-			};
+			eachCategory: TitleOptions;
 			keywords: Array<string>;
 			onSingle: string;
 		}
@@ -40,11 +42,9 @@ interface JSConfig {
 			title: string;
 			description: string;
 			keywords: Array<string>;
-			orderBy: {
-				title: string,
-				options: { [ option: string ]: string }
-			}
-		}
+			orderBy: TitleOptions;
+		};
+		postType: string;
 		soMuchMore: string;
 		upgrade: string;
 	};
@@ -68,4 +68,4 @@ declare global {
 }
 
 export const CONFIG: JSConfig = window.ADVANCED_SIDEBAR_MENU || ( {} as JSConfig );
-export const I18N = CONFIG.i18n || {};
+export const I18N: JSConfig['i18n'] = CONFIG.i18n || {};

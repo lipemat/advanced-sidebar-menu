@@ -83,6 +83,13 @@ const Edit = ( {attributes, setAttributes, clientId, name}: Props ) => {
 				</Display>
 
 				<div className={'components-panel__body is-opened'}>
+
+					<ErrorBoundary>
+						<Slot<FillProps>
+							name="AdvancedSidebarMenuCategoriesGeneral"
+							fillProps={fillProps} />
+					</ErrorBoundary>
+
 					<TextControl
 						//eslint-disable-next-line @wordpress/valid-sprintf
 						label={sprintf( I18N.exclude, taxonomy?.labels?.name ?? '' )}
