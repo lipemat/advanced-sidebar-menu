@@ -99,11 +99,13 @@ const Edit = ( {attributes, setAttributes, clientId, name}: Props ) => {
 					</p>
 				</div>
 			</ErrorBoundary>
-		</InspectorControls>
 
-		<Slot<FillProps>
-			name="AdvancedSidebarMenuPages"
-			fillProps={fillProps} />
+			{/* @notice Must live within InspectorControls! */}
+			<Slot<FillProps>
+				name="AdvancedSidebarMenuPages"
+				fillProps={fillProps} />
+
+		</InspectorControls>
 
 		<InfoPanel />
 
