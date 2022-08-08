@@ -63,10 +63,8 @@ export const name = block.id;
 
 export const settings: BlockSettings<Attr, '', LegacyWidget<Attr & { title: string }>> = {
 	title: I18N.pages.title,
-	description: I18N.pages.description,
 	icon: 'welcome-widgets-menus',
 	category: 'widgets',
-	keywords: I18N.pages.keywords,
 	example: {
 		attributes: EXAMPLE as any,
 	},

@@ -44,6 +44,22 @@ abstract class Block_Abstract {
 
 
 	/**
+	 * Get list of words used to search for the block.
+	 *
+	 * @return string[]
+	 */
+	abstract protected function get_keywords();
+
+
+	/**
+	 * Get the description of this block.
+	 *
+	 * @return string
+	 */
+	abstract protected function get_description();
+
+
+	/**
 	 * Get the widget class, which matches this block.
 	 *
 	 * @return Page|Category
@@ -108,8 +124,10 @@ abstract class Block_Abstract {
 			apply_filters( 'advanced-sidebar-menu/block-register/' . static::NAME, [
 				'api_version'     => 2,
 				'attributes'      => $this->get_all_attributes(),
+				'description'     => $this->get_description(),
 				'editor_script'   => Scripts::GUTENBERG_HANDLE,
 				'editor_style'    => Scripts::GUTENBERG_CSS_HANDLE,
+				'keywords'        => $this->get_keywords(),
 				'render_callback' => [ $this, 'render' ],
 				'supports'        => $this->get_block_support(),
 			] ) );

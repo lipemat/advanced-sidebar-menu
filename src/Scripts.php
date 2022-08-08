@@ -129,7 +129,6 @@ class Scripts {
 	 * @return array
 	 */
 	public function js_config() {
-		$category = get_taxonomy( 'category' );
 		return apply_filters( 'advanced-sidebar-menu/scripts/js-config', [
 			'error' => apply_filters( 'advanced-sidebar-menu/scripts/js-config/error', '' ),
 
@@ -146,28 +145,10 @@ class Scripts {
 			'i18n'  => [
 				'categories' => [
 					'title'        => __( 'Advanced Sidebar - Categories', 'advanced-sidebar-menu' ),
-					'description'  => __( 'Creates a menu of all the categories using the child/parent relationship',
-						'advanced-sidebar-menu' ),
 					'eachCategory' => [
 						/* translators: Selected taxonomy single label */
 						'title'   => __( "Display each single post's %s", 'advanced-sidebar-menu' ),
 						'options' => Category::get_display_each_options(),
-					],
-					// English and translated so both will be searchable.
-					'keywords'     => [
-						'Advanced Sidebar',
-						'menu',
-						'sidebar',
-						'category',
-						'categories',
-						'taxonomy',
-						'term',
-						$category ? $category->labels->name : '',
-						$category ? $category->labels->singular_name : '',
-						__( 'menu', 'advanced-sidebar-menu' ),
-						__( 'sidebar', 'advanced-sidebar-menu' ),
-						__( 'taxonomy', 'advanced-sidebar-menu' ),
-						__( 'term', 'advanced-sidebar-menu' ),
 					],
 					/* translators: Selected taxonomy plural label */
 					'onSingle'     => __( 'Display %s on single posts', 'advanced-sidebar-menu' ),
@@ -197,17 +178,6 @@ class Scripts {
 				'noPreview'  => __( 'No preview available', 'advanced-sidebar-menu' ),
 				'pages'      => [
 					'title'       => __( 'Advanced Sidebar - Pages', 'advanced-sidebar-menu' ),
-					'description' => __( 'Creates a menu of all the pages using the child/parent relationship', 'advanced-sidebar-menu' ),
-					// English and translated so both will be searchable.
-					'keywords'    => [
-						'Advanced Sidebar',
-						'menu',
-						'sidebar',
-						'pages',
-						__( 'menu', 'advanced-sidebar-menu' ),
-						__( 'sidebar', 'advanced-sidebar-menu' ),
-						__( 'pages', 'advanced-sidebar-menu' ),
-					],
 					'orderBy'     => [
 						'title'   => __( 'Order by', 'advanced-sidebar-menu' ),
 						'options' => Page::get_order_by_options(),

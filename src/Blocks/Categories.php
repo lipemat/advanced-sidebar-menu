@@ -17,6 +17,17 @@ class Categories extends Block_Abstract {
 
 
 	/**
+	 * Get the description of this block.
+	 *
+	 * @return string
+	 */
+	protected function get_description() {
+		return __( 'Creates a menu of all the categories using the child/parent relationship',
+			'advanced-sidebar-menu' );
+	}
+
+
+	/**
 	 * Get featured this block supports.
 	 *
 	 * Done on the PHP side, so we can easily add additional features
@@ -28,6 +39,34 @@ class Categories extends Block_Abstract {
 		return apply_filters( 'advanced-sidebar-menu/blocks/categories/supports', [
 			'anchor' => true,
 		] );
+	}
+
+
+	/**
+	 * Get list of words used to search for the block.
+	 *
+	 * English and translated so both will be searchable.
+	 *
+	 * @return array
+	 */
+	public function get_keywords() {
+		$category = get_taxonomy( 'category' );
+
+		return [
+			'Advanced Sidebar',
+			'menu',
+			'sidebar',
+			'category',
+			'categories',
+			'taxonomy',
+			'term',
+			$category ? $category->labels->name : '',
+			$category ? $category->labels->singular_name : '',
+			__( 'menu', 'advanced-sidebar-menu' ),
+			__( 'sidebar', 'advanced-sidebar-menu' ),
+			__( 'taxonomy', 'advanced-sidebar-menu' ),
+			__( 'term', 'advanced-sidebar-menu' ),
+		];
 	}
 
 

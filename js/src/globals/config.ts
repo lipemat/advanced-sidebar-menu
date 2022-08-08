@@ -16,7 +16,6 @@ interface JSConfig {
 	i18n: {
 		categories: {
 			title: string;
-			description: string;
 			eachCategory: TitleOptions;
 			keywords: Array<string>;
 			onSingle: string;
@@ -40,7 +39,6 @@ interface JSConfig {
 		noPreview: string;
 		pages: {
 			title: string;
-			description: string;
 			keywords: Array<string>;
 			orderBy: TitleOptions;
 		};
