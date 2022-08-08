@@ -48,6 +48,13 @@ const Category = () => <Placeholder
 	instructions={I18N.noPreview}
 />;
 
+const Navigation = () => <Placeholder
+	className={styles.placeholder}
+	icon={'welcome-widgets-menus'}
+	label={I18N.navigation?.title}
+	instructions={I18N.noPreview}
+/>;
+
 
 const placeholder = ( block ): () => ReactElement => {
 	switch ( block ) {
@@ -55,6 +62,8 @@ const placeholder = ( block ): () => ReactElement => {
 			return Page;
 		case CONFIG.blocks.categories.id:
 			return Category;
+		case CONFIG.blocks.navigation?.id:
+			return Navigation;
 	}
 	return () => <></>;
 };
@@ -91,19 +100,17 @@ const TriggerWhenLoadingFinished = ( {
 
 	return (
 		<div style={{position: 'relative'}}>
-			{showLoader && (
-				<div
-					style={{
-						position: 'absolute',
-						top: '50%',
-						left: '50%',
-						marginTop: '-9px',
-						marginLeft: '-9px',
-					}}
-				>
-					<Spinner />
-				</div>
-			)}
+			<div
+				style={{
+					position: 'absolute',
+					top: '50%',
+					left: '50%',
+					marginTop: '-9px',
+					marginLeft: '-9px',
+				}}
+			>
+				<Spinner />
+			</div>
 			<div style={{opacity: showLoader ? '0.3' : 1}}>
 				{children}
 			</div>

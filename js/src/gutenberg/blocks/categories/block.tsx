@@ -81,7 +81,7 @@ export const settings: BlockSettings<Attr, '', LegacyWidget<Attr & { title: stri
 					}
 					return 'advanced_sidebar_menu_category' === idBase;
 				},
-				transform: transformLegacyWidget( name ),
+				transform: transformLegacyWidget<Attr>( name ),
 			},
 		],
 	},

@@ -80,7 +80,7 @@ export const settings: BlockSettings<Attr, '', LegacyWidget<Attr & { title: stri
 					}
 					return 'advanced_sidebar_menu' === idBase;
 				},
-				transform: transformLegacyWidget( name ),
+				transform: transformLegacyWidget<Attr>( name ),
 			},
 		],
 	},
