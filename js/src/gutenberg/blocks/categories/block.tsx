@@ -3,7 +3,6 @@ import {CONFIG, I18N} from '../../../globals/config';
 import {BlockSettings, LegacyWidget} from '@wordpress/blocks';
 import Edit from './Edit';
 import {useBlockProps} from '@wordpress/block-editor';
-import {EXAMPLE} from '../pages/block';
 import {DisplayOptions} from '../Display';
 import {transformLegacyWidget} from '../../helpers';
 
@@ -29,6 +28,35 @@ type ProRegistered = {
 export type setAttributes = ( newValue: {
 	[attribute in keyof Attr]?: Attr[attribute]
 } ) => void;
+
+/**
+ * Attributes used for the example preview.
+ * Combines some PRO and basic attributes.
+ * The PRO attributes will only be sent if PRO is active.
+ */
+const EXAMPLE = {
+	'display-posts': 'all',
+	'display-posts/limit': 2,
+	apply_current_page_parent_styles_to_parent: true,
+	apply_current_page_styles_to_parent: true,
+	block_style: true,
+	border: true,
+	border_color: '#333',
+	bullet_style: 'none',
+	child_page_bg_color: '#666',
+	child_page_color: '#fff',
+	parent_page_bg_color: '#282828',
+	parent_page_color: '#0cc4c6',
+	parent_page_font_weight: 'normal',
+	display_all: true,
+	grandchild_page_bg_color: '#989898',
+	grandchild_page_color: '#282828',
+	grandchild_page_font_weight: 'bold',
+	include_childless_parent: true,
+	include_parent: true,
+	levels: '2',
+};
+
 
 export const block = CONFIG.blocks.categories;
 

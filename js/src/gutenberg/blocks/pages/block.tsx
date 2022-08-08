@@ -33,7 +33,7 @@ export type setAttributes = ( newValue: {
  * Combines some PRO and basic attributes.
  * The PRO attributes will only be sent if PRO is active.
  */
-export const EXAMPLE = {
+const EXAMPLE = {
 	include_parent: true,
 	include_childless_parent: true,
 	display_all: true,
