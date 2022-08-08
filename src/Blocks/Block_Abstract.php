@@ -4,8 +4,6 @@ namespace Advanced_Sidebar_Menu\Blocks;
 
 use Advanced_Sidebar_Menu\Scripts;
 use Advanced_Sidebar_Menu\Utils;
-use Advanced_Sidebar_Menu\Widget\Category;
-use Advanced_Sidebar_Menu\Widget\Page;
 
 /**
  * Functionality shared by and required by all blocks.
@@ -61,8 +59,6 @@ abstract class Block_Abstract {
 
 	/**
 	 * Get the widget class, which matches this block.
-	 *
-	 * @return Page|Category
 	 */
 	abstract protected function get_widget_class();
 

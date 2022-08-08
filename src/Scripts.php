@@ -140,7 +140,7 @@ class Scripts {
 			 * 3. Custom WP_Cli command required to work with Webpack and TS.
 			 * 4. Easy overrides via filters.
 			 * 5. Don't have to rename script handles into "slug" format.
-			 * 6. Larger JS bundle if it includes the strings and domain.
+			 * 6. Larger JS bundle as every string includes the strings and domain.
 			 */
 			'i18n'  => [
 				'categories' => [
