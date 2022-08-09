@@ -80,10 +80,12 @@ class Pages extends Block_Abstract {
 				'type' => 'boolean',
 			],
 			Page::ORDER_BY                 => [
-				'type' => 'string',
+				'type'    => 'string',
+				'default' => 'menu_order',
 			],
 			Page::EXCLUDE                  => [
-				'type' => 'string',
+				'type'    => 'string',
+				'default' => '',
 			],
 			Page::DISPLAY_ALL              => [
 				'type' => 'boolean',
