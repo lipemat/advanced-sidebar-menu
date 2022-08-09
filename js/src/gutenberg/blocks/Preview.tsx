@@ -55,7 +55,12 @@ const Navigation = () => <Placeholder
 	instructions={I18N.noPreview}
 />;
 
-
+/**
+ * @notice The styles will not display for the preview
+ *         in the block inserter sidebar when Webpack
+ *         is enabled because the iframe has a late init.
+ *
+ */
 const placeholder = ( block ): () => ReactElement => {
 	switch ( block ) {
 		case CONFIG.blocks.pages.id:
