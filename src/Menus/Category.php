@@ -215,7 +215,7 @@ class Category extends Menu_Abstract {
 	 */
 	public function get_included_term_ids() {
 		$term_ids = [];
-		if ( is_single() ) {
+		if ( is_singular() ) {
 			$term_ids = wp_get_object_terms( get_the_ID(), $this->get_taxonomy(), [ 'fields' => 'ids' ] );
 		} elseif ( $this->is_tax() ) {
 			$term_ids[] = get_queried_object()->term_id;
@@ -277,7 +277,7 @@ class Category extends Menu_Abstract {
 	 */
 	public function is_displayed() {
 		$display = false;
-		if ( is_single() ) {
+		if ( is_singular() ) {
 			if ( $this->checked( self::DISPLAY_ON_SINGLE ) ) {
 				$display = true;
 			}
