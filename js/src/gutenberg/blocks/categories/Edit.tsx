@@ -1,7 +1,7 @@
 import {useSelect} from '@wordpress/data';
 import {CONFIG, I18N} from '../../../globals/config';
 import {sanitize} from 'dompurify';
-import {InspectorControls} from '@wordpress/block-editor';
+import {BlockControls, InspectorControls} from '@wordpress/block-editor';
 import Preview from '../Preview';
 import {Attr, block} from './block';
 import {Taxonomy} from '@wordpress/api/taxonomies';
@@ -84,11 +84,9 @@ const Edit = ( {attributes, setAttributes, clientId, name}: Props ) => {
 
 				<div className={'components-panel__body is-opened'}>
 
-					<ErrorBoundary>
-						<Slot<FillProps>
-							name="AdvancedSidebarMenuCategoriesGeneral"
-							fillProps={fillProps} />
-					</ErrorBoundary>
+					<Slot<FillProps>
+						name="advanced-sidebar-menu/categories/general"
+						fillProps={fillProps} />
 
 					<TextControl
 						//eslint-disable-next-line @wordpress/valid-sprintf
@@ -108,14 +106,21 @@ const Edit = ( {attributes, setAttributes, clientId, name}: Props ) => {
 						</a>
 					</p>
 				</div>
+
+				<Slot<FillProps>
+					name="advanced-sidebar-menu/categories/inspector"
+					fillProps={fillProps} />
+
 			</ErrorBoundary>
-
-			{/* @notice Must live within InspectorControls! */}
-			<Slot<FillProps>
-				name="AdvancedSidebarMenuCategories"
-				fillProps={fillProps} />
-
 		</InspectorControls>
+
+		<BlockControls>
+			<ErrorBoundary>
+				<Slot<FillProps>
+					name="advanced-sidebar-menu/categories/block-controls"
+					fillProps={fillProps} />
+			</ErrorBoundary>
+		</BlockControls>
 
 		<InfoPanel />
 

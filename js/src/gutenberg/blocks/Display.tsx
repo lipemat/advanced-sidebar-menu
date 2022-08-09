@@ -107,11 +107,11 @@ const Display = ( {
 			<ErrorBoundary>
 				{CONFIG.blocks.pages.id === name &&
 					<Slot<FillProps>
-						name="AdvancedSidebarMenuPagesDisplay"
+						name="advanced-sidebar-menu/pages/display"
 						fillProps={fillProps} />}
 				{CONFIG.blocks.categories.id === name &&
 					<Slot<FillProps>
-						name="AdvancedSidebarMenuCategoriesDisplay"
+						name="advanced-sidebar-menu/categories/display"
 						fillProps={fillProps} />}
 			</ErrorBoundary>
 

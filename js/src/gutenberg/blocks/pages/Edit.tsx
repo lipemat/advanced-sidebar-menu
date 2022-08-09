@@ -1,4 +1,4 @@
-import {InspectorControls} from '@wordpress/block-editor';
+import {BlockControls, InspectorControls} from '@wordpress/block-editor';
 import {SelectControl, Slot, TextControl} from '@wordpress/components';
 import {BlockEditProps} from '@wordpress/blocks';
 import {Attr, block} from './block';
@@ -60,11 +60,9 @@ const Edit = ( {attributes, setAttributes, clientId, name}: Props ) => {
 
 				<div className={'components-panel__body is-opened'}>
 
-					<ErrorBoundary>
-						<Slot<FillProps>
-							name="AdvancedSidebarMenuPagesGeneral"
-							fillProps={fillProps} />
-					</ErrorBoundary>
+					<Slot<FillProps>
+						name="advanced-sidebar-menu/pages/general"
+						fillProps={fillProps} />
 
 					<SelectControl
 						label={I18N.pages.orderBy.title}
@@ -98,14 +96,21 @@ const Edit = ( {attributes, setAttributes, clientId, name}: Props ) => {
 						</a>
 					</p>
 				</div>
+
+				<Slot<FillProps>
+					name="advanced-sidebar-menu/pages/inspector"
+					fillProps={fillProps} />
+
 			</ErrorBoundary>
-
-			{/* @notice Must live within InspectorControls! */}
-			<Slot<FillProps>
-				name="AdvancedSidebarMenuPages"
-				fillProps={fillProps} />
-
 		</InspectorControls>
+
+		<BlockControls>
+			<ErrorBoundary>
+				<Slot<FillProps>
+					name="advanced-sidebar-menu/pages/block-controls"
+					fillProps={fillProps} />
+			</ErrorBoundary>
+		</BlockControls>
 
 		<InfoPanel />
 
