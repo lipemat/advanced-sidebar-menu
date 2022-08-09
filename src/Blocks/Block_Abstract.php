@@ -193,6 +193,7 @@ abstract class Block_Abstract {
 			add_filter( 'advanced-sidebar-menu/core/include-template-parts-comments', '__return_false' );
 			$GLOBALS['wp_query']->queried_object = get_post();
 			$GLOBALS['wp_query']->queried_object_id = get_the_ID();
+			$GLOBALS['wp_query']->is_singular = true;
 			if ( get_post_type() === 'page' ) {
 				$GLOBALS['wp_query']->is_page = true;
 			} else {
