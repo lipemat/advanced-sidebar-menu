@@ -9,6 +9,25 @@ require __DIR__ . '/vendor/autoload.php';
 const SOURCE = 'js/dist/admin.js';
 const EXTENSIONS = [ '.ts', '.js', 'jsx', 'tsx' ];
 
+class LocalGenerator extends Jed {
+	/**
+	 * Wrap the translations with `local_data` so WP can read
+	 * them. Otherwise, same as default Jed.
+	 *
+	 * @see WP_CLI\I18n\JedGenerator
+	 */
+	public static function toString( Translations $translations, array $options = [] ) {
+		$message = parent::toString( $translations, [
+			'json'   => 0,
+			'source' => SOURCE,
+		] );
+		$object = json_decode( $message, true );
+		return json_encode( [
+			'locale_data' => $object,
+		] );
+	}
+}
+
 /**
  * Extract the JSON from the PO files and generate
  * JSON files including just the translations used in JS files.
@@ -43,10 +62,7 @@ function make_json( $source_file ) {
 	}
 
 	$destination_file = "../../languages/{$base_file_name}.json";
-	$success = Jed::toFile( $js_translations, $destination_file, [
-		'json'   => 0,
-		'source' => SOURCE,
-	] );
+	$success = LocalGenerator::toFile( $js_translations, $destination_file );
 
 	if ( ! $success ) {
 		echo sprintf( 'Could not create %s file.' . "\n", basename( $destination_file ) );

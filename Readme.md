@@ -53,7 +53,7 @@ PHP translations are using the standard [i18n process](https://developer.wordpre
 
 ### JS
 
-JS files are translated using the [block editor i18n process](https://developer.wordpress.org/block-editor/developers/internationalization/).
+JS files are translated using the [block editor i18n process](https://developer.wordpress.org/block-editor/how-to-guides/internationalization/).
 
 This plugin contains a custom PHP CLI command exists in the `dev/translate-cli` directory for generating JSON files. Like WP CLI `i18n make-json` command with a few differences to  
 support a Webpack/TypeScript structure.
