@@ -5,7 +5,6 @@ namespace Advanced_Sidebar_Menu;
 use Advanced_Sidebar_Menu\Blocks\Block_Abstract;
 use Advanced_Sidebar_Menu\Blocks\Categories;
 use Advanced_Sidebar_Menu\Traits\Singleton;
-use Advanced_Sidebar_Menu\Widget\Category;
 use Advanced_Sidebar_Menu\Widget\Page;
 
 /**
@@ -74,6 +73,8 @@ class Scripts {
 			wp_register_style( self::GUTENBERG_CSS_HANDLE, "{$js_dir}{$file}.css", [ 'dashicons' ], ADVANCED_SIDEBAR_BASIC_VERSION );
 		}
 
+		wp_set_script_translations( self::GUTENBERG_HANDLE, 'advanced-sidebar-menu', ADVANCED_SIDEBAR_DIR . 'languages' );
+
 		/**
 		 * Load separately because `$this->js_config()` is heavy, and
 		 * the block scripts must be registered before we have
@@ -131,28 +132,9 @@ class Scripts {
 	public function js_config() {
 		return apply_filters( 'advanced-sidebar-menu/scripts/js-config', [
 			'error' => apply_filters( 'advanced-sidebar-menu/scripts/js-config/error', '' ),
-
-			/**
-			 * We pass I18N data via the JS CONFIG instead of using JS side
-			 * translation support because:
-			 * 1. No secondary process required for generating translation files.
-			 * 2. JS translations are passed to the page anyway so no savings on data.
-			 * 3. Custom WP_Cli command required to work with Webpack and TS.
-			 * 4. Easy overrides via filters.
-			 * 5. Don't have to rename script handles into "slug" format.
-			 * 6. Larger JS bundle as every string includes the strings and domain.
-			 */
 			'i18n'  => [
 				'categories' => [
 					'title'        => __( 'Advanced Sidebar - Categories', 'advanced-sidebar-menu' ),
-					'eachCategory' => [
-						/* translators: Selected taxonomy single label */
-						'title'   => __( "Display each single post's %s", 'advanced-sidebar-menu' ),
-						'options' => Category::get_display_each_options(),
-					],
-					/* translators: Selected taxonomy plural label */
-					'onSingle'     => __( 'Display %s on single posts', 'advanced-sidebar-menu' ),
-
 				],
 				'display'    => [
 					'title'     => __( 'Display', 'advanced-sidebar-menu' ),

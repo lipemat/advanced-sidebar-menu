@@ -1,8 +1,8 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: Advanced Sidebar Menu\n"
-"POT-Creation-Date: 2022-08-10 16:06-0400\n"
-"PO-Revision-Date: 2022-08-10 16:08-0400\n"
+"POT-Creation-Date: 2022-08-10 17:10-0400\n"
+"PO-Revision-Date: 2022-08-10 17:10-0400\n"
 "Last-Translator: Mat Lipe <support@onpointplugins.com>\n"
 "Language-Team: \n"
 "Language: de_DE\n"
@@ -70,15 +70,15 @@ msgstr ""
 "Das Advanced Sidebar Menu erfordert %1$s sAdvanced Sidebar Menu PRO%2$s es "
 "Version %3$s+. Bitte aktualisieren oder deaktivieren Sie die PRO-Version."
 
-#: src/Notice.php:97 src/Scripts.php:181
+#: src/Notice.php:97 src/Scripts.php:160
 msgid "Advanced Sidebar Menu PRO"
 msgstr "Advanced Sidebar Menu PRO"
 
-#: src/Notice.php:115 src/Scripts.php:191
+#: src/Notice.php:115 src/Scripts.php:170
 msgid "So much more..."
 msgstr "So viel mehr..."
 
-#: src/Notice.php:124 src/Scripts.php:192
+#: src/Notice.php:124 src/Scripts.php:171
 msgid "Upgrade"
 msgstr "Aktualisierung"
 
@@ -123,69 +123,69 @@ msgstr ""
 "Prioritätsunterstützung, einschließlich Zugang zum Supportbereich für "
 "Mitglieder."
 
-#: src/Scripts.php:159 src/Widget/Category.php:59
+#: src/Scripts.php:138 src/Widget/Category.php:59
 msgid "Advanced Sidebar - Categories"
 msgstr "Advanced Sidebar - Kategorien"
 
-#: src/Scripts.php:162
+#: src/Scripts.php:141
 msgid "Display"
 msgstr "Anzeige"
 
 #. translators: Selected taxonomy single label
-#: src/Scripts.php:164 src/Widget/Category.php:140
+#: src/Scripts.php:143 src/Widget/Category.php:140
 #, php-format
 msgid "Display the highest level parent %s"
 msgstr "Anzeige der übergeordneten %s der höchsten Ebene"
 
 #. translators: Selected taxonomy single label
 #. translators: Selected post type single label
-#: src/Scripts.php:166 src/Widget/Category.php:149 src/Widget/Page.php:150
+#: src/Scripts.php:145 src/Widget/Category.php:149 src/Widget/Page.php:150
 #, php-format
 msgid "Display menu when there is only the parent %s"
 msgstr "Menü \"Anzeige\" wird nur die übergeordnete %s"
 
 #. translators: Selected taxonomy plural label
 #. translators: Selected post type plural label
-#: src/Scripts.php:168 src/Widget/Category.php:158 src/Widget/Page.php:160
+#: src/Scripts.php:147 src/Widget/Category.php:158 src/Widget/Page.php:160
 #, php-format
 msgid "Always display child %s"
 msgstr "Immer untergeordnete %s anzeigen"
 
 #. translators: {select html input}, {Selected post type plural label}
-#: src/Scripts.php:170 src/Widget/Category.php:187 src/Widget/Page.php:195
+#: src/Scripts.php:149 src/Widget/Category.php:187 src/Widget/Page.php:195
 #, php-format
 msgid "Display %1$s levels of child %2$s"
 msgstr "Anzeigen %1$s Ebenen der %2$s"
 
-#: src/Scripts.php:171 src/Widget/Category.php:172 src/Widget/Page.php:181
+#: src/Scripts.php:150 src/Widget/Category.php:172 src/Widget/Page.php:181
 msgid "- All -"
 msgstr "- Alle -"
 
-#: src/Scripts.php:174
+#: src/Scripts.php:153
 msgid "block documentation"
 msgstr "dokumentation blockieren"
 
 #. translators: Selected post type plural label
 #. translators: Selected taxonomy plural label
 #. translators: Selected post type plural label
-#: src/Scripts.php:179 src/Widget/Category.php:273 src/Widget/Page.php:255
+#: src/Scripts.php:158 src/Widget/Category.php:273 src/Widget/Page.php:255
 #, php-format
 msgid "%s to exclude (ids, comma separated)"
 msgstr "Auszuschließende %s (IDs), durch Kommas getrennt"
 
-#: src/Scripts.php:182
+#: src/Scripts.php:161
 msgid "No preview available"
 msgstr "Keine Vorschau verfügbar"
 
-#: src/Scripts.php:184 src/Widget/Page.php:55
+#: src/Scripts.php:163 src/Widget/Page.php:55
 msgid "Advanced Sidebar - Pages"
 msgstr "Advanced Sidebar - Seitenmenü"
 
-#: src/Scripts.php:186 src/Widget/Page.php:221
+#: src/Scripts.php:165 src/Widget/Page.php:221
 msgid "Order by"
 msgstr "Sortieren nach"
 
-#: src/Scripts.php:190
+#: src/Scripts.php:169
 msgid "Post type"
 msgstr "Beitragstyp"
 

@@ -22,9 +22,6 @@ interface JSConfig {
 	i18n: {
 		categories: {
 			title: string;
-			eachCategory: TitleOptions;
-			keywords: Array<string>;
-			onSingle: string;
 		}
 		display: {
 			title: string;

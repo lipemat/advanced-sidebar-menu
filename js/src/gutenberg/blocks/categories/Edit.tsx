@@ -9,7 +9,7 @@ import {BlockEditProps} from '@wordpress/blocks';
 import ErrorBoundary from '../../../components/ErrorBoundary';
 import Display from '../Display';
 import {CheckboxControl, Slot, TextControl} from '@wordpress/components';
-import {sprintf, __} from '@wordpress/i18n';
+import {__, sprintf} from '@wordpress/i18n';
 import InfoPanel from '../InfoPanel';
 
 import styles from '../pages/edit.pcss';
@@ -19,9 +19,6 @@ export type FillProps =
 	& { type?: Taxonomy }
 
 type Props = BlockEditProps<Attr>;
-
-const labels = I18N.categories;
-
 
 const Edit = ( {attributes, setAttributes, clientId, name}: Props ) => {
 	const taxonomy: Taxonomy | undefined = useSelect( select => {
@@ -65,8 +62,8 @@ const Edit = ( {attributes, setAttributes, clientId, name}: Props ) => {
 		                We default the attribute to `true` if we are editing
 		                a post during register of block attributes. */}
 					{! CONFIG.isPostEdit && <CheckboxControl
-						//eslint-disable-next-line @wordpress/valid-sprintf
-						label={sprintf( labels.onSingle, taxonomy?.labels?.name.toLowerCase() ?? '' )}
+						/* translators: Selected taxonomy plural label */
+						label={sprintf( __( 'Display %s on single posts', 'advanced-sidebar-menu' ), taxonomy?.labels?.name.toLowerCase() ?? '' )}
 						checked={!! attributes.single}
 						onChange={value => {
 							setAttributes( {
