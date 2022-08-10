@@ -8,6 +8,9 @@ dev/translate-cli/vendor
 # JS dist files
 js/dist
 
+# Language files compliled during deployment.
+languages/*.json
+
 # Yarn berry files
 install-state.gz
 build-state.yml
