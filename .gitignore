@@ -2,6 +2,10 @@
 .phpcs.cache
 .phpunit.result.cache
 
+# Composer files
+dev/translate-cli/vendor
+
+# JS dist files
 js/dist
 
 # Yarn berry files

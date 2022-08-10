@@ -9,7 +9,7 @@ import {BlockEditProps} from '@wordpress/blocks';
 import ErrorBoundary from '../../../components/ErrorBoundary';
 import Display from '../Display';
 import {CheckboxControl, Slot, TextControl} from '@wordpress/components';
-import {sprintf} from '@wordpress/i18n';
+import {sprintf, __} from '@wordpress/i18n';
 import InfoPanel from '../InfoPanel';
 
 import styles from '../pages/edit.pcss';

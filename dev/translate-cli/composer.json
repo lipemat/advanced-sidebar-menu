@@ -1,0 +1,12 @@
+{
+  "description": "PHP Script for generating JSON files used by JS translations.",
+  "config": {
+    "vendor-dir": "vendor",
+    "preferred-install": "dist",
+    "optimize-autoloader": true,
+    "sort-packages": true
+  },
+  "require-dev": {
+    "gettext/gettext": "^4.8"
+  }
+}

@@ -8,7 +8,7 @@ import {useSelect} from '@wordpress/data';
 import InfoPanel from '../InfoPanel';
 import {CONFIG, I18N} from '../../../globals/config';
 import {sanitize} from 'dompurify';
-import {sprintf} from '@wordpress/i18n';
+import {sprintf, __} from '@wordpress/i18n';
 import {Type} from '@wordpress/api/types';
 import ErrorBoundary from '../../../components/ErrorBoundary';
 
@@ -67,7 +67,6 @@ const Edit = ( {attributes, setAttributes, clientId, name}: Props ) => {
 					<SelectControl
 						label={I18N.pages.orderBy.title}
 						value={attributes.order_by}
-						// @ts-ignore
 						labelPosition={'side'}
 						options={Object.entries( I18N.pages.orderBy.options ).map( ( [ value, label ] ) => ( {
 							value,

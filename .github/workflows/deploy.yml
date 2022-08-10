@@ -1,11 +1,14 @@
 name: Deploy to WordPress.org
 env:
+  VERSION: 2.1.0
   NODE_VERSION: '16.14.2'
+  PHP_VERSION: '8.0'
 
 on:
   push:
     tags:
       - "*"
+
 jobs:
   tag:
     name: New tag
@@ -16,12 +19,18 @@ jobs:
         with:
           node-version: ${{env.NODE_VERSION}}
           registry-url: 'https://registry.npmjs.org'
+      - uses: "shivammathur/setup-php@v2"
+        with:
+          php-version: ${{env.PHP_VERSION}}
       - name: Install yarn
         shell: bash
         run: npm i -g yarn
       - name: Compile JS
         shell: bash
         run: cd ${{github.workspace}}/js && yarn dist
+      - name: Generate JS translations
+        shell: bash
+        run: cd ${{github.workspace}}/dev/translate-cli && php command.php
       - name: WordPress Plugin Deploy
         uses: 10up/action-wordpress-plugin-deploy@stable
         env:
