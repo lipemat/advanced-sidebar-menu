@@ -6,7 +6,7 @@ use Gettext\Translations;
 
 require __DIR__ . '/vendor/autoload.php';
 
-const SOURCE = 'js/dist/admin.js';
+const RELATIVE_PATH = 'js/dist/admin.js';
 const EXTENSIONS = [ '.ts', '.js', 'jsx', 'tsx' ];
 
 class LocalGenerator extends Jed {
@@ -17,10 +17,7 @@ class LocalGenerator extends Jed {
 	 * @see WP_CLI\I18n\JedGenerator
 	 */
 	public static function toString( Translations $translations, array $options = [] ) {
-		$message = parent::toString( $translations, [
-			'json'   => 0,
-			'source' => SOURCE,
-		] );
+		$message = parent::toString( $translations );
 		$object = json_decode( $message, true );
 		return json_encode( [
 			'locale_data' => $object,
@@ -40,7 +37,7 @@ function make_json( $source_file ) {
 	$all_translations = new Translations();
 	PoExtractor::fromFile( $source_file, $all_translations );
 
-	$base_file_name = basename( $source_file, '.po' );
+	$base_file_name = basename( $source_file, '.po' ) . '-' . md5( RELATIVE_PATH );
 
 	$js_translations = new Translations();
 	$js_translations->setHeader( 'Language', $all_translations->getLanguage() );
