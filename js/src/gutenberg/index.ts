@@ -1,6 +1,7 @@
 import {autoloadBlocks} from '@lipemat/js-boilerplate-gutenberg';
 import Preview from './blocks/Preview';
 import {transformLegacyWidget} from './helpers';
+import ErrorBoundary from '../components/ErrorBoundary';
 
 /**
  * Use our custom autoloader to automatically require,
@@ -13,6 +14,7 @@ export default () => {
 	autoloadBlocks( () => require.context( './blocks', true, /block\.tsx$/ ), module );
 
 	// Expose helpers and Preview component to window, so we can use them in PRO.
+	window.ADVANCED_SIDEBAR_MENU.ErrorBoundary = ErrorBoundary;
 	window.ADVANCED_SIDEBAR_MENU.Preview = Preview;
 	window.ADVANCED_SIDEBAR_MENU.transformLegacyWidget = transformLegacyWidget;
 }

@@ -1,15 +1,18 @@
-import React from 'react';
+import {Component, ErrorInfo} from 'react';
 import {CONFIG} from '../globals/config';
 import {addQueryArgs} from '@wordpress/url';
 import {sanitize} from 'dompurify';
 
 /**
  * Wrap any component in me, which may throw errors, and I will
- * prevent the entire UI from disappearing,
+ * prevent the entire UI from disappearing.
+ *
+ * Custom version special to Advanced Sidebar Menu with links to
+ * support as well as debugging information.
  *
  * @link https://reactjs.org/docs/error-boundaries.html#introducing-error-boundaries
  */
-class ErrorBoundary extends React.Component<{}, { hasError: boolean, error: Error | null }> {
+class ErrorBoundary extends Component<{ attributes: Record<string, any>, block: string }, { hasError: boolean, error: Error | null }> {
 	constructor( props ) {
 		super( props );
 		this.state = {
@@ -28,17 +31,15 @@ class ErrorBoundary extends React.Component<{}, { hasError: boolean, error: Erro
 	/**
 	 * Log information about the error when it happens.
 	 *
-	 * @notice Will not log anything when in dev mode!
-	 *         Still prevents UI crashes but only logs
-	 *         in production mode.
-	 *
-	 * @param  error
-	 * @param  info
+	 * @notice Will log "Error: A cross-origin error was thrown. React doesn't have
+	 *         access to the actual error object in development" in React development
+	 *         mode but provides full error info in React production.
 	 */
-	componentDidCatch( error: Error, info: React.ErrorInfo ) {
-		console.error( 'The React UI was protected by an Error Boundary else it wouldn\'t be showing right now.' );
-		console.error( error );
-		console.error( info );
+	componentDidCatch( error: Error, info: ErrorInfo ) {
+		console.log( '%cError caught by the Advanced Sidebar ErrorBoundary!', 'color:orange; font-size: large; font-weight: bold' );
+		console.log( this.props );
+		console.log( error );
+		console.log( info );
 		this.setState( {
 			error,
 		} );
@@ -89,13 +90,19 @@ class ErrorBoundary extends React.Component<{}, { hasError: boolean, error: Erro
 							</code>
 						</p>
 						<p>
-							<strong><em>User Agent</em></strong> <br />
+							<strong><em>Block</em></strong> <br />
 							<code>
-								{navigator.userAgent}
+								{this.props.block}
 							</code>
 						</p>
 						<p>
-							<strong><em>Versions</em></strong> <br />
+							<strong><em>Attributes</em></strong> <br />
+							<code>
+								{JSON.stringify( this.props.attributes )}
+							</code>
+						</p>
+						<p>
+							<strong><em>Site Info</em></strong> <br />
 							<code>
 								{JSON.stringify( CONFIG.siteInfo )}
 							</code>

@@ -15,7 +15,7 @@ import InfoPanel from '../InfoPanel';
 import styles from '../pages/edit.pcss';
 
 export type FillProps =
-	Pick<BlockEditProps<Attr>, 'clientId' | 'attributes' | 'setAttributes'>
+	Pick<BlockEditProps<Attr>, 'clientId' | 'attributes' | 'setAttributes' | 'name'>
 	& { type?: Taxonomy }
 
 type Props = BlockEditProps<Attr>;
@@ -41,13 +41,14 @@ const Edit = ( {attributes, setAttributes, clientId, name}: Props ) => {
 	const fillProps: FillProps = {
 		type: taxonomy,
 		attributes,
+		name,
 		setAttributes,
 		clientId,
 	};
 
 	return ( <>
 		<InspectorControls>
-			<ErrorBoundary>
+			<ErrorBoundary attributes={attributes} block={name}>
 				<Display
 					attributes={attributes}
 					clientId={clientId}
@@ -113,7 +114,7 @@ const Edit = ( {attributes, setAttributes, clientId, name}: Props ) => {
 		</InspectorControls>
 
 		<BlockControls>
-			<ErrorBoundary>
+			<ErrorBoundary attributes={attributes} block={name}>
 				<Slot<FillProps>
 					name="advanced-sidebar-menu/categories/block-controls"
 					fillProps={fillProps} />
@@ -122,7 +123,7 @@ const Edit = ( {attributes, setAttributes, clientId, name}: Props ) => {
 
 		<InfoPanel />
 
-		<ErrorBoundary>
+		<ErrorBoundary attributes={attributes} block={name}>
 			<Preview<Attr> attributes={attributes} block={block.id} clientId={clientId} />
 		</ErrorBoundary>
 

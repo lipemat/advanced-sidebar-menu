@@ -15,7 +15,7 @@ import ErrorBoundary from '../../../components/ErrorBoundary';
 import styles from './edit.pcss';
 
 export type FillProps =
-	Pick<BlockEditProps<Attr>, 'clientId' | 'attributes' | 'setAttributes'>
+	Pick<BlockEditProps<Attr>, 'clientId' | 'attributes' | 'setAttributes' | 'name'>
 	& { type?: Type }
 
 type Props = BlockEditProps<Attr>;
@@ -44,13 +44,14 @@ const Edit = ( {attributes, setAttributes, clientId, name}: Props ) => {
 	const fillProps: FillProps = {
 		type: postType,
 		attributes,
+		name,
 		setAttributes,
 		clientId,
 	};
 
 	return ( <>
 		<InspectorControls>
-			<ErrorBoundary>
+			<ErrorBoundary attributes={attributes} block={name}>
 				<Display
 					attributes={attributes}
 					clientId={clientId}
@@ -105,7 +106,7 @@ const Edit = ( {attributes, setAttributes, clientId, name}: Props ) => {
 		</InspectorControls>
 
 		<BlockControls>
-			<ErrorBoundary>
+			<ErrorBoundary attributes={attributes} block={name}>
 				<Slot<FillProps>
 					name="advanced-sidebar-menu/pages/block-controls"
 					fillProps={fillProps} />
@@ -114,7 +115,7 @@ const Edit = ( {attributes, setAttributes, clientId, name}: Props ) => {
 
 		<InfoPanel />
 
-		<ErrorBoundary>
+		<ErrorBoundary attributes={attributes} block={name}>
 			<Preview<Attr> attributes={attributes} block={block.id} clientId={clientId} />
 		</ErrorBoundary>
 

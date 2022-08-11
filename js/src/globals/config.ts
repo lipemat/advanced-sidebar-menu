@@ -1,4 +1,4 @@
-import {FunctionComponent} from 'react';
+import {ComponentClass, FunctionComponent} from 'react';
 import {TransformLegacy} from '../gutenberg/helpers';
 
 interface JSConfig {
@@ -18,6 +18,7 @@ interface JSConfig {
 		category: string;
 	};
 	error: false | string;
+	ErrorBoundary: ComponentClass<{ attributes: Record<string, any>, block: string }>;
 	features: Array<string>;
 	isPostEdit: boolean;
 	isPro: boolean;

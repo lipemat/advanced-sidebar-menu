@@ -20,7 +20,7 @@ export type DisplayOptions = {
 }
 
 export type FillProps =
-	Pick<BlockEditProps<PageAttr | CategoryAttr>, 'clientId' | 'attributes' | 'setAttributes'>
+	Pick<BlockEditProps<PageAttr | CategoryAttr>, 'clientId' | 'attributes' | 'setAttributes' | 'name'>
 	& { type?: Type | Taxonomy }
 
 type Props = PropsWithChildren<{
@@ -62,6 +62,7 @@ const Display = ( {
 	const fillProps: FillProps = {
 		type,
 		attributes,
+		name,
 		setAttributes,
 		clientId,
 	};
@@ -106,7 +107,7 @@ const Display = ( {
 
 			{children}
 
-			<ErrorBoundary>
+			<ErrorBoundary attributes={attributes} block={name}>
 				{CONFIG.blocks.pages.id === name &&
 					<Slot<FillProps>
 						name="advanced-sidebar-menu/pages/display"
