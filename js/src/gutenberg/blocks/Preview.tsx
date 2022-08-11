@@ -84,7 +84,6 @@ const placeholder = ( block ): () => ReactElement => {
  */
 const TriggerWhenLoadingFinished = ( {
 	children,
-	showLoader,
 	attributes = {
 		clientId: '',
 	},
@@ -104,19 +103,11 @@ const TriggerWhenLoadingFinished = ( {
 	} );
 
 	return (
-		<div style={{position: 'relative'}}>
-			<div
-				style={{
-					position: 'absolute',
-					top: '50%',
-					left: '50%',
-					marginTop: '-9px',
-					marginLeft: '-9px',
-				}}
-			>
+		<div className={styles.spinWrap}>
+			<div className={styles.spin}>
 				<Spinner />
 			</div>
-			<div style={{opacity: showLoader ? '0.3' : 1}}>
+			<div className={styles.spinContent}>
 				{children}
 			</div>
 		</div>
@@ -125,9 +116,7 @@ const TriggerWhenLoadingFinished = ( {
 
 
 const Preview = <A, >( {attributes, block, clientId}: Props<A> ) => {
-	const blockProps = useBlockProps( {
-		className: styles.wrap,
-	} );
+	const blockProps = useBlockProps();
 
 	if ( '' !== CONFIG.error ) {
 		return <div
