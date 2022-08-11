@@ -1,11 +1,6 @@
 import {FunctionComponent} from 'react';
 import {TransformLegacy} from '../gutenberg/helpers';
 
-type TitleOptions = {
-	title: string,
-	options: { [ value: string ]: string }
-}
-
 interface JSConfig {
 	blocks: {
 		categories: {
@@ -18,42 +13,15 @@ interface JSConfig {
 			id: string;
 		}
 	};
-	error: false | string;
-	i18n: {
-		categories: {
-			title: string;
-		}
-		display: {
-			title: string;
-			highest: string;
-			childless: string;
-			always: string;
-			levels: string;
-			all: string;
-		};
-		docs: {
-			title: string;
-			page: string;
-			category: string;
-		};
-		exclude: string;
-		features: Array<string>;
-		goPro: string;
-		navigation?: {
-			title: string;
-		};
-		noPreview: string;
-		pages: {
-			title: string;
-			keywords: Array<string>;
-			orderBy: TitleOptions;
-		};
-		postType: string;
-		soMuchMore: string;
-		upgrade: string;
+	docs: {
+		page: string;
+		category: string;
 	};
+	error: false | string;
+	features: Array<string>;
 	isPostEdit: boolean;
 	isPro: boolean;
+	orderBy: { [ value: string ]: string };
 	Preview: FunctionComponent<any>;
 	siteInfo: {
 		basic: string;
@@ -74,4 +42,3 @@ declare global {
 }
 
 export const CONFIG: JSConfig = window.ADVANCED_SIDEBAR_MENU || ( {} as JSConfig );
-export const I18N: JSConfig['i18n'] = CONFIG.i18n || {};

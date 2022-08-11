@@ -131,48 +131,15 @@ class Scripts {
 	 */
 	public function js_config() {
 		return apply_filters( 'advanced-sidebar-menu/scripts/js-config', [
-			'error' => apply_filters( 'advanced-sidebar-menu/scripts/js-config/error', '' ),
-			'i18n'  => [
-				'categories' => [
-					'title'        => __( 'Advanced Sidebar - Categories', 'advanced-sidebar-menu' ),
-				],
-				'display'    => [
-					'title'     => __( 'Display', 'advanced-sidebar-menu' ),
-					/* translators: Selected taxonomy single label */
-					'highest'   => __( 'Display the highest level parent %s', 'advanced-sidebar-menu' ),
-					/* translators: Selected taxonomy single label */
-					'childless' => __( 'Display menu when there is only the parent %s', 'advanced-sidebar-menu' ),
-					/* translators: Selected taxonomy plural label */
-					'always'    => __( 'Always display child %s', 'advanced-sidebar-menu' ),
-					/* translators: {select html input}, {Selected post type plural label} */
-					'levels'    => __( 'Display %1$s levels of child %2$s', 'advanced-sidebar-menu' ),
-					'all'       => __( '- All -', 'advanced-sidebar-menu' ),
-				],
-				'docs'       => [
-					'title'    => __( 'block documentation', 'advanced-sidebar-menu' ),
-					'page'     => 'https://onpointplugins.com/advanced-sidebar-menu/#advanced-sidebar-pages-menu',
-					'category' => 'https://onpointplugins.com/advanced-sidebar-menu/#advanced-sidebar-categories-menu',
-				],
-				/* translators: Selected post type plural label */
-				'exclude'    => __( '%s to exclude (ids, comma separated)', 'advanced-sidebar-menu' ),
-				'features'   => Notice::instance()->get_features(),
-				'goPro'      => __( 'Advanced Sidebar Menu PRO', 'advanced-sidebar-menu' ),
-				'noPreview'  => __( 'No preview available', 'advanced-sidebar-menu' ),
-				'pages'      => [
-					'title'       => __( 'Advanced Sidebar - Pages', 'advanced-sidebar-menu' ),
-					'orderBy'     => [
-						'title'   => __( 'Order by', 'advanced-sidebar-menu' ),
-						'options' => Page::get_order_by_options(),
-					],
-				],
-				'postType'   => __( 'Post type', 'advanced-sidebar-menu' ),
-				'soMuchMore' => __( 'So much more...', 'advanced-sidebar-menu' ),
-				'upgrade'    => __( 'Upgrade', 'advanced-sidebar-menu' ),
+			'docs'       => [
+				'page'     => 'https://onpointplugins.com/advanced-sidebar-menu/#advanced-sidebar-pages-menu',
+				'category' => 'https://onpointplugins.com/advanced-sidebar-menu/#advanced-sidebar-categories-menu',
 			],
-			/** End i18n */
-
+			'error'      => apply_filters( 'advanced-sidebar-menu/scripts/js-config/error', '' ),
+			'features'   => Notice::instance()->get_features(),
 			'isPostEdit' => Categories::instance()->is_editing_post(),
 			'isPro'      => false,
+			'orderBy'    => Page::get_order_by_options(),
 			'siteInfo'   => [
 				'basic'       => ADVANCED_SIDEBAR_BASIC_VERSION,
 				'pro'         => false,

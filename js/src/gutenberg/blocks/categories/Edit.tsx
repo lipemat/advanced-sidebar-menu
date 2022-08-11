@@ -1,5 +1,5 @@
 import {useSelect} from '@wordpress/data';
-import {CONFIG, I18N} from '../../../globals/config';
+import {CONFIG} from '../../../globals/config';
 import {sanitize} from 'dompurify';
 import {BlockControls, InspectorControls} from '@wordpress/block-editor';
 import Preview from '../Preview';
@@ -86,8 +86,8 @@ const Edit = ( {attributes, setAttributes, clientId, name}: Props ) => {
 						fillProps={fillProps} />
 
 					<TextControl
-						//eslint-disable-next-line @wordpress/valid-sprintf
-						label={sprintf( I18N.exclude, taxonomy?.labels?.name ?? '' )}
+						/* translators: Selected post type plural label */
+						label={sprintf( __( '%s to exclude (ids, comma separated)', 'advanced-sidebar-menu' ), taxonomy?.labels?.name ?? '' )}
 						value={attributes.exclude}
 						onChange={value => {
 							setAttributes( {
@@ -96,10 +96,11 @@ const Edit = ( {attributes, setAttributes, clientId, name}: Props ) => {
 						}} />
 					<p>
 						<a
-							href={I18N.docs.category}
+							href={CONFIG.docs.category}
 							target="_blank"
-							rel="noopener noreferrer">
-							{I18N.docs.title}
+							rel="noopener noreferrer"
+						>
+							{__( 'block documentation', 'advanced-sidebar-menu' )}
 						</a>
 					</p>
 				</div>

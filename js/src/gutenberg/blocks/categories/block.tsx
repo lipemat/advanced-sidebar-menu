@@ -1,10 +1,11 @@
 import {PreviewOptions} from '../Preview';
-import {CONFIG, I18N} from '../../../globals/config';
+import {CONFIG} from '../../../globals/config';
 import {BlockSettings, LegacyWidget} from '@wordpress/blocks';
 import Edit from './Edit';
 import {useBlockProps} from '@wordpress/block-editor';
 import {DisplayOptions} from '../Display';
 import {transformLegacyWidget} from '../../helpers';
+import {__} from '@wordpress/i18n';
 
 /**
  * Attributes specific to the widget as well as shared
@@ -63,7 +64,7 @@ export const block = CONFIG.blocks.categories;
 export const name = block.id;
 
 export const settings: BlockSettings<Attr, '', LegacyWidget<Attr & { title: string }>> = {
-	title: I18N.categories.title,
+	title: __( 'Advanced Sidebar - Categories', 'advanced-sidebar-menu' ),
 	icon: 'welcome-widgets-menus',
 	category: 'widgets',
 	example: {

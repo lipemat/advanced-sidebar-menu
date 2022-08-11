@@ -1,7 +1,8 @@
-import {I18N} from '../../globals/config';
+import {CONFIG} from '../../globals/config';
 import {Button, PanelBody, withFilters} from '@wordpress/components';
 import {InspectorControls} from '@wordpress/block-editor';
 import {decodeEntities} from '@wordpress/html-entities';
+import {__} from '@wordpress/i18n';
 
 import styles from './info-panel.pcss';
 
@@ -9,9 +10,12 @@ type Props = {};
 
 const InfoPanel = ( {}: Props ) => {
 	return ( <InspectorControls>
-		<PanelBody title={I18N.goPro} className={styles.wrap}>
+		<PanelBody
+			title={__( 'Advanced Sidebar Menu PRO', 'advanced-sidebar-menu' )}
+			className={styles.wrap}
+		>
 			<ul>
-				{I18N.features.map( feature =>
+				{CONFIG.features.map( feature =>
 					<li key={feature}>{decodeEntities( feature )}</li> )}
 				<li>
 					<a
@@ -20,7 +24,7 @@ const InfoPanel = ( {}: Props ) => {
 						style={{textDecoration: 'none'}}
 						rel="noreferrer"
 					>
-						{I18N.soMuchMore}
+						{__( 'So much more…', 'advanced-sidebar-menu' )}
 					</a>
 				</li>
 			</ul>
@@ -31,7 +35,7 @@ const InfoPanel = ( {}: Props ) => {
 				rel={'noreferrer'}
 				isPrimary
 			>
-				{I18N.upgrade}
+				{__( 'Upgrade', 'advanced-sidebar-menu' )}
 			</Button>
 		</PanelBody>
 	</InspectorControls> );

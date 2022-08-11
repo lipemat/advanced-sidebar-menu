@@ -6,9 +6,9 @@ import Preview from '../Preview';
 import Display from '../Display';
 import {useSelect} from '@wordpress/data';
 import InfoPanel from '../InfoPanel';
-import {CONFIG, I18N} from '../../../globals/config';
+import {CONFIG} from '../../../globals/config';
 import {sanitize} from 'dompurify';
-import {sprintf, __} from '@wordpress/i18n';
+import {__, sprintf} from '@wordpress/i18n';
 import {Type} from '@wordpress/api/types';
 import ErrorBoundary from '../../../components/ErrorBoundary';
 
@@ -65,10 +65,10 @@ const Edit = ( {attributes, setAttributes, clientId, name}: Props ) => {
 						fillProps={fillProps} />
 
 					<SelectControl
-						label={I18N.pages.orderBy.title}
+						label={__( 'Order by', 'advanced-sidebar-menu' )}
 						value={attributes.order_by}
 						labelPosition={'side'}
-						options={Object.entries( I18N.pages.orderBy.options ).map( ( [ value, label ] ) => ( {
+						options={Object.entries( CONFIG.orderBy ).map( ( [ value, label ] ) => ( {
 							value,
 							label,
 						} ) )}
@@ -78,8 +78,8 @@ const Edit = ( {attributes, setAttributes, clientId, name}: Props ) => {
 							} );
 						}} />
 					<TextControl
-						//eslint-disable-next-line @wordpress/valid-sprintf
-						label={sprintf( I18N.exclude, postType?.labels?.name ?? '' )}
+						/* translators: Selected post type plural label */
+						label={sprintf( __( '%s to exclude (ids, comma separated)', 'advanced-sidebar-menu' ), postType?.labels?.name ?? '' )}
 						value={attributes.exclude}
 						onChange={value => {
 							setAttributes( {
@@ -88,10 +88,11 @@ const Edit = ( {attributes, setAttributes, clientId, name}: Props ) => {
 						}} />
 					<p>
 						<a
-							href={I18N.docs.page}
+							href={CONFIG.docs.page}
 							target="_blank"
-							rel="noopener noreferrer">
-							{I18N.docs.title}
+							rel="noopener noreferrer"
+						>
+							{__( 'block documentation', 'advanced-sidebar-menu' )}
 						</a>
 					</p>
 				</div>

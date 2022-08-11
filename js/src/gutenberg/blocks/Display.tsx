@@ -1,8 +1,8 @@
 import {CheckboxControl, PanelBody, Slot} from '@wordpress/components';
-import {CONFIG, I18N} from '../../globals/config';
+import {CONFIG} from '../../globals/config';
 import type {Attr as PageAttr} from './pages/block';
 import type {Attr as CategoryAttr} from './categories/block';
-import {sprintf} from '@wordpress/i18n';
+import {__, sprintf} from '@wordpress/i18n';
 import {Type} from '@wordpress/api/types';
 import {range} from 'lodash';
 import reactStringReplace from 'react-string-replace';
@@ -32,9 +32,12 @@ type Props = PropsWithChildren<{
 }>;
 
 const checkboxes: { [attr in keyof Partial<DisplayOptions>]: string } = {
-	include_parent: I18N.display.highest,
-	include_childless_parent: I18N.display.childless,
-	display_all: I18N.display.always,
+	/* translators: Selected taxonomy single label */
+	include_parent: __( 'Display the highest level parent %s', 'advanced-sidebar-menu' ),
+	/* translators: Selected taxonomy single label */
+	include_childless_parent: __( 'Display menu when there is only the parent %s', 'advanced-sidebar-menu' ),
+	/* translators: Selected taxonomy plural label */
+	display_all: __( 'Always display child %s', 'advanced-sidebar-menu' ),
 };
 
 /**
@@ -64,9 +67,7 @@ const Display = ( {
 	};
 
 	return (
-		<PanelBody
-			title={I18N.display.title}
-		>
+		<PanelBody title={__( 'Display', 'advanced-sidebar-menu' )}>
 			{Object.keys( checkboxes ).map( item => {
 				let label = type?.labels?.singular_name.toLowerCase() ?? '';
 				if ( 'display_all' === item ) {
@@ -85,21 +86,22 @@ const Display = ( {
 				/>;
 			} )}
 			{showLevels && <div className={'components-base-control'}>
-				{reactStringReplace( I18N.display.levels.replace( '%2$s', type?.labels?.name.toLowerCase() ?? '' ), '%1$s',
-					() => (
-						<select
-							key={'levels'}
-							value={attributes.levels}
-							onChange={ev => setAttributes( {levels: parseInt( ev.target.value )} )}
-						>
-							<option value="100">
-								{I18N.display.all}
-							</option>
-							{range( 1, 10 ).map( n => <option key={n} value={n}>
-								{n}
-							</option> )}
-						</select>
-					) )}
+				{/* translators: {select html input}, {post type plural label} */
+					reactStringReplace( __( 'Display %1$s levels of child %2$s', 'advanced-sidebar-menu' ).replace( '%2$s', type?.labels?.name.toLowerCase() ?? '' ), '%1$s',
+						() => (
+							<select
+								key={'levels'}
+								value={attributes.levels}
+								onChange={ev => setAttributes( {levels: parseInt( ev.target.value )} )}
+							>
+								<option value="100">
+									{__( '- All -', 'advanced-sidebar-menu' )}
+								</option>
+								{range( 1, 10 ).map( n => <option key={n} value={n}>
+									{n}
+								</option> )}
+							</select>
+						) )}
 			</div>}
 
 			{children}

@@ -1,10 +1,11 @@
 import {ReactElement, useEffect} from 'react';
-import {CONFIG, I18N} from '../../globals/config';
+import {CONFIG} from '../../globals/config';
 import ServerSideRender from '@wordpress/server-side-render';
 import {Placeholder, Spinner} from '@wordpress/components';
 import {useBlockProps} from '@wordpress/block-editor';
 import {sanitize} from 'dompurify';
 import {doAction} from '@wordpress/hooks';
+import {__} from '@wordpress/i18n';
 
 import styles from './preview.pcss';
 
@@ -37,22 +38,22 @@ export const sanitizeClientId = ( clientId: string ): string => {
 const Page = () => <Placeholder
 	className={styles.placeholder}
 	icon={'welcome-widgets-menus'}
-	label={I18N.pages.title}
-	instructions={I18N.noPreview}
+	label={__( 'Advanced Sidebar - Pages', 'advanced-sidebar-menu' )}
+	instructions={__( 'No preview available', 'advanced-sidebar-menu' )}
 />;
 
 const Category = () => <Placeholder
 	className={styles.placeholder}
 	icon={'welcome-widgets-menus'}
-	label={I18N.categories.title}
-	instructions={I18N.noPreview}
+	label={__( 'Advanced Sidebar - Categories', 'advanced-sidebar-menu' )}
+	instructions={__( 'No preview available', 'advanced-sidebar-menu' )}
 />;
 
 const Navigation = () => <Placeholder
 	className={styles.placeholder}
 	icon={'welcome-widgets-menus'}
-	label={I18N.navigation?.title}
-	instructions={I18N.noPreview}
+	label={__( 'Advanced Sidebar - Navigation', 'advanced-sidebar-menu' )}
+	instructions={__( 'No preview available', 'advanced-sidebar-menu' )}
 />;
 
 /**
