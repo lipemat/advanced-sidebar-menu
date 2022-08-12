@@ -6,7 +6,7 @@
 # dev related
 /dev
 .editorconfig
-phpcs.xml
+phpcs.xml.dist
 .phpcs.cache
 .distignore
 .gitattributes

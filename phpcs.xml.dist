@@ -1,8 +1,9 @@
 <?xml version="1.0"?>
-<ruleset name="WordPress Coding Standards">
+<ruleset name="Advanced Sidebar Menu - Rules">
 	<!-- See https://github.com/squizlabs/PHP_CodeSniffer/wiki/Annotated-ruleset.xml -->
 
-	<description>Advanced Sidebar Menu - Rules</description>
+	<description>Ruleset for the Advanced Sidebar Menu plugin.</description>
+	<version>3.3.0</version>
 
 	<!-- Include when not specified -->
 	<file>./src</file>
@@ -18,8 +19,12 @@
 
 	<!-- Exclude paths -->
 	<exclude-pattern>*/dev/*</exclude-pattern>
+	<exclude-pattern>*/dist/*</exclude-pattern>
+	<exclude-pattern>*/tests/*</exclude-pattern>
+	<exclude-pattern>*/local-config\.php</exclude-pattern>
 	<exclude-pattern>*/node_modules/*</exclude-pattern>
 	<exclude-pattern>*/vendor/*</exclude-pattern>
+	<exclude-pattern>*/wp/*</exclude-pattern>
 
 	<config name="minimum_supported_wp_version" value="5.7" />
 
@@ -30,15 +35,13 @@
 
 	<rule ref="WordPress">
 		<exclude-pattern>*/js/*</exclude-pattern>
-
-		<exclude name="Generic.Arrays.DisallowShortArraySyntax.Found" />
 		<exclude name="Generic.Formatting.MultipleStatementAlignment" />
+		<exclude name="Generic.Arrays.DisallowShortArraySyntax.Found" />
 
 		<exclude name="PEAR.Functions.FunctionCallSignature" />
-		<exclude name="PEAR.NamingConventions.ValidClassName.Invalid" />
+		<exclude name="PEAR.NamingConventions.ValidClassName" />
 
 		<exclude name="Squiz.Commenting.FileComment.Missing" />
-
 		<exclude name="WordPress.Files.FileName.InvalidClassFileName" />
 		<exclude name="WordPress.Files.FileName.NotHyphenatedLowercase" />
 		<exclude name="WordPress.Arrays.MultipleStatementAlignment.LongIndexSpaceBeforeDoubleArrow" />
@@ -49,6 +52,15 @@
 	<!-- Test against JS XXS https://vip.wordpress.com/documentation/vip-go/vip-code-review/javascript-security-best-practices/ -->
 	<rule ref="Lipe.JS">
 		<type>error</type>
+	</rule>
+
+	<!-- These don't require extra un-slashing and sanitization -->
+	<rule ref="WordPress.Security.ValidatedSanitizedInput">
+		<properties>
+			<property name="customUnslashingSanitizingFunctions" type="array">
+				<element value="wp_verify_nonce" />
+			</property>
+		</properties>
 	</rule>
 
 	<rule ref="WordPress.WP.I18n">
