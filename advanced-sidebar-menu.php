@@ -64,6 +64,8 @@ function advanced_sidebar_menu_load() {
 	if ( Notice::instance()->is_conflicting_pro_version() ) {
 		remove_action( 'plugins_loaded', 'advanced_sidebar_menu_pro_init', 11 );
 	}
+
+	load_plugin_textdomain( 'advanced-sidebar-menu', false, 'advanced-sidebar-menu/languages' );
 }
 
 add_action( 'plugins_loaded', 'advanced_sidebar_menu_load' );
@@ -117,13 +119,3 @@ function advanced_sidebar_menu_autoload( $class ) {
 }
 
 spl_autoload_register( 'advanced_sidebar_menu_autoload' );
-
-add_action( 'plugins_loaded', 'advanced_sidebar_menu_translate' );
-/**
- * Load translations
- *
- * @return void
- */
-function advanced_sidebar_menu_translate() {
-	load_plugin_textdomain( 'advanced-sidebar-menu', false, 'advanced-sidebar-menu/languages' );
-}
