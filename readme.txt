@@ -5,7 +5,7 @@ Donate link: https://www.paypal.com/cgi-bin/webscr?cmd=_donations&business=paypa
 Tags: menus, sidebar menu, hierarchy, category menu, pages menu, dynamic, widget, block
 Requires at least: 5.4.0
 Tested up to: 6.0.1
-Requires PHP: 5.6.0
+Requires PHP: 7.0.0
 Stable tag: 8.8.3
 License: GPLv3 or later
 License URI: http://www.gnu.org/licenses/gpl-3.0.html
@@ -162,6 +162,9 @@ Yes. Based on whatever page, post or category you are on, the menu will change a
 
 
 == Changelog ==
+= 9.0.0 =
+* Drop support for PHP 5.6 if favor of PHP 7.0.
+
 = 8.8.3 = 
 * Introduced `advanced-sidebar-menu/menus/category/top-level-term-ids` filter.
 * Supported PRO version 8.9.2.

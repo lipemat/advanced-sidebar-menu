@@ -10,7 +10,7 @@
  * Domain Path: /languages/
  * Network: false
  * Requires at least: 5.4.0
- * Requires PHP: 5.6.0
+ * Requires PHP: 7.0.0
  *
  * @package advanced-sidebar-menu
  */
