@@ -127,26 +127,3 @@ add_action( 'plugins_loaded', 'advanced_sidebar_menu_translate' );
 function advanced_sidebar_menu_translate() {
 	load_plugin_textdomain( 'advanced-sidebar-menu', false, 'advanced-sidebar-menu/languages' );
 }
-
-add_action( 'advanced-sidebar-menu/widget/page/after-form', 'advanced_sidebar_menu_widget_docs', 99, 2 );
-add_action( 'advanced-sidebar-menu/widget/category/after-form', 'advanced_sidebar_menu_widget_docs', 99, 2 );
-
-/**
- * Add a link to widget docs inside the widget.
- *
- * @param array     $instance - Widget settings.
- * @param WP_Widget $widget   - Current widget.
- */
-function advanced_sidebar_menu_widget_docs( $instance, WP_Widget $widget ) {
-	$anchor = Widget_Category::NAME === $widget->id_base ? 'categories-menu' : 'pages-menu';
-	?>
-	<p class="advanced-sidebar-widget-documentation">
-		<a
-			href="https://onpointplugins.com/advanced-sidebar-menu/#advanced-sidebar-<?php echo esc_attr( $anchor ); ?>"
-			target="_blank"
-			rel="noopener noreferrer">
-			<?php esc_html_e( 'widget documentation', 'advanced-sidebar-menu' ); ?>
-		</a>
-	</p>
-	<?php
-}
