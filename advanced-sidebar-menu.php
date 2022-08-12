@@ -9,7 +9,7 @@
  * Text Domain: advanced-sidebar-menu
  * Domain Path: /languages/
  * Network: false
- * Requires at least: 5.4.0
+ * Requires at least: 5.7.0
  * Requires PHP: 7.0.0
  *
  * @package advanced-sidebar-menu

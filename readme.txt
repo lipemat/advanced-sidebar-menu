@@ -3,7 +3,7 @@
 Contributors: Mat Lipe, onpointplugins
 Donate link: https://www.paypal.com/cgi-bin/webscr?cmd=_donations&business=paypal%40onpointplugins%2ecom&lc=US&item_name=Advanced%20Sidebar%20Menu&no_note=0&currency_code=USD&bn=PP%2dDonationsBF%3abtn_donateCC_LG%2egif%3aNonHostedGuest
 Tags: menus, sidebar menu, hierarchy, category menu, pages menu, dynamic, widget, block
-Requires at least: 5.4.0
+Requires at least: 5.7.0
 Tested up to: 6.0.1
 Requires PHP: 7.0.0
 Stable tag: 8.8.3
@@ -163,7 +163,8 @@ Yes. Based on whatever page, post or category you are on, the menu will change a
 
 == Changelog ==
 = 9.0.0 =
-* Drop support for PHP 5.6 if favor of PHP 7.0.
+* Require WordPress Core 5.7.0+.
+* Drop support for PHP 5.6 if favor of PHP 7.0+.
 
 = 8.8.3 = 
 * Introduced `advanced-sidebar-menu/menus/category/top-level-term-ids` filter.
@@ -172,7 +173,7 @@ Yes. Based on whatever page, post or category you are on, the menu will change a
 = 8.8.2 =
 * Fixed widget id generation with block based widgets.
 * Introduced `advanced-sidebar-menu/core/include-template-parts-comments` filter.
-* Organized the `Menu_Abtract` class constants.
+* Organized the `Menu_Abstract` class constants.
 * Tested to WordPress Core 6.0.1.
 
 = 8.8.1 = 

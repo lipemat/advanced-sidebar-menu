@@ -21,8 +21,7 @@
 	<exclude-pattern>*/node_modules/*</exclude-pattern>
 	<exclude-pattern>*/vendor/*</exclude-pattern>
 
-
-	<config name="minimum_supported_wp_version" value="5.4" />
+	<config name="minimum_supported_wp_version" value="5.7" />
 
 	<!-- @see https://github.com/PHPCompatibility/PHPCompatibility#using-a-custom-ruleset -->
 	<config name="testVersion" value="7.0-" />
