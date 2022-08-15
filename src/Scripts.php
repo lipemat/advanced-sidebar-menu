@@ -5,6 +5,7 @@ namespace Advanced_Sidebar_Menu;
 use Advanced_Sidebar_Menu\Blocks\Block_Abstract;
 use Advanced_Sidebar_Menu\Blocks\Categories;
 use Advanced_Sidebar_Menu\Traits\Singleton;
+use Advanced_Sidebar_Menu\Widget\Category;
 use Advanced_Sidebar_Menu\Widget\Page;
 
 /**
@@ -132,8 +133,8 @@ class Scripts {
 	public function js_config() {
 		return apply_filters( 'advanced-sidebar-menu/scripts/js-config', [
 			'docs'       => [
-				'page'     => 'https://onpointplugins.com/advanced-sidebar-menu/#advanced-sidebar-pages-menu',
-				'category' => 'https://onpointplugins.com/advanced-sidebar-menu/#advanced-sidebar-categories-menu',
+				'page'     => Core::instance()->get_documentation_url( Page::NAME ),
+				'category' => Core::instance()->get_documentation_url( Category::NAME ),
 			],
 			'error'      => apply_filters( 'advanced-sidebar-menu/scripts/js-config/error', '' ),
 			'features'   => Notice::instance()->get_features(),

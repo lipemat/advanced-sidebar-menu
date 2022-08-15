@@ -39,17 +39,33 @@ class Core {
 	 * @return void
 	 */
 	public function widget_documentation( $_, \WP_Widget $widget ) {
-		$anchor = Category::NAME === $widget->id_base ? 'categories-menu' : 'pages-menu';
-
-		$url = apply_filters( 'advanced-sidebar-menu/widget-docs/url', "https://onpointplugins.com/advanced-sidebar-menu/#advanced-sidebar-{$anchor}", $widget );
-
 		?>
 		<p class="advanced-sidebar-widget-documentation">
-			<a href="<?php echo esc_url( $url ); ?>" target="_blank" rel="noopener noreferrer">
+			<a
+				href="<?php echo esc_url( $this->get_documentation_url( $widget->id_base ) ); ?>"
+				target="_blank"
+				rel="noopener noreferrer"
+			>
 				<?php esc_html_e( 'widget documentation', 'advanced-sidebar-menu' ); ?>
 			</a>
 		</p>
 		<?php
+	}
+
+
+	/**
+	 * Get the URL of a widget's documentation.
+	 *
+	 * @param string $widget_id - ID of the widget.
+	 *
+	 * @since 9.0.0
+	 *
+	 * @return string
+	 */
+	public function get_documentation_url( $widget_id ) {
+		$url = Category::NAME === $widget_id ? 'https://onpointplugins.com/advanced-sidebar-menu/basic-usage/advanced-sidebar-menu-categories/' : 'https://onpointplugins.com/advanced-sidebar-menu/basic-usage/advanced-sidebar-menu-pages/';
+
+		return apply_filters( 'advanced-sidebar-menu/widget-docs/url', $url, $widget_id );
 	}
 
 
