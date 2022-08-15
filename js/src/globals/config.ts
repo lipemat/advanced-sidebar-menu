@@ -22,7 +22,9 @@ interface JSConfig {
 	features: Array<string>;
 	isPostEdit: boolean;
 	isPro: boolean;
-	orderBy: { [ value: string ]: string };
+	pages: {
+		orderBy: { [ value: string ]: string };
+	};
 	Preview: FunctionComponent<any>;
 	siteInfo: {
 		basic: string;

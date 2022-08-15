@@ -69,7 +69,7 @@ const Edit = ( {attributes, setAttributes, clientId, name}: Props ) => {
 						label={__( 'Order by', 'advanced-sidebar-menu' )}
 						value={attributes.order_by}
 						labelPosition={'side'}
-						options={Object.entries( CONFIG.orderBy ).map( ( [ value, label ] ) => ( {
+						options={Object.entries( CONFIG.pages.orderBy ).map( ( [ value, label ] ) => ( {
 							value,
 							label,
 						} ) )}

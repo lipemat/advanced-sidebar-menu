@@ -139,7 +139,9 @@ class Scripts {
 			'features'   => Notice::instance()->get_features(),
 			'isPostEdit' => Categories::instance()->is_editing_post(),
 			'isPro'      => false,
-			'orderBy'    => Page::get_order_by_options(),
+			'pages'      => [
+				'orderBy' => Page::get_order_by_options(),
+			],
 			'siteInfo'   => [
 				'basic'       => ADVANCED_SIDEBAR_BASIC_VERSION,
 				'pro'         => false,
