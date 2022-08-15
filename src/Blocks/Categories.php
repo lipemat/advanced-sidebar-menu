@@ -95,8 +95,7 @@ class Categories extends Block_Abstract {
 			],
 			Category::DISPLAY_ON_SINGLE     => [
 				'type'    => 'boolean',
-				// Default to true if on a single post.
-				'default' => $this->is_editing_post(),
+				'default' => true,
 			],
 			// No block option available. We only support 'list'.
 			Category::EACH_CATEGORY_DISPLAY => [
