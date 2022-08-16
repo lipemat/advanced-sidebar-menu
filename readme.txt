@@ -18,11 +18,11 @@ Keeps the menu clean and usable. Only related items display so you don't have to
 
 <strong>Check out <a href="https://onpointplugins.com/product/advanced-sidebar-menu-pro/">Advanced Sidebar Menu PRO</a> for more features including accordion menus, menu colors and styles, custom link text, excluding of pages, category ordering, custom post types, custom taxonomies, priority support, and so much more!</strong>
 
-<blockquote><a href="https://onpointplugins.com/product/advanced-sidebar-menu-pro/" target="_blank">PRO version 8.9.0</a> is now available with accordion options to use links for open/close!</blockquote>
+<blockquote><a href="https://onpointplugins.com/product/advanced-sidebar-menu-pro/" target="_blank">PRO version 9.0.0/a> is now available with Gutenberg blocks!</blockquote>
 
 <h3>Features</h3>
 * Page and Category widgets.
-* Page and Category blocks.
+* Page and Category blocks. **NEW**
 * Option to display or not display the highest level parent page or category.
 * Option to display the menu when there is only the highest level parent.
 * Ability to order pages by (date, title, page order).
@@ -50,6 +50,8 @@ Keeps the menu clean and usable. Only related items display so you don't have to
 * Levels of Categories to display when always display child categories is checked.
 
 <h3>PRO Features</h3>
+* Navigation menu widget.		
+* Navigation menu Gutenberg block. **NEW**
 * Ability to customize each page or navigation menu item link's text.
 * Click-and-drag styling for page, category, and navigation menus.
 * Styling options for links including color, background color, size, hover, and font weight.
@@ -62,7 +64,7 @@ Keeps the menu clean and usable. Only related items display so you don't have to
 * Accordion icon style and color selection.
 * Accordion option to keep all sections closed until clicked.
 * Accordion option to include highest level parent in accordion.
-* Accordion option to use links for open/close. **NEW**
+* Accordion option to use links for open/close.
 * Ability to exclude a page from all menus using a simple checkbox.
 * Link ordering for the category menus.
 * Number of levels of pages to show when "always display child pages" is not checked.
