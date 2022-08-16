@@ -1,5 +1,15 @@
 {
 	"extends": [
 		"@lipemat"
-	]
+	],
+	"rules": {
+		"@wordpress/i18n-text-domain": [
+			"error",
+			{
+				"allowedTextDomain": [
+					"advanced-sidebar-menu"
+				]
+			}
+		]
+	}
 }
