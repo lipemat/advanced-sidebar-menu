@@ -71,19 +71,7 @@ abstract class Block_Abstract {
 	public function hook() {
 		add_action( 'init', [ $this, 'register' ] );
 		add_filter( 'advanced-sidebar-menu/scripts/js-config', [ $this, 'js_config' ] );
-
-		/**
-		 * Programmatically opt in to exclude legacy widgets from the Block Inserter
-		 * if legacy widgets a not needed to match a theme's styles.
-		 *
-		 * In the future, this filter will be removed in favor of not allowing new legacy
-		 * widgets in the block inserter.
-		 *
-		 * @link https://developer.wordpress.org/block-editor/how-to-guides/widgets/legacy-widget-block/#3-hide-the-widget-from-the-legacy-widget-block
-		 */
-		if ( apply_filters( 'advanced-sidebar-menu/block-abstract/exclude-legacy-widgets', false ) ) {
-			add_filter( 'widget_types_to_hide_from_legacy_widget_block', [ $this, 'exclude_from_legacy_widgets' ] );
-		}
+		add_filter( 'widget_types_to_hide_from_legacy_widget_block', [ $this, 'exclude_from_legacy_widgets' ] );
 	}
 
 
@@ -95,9 +83,24 @@ abstract class Block_Abstract {
 	 *
 	 * @param array $blocks - Excluded blocks.
 	 *
+	 * @action
+	 *
 	 * @return array
 	 */
 	public function exclude_from_legacy_widgets( $blocks ) {
+		/**
+		 * Programmatically opt in to exclude legacy widgets from the Block Inserter
+		 * if legacy widgets a not needed to match a theme's styles.
+		 *
+		 * In the future, this filter will be removed in favor of not allowing new legacy
+		 * widgets in the block inserter.
+		 *
+		 * @link https://developer.wordpress.org/block-editor/how-to-guides/widgets/legacy-widget-block/#3-hide-the-widget-from-the-legacy-widget-block
+		 */
+		if ( ! apply_filters( 'advanced-sidebar-menu/block-abstract/exclude-legacy-widgets', false, $this->get_widget_class(), $blocks, $this ) ) {
+			return $blocks;
+		}
+
 		$widget = $this->get_widget_class();
 		$blocks[] = $widget::NAME;
 		return $blocks;
