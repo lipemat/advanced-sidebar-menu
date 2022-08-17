@@ -22,6 +22,7 @@ interface JSConfig {
 	features: Array<string>;
 	isPostEdit: boolean;
 	isPro: boolean;
+	isWidgets: boolean;
 	pages: {
 		orderBy: { [ value: string ]: string };
 	};

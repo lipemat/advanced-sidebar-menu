@@ -1,5 +1,5 @@
 import {BlockControls, InspectorControls} from '@wordpress/block-editor';
-import {SelectControl, Slot, TextControl} from '@wordpress/components';
+import {PanelBody, SelectControl, Slot, TextControl} from '@wordpress/components';
 import {BlockEditProps} from '@wordpress/blocks';
 import {Attr, block} from './block';
 import Preview from '../Preview';
@@ -52,6 +52,12 @@ const Edit = ( {attributes, setAttributes, clientId, name}: Props ) => {
 	return ( <>
 		<InspectorControls>
 			<ErrorBoundary attributes={attributes} block={name}>
+				{CONFIG.isWidgets && <PanelBody>
+					<TextControl
+						value={attributes.title ?? ''}
+						label={__( 'Title', 'advanced-sidebar-menu' )}
+						onChange={title => setAttributes( {title} )} />
+				</PanelBody>}
 				<Display
 					attributes={attributes}
 					clientId={clientId}

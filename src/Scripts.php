@@ -3,7 +3,6 @@
 namespace Advanced_Sidebar_Menu;
 
 use Advanced_Sidebar_Menu\Blocks\Block_Abstract;
-use Advanced_Sidebar_Menu\Blocks\Categories;
 use Advanced_Sidebar_Menu\Traits\Singleton;
 use Advanced_Sidebar_Menu\Widget\Category;
 use Advanced_Sidebar_Menu\Widget\Page;
@@ -138,8 +137,9 @@ class Scripts {
 			],
 			'error'      => apply_filters( 'advanced-sidebar-menu/scripts/js-config/error', '' ),
 			'features'   => Notice::instance()->get_features(),
-			'isPostEdit' => Categories::instance()->is_editing_post(),
+			'isPostEdit' => ! empty( $GLOBALS['pagenow'] ) && 'post.php' === $GLOBALS['pagenow'],
 			'isPro'      => false,
+			'isWidgets'  => ! empty( $GLOBALS['pagenow'] ) && 'widgets.php' === $GLOBALS['pagenow'],
 			'pages'      => [
 				'orderBy' => Page::get_order_by_options(),
 			],

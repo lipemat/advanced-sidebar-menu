@@ -2,6 +2,7 @@
 
 namespace Advanced_Sidebar_Menu\Blocks;
 
+use Advanced_Sidebar_Menu\Menus\Menu_Abstract;
 use Advanced_Sidebar_Menu\Scripts;
 use Advanced_Sidebar_Menu\Utils;
 
@@ -192,6 +193,9 @@ abstract class Block_Abstract {
 			],
 			self::RENDER_REQUEST => [
 				'type' => 'boolean',
+			],
+			Menu_Abstract::TITLE => [
+				'type' => 'string',
 			],
 		] );
 	}

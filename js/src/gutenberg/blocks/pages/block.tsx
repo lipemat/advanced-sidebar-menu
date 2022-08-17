@@ -17,6 +17,7 @@ import {__} from '@wordpress/i18n';
 export type Attr = {
 	exclude: string;
 	order_by: string;
+	title: string;
 } & DisplayOptions & ProRegistered & PreviewOptions;
 
 // Options used by basic when available from PRO.

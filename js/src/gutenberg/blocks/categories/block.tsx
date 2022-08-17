@@ -18,6 +18,7 @@ export type Attr = {
 	exclude: string;
 	order_by: string;
 	single: boolean;
+	title: string;
 	new_widget: 'widget' | 'list';
 } & DisplayOptions & ProRegistered & PreviewOptions;
 

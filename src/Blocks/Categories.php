@@ -110,19 +110,6 @@ class Categories extends Block_Abstract {
 
 
 	/**
-	 * Are we on a post edit screen?
-	 *
-	 * Done using the global as we call this function within the
-	 * `init` hook before the screen is available.
-	 *
-	 * @return bool
-	 */
-	public function is_editing_post() {
-		return ! empty( $GLOBALS['pagenow'] ) && 'post.php' === $GLOBALS['pagenow'];
-	}
-
-
-	/**
 	 * Return a new instance of the Page widget.
 	 *
 	 * @return Category

@@ -8,7 +8,7 @@ import {Taxonomy} from '@wordpress/api/taxonomies';
 import {BlockEditProps} from '@wordpress/blocks';
 import ErrorBoundary from '../../../components/ErrorBoundary';
 import Display from '../Display';
-import {CheckboxControl, Slot, TextControl} from '@wordpress/components';
+import {CheckboxControl, PanelBody, Slot, TextControl} from '@wordpress/components';
 import {__, sprintf} from '@wordpress/i18n';
 import InfoPanel from '../InfoPanel';
 
@@ -49,6 +49,12 @@ const Edit = ( {attributes, setAttributes, clientId, name}: Props ) => {
 	return ( <>
 		<InspectorControls>
 			<ErrorBoundary attributes={attributes} block={name}>
+				{CONFIG.isWidgets && <PanelBody>
+					<TextControl
+						value={attributes.title ?? ''}
+						label={__( 'Title', 'advanced-sidebar-menu' )}
+						onChange={title => setAttributes( {title} )} />
+				</PanelBody>}
 				<Display
 					attributes={attributes}
 					clientId={clientId}
