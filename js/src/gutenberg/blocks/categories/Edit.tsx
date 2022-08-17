@@ -49,12 +49,13 @@ const Edit = ( {attributes, setAttributes, clientId, name}: Props ) => {
 	return ( <>
 		<InspectorControls>
 			<ErrorBoundary attributes={attributes} block={name}>
-				{CONFIG.isWidgets && <PanelBody>
-					<TextControl
-						value={attributes.title ?? ''}
-						label={__( 'Title', 'advanced-sidebar-menu' )}
-						onChange={title => setAttributes( {title} )} />
-				</PanelBody>}
+				{( 'widgets' === CONFIG.currentScreen || 'site-editor' === CONFIG.currentScreen ) &&
+					<PanelBody>
+						<TextControl
+							value={attributes.title ?? ''}
+							label={__( 'Title', 'advanced-sidebar-menu' )}
+							onChange={title => setAttributes( {title} )} />
+					</PanelBody>}
 				<Display
 					attributes={attributes}
 					clientId={clientId}
@@ -68,7 +69,7 @@ const Edit = ( {attributes, setAttributes, clientId, name}: Props ) => {
 
 		                We default the attribute to `true` if we are editing
 		                a post during register of block attributes. */}
-					{! CONFIG.isPostEdit && <CheckboxControl
+					{'post' !== CONFIG.currentScreen && <CheckboxControl
 						/* translators: Selected taxonomy plural label */
 						label={sprintf( __( 'Display %s on single posts', 'advanced-sidebar-menu' ), taxonomy?.labels?.name.toLowerCase() ?? '' )}
 						checked={!! attributes.single}

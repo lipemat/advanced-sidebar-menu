@@ -7,14 +7,7 @@ export type TransformLegacy = <A>( name: string ) => ( widgetValues: { instance:
  *
  */
 export const transformLegacyWidget: TransformLegacy = <A>( name: string ) => ( {instance} ) => {
-	const blocks: CreateBlock<any>[] = [];
-	if ( instance.raw.title ) {
-		blocks.push( createBlock<{ content: string }>( 'core/heading', {
-			content: instance.raw.title,
-		} ) );
-	}
-	blocks.push( createBlock<A>( name, translateLegacyWidget<A>( instance.raw ) ) );
-	return blocks;
+	return [ createBlock<A>( name, translateLegacyWidget<A>( instance.raw ) ) ];
 };
 
 /**

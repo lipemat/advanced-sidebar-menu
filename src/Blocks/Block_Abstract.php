@@ -28,8 +28,9 @@ abstract class Block_Abstract {
 	protected $widget_args = [
 		'before_widget' => '',
 		'after_widget'  => '',
-		'before_title'  => '',
-		'after_title'   => '',
+		// Default used for FSE.
+		'before_title'  => '<h4 class="advanced-sidebar-menu-title">',
+		'after_title'   => '</h4>',
 	];
 
 
