@@ -13,6 +13,7 @@ interface JSConfig {
 			id: string;
 		}
 	};
+	currentScreen: 'site-editor' | 'widgets' | 'post';
 	docs: {
 		page: string;
 		category: string;
@@ -20,9 +21,7 @@ interface JSConfig {
 	error: false | string;
 	ErrorBoundary: ComponentClass<{ attributes: Record<string, any>, block: string }>;
 	features: Array<string>;
-	isPostEdit: boolean;
 	isPro: boolean;
-	isWidgets: boolean;
 	pages: {
 		orderBy: { [ value: string ]: string };
 	};

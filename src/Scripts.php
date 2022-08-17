@@ -131,25 +131,26 @@ class Scripts {
 	 */
 	public function js_config() {
 		return apply_filters( 'advanced-sidebar-menu/scripts/js-config', [
-			'docs'       => [
+			'currentScreen' => is_admin() ? get_current_screen()->base : '',
+			'docs'          => [
 				'page'     => Core::instance()->get_documentation_url( Page::NAME ),
 				'category' => Core::instance()->get_documentation_url( Category::NAME ),
 			],
-			'error'      => apply_filters( 'advanced-sidebar-menu/scripts/js-config/error', '' ),
-			'features'   => Notice::instance()->get_features(),
-			'isPostEdit' => ! empty( $GLOBALS['pagenow'] ) && 'post.php' === $GLOBALS['pagenow'],
-			'isPro'      => false,
-			'isWidgets'  => ! empty( $GLOBALS['pagenow'] ) && 'widgets.php' === $GLOBALS['pagenow'],
-			'pages'      => [
+			'error'         => apply_filters( 'advanced-sidebar-menu/scripts/js-config/error', '' ),
+			'features'      => Notice::instance()->get_features(),
+			'isPostEdit'    => ! empty( $GLOBALS['pagenow'] ) && 'post.php' === $GLOBALS['pagenow'],
+			'isPro'         => false,
+			'isWidgets'     => ! empty( $GLOBALS['pagenow'] ) && 'widgets.php' === $GLOBALS['pagenow'],
+			'pages'         => [
 				'orderBy' => Page::get_order_by_options(),
 			],
-			'siteInfo'   => [
+			'siteInfo'      => [
 				'basic'       => ADVANCED_SIDEBAR_BASIC_VERSION,
 				'pro'         => false,
 				'scriptDebug' => $this->is_script_debug_enabled(),
 				'wordpress'   => get_bloginfo( 'version' ),
 			],
-			'support'    => 'https://wordpress.org/support/plugin/advanced-sidebar-menu/#new-topic-0',
+			'support'       => 'https://wordpress.org/support/plugin/advanced-sidebar-menu/#new-topic-0',
 		] );
 	}
 
