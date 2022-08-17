@@ -15,6 +15,22 @@ abstract class Block_Abstract {
 
 	const RENDER_REQUEST = 'isServerSideRenderRequest';
 
+	/**
+	 * Widget arguments used in rendering.
+	 *
+	 * 1. Values are passed down through filters if used in a widget area.
+	 * 2. We append the block wrap to `before_widget` before use to include
+	 *  styles and other HTML attributes in the output.
+	 *
+	 * @var string[]
+	 */
+	protected $widget_args = [
+		'before_widget' => '',
+		'after_widget'  => '',
+		'before_title'  => '',
+		'after_title'   => '',
+	];
+
 
 	/**
 	 * Get list of attributes and their types.
@@ -71,6 +87,7 @@ abstract class Block_Abstract {
 	public function hook() {
 		add_action( 'init', [ $this, 'register' ] );
 		add_filter( 'advanced-sidebar-menu/scripts/js-config', [ $this, 'js_config' ] );
+		add_filter( 'widget_display_callback', [ $this, 'short_circuit_widget_blocks' ], 10, 3 );
 		add_filter( 'widget_types_to_hide_from_legacy_widget_block', [ $this, 'exclude_from_legacy_widgets' ] );
 	}
 
@@ -104,6 +121,35 @@ abstract class Block_Abstract {
 		$widget = $this->get_widget_class();
 		$blocks[] = $widget::NAME;
 		return $blocks;
+	}
+
+
+	/**
+	 * Store the widget arguments, so we send the appropriate wraps to the
+	 * render of the menu.
+	 *
+	 * Using a block in widgets will wrap the contents of block
+	 * in a `<section>` tag, regardless of the content within.
+	 * We mimic the functionality of the inner echo while excluding
+	 * the calls to output the wrap.
+	 *
+	 * @param bool|array $instance - Contents of the block, before parsing.
+	 * @param \WP_Widget $widget   - Object representing a block based widget.
+	 * @param array      $args     - Widget area arguments.
+	 *
+	 * @return false|array
+	 */
+	public function short_circuit_widget_blocks( $instance, $widget, array $args ) {
+		if ( ! \is_array( $instance ) || empty( $instance['content'] ) || strpos( $instance['content'], static::NAME ) === false ) {
+			return $instance;
+		}
+
+		// Pass on the widget arguments.
+		$this->widget_args = $args;
+
+		echo apply_filters( 'widget_block_content', $instance['content'], $instance, $widget, $args ); //phpcs:ignore
+
+		return false;
 	}
 
 
@@ -170,6 +216,25 @@ abstract class Block_Abstract {
 
 
 	/**
+	 * Checkboxes are saved as `true` on the Gutenberg side.
+	 * The widgets expect the values to be `checked`.
+	 *
+	 * @param array $attr - Attribute values pre-converted.
+	 *
+	 * @return array
+	 */
+	public function convert_checkbox_values( array $attr ) {
+		// Map the boolean values to widget style 'checked'.
+		return Utils::instance()->array_map_recursive( function( $value ) {
+			if ( true === $value ) {
+				return 'checked';
+			}
+			return $value;
+		}, $attr );
+	}
+
+
+	/**
 	 * Render the block template via ServerSideRender.
 	 *
 	 * @param array  $attr - Block attributes matching widget settings.
@@ -204,27 +269,15 @@ abstract class Block_Abstract {
 			}
 		}
 
-		// Map the boolean values to widget style 'checked'.
-		$attr = Utils::instance()->array_map_recursive( function( $value ) {
-			if ( true === $value ) {
-				return 'checked';
-			}
-			return $value;
-		}, $attr );
-
 		ob_start();
 		$widget = $this->get_widget_class();
-		$widget_args = [
-			'before_widget' => $parts[0],
-			'after_widget'  => $parts[1],
-			'before_title'  => '',
-			'after_title'   => '',
-		];
+		$this->widget_args['before_widget'] .= $parts[0];
+		$this->widget_args['after_widget'] = $parts[1] . $this->widget_args['after_widget'];
 		// Passed via ServerSideRender, so we can enable accordions in Gutenberg editor.
 		if ( ! empty( $attr['clientId'] ) ) {
-			$widget_args['widget_id'] = $attr['clientId'];
+			$this->widget_args['widget_id'] = $attr['clientId'];
 		}
-		$widget->widget( $widget_args, $attr );
+		$widget->widget( $this->widget_args, $this->convert_checkbox_values( $attr ) );
 		return ob_get_clean();
 	}
 

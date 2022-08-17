@@ -317,7 +317,7 @@ class List_Pages {
 			$cache->add_child_pages( $this, $child_pages );
 		}
 
-		$child_pages = array_map( 'get_post', (array) $child_pages );
+		$child_pages = \array_map( 'get_post', (array) $child_pages );
 
 		if ( $is_first_level ) {
 			return apply_filters( 'advanced-sidebar-menu/list-pages/first-level-child-pages', $child_pages, $this, $this->menu );

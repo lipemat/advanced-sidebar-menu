@@ -221,6 +221,9 @@ abstract class Menu_Abstract {
 	 * @return array
 	 */
 	public function get_excluded_ids() {
+		if ( empty( $this->instance[ self::EXCLUDE ] ) ) {
+			return [];
+		}
 		return \array_map( 'intval', \array_filter( \explode( ',', $this->instance[ self::EXCLUDE ] ), 'is_numeric' ) );
 	}
 
