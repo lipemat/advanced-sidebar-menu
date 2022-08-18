@@ -8,10 +8,12 @@ import {doAction} from '@wordpress/hooks';
 import {__} from '@wordpress/i18n';
 
 import styles from './preview.pcss';
+import {select} from '@wordpress/data';
 
 export type PreviewOptions = {
 	isServerSideRenderRequest: boolean;
 	clientId: string;
+	sidebarId: string;
 }
 
 type Props<A> = {
@@ -28,6 +30,27 @@ type Props<A> = {
  */
 export const sanitizeClientId = ( clientId: string ): string => {
 	return clientId.replace( /^([\d-])/, '_$1' );
+};
+
+/**
+ * If we are in the widgets' area, the block is wrapped in
+ * a "sidebar" block. We retrieve the id to pass along with
+ * the request to use the `widget_args` within the preview.
+ *
+ */
+const getSidebarId = ( clientId: string ): string => {
+	if ( 'widgets' !== CONFIG.currentScreen ) {
+		return '';
+	}
+	const rootId = select( 'core/block-editor' ).getBlockRootClientId( clientId );
+	if ( rootId ) {
+		const ParentBlock = select( 'core/block-editor' ).getBlocksByClientId( [ rootId ] );
+		if ( ParentBlock[ 0 ] && 'core/widget-area' === ParentBlock[ 0 ].name ) {
+			return ParentBlock[ 0 ]?.attributes?.id;
+		}
+	}
+
+	return '';
 };
 
 /**
@@ -135,6 +158,7 @@ const Preview = <A, >( {attributes, block, clientId}: Props<A> ) => {
 			dangerouslySetInnerHTML={{__html: sanitize( CONFIG.error )}} />;
 	}
 
+
 	const sanitizedClientId = sanitizeClientId( clientId );
 
 	return (
@@ -147,6 +171,7 @@ const Preview = <A, >( {attributes, block, clientId}: Props<A> ) => {
 					// Send custom attribute to determine server side renders.
 					isServerSideRenderRequest: true,
 					clientId: sanitizedClientId,
+					sidebarId: getSidebarId( clientId ),
 				}}
 				block={block}
 				httpMethod={'POST'}

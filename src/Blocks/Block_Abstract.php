@@ -29,8 +29,8 @@ abstract class Block_Abstract {
 		'before_widget' => '',
 		'after_widget'  => '',
 		// Default used for FSE.
-		'before_title'  => '<h4 class="advanced-sidebar-menu-title">',
-		'after_title'   => '</h4>',
+		'before_title'  => '<h2 class="advanced-sidebar-menu-title">',
+		'after_title'   => '</h2>',
 	];
 
 
@@ -195,6 +195,9 @@ abstract class Block_Abstract {
 			self::RENDER_REQUEST => [
 				'type' => 'boolean',
 			],
+			'sidebarId'          => [
+				'type' => 'string',
+			],
 			Menu_Abstract::TITLE => [
 				'type' => 'string',
 			],
@@ -257,20 +260,27 @@ abstract class Block_Abstract {
 		 * We spoof the WP_Query as much as required to get the menus to
 		 * display the same way they will on the front-end.
 		 */
-		if ( defined( 'REST_REQUEST' ) && REST_REQUEST && ! empty( $attr[ self::RENDER_REQUEST ] ) && ! empty( get_post() ) ) {
-			add_action( 'advanced-sidebar-menu/widget/before-render', function( $menu ) {
-				if ( method_exists( $menu, 'set_current_post' ) ) {
-					$menu->set_current_post( get_post() );
+		if ( defined( 'REST_REQUEST' ) && REST_REQUEST && ! empty( $attr[ self::RENDER_REQUEST ] ) ) {
+			if ( ! empty( get_post() ) ) {
+				add_action( 'advanced-sidebar-menu/widget/before-render', function( $menu ) {
+					if ( method_exists( $menu, 'set_current_post' ) ) {
+						$menu->set_current_post( get_post() );
+					}
+				} );
+				add_filter( 'advanced-sidebar-menu/core/include-template-parts-comments', '__return_false' );
+				$GLOBALS['wp_query']->queried_object = get_post();
+				$GLOBALS['wp_query']->queried_object_id = get_the_ID();
+				$GLOBALS['wp_query']->is_singular = true;
+				if ( get_post_type() === 'page' ) {
+					$GLOBALS['wp_query']->is_page = true;
+				} else {
+					$GLOBALS['wp_query']->is_single = true;
 				}
-			} );
-			add_filter( 'advanced-sidebar-menu/core/include-template-parts-comments', '__return_false' );
-			$GLOBALS['wp_query']->queried_object = get_post();
-			$GLOBALS['wp_query']->queried_object_id = get_the_ID();
-			$GLOBALS['wp_query']->is_singular = true;
-			if ( get_post_type() === 'page' ) {
-				$GLOBALS['wp_query']->is_page = true;
-			} else {
-				$GLOBALS['wp_query']->is_single = true;
+			}
+
+			// Use the sidebar arguments if available.
+			if ( ! empty( $attr['sidebarId'] ) && ! empty( $GLOBALS['wp_registered_sidebars'][ $attr['sidebarId'] ] ) ) {
+				$this->widget_args = wp_parse_args( $GLOBALS['wp_registered_sidebars'][ $attr['sidebarId'] ], $this->widget_args );
 			}
 		}
 
