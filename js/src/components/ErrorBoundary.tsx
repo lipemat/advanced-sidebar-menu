@@ -82,7 +82,13 @@ class ErrorBoundary extends Component<{ attributes: Record<string, any>, block: 
 						</li>
 					</ol>
 
-					<fieldset style={{border: '2px groove', padding: '10px'}}>
+					<div
+						style={{
+							border: '2px groove',
+							padding: '10px',
+							width: '100%',
+							overflowWrap: 'break-word',
+						}}>
 						<p>
 							<strong><em>Message</em></strong> <br />
 							<code>
@@ -113,7 +119,7 @@ class ErrorBoundary extends Component<{ attributes: Record<string, any>, block: 
 								{this.state.error?.stack}
 							</code>
 						</p>
-					</fieldset>
+					</div>
 					<p>
 						&nbsp;
 					</p>
