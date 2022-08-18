@@ -16,6 +16,10 @@ export const transformLegacyWidget: TransformLegacy = <A>( name: string ) => ( {
  *
  */
 const translateLegacyWidget = <A>( settings ): A => {
+	// Old widgets used to use "0" for category value.
+	if ( settings.taxonomy && '0' === settings.taxonomy ) {
+		settings.taxonomy = 'category';
+	}
 	Object.entries( settings ).forEach( ( [ key, value ] ) => {
 		if ( 'checked' === value ) {
 			settings[ key ] = true;
