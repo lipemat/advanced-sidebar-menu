@@ -1,15 +1,13 @@
 console.log( 'Advanced Sidebar - Loaded' );
 
-import Gutenberg from './gutenberg';
-
-
+/**
+ * 1. Blocks can't be lazy loaded, or they will be unavailable intermittently when developing.
+ * 2. Theme Customizers must wait until the page is finished loading.
+ */
 if ( typeof wp.element !== 'undefined' && typeof wp.plugins !== 'undefined' ) {
-	/**
-	 * 	Blocks can't be lazy loaded, or they will be unavailable intermittently when developing.
-	 *
-	 * 	They may however have individual parts lazy loaded.
-	 *
-	 * 	@see seo block for the lazy load pattern.
-	 */
-	Gutenberg();
+	require( './gutenberg' ).default();
+} else if ( typeof wp.customize !== 'undefined' ) {
+	jQuery( function() {
+		require( './gutenberg' ).default();
+	} );
 }

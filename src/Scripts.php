@@ -165,8 +165,8 @@ class Scripts {
 	 * page builders or the backend by standard WordPress or
 	 * really anywhere.
 	 *
-	 * @notice Does not work in Gutenberg as widget's markup is loaded via REST API
-	 *         and React.
+	 * @notice Does not work in Gutenberg as widget's markup is loaded
+	 *         via the REST API and React.
 	 *
 	 * @return void
 	 */
