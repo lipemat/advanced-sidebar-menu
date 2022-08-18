@@ -131,6 +131,9 @@ class Scripts {
 	 */
 	public function js_config() {
 		return apply_filters( 'advanced-sidebar-menu/scripts/js-config', [
+			'categories'    => [
+				'displayEach' => Category::get_display_each_options(),
+			],
 			'currentScreen' => is_admin() ? get_current_screen()->base : '',
 			'docs'          => [
 				'page'     => Core::instance()->get_documentation_url( Page::NAME ),

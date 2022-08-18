@@ -16,10 +16,10 @@ import {__} from '@wordpress/i18n';
  */
 export type Attr = {
 	exclude: string;
+	new_widget: 'widget' | 'list';
 	order_by: string;
 	single: boolean;
 	title: string;
-	new_widget: 'widget' | 'list';
 } & DisplayOptions & ProRegistered & PreviewOptions;
 
 // Options used by basic when available from PRO.

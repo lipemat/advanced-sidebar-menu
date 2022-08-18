@@ -8,7 +8,13 @@ import {Taxonomy} from '@wordpress/api/taxonomies';
 import {BlockEditProps} from '@wordpress/blocks';
 import ErrorBoundary from '../../../components/ErrorBoundary';
 import Display from '../Display';
-import {CheckboxControl, PanelBody, Slot, TextControl} from '@wordpress/components';
+import {
+	CheckboxControl,
+	PanelBody,
+	SelectControl,
+	Slot,
+	TextControl,
+} from '@wordpress/components';
 import {__, sprintf} from '@wordpress/i18n';
 import InfoPanel from '../InfoPanel';
 
@@ -79,12 +85,22 @@ const Edit = ( {attributes, setAttributes, clientId, name}: Props ) => {
 							} );
 						}}
 					/>}
-					{/* Not offering the option to display in a new widget
-						as we don't really have the widget wraps available
-						to repeat.
-
-						The value of the `new_widget` is set to `list` by default
-						by block attributes. */}
+					{/*
+						  Only widget screens support this option because we
+						  have no widget wrap to use on other screens, so they are
+						  list only. */}
+					{( 'widgets' === CONFIG.currentScreen ) && attributes.single &&
+						<SelectControl<'list' | 'widget'>
+							/* translators: Selected taxonomy single label */
+							label={sprintf( __( 'Display each single post\'s %s', 'advanced-sidebar-menu' ), taxonomy?.labels?.name.toLowerCase() ?? '' )}
+							value={attributes.new_widget}
+							options={Object.entries( CONFIG.categories.displayEach ).map( ( [ value, label ] ) => ( {
+								value,
+								label,
+							} ) )}
+							/* eslint-disable-next-line camelcase */
+							onChange={new_widget => setAttributes( {new_widget} )}
+						/>}
 				</Display>
 
 				<div className={'components-panel__body is-opened'}>

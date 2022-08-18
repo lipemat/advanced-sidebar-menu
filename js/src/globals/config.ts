@@ -13,6 +13,9 @@ interface JSConfig {
 			id: string;
 		}
 	};
+	categories: {
+		displayEach: { [ value: string ]: string };
+	};
 	currentScreen: 'site-editor' | 'widgets' | 'post';
 	docs: {
 		page: string;
