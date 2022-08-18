@@ -103,6 +103,16 @@ const TriggerWhenLoadingFinished = ( {
 		};
 	} );
 
+	/**
+	 * ServerSideRender returns a <RawHTML /> filled with an error object when fetch fails.
+	 *
+	 * We throw an error, so our `ErrorBoundary` will catch it, otherwise we end up
+	 * with a "React objects may not be used as children" error, which means nothing.
+	 */
+	if ( children?.props?.children?.errorMsg ) {
+		throw new Error( children?.props?.children?.errorMsg ?? 'Failed' );
+	}
+
 	return (
 		<div className={styles.spinWrap}>
 			<div className={styles.spin}>
