@@ -132,8 +132,14 @@ abstract class Menu_Abstract {
 		// Block widgets loaded via the REST API don't have full widget args.
 		if ( ! isset( $this->args['widget_id'] ) ) {
 			// Prefix any leading digits or hyphens with '_'.
-			$this->args['widget_id'] = \preg_replace( '/^([\d-])/', '_$1', wp_hash( microtime() ) );
+			$this->args['widget_id'] = \preg_replace( '/^([\d-])/', '_$1', wp_hash( wp_json_encode( $this->instance ) ) );
+		} elseif ( ! empty( $_POST ) ) { //phpcs:ignore
+			// Page builders send one widget at a time, so we use their settings
+			// to differentiate between multiple widgets of the same type.
+			// Page builders send `POST` when updating preview.
+			$this->args['widget_id'] .= wp_hash( wp_json_encode( $this->instance ) );
 		}
+
 		if ( \in_array( $this->args['widget_id'], self::$unique_widget_ids, true ) ) {
 			$suffix = 2;
 			do {
