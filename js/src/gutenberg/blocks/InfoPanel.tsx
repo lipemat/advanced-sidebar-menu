@@ -6,7 +6,9 @@ import {__} from '@wordpress/i18n';
 
 import styles from './info-panel.pcss';
 
-type Props = {};
+type Props = {
+	clientId: string;
+};
 
 const InfoPanel = ( {}: Props ) => {
 	return ( <InspectorControls>
@@ -41,4 +43,4 @@ const InfoPanel = ( {}: Props ) => {
 	</InspectorControls> );
 };
 
-export default withFilters( 'advanced-sidebar-menu.blocks.info-panel' )( InfoPanel );
+export default withFilters<Props>( 'advanced-sidebar-menu.blocks.info-panel' )( InfoPanel );

@@ -144,7 +144,7 @@ const Edit = ( {attributes, setAttributes, clientId, name}: Props ) => {
 			</ErrorBoundary>
 		</BlockControls>
 
-		<InfoPanel />
+		<InfoPanel clientId={clientId} />
 
 		<ErrorBoundary attributes={attributes} block={name}>
 			<Preview<Attr> attributes={attributes} block={block.id} clientId={clientId} />
