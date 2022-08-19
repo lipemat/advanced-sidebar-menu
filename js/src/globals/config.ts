@@ -16,7 +16,7 @@ interface JSConfig {
 	categories: {
 		displayEach: { [ value: string ]: string };
 	};
-	currentScreen: 'site-editor' | 'widgets' | 'post';
+	currentScreen: 'site-editor' | 'widgets' | 'post' | 'customize';
 	docs: {
 		page: string;
 		category: string;

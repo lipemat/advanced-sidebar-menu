@@ -55,7 +55,7 @@ const Edit = ( {attributes, setAttributes, clientId, name}: Props ) => {
 	return ( <>
 		<InspectorControls>
 			<ErrorBoundary attributes={attributes} block={name}>
-				{( 'widgets' === CONFIG.currentScreen || 'site-editor' === CONFIG.currentScreen ) &&
+				{( 'widgets' === CONFIG.currentScreen || 'site-editor' === CONFIG.currentScreen || 'customize' === CONFIG.currentScreen ) &&
 					<PanelBody>
 						<TextControl
 							value={attributes.title ?? ''}
