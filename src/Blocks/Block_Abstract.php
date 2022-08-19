@@ -188,7 +188,7 @@ abstract class Block_Abstract {
 	 * @return array
 	 */
 	protected function get_all_attributes() {
-		return \array_merge( $this->get_attributes(), [
+		return \array_merge( [
 			'clientId'           => [
 				'type' => 'string',
 			],
@@ -201,7 +201,7 @@ abstract class Block_Abstract {
 			Menu_Abstract::TITLE => [
 				'type' => 'string',
 			],
-		] );
+		], $this->get_attributes() );
 	}
 
 
