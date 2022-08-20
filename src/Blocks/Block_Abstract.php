@@ -198,6 +198,9 @@ abstract class Block_Abstract {
 			'sidebarId'          => [
 				'type' => 'string',
 			],
+			'style'              => [
+				'type' => 'object',
+			],
 			Menu_Abstract::TITLE => [
 				'type' => 'string',
 			],
