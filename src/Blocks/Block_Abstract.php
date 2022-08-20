@@ -287,7 +287,7 @@ abstract class Block_Abstract {
 			}
 		}
 
-		$classnames = '';
+		$classnames = 'advanced-sidebar-menu';
 		if ( ! empty( $attr['block_style'] ) ) {
 			$classnames .= ' advanced-sidebar-blocked-style';
 		}
