@@ -248,15 +248,15 @@ abstract class Block_Abstract {
 	/**
 	 * Render the block template via ServerSideRender.
 	 *
-	 * @param array  $attr - Block attributes matching widget settings.
-	 * @param string $wrap - Block wrap containing finished `useBlockProps` results.
+	 * @param array $attr - Block attributes matching widget settings.
 	 *
 	 * @return string
 	 */
-	public function render( $attr, $wrap ) {
-		$parts = (array) \explode( '%s', $wrap );
-		// Assure always at least 2 parts.
-		$parts[] = '';
+	public function render( $attr ) {
+		// @todo Remove early 2022.
+		if ( ! function_exists( 'get_block_wrapper_attributes' ) ) {
+			return __( 'This block requires WordPress version 5.6!', 'advanced-sidebar-menu' );
+		}
 
 		/**
 		 * Within the Editor ServerSideRender request come in as REST requests.
@@ -287,14 +287,25 @@ abstract class Block_Abstract {
 			}
 		}
 
-		ob_start();
-		$widget = $this->get_widget_class();
-		$this->widget_args['before_widget'] .= $parts[0];
-		$this->widget_args['after_widget'] = $parts[1] . $this->widget_args['after_widget'];
+		$classnames = '';
+		if ( ! empty( $attr['block_style'] ) ) {
+			$classnames .= ' advanced-sidebar-blocked-style';
+		}
+
+		// Widgets already have a `<section>` wrap.
+		$wrap = empty( $this->widget_args['before_widget'] ) ? 'section' : 'div';
+		$wrapper_attributes = get_block_wrapper_attributes( [
+			'class' => \trim( esc_attr( $classnames ) ),
+		] );
+		$this->widget_args['before_widget'] .= sprintf( '<%s %s>', $wrap, $wrapper_attributes );
+		$this->widget_args['after_widget'] = sprintf( '</%s>', $wrap ) . $this->widget_args['after_widget'];
 		// Passed via ServerSideRender, so we can enable accordions in Gutenberg editor.
 		if ( ! empty( $attr['clientId'] ) ) {
 			$this->widget_args['widget_id'] = $attr['clientId'];
 		}
+
+		ob_start();
+		$widget = $this->get_widget_class();
 		$widget->widget( $this->widget_args, $this->convert_checkbox_values( $attr ) );
 		return ob_get_clean();
 	}

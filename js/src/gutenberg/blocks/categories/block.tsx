@@ -2,7 +2,6 @@ import {PreviewOptions} from '../Preview';
 import {CONFIG} from '../../../globals/config';
 import {BlockSettings, LegacyWidget} from '@wordpress/blocks';
 import Edit from './Edit';
-import {useBlockProps} from '@wordpress/block-editor';
 import {DisplayOptions} from '../Display';
 import {transformLegacyWidget} from '../../helpers';
 import {__} from '@wordpress/i18n';
@@ -92,9 +91,6 @@ export const settings: BlockSettings<Attr, '', LegacyWidget<Attr & { title: stri
 	edit: props => (
 		<Edit {...props} />
 	),
-	save: () => {
-		const blockProps = useBlockProps.save();
-		return <div {...blockProps}>%s</div>;
-	},
+	save: () => null,
 	apiVersion: 2,
 };

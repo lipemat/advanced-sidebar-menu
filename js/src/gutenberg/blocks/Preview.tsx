@@ -2,7 +2,6 @@ import {ReactElement, useEffect} from 'react';
 import {CONFIG} from '../../globals/config';
 import ServerSideRender from '@wordpress/server-side-render';
 import {Placeholder, Spinner} from '@wordpress/components';
-import {useBlockProps} from '@wordpress/block-editor';
 import {sanitize} from 'dompurify';
 import {doAction} from '@wordpress/hooks';
 import {__} from '@wordpress/i18n';
@@ -153,8 +152,6 @@ const TriggerWhenLoadingFinished = ( {
 
 
 const Preview = <A, >( {attributes, block, clientId}: Props<A> ) => {
-	const blockProps = useBlockProps();
-
 	if ( '' !== CONFIG.error ) {
 		return <div
 			className={styles.error}
@@ -165,7 +162,7 @@ const Preview = <A, >( {attributes, block, clientId}: Props<A> ) => {
 	const sanitizedClientId = sanitizeClientId( clientId );
 
 	return (
-		<div {...blockProps} data-preview={sanitizedClientId}>
+		<div data-preview={sanitizedClientId}>
 			<ServerSideRender<A & PreviewOptions>
 				EmptyResponsePlaceholder={placeholder( block )}
 				LoadingResponsePlaceholder={TriggerWhenLoadingFinished}

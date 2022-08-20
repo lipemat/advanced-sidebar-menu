@@ -1,4 +1,3 @@
-import {useBlockProps} from '@wordpress/block-editor';
 import {BlockSettings, LegacyWidget} from '@wordpress/blocks';
 import {CONFIG} from '../../../globals/config';
 import Edit from './Edit';
@@ -91,9 +90,6 @@ export const settings: BlockSettings<Attr, '', LegacyWidget<Attr & { title: stri
 	edit: props => (
 		<Edit {...props} />
 	),
-	save: () => {
-		const blockProps = useBlockProps.save();
-		return <div {...blockProps}>%s</div>;
-	},
+	save: () => null,
 	apiVersion: 2,
 };
