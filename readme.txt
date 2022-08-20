@@ -3,7 +3,7 @@
 Contributors: Mat Lipe, onpointplugins
 Donate link: https://www.paypal.com/cgi-bin/webscr?cmd=_donations&business=paypal%40onpointplugins%2ecom&lc=US&item_name=Advanced%20Sidebar%20Menu&no_note=0&currency_code=USD&bn=PP%2dDonationsBF%3abtn_donateCC_LG%2egif%3aNonHostedGuest
 Tags: menus, sidebar menu, hierarchy, category menu, pages menu, dynamic, widget, block
-Requires at least: 5.7.0
+Requires at least: 5.8.0
 Tested up to: 6.0.1
 Requires PHP: 7.0.0
 Stable tag: 8.8.3
@@ -165,7 +165,7 @@ Yes. Based on whatever page, post or category you are on, the menu will change a
 
 == Changelog ==
 = 9.0.0 =
-* Require WordPress Core 5.7.0+.
+* Require WordPress Core 5.8.0+.
 * Drop support for PHP 5.6 if favor of PHP 7.0+.
 
 = 8.8.3 = 
