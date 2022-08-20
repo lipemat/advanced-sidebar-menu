@@ -103,7 +103,8 @@ class Categories extends Block_Abstract {
 				'default' => \Advanced_Sidebar_Menu\Menus\Category::EACH_LIST,
 			],
 			Category::LEVELS                => [
-				'type' => 'number',
+				'type'    => 'number',
+				'default' => 100,
 			],
 		] );
 	}

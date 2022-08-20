@@ -158,7 +158,7 @@ class Category extends Menu_Abstract {
 
 
 	/**
-	 * Gets the number of levels ot display when doing 'Always display'
+	 * Gets the number of levels to display when using "Always display child categories".
 	 *
 	 * @return int
 	 */
