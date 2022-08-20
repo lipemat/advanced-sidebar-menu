@@ -69,7 +69,7 @@ class Scripts {
 			'wp-url',
 		], ADVANCED_SIDEBAR_BASIC_VERSION, true );
 
-		if ( ! SCRIPT_DEBUG || ! has_filter( 'advanced-sidebar-menu/js-dir' ) ) {
+		if ( ! $this->is_webpack_enabled() ) {
 			wp_register_style( self::GUTENBERG_CSS_HANDLE, "{$js_dir}{$file}.css", [ 'dashicons' ], ADVANCED_SIDEBAR_BASIC_VERSION );
 		}
 
@@ -121,6 +121,21 @@ class Scripts {
 	public function is_script_debug_enabled() {
 		//phpcs:ignore WordPress.Security.NonceVerification.Recommended
 		return ( \defined( 'SCRIPT_DEBUG' ) && SCRIPT_DEBUG ) || ! empty( $_GET['script-debug'] );
+	}
+
+
+	/**
+	 * Are we currently developing locally with Webpack enabled?
+	 *
+	 * Provides a consistent interface for determining considerations
+	 * when Webpack is enabled.
+	 *
+	 * @since 9.0.0.
+	 *
+	 * @return bool
+	 */
+	public function is_webpack_enabled() {
+		return SCRIPT_DEBUG && has_filter( 'advanced-sidebar-menu/js-dir' );
 	}
 
 
