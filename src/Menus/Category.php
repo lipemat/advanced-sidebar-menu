@@ -174,17 +174,17 @@ class Category extends Menu_Abstract {
 
 	/**
 	 * Get the top-level terms for the current page.
-	 * If on a single this could be multiple.
-	 * If on an archive this will be one.
+	 * Could be multiple if on a single.
+	 * This will be one if on an archive.
 	 *
 	 * @return \WP_Term[]
 	 */
 	public function get_top_level_terms() {
-		$child_term_ids = $this->get_included_term_ids();
-		$top_level_term_ids = [];
-		foreach ( $child_term_ids as $_term_id ) {
-			$top_level_term_ids[] = $this->get_highest_parent( $_term_id );
-		}
+		$top_level_term_ids = \array_filter( \array_map( function( $term_id ) {
+			$top = $this->get_highest_parent( $term_id );
+			return $this->is_excluded( $top ) ? null : $top;
+		}, $this->get_included_term_ids() ) );
+
 		$top_level_term_ids = apply_filters( 'advanced-sidebar-menu/menus/category/top-level-term-ids', $top_level_term_ids, $this->args, $this->instance, $this );
 
 		$terms = [];
