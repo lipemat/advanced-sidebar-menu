@@ -115,14 +115,17 @@ const TriggerWhenLoadingFinished = ( {
 	useEffect( () => {
 		// Call action when the loading component unmounts because loading is finished.
 		return () => {
-			$( '[data-preview="' + `${attributes.clientId}` + '"]' )
-				.find( 'a' )
-				.on( 'click', ev => ev.preventDefault() );
+			// Give the preview a chance to load on WP 5.8.
+			setTimeout( () => {
+				$( '[data-preview="' + `${attributes.clientId}` + '"]' )
+					.find( 'a' )
+					.on( 'click', ev => ev.preventDefault() );
 
-			doAction( 'advanced-sidebar-menu.blocks.preview.loading-finished', {
-				values: attributes,
-				clientId: attributes.clientId,
-			} );
+				doAction( 'advanced-sidebar-menu.blocks.preview.loading-finished', {
+					values: attributes,
+					clientId: attributes.clientId,
+				} );
+			}, 100 );
 		};
 	} );
 
