@@ -13,8 +13,12 @@ use Advanced_Sidebar_Menu\Widget\Page;
 class Scripts {
 	use Singleton;
 
+	const ADMIN_SCRIPT = 'advanced-sidebar-menu-script';
+	const ADMIN_STYLE  = 'advanced-sidebar-menu-style';
+
 	const GUTENBERG_HANDLE     = 'advanced-sidebar-menu/gutenberg';
 	const GUTENBERG_CSS_HANDLE = 'advanced-sidebar-menu/gutenberg-css';
+
 
 	/**
 	 * Add various scripts to the cue.
@@ -95,7 +99,7 @@ class Scripts {
 	 */
 	public function admin_scripts() {
 		wp_enqueue_script(
-			'advanced-sidebar-menu-script',
+			self::ADMIN_SCRIPT,
 			trailingslashit( (string) ADVANCED_SIDEBAR_MENU_URL ) . 'resources/js/advanced-sidebar-menu.js',
 			[ 'jquery' ],
 			ADVANCED_SIDEBAR_BASIC_VERSION,
@@ -103,7 +107,7 @@ class Scripts {
 		);
 
 		wp_enqueue_style(
-			'advanced-sidebar-menu-style',
+			self::ADMIN_STYLE,
 			trailingslashit( (string) ADVANCED_SIDEBAR_MENU_URL ) . 'resources/css/advanced-sidebar-menu.css',
 			[],
 			ADVANCED_SIDEBAR_BASIC_VERSION
