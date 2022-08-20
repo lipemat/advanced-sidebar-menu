@@ -19,6 +19,7 @@ import {__, sprintf} from '@wordpress/i18n';
 import InfoPanel from '../InfoPanel';
 
 import styles from '../pages/edit.pcss';
+import SideLoad from '../../SideLoad';
 
 export type FillProps =
 	Pick<BlockEditProps<Attr>, 'clientId' | 'attributes' | 'setAttributes' | 'name'>
@@ -150,6 +151,7 @@ const Edit = ( {attributes, setAttributes, clientId, name}: Props ) => {
 			<Preview<Attr> attributes={attributes} block={block.id} clientId={clientId} />
 		</ErrorBoundary>
 
+		<SideLoad clientId={clientId} />
 	</> );
 };
 
