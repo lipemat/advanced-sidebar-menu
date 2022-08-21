@@ -235,9 +235,9 @@ abstract class Menu_Abstract {
 
 
 	/**
-	 * Echos the title of the widget to the page
+	 * Echos the title of the widget to the page.
 	 *
-	 * @todo find somewhere more appropriate for this?
+	 * @return void
 	 */
 	public function title() {
 		if ( ! empty( $this->instance[ self::TITLE ] ) ) {
