@@ -6,7 +6,7 @@ Tags: menus, sidebar menu, hierarchy, category menu, pages menu, dynamic, widget
 Requires at least: 5.8.0
 Tested up to: 6.0.1
 Requires PHP: 7.0.0
-Stable tag: 8.8.3
+Stable tag: 9.0.0
 License: GPLv3 or later
 License URI: http://www.gnu.org/licenses/gpl-3.0.html
 
@@ -165,8 +165,16 @@ Yes. Based on whatever page, post or category you are on, the menu will change a
 
 == Changelog ==
 = 9.0.0 =
-* Require WordPress Core 5.8.0+.
+<a href="https://onpointplugins.com/advanced-sidebar-gutenberg-blocks/">Full release notes</a>.
+
+* Introduced Gutenberg blocks.
+* Improved translations.
+* Improved Elementor support.
+* Removed all deprecated functionality.
+* Required PRO version 9.0.0+.
+* Required WordPress Core 5.8.0+.
 * Drop support for PHP 5.6 if favor of PHP 7.0+.
+* Numerous bug fixes.
 
 = 8.8.3 = 
 * Introduced `advanced-sidebar-menu/menus/category/top-level-term-ids` filter.
@@ -312,8 +320,5 @@ Yes. Based on whatever page, post or category you are on, the menu will change a
 Major version update. See <a href="https://onpointplugins.com/advanced-sidebar-menu/advanced-sidebar-menu-version-8-migration-guide/">migration guide</a> if you are extending the plugin's functionality via action, filters, or calling plugin classes.
 
 == Upgrade Notice ==
-= 8.6.0 = 
-Update to support WordPress version 5.8.
-
-= 8.5.0 =
-Update to support PRO version 8.4.0.
+= 9.0.0 = 
+Introducing <a href="https://onpointplugins.com/advanced-sidebar-menu/advanced-sidebar-menu-gutenberg-blocks/">Gutenberg blocks</a>.
