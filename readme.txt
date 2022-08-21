@@ -311,39 +311,6 @@ Yes. Based on whatever page, post or category you are on, the menu will change a
 = 8.0.0 =
 Major version update. See <a href="https://onpointplugins.com/advanced-sidebar-menu/advanced-sidebar-menu-version-8-migration-guide/">migration guide</a> if you are extending the plugin's functionality via action, filters, or calling plugin classes.
 
-* Entirely new code structure.
-* Removed all deprecated code and filters.
-* Improved filter and action names.
-* Improved performance.
-* Remove default plugin styling.
-
-= 7.7.3 =
-* Fix widget info pane links.
-* Fix widget editing on mobile devices.
-* Tested up to PHP 7.4
-* Tested up to WordPress Core version 5.4.1 
-
-= 7.7.2 =
-* Tested to 5.3.3.
-* Change default "levels to display" to All.
-* Fix notice level errors when retrieving current page.
-
-= 7.7.0 =
-* Enable accordion previews when editing via Beaver Builder.
-* Greatly improved widget styles and UI when using Elementor.
-* Overall third party page builder improvements.
-* Move scripts and styles into new Scripts class.
-* Introduced a Singleton trait.
-
-= 7.6.0 =
-* Elementor support for multiple widgets of the same type on the same page.
-* Automatically increment widget ids under any cases where they would duplicate.
-* Bump required WordPress Core version to 4.8.0.
-
-= 7.5.0 =
-* Convert "Always display child pages" to use our List_Pages structure and support all widget options.
-* Bump required PHP version to 5.4.4.
-
 == Upgrade Notice ==
 = 8.6.0 = 
 Update to support WordPress version 5.8.
