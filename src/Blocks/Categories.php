@@ -22,7 +22,7 @@ class Categories extends Block_Abstract {
 	 * @return string
 	 */
 	protected function get_description() {
-		return __( 'Creates a menu of all the categories using the child/parent relationship',
+		return __( 'Creates a menu of all the categories using the parent/child relationship',
 			'advanced-sidebar-menu' );
 	}
 

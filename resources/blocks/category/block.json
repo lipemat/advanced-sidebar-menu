@@ -5,7 +5,7 @@
   "title": "Advanced Sidebar - Categories",
   "category": "widgets",
   "icon": "welcome-widgets-menus",
-  "description": "Creates a menu of all the categories using the child/parent relationship",
+  "description": "Creates a menu of all the categories using the parent/child relationship",
   "keywords": [
     "menu",
     "sidebar",

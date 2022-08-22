@@ -49,7 +49,7 @@ class Category extends Widget_Abstract {
 	public function __construct() {
 		$widget_ops = [
 			'classname'             => 'advanced-sidebar-menu advanced-sidebar-category',
-			'description'           => __( 'Creates a menu of all the categories using the child/parent relationship', 'advanced-sidebar-menu' ),
+			'description'           => __( 'Creates a menu of all the categories using the parent/child relationship', 'advanced-sidebar-menu' ),
 			'show_instance_in_rest' => true,
 		];
 		$control_ops = [

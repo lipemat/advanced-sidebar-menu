@@ -16,7 +16,7 @@ License URI: http://www.gnu.org/licenses/gpl-3.0.html
 
 Uses the parent/child relationship of your pages or categories to generate menus based on the current section of your site. Assign a page or category to a parent and this will do the rest for you.
 
-Keeps the menu clean and usable. Only related items display so you don't have to worry about keeping a custom menu up to date or displaying links to items that don't belong. 
+Keeps the menu clean and usable. Only related items display, so you don't have to worry about keeping a custom menu up to date or displaying links to items that don't belong. 
 
 <strong>Check out <a href="https://onpointplugins.com/product/advanced-sidebar-menu-pro/">Advanced Sidebar Menu PRO</a> for more features including accordion menus, menu colors and styles, custom link text, excluding of pages, category ordering, custom post types, custom taxonomies, priority support, and so much more!</strong>
 

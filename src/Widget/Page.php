@@ -45,7 +45,7 @@ class Page extends Widget_Abstract {
 	public function __construct() {
 		$widget_ops = [
 			'classname'             => 'advanced-sidebar-menu',
-			'description'           => __( 'Creates a menu of all the pages using the child/parent relationship', 'advanced-sidebar-menu' ),
+			'description'           => __( 'Creates a menu of all the pages using the parent/child relationship', 'advanced-sidebar-menu' ),
 			'show_instance_in_rest' => true,
 		];
 		$control_ops = [

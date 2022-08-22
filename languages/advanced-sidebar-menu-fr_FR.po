@@ -1,8 +1,8 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: Advanced Sidebar Menu\n"
-"POT-Creation-Date: 2022-08-21 08:44-0400\n"
-"PO-Revision-Date: 2022-08-21 08:44-0400\n"
+"POT-Creation-Date: 2022-08-22 10:25-0400\n"
+"PO-Revision-Date: 2022-08-22 10:25-0400\n"
 "Last-Translator: \n"
 "Language-Team: \n"
 "Language: fr_FR\n"
@@ -138,7 +138,7 @@ msgstr "Ce bloc nécessite WordPress version 5.6!"
 #: src/Blocks/Categories.php:25 src/Blocks/Pages.php:25
 #: src/Widget/Category.php:52
 msgid ""
-"Creates a menu of all the categories using the child/parent relationship"
+"Creates a menu of all the categories using the parent/child relationship"
 msgstr ""
 "Crée un menu de toutes les catégories en utilisant la relation de l'enfant/"
 "parent"
@@ -229,7 +229,7 @@ msgid "In another list in the same widget"
 msgstr "Dans une autre liste dans le même widget"
 
 #: src/Widget/Page.php:48
-msgid "Creates a menu of all the pages using the child/parent relationship"
+msgid "Creates a menu of all the pages using the parent/child relationship"
 msgstr ""
 "Crée un menu de toutes les pages en utilisant la relation enfant/parent"
 

@@ -5,7 +5,7 @@
   "title": "Advanced Sidebar - Pages",
   "category": "widgets",
   "icon": "welcome-widgets-menus",
-  "description": "Creates a menu of all the pages using the child/parent relationship",
+  "description": "Creates a menu of all the pages using the parent/child relationship",
   "keywords": [
     "menu",
     "sidebar",

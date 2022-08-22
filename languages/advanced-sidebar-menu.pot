@@ -5,7 +5,7 @@ msgstr ""
 "sidebar-menu\n"
 "Plural-Forms: nplurals=INTEGER; plural=EXPRESSION;\n"
 "Project-Id-Version: Advanced Sidebar Menu\n"
-"POT-Creation-Date: 2022-08-21 08:44-0400\n"
+"POT-Creation-Date: 2022-08-22 10:24-0400\n"
 "PO-Revision-Date: 2019-03-05 12:29-0500\n"
 "Last-Translator: \n"
 "Language-Team: \n"
@@ -140,7 +140,7 @@ msgstr ""
 #: src/Blocks/Categories.php:25 src/Blocks/Pages.php:25
 #: src/Widget/Category.php:52
 msgid ""
-"Creates a menu of all the categories using the child/parent relationship"
+"Creates a menu of all the categories using the parent/child relationship"
 msgstr ""
 
 #: src/Blocks/Categories.php:65 src/Blocks/Pages.php:58
@@ -223,7 +223,7 @@ msgid "In another list in the same widget"
 msgstr ""
 
 #: src/Widget/Page.php:48
-msgid "Creates a menu of all the pages using the child/parent relationship"
+msgid "Creates a menu of all the pages using the parent/child relationship"
 msgstr ""
 
 #: src/Widget/Page.php:115
