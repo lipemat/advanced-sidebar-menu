@@ -73,8 +73,14 @@ class Scripts {
 			'wp-url',
 		], ADVANCED_SIDEBAR_BASIC_VERSION, true );
 
+		// Must register here because used as a dependency of the Gutenberg styles.
+		wp_register_style( self::ADMIN_STYLE, trailingslashit( (string) ADVANCED_SIDEBAR_MENU_URL ) . 'resources/css/advanced-sidebar-menu.css', [], ADVANCED_SIDEBAR_BASIC_VERSION );
+
 		if ( ! $this->is_webpack_enabled() ) {
-			wp_register_style( self::GUTENBERG_CSS_HANDLE, "{$js_dir}{$file}.css", [ 'dashicons' ], ADVANCED_SIDEBAR_BASIC_VERSION );
+			wp_register_style( self::GUTENBERG_CSS_HANDLE, "{$js_dir}{$file}.css", [
+				self::ADMIN_STYLE,
+				'dashicons',
+			], ADVANCED_SIDEBAR_BASIC_VERSION );
 		}
 
 		wp_set_script_translations( self::GUTENBERG_HANDLE, 'advanced-sidebar-menu', ADVANCED_SIDEBAR_DIR . 'languages' );
@@ -106,12 +112,7 @@ class Scripts {
 			false
 		);
 
-		wp_enqueue_style(
-			self::ADMIN_STYLE,
-			trailingslashit( (string) ADVANCED_SIDEBAR_MENU_URL ) . 'resources/css/advanced-sidebar-menu.css',
-			[],
-			ADVANCED_SIDEBAR_BASIC_VERSION
-		);
+		wp_enqueue_style( self::ADMIN_STYLE );
 	}
 
 
