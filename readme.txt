@@ -6,7 +6,7 @@ Tags: block, widget, dynamic, hierarchy, menus, sidebar menu, category, pages, p
 Requires at least: 5.8.0
 Tested up to: 6.0.1
 Requires PHP: 7.0.0
-Stable tag: 9.0.0
+Stable tag: 9.0.1
 License: GPLv3 or later
 License URI: http://www.gnu.org/licenses/gpl-3.0.html
 
@@ -322,5 +322,5 @@ Yes. Based on whatever page, post or category you are on, the menu will change a
 Major version update. See <a href="https://onpointplugins.com/advanced-sidebar-menu/advanced-sidebar-menu-version-8-migration-guide/">migration guide</a> if you are extending the plugin's functionality via action, filters, or calling plugin classes.
 
 == Upgrade Notice ==
-= 9.0.0 = 
+= 9.0.1 = 
 Introducing <a href="https://onpointplugins.com/advanced-sidebar-menu/advanced-sidebar-menu-gutenberg-blocks/">Gutenberg blocks</a>.
