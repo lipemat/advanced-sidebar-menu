@@ -1,38 +1,17 @@
 name: Plugin asset/readme update
 env:
-  # Can't specify VERSION, or the plugin will deploy in that version.  
-  # VERSION: 2.1.0
-  NODE_VERSION: '16.14.2'
-  PHP_VERSION: '8.0'
   IGNORE_OTHER_FILES: true
 
 on:
   push:
     branches:
       - deploy
-    
 jobs:
   trunk:
     name: Push to trunk
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v2
-      - uses: actions/setup-node@v2
-        with:
-          node-version: ${{env.NODE_VERSION}}
-          registry-url: 'https://registry.npmjs.org'
-      - uses: "shivammathur/setup-php@v2"
-        with:
-          php-version: ${{env.PHP_VERSION}}
-      - name: Install yarn
-        shell: bash
-        run: npm i -g yarn
-      - name: Compile JS
-        shell: bash
-        run: cd ${{github.workspace}}/js && yarn dist
-      - name: Generate JS translations
-        shell: bash
-        run: cd ${{github.workspace}}/dev/translate-cli && composer install && php command.php
       - name: WordPress.org plugin asset/readme update
         uses: 10up/action-wordpress-plugin-asset-update@stable
         env:
