@@ -1,6 +1,6 @@
 name: Deploy to WordPress.org
 env:
-# Can't specify VERSION or the plugin will deploy in that version.  
+# Can't specify VERSION, or the plugin will deploy in that version.  
   # VERSION: 2.1.0
   NODE_VERSION: '16.14.2'
   PHP_VERSION: '8.0'
