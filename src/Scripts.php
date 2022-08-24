@@ -167,12 +167,7 @@ class Scripts {
 			'pages'         => [
 				'orderBy' => Page::get_order_by_options(),
 			],
-			'siteInfo'      => [
-				'basic'       => ADVANCED_SIDEBAR_BASIC_VERSION,
-				'pro'         => false,
-				'scriptDebug' => $this->is_script_debug_enabled(),
-				'wordpress'   => get_bloginfo( 'version' ),
-			],
+			'siteInfo'      => Debug::instance()->get_site_info(),
 			'support'       => 'https://wordpress.org/support/plugin/advanced-sidebar-menu/#new-topic-0',
 		] );
 	}
