@@ -6,9 +6,11 @@ import {useBlockProps} from '@wordpress/block-editor';
 import {sanitize} from 'dompurify';
 import {doAction} from '@wordpress/hooks';
 import {__} from '@wordpress/i18n';
+import {select} from '@wordpress/data';
+import {isScreen} from '../helpers';
 
 import styles from './preview.pcss';
-import {select} from '@wordpress/data';
+
 
 export type PreviewOptions = {
 	isServerSideRenderRequest: boolean;
@@ -39,7 +41,7 @@ export const sanitizeClientId = ( clientId: string ): string => {
  *
  */
 const getSidebarId = ( clientId: string ): string => {
-	if ( 'widgets' !== CONFIG.currentScreen ) {
+	if ( ! isScreen( [ 'widgets' ] ) ) {
 		return '';
 	}
 	const rootId = select( 'core/block-editor' ).getBlockRootClientId( clientId );

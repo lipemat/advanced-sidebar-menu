@@ -1,6 +1,14 @@
 import {createBlock, CreateBlock} from '@wordpress/blocks';
+import {CONFIG, Screen} from '../globals/config';
 
 export type TransformLegacy = <A>( name: string ) => ( widgetValues: { instance: Record<string, any> } ) => CreateBlock<A>[];
+
+/**
+ * Are we on one of the provided screens?
+ */
+export const isScreen = ( screens: Array<Screen> ): boolean => {
+	return screens.includes( CONFIG.currentScreen );
+};
 
 /**
  * Transform a legacy widget to the matching block.

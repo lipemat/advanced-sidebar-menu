@@ -11,9 +11,11 @@ import {sanitize} from 'dompurify';
 import {__, sprintf} from '@wordpress/i18n';
 import {Type} from '@wordpress/api/types';
 import ErrorBoundary from '../../../components/ErrorBoundary';
+import SideLoad from '../../SideLoad';
+import {isScreen} from '../../helpers';
 
 import styles from './edit.pcss';
-import SideLoad from '../../SideLoad';
+
 
 export type FillProps =
 	Pick<BlockEditProps<Attr>, 'clientId' | 'attributes' | 'setAttributes' | 'name'>
@@ -53,13 +55,12 @@ const Edit = ( {attributes, setAttributes, clientId, name}: Props ) => {
 	return ( <>
 		<InspectorControls>
 			<ErrorBoundary attributes={attributes} block={name}>
-				{( 'widgets' === CONFIG.currentScreen || 'site-editor' === CONFIG.currentScreen || 'customize' === CONFIG.currentScreen ) &&
-					<PanelBody>
-						<TextControl
-							value={attributes.title ?? ''}
-							label={__( 'Title', 'advanced-sidebar-menu' )}
-							onChange={title => setAttributes( {title} )} />
-					</PanelBody>}
+				{isScreen( [ 'widgets', 'site-editor', 'customize' ] ) && <PanelBody>
+					<TextControl
+						value={attributes.title ?? ''}
+						label={__( 'Title', 'advanced-sidebar-menu' )}
+						onChange={title => setAttributes( {title} )} />
+				</PanelBody>}
 				<Display
 					attributes={attributes}
 					clientId={clientId}

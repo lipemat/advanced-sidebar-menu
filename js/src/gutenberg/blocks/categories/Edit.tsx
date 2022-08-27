@@ -17,9 +17,10 @@ import {
 } from '@wordpress/components';
 import {__, sprintf} from '@wordpress/i18n';
 import InfoPanel from '../InfoPanel';
+import SideLoad from '../../SideLoad';
+import {isScreen} from '../../helpers';
 
 import styles from '../pages/edit.pcss';
-import SideLoad from '../../SideLoad';
 
 export type FillProps =
 	Pick<BlockEditProps<Attr>, 'clientId' | 'attributes' | 'setAttributes' | 'name'>
@@ -56,13 +57,12 @@ const Edit = ( {attributes, setAttributes, clientId, name}: Props ) => {
 	return ( <>
 		<InspectorControls>
 			<ErrorBoundary attributes={attributes} block={name}>
-				{( 'widgets' === CONFIG.currentScreen || 'site-editor' === CONFIG.currentScreen || 'customize' === CONFIG.currentScreen ) &&
-					<PanelBody>
-						<TextControl
-							value={attributes.title ?? ''}
-							label={__( 'Title', 'advanced-sidebar-menu' )}
-							onChange={title => setAttributes( {title} )} />
-					</PanelBody>}
+				{isScreen( [ 'widgets', 'site-editor', 'customize' ] ) && <PanelBody>
+					<TextControl
+						value={attributes.title ?? ''}
+						label={__( 'Title', 'advanced-sidebar-menu' )}
+						onChange={title => setAttributes( {title} )} />
+				</PanelBody>}
 				<Display
 					attributes={attributes}
 					clientId={clientId}
@@ -76,7 +76,7 @@ const Edit = ( {attributes, setAttributes, clientId, name}: Props ) => {
 
 		                We default the attribute to `true` if we are editing
 		                a post during register of block attributes. */}
-					{'post' !== CONFIG.currentScreen && <CheckboxControl
+					{isScreen( [ 'post' ] ) && <CheckboxControl
 						/* translators: Selected taxonomy plural label */
 						label={sprintf( __( 'Display %s on single posts', 'advanced-sidebar-menu' ), taxonomy?.labels?.name.toLowerCase() ?? '' )}
 						checked={!! attributes.single}
@@ -90,7 +90,7 @@ const Edit = ( {attributes, setAttributes, clientId, name}: Props ) => {
 						  Only widget screens support this option because we
 						  have no widget wrap to use on other screens, so they are
 						  list only. */}
-					{( 'widgets' === CONFIG.currentScreen || 'customize' === CONFIG.currentScreen ) && attributes.single &&
+					{isScreen( [ 'widgets', 'customize' ] ) && attributes.single &&
 						<SelectControl<'list' | 'widget'>
 							/* translators: Selected taxonomy single label */
 							label={sprintf( __( 'Display each single post\'s %s', 'advanced-sidebar-menu' ), taxonomy?.labels?.name.toLowerCase() ?? '' )}

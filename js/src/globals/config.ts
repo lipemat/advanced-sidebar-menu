@@ -1,6 +1,8 @@
 import {ComponentClass, FunctionComponent} from 'react';
 import {TransformLegacy} from '../gutenberg/helpers';
 
+export type Screen = 'site-editor' | 'widgets' | 'post' | 'customize';
+
 interface JSConfig {
 	blocks: {
 		categories: {
@@ -16,7 +18,7 @@ interface JSConfig {
 	categories: {
 		displayEach: { [ value: string ]: string };
 	};
-	currentScreen: 'site-editor' | 'widgets' | 'post' | 'customize';
+	currentScreen: Screen;
 	docs: {
 		page: string;
 		category: string;
