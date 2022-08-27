@@ -90,7 +90,7 @@ const Edit = ( {attributes, setAttributes, clientId, name}: Props ) => {
 						  Only widget screens support this option because we
 						  have no widget wrap to use on other screens, so they are
 						  list only. */}
-					{( 'widgets' === CONFIG.currentScreen ) && attributes.single &&
+					{( 'widgets' === CONFIG.currentScreen || 'customize' === CONFIG.currentScreen ) && attributes.single &&
 						<SelectControl<'list' | 'widget'>
 							/* translators: Selected taxonomy single label */
 							label={sprintf( __( 'Display each single post\'s %s', 'advanced-sidebar-menu' ), taxonomy?.labels?.name.toLowerCase() ?? '' )}
