@@ -287,13 +287,25 @@ abstract class Block_Abstract {
 			}
 		}
 
-		$classnames = 'advanced-sidebar-menu';
+		$classnames = '';
 		if ( ! empty( $attr['block_style'] ) ) {
 			$classnames .= ' advanced-sidebar-blocked-style';
 		}
 
-		// Widgets already have a `<section>` wrap.
-		$wrap = empty( $this->widget_args['before_widget'] ) ? 'section' : 'div';
+		if ( ! empty( $this->widget_args['before_widget'] ) ) {
+			// Add main CSS class to widgets wrap.
+			if ( false !== \strpos( $this->widget_args['before_widget'], 'widget_block' ) ) {
+				$this->widget_args['before_widget'] = \str_replace( 'widget_block', 'widget_block advanced-sidebar-menu', $this->widget_args['before_widget'] );
+			} else {
+				$classnames .= ' advanced-sidebar-menu';
+			}
+			// Widgets already have a `<section>` wrap.
+			$wrap = 'div';
+		} else {
+			$classnames .= ' advanced-sidebar-menu';
+			$wrap = 'section';
+		}
+
 		$wrapper_attributes = get_block_wrapper_attributes( [
 			'class' => \trim( esc_attr( $classnames ) ),
 		] );
