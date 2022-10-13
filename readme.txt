@@ -6,7 +6,7 @@ Tags: block, widget, dynamic, hierarchy, menus, sidebar menu, category, pages, p
 Requires at least: 5.8.0
 Tested up to: 6.0.2
 Requires PHP: 7.0.0
-Stable tag: 9.0.2
+Stable tag: 9.0.3
 License: GPLv3 or later
 License URI: http://www.gnu.org/licenses/gpl-3.0.html
 
@@ -165,6 +165,10 @@ Yes. Based on whatever page, post or category you are on, the menu will change a
 
 
 == Changelog ==
+= 9.0.3 =
+* Fix issue with styles not loading in Elementor.
+* Tested to WordPress Core 6.0.2.
+
 = 9.0.2 =
 * Moved `advanced-sidebar-menu` CSS class to block widget wraps.
 * Introduced `isScreen` helper to make screen conditionals cleaner.
