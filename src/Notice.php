@@ -145,6 +145,9 @@ class Notice {
 	 * @param \WP_Widget $widget   - Widget class.
 	 */
 	public function preview( array $instance, \WP_Widget $widget ) {
+		if ( \defined( 'ADVANCED_SIDEBAR_MENU_PRO_VERSION' ) ) {
+			return;
+		}
 		$src = 'pages-widget-min.webp?version=' . ADVANCED_SIDEBAR_BASIC_VERSION;
 		if ( Category::NAME === $widget->id_base ) {
 			$src = 'category-widget-min.webp?version=' . ADVANCED_SIDEBAR_BASIC_VERSION;
