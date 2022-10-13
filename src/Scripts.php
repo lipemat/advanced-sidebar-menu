@@ -26,8 +26,11 @@ class Scripts {
 	public function hook() {
 		add_action( 'init', [ $this, 'register_gutenberg_scripts' ] );
 		add_action( 'admin_enqueue_scripts', [ $this, 'admin_scripts' ] );
+
 		// Elementor support.
+		add_action( 'elementor/editor/after_enqueue_scripts', [ $this, 'register_gutenberg_scripts' ] );
 		add_action( 'elementor/editor/after_enqueue_scripts', [ $this, 'admin_scripts' ] );
+
 		// UGH! Beaver Builder hack.
 		if ( isset( $_GET['fl_builder'] ) ) { // phpcs:ignore
 			add_action( 'wp_enqueue_scripts', [ $this, 'admin_scripts' ] );
