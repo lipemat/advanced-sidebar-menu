@@ -1744,7 +1744,7 @@ function $$SETUP_STATE(hydrateRuntimeState, basePath) {
       ],\
       [\
         "decode-uri-component",\
-        "npm:0.2.0"\
+        "npm:0.2.2"\
       ],\
       [\
         "decompress-response",\
@@ -12034,10 +12034,10 @@ function $$SETUP_STATE(hydrateRuntimeState, basePath) {
         }]\
       ]],\
       ["decode-uri-component", [\
-        ["npm:0.2.0", {\
-          "packageLocation": "./.yarn/cache/decode-uri-component-npm-0.2.0-5bcc0f3597-f3749344ab.zip/node_modules/decode-uri-component/",\
+        ["npm:0.2.2", {\
+          "packageLocation": "./.yarn/cache/decode-uri-component-npm-0.2.2-e22e2aa917-95476a7d28.zip/node_modules/decode-uri-component/",\
           "packageDependencies": [\
-            ["decode-uri-component", "npm:0.2.0"]\
+            ["decode-uri-component", "npm:0.2.2"]\
           ],\
           "linkType": "HARD"\
         }]\
@@ -20533,7 +20533,7 @@ function $$SETUP_STATE(hydrateRuntimeState, basePath) {
           "packageDependencies": [\
             ["source-map-resolve", "npm:0.5.3"],\
             ["atob", "npm:2.1.2"],\
-            ["decode-uri-component", "npm:0.2.0"],\
+            ["decode-uri-component", "npm:0.2.2"],\
             ["resolve-url", "npm:0.2.1"],\
             ["source-map-url", "npm:0.4.1"],\
             ["urix", "npm:0.1.0"]\
@@ -31793,10 +31793,7 @@ Required by: ${issuerForDisplay}
             if (runtimeState.enableTopLevelFallback) {
               if (dependencyReference == null && fallbackReference === null) {
                 const reference = runtimeState.fallbackPool.get(dependencyName);
-                // # Warnings suppressed via @lipemat/js-boilerplate/fix-pnp script. 
-if (! alwaysWarnOnFallback && reference != null) { 
-dependencyReference = reference; 
-} else if (alwaysWarnOnFallback && reference != null) {
+                if (reference != null) {
                   fallbackReference = reference;
                 }
               }
