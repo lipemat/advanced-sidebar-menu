@@ -6,7 +6,7 @@ Tags: block, widget, dynamic, hierarchy, menus, sidebar menu, category, pages, p
 Requires at least: 5.8.0
 Tested up to: 6.1.1
 Requires PHP: 7.0.0
-Stable tag: 9.0.3
+Stable tag: 9.0.4
 License: GPLv3 or later
 License URI: http://www.gnu.org/licenses/gpl-3.0.html
 
@@ -165,8 +165,13 @@ Yes. Based on whatever page, post or category you are on, the menu will change a
 
 
 == Changelog ==
+= 9.0.4 =
+* Added "current-menu-ancestor" CSS class to Pages and Categories menus.
+* Introduced "advanced-sidebar-page" CSS class to Pages menus.
+* Tested to WordPress Core 6.1.1.
+
 = 9.0.3 =
-* Fix issue with styles not loading in Elementor.
+* Fixed issue with styles not loading in Elementor.
 * Tested to WordPress Core 6.0.2.
 
 = 9.0.2 =
