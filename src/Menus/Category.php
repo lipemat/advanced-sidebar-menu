@@ -414,8 +414,13 @@ class Category extends Menu_Abstract {
 			$classes[] = 'current-menu-item';
 		} else {
 			$current = $this->get_current_term();
-			if ( null !== $current && $current->parent === $category->term_id ) {
-				$classes[] = 'current-menu-parent';
+			if ( null !== $current ) {
+				if ( $current->parent === $category->term_id ) {
+					$classes[] = 'current-menu-parent';
+					$classes[] = 'current-menu-ancestor';
+				} elseif ( $this->is_current_term_ancestor( $current ) ) {
+					$classes[] = 'current-menu-ancestor';
+				}
 			}
 		}
 

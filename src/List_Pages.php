@@ -126,10 +126,12 @@ class List_Pages {
 				$classes[] = 'current_page_parent';
 				$classes[] = 'current_page_ancestor';
 				$classes[] = 'current-menu-parent';
+				$classes[] = 'current-menu-ancestor';
 			} else {
 				$ancestors = get_post_ancestors( $this->get_current_page_id() );
 				if ( ! empty( $ancestors ) && \in_array( $post->ID, $ancestors, true ) ) {
 					$classes[] = 'current_page_ancestor';
+					$classes[] = 'current-menu-ancestor';
 				}
 			}
 		}
