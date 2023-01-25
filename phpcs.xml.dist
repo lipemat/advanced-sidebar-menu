@@ -3,7 +3,7 @@
 	<!-- See https://github.com/squizlabs/PHP_CodeSniffer/wiki/Annotated-ruleset.xml -->
 
 	<description>Ruleset for the Advanced Sidebar Menu plugin.</description>
-	<version>3.3.0</version>
+	<version>3.4.1</version>
 
 	<!-- Include when not specified -->
 	<file>./src</file>
@@ -20,7 +20,8 @@
 	<!-- Exclude paths -->
 	<exclude-pattern>*/dev/*</exclude-pattern>
 	<exclude-pattern>*/dist/*</exclude-pattern>
-	<exclude-pattern>*/tests/*</exclude-pattern>
+	<exclude-pattern>*/wp-unit/*</exclude-pattern>
+	<exclude-pattern>*/js/tests/*</exclude-pattern>
 	<exclude-pattern>*/local-config\.php</exclude-pattern>
 	<exclude-pattern>*/node_modules/*</exclude-pattern>
 	<exclude-pattern>*/vendor/*</exclude-pattern>
@@ -42,11 +43,16 @@
 		<exclude name="PEAR.NamingConventions.ValidClassName" />
 
 		<exclude name="Squiz.Commenting.FileComment.Missing" />
+
+		<exclude name="WordPress.Arrays.MultipleStatementAlignment.DoubleArrowNotAligned" />
+		<exclude name="WordPress.Arrays.MultipleStatementAlignment.LongIndexSpaceBeforeDoubleArrow" />
 		<exclude name="WordPress.Files.FileName.InvalidClassFileName" />
 		<exclude name="WordPress.Files.FileName.NotHyphenatedLowercase" />
-		<exclude name="WordPress.Arrays.MultipleStatementAlignment.LongIndexSpaceBeforeDoubleArrow" />
-		<exclude name="WordPress.Arrays.MultipleStatementAlignment.DoubleArrowNotAligned" />
 		<exclude name="WordPress.NamingConventions.ValidHookName.UseUnderscores" />
+	</rule>
+
+	<rule ref="Universal.Classes.DisallowFinalClass">
+		<type>error</type>
 	</rule>
 
 	<!-- Test against JS XXS https://vip.wordpress.com/documentation/vip-go/vip-code-review/javascript-security-best-practices/ -->
