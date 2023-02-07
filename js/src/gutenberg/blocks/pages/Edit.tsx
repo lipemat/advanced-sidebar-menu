@@ -52,6 +52,19 @@ const Edit = ( {attributes, setAttributes, clientId, name}: Props ) => {
 		clientId,
 	};
 
+	const EXCLUDE_HELP = <span
+		dangerouslySetInnerHTML={{ //phpcs:ignore
+			__html: sprintf(
+				/* translators: {post type plural label}, {post type single label}, {<a>}, {</a>} */
+				__( '%1$s may also be excluded from all menus via the Advanced Sidebar settings when %3$sediting a %2$s%4$s.', 'advanced-sidebar-menu' ),
+				postType?.labels?.name ?? '',
+				postType?.labels?.singular_name.toLowerCase() ?? '',
+				'<a href="https://onpointplugins.com/advanced-sidebar-menu/advanced-sidebar-menu-pro-widget-docs/#pages" target="_blank">',
+				'</a>'
+			),
+		}} />;
+
+
 	return ( <>
 		<InspectorControls>
 			<ErrorBoundary attributes={attributes} block={name}>
@@ -91,11 +104,13 @@ const Edit = ( {attributes, setAttributes, clientId, name}: Props ) => {
 						/* translators: Selected post type plural label */
 						label={sprintf( __( '%s to exclude (ids, comma separated)', 'advanced-sidebar-menu' ), postType?.labels?.name ?? '' )}
 						value={attributes.exclude}
+						help={CONFIG.isPro ? EXCLUDE_HELP : ''}
 						onChange={value => {
 							setAttributes( {
 								exclude: value,
 							} );
 						}} />
+
 					<p>
 						<a
 							href={CONFIG.docs.page}
