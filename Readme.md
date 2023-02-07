@@ -37,7 +37,7 @@ Out of the box, Poedit does not support TypeScript extensions. TypeScript suppor
 2. Tab -> Extractors
 3. `+`
 4. Language -> "TypeScript"
-5. List of extensions -> "*.ts,*.tsx"
+5. List of extensions -> "*.tsx;*.ts"
 6. Command -> "xgettext -L JavaScript --add-comments=translators: --force-po -o %o %C %K %F"
 7. An item in keyword list -> "-k%k"
 8. An item in input files list -> "%f"
