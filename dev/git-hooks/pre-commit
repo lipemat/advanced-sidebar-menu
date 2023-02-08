@@ -6,13 +6,13 @@
 # if any of them fail.
 #
 # @notice Customized to support multiple versions of PHP is same runs.
-# @notice Customized to run unit tests from PRO version.
 #
 # @see /dev/git-hooks.sh for installation as symbolic link
 #
-# @version 4.0.0
+# @version 4.5.1
 #
 #####################################################################################
+
 GREEN="$(tput setaf 2)"
 WHITE="$(tput setaf 7)"
 YELLOW="$(tput setaf 3)"
@@ -29,11 +29,7 @@ PROJECT=${PROJECT//\\//}
 
 PHP_FILES=$(git diff-index --cached --name-only --diff-filter=ACMR HEAD | grep \\.php)
 if [[ ! "$PHP_FILES" ]]; then
-	echo "${YELLOW}[pre-commit]${BLUE} No Testable Files Changed ${RESET_COLOR}"
-	exit 0
-fi
-if [[ ! "$PHP_FILES" ]]; then
-	echo "${YELLOW}[pre-commit]${BLUE} No PHP Files Changed ${WHITE}"
+    echo "${YELLOW}[pre-commit]${BLUE} No PHP Files Changed ${WHITE}"
 fi
 
 function exit_reset_colors() {
@@ -48,34 +44,32 @@ function php_units() {
 }
 
 function php_unit() {
-   	if [[ "$PHP_FILES" ]]; then
-   		if [[ ! -f ../advanced-sidebar-menu-pro/dev/wp-unit/phpunit.xml.dist ]]; then
-   			echo "${YELLOW}[pre-commit]${RED} ../advanced-sidebar-menu-pro/dev/wp-unit/phpunit.xml.dist not found! (Probably not setup yet!).${WHITE}"
-   		else
-   			# Run phpunit.
-   			echo "${YELLOW}[pre-commit]${BLUE} Running ${1}... ${WHITE}"
-   			OUTPUT=$(${1} --configuration ../advanced-sidebar-menu-pro/dev/wp-unit/phpunit.xml.dist)
-   			if [[ $? != 0 ]]; then
-   				echo
-   				echo "${BLUE}${1} Failed! Fix the error before commit!"
-   				echo "${RED}$OUTPUT"
-   				exit_reset_colors
-   			fi
-   			echo "${YELLOW}[pre-commit]${GREEN} ${1} Tests Passed!${WHITE}"
-   		fi
-   	fi
+    if [[ "$PHP_FILES" ]]; then
+        if [[ ! -f ../advanced-sidebar-menu-pro/dev/wp-unit/phpunit.xml.dist ]]; then
+           	echo "${YELLOW}[pre-commit]${RED} ../advanced-sidebar-menu-pro/dev/wp-unit/phpunit.xml.dist not found!"
+            exit_reset_colors
+        fi
+        echo "${YELLOW}[pre-commit]${BLUE} Running ${1}... ${WHITE}"
+        OUTPUT=$(${1} --configuration ../advanced-sidebar-menu-pro/dev/wp-unit/phpunit.xml.dist)
+        if [[ $? != 0 ]]; then
+            echo
+            echo "${BLUE}${1} Failed! Fix the error before commit!"
+            echo "${RED}$OUTPUT"
+            exit_reset_colors
+        fi
+        echo "${YELLOW}[pre-commit]${GREEN} ${1} Tests Passed!${WHITE}"
+    fi
 }
 php_units &
 
 function php_lint() {
     if [[ "$PHP_FILES" ]]; then
-        # Run php lint.
         echo "${YELLOW}[pre-commit]${BLUE} Checking ${1} Lint... ${WHITE}"
         for FILE in ${PHP_FILES}; do
             OUTPUT=$(${1} -l -d display_errors=0 ${PROJECT}/${FILE})
             if [[ $? != 0 ]]; then
                 echo
-                echo "${BLUE}PHP Lint Failed. Fix the error before commit."
+                echo "${BLUE}${1} Lint Failed. Fix the error before commit."
                 echo "${RED}$OUTPUT"
                 exit_reset_colors
             fi
@@ -88,7 +82,6 @@ php_lint 'php 8.0' &
 
 function php_code_sniffer() {
     if [[ "$PHP_FILES" != "" ]]; then
-        # Check for phpcs config
         if [[ ! -f ${PROJECT}/phpcs.xml ]] && [[ ! -f ${PROJECT}/phpcs.xml.dist ]]; then
             echo "${YELLOW}[pre-commit]${RED} ${PROJECT}/phpcs.xml or ${PROJECT}/phpcs.xml.dist not found!"
             exit_reset_colors
@@ -97,7 +90,7 @@ function php_code_sniffer() {
             FILES="$FILES ${PROJECT}/${FILE}"
         done
         echo "${YELLOW}[pre-commit]${BLUE} Running PHPCS... ${WHITE}"
-        OUTPUT=$(${PHPCS} --encoding=utf-8 -s -n -p ${FILES})
+        OUTPUT=$(${PHPCS} --encoding=utf-8 -s -p ${FILES})
         if [[ $? != 0 ]]; then
             echo
             echo "${BLUE}PHPCS failed. Fix the error before commit!"
@@ -116,9 +109,8 @@ php_code_sniffer &
 
 function php_stan() {
     if [[ "$PHP_FILES" ]]; then
-        # Run phpstan.
         echo "${YELLOW}[pre-commit]${BLUE} Running PHP Stan... ${WHITE}"
-        OUTPUT=$(${PHPSTAN} analyse --memory-limit=2G)
+        OUTPUT=$(${PHPSTAN} analyse --no-progress --memory-limit=2G)
         if [[ $? != 0 ]]; then
             echo
             echo "${BLUE}PHP Stan Failed. Fix the error before commit."
