@@ -9,7 +9,7 @@
 #
 # @see /dev/git-hooks.sh for installation as symbolic link
 #
-# @version 4.5.1
+# @version 4.5.2
 #
 #####################################################################################
 
@@ -29,7 +29,8 @@ PROJECT=${PROJECT//\\//}
 
 PHP_FILES=$(git diff-index --cached --name-only --diff-filter=ACMR HEAD | grep \\.php)
 if [[ ! "$PHP_FILES" ]]; then
-    echo "${YELLOW}[pre-commit]${BLUE} No PHP Files Changed ${WHITE}"
+    echo "${YELLOW}[pre-commit]${BLUE} No PHP Files Changed ${RESET_COLOR}"
+    exit 0
 fi
 
 function exit_reset_colors() {
@@ -57,7 +58,7 @@ function php_unit() {
             echo "${RED}$OUTPUT"
             exit_reset_colors
         fi
-        echo "${YELLOW}[pre-commit]${GREEN} ${1} Tests Passed!${WHITE}"
+        echo "${YELLOW}[pre-commit]${GREEN} ${1} Tests Passed!${RESET_COLOR}"
     fi
 }
 php_units &
@@ -74,7 +75,7 @@ function php_lint() {
                 exit_reset_colors
             fi
         done
-        echo "${YELLOW}[pre-commit]${GREEN} ${1} Lint Passed!${WHITE}"
+        echo "${YELLOW}[pre-commit]${GREEN} ${1} Lint Passed!${RESET_COLOR}"
     fi
 }
 php_lint 'php 7.0' &
@@ -102,7 +103,7 @@ function php_code_sniffer() {
             echo
             exit_reset_colors
         fi
-        echo "${YELLOW}[pre-commit]${GREEN} PHPCS Passed!${WHITE}"
+        echo "${YELLOW}[pre-commit]${GREEN} PHPCS Passed!${RESET_COLOR}"
     fi
 }
 php_code_sniffer &
@@ -117,7 +118,7 @@ function php_stan() {
             echo "${RED}$OUTPUT"
             exit_reset_colors
         fi
-        echo "${YELLOW}[pre-commit]${GREEN} PHP Stan Passed!${WHITE}"
+        echo "${YELLOW}[pre-commit]${GREEN} PHP Stan Passed!${RESET_COLOR}"
     fi
 }
 php_stan &
