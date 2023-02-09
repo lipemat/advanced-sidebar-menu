@@ -8,6 +8,7 @@
 	<!-- Include when not specified -->
 	<file>./src</file>
 	<file>./js</file>
+	<file>./views</file>
 
 	<!-- Show file path based on project root. -->
 	<arg name="basepath" value="." />
