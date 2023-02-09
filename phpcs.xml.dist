@@ -23,7 +23,6 @@
 	<rule ref="LipePlugin" />
 
 	<rule ref="WordPress.NamingConventions.PrefixAllGlobals">
-		<exclude name="WordPress.NamingConventions.PrefixAllGlobals.InvalidPrefixPassed" />
 		<properties>
 			<property name="prefixes" type="array">
 				<element value="OnPoint_Plugins" />
