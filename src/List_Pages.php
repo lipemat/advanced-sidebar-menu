@@ -10,7 +10,7 @@ use Advanced_Sidebar_Menu\Walkers\Page_Walker;
  * Create the opening and closing <ul class="child-sidebar-menu">
  * in the view and this will fill in the guts.
  *
- * Send the args ( similar to wp_list_pages ) to the constructor and then
+ * Send the args (like wp_list_pages) to the constructor and then
  * display by calling list_pages()
  *
  * @author  OnPoint Plugins <support@onpointplugins.com>
@@ -70,7 +70,7 @@ class List_Pages {
 	 *
 	 * @param Page $menu - The menu class.
 	 */
-	protected function __construct( Page $menu ) {
+	final protected function __construct( Page $menu ) {
 		$this->menu = $menu;
 		$this->top_parent_id = $menu->get_top_parent_id();
 		$this->current_page = $menu->get_current_post();
@@ -299,11 +299,9 @@ class List_Pages {
 	 * @param int  $parent_page_id - Page id we are getting children of.
 	 * @param bool $is_first_level - Is this the first level of child pages?.
 	 *
-	 * @since 7.5.5 - Add 'advanced-sidebar-menu/list-pages/grandchild-pages' filter.
-	 *
 	 * @return \WP_Post[]
 	 */
-	public function get_child_pages( $parent_page_id, $is_first_level = false ) {
+	public function get_child_pages( $parent_page_id, $is_first_level = false ) : array {
 		// Holds a unique key so cache can distinguish calls.
 		$this->current_children_parent = $parent_page_id;
 
@@ -322,21 +320,21 @@ class List_Pages {
 		$child_pages = \array_map( 'get_post', (array) $child_pages );
 
 		if ( $is_first_level ) {
-			return apply_filters( 'advanced-sidebar-menu/list-pages/first-level-child-pages', $child_pages, $this, $this->menu );
+			return (array) apply_filters( 'advanced-sidebar-menu/list-pages/first-level-child-pages', $child_pages, $this, $this->menu );
 		}
 
-		return apply_filters( 'advanced-sidebar-menu/list-pages/grandchild-pages', $child_pages, $this, $this->menu );
+		return (array) apply_filters( 'advanced-sidebar-menu/list-pages/grandchild-pages', $child_pages, $this, $this->menu );
 	}
 
 
 	/**
 	 * Is the specified page an ancestor of the current page?
 	 *
-	 * @param int $page_id - Post id to check against.
+	 * @param int|string $page_id - Post id to check against.
 	 *
 	 * @return bool
 	 */
-	public function is_current_page_ancestor( $page_id ) {
+	public function is_current_page_ancestor( $page_id ) : bool {
 		$return = false;
 		$current_page_id = $this->get_current_page_id();
 		if ( ! empty( $current_page_id ) ) {
@@ -346,13 +344,13 @@ class List_Pages {
 				$return = true;
 			} else {
 				$ancestors = get_post_ancestors( $this->current_page );
-				if ( ! empty( $ancestors ) && in_array( (int) $page_id, $ancestors, true ) ) {
+				if ( ! empty( $ancestors ) && \in_array( (int) $page_id, $ancestors, true ) ) {
 					$return = true;
 				}
 			}
 		}
 
-		return apply_filters( 'advanced-sidebar-menu/list-pages/is-current-page-ancestor', $return, $current_page_id, $this );
+		return (bool) apply_filters( 'advanced-sidebar-menu/list-pages/is-current-page-ancestor', $return, $current_page_id, $this );
 	}
 
 
@@ -365,8 +363,8 @@ class List_Pages {
 	 *
 	 * @return List_Pages
 	 */
-	public static function factory( Page $menu ) {
-		return new self( $menu );
+	public static function factory( Page $menu ) : List_Pages {
+		return new static( $menu );
 	}
 
 }
