@@ -30,7 +30,7 @@ class Cache {
 	 * @return void
 	 */
 	public function clear_cache_group() {
-		wp_cache_set( 'last_changed', microtime(), static::CACHE_GROUP . ':' . ADVANCED_SIDEBAR_BASIC_VERSION );
+		wp_cache_set( 'last_changed', microtime(), static::CACHE_GROUP . ':' . ADVANCED_SIDEBAR_MENU_BASIC_VERSION );
 	}
 
 
@@ -40,8 +40,8 @@ class Cache {
 	 * @return string
 	 */
 	public function get_cache_group() {
-		$key = wp_cache_get_last_changed( static::CACHE_GROUP . ':' . ADVANCED_SIDEBAR_BASIC_VERSION );
-		return static::CACHE_GROUP . ':' . ADVANCED_SIDEBAR_BASIC_VERSION . ':' . $key;
+		$key = wp_cache_get_last_changed( static::CACHE_GROUP . ':' . ADVANCED_SIDEBAR_MENU_BASIC_VERSION );
+		return static::CACHE_GROUP . ':' . ADVANCED_SIDEBAR_MENU_BASIC_VERSION . ':' . $key;
 	}
 
 

@@ -74,19 +74,19 @@ class Scripts {
 			'react',
 			'react-dom',
 			'wp-url',
-		], ADVANCED_SIDEBAR_BASIC_VERSION, true );
+		], ADVANCED_SIDEBAR_MENU_BASIC_VERSION, true );
 
 		// Must register here because used as a dependency of the Gutenberg styles.
-		wp_register_style( static::ADMIN_STYLE, trailingslashit( (string) ADVANCED_SIDEBAR_MENU_URL ) . 'resources/css/advanced-sidebar-menu.css', [], ADVANCED_SIDEBAR_BASIC_VERSION );
+		wp_register_style( static::ADMIN_STYLE, trailingslashit( (string) ADVANCED_SIDEBAR_MENU_URL ) . 'resources/css/advanced-sidebar-menu.css', [], ADVANCED_SIDEBAR_MENU_BASIC_VERSION );
 
 		if ( ! $this->is_webpack_enabled() ) {
 			wp_register_style( static::GUTENBERG_CSS_HANDLE, "{$js_dir}{$file}.css", [
 				static::ADMIN_STYLE,
 				'dashicons',
-			], ADVANCED_SIDEBAR_BASIC_VERSION );
+			], ADVANCED_SIDEBAR_MENU_BASIC_VERSION );
 		}
 
-		wp_set_script_translations( static::GUTENBERG_HANDLE, 'advanced-sidebar-menu', ADVANCED_SIDEBAR_DIR . 'languages' );
+		wp_set_script_translations( static::GUTENBERG_HANDLE, 'advanced-sidebar-menu', ADVANCED_SIDEBAR_MENU_DIR . 'languages' );
 
 		/**
 		 * Load separately because `$this->js_config()` is heavy, and
@@ -111,7 +111,7 @@ class Scripts {
 			static::ADMIN_SCRIPT,
 			trailingslashit( (string) ADVANCED_SIDEBAR_MENU_URL ) . 'resources/js/advanced-sidebar-menu.js',
 			[ 'jquery' ],
-			ADVANCED_SIDEBAR_BASIC_VERSION,
+			ADVANCED_SIDEBAR_MENU_BASIC_VERSION,
 			false
 		);
 

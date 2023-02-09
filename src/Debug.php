@@ -77,7 +77,7 @@ class Debug {
 	 */
 	public function get_site_info() {
 		$data = [
-			'basic'       => ADVANCED_SIDEBAR_BASIC_VERSION,
+			'basic'       => ADVANCED_SIDEBAR_MENU_BASIC_VERSION,
 			'php'         => PHP_VERSION,
 			'pro'         => false,
 			'scriptDebug' => Scripts::instance()->is_script_debug_enabled(),
