@@ -216,7 +216,8 @@ class List_Pages {
 			$args['exclude'] = explode( ',', $args['exclude'] );
 		}
 		// Sanitize, mostly to keep spaces out.
-		$args['exclude'] = preg_replace( '/[^0-9,]/', '', implode( ',', apply_filters( 'wp_list_pages_excludes', $args['exclude'] ) ) );
+		//phpcs:ignore WordPress.NamingConventions.PrefixAllGlobals.NonPrefixedHooknameFound
+		$args['exclude'] = \preg_replace( '/[^0-9,]/', '', \implode( ',', apply_filters( 'wp_list_pages_excludes', $args['exclude'] ) ) );
 
 		return apply_filters( 'advanced-sidebar-menu/list-pages/parse-args', $args, $this );
 	}
@@ -237,11 +238,11 @@ class List_Pages {
 
 
 	/**
-	 * List the pages very similar to wp_list_pages.
+	 * List the pages like wp_list_pages.
 	 *
 	 * @return string
 	 */
-	public function list_pages() {
+	public function list_pages() : string {
 		$pages = $this->get_child_pages( $this->top_parent_id, true );
 		foreach ( $pages as $page ) {
 			$this->output .= walk_page_tree( [ $page ], 1, $this->get_current_page_id(), $this->args );
@@ -249,6 +250,7 @@ class List_Pages {
 			$this->output .= '</li>' . "\n";
 		}
 
+		//phpcs:ignore WordPress.NamingConventions.PrefixAllGlobals.NonPrefixedHooknameFound
 		$this->output = apply_filters( 'wp_list_pages', $this->output, $this->args, $pages );
 		if ( ! $this->args['echo'] ) {
 			return $this->output;

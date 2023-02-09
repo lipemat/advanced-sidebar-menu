@@ -21,6 +21,17 @@
 
 	<rule ref="LipePlugin" />
 
+	<rule ref="WordPress.NamingConventions.PrefixAllGlobals">
+		<exclude name="WordPress.NamingConventions.PrefixAllGlobals.InvalidPrefixPassed" />
+		<properties>
+			<property name="prefixes" type="array">
+				<element value="OnPoint_Plugins" />
+				<element value="advanced_sidebar" />
+				<element value="advanced-sidebar" />
+			</property>
+		</properties>
+	</rule>
+
 	<rule ref="WordPress.WP.I18n">
 		<properties>
 			<property name="text_domain" type="array" value="advanced-sidebar-menu" />
