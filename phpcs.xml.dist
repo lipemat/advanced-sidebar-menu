@@ -26,8 +26,8 @@
 		<properties>
 			<property name="prefixes" type="array">
 				<element value="OnPoint_Plugins" />
-				<element value="advanced_sidebar" />
-				<element value="advanced-sidebar" />
+				<element value="advanced_sidebar_menu" />
+				<element value="advanced-sidebar-menu" />
 			</property>
 		</properties>
 	</rule>

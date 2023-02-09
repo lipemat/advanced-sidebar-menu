@@ -19,9 +19,9 @@ if ( defined( 'ADVANCED_SIDEBAR_BASIC_VERSION' ) ) {
 	return;
 }
 
-define( 'ADVANCED_SIDEBAR_BASIC_VERSION', '9.0.4' );
+define( 'ADVANCED_SIDEBAR_BASIC_VERSION', '9.0.4' ); //phpcs:ignore
 define( 'ADVANCED_SIDEBAR_MENU_REQUIRED_PRO_VERSION', '9.0.0' );
-define( 'ADVANCED_SIDEBAR_DIR', plugin_dir_path( __FILE__ ) );
+define( 'ADVANCED_SIDEBAR_DIR', plugin_dir_path( __FILE__ ) ); //phpcs:ignore
 define( 'ADVANCED_SIDEBAR_MENU_URL', plugin_dir_url( __FILE__ ) );
 
 use Advanced_Sidebar_Menu\Blocks\Block_Abstract;
