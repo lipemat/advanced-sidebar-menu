@@ -165,6 +165,13 @@ Yes. Based on whatever page, post or category you are on, the menu will change a
 
 
 == Changelog ==
+= 9.0.5 =
+* Switched to static uses of class constants to improve extendability.
+* Switched to full namespaced constants.
+* Improved PHPCS definitions.
+* Improved translations.
+* Included help information for the category widget exclude settings.
+
 = 9.0.4 =
 * Added "current-menu-ancestor" CSS class to Pages and Categories menus.
 * Introduced "advanced-sidebar-page" CSS class to Pages menus.
