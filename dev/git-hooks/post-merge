@@ -21,7 +21,7 @@ PROJECT="."
 ## Fix windows paths
 PROJECT=${PROJECT//\\//}
 
-RESOURCES_CHANGED=$(git diff --name-only ORIG_HEAD HEAD | grep "\.pcss\|\.js$\|\.jsx$\|\.ts$\|\.tsx$")
+RESOURCES_CHANGED=$(git diff-index --cached --name-only "HEAD@{1}" | grep "\.pcss\|\.js$\|\.jsx$\|\.ts$\|\.tsx$")
 
 function yarn_dist() {
     cd "$1" || exit 1
