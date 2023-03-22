@@ -6,11 +6,10 @@
 #
 # Customized for this plugin to only run `yarn dist`
 #
-# @version 4.1.2
+# @version 5.1.0
 #
 #####################################################################################
 
-DIR="$(cd "$(dirname "$(realpath "$0")}")" >/dev/null && pwd)"
 GREEN="$(tput setaf 2)"
 WHITE="$(tput setaf 7)"
 YELLOW="$(tput setaf 3)"
@@ -18,7 +17,11 @@ RED="$(tput setaf 1)"
 BLUE="$(tput setaf 6)"
 RESET_COLOR="$(tput sgr0)"
 
-RESOURCES_CHANGED=$(git diff-index --name-only "HEAD@{1}" | grep "\.pcss\|\.js$\|\.jsx$\|\.ts$\|\.tsx$")
+PROJECT="."
+## Fix windows paths
+PROJECT=${PROJECT//\\//}
+
+RESOURCES_CHANGED=$(git diff --name-only ORIG_HEAD HEAD | grep "\.pcss\|\.js$\|\.jsx$\|\.ts$\|\.tsx$")
 
 function yarn_dist() {
     cd "$1" || exit 1
@@ -30,7 +33,7 @@ function yarn_dist() {
 
 if [[ "$RESOURCES_CHANGED" ]]; then
     echo "${YELLOW}[post-merge]${GREEN} Resource file changes detected, running \`yarn dist\`... ${WHITE}"
-    yarn_dist "${DIR}"/../../js &
+    yarn_dist "${PROJECT}/js" &
 else
     echo "${YELLOW}[post-merge]${BLUE} No resources files changed.${WHITE}"
 fi
