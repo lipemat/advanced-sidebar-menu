@@ -6,7 +6,7 @@ Tags: block, widget, dynamic, hierarchy, menus, sidebar menu, category, pages, p
 Requires at least: 5.8.0
 Tested up to: 6.2.0
 Requires PHP: 7.0.0
-Stable tag: 9.0.6
+Stable tag: 9.0.7
 License: GPLv3 or later
 License URI: http://www.gnu.org/licenses/gpl-3.0.html
 
@@ -115,7 +115,7 @@ Manual Installation
 1. Page widget options.
 2. Category widget options.
 3. Example of a page menu using the 2017 theme and default styles.
-3. Example of a category menu ordered by title using the 2017 theme and default styles.
+4. Example of a category menu ordered by title using the 2017 theme and default styles.
 
 
 == Frequently Asked Questions ==
@@ -163,8 +163,12 @@ The Categories Menu widget/block contains a "Display categories on single posts"
 
 Yes. Based on whatever page, post or category you are on, the menu will change automatically to display the current parents and children.
 
-
 == Changelog ==
+= 9.0.7 =
+* Fixed `data-level` on category menus larger than 3 levels.
+* Included classic widgets flag in debug information.
+* Required PRO version 9.1.2+.
+
 = 9.0.6 =
 * Improved extendability by removing all `private` access modifiers.
 * Fully support PHP 8.1.
