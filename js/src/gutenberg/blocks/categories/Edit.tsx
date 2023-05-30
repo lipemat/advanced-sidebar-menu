@@ -23,7 +23,7 @@ export type FillProps =
 type Props = BlockEditProps<Attr>;
 
 const Edit = ( {attributes, setAttributes, clientId, name}: Props ) => {
-	const taxonomy: Taxonomy | undefined = useSelect( select => {
+	const taxonomy: Taxonomy<'edit'> | undefined = useSelect( select => {
 		const type = select( 'core' ).getTaxonomy( attributes.taxonomy ?? 'category' );
 		return type ?? select( 'core' ).getTaxonomy( 'category' );
 	}, [ attributes.taxonomy ] );

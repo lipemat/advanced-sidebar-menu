@@ -1,7 +1,9 @@
 import {createBlock, CreateBlock} from '@wordpress/blocks';
 import {CONFIG, Screen} from '../globals/config';
 
-export type TransformLegacy = <A>( name: string ) => ( widgetValues: { instance: Record<string, any> } ) => CreateBlock<A>[];
+export type TransformLegacy = <Attr>( name: string ) => ( widgetValues: {
+	instance: Record<string, any>
+} ) => CreateBlock<Attr>;
 
 /**
  * Are we on one of the provided screens?
@@ -15,7 +17,7 @@ export const isScreen = ( screens: Array<Screen> ): boolean => {
  *
  */
 export const transformLegacyWidget: TransformLegacy = <A>( name: string ) => ( {instance} ) => {
-	return [ createBlock<A>( name, translateLegacyWidget<A>( instance.raw ) ) ];
+	return createBlock<A>( name, translateLegacyWidget<A>( instance.raw ) );
 };
 
 /**

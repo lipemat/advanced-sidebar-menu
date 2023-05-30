@@ -27,7 +27,7 @@ type Props = BlockEditProps<Attr>;
  * Pages block content in the editor.
  */
 const Edit = ( {attributes, setAttributes, clientId, name}: Props ) => {
-	const postType: Type | undefined = useSelect( select => {
+	const postType: Type<'edit'> | undefined = useSelect( select => {
 		const type = select( 'core' ).getPostType( attributes.post_type ?? 'page' );
 		return type ?? select( 'core' ).getPostType( 'page' );
 	}, [ attributes.post_type ] );

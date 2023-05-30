@@ -21,12 +21,12 @@ export type DisplayOptions = {
 
 export type FillProps =
 	Pick<BlockEditProps<PageAttr | CategoryAttr>, 'clientId' | 'attributes' | 'setAttributes' | 'name'>
-	& { type?: Type | Taxonomy }
+	& { type?: Type<'edit'> | Taxonomy<'edit'> }
 
 type Props = PropsWithChildren<{
 	attributes: PageAttr | CategoryAttr;
 	setAttributes: BlockEditProps<PageAttr | CategoryAttr>['setAttributes'];
-	type?: Type | Taxonomy;
+	type?: Type<'edit'> | Taxonomy<'edit'>;
 	name: string;
 	clientId: string;
 }>;
