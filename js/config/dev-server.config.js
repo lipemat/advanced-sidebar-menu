@@ -5,5 +5,5 @@
  * @type {{post: number}}
  */
 module.exports = {
-	port: 3001,
+	port: 3333,
 };
