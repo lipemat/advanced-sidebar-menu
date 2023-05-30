@@ -253,17 +253,12 @@ abstract class Block_Abstract {
 	 * @return string
 	 */
 	public function render( $attr ) {
-		// @todo Remove early 2022.
-		if ( ! function_exists( 'get_block_wrapper_attributes' ) ) {
-			return __( 'This block requires WordPress version 5.6!', 'advanced-sidebar-menu' );
-		}
-
 		/**
 		 * Within the Editor ServerSideRender request come in as REST requests.
 		 * We spoof the WP_Query as much as required to get the menus to
 		 * display the same way they will on the front-end.
 		 */
-		if ( defined( 'REST_REQUEST' ) && REST_REQUEST && ! empty( $attr[ static::RENDER_REQUEST ] ) ) {
+		if ( \defined( 'REST_REQUEST' ) && REST_REQUEST && ! empty( $attr[ static::RENDER_REQUEST ] ) ) {
 			if ( ! empty( get_post() ) ) {
 				add_action( 'advanced-sidebar-menu/widget/before-render', function( $menu ) {
 					if ( method_exists( $menu, 'set_current_post' ) ) {
