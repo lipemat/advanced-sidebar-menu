@@ -6,7 +6,7 @@ Tags: block, widget, dynamic, hierarchy, menus, sidebar menu, category, pages, p
 Requires at least: 5.8.0
 Tested up to: 6.2.2
 Requires PHP: 7.0.0
-Stable tag: 9.0.8
+Stable tag: 9.0.9
 License: GPLv3 or later
 License URI: http://www.gnu.org/licenses/gpl-3.0.html
 
@@ -164,6 +164,13 @@ The Categories Menu widget/block contains a "Display categories on single posts"
 Yes. Based on whatever page, post or category you are on, the menu will change automatically to display the current parents and children.
 
 == Changelog ==
+= 9.0.9 =
+* Fixed conflict with [Stackable WordPress plugin](https://wordpress.org/plugins/stackable-ultimate-gutenberg-blocks/) in the theme customizer.
+* Improved block script reliability.
+* Improved handling of Elementor previews.
+* Improved error boundary informational messages.
+* Removed conflicts with POST method requests.
+
 = 9.0.8 =
 * Disabled legacy widgets by default [see docs]( https://onpointplugins.com/advanced-sidebar-menu/advanced-sidebar-menu-gutenberg-blocks/#enable-widgets).
 * Update browser list support.
