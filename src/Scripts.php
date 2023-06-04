@@ -85,7 +85,7 @@ class Scripts {
 		], ADVANCED_SIDEBAR_MENU_BASIC_VERSION, true );
 
 		// Must register here because used as a dependency of the Gutenberg styles.
-		wp_register_style( static::ADMIN_STYLE, trailingslashit( (string) ADVANCED_SIDEBAR_MENU_URL ) . 'resources/css/advanced-sidebar-menu.css', [], ADVANCED_SIDEBAR_MENU_BASIC_VERSION );
+		wp_register_style( static::ADMIN_STYLE, ADVANCED_SIDEBAR_MENU_URL . 'resources/css/advanced-sidebar-menu.css', [], ADVANCED_SIDEBAR_MENU_BASIC_VERSION );
 
 		if ( ! $this->is_webpack_enabled() ) {
 			wp_register_style( static::GUTENBERG_CSS_HANDLE, "{$js_dir}{$file}.css", [
@@ -115,7 +115,7 @@ class Scripts {
 	 * @return void
 	 */
 	public function admin_scripts() {
-		wp_enqueue_script( static::ADMIN_SCRIPT, trailingslashit( ADVANCED_SIDEBAR_MENU_URL ) . 'resources/js/advanced-sidebar-menu.js', [
+		wp_enqueue_script( static::ADMIN_SCRIPT, ADVANCED_SIDEBAR_MENU_URL . 'resources/js/advanced-sidebar-menu.js', [
 			'jquery',
 		], ADVANCED_SIDEBAR_MENU_BASIC_VERSION, false );
 

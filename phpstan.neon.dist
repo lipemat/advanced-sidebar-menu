@@ -1,10 +1,6 @@
 parameters:
     level: 5
     tmpDir: E:/.phpstan
-    dynamicConstantNames:
-        - ADVANCED_SIDEBAR_MENU_URL
-        - ADVANCED_SIDEBAR_MENU_PRO_VERSION
-        - ADVANCED_SIDEBAR_MENU_REQUIRED_PRO_VERSION
     bootstrapFiles:
         - advanced-sidebar-menu.php
     paths:
