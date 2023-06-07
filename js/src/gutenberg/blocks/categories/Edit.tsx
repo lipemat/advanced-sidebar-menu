@@ -86,10 +86,10 @@ const Edit = ( {attributes, setAttributes, clientId, name}: Props ) => {
 					{isScreen( [ 'post' ] ) && <CheckboxControl
 						/* translators: Selected taxonomy plural label */
 						label={sprintf( __( 'Display %s on single posts', 'advanced-sidebar-menu' ), taxonomy?.labels?.name.toLowerCase() ?? '' )}
-						checked={!! attributes.single}
+						checked={attributes.single}
 						onChange={value => {
 							setAttributes( {
-								single: !! value,
+								single: value,
 							} );
 						}}
 					/>}
@@ -102,9 +102,9 @@ const Edit = ( {attributes, setAttributes, clientId, name}: Props ) => {
 							/* translators: Selected taxonomy single label */
 							label={sprintf( __( 'Display each single post\'s %s', 'advanced-sidebar-menu' ), taxonomy?.labels?.name.toLowerCase() ?? '' )}
 							value={attributes.new_widget}
-							options={Object.entries( CONFIG.categories.displayEach ).map( ( [ value, label ] ) => ( {
-								value,
-								label,
+							options={Object.keys( CONFIG.categories.displayEach ).map( ( key: 'list' | 'widget' ) => ( {
+								value: key,
+								label: CONFIG.categories.displayEach[ key ],
 							} ) )}
 							/* eslint-disable-next-line camelcase */
 							onChange={new_widget => setAttributes( {new_widget} )}

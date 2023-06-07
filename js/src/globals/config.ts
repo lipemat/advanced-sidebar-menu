@@ -16,7 +16,10 @@ interface JSConfig {
 		}
 	};
 	categories: {
-		displayEach: { [ value: string ]: string };
+		displayEach: {
+			list: string;
+			widget: string;
+		};
 	};
 	currentScreen: Screen;
 	docs: {

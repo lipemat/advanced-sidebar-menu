@@ -54,7 +54,9 @@ class ErrorBoundary extends Component<{ attributes: Record<string, any>, block: 
 					</h4>
 					<p>
 						Please <a
-							href={addQueryArgs( sanitize( window.location.href ), {'script-debug': true}, )}
+							href={addQueryArgs( sanitize( window.location.href ), {
+								'script-debug': 'true',
+							}, )}
 						>enable script debug</a> to retrieve error information.
 					</p>
 				</div> );
