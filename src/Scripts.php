@@ -142,12 +142,12 @@ class Scripts {
 	 * Provides a consistent interface for determining considerations
 	 * when Webpack is enabled.
 	 *
-	 * @since 9.0.0.
+	 * @since 9.0.0
 	 *
 	 * @return bool
 	 */
 	public function is_webpack_enabled() {
-		return SCRIPT_DEBUG && has_filter( 'advanced-sidebar-menu/js-dir' );
+		return SCRIPT_DEBUG && file_exists( ADVANCED_SIDEBAR_MENU_DIR . '/js/dist/.running' );
 	}
 
 
