@@ -1,6 +1,7 @@
 name: Plugin asset/readme update
 env:
   IGNORE_OTHER_FILES: true
+  TZ: 'America/Chicago'
 
 on:
   push:
