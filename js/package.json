@@ -24,6 +24,7 @@
     "@lipemat/js-boilerplate": "^9.3.0",
     "@lipemat/js-boilerplate-gutenberg": "^2.11.0",
     "@lipemat/stylelint-config": "^1.4.1",
+    "@types/dompurify": "^3.0.1",
     "@types/jquery": "^3",
     "@types/lipemat__js-boilerplate": "lipemat/types-js-boilerplate#semver:^2",
     "@types/lodash": "^4.14.182",

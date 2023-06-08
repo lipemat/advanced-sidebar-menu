@@ -770,6 +770,10 @@ function $$SETUP_STATE(hydrateRuntimeState, basePath) {
         "npm:1.3.5"\
       ],\
       [\
+        "@types/dompurify",\
+        "npm:3.0.2"\
+      ],\
+      [\
         "@types/eslint",\
         "npm:8.4.3"\
       ],\
@@ -960,6 +964,10 @@ function $$SETUP_STATE(hydrateRuntimeState, basePath) {
       [\
         "@types/tough-cookie",\
         "npm:4.0.2"\
+      ],\
+      [\
+        "@types/trusted-types",\
+        "npm:2.0.3"\
       ],\
       [\
         "@types/webpack-env",\
@@ -4278,6 +4286,7 @@ function $$SETUP_STATE(hydrateRuntimeState, basePath) {
             ["@lipemat/js-boilerplate", "npm:9.3.0"],\
             ["@lipemat/js-boilerplate-gutenberg", "virtual:3ba643f9797e66ff36745c8831d7b481c8461f8796976105d977ed697b1503bc1aac4e4723d6c88131f394a861739d3190eb8c5f40d049cf9141692aeb98caa3#npm:2.11.0"],\
             ["@lipemat/stylelint-config", "virtual:3ba643f9797e66ff36745c8831d7b481c8461f8796976105d977ed697b1503bc1aac4e4723d6c88131f394a861739d3190eb8c5f40d049cf9141692aeb98caa3#npm:1.4.1"],\
+            ["@types/dompurify", "npm:3.0.2"],\
             ["@types/jquery", "npm:3.5.14"],\
             ["@types/lipemat__js-boilerplate", "https://github.com/lipemat/types-js-boilerplate.git#commit=5207683dfc5dfca4bd8fcdd93684225ee21dc2a6"],\
             ["@types/lodash", "npm:4.14.182"],\
@@ -8523,6 +8532,7 @@ function $$SETUP_STATE(hydrateRuntimeState, basePath) {
             ["@lipemat/js-boilerplate", "npm:9.3.0"],\
             ["@lipemat/js-boilerplate-gutenberg", "virtual:3ba643f9797e66ff36745c8831d7b481c8461f8796976105d977ed697b1503bc1aac4e4723d6c88131f394a861739d3190eb8c5f40d049cf9141692aeb98caa3#npm:2.11.0"],\
             ["@lipemat/stylelint-config", "virtual:3ba643f9797e66ff36745c8831d7b481c8461f8796976105d977ed697b1503bc1aac4e4723d6c88131f394a861739d3190eb8c5f40d049cf9141692aeb98caa3#npm:1.4.1"],\
+            ["@types/dompurify", "npm:3.0.2"],\
             ["@types/jquery", "npm:3.5.14"],\
             ["@types/lipemat__js-boilerplate", "https://github.com/lipemat/types-js-boilerplate.git#commit=5207683dfc5dfca4bd8fcdd93684225ee21dc2a6"],\
             ["@types/lodash", "npm:4.14.182"],\
@@ -8687,6 +8697,16 @@ function $$SETUP_STATE(hydrateRuntimeState, basePath) {
             ["@types/connect-history-api-fallback", "npm:1.3.5"],\
             ["@types/express-serve-static-core", "npm:4.17.29"],\
             ["@types/node", "npm:18.0.0"]\
+          ],\
+          "linkType": "HARD"\
+        }]\
+      ]],\
+      ["@types/dompurify", [\
+        ["npm:3.0.2", {\
+          "packageLocation": "./.yarn/cache/@types-dompurify-npm-3.0.2-57e9f73fdf-dc017e16a4.zip/node_modules/@types/dompurify/",\
+          "packageDependencies": [\
+            ["@types/dompurify", "npm:3.0.2"],\
+            ["@types/trusted-types", "npm:2.0.3"]\
           ],\
           "linkType": "HARD"\
         }]\
@@ -9207,6 +9227,15 @@ function $$SETUP_STATE(hydrateRuntimeState, basePath) {
           "packageLocation": "./.yarn/cache/@types-tough-cookie-npm-4.0.2-9e61f877e6-e055556ffd.zip/node_modules/@types/tough-cookie/",\
           "packageDependencies": [\
             ["@types/tough-cookie", "npm:4.0.2"]\
+          ],\
+          "linkType": "HARD"\
+        }]\
+      ]],\
+      ["@types/trusted-types", [\
+        ["npm:2.0.3", {\
+          "packageLocation": "./.yarn/cache/@types-trusted-types-npm-2.0.3-225cf76fb4-4794804bc4.zip/node_modules/@types/trusted-types/",\
+          "packageDependencies": [\
+            ["@types/trusted-types", "npm:2.0.3"]\
           ],\
           "linkType": "HARD"\
         }]\
