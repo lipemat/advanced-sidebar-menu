@@ -107,7 +107,7 @@ const Display = ( {
 
 			{children}
 
-			<ErrorBoundary attributes={attributes} block={name}>
+			<ErrorBoundary attributes={attributes} block={name} section={'Display/slots'}>
 				{CONFIG.blocks.pages.id === name &&
 					<Slot<FillProps>
 						name="advanced-sidebar-menu/pages/display"

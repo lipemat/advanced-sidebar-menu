@@ -67,13 +67,13 @@ const Edit = ( {attributes, setAttributes, clientId, name}: Props ) => {
 
 	return ( <>
 		<InspectorControls>
-			<ErrorBoundary attributes={attributes} block={name}>
-				{isScreen( [ 'widgets', 'site-editor', 'customize' ] ) && <PanelBody>
-					<TextControl
-						value={attributes.title ?? ''}
-						label={__( 'Title', 'advanced-sidebar-menu' )}
-						onChange={title => setAttributes( {title} )} />
-				</PanelBody>}
+			{isScreen( [ 'widgets', 'site-editor', 'customize' ] ) && <PanelBody>
+				<TextControl
+					value={attributes.title ?? ''}
+					label={__( 'Title', 'advanced-sidebar-menu' )}
+					onChange={title => setAttributes( {title} )} />
+			</PanelBody>}
+			<ErrorBoundary attributes={attributes} block={name} section={'pages/Edit/general'}>
 				<Display
 					attributes={attributes}
 					clientId={clientId}
@@ -121,7 +121,8 @@ const Edit = ( {attributes, setAttributes, clientId, name}: Props ) => {
 						</a>
 					</p>
 				</div>
-
+			</ErrorBoundary>
+			<ErrorBoundary attributes={attributes} block={name} section={'pages/Edit/inspector'}>
 				<Slot<FillProps>
 					name="advanced-sidebar-menu/pages/inspector"
 					fillProps={fillProps} />
@@ -130,7 +131,11 @@ const Edit = ( {attributes, setAttributes, clientId, name}: Props ) => {
 		</InspectorControls>
 
 		<BlockControls>
-			<ErrorBoundary attributes={attributes} block={name}>
+			<ErrorBoundary
+				attributes={attributes}
+				block={name}
+				section={'pages/Edit/block-controls'}
+			>
 				<Slot<FillProps>
 					name="advanced-sidebar-menu/pages/block-controls"
 					fillProps={fillProps} />
@@ -139,7 +144,7 @@ const Edit = ( {attributes, setAttributes, clientId, name}: Props ) => {
 
 		<InfoPanel clientId={clientId} />
 
-		<ErrorBoundary attributes={attributes} block={name}>
+		<ErrorBoundary attributes={attributes} block={name} section={'pages/Edit/preview'}>
 			<Preview<Attr> attributes={attributes} block={block.id} clientId={clientId} />
 		</ErrorBoundary>
 

@@ -1,7 +1,13 @@
-import {Component, ErrorInfo} from 'react';
+import {Component, ErrorInfo, PropsWithChildren} from 'react';
 import {CONFIG} from '../globals/config';
 import {addQueryArgs} from '@wordpress/url';
 import {sanitize} from 'dompurify';
+
+type Props = {
+	attributes: Record<string, any>,
+	block: string;
+	section: string;
+}
 
 /**
  * Wrap any component in me, which may throw errors, and I will
@@ -12,7 +18,10 @@ import {sanitize} from 'dompurify';
  *
  * @link https://reactjs.org/docs/error-boundaries.html#introducing-error-boundaries
  */
-class ErrorBoundary extends Component<{ attributes: Record<string, any>, block: string }, { hasError: boolean, error: Error | null }> {
+class ErrorBoundary extends Component<PropsWithChildren<Props>, {
+	hasError: boolean,
+	error: Error | null
+}> {
 	constructor( props ) {
 		super( props );
 		this.state = {
@@ -90,7 +99,20 @@ class ErrorBoundary extends Component<{ attributes: Record<string, any>, block: 
 							padding: '10px',
 							width: '100%',
 							overflowWrap: 'break-word',
-						}}>
+						}}
+					>
+						<p>
+							<strong><em>Section</em></strong> <br />
+							<code>
+								{this.props.section}
+							</code>
+						</p>
+						<p>
+							<strong><em>Screen</em></strong> <br />
+							<code>
+								{CONFIG.currentScreen}
+							</code>
+						</p>
 						<p>
 							<strong><em>Message</em></strong> <br />
 							<code>

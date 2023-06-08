@@ -26,7 +26,7 @@ interface JSConfig {
 		page: string;
 		category: string;
 	};
-	error: false | string;
+	error: string;
 	ErrorBoundary: ComponentClass<{ attributes: Record<string, any>, block: string }>;
 	features: Array<string>;
 	isPro: boolean;
