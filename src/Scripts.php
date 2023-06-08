@@ -21,10 +21,11 @@ class Scripts {
 
 
 	/**
-	 * Add various scripts to the cue.
+	 * Add various scripts to the queue.
 	 */
 	public function hook() {
 		add_action( 'init', [ $this, 'register_gutenberg_scripts' ] );
+		add_action( 'enqueue_block_editor_assets', [ $this, 'use_development_version_of_react' ] );
 		add_action( 'admin_enqueue_scripts', [ $this, 'admin_scripts' ] );
 
 		// Elementor support.
@@ -131,8 +132,14 @@ class Scripts {
 	 * @return bool
 	 */
 	public function is_script_debug_enabled() {
-		//phpcs:ignore WordPress.Security.NonceVerification.Recommended
-		return ( \defined( 'SCRIPT_DEBUG' ) && SCRIPT_DEBUG ) || ! empty( $_GET['script-debug'] );
+		if ( SCRIPT_DEBUG ) {
+			return true;
+		}
+		//phpcs:ignore -- Not using nonce because users enter manually in url.
+		if ( isset( $_GET['script-debug'] ) && 'true' === $_GET['script-debug'] ) {
+			return true;
+		}
+		return false;
 	}
 
 
@@ -148,6 +155,35 @@ class Scripts {
 	 */
 	public function is_webpack_enabled() {
 		return SCRIPT_DEBUG && file_exists( ADVANCED_SIDEBAR_MENU_DIR . '/js/dist/.running' );
+	}
+
+
+	/**
+	 * Use the development version of React to improve our ErrorBoundary data.
+	 *
+	 * Provides more useful debugging information.
+	 *
+	 * - Do not change if we are already on SCRIPT_DEBUG.
+	 * - Do not change if our custom `$_GET['script-debug']` is not available.
+	 * - Only available in the context of Gutenberg.
+	 *
+	 * @since 9.0.10
+	 *
+	 * @return void
+	 */
+	public function use_development_version_of_react() {
+		if ( SCRIPT_DEBUG || ! $this->is_script_debug_enabled() ) {
+			return;
+		}
+
+		$script = wp_scripts()->query( 'react', 'scripts' );
+		if ( is_a( $script, \_WP_Dependency::class ) ) {
+			$script->src = \str_replace( wp_scripts_get_suffix(), '', $script->src );
+		}
+		$script = wp_scripts()->query( 'react-dom', 'scripts' );
+		if ( is_a( $script, \_WP_Dependency::class ) ) {
+			$script->src = \str_replace( wp_scripts_get_suffix(), '', $script->src );
+		}
 	}
 
 
