@@ -40,26 +40,27 @@ function exit_reset_colors() {
 
 # Must run them consecutively to prevent conflicts.
 function php_units() {
-	php_unit 'phpunit 7.0'
-	php_unit 'phpunit 8.1'
+	php_unit 'phpunit 7.0' 'phpunit-legacy.xml.dist'
+	php_unit 'phpunit 7.0' 'phpunit.xml.dist'
+	php_unit 'phpunit 8.1' 'phpunit.xml.dist'
 }
 
 function php_unit() {
-    if [[ "$PHP_FILES" ]]; then
-        if [[ ! -f ../advanced-sidebar-menu-pro/dev/wp-unit/phpunit.xml.dist ]]; then
-           	echo "${YELLOW}[pre-commit]${RED} ../advanced-sidebar-menu-pro/dev/wp-unit/phpunit.xml.dist not found!"
-            exit_reset_colors
-        fi
-        echo "${YELLOW}[pre-commit]${BLUE} Running ${1}... ${WHITE}"
-        OUTPUT=$(${1} --configuration ../advanced-sidebar-menu-pro/dev/wp-unit/phpunit.xml.dist)
-        if [[ $? != 0 ]]; then
-            echo
-            echo "${BLUE}${1} Failed! Fix the error before commit!"
-            echo "${RED}$OUTPUT"
-            exit_reset_colors
-        fi
-        echo "${YELLOW}[pre-commit]${GREEN} ${1} Tests Passed!${RESET_COLOR}"
-    fi
+	if [[ "$PHP_FILES" ]]; then
+		if [[ ! -f ../advanced-sidebar-menu-pro/dev/wp-unit/${2} ]]; then
+			echo "${YELLOW}[pre-commit]${RED} ../advanced-sidebar-menu-pro/dev/wp-unit/${2} not found!"
+			exit_reset_colors
+		fi
+		echo "${YELLOW}[pre-commit]${BLUE} Running ${1} ${2}... ${WHITE}"
+		OUTPUT=$(${1} --configuration ../advanced-sidebar-menu-pro/dev/wp-unit/${2})
+		if [[ $? != 0 ]]; then
+			echo
+			echo "${BLUE}${1} ${2} Failed! Fix the error before commit!"
+			echo "${RED}$OUTPUT"
+			exit_reset_colors
+		fi
+		echo "${YELLOW}[pre-commit]${GREEN} ${1} ${2} Tests Passed!${RESET_COLOR}"
+	fi
 }
 php_units &
 
