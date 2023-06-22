@@ -100,9 +100,9 @@ abstract class Block_Abstract {
 	 * Leave existing intact while forcing users to use the block
 	 * instead for new widgets.
 	 *
-	 * @param array $blocks - Excluded blocks.
+	 * @param array|bool $blocks - Excluded blocks.
 	 *
-	 * @return array
+	 * @return array|bool
 	 */
 	public function exclude_from_legacy_widgets( $blocks ) {
 		if ( ! \is_array( $blocks ) ) {

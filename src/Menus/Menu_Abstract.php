@@ -70,7 +70,7 @@ abstract class Menu_Abstract {
 	/**
 	 * Get id of the highest level parent item.
 	 *
-	 * @return int
+	 * @return ?int
 	 */
 	abstract public function get_top_parent_id();
 

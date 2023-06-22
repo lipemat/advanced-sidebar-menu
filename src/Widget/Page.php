@@ -313,7 +313,7 @@ class Page extends Widget_Abstract {
 	 * @param array $new_instance - New widget settings.
 	 * @param array $old_instance - Old widget settings.
 	 *
-	 * @return array|mixed
+	 * @return array
 	 */
 	public function update( $new_instance, $old_instance ) {
 		if ( isset( $new_instance['exclude'] ) ) {
@@ -337,7 +337,7 @@ class Page extends Widget_Abstract {
 	 * @return void
 	 */
 	public function widget( $args, $instance ) {
-		$instance = (array) wp_parse_args( $instance, static::$defaults );
+		$instance = wp_parse_args( $instance, static::$defaults );
 		$menu = \Advanced_Sidebar_Menu\Menus\Page::factory( $instance, $args );
 
 		do_action( 'advanced-sidebar-menu/widget/before-render', $menu, $this );

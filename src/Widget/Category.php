@@ -334,7 +334,7 @@ class Category extends Widget_Abstract {
 	 * @param array $new_instance - New widget settings.
 	 * @param array $old_instance - Old widget settings.
 	 *
-	 * @return array|mixed
+	 * @return array
 	 */
 	public function update( $new_instance, $old_instance ) {
 		$new_instance['exclude'] = wp_strip_all_tags( $new_instance['exclude'] );

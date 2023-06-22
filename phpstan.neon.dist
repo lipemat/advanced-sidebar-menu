@@ -1,4 +1,6 @@
 parameters:
+    strictRules:
+        allRules: false
     level: 5
     tmpDir: E:/.phpstan
     bootstrapFiles:

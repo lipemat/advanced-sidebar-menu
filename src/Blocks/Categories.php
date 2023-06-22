@@ -47,7 +47,7 @@ class Categories extends Block_Abstract {
 	 *
 	 * English and translated so both will be searchable.
 	 *
-	 * @return array
+	 * @return array<string>
 	 */
 	public function get_keywords() {
 		$category = get_taxonomy( 'category' );
