@@ -91,6 +91,7 @@ abstract class Block_Abstract {
 		add_filter( 'advanced-sidebar-menu/scripts/js-config', [ $this, 'js_config' ] );
 		add_filter( 'widget_display_callback', [ $this, 'short_circuit_widget_blocks' ], 10, 3 );
 		add_filter( 'widget_types_to_hide_from_legacy_widget_block', [ $this, 'exclude_from_legacy_widgets' ] );
+		add_filter( 'jetpack_widget_visibility_server_side_render_blocks', [ $this, 'add_jetpack_support' ] );
 	}
 
 
@@ -155,6 +156,32 @@ abstract class Block_Abstract {
 
 
 	/**
+	 * Jetpack assumes that no blocks will be using `ServerSideRender` and adds
+	 * a custom `conditions` attribute to all blocks via JS. This causes the
+	 * previews to fail due to invalid attributes.
+	 *
+	 * Only affected when Jetpack's "widget-visibility" module is active.
+	 *
+	 * By including the block name in the list of blocks that use `ServerSideRender`
+	 * Jetpack will add the `conditions` attribute to the block.
+	 *
+	 * @ticket #11837
+	 * @link https://github.com/Automattic/jetpack/pull/31928
+	 *
+	 * @param ?array $blocks Blocks that Jetpack supports.
+	 *
+	 * @return array
+	 */
+	public function add_jetpack_support( $blocks ) : array {
+		if ( ! \is_array( $blocks ) ) {
+			$blocks = [];
+		}
+		$blocks[] = static::NAME;
+		return $blocks;
+	}
+
+
+	/**
 	 * Register the block.
 	 *
 	 * @link   https://developer.wordpress.org/block-editor/reference-guides/block-api/block-metadata/
@@ -202,16 +229,6 @@ abstract class Block_Abstract {
 			],
 			Menu_Abstract::TITLE   => [
 				'type' => 'string',
-			],
-			/**
-			 * UGH! Hack to get around Jetpack's Widget Visibility feature.
-			 * If/When the pull request is merged, switch to the filter.
-			 *
-			 * @ticket #11837
-			 * @link https://github.com/Automattic/jetpack/pull/31928
-			 */
-			'conditions'           => [
-				'type' => 'object',
 			],
 		], $this->get_attributes() );
 	}
