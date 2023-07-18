@@ -188,20 +188,30 @@ abstract class Block_Abstract {
 	 */
 	protected function get_all_attributes() {
 		return \array_merge( [
-			'clientId'           => [
+			'clientId'             => [
 				'type' => 'string',
 			],
 			static::RENDER_REQUEST => [
 				'type' => 'boolean',
 			],
-			'sidebarId'          => [
+			'sidebarId'            => [
 				'type' => 'string',
 			],
-			'style'              => [
+			'style'                => [
 				'type' => 'object',
 			],
-			Menu_Abstract::TITLE => [
+			Menu_Abstract::TITLE   => [
 				'type' => 'string',
+			],
+			/**
+			 * UGH! Hack to get around Jetpack's Widget Visibility feature.
+			 * If/When the pull request is merged, switch to the filter.
+			 *
+			 * @ticket #11837
+			 * @link https://github.com/Automattic/jetpack/pull/31928
+			 */
+			'conditions'           => [
+				'type' => 'object',
 			],
 		], $this->get_attributes() );
 	}
