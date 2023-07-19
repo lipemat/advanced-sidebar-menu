@@ -33,7 +33,7 @@ type Props = PropsWithChildren<{
 
 const checkboxes: { [attr in keyof Partial<DisplayOptions>]: string } = {
 	/* translators: Selected taxonomy single label */
-	include_parent: __( 'Display the highest level parent %s', 'advanced-sidebar-menu' ),
+	include_parent: __( 'Display highest level parent %s', 'advanced-sidebar-menu' ),
 	/* translators: Selected taxonomy single label */
 	include_childless_parent: __( 'Display menu when there is only the parent %s', 'advanced-sidebar-menu' ),
 	/* translators: Selected taxonomy plural label */
@@ -79,9 +79,9 @@ const Display = ( {
 					//eslint-disable-next-line @wordpress/valid-sprintf
 					label={sprintf( checkboxes[ item ], label )}
 					checked={!! attributes[ item ]}
-					onChange={value => {
+					onChange={checked => {
 						setAttributes( {
-							[ item ]: !! value,
+							[ item ]: checked,
 						} );
 					}}
 				/>;

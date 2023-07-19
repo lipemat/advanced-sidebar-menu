@@ -5,7 +5,7 @@ msgstr ""
 "sidebar-menu\n"
 "Plural-Forms: nplurals=INTEGER; plural=EXPRESSION;\n"
 "Project-Id-Version: Advanced Sidebar Menu\n"
-"POT-Creation-Date: 2023-02-07 18:13-0500\n"
+"POT-Creation-Date: 2023-07-19 14:25-0500\n"
 "PO-Revision-Date: 2019-03-05 12:29-0500\n"
 "Last-Translator: \n"
 "Language-Team: \n"
@@ -24,9 +24,10 @@ msgstr ""
 "X-Poedit-SearchPathExcluded-0: *.js\n"
 
 #. translators: Selected taxonomy single label
-#: js/src/gutenberg/blocks/Display.tsx:36 src/Widget/Category.php:140
+#. translators: Selected post type single label
+#: js/src/gutenberg/blocks/Display.tsx:36 src/Widget/Page.php:139
 #, javascript-format, php-format
-msgid "Display the highest level parent %s"
+msgid "Display highest level parent %s"
 msgstr ""
 
 #. translators: Selected taxonomy single label
@@ -106,8 +107,8 @@ msgid ""
 "when %3$sediting a %2$s%4$s."
 msgstr ""
 
-#: js/src/gutenberg/blocks/categories/Edit.tsx:70
-#: js/src/gutenberg/blocks/pages/Edit.tsx:74 src/Widget/Category.php:305
+#: js/src/gutenberg/blocks/categories/Edit.tsx:69
+#: js/src/gutenberg/blocks/pages/Edit.tsx:73 src/Widget/Category.php:305
 #: src/Widget/Page.php:116 src/Widget/Page.php:286
 msgid "Title"
 msgstr ""
@@ -142,10 +143,6 @@ msgstr ""
 
 #: js/src/gutenberg/blocks/pages/Edit.tsx:91 src/Widget/Page.php:221
 msgid "Order by"
-msgstr ""
-
-#: src/Blocks/Block_Abstract.php:258
-msgid "This block requires WordPress version 5.6!"
 msgstr ""
 
 #: src/Blocks/Categories.php:25 src/Blocks/Pages.php:25
@@ -233,6 +230,12 @@ msgstr ""
 msgid "In another list in the same widget"
 msgstr ""
 
+#. translators: Selected taxonomy single label
+#: src/Widget/Category.php:140
+#, php-format
+msgid "Display the highest level parent %s"
+msgstr ""
+
 #: src/Widget/Page.php:48
 msgid "Creates a menu of all the pages using the parent/child relationship"
 msgstr ""
@@ -243,12 +246,6 @@ msgstr ""
 
 #: src/Widget/Page.php:117
 msgid "Published Date"
-msgstr ""
-
-#. translators: Selected post type single label
-#: src/Widget/Page.php:139
-#, php-format
-msgid "Display highest level parent %s"
 msgstr ""
 
 #. Plugin Name of the plugin/theme

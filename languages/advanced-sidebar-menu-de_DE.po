@@ -1,8 +1,8 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: Advanced Sidebar Menu\n"
-"POT-Creation-Date: 2023-02-07 18:13-0500\n"
-"PO-Revision-Date: 2023-02-07 18:13-0500\n"
+"POT-Creation-Date: 2023-07-19 14:25-0500\n"
+"PO-Revision-Date: 2023-07-19 14:25-0500\n"
 "Last-Translator: Mat Lipe <support@onpointplugins.com>\n"
 "Language-Team: \n"
 "Language: de_DE\n"
@@ -22,9 +22,10 @@ msgstr ""
 "X-Poedit-SearchPathExcluded-0: *.js\n"
 
 #. translators: Selected taxonomy single label
-#: js/src/gutenberg/blocks/Display.tsx:36 src/Widget/Category.php:140
+#. translators: Selected post type single label
+#: js/src/gutenberg/blocks/Display.tsx:36 src/Widget/Page.php:139
 #, javascript-format, php-format
-msgid "Display the highest level parent %s"
+msgid "Display highest level parent %s"
 msgstr "Anzeige der übergeordneten %s der höchsten Ebene"
 
 #. translators: Selected taxonomy single label
@@ -106,8 +107,8 @@ msgstr ""
 "%1$s können auch über die erweiterten Sidebar-Menüeinstellungen aus allen "
 "Menüs ausgeschlossen werden, wenn %3$sbearbeiten einer %2$s%4$s."
 
-#: js/src/gutenberg/blocks/categories/Edit.tsx:70
-#: js/src/gutenberg/blocks/pages/Edit.tsx:74 src/Widget/Category.php:305
+#: js/src/gutenberg/blocks/categories/Edit.tsx:69
+#: js/src/gutenberg/blocks/pages/Edit.tsx:73 src/Widget/Category.php:305
 #: src/Widget/Page.php:116 src/Widget/Page.php:286
 msgid "Title"
 msgstr "Titel"
@@ -142,10 +143,6 @@ msgstr "dokumentation blockieren"
 #: js/src/gutenberg/blocks/pages/Edit.tsx:91 src/Widget/Page.php:221
 msgid "Order by"
 msgstr "Sortieren nach"
-
-#: src/Blocks/Block_Abstract.php:258
-msgid "This block requires WordPress version 5.6!"
-msgstr "Dieser Block erfordert WordPress Version 5.6!"
 
 #: src/Blocks/Categories.php:25 src/Blocks/Pages.php:25
 #: src/Widget/Category.php:52
@@ -243,6 +240,12 @@ msgstr "In einem neuen Widget"
 msgid "In another list in the same widget"
 msgstr "In einer anderen Liste im selben Widget"
 
+#. translators: Selected taxonomy single label
+#: src/Widget/Category.php:140
+#, php-format
+msgid "Display the highest level parent %s"
+msgstr "Anzeige der übergeordneten %s der höchsten Ebene"
+
 #: src/Widget/Page.php:48
 msgid "Creates a menu of all the pages using the parent/child relationship"
 msgstr ""
@@ -256,12 +259,6 @@ msgstr "Seitenreihenfolge"
 #: src/Widget/Page.php:117
 msgid "Published Date"
 msgstr "Veröffentlichungsdatum"
-
-#. translators: Selected post type single label
-#: src/Widget/Page.php:139
-#, php-format
-msgid "Display highest level parent %s"
-msgstr "Anzeige der übergeordneten %s der höchsten Ebene"
 
 #. Plugin Name of the plugin/theme
 msgid "Advanced Sidebar Menu"
@@ -286,6 +283,9 @@ msgstr "OnPoint Plugins"
 #. Author URI of the plugin/theme
 msgid "https://onpointplugins.com"
 msgstr "https://onpointplugins.com"
+
+#~ msgid "This block requires WordPress version 5.6!"
+#~ msgstr "Dieser Block erfordert WordPress Version 5.6!"
 
 #~ msgid "Post type"
 #~ msgstr "Beitragstyp"
