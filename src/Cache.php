@@ -49,6 +49,9 @@ class Cache {
 	 * Retrieve a post's child pages from the cache.
 	 * If no exist in the cache will return false.
 	 *
+	 * @note Once WP 6.2 is the lowest supported version, it may not be necessary to cache
+	 *       as WP_Query will likely handle caching natively.
+	 *
 	 * @param List_Pages $class - Full menu class with all properties set.
 	 *
 	 * @return array|false
