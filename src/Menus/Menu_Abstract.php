@@ -233,7 +233,7 @@ abstract class Menu_Abstract {
 		if ( empty( $this->instance[ static::EXCLUDE ] ) ) {
 			return [];
 		}
-		return \array_map( 'intval', \array_filter( \explode( ',', $this->instance[ static::EXCLUDE ] ), 'is_numeric' ) );
+		return \array_map( '\intval', \array_filter( \explode( ',', $this->instance[ static::EXCLUDE ] ), 'is_numeric' ) );
 	}
 
 

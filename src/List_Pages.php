@@ -74,16 +74,7 @@ class List_Pages {
 		$this->menu = $menu;
 		$this->top_parent_id = $menu->get_top_parent_id();
 		$this->current_page = $menu->get_current_post();
-
-		$args = [
-			'post_type' => $menu->get_post_type(),
-			'orderby'   => $menu->get_order_by(),
-			'order'     => $menu->get_order(),
-			'exclude'   => $menu->get_excluded_ids(),
-			'levels'    => $menu->get_levels_to_display(),
-		];
-
-		$this->args = $this->parse_args( $args );
+		$this->args = $this->parse_args();
 		$this->hook();
 	}
 
@@ -176,9 +167,7 @@ class List_Pages {
 
 
 	/**
-	 * __toString
-	 *
-	 * Magic method to allow using a simple echo to get output
+	 * Magic method to allow using a simple echo to get output.
 	 *
 	 * @return string
 	 */
@@ -188,37 +177,29 @@ class List_Pages {
 
 
 	/**
-	 * Do any adjustments to list page arguments here.
-	 *
-	 * @param array $args - Arguments for the walk_page_tree function.
+	 * Generate the arguments shared by `walk_page_tree` and `get_posts`.
 	 *
 	 * @return array
 	 */
-	protected function parse_args( $args ) {
-		$defaults = [
-			'exclude'          => '',
+	protected function parse_args() {
+		$args = [
 			'echo'             => 0,
-			'order'            => 'ASC',
-			'orderby'          => 'menu_order, title',
-			'walker'           => new Page_Walker(),
-			'link_before'      => '',
-			'link_after'       => '',
-			'title_li'         => '',
-			'levels'           => 100,
+			'exclude'          => $this->menu->get_excluded_ids(),
 			'item_spacing'     => 'preserve',
+			'levels'           => $this->menu->get_levels_to_display(),
+			'order'            => $this->menu->get_order(),
+			'orderby'          => $this->menu->get_order_by(),
+			'post_type'        => $this->menu->get_post_type(),
 			// phpcs:ignore -- Several cases of menu items higher than 100.
 			'posts_per_page'   => 200,
 			'suppress_filters' => false,
+			'title_li'         => '',
+			'walker'           => new Page_Walker(),
 		];
 
-		$args = wp_parse_args( $args, $defaults );
-
-		if ( \is_string( $args['exclude'] ) ) {
-			$args['exclude'] = explode( ',', $args['exclude'] );
-		}
-		// Sanitize, mostly to keep spaces out.
-		//phpcs:ignore WordPress.NamingConventions.PrefixAllGlobals.NonPrefixedHooknameFound
-		$args['exclude'] = \preg_replace( '/[^0-9,]/', '', \implode( ',', apply_filters( 'wp_list_pages_excludes', $args['exclude'] ) ) );
+		//phpcs:ignore -- Using WP core filter for `wp_list_pages` compatibility.
+		$args['exclude'] = apply_filters( 'wp_list_pages_excludes', wp_parse_id_list( $args['exclude'] ) );
+		$args['exclude'] = \implode( ',', $args['exclude'] );
 
 		return apply_filters( 'advanced-sidebar-menu/list-pages/parse-args', $args, $this );
 	}
@@ -361,8 +342,6 @@ class List_Pages {
 	 * List Pages Factory
 	 *
 	 * @param Page $menu - Menu class.
-	 *
-	 * @static
 	 *
 	 * @return List_Pages
 	 */
