@@ -206,13 +206,14 @@ class List_Pages {
 			'title_li'         => '',
 			'levels'           => 100,
 			'item_spacing'     => 'preserve',
-			'posts_per_page'   => 100,
+			// phpcs:ignore -- Several cases of menu items higher than 100.
+			'posts_per_page'   => 200,
 			'suppress_filters' => false,
 		];
 
-		$args = (array) wp_parse_args( $args, $defaults );
+		$args = wp_parse_args( $args, $defaults );
 
-		if ( is_string( $args['exclude'] ) ) {
+		if ( \is_string( $args['exclude'] ) ) {
 			$args['exclude'] = explode( ',', $args['exclude'] );
 		}
 		// Sanitize, mostly to keep spaces out.
