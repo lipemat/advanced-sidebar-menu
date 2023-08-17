@@ -23,7 +23,7 @@ class Notice {
 		add_action( 'advanced-sidebar-menu/widget/category/right-column', [ $this, 'info_panel' ], 1, 2 );
 		add_action( 'advanced-sidebar-menu/widget/page/right-column', [ $this, 'info_panel' ], 1, 2 );
 
-		add_filter( 'plugin_action_links_' . Core::PLUGIN_FILE, [ $this, 'plugin_action_link' ] );
+		add_filter( 'plugin_action_links_' . Core::PLUGIN_FILE, [ $this, 'plugin_action_link' ], 11 );
 
 		if ( $this->is_conflicting_pro_version() ) {
 			add_action( 'all_admin_notices', [ $this, 'pro_version_warning' ] );
@@ -38,7 +38,7 @@ class Notice {
 	 * @return bool
 	 */
 	public function is_conflicting_pro_version() {
-		return defined( 'ADVANCED_SIDEBAR_MENU_PRO_VERSION' ) && version_compare( ADVANCED_SIDEBAR_MENU_REQUIRED_PRO_VERSION, ADVANCED_SIDEBAR_MENU_PRO_VERSION, '>' );
+		return \defined( 'ADVANCED_SIDEBAR_MENU_PRO_VERSION' ) && version_compare( ADVANCED_SIDEBAR_MENU_REQUIRED_PRO_VERSION, ADVANCED_SIDEBAR_MENU_PRO_VERSION, '>' );
 	}
 
 
@@ -86,7 +86,7 @@ class Notice {
 			</div>
 			<?php
 		}
-		if ( defined( 'ADVANCED_SIDEBAR_MENU_PRO_VERSION' ) ) {
+		if ( \defined( 'ADVANCED_SIDEBAR_MENU_PRO_VERSION' ) ) {
 			return;
 		}
 
