@@ -20,7 +20,9 @@
 	<config name="minimum_supported_wp_version" value="5.7" />
 	<config name="testVersion" value="7.0-" />
 
-	<rule ref="LipePlugin" />
+	<rule ref="LipePlugin">
+		<exclude name="Lipe.Performance.PostNotIn.exclude" />
+	</rule>
 
 	<rule ref="WordPress.NamingConventions.PrefixAllGlobals">
 		<properties>
