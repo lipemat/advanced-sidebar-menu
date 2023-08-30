@@ -163,9 +163,9 @@ Yes. Based on whatever page, post or category you are on, the menu will change a
 
 == Changelog ==
 = 9.0.11 =
-* Change default limit of child pages to 200 instead of 100.
-* Simplify and improve the `List_Pages::parse_args` method.
-* Add links to documentation in the plugins list.
+* Changed default limit of child pages to 200 instead of 100.
+* Simplified and improved the `List_Pages::parse_args` method.
+* Added links to documentation in the plugins list.
 * Tested to WordPress core 6.3.1.
 
 = 9.0.10 =
