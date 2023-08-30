@@ -16,11 +16,11 @@ License URI: http://www.gnu.org/licenses/gpl-3.0.html
 
 Uses the parent/child relationship of your pages or categories to generate menus based on the current section of your site. Assign a page or category to a parent and this will do the rest for you.
 
-Keeps the menu clean and usable. Only related items display, so you don't have to worry about keeping a custom menu up to date or displaying links to items that don't belong. 
+Keeps the menu clean and usable. Only related items display, so you don't have to worry about keeping a custom menu up to date or displaying links to items that don't belong.
 
-<strong>Check out <a href="https://onpointplugins.com/product/advanced-sidebar-menu-pro/">Advanced Sidebar Menu PRO</a> for more features including accordion menus, menu colors and styles, custom link text, excluding of pages, category ordering, custom post types, custom taxonomies, priority support, and so much more!</strong>
+<strong>Check out <a href="https://onpointplugins.com/product/advanced-sidebar-menu-pro/?utm_source=readme&utm_campaign=gopro&utm_medium=dot-org">Advanced Sidebar Menu PRO</a> for more features including accordion menus, menu colors and styles, custom link text, excluding of pages, category ordering, custom post types, custom taxonomies, priority support, and so much more!</strong>
 
-<blockquote><a href="https://onpointplugins.com/product/advanced-sidebar-menu-pro/" target="_blank">PRO version 9.1.0</a> is now available with category counts, custom titles and exclusions!</blockquote>
+<blockquote><a href="https://onpointplugins.com/product/advanced-sidebar-menu-pro/?utm_source=readme&utm_campaign=gopro&utm_medium=dot-org" target="_blank">PRO version 9.1.0</a> is now available with category counts, custom titles and exclusions!</blockquote>
 
 <h3>Features</h3>
 * Page and Category widgets.
@@ -143,11 +143,9 @@ For example the following CSS would:
 .advanced-sidebar-menu li.current-menu-item a {
     color: black;
 }
-
 .advanced-sidebar-menu li.current-menu-item {
     list-style-type: none !important;
 }
-
 .advanced-sidebar-menu li.current-menu-item > a:hover {
 	background: teal;
 }
