@@ -106,5 +106,4 @@ class Pages extends Block_Abstract {
 	protected function get_widget_class() {
 		return new Page();
 	}
-
 }

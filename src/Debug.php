@@ -77,7 +77,7 @@ class Debug {
 	 *
 	 * @return array
 	 */
-	public function get_site_info() : array {
+	public function get_site_info(): array {
 		$data = [
 			'basic'          => ADVANCED_SIDEBAR_MENU_BASIC_VERSION,
 			'classicWidgets' => is_plugin_active( 'classic-widgets/classic-widgets.php' ),

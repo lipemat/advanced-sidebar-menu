@@ -198,5 +198,4 @@ class Notice {
 			__( 'Priority support with access to members only support area.', 'advanced-sidebar-menu' ),
 		];
 	}
-
 }

@@ -118,5 +118,4 @@ class Categories extends Block_Abstract {
 	protected function get_widget_class() {
 		return new Category();
 	}
-
 }

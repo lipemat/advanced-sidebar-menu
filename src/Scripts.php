@@ -242,5 +242,4 @@ class Scripts {
 		</script>
 		<?php
 	}
-
 }

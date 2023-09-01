@@ -361,5 +361,4 @@ class Category extends Widget_Abstract {
 
 		do_action( 'advanced-sidebar-menu/widget/after-render', $menu, $this );
 	}
-
 }

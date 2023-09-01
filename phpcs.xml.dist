@@ -3,7 +3,7 @@
 	<!-- See https://github.com/squizlabs/PHP_CodeSniffer/wiki/Annotated-ruleset.xml -->
 
 	<description>Ruleset for the Advanced Sidebar Menu plugin.</description>
-	<version>4.0.0</version>
+	<version>4.1.0</version>
 
 	<!-- Include when not specified -->
 	<file>./src</file>
@@ -16,17 +16,21 @@
 	<!-- Cache between runs -->
 	<arg name="cache" value="./.phpcs.cache" />
 
+	<!-- @see https://github.com/WordPress/WordPress-Coding-Standards/wiki/Customizable-sniff-properties#various-sniffs-set-the-minimum-supported-wp-version -->
+	<config name="minimum_supported_wp_version" value="5.8" />
+	<config name="minimum_wp_version" value="5.8" />
+
 	<!-- @see https://github.com/PHPCompatibility/PHPCompatibilityWP#how-to-use -->
-	<config name="minimum_supported_wp_version" value="5.7" />
 	<config name="testVersion" value="7.0-" />
 
 	<rule ref="LipePlugin">
-		<exclude name="Lipe.Performance.PostNotIn.exclude" />
+		<exclude name="Lipe.Performance.PostNotIn.exclude_exclude" />
 	</rule>
 
 	<rule ref="WordPress.NamingConventions.PrefixAllGlobals">
 		<properties>
 			<property name="prefixes" type="array">
+				<element value="Advanced_Sidebar_Menu" />
 				<element value="OnPoint_Plugins" />
 				<element value="advanced_sidebar_menu" />
 				<element value="advanced-sidebar-menu" />

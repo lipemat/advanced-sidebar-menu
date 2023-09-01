@@ -1,4 +1,5 @@
 <?php
+//phpcs:disable Universal.CodeAnalysis.ConstructorDestructorReturn.ReturnValueFound -- Not a constructor.
 
 namespace Advanced_Sidebar_Menu;
 
@@ -224,7 +225,7 @@ class List_Pages {
 	 *
 	 * @return string
 	 */
-	public function list_pages() : string {
+	public function list_pages() {
 		$pages = $this->get_child_pages( $this->top_parent_id, true );
 		foreach ( $pages as $page ) {
 			$this->output .= walk_page_tree( [ $page ], 1, $this->get_current_page_id(), $this->args );
@@ -285,7 +286,7 @@ class List_Pages {
 	 *
 	 * @return \WP_Post[]
 	 */
-	public function get_child_pages( $parent_page_id, $is_first_level = false ) : array {
+	public function get_child_pages( $parent_page_id, $is_first_level = false ): array {
 		// Holds a unique key so cache can distinguish calls.
 		$this->current_children_parent = $parent_page_id;
 
@@ -318,7 +319,7 @@ class List_Pages {
 	 *
 	 * @return bool
 	 */
-	public function is_current_page_ancestor( $page_id ) : bool {
+	public function is_current_page_ancestor( $page_id ): bool {
 		$return = false;
 		$current_page_id = $this->get_current_page_id();
 		if ( ! empty( $current_page_id ) ) {
@@ -345,8 +346,7 @@ class List_Pages {
 	 *
 	 * @return List_Pages
 	 */
-	public static function factory( Page $menu ) : List_Pages {
+	public static function factory( Page $menu ): List_Pages {
 		return new static( $menu );
 	}
-
 }

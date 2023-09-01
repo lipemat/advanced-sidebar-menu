@@ -172,7 +172,7 @@ abstract class Block_Abstract {
 	 *
 	 * @return array
 	 */
-	public function add_jetpack_support( $blocks ) : array {
+	public function add_jetpack_support( $blocks ): array {
 		if ( ! \is_array( $blocks ) ) {
 			$blocks = [];
 		}
@@ -342,5 +342,4 @@ abstract class Block_Abstract {
 		$widget->widget( $this->widget_args, $this->convert_checkbox_values( $attr ) );
 		return ob_get_clean();
 	}
-
 }

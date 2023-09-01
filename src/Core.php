@@ -96,7 +96,7 @@ class Core {
 	 *
 	 * @return array
 	 */
-	public function plugin_action_links( array $actions ) : array {
+	public function plugin_action_links( array $actions ): array {
 		$actions['documentation'] = sprintf( '<a href="%1$s%2$s" target="_blank">%3$s</a>',
 			$this->get_documentation_url(), '?utm_source=wp-plugins&utm_campaign=documentation&utm_medium=wp-dash', __( 'Documentation', 'advanced-sidebar-menu' ) );
 

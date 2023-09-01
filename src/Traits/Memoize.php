@@ -65,6 +65,7 @@ trait Memoize {
 			$this->memoize_cache[ $key ] = $fn( $args );
 		}
 
+		//phpcs:ignore Universal.CodeAnalysis.ConstructorDestructorReturn.ReturnValueFound -- Not a constructor.
 		return $this->memoize_cache[ $key ];
 	}
 

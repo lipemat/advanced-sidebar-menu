@@ -603,5 +603,4 @@ class Category extends Menu_Abstract {
 		echo $this->args['after_widget'];
 		//phpcs:enable WordPress.Security.EscapeOutput
 	}
-
 }

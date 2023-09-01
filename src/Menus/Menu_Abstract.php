@@ -147,7 +147,7 @@ abstract class Menu_Abstract {
 			$suffix = 2;
 			do {
 				$alt_widget_id = $this->args['widget_id'] . "-$suffix";
-				$suffix ++;
+				++$suffix;
 			} while ( \in_array( $alt_widget_id, static::$unique_widget_ids, true ) );
 			$this->args['widget_id'] = $alt_widget_id;
 			static::$unique_widget_ids[] = $alt_widget_id;
