@@ -1,8 +1,8 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: Advanced Sidebar Menu\n"
-"POT-Creation-Date: 2023-07-19 14:25-0500\n"
-"PO-Revision-Date: 2023-07-19 14:25-0500\n"
+"POT-Creation-Date: 2023-09-06 16:09-0500\n"
+"PO-Revision-Date: 2023-09-06 16:09-0500\n"
 "Last-Translator: \n"
 "Language-Team: \n"
 "Language: es_ES\n"
@@ -171,9 +171,13 @@ msgstr "término"
 msgid "pages"
 msgstr "páginas"
 
-#: src/Core.php:49
+#: src/Core.php:61
 msgid "widget documentation"
 msgstr "documentación del widget"
+
+#: src/Core.php:101
+msgid "Documentation"
+msgstr "Documentación"
 
 #. translators: Link to PRO plugin {%1$s}[<a href="https://onpointplugins.com/product/advanced-sidebar-menu-pro/">]{%2$s}[</a>]
 #: src/Notice.php:69

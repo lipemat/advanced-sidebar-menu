@@ -5,7 +5,7 @@ msgstr ""
 "sidebar-menu\n"
 "Plural-Forms: nplurals=INTEGER; plural=EXPRESSION;\n"
 "Project-Id-Version: Advanced Sidebar Menu\n"
-"POT-Creation-Date: 2023-07-19 14:25-0500\n"
+"POT-Creation-Date: 2023-09-06 16:07-0500\n"
 "PO-Revision-Date: 2019-03-05 12:29-0500\n"
 "Last-Translator: \n"
 "Language-Team: \n"
@@ -171,8 +171,12 @@ msgstr ""
 msgid "pages"
 msgstr ""
 
-#: src/Core.php:49
+#: src/Core.php:61
 msgid "widget documentation"
+msgstr ""
+
+#: src/Core.php:101
+msgid "Documentation"
 msgstr ""
 
 #. translators: Link to PRO plugin {%1$s}[<a href="https://onpointplugins.com/product/advanced-sidebar-menu-pro/">]{%2$s}[</a>]
