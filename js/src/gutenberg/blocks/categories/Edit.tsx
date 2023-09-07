@@ -15,6 +15,7 @@ import SideLoad from '../../SideLoad';
 import {isScreen} from '../../helpers';
 
 import styles from '../pages/edit.pcss';
+import ExcludeField from '../ExcludeField';
 
 export type FillProps =
 	Pick<BlockEditProps<Attr>, 'clientId' | 'attributes' | 'setAttributes' | 'name'>
@@ -47,19 +48,6 @@ const Edit = ( {attributes, setAttributes, clientId, name}: Props ) => {
 		setAttributes,
 		clientId,
 	};
-
-	const EXCLUDE_HELP = <span
-		dangerouslySetInnerHTML={{ //phpcs:ignore
-			__html: sprintf(
-				/* translators: {taxonomy plural label}, {taxonomy single label}, {<a>}, {</a>} */
-				__( '%1$s may also be excluded from all menus via the Advanced Sidebar settings when %3$sediting a %2$s%4$s.', 'advanced-sidebar-menu' ),
-				taxonomy?.labels?.name ?? '',
-				taxonomy?.labels?.singular_name.toLowerCase() ?? '',
-				'<a href="https://onpointplugins.com/advanced-sidebar-menu/advanced-sidebar-menu-pro-widget-docs/#categories" target="_blank">',
-				'</a>'
-			),
-		}} />;
-
 
 	return ( <>
 		<InspectorControls>
@@ -117,16 +105,10 @@ const Edit = ( {attributes, setAttributes, clientId, name}: Props ) => {
 						name="advanced-sidebar-menu/categories/general"
 						fillProps={fillProps} />
 
-					<TextControl
-						/* translators: Selected post type plural label */
-						label={sprintf( __( '%s to exclude (ids, comma separated)', 'advanced-sidebar-menu' ), taxonomy?.labels?.name ?? '' )}
-						value={attributes.exclude}
-						help={CONFIG.isPro ? EXCLUDE_HELP : ''}
-						onChange={value => {
-							setAttributes( {
-								exclude: value,
-							} );
-						}} />
+					<ExcludeField
+						type={taxonomy}
+						attributes={attributes}
+						setAttributes={setAttributes} />
 
 					<p>
 						<a
