@@ -3,6 +3,8 @@ import {TransformLegacy} from '../gutenberg/helpers';
 
 export type Screen = 'site-editor' | 'widgets' | 'post' | 'customize';
 
+export type WPBoolean = '1' | '';
+
 interface JSConfig {
 	blocks: {
 		categories: {
@@ -29,13 +31,17 @@ interface JSConfig {
 	error: string;
 	ErrorBoundary: ComponentClass<{ attributes: Record<string, any>, block: string }>;
 	features: Array<string>;
-	isPro: boolean;
+	isPostEdit: WPBoolean;
+	isPro: WPBoolean;
+	isWidgets: WPBoolean;
 	pages: {
 		orderBy: { [ value: string ]: string };
 	};
 	Preview: FunctionComponent<any>;
 	siteInfo: {
 		basic: string;
+		classicWidgets: boolean;
+		php: string;
 		pro: string;
 		scriptDebug: boolean;
 		wordpress: string;
