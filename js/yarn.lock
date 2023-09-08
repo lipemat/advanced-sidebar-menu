@@ -2426,7 +2426,7 @@ __metadata:
     eslint: ^8
     react-string-replace: ^1.1.0
     stylelint: ^14
-    typescript: ^4
+    typescript: ^5
   languageName: unknown
   linkType: soft
 
@@ -2788,8 +2788,8 @@ __metadata:
   linkType: hard
 
 "@types/lipemat__js-boilerplate@lipemat/types-js-boilerplate#semver:^2":
-  version: 2.1.3
-  resolution: "@types/lipemat__js-boilerplate@https://github.com/lipemat/types-js-boilerplate.git#commit=5207683dfc5dfca4bd8fcdd93684225ee21dc2a6"
+  version: 2.4.0
+  resolution: "@types/lipemat__js-boilerplate@https://github.com/lipemat/types-js-boilerplate.git#commit=d617e747d23df3fc0da6595693d2e57d593b749e"
   dependencies:
     "@types/codemirror": ^5.60.5
     "@types/jquery": ^3.5.5
@@ -2797,7 +2797,7 @@ __metadata:
     "@types/react-dom": ^16 || ^17 || ^18
     "@types/tinymce": ^4.5.23
     "@types/webpack-env": ^1.18.0
-  checksum: a0e19ee5a1e6485384dcdb72edc10e5ae1f680d0e13707edbb909f8667dba63c90c0526b57bf2c51a110963772b31bb63497ab98a05fe09d75f42a6edac1a65c
+  checksum: 97c3893df4525e842234aa544adc78eb275a54bcf77cb5c8b6d2085bdfd2a6267d7b6b226bb5d793ebf4c879e4d6093255d2e91c7bf359c65b6468c27a7a9440
   languageName: node
   linkType: hard
 
@@ -11769,7 +11769,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"typescript@npm:^4, typescript@npm:^4.2.4":
+"typescript@npm:^4.2.4":
   version: 4.7.4
   resolution: "typescript@npm:4.7.4"
   bin:
@@ -11779,13 +11779,33 @@ __metadata:
   languageName: node
   linkType: hard
 
-"typescript@patch:typescript@^4#~builtin<compat/typescript>, typescript@patch:typescript@^4.2.4#~builtin<compat/typescript>":
+"typescript@npm:^5":
+  version: 5.2.2
+  resolution: "typescript@npm:5.2.2"
+  bin:
+    tsc: bin/tsc
+    tsserver: bin/tsserver
+  checksum: 7912821dac4d962d315c36800fe387cdc0a6298dba7ec171b350b4a6e988b51d7b8f051317786db1094bd7431d526b648aba7da8236607febb26cf5b871d2d3c
+  languageName: node
+  linkType: hard
+
+"typescript@patch:typescript@^4.2.4#~builtin<compat/typescript>":
   version: 4.7.4
   resolution: "typescript@patch:typescript@npm%3A4.7.4#~builtin<compat/typescript>::version=4.7.4&hash=65a307"
   bin:
     tsc: bin/tsc
     tsserver: bin/tsserver
   checksum: 9096d8f6c16cb80ef3bf96fcbbd055bf1c4a43bd14f3b7be45a9fbe7ada46ec977f604d5feed3263b4f2aa7d4c7477ce5f9cd87de0d6feedec69a983f3a4f93e
+  languageName: node
+  linkType: hard
+
+"typescript@patch:typescript@^5#~builtin<compat/typescript>":
+  version: 5.2.2
+  resolution: "typescript@patch:typescript@npm%3A5.2.2#~builtin<compat/typescript>::version=5.2.2&hash=5da071"
+  bin:
+    tsc: bin/tsc
+    tsserver: bin/tsserver
+  checksum: 07106822b4305de3f22835cbba949a2b35451cad50888759b6818421290ff95d522b38ef7919e70fb381c5fe9c1c643d7dea22c8b31652a717ddbd57b7f4d554
   languageName: node
   linkType: hard
 

@@ -33,7 +33,7 @@
     "dompurify": "^3.0.3",
     "eslint": "^8",
     "stylelint": "^14",
-    "typescript": "^4"
+    "typescript": "^5"
   },
   "resolutions": {
     "@types/react": "^17"

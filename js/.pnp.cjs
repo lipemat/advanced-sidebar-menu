@@ -855,7 +855,7 @@ function $$SETUP_STATE(hydrateRuntimeState, basePath) {
       ],\
       [\
         "@types/lipemat__js-boilerplate",\
-        "https://github.com/lipemat/types-js-boilerplate.git#commit=5207683dfc5dfca4bd8fcdd93684225ee21dc2a6"\
+        "https://github.com/lipemat/types-js-boilerplate.git#commit=d617e747d23df3fc0da6595693d2e57d593b749e"\
       ],\
       [\
         "@types/lodash",\
@@ -2072,10 +2072,6 @@ function $$SETUP_STATE(hydrateRuntimeState, basePath) {
       [\
         "follow-redirects",\
         "virtual:a313c479c5c7e54d9ec8fbeeea69ff640f56b8989ea2dff42351a3fa5c4061fb80a52d8ede0f0826a181a216820c2d2c3f15da881e7fdf31cef1c446e42f0c45#npm:1.15.1"\
-      ],\
-      [\
-        "fork-ts-checker-webpack-plugin",\
-        "virtual:7d04162fe5bdec36524983b3750c2e2c6f687c6fec76513264693793ca12dccd3e8103d6e79c1979e9d2f905bed1c5449749035c3ff2ae41b2c7709a382802be#npm:7.3.0"\
       ],\
       [\
         "form-data",\
@@ -4031,7 +4027,7 @@ function $$SETUP_STATE(hydrateRuntimeState, basePath) {
       ],\
       [\
         "typescript",\
-        "patch:typescript@npm%3A4.7.4#~builtin<compat/typescript>::version=4.7.4&hash=65a307"\
+        "patch:typescript@npm%3A5.2.2#~builtin<compat/typescript>::version=5.2.2&hash=5da071"\
       ],\
       [\
         "unbox-primitive",\
@@ -4288,7 +4284,7 @@ function $$SETUP_STATE(hydrateRuntimeState, basePath) {
             ["@lipemat/stylelint-config", "virtual:3ba643f9797e66ff36745c8831d7b481c8461f8796976105d977ed697b1503bc1aac4e4723d6c88131f394a861739d3190eb8c5f40d049cf9141692aeb98caa3#npm:1.4.1"],\
             ["@types/dompurify", "npm:3.0.2"],\
             ["@types/jquery", "npm:3.5.14"],\
-            ["@types/lipemat__js-boilerplate", "https://github.com/lipemat/types-js-boilerplate.git#commit=5207683dfc5dfca4bd8fcdd93684225ee21dc2a6"],\
+            ["@types/lipemat__js-boilerplate", "https://github.com/lipemat/types-js-boilerplate.git#commit=d617e747d23df3fc0da6595693d2e57d593b749e"],\
             ["@types/lodash", "npm:4.14.182"],\
             ["@types/react", "npm:17.0.47"],\
             ["classnames", "npm:2.3.2"],\
@@ -4296,7 +4292,7 @@ function $$SETUP_STATE(hydrateRuntimeState, basePath) {
             ["eslint", "npm:8.18.0"],\
             ["react-string-replace", "npm:1.1.0"],\
             ["stylelint", "npm:14.9.1"],\
-            ["typescript", "patch:typescript@npm%3A4.7.4#~builtin<compat/typescript>::version=4.7.4&hash=65a307"]\
+            ["typescript", "patch:typescript@npm%3A5.2.2#~builtin<compat/typescript>::version=5.2.2&hash=5da071"]\
           ],\
           "linkType": "SOFT"\
         }]\
@@ -8439,7 +8435,7 @@ function $$SETUP_STATE(hydrateRuntimeState, basePath) {
           "packageDependencies": [\
             ["@lipemat/js-boilerplate-gutenberg", "virtual:3ba643f9797e66ff36745c8831d7b481c8461f8796976105d977ed697b1503bc1aac4e4723d6c88131f394a861739d3190eb8c5f40d049cf9141692aeb98caa3#npm:2.11.0"],\
             ["@lipemat/js-boilerplate", "npm:9.3.0"],\
-            ["@types/lipemat__js-boilerplate", "https://github.com/lipemat/types-js-boilerplate.git#commit=5207683dfc5dfca4bd8fcdd93684225ee21dc2a6"]\
+            ["@types/lipemat__js-boilerplate", "https://github.com/lipemat/types-js-boilerplate.git#commit=d617e747d23df3fc0da6595693d2e57d593b749e"]\
           ],\
           "packagePeers": [\
             "@lipemat/js-boilerplate",\
@@ -8534,7 +8530,7 @@ function $$SETUP_STATE(hydrateRuntimeState, basePath) {
             ["@lipemat/stylelint-config", "virtual:3ba643f9797e66ff36745c8831d7b481c8461f8796976105d977ed697b1503bc1aac4e4723d6c88131f394a861739d3190eb8c5f40d049cf9141692aeb98caa3#npm:1.4.1"],\
             ["@types/dompurify", "npm:3.0.2"],\
             ["@types/jquery", "npm:3.5.14"],\
-            ["@types/lipemat__js-boilerplate", "https://github.com/lipemat/types-js-boilerplate.git#commit=5207683dfc5dfca4bd8fcdd93684225ee21dc2a6"],\
+            ["@types/lipemat__js-boilerplate", "https://github.com/lipemat/types-js-boilerplate.git#commit=d617e747d23df3fc0da6595693d2e57d593b749e"],\
             ["@types/lodash", "npm:4.14.182"],\
             ["@types/react", "npm:17.0.47"],\
             ["classnames", "npm:2.3.2"],\
@@ -8542,7 +8538,7 @@ function $$SETUP_STATE(hydrateRuntimeState, basePath) {
             ["eslint", "npm:8.18.0"],\
             ["react-string-replace", "npm:1.1.0"],\
             ["stylelint", "npm:14.9.1"],\
-            ["typescript", "patch:typescript@npm%3A4.7.4#~builtin<compat/typescript>::version=4.7.4&hash=65a307"]\
+            ["typescript", "patch:typescript@npm%3A5.2.2#~builtin<compat/typescript>::version=5.2.2&hash=5da071"]\
           ],\
           "linkType": "SOFT"\
         }]\
@@ -8931,19 +8927,6 @@ function $$SETUP_STATE(hydrateRuntimeState, basePath) {
         }]\
       ]],\
       ["@types/lipemat__js-boilerplate", [\
-        ["https://github.com/lipemat/types-js-boilerplate.git#commit=5207683dfc5dfca4bd8fcdd93684225ee21dc2a6", {\
-          "packageLocation": "./.yarn/cache/@types-lipemat__js-boilerplate-https-9796d3333b-a0e19ee5a1.zip/node_modules/@types/lipemat__js-boilerplate/",\
-          "packageDependencies": [\
-            ["@types/lipemat__js-boilerplate", "https://github.com/lipemat/types-js-boilerplate.git#commit=5207683dfc5dfca4bd8fcdd93684225ee21dc2a6"],\
-            ["@types/codemirror", "npm:5.60.5"],\
-            ["@types/jquery", "npm:3.5.14"],\
-            ["@types/react", "npm:17.0.47"],\
-            ["@types/react-dom", "npm:18.2.4"],\
-            ["@types/tinymce", "npm:4.6.5"],\
-            ["@types/webpack-env", "npm:1.18.1"]\
-          ],\
-          "linkType": "HARD"\
-        }],\
         ["https://github.com/lipemat/types-js-boilerplate.git#commit=74990df3586294095ab2a97f009f6c388fed7812", {\
           "packageLocation": "./.yarn/cache/@types-lipemat__js-boilerplate-https-eab0a7d862-900fa819cd.zip/node_modules/@types/lipemat__js-boilerplate/",\
           "packageDependencies": [\
@@ -8959,6 +8942,19 @@ function $$SETUP_STATE(hydrateRuntimeState, basePath) {
             ["@types/react-transition-group", "npm:4.4.5"],\
             ["@types/tinymce", "npm:4.6.5"],\
             ["@types/webpack-env", "npm:1.17.0"]\
+          ],\
+          "linkType": "HARD"\
+        }],\
+        ["https://github.com/lipemat/types-js-boilerplate.git#commit=d617e747d23df3fc0da6595693d2e57d593b749e", {\
+          "packageLocation": "./.yarn/cache/@types-lipemat__js-boilerplate-https-3e8cf07a6d-97c3893df4.zip/node_modules/@types/lipemat__js-boilerplate/",\
+          "packageDependencies": [\
+            ["@types/lipemat__js-boilerplate", "https://github.com/lipemat/types-js-boilerplate.git#commit=d617e747d23df3fc0da6595693d2e57d593b749e"],\
+            ["@types/codemirror", "npm:5.60.5"],\
+            ["@types/jquery", "npm:3.5.14"],\
+            ["@types/react", "npm:17.0.47"],\
+            ["@types/react-dom", "npm:18.2.4"],\
+            ["@types/tinymce", "npm:4.6.5"],\
+            ["@types/webpack-env", "npm:1.18.1"]\
           ],\
           "linkType": "HARD"\
         }]\
@@ -20185,6 +20181,13 @@ function $$SETUP_STATE(hydrateRuntimeState, basePath) {
           "packageLocation": "./.yarn/cache/typescript-patch-0feff98f1a-9096d8f6c1.zip/node_modules/typescript/",\
           "packageDependencies": [\
             ["typescript", "patch:typescript@npm%3A4.7.4#~builtin<compat/typescript>::version=4.7.4&hash=65a307"]\
+          ],\
+          "linkType": "HARD"\
+        }],\
+        ["patch:typescript@npm%3A5.2.2#~builtin<compat/typescript>::version=5.2.2&hash=5da071", {\
+          "packageLocation": "./.yarn/cache/typescript-patch-10330190f4-07106822b4.zip/node_modules/typescript/",\
+          "packageDependencies": [\
+            ["typescript", "patch:typescript@npm%3A5.2.2#~builtin<compat/typescript>::version=5.2.2&hash=5da071"]\
           ],\
           "linkType": "HARD"\
         }]\
