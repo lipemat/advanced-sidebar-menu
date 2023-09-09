@@ -22,7 +22,7 @@ const ExcludeField = ( {type, attributes, setAttributes}: Props ) => {
 		dangerouslySetInnerHTML={{ //phpcs:ignore
 			__html: sprintf(
 				/* translators: 1: Opening anchor tag, 2: Closing anchor tag */
-				__( 'For more robust and intuitive exclusions use the %1$sPRO version%2$s.', 'advanced-sidebar-menu' ), '<a href="https://onpointplugins.com/advanced-sidebar-menu/advanced-sidebar-menu-pro-widget-docs/?utm_source=exclude-field&utm_campaign=gopro&utm_medium=wp-dash#customize-link-title" target="_blank">', '</a>' ),
+				__( 'For more robust and intuitive exclusions use the %1$sPRO version%2$s.', 'advanced-sidebar-menu' ), '<a href="https://onpointplugins.com/advanced-sidebar-menu/advanced-sidebar-menu-pro-widget-docs/advanced-sidebar-menu-pro-excluding-menu-items/?utm_source=exclude-field&utm_campaign=gopro&utm_medium=wp-dash" target="_blank">', '</a>' ),
 		}} />;
 
 	return (
