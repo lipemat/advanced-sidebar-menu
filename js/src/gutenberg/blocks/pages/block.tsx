@@ -1,7 +1,6 @@
 import {BlockSettings, LegacyWidget} from '@wordpress/blocks';
 import {CONFIG} from '../../../globals/config';
 import Edit from './Edit';
-import {PreviewOptions} from '../Preview';
 import {DisplayOptions} from '../Display';
 import {transformLegacyWidget} from '../../helpers';
 import {__} from '@wordpress/i18n';
@@ -16,8 +15,8 @@ import {__} from '@wordpress/i18n';
 export type Attr = {
 	exclude: string;
 	order_by: string;
-	title: string;
-} & DisplayOptions & ProRegistered & PreviewOptions;
+	title?: string;
+} & DisplayOptions & ProRegistered;
 
 // Options used by basic when available from PRO.
 type ProRegistered = {
@@ -35,27 +34,27 @@ export type setAttributes = ( newValue: {
  * The PRO attributes will only be sent if PRO is active.
  */
 const EXAMPLE = {
-	include_parent: true,
-	include_childless_parent: true,
-	display_all: true,
-	levels: '2',
-	apply_current_page_styles_to_parent: true,
 	apply_current_page_parent_styles_to_parent: true,
+	apply_current_page_styles_to_parent: true,
 	block_style: true,
 	border: true,
 	border_color: '#333',
 	bullet_style: 'none',
-	parent_page_color: '#fff',
-	parent_page_bg_color: '#666',
-	child_page_color: '#fff',
 	child_page_bg_color: '#666',
-	grandchild_page_color: '#282828',
-	grandchild_page_bg_color: '#989898',
-	grandchild_page_font_weight: 'bold',
-	current_page_color: '#0cc4c6',
+	child_page_color: '#fff',
 	current_page_bg_color: '#282828',
+	current_page_color: '#0cc4c6',
 	current_page_font_weight: 'normal',
 	current_page_parent_bg_color: '#333',
+	display_all: true,
+	grandchild_page_bg_color: '#989898',
+	grandchild_page_color: '#282828',
+	grandchild_page_font_weight: 'bold',
+	include_childless_parent: true,
+	include_parent: true,
+	levels: 2,
+	parent_page_bg_color: '#666',
+	parent_page_color: '#fff',
 };
 
 export const block = CONFIG.blocks.pages;
@@ -67,7 +66,7 @@ export const settings: BlockSettings<Attr, '', LegacyWidget<Attr & { title: stri
 	icon: 'welcome-widgets-menus',
 	category: 'widgets',
 	example: {
-		attributes: EXAMPLE as any,
+		attributes: EXAMPLE,
 	},
 	transforms: {
 		from: [

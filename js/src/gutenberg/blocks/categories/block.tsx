@@ -1,4 +1,3 @@
-import {PreviewOptions} from '../Preview';
 import {CONFIG} from '../../../globals/config';
 import {BlockSettings, LegacyWidget} from '@wordpress/blocks';
 import Edit from './Edit';
@@ -16,10 +15,9 @@ import {__} from '@wordpress/i18n';
 export type Attr = {
 	exclude: string;
 	new_widget: 'widget' | 'list';
-	order_by: string;
 	single: boolean;
-	title: string;
-} & DisplayOptions & ProRegistered & PreviewOptions;
+	title?: string;
+} & DisplayOptions & ProRegistered;
 
 // Options used by basic when available from PRO.
 type ProRegistered = {
@@ -55,7 +53,7 @@ const EXAMPLE = {
 	grandchild_page_font_weight: 'bold',
 	include_childless_parent: true,
 	include_parent: true,
-	levels: '2',
+	levels: 2,
 };
 
 
@@ -68,7 +66,7 @@ export const settings: BlockSettings<Attr, '', LegacyWidget<Attr & { title: stri
 	icon: 'welcome-widgets-menus',
 	category: 'widgets',
 	example: {
-		attributes: EXAMPLE as any,
+		attributes: EXAMPLE,
 	},
 	transforms: {
 		from: [

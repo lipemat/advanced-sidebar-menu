@@ -13,9 +13,9 @@ import {PropsWithChildren} from 'react';
 
 
 export type DisplayOptions = {
-	display_all: boolean;
-	include_childless_parent: boolean;
-	include_parent: boolean;
+	display_all?: boolean;
+	include_childless_parent?: boolean;
+	include_parent?: boolean;
 	levels: number;
 }
 

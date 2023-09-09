@@ -29,7 +29,11 @@ interface JSConfig {
 		category: string;
 	};
 	error: string;
-	ErrorBoundary: ComponentClass<{ attributes: Record<string, any>, block: string }>;
+	ErrorBoundary: ComponentClass<{
+		attributes: Record<string, any>,
+		block: string;
+		section: string;
+	}>;
 	features: Array<string>;
 	isPostEdit: WPBoolean;
 	isPro: WPBoolean;

@@ -82,16 +82,20 @@ class Categories extends Block_Abstract {
 	protected function get_attributes() {
 		return apply_filters( 'advanced-sidebar-menu/blocks/categories/attributes', [
 			Category::INCLUDE_PARENT           => [
-				'type' => 'boolean',
+				'type'    => 'boolean',
+				'default' => false,
 			],
 			Category::INCLUDE_CHILDLESS_PARENT => [
-				'type' => 'boolean',
+				'type'    => 'boolean',
+				'default' => false,
 			],
 			Category::EXCLUDE               => [
-				'type' => 'string',
+				'type'    => 'string',
+				'default' => '',
 			],
 			Category::DISPLAY_ALL           => [
-				'type' => 'boolean',
+				'type'    => 'boolean',
+				'default' => false,
 			],
 			Category::DISPLAY_ON_SINGLE     => [
 				'type'    => 'boolean',
