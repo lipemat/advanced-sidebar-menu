@@ -118,7 +118,7 @@ class Notice {
 			</ol>
 			<a
 				class="button-primary"
-				href="https://onpointplugins.com/product/advanced-sidebar-menu-pro/?trigger_buy_now=1&utm_source=widget-upgrade&utm_campaign=gopro&utm_medium=wp-dash"
+				href="https://onpointplugins.com/product/advanced-sidebar-menu-pro/?utm_source=widget-upgrade&utm_campaign=gopro&utm_medium=wp-dash#buy-now-choices"
 				target="_blank"
 			>
 				<?php esc_html_e( 'Upgrade', 'advanced-sidebar-menu' ); ?>

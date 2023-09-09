@@ -32,7 +32,7 @@ const InfoPanel = ( {}: Props ) => {
 			</ul>
 			<Button
 				className={styles.button}
-				href={'https://onpointplugins.com/product/advanced-sidebar-menu-pro/?trigger_buy_now=1&utm_source=block-upgrade&utm_campaign=gopro&utm_medium=wp-dash'}
+				href={'https://onpointplugins.com/product/advanced-sidebar-menu-pro/?utm_source=block-upgrade&utm_campaign=gopro&utm_medium=wp-dash#buy-now-choices'}
 				target={'_blank'}
 				rel={'noreferrer'}
 				isPrimary
