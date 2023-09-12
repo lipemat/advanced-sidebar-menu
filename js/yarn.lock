@@ -2187,14 +2187,16 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@lipemat/stylelint-config@npm:^1.4.1":
-  version: 1.5.0
-  resolution: "@lipemat/stylelint-config@npm:1.5.0"
+"@lipemat/stylelint-config@npm:^2.1.1":
+  version: 2.1.1
+  resolution: "@lipemat/stylelint-config@npm:2.1.1"
   dependencies:
-    "@wordpress/stylelint-config": ^20.0.2
+    "@wordpress/stylelint-config": ^21.13.0
+    stylelint-order: ^6.0.3
+    stylelint-plugin-defensive-css: ^0.8.1
   peerDependencies:
     stylelint: ^14.2
-  checksum: 7de23031d4d3dac27d96f96dbb3761cc98e62e5a619d1e31b0cef91ba10fbac48f426e979aa89fda7505013b1a3250f85ee76229b11727af1928ef375c3e537c
+  checksum: 96796c665b04190251e4e6af26e1635ccb68ea75710fbafb50b4242dcd62874fe1e08e645322954af901dab56b037aa05f2108c0c1795f9da31eadbe4796e37b
   languageName: node
   linkType: hard
 
@@ -2250,7 +2252,7 @@ __metadata:
     "@lipemat/eslint-config": ^3.1.1
     "@lipemat/js-boilerplate": ^9.4.1
     "@lipemat/js-boilerplate-gutenberg": ^2.11.0
-    "@lipemat/stylelint-config": ^1.4.1
+    "@lipemat/stylelint-config": ^2.1.1
     "@types/dompurify": ^3.0.1
     "@types/jquery": ^3
     "@types/lipemat__js-boilerplate": "lipemat/types-js-boilerplate#semver:^2"
@@ -3347,15 +3349,15 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@wordpress/stylelint-config@npm:^20.0.2":
-  version: 20.0.3
-  resolution: "@wordpress/stylelint-config@npm:20.0.3"
+"@wordpress/stylelint-config@npm:^21.13.0":
+  version: 21.24.0
+  resolution: "@wordpress/stylelint-config@npm:21.24.0"
   dependencies:
     stylelint-config-recommended: ^6.0.0
     stylelint-config-recommended-scss: ^5.0.2
   peerDependencies:
     stylelint: ^14.2
-  checksum: f1e29811a59fa90f12eec97e3799421f64b129b7ee828cb9784d8dbc6171a472ead27abf440025d5bd4677cc3c2a2a819b267057f712419c84e89f557ed99f4d
+  checksum: 66193839b2e428d608177a12ad7240bd787865e656fa388557062dde4cd5f9695ceb330333ccc37809025e583fc685c5ba7cdd7f575497dbf0e247b2641849a5
   languageName: node
   linkType: hard
 
@@ -10053,6 +10055,15 @@ __metadata:
   languageName: node
   linkType: hard
 
+"postcss-sorting@npm:^8.0.2":
+  version: 8.0.2
+  resolution: "postcss-sorting@npm:8.0.2"
+  peerDependencies:
+    postcss: ^8.4.20
+  checksum: ebb5cc6a2982a1f0bb8332669e425793ebc01c30fa83ea981c765d64d212e289bef5fdb1e627904c471cb75f1ad0727ed9e85c0d879e263590c8fc64eecf31c2
+  languageName: node
+  linkType: hard
+
 "postcss-value-parser@npm:^4.0.0, postcss-value-parser@npm:^4.1.0, postcss-value-parser@npm:^4.2.0":
   version: 4.2.0
   resolution: "postcss-value-parser@npm:4.2.0"
@@ -10081,7 +10092,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"postcss@npm:^8.4.13, postcss@npm:^8.4.19, postcss@npm:^8.4.7":
+"postcss@npm:^8.4.13, postcss@npm:^8.4.19, postcss@npm:^8.4.21, postcss@npm:^8.4.7":
   version: 8.4.29
   resolution: "postcss@npm:8.4.29"
   dependencies:
@@ -11500,6 +11511,27 @@ __metadata:
   peerDependencies:
     stylelint: ^14.0.0
   checksum: 103b3c122253a908f91f5728d39eff6fed3866157e29a6e550da051cfc207b0d159b7434e0806126e3c3939e6528a0a1cd5a1cf00b835dd49b3a18ba4a007fa1
+  languageName: node
+  linkType: hard
+
+"stylelint-order@npm:^6.0.3":
+  version: 6.0.3
+  resolution: "stylelint-order@npm:6.0.3"
+  dependencies:
+    postcss: ^8.4.21
+    postcss-sorting: ^8.0.2
+  peerDependencies:
+    stylelint: ^14.0.0 || ^15.0.0
+  checksum: dc2883a8a7918a752928f6cc2c860508e3f21c7189c0675ddba15056c683c234f5548f0c4a410e9a9ac0d2be8b4a4657e5674f01b6ad39f2b89053bf907aa744
+  languageName: node
+  linkType: hard
+
+"stylelint-plugin-defensive-css@npm:^0.8.1":
+  version: 0.8.1
+  resolution: "stylelint-plugin-defensive-css@npm:0.8.1"
+  peerDependencies:
+    stylelint: ^14.0.0 || ^15.0.0
+  checksum: b85bd90cdbe6fb117ecdd401340f8816ea27b89e335b9cb0c7df4623383ac0a696705565e8a3bbd3e7256aa63c9bedd0b5d21345b05e014c1591399081c29bac
   languageName: node
   linkType: hard
 
