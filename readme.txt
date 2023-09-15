@@ -18,13 +18,15 @@ Uses the parent/child relationship of your pages or categories to generate menus
 
 Keeps the menu clean and usable. Only related items display, so you don't have to worry about keeping a custom menu up to date or displaying links to items that don't belong.
 
+Widgets and blocks are available to display menus where you need them. Look for the "Advanced Sidebar - Pages" widget or block, or the "Advanced Sidebar - Categories" widget or block.
+
 <strong>Check out <a href="https://onpointplugins.com/product/advanced-sidebar-menu-pro/?utm_source=readme&utm_campaign=gopro&utm_medium=dot-org">Advanced Sidebar Menu PRO</a> for more features including accordion menus, menu colors and styles, custom link text, excluding of pages, category ordering, custom post types, custom taxonomies, priority support, and so much more!</strong>
 
-<blockquote><a href="https://onpointplugins.com/product/advanced-sidebar-menu-pro/?utm_source=readme&utm_campaign=gopro&utm_medium=dot-org" target="_blank">PRO version 9.1.0</a> is now available with category counts, custom titles and exclusions!</blockquote>
+<blockquote><a href="https://onpointplugins.com/product/advanced-sidebar-menu-pro/?utm_source=readme&utm_campaign=gopro&utm_medium=dot-org" target="_blank">PRO version 9.2.0</a> is now available with the ability to exclude pages or categories using intuitive search and select!</blockquote>
 
 <h3>Features</h3>
-* Page and Category widgets.
-* Page and Category blocks. **NEW**
+* Page and Category menu Gutenberg blocks.
+* Page and Category menu widgets.
 * Option to display or not display the highest level parent page or category.
 * Option to display the menu when there is only the highest level parent.
 * Ability to order pages by (date, title, page order).
@@ -52,8 +54,8 @@ Keeps the menu clean and usable. Only related items display, so you don't have t
 * Levels of Categories to display when always display child categories is checked.
 
 <h3>PRO Features</h3>
-* Navigation menu widget.		
-* Navigation menu Gutenberg block. **NEW**
+* Navigation menu widget.
+* Navigation menu Gutenberg block.
 * Ability to customize each page or navigation menu item link's text.
 * Click-and-drag styling for page, category, and navigation menus.
 * Styling options for links including color, background color, size, hover, and font weight.
@@ -72,6 +74,8 @@ Keeps the menu clean and usable. Only related items display, so you don't have t
 * Number of levels of pages to show when "always display child pages" is not checked.
 * Ability to select and display custom post types.
 * Ability to select and display custom taxonomies.
+* Ability to display category post counts.
+* Exclude pages or categories using intuitive search and select. **NEW**
 * Option to display only the current page's parents, grandparents, and children.
 * Option to display child page siblings when on a child page (with or without grandchildren available).
 * Ability to display the menu everywhere the widget area is used (including homepage if applicable).
@@ -89,13 +93,15 @@ Keeps the menu clean and usable. Only related items display, so you don't have t
 * French (fr_FR).
 * German (de_DE).
 * Spanish (es_ES).
-   
+
+<h3>Documentation</h3>
+The official documentation for the plugin <a target="_blank" href="https://onpointplugins.com/advanced-sidebar-menu/">may be found here</a>.
+
 <h3>Developers</h3>
-Developer docs may be found <a target="_blank" href="https://onpointplugins.com/advanced-sidebar-menu/developer-docs/">here</a>.
+Developer docs <a target="_blank" href="https://onpointplugins.com/advanced-sidebar-menu/developer-docs/">may be found here</a>.
 
 <h3>Contribute</h3>
 Send pull requests via the <a target="_blank" href="https://github.com/lipemat/advanced-sidebar-menu">GitHub Repo</a>
-
 
 == Installation ==
 
