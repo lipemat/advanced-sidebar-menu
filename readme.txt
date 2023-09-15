@@ -6,7 +6,7 @@ Tags: block, widget, dynamic, hierarchy, menus, sidebar menu, category, pages, p
 Requires at least: 5.8.0
 Tested up to: 6.3.1
 Requires PHP: 7.0.0
-Stable tag: 9.0.11
+Stable tag: 9.1.0
 License: GPLv3 or later
 License URI: http://www.gnu.org/licenses/gpl-3.0.html
 
@@ -115,7 +115,6 @@ Manual Installation
 4. Use the block inserter to insert the "Advanced Sidebar - Pages" block, or the "Advanced Sidebar - Categories" block into Gutenberg content.
 
 
-
 == Screenshots ==
 
 1. Page widget options.
@@ -168,6 +167,15 @@ The Categories Menu widget/block contains a "Display categories on single posts"
 Yes. Based on whatever page, post or category you are on, the menu will change automatically to display the current parents and children.
 
 == Changelog ==
+= 9.1.0 =
+* Separated the exclude pages/categories field into a filterable component.
+* Updated links to various documentation.
+* Added default values to most block attributes.
+* Updated block attribute TS definitions to accurately reflect default values.
+* Updated TS to version 5.
+* Updated PHPCS scanning to version 3 of WP PHPCS standards.
+* Loosely the minimum requirement for PHP version 9.2.0.
+
 = 9.0.11 =
 * Changed default limit of child pages to 200 instead of 100.
 * Simplified and improved the `List_Pages::parse_args` method.
@@ -375,7 +383,7 @@ Yes. Based on whatever page, post or category you are on, the menu will change a
 * Allow `List_Pages::get_args()` to be filtered on any level.
 * Make debugging functionality more stable.
 
-= 8.0.2 = 
+= 8.0.2 =
 * Introduced new `advanced-sidebar-menu/menus/category/get-child-terms` filter
 * Support filtering the first level of categories.
 * Use `is_excluded` vs `is_first_level_category` in category view.
@@ -384,5 +392,8 @@ Yes. Based on whatever page, post or category you are on, the menu will change a
 Major version update. See <a href="https://onpointplugins.com/advanced-sidebar-menu/advanced-sidebar-menu-version-8-migration-guide/">migration guide</a> if you are extending the plugin's functionality via action, filters, or calling plugin classes.
 
 == Upgrade Notice ==
-= 9.0.1 = 
+= 9.1.0 =
+Update to support PRO version 9.2.0.
+
+= 9.0.1 =
 Introducing <a href="https://onpointplugins.com/advanced-sidebar-menu/advanced-sidebar-menu-gutenberg-blocks/">Gutenberg blocks</a>.
