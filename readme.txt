@@ -174,7 +174,7 @@ Yes. Based on whatever page, post or category you are on, the menu will change a
 * Updated block attribute TS definitions to accurately reflect default values.
 * Updated TS to version 5.
 * Updated PHPCS scanning to version 3 of WP PHPCS standards.
-* Loosely the minimum requirement for PHP version 9.2.0.
+* Loosely update the minimum requirement for PRO to version 9.2.0.
 
 = 9.0.11 =
 * Changed default limit of child pages to 200 instead of 100.
