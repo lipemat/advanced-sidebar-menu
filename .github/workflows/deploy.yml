@@ -10,7 +10,10 @@ on:
   push:
     tags:
       - "*"
-
+  workflow_dispatch:
+    inputs:
+      tags:
+        description: 'Test root directory change'
 jobs:
   tag:
     name: New tag
