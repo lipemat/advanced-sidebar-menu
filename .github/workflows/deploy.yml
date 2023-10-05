@@ -35,6 +35,8 @@ jobs:
         run: cd ${{github.workspace}}/dev/translate-cli && composer install && php command.php
       - name: WordPress Plugin Deploy
         uses: 10up/action-wordpress-plugin-deploy@stable
+        width:
+          dry-run: true
         env:
           SVN_PASSWORD: ${{ secrets.SVN_PASSWORD }}
           SVN_USERNAME: ${{ secrets.SVN_USERNAME }}
