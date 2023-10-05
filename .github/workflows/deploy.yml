@@ -10,11 +10,6 @@ on:
   push:
     tags:
       - "*"
-  workflow_dispatch:
-    inputs:
-      tags:
-        description: 'Fix 9.2.0 version'
-
 
 jobs:
   tag:
