@@ -191,7 +191,7 @@ class Notice {
 	 */
 	public function get_features() {
 		return [
-			__( 'Styling options including borders, bullets, colors, backgrounds, size, and font weight.', 'advanced-sidebar-menu' ),
+			__( 'Styling options including borders, bullets, colors, backgrounds, font size and weight.', 'advanced-sidebar-menu' ),
 			__( 'Accordion menus.', 'advanced-sidebar-menu' ),
 			__( 'Support for custom navigation menus from Appearance -> Menus.', 'advanced-sidebar-menu' ),
 			__( 'Select and display custom post types and taxonomies.', 'advanced-sidebar-menu' ),

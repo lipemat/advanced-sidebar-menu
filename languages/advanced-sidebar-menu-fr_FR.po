@@ -1,8 +1,8 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: Advanced Sidebar Menu\n"
-"POT-Creation-Date: 2023-09-13 13:03-0500\n"
-"PO-Revision-Date: 2023-09-13 13:03-0500\n"
+"POT-Creation-Date: 2023-10-04 19:17-0500\n"
+"PO-Revision-Date: 2023-10-04 19:17-0500\n"
 "Last-Translator: \n"
 "Language-Team: \n"
 "Language: fr_FR\n"
@@ -204,11 +204,11 @@ msgstr "Passer à la version pro"
 
 #: src/Notice.php:194
 msgid ""
-"Styling options including borders, bullets, colors, backgrounds, size, and "
-"font weight."
+"Styling options including borders, bullets, colors, backgrounds, font size "
+"and weight."
 msgstr ""
-"Options de style incluant les bordures, les balles, les couleurs, les "
-"arrière-plans, la taille et le poids de la police."
+"Options de style, y compris les bordures, les puces, les couleurs, les "
+"arrière-plans, la taille de la police et l’épaisseur."
 
 #: src/Notice.php:195
 msgid "Accordion menus."

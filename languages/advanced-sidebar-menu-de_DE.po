@@ -1,8 +1,8 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: Advanced Sidebar Menu\n"
-"POT-Creation-Date: 2023-09-13 13:03-0500\n"
-"PO-Revision-Date: 2023-09-13 13:03-0500\n"
+"POT-Creation-Date: 2023-10-04 19:17-0500\n"
+"PO-Revision-Date: 2023-10-04 19:17-0500\n"
 "Last-Translator: Mat Lipe <support@onpointplugins.com>\n"
 "Language-Team: \n"
 "Language: de_DE\n"
@@ -204,11 +204,11 @@ msgstr "Gehen Sie PRO"
 
 #: src/Notice.php:194
 msgid ""
-"Styling options including borders, bullets, colors, backgrounds, size, and "
-"font weight."
+"Styling options including borders, bullets, colors, backgrounds, font size "
+"and weight."
 msgstr ""
-"Stylingoptionen wie Rahmen, Aufzählungszeichen, Farben, Hintergründe, Größe "
-"und Schriftstärke."
+"Styling-Optionen wie Rahmen, Aufzählungszeichen, Farben, Hintergründe, "
+"Schriftgröße und -stärke."
 
 #: src/Notice.php:195
 msgid "Accordion menus."

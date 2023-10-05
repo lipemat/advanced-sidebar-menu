@@ -5,7 +5,7 @@ msgstr ""
 "sidebar-menu\n"
 "Plural-Forms: nplurals=INTEGER; plural=EXPRESSION;\n"
 "Project-Id-Version: Advanced Sidebar Menu\n"
-"POT-Creation-Date: 2023-09-13 13:03-0500\n"
+"POT-Creation-Date: 2023-10-04 19:17-0500\n"
 "PO-Revision-Date: 2019-03-05 12:29-0500\n"
 "Last-Translator: \n"
 "Language-Team: \n"
@@ -200,8 +200,8 @@ msgstr ""
 
 #: src/Notice.php:194
 msgid ""
-"Styling options including borders, bullets, colors, backgrounds, size, and "
-"font weight."
+"Styling options including borders, bullets, colors, backgrounds, font size "
+"and weight."
 msgstr ""
 
 #: src/Notice.php:195
