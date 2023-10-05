@@ -6,7 +6,7 @@ Tags: block, widget, dynamic, hierarchy, menus, sidebar menu, category, pages, p
 Requires at least: 5.8.0
 Tested up to: 6.3.1
 Requires PHP: 7.0.0
-Stable tag: 9.1.0
+Stable tag: 9.2.0
 License: GPLv3 or later
 License URI: http://www.gnu.org/licenses/gpl-3.0.html
 
@@ -167,6 +167,14 @@ The Categories Menu widget/block contains a "Display categories on single posts"
 Yes. Based on whatever page, post or category you are on, the menu will change automatically to display the current parents and children.
 
 == Changelog ==
+= 9.2.0 =
+* Introduced transform legacy widgets to blocks prompts.
+* Moved configurations to the root of the plugin and general modernization.
+* Made "Go PRO" callouts more tasteful and less intrusive.
+* Improved styles of the info panels in widgets and blocks.
+* Improved styles of buttons and fields in Beaver Builder.
+* Updated WP-PHPCS to version 3 and fixed all warnings.
+
 = 9.1.0 =
 * Separated the exclude pages/categories field into a filterable component.
 * Updated links to various documentation.
