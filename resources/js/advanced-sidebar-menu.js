@@ -14,7 +14,9 @@ function asm_reveal_element(this_element_id) {
 }
 
 /**
- * Misc JS for the widget's screen.
+ * Misc JS for the widget forms in various contexts.
+ *
+ * @see js/src/modules/widgets.jsx for the modern JS used on the widget's screen.
  *
  * @since 7.4.5
  */

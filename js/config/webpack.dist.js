@@ -23,7 +23,7 @@ module.exports = webpackConfig => {
 	return {
 		entry: {
 			'admin.min': [
-				config.workingDirectory + '/src/admin.js',
+				config.workingDirectory + '/src/admin.ts',
 			],
 		},
 	};

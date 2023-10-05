@@ -23,6 +23,9 @@ class Core {
 	 */
 	protected function hook() {
 		add_action( 'widgets_init', [ $this, 'register_widgets' ] );
+		add_action( 'advanced-sidebar-menu/widget/category/before-form', [ $this, 'transform_notice' ], 1 );
+		add_action( 'advanced-sidebar-menu/widget/page/before-form', [ $this, 'transform_notice' ], 1 );
+		add_action( 'advanced-sidebar-menu/widget/navigation-menu/before-form', [ $this, 'transform_notice' ], 1 );
 		add_action( 'advanced-sidebar-menu/widget/page/after-form', [ $this, 'widget_documentation' ], 99, 2 );
 		add_action( 'advanced-sidebar-menu/widget/category/after-form', [ $this, 'widget_documentation' ], 99, 2 );
 		add_filter( 'plugin_action_links_' . static::PLUGIN_FILE, [ $this, 'plugin_action_links' ] );
@@ -131,5 +134,25 @@ class Core {
 		}
 
 		return apply_filters( 'advanced-sidebar-menu/core/get-template-part', $file, $file_name, $this );
+	}
+
+
+	/**
+	 * Display a dismissible notice above widget forms to inform
+	 * users the widget may be transformed into a block.
+	 *
+	 * Notice is render via React
+	 *
+	 * @since 9.2.0
+	 *
+	 * @see   js/src/modules/widgets.tsx
+	 *
+	 * @return void
+	 */
+	public function transform_notice() {
+		?>
+		<!-- <?php echo esc_html( __METHOD__ ); ?> -->
+		<span data-js="advanced-sidebar-menu/transform-notice"></span>
+		<?php
 	}
 }
