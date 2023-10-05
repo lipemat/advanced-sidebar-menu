@@ -1,6 +1,6 @@
 name: Deploy to WordPress.org
 env:
-# Can't specify VERSION, or the plugin will deploy in that version.  
+  # Can't specify VERSION, or the plugin will deploy in that version.  
   # VERSION: 2.1.0
   NODE_VERSION: '16.19.0'
   PHP_VERSION: '8.1'
@@ -29,7 +29,7 @@ jobs:
         run: npm i -g yarn
       - name: Compile JS
         shell: bash
-        run: cd ${{github.workspace}}/js && yarn dist
+        run: cd ${{github.workspace}} && yarn dist
       - name: Generate JS translations
         shell: bash
         run: cd ${{github.workspace}}/dev/translate-cli && composer install && php command.php

@@ -1,29 +1,93 @@
-/.wordpress-org
-/.github
-/.git
+################################
+#
+# @version 2.6.1
+#
+################################
+
+# Project specific
+#### Put project specific exclusions here so they may be easily transferred when updating deployignore.
+
+/config
+/js/*
+!/js/dist
+.wordpress-org
 
 
-# dev related
-/dev
-.editorconfig
-phpcs.xml.dist
+
+
+# System and hidden files
+*.bak
+*.shtml
+*.sublime-project
+*.sublime-workspace
+*.swp
+*~
+.DS_Store
+.DS_Store?
+.cvs
+.phpunit.result.cache
 .phpcs.cache
-.distignore
-.gitattributes
-.gitignore
-Readme.md
-phpstan.neon.dist
+.project
+.sass-cache
+.svn
+.Trashes
+Thumbs.db
+ehthumbs.db
+error_log
 
-# Node related
+# GitHub files
+.github
+
+# Idea files
+.idea
+.run
+
+# log files
+*.log
+
+# local configs
+local-config.php
+local-config.json
+phpcs.xml
+phpstan.neon
+
+# WordPress specific
+wp-content/backup-db
+wp-content/blogs.dir
+wp-content/cache
+wp-content/logs
+wp-content/upgrade
+wp-content/uploads
+wp/wp-content
+
+# Yarn and Node files
+.editorconfig
 .eslintrc
 .nvmrc
 .pnp.cjs
+.pnp.js
 .stylelintrc
+.yarn
 .yarnrc.yml
+jest.config.js
+node_modules
 package.json
 tsconfig.json
 yarn.lock
-node_modules
-/js/src
-/js/config
-/js/.yarn
+
+# dev related
+.deployignore
+.gitmodules
+composer.json
+composer.lock
+/dev/*
+!/dev/public
+bin
+local-config-sample.php
+pcss
+phpcs.xml.dist
+phpstan.neon.dist
+Readme.md
+wp-content/themes/core/js/src
+wp-content/themes/core/js/jest
+wp-content/themes/core/js/test
