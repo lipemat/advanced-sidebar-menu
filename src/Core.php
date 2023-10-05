@@ -141,11 +141,13 @@ class Core {
 	 * Display a dismissible notice above widget forms to inform
 	 * users the widget may be transformed into a block.
 	 *
-	 * Notice is render via React
+	 * Notice is rendered via React.
 	 *
 	 * @since 9.2.0
 	 *
 	 * @see   js/src/modules/widgets.tsx
+	 *
+	 * @internal
 	 *
 	 * @return void
 	 */
