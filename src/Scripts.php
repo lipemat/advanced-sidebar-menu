@@ -32,10 +32,8 @@ class Scripts {
 		add_action( 'elementor/editor/after_enqueue_scripts', [ $this, 'register_gutenberg_scripts' ] );
 		add_action( 'elementor/editor/after_enqueue_scripts', [ $this, 'admin_scripts' ] );
 
-		// UGH! Beaver Builder hack.
-		if ( isset( $_GET['fl_builder'] ) ) { // phpcs:ignore
-			add_action( 'wp_enqueue_scripts', [ $this, 'admin_scripts' ] );
-		}
+		// Beaver Builder support.
+		add_action( 'fl_builder_ui_enqueue_scripts', [ $this, 'admin_scripts' ] );
 
 		add_action( 'advanced-sidebar-menu/widget/category/after-form', [ $this, 'init_widget_js' ], 1000 );
 		add_action( 'advanced-sidebar-menu/widget/page/after-form', [ $this, 'init_widget_js' ], 1000 );
