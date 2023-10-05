@@ -56,20 +56,13 @@
 	margin: 4px 0 0 0 !important;
 }
 
-.advanced-sidebar-info-panel h3 a {
-	font-weight: 600 !important;
-	box-shadow: none;
-}
-
 .advanced-sidebar-info-panel h3 {
-	margin: 8px 0 0 3px !important;
-}
-
-.advanced-sidebar-info-panel h3 a {
-	font-size: 17px;
-	font-weight: 600 !important;
 	box-shadow: none;
-	color: #000;
+	color: #3db634 !important;
+	font-size: 17px !important;
+	font-weight: 600 !important;
+	line-height: 22px !important;
+	margin: 8px 0 0 3px !important;
 }
 
 .advanced-sidebar-info-panel ol {
@@ -344,7 +337,31 @@ select.advanced-sidebar-menu-block-field {
 
 .elementor-control-content .advanced-sidebar-menu-column-box h3 {
 	font-size: 17px;
+	line-height: 22px;
 	margin: 10px 0;
+}
+
+.elementor-control-content .advanced-sidebar-info-panel h3 {
+	cursor: pointer;
+}
+
+.elementor-control-content .advanced-sidebar-info-panel ol {
+	height: 0;
+	margin: 0 !important;
+	opacity: 0;
+	transition: height .6s, opacity .6s;
+}
+
+.elementor-control-content .advanced-sidebar-info-panel.open ol {
+	height: auto;
+	list-style: square !important;
+	margin: 13px !important;
+	opacity: 1;
+}
+
+.elementor-control-content .advanced-sidebar-info-panel.open ol li {
+	list-style: square !important;
+
 }
 
 @media (prefers-color-scheme: dark) {
@@ -369,7 +386,7 @@ select.advanced-sidebar-menu-block-field {
 
 .fl-field-control-wrapper .advanced-sidebar-menu-styles-button {
 	margin: 0 auto 15px auto !important;
-	width: 75%
+	width: 75%;
 }
 
 .fl-field-control-wrapper .advanced-sidebar-menu-styles-button > div {
@@ -391,9 +408,12 @@ select.advanced-sidebar-menu-block-field {
 }
 
 .fl-field-control-wrapper .advanced-sidebar-menu-column-box .wp-picker-container input[type='text'].wp-color-picker {
+	display: inline-block !important;
+	font-weight: 600;
+	height: 30px !important;
+	margin: -2px 6px 0 0 !important;
 	min-height: auto;
 	padding: 6px 3px;
-	font-weight: 600;
 }
 
 .fl-field-control-wrapper .advanced-sidebar-menu-column-box .wp-picker-container {
@@ -437,8 +457,23 @@ select.advanced-sidebar-menu-block-field {
 	margin: 5px 0 10px 0 !important;
 }
 
-.fl-field-control-wrapper .advanced-sidebar-menu-column-box .wp-picker-container input[type='text'].wp-color-picker {
-	height: 30px !important;
-	display: inline-block !important;
-	margin: -2px 6px 0 0 !important;
+.fl-field-control-wrapper .advanced-sidebar-info-panel h3 {
+	cursor: pointer;
+}
+
+.fl-field-control-wrapper .advanced-sidebar-info-panel ol {
+	height: 0;
+	margin: 0 0 16px !important;
+	opacity: 0;
+	transition: height .6s, opacity .6s;
+}
+
+.fl-field-control-wrapper .advanced-sidebar-info-panel.open ol {
+	height: auto;
+	margin: 13px 7px 16px -14px !important;
+	opacity: 1;
+}
+
+.fl-field-control-wrapper .advanced-sidebar-info-panel .button-primary {
+	margin: 0 0 12px 0;
 }
