@@ -1,8 +1,8 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: Advanced Sidebar Menu\n"
-"POT-Creation-Date: 2023-10-04 19:45-0500\n"
-"PO-Revision-Date: 2023-10-04 19:45-0500\n"
+"POT-Creation-Date: 2023-10-05 02:22-0500\n"
+"PO-Revision-Date: 2023-10-05 02:22-0500\n"
 "Last-Translator: Mat Lipe <support@onpointplugins.com>\n"
 "Language-Team: \n"
 "Language: de_DE\n"
@@ -20,6 +20,14 @@ msgstr ""
 "_nx_noop:3c,1,2;__ngettext_noop:1,2\n"
 "X-Poedit-SearchPath-0: .\n"
 "X-Poedit-SearchPathExcluded-0: *.js\n"
+
+#: js/src/components/TransformNotice.tsx:36
+msgid "Blocks are the future of Advanced Sidebar Menu."
+msgstr "Blöcke sind die Zukunft des erweiterten Seitenleistenmenüs."
+
+#: js/src/components/TransformNotice.tsx:42
+msgid "This widget may be transformed into a block."
+msgstr "Dieses Widget kann in einen Block umgewandelt werden."
 
 #. translators: Selected taxonomy single label
 #. translators: Selected post type single label
@@ -171,11 +179,11 @@ msgstr "begriff"
 msgid "pages"
 msgstr "peiten"
 
-#: src/Core.php:61
+#: src/Core.php:64
 msgid "widget documentation"
 msgstr "widget-dokumentation"
 
-#: src/Core.php:101
+#: src/Core.php:104
 msgid "Documentation"
 msgstr "Dokumentation"
 
@@ -375,9 +383,6 @@ msgstr "https://onpointplugins.com"
 #~ msgid "Ability to display the widgets everywhere the sidebar displays."
 #~ msgstr ""
 #~ "Die Fähigkeit, die Widgets überall in der Sidebar-Anzeige anzuzeigen."
-
-#~ msgid "Checkout Advanced Sidebar Menu Pro!"
-#~ msgstr "Kasse Advanced Sidebar Menu Pro!"
 
 #~ msgid "Use this plugin's default styling"
 #~ msgstr "Verwenden Sie das Standardstyling dieses Plugins"

@@ -1,8 +1,8 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: Advanced Sidebar Menu\n"
-"POT-Creation-Date: 2023-10-04 19:45-0500\n"
-"PO-Revision-Date: 2023-10-04 19:45-0500\n"
+"POT-Creation-Date: 2023-10-05 02:23-0500\n"
+"PO-Revision-Date: 2023-10-05 02:23-0500\n"
 "Last-Translator: \n"
 "Language-Team: \n"
 "Language: fr_FR\n"
@@ -20,6 +20,14 @@ msgstr ""
 "_nx_noop:3c,1,2;__ngettext_noop:1,2\n"
 "X-Poedit-SearchPath-0: .\n"
 "X-Poedit-SearchPathExcluded-0: *.js\n"
+
+#: js/src/components/TransformNotice.tsx:36
+msgid "Blocks are the future of Advanced Sidebar Menu."
+msgstr "Les blocs sont l’avenir de Advanced Sidebar Menu."
+
+#: js/src/components/TransformNotice.tsx:42
+msgid "This widget may be transformed into a block."
+msgstr "Ce widget peut être transformé en bloc."
 
 #. translators: Selected taxonomy single label
 #. translators: Selected post type single label
@@ -171,11 +179,11 @@ msgstr "terme"
 msgid "pages"
 msgstr "pages"
 
-#: src/Core.php:61
+#: src/Core.php:64
 msgid "widget documentation"
 msgstr "documentation widget"
 
-#: src/Core.php:101
+#: src/Core.php:104
 msgid "Documentation"
 msgstr "Documentation"
 
