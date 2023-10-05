@@ -108,12 +108,7 @@ class Notice {
 				}
 				?>
 				<li>
-					<a
-						href="https://onpointplugins.com/product/advanced-sidebar-menu-pro/?utm_source=widget-more&utm_campaign=gopro&utm_medium=wp-dash"
-						target="_blank"
-						style="text-decoration: none;">
-						<?php esc_html_e( 'So much more...', 'advanced-sidebar-menu' ); ?>
-					</a>
+					<?php esc_html_e( 'And so much more…', 'advanced-sidebar-menu' ); ?>
 				</li>
 			</ol>
 			<a

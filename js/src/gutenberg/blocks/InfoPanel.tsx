@@ -10,24 +10,37 @@ type Props = {
 	clientId: string;
 };
 
+const titleStyles = {
+	color: '#3db634',
+	fontWeight: 700,
+};
+
+const headingStyles = {
+	margin: '16px 0 0',
+	fontSize: '1.2em',
+};
+
 const InfoPanel = ( {}: Props ) => {
 	return ( <InspectorControls>
 		<PanelBody
-			title={__( 'Advanced Sidebar Menu PRO', 'advanced-sidebar-menu' )}
+			// @ts-ignore -- @todo remove ignore on next update of @types.
+			title={<span style={titleStyles}>
+				{__( 'Go PRO', 'advanced-sidebar-menu' )}
+			</span>}
 			className={styles.wrap}
+			initialOpen={false}
 		>
+			<h2 style={headingStyles}>
+				{__( 'Advanced Sidebar Menu PRO', 'advanced-sidebar-menu' )}
+			</h2>
 			<ul>
-				{CONFIG.features.map( feature =>
-					<li key={feature}>{decodeEntities( feature )}</li> )}
+				{CONFIG.features.map( feature => (
+					<li key={feature}>
+						{decodeEntities( feature )}
+					</li>
+				) )}
 				<li>
-					<a
-						href="https://onpointplugins.com/product/advanced-sidebar-menu-pro/?utm_source=block-more&utm_campaign=gopro&utm_medium=wp-dash"
-						target="_blank"
-						style={{textDecoration: 'none'}}
-						rel="noreferrer"
-					>
-						{__( 'So much more…', 'advanced-sidebar-menu' )}
-					</a>
+					{__( 'And so much more…', 'advanced-sidebar-menu' )}
 				</li>
 			</ul>
 			<Button

@@ -1,8 +1,8 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: Advanced Sidebar Menu\n"
-"POT-Creation-Date: 2023-10-04 19:17-0500\n"
-"PO-Revision-Date: 2023-10-04 19:17-0500\n"
+"POT-Creation-Date: 2023-10-04 19:45-0500\n"
+"PO-Revision-Date: 2023-10-04 19:45-0500\n"
 "Last-Translator: \n"
 "Language-Team: \n"
 "Language: fr_FR\n"
@@ -80,15 +80,19 @@ msgstr ""
 msgid "%s to exclude (ids, comma separated)"
 msgstr "%s exclure (ids, virgule séparée)"
 
-#: js/src/gutenberg/blocks/InfoPanel.tsx:16 src/Notice.php:97
+#: js/src/gutenberg/blocks/InfoPanel.tsx:28 src/Notice.php:175
+msgid "Go PRO"
+msgstr "Passer à la version pro"
+
+#: js/src/gutenberg/blocks/InfoPanel.tsx:34 src/Notice.php:97
 msgid "Advanced Sidebar Menu PRO"
 msgstr "Advanced Sidebar Menu PRO"
 
-#: js/src/gutenberg/blocks/InfoPanel.tsx:29
-msgid "So much more…"
+#: js/src/gutenberg/blocks/InfoPanel.tsx:43 src/Notice.php:111
+msgid "And so much more…"
 msgstr "Tellement plus…"
 
-#: js/src/gutenberg/blocks/InfoPanel.tsx:40 src/Notice.php:124
+#: js/src/gutenberg/blocks/InfoPanel.tsx:53 src/Notice.php:119
 msgid "Upgrade"
 msgstr "Mise à jour"
 
@@ -186,23 +190,15 @@ msgstr ""
 "Le menu Sidebar avancé nécessite %1$sAvanced Sidebar Menu PRO%2$s version "
 "%3$s+. Veuillez mettre à jour ou désactiver la version PRO."
 
-#: src/Notice.php:115
-msgid "So much more..."
-msgstr "Tellement plus..."
-
-#: src/Notice.php:132
+#: src/Notice.php:127
 msgid "Preview"
 msgstr "Aperçu"
 
-#: src/Notice.php:165
+#: src/Notice.php:160
 msgid "PRO version widget options"
 msgstr "Options du widget version PRO"
 
-#: src/Notice.php:180
-msgid "Go PRO"
-msgstr "Passer à la version pro"
-
-#: src/Notice.php:194
+#: src/Notice.php:189
 msgid ""
 "Styling options including borders, bullets, colors, backgrounds, font size "
 "and weight."
@@ -210,21 +206,21 @@ msgstr ""
 "Options de style, y compris les bordures, les puces, les couleurs, les "
 "arrière-plans, la taille de la police et l’épaisseur."
 
-#: src/Notice.php:195
+#: src/Notice.php:190
 msgid "Accordion menus."
 msgstr "Menus accordéon."
 
-#: src/Notice.php:196
+#: src/Notice.php:191
 msgid "Support for custom navigation menus from Appearance -> Menus."
 msgstr "Prise en charge des menus de navigation personnalisés."
 
-#: src/Notice.php:197
+#: src/Notice.php:192
 msgid "Select and display custom post types and taxonomies."
 msgstr ""
 "Sélectionnez et affichez des types de publication et des taxonomies "
 "personnalisés."
 
-#: src/Notice.php:198
+#: src/Notice.php:193
 msgid "Priority support with access to members only support area."
 msgstr "Soutien prioritaire avec accès aux membres uniquement zone de soutien."
 
@@ -278,6 +274,9 @@ msgstr "OnPoint Plugins"
 #. Author URI of the plugin/theme
 msgid "https://onpointplugins.com"
 msgstr "https://onpointplugins.com"
+
+#~ msgid "So much more..."
+#~ msgstr "Tellement plus..."
 
 #, javascript-format
 #~ msgid ""
