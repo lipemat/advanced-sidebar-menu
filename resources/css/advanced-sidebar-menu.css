@@ -385,13 +385,17 @@ select.advanced-sidebar-menu-block-field {
 }
 
 .fl-field-control-wrapper .advanced-sidebar-menu-styles-button {
-	margin: 0 auto 15px auto !important;
-	width: 75%;
+	margin: 6px auto 18px auto !important;
+	width: 85%;
 }
 
 .fl-field-control-wrapper .advanced-sidebar-menu-styles-button > div {
-	width: 100%;
 	text-align: center;
+	width: 100%;
+}
+
+.fl-field-control-wrapper .advanced-sidebar-menu-styles-button button {
+	border: 1px solid var(--fl-builder-muted-accent-color, #555d66) !important;
 }
 
 .fl-field-control-wrapper .advanced-sidebar-menu-column select {
