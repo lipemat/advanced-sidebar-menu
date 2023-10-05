@@ -11,8 +11,10 @@
 /js/*
 !/js/dist
 .wordpress-org
-
-
+.distignore
+.gitattributes
+.gitignore
+.git
 
 
 # System and hidden files
