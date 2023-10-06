@@ -1,14 +1,12 @@
 <?xml version="1.0"?>
 <ruleset name="Advanced Sidebar Menu - Rules">
-	<!-- See https://github.com/squizlabs/PHP_CodeSniffer/wiki/Annotated-ruleset.xml -->
+	<!-- See https://github.com/squizlabs/PHP_CodeSniffer/wiki/Annotated-Ruleset -->
 
 	<description>Ruleset for the Advanced Sidebar Menu plugin.</description>
-	<version>4.1.0</version>
+	<version>4.2.0</version>
 
 	<!-- Include when not specified -->
-	<file>./src</file>
-	<file>./js</file>
-	<file>./views</file>
+	<file>./</file>
 
 	<!-- Show file path based on project root. -->
 	<arg name="basepath" value="." />
@@ -17,7 +15,6 @@
 	<arg name="cache" value="./.phpcs.cache" />
 
 	<!-- @see https://github.com/WordPress/WordPress-Coding-Standards/wiki/Customizable-sniff-properties#various-sniffs-set-the-minimum-supported-wp-version -->
-	<config name="minimum_supported_wp_version" value="5.8" />
 	<config name="minimum_wp_version" value="5.8" />
 
 	<!-- @see https://github.com/PHPCompatibility/PHPCompatibilityWP#how-to-use -->
@@ -27,20 +24,24 @@
 		<exclude name="Lipe.Performance.PostNotIn.exclude_exclude" />
 	</rule>
 
+	<!-- https://github.com/WordPress/WordPress-Coding-Standards/wiki/Customizable-sniff-properties#wordpressnamingconventionsprefixallglobals-prefix-everything-in-the-global-namespace -->
 	<rule ref="WordPress.NamingConventions.PrefixAllGlobals">
 		<properties>
 			<property name="prefixes" type="array">
 				<element value="Advanced_Sidebar_Menu" />
-				<element value="OnPoint_Plugins" />
 				<element value="advanced_sidebar_menu" />
 				<element value="advanced-sidebar-menu" />
 			</property>
 		</properties>
 	</rule>
 
+	<!-- Translations -->
 	<rule ref="WordPress.WP.I18n">
 		<properties>
-			<property name="text_domain" type="array" value="advanced-sidebar-menu" />
+			<!-- https://github.com/WordPress/WordPress-Coding-Standards/wiki/Customizable-sniff-properties#wordpresswpi18n-setting-your-text-domain -->
+			<property name="text_domain" type="array">
+				<element value="advanced-sidebar-menu" />
+			</property>
 		</properties>
 	</rule>
 </ruleset>
