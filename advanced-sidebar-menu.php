@@ -62,7 +62,6 @@ function advanced_sidebar_menu_load() {
 	Scripts::init();
 
 	if ( Notice::instance()->is_conflicting_pro_version() ) {
-		/* @phpstan-ignore-next-line -- TODO remove this ignores when the minimum version is 6.2. */
 		remove_action( 'plugins_loaded', 'advanced_sidebar_menu_pro_init', 11 );
 	}
 

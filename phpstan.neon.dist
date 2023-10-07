@@ -1,15 +1,15 @@
 parameters:
+    level: 5
     strictRules:
         allRules: false
-    level: 5
-    tmpDir: E:/.phpstan
-    bootstrapFiles:
-        - advanced-sidebar-menu.php
     paths:
         - advanced-sidebar-menu.php
         - src
+    bootstrapFiles:
+        - advanced-sidebar-menu.php
+    scanFiles:
+        - dev/stubs/advanced-sidebar-menu-pro.stub
     ignoreErrors:
-        # Remove once the WP version use for wordpress-legacy >= 6.2.
-        - '#^Function apply_filters invoked with [3456789] parameters, 2 required\.$#'
-    # Remove once the WP version use for wordpress-legacy >= 6.2.
-    reportUnmatchedIgnoredErrors: false
+        - # Remove once the WP version use for wordpress-legacy >= 6.2.
+            message: '#^Function apply_filters invoked with [3456789] parameters, 2 required\.$#'
+            reportUnmatched: false

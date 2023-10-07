@@ -1,0 +1,16 @@
+<?php
+
+/**
+ * Required to prevent phpstan callback errors.
+ *
+ * Will not be needed after we are running WP 6.2 on the legacy-wordpress project.
+ */
+
+namespace {
+
+	/**
+	 * @return void
+	 */
+	function advanced_sidebar_menu_pro_init() {
+	}
+}
