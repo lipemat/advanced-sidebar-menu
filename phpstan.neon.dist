@@ -8,3 +8,8 @@ parameters:
     paths:
         - advanced-sidebar-menu.php
         - src
+    ignoreErrors:
+        # Remove once the WP version use for wordpress-legacy >= 6.2.
+        - '#^Function apply_filters invoked with [3456789] parameters, 2 required\.$#'
+    # Remove once the WP version use for wordpress-legacy >= 6.2.
+    reportUnmatchedIgnoredErrors: false
