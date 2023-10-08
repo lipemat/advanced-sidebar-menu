@@ -91,17 +91,20 @@ class Category extends Widget_Abstract {
 	 *
 	 * For adjusting widget option labels.
 	 *
+	 * @since 8.2.0
+	 *
 	 * @param array $instance - Widget settings.
 	 * @param bool  $single   - Singular label or plural.
 	 *
-	 * @since 8.2.0
-	 *
-	 * @return mixed
+	 * @return string
 	 */
-	public function get_taxonomy_label( $instance, $single = true ) {
+	public function get_taxonomy_label( $instance, $single = true ): string {
 		$taxonomy = get_taxonomy( apply_filters( 'advanced-sidebar-menu/widget/category/taxonomy-for-label', 'category', $this->control_options, $instance ) );
-		if ( empty( $taxonomy ) ) {
-			$taxonomy = get_taxonomy( 'category' ); // Sensible fallback.
+		if ( false === $taxonomy ) {
+			$taxonomy = get_taxonomy( 'category' );// Sensible fallback.
+			if ( false === $taxonomy ) {
+				return '';
+			}
 		}
 
 		return $single ? $taxonomy->labels->singular_name : $taxonomy->labels->name;
@@ -176,7 +179,7 @@ class Category extends Widget_Abstract {
 								?>
 								<option
 									value="<?php echo esc_attr( (string) $i ); ?>" <?php selected( $i, (int) $instance[ static::LEVELS ] ); ?>>
-									<?php echo (int) $i; ?>
+									<?php echo \absint( $i ); ?>
 								</option>
 								<?php
 							}

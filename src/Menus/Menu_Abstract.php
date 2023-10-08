@@ -214,7 +214,7 @@ abstract class Menu_Abstract {
 	/**
 	 * Is this id excluded from this menu?
 	 *
-	 * @param int $id ID of the object.
+	 * @param int|string $id ID of the object.
 	 *
 	 * @return bool
 	 */
@@ -227,10 +227,10 @@ abstract class Menu_Abstract {
 	/**
 	 * Retrieve the excluded items' ids.
 	 *
-	 * @return array
+	 * @return array<int>
 	 */
 	public function get_excluded_ids() {
-		if ( empty( $this->instance[ static::EXCLUDE ] ) ) {
+		if ( ! \array_key_exists( static::EXCLUDE, $this->instance ) ) {
 			return [];
 		}
 		return \array_map( '\intval', \array_filter( \explode( ',', $this->instance[ static::EXCLUDE ] ), 'is_numeric' ) );
@@ -243,14 +243,13 @@ abstract class Menu_Abstract {
 	 * @return void
 	 */
 	public function title() {
-		if ( ! empty( $this->instance[ static::TITLE ] ) ) {
-			$title = apply_filters( 'widget_title', $this->instance[ static::TITLE ], $this->args, $this->instance );
-			$title = apply_filters( 'advanced-sidebar-menu/menus/widget-title', esc_html( $title ), $this->args, $this->instance, $this );
-
-			// phpcs:disable
-			echo $this->args['before_title'] . $title . $this->args['after_title'];
-			// phpcs:enable
+		if ( ! \array_key_exists( static::TITLE, $this->instance ) || '' === (string) $this->instance[ static::TITLE ] ) {
+			return;
 		}
+		$title = apply_filters( 'widget_title', $this->instance[ static::TITLE ], $this->args, $this->instance );
+		$title = apply_filters( 'advanced-sidebar-menu/menus/widget-title', $title, $this->args, $this->instance, $this );
+
+		echo $this->args['before_title'] . esc_html( $title ) . $this->args['after_title']; //phpcs:ignore -- Args are HTML.
 	}
 
 
@@ -277,7 +276,7 @@ abstract class Menu_Abstract {
 
 
 	/**
-	 * Construct a new instance of this class.
+	 * Constructs a new instance of this class.
 	 *
 	 * @param array $widget_instance - Widget settings.
 	 * @param array $widget_args     - Widget registration args.

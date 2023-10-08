@@ -19,25 +19,25 @@ abstract class Widget_Abstract extends \WP_Widget {
 
 	/**
 	 * Store the instance to this class.
-	 * We do this manually because there are filters etc which
-	 * hit the instance before we get to self::form() and self::widget()
+	 * We do this manually because filters hit the instance before we
+	 * get to self::form() and self::widget()
+	 *
+	 * @see   \WP_Widget::form_callback()
 	 *
 	 * @param array $instance - widget settings.
 	 * @param array $defaults - defaults for all widgets.
 	 *
-	 * @see   \WP_Widget::form_callback()
-	 *
 	 * @return array
 	 */
 	public function set_instance( array $instance, array $defaults ) {
-		$this->widget_settings = (array) wp_parse_args( $instance, $defaults );
+		$this->widget_settings = wp_parse_args( $instance, $defaults );
 
 		return $this->widget_settings;
 	}
 
 
 	/**
-	 * Checks if a widget's checkbox is checked.
+	 * Is this checkbox checked?
 	 *
 	 * Checks first for a value then verifies the value = 'checked'.
 	 *
@@ -88,11 +88,12 @@ abstract class Widget_Abstract extends \WP_Widget {
 	 * @param string|null $element_to_reveal - Element to reveal/hide when box is checked/unchecked.
 	 */
 	public function checkbox( $name, $element_to_reveal = null ) {
-		if ( empty( $this->widget_settings[ $name ] ) ) {
+		if ( ! \array_key_exists( $name, $this->widget_settings ) ) {
 			$this->widget_settings[ $name ] = null;
 		}
 
 		?>
+		<!--suppress HtmlFormInputWithoutLabel -->
 		<input
 			id="<?php echo esc_attr( $this->get_field_id( $name ) ); ?>"
 			name="<?php echo esc_attr( $this->get_field_name( $name ) ); ?>"

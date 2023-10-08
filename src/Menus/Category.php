@@ -343,17 +343,17 @@ class Category extends Menu_Abstract {
 		if ( null === $this->top_level_term ) {
 			return false;
 		}
-		return ( (int) $term->term_id ) === ( (int) $this->top_level_term->term_id );
+		return $term->term_id === $this->top_level_term->term_id;
 	}
 
 
 	/**
 	 * Get list of excluded ids from widget settings.
 	 *
-	 * @return array
+	 * @return array<int>
 	 */
-	public function get_excluded_ids() {
-		return apply_filters( 'advanced-sidebar-menu/menus/category/excluded', parent::get_excluded_ids(), $this->args, $this->instance, $this );
+	public function get_excluded_ids(): array {
+		return \array_map( '\intval', (array) apply_filters( 'advanced-sidebar-menu/menus/category/excluded', parent::get_excluded_ids(), $this->args, $this->instance, $this ) );
 	}
 
 
@@ -440,9 +440,9 @@ class Category extends Menu_Abstract {
 	 *
 	 * @return bool
 	 */
-	public function is_first_level_term( \WP_Term $term ) {
+	public function is_first_level_term( \WP_Term $term ): bool {
 		$return = false;
-		if ( ! $this->is_excluded( $term->term_id ) && (int) $term->parent === (int) $this->get_top_parent_id() ) {
+		if ( ! $this->is_excluded( $term->term_id ) && $term->parent === $this->get_top_parent_id() ) {
 			$return = true;
 		}
 

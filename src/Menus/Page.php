@@ -162,10 +162,10 @@ class Page extends Menu_Abstract {
 	/**
 	 * Get ids of any pages excluded via widget settings.
 	 *
-	 * @return array
+	 * @return array<int>
 	 */
-	public function get_excluded_ids() {
-		return apply_filters( 'advanced-sidebar-menu/menus/page/excluded', parent::get_excluded_ids(), $this->get_current_post(), $this->args, $this->instance, $this );
+	public function get_excluded_ids(): array {
+		return \array_map( '\intval', (array) apply_filters( 'advanced-sidebar-menu/menus/page/excluded', parent::get_excluded_ids(), $this->get_current_post(), $this->args, $this->instance, $this ) );
 	}
 
 

@@ -184,7 +184,7 @@ class Page extends Widget_Abstract {
 							for ( $i = 1; $i < 10; $i ++ ) {
 								?>
 								<option value="<?php echo esc_attr( (string) $i ); ?>" <?php selected( $i, (int) $instance[ static::LEVELS ] ); ?>>
-									<?php echo (int) $i; ?>
+									<?php echo \absint( $i ); ?>
 								</option>
 								<?php
 							}

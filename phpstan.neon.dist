@@ -16,8 +16,6 @@ parameters:
             - WP_Widget
         noExtends: true
         nonDistributed: false
-    strictRules:
-        allRules: false
     paths:
         - advanced-sidebar-menu.php
         - src
