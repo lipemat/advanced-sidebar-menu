@@ -26,7 +26,7 @@ class Scripts {
 	public function hook() {
 		add_action( 'init', [ $this, 'register_gutenberg_scripts' ] );
 		add_action( 'enqueue_block_editor_assets', [ $this, 'use_development_version_of_react' ] );
-		add_action( 'admin_enqueue_scripts', [ $this, 'admin_scripts' ] );
+		add_action( 'admin_enqueue_scripts', [ $this, 'admin_scripts' ], 11 );
 
 		// Elementor support.
 		add_action( 'elementor/editor/after_enqueue_scripts', [ $this, 'register_gutenberg_scripts' ] );
@@ -81,11 +81,7 @@ class Scripts {
 		], ADVANCED_SIDEBAR_MENU_BASIC_VERSION, true );
 
 		if ( ! $this->is_webpack_enabled() ) {
-			// Must register here because used as a dependency of the Gutenberg styles.
-			wp_register_style( static::ADMIN_STYLE, $this->get_dist_file( 'advanced-sidebar-menu-admin', 'css' ), [], ADVANCED_SIDEBAR_MENU_BASIC_VERSION );
-
 			wp_register_style( static::GUTENBERG_CSS_HANDLE, $this->get_dist_file( 'advanced-sidebar-menu-block-editor', 'css' ), [
-				static::ADMIN_STYLE,
 				'dashicons',
 			], ADVANCED_SIDEBAR_MENU_BASIC_VERSION );
 		}
@@ -106,16 +102,15 @@ class Scripts {
 	/**
 	 * Add JS and CSS to the admin and in specific cases the front-end.
 	 *
-	 * @action admin_enqueue_scripts 10 0
-	 *
 	 * @return void
 	 */
 	public function admin_scripts() {
 		wp_enqueue_script( static::ADMIN_SCRIPT, $this->get_dist_file( 'advanced-sidebar-menu-admin', 'js' ), [
 			'jquery',
 		], ADVANCED_SIDEBAR_MENU_BASIC_VERSION, false );
-
-		wp_enqueue_style( static::ADMIN_STYLE );
+		if ( ! $this->is_webpack_enabled() ) {
+			wp_enqueue_style( static::ADMIN_STYLE, $this->get_dist_file( 'advanced-sidebar-menu-admin', 'css' ), [], ADVANCED_SIDEBAR_MENU_BASIC_VERSION );
+		}
 	}
 
 
