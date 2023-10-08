@@ -58,8 +58,15 @@ interface JSConfig {
 declare global {
 	interface Window {
 		ADVANCED_SIDEBAR_MENU: JSConfig;
+		advancedSidebarMenuAdmin: {
+			init: () => void;
+			handlePreviews: () => void;
+			showHideElements: () => void;
+			clickReveal: ( id: string ) => void;
+			setHideState( target: JQuery<HTMLElement> ): void;
+		};
 		__TEST__?: boolean;
 	}
 }
 
-export const CONFIG: JSConfig = window.ADVANCED_SIDEBAR_MENU || ( {} as JSConfig );
+export const CONFIG: JSConfig = window.ADVANCED_SIDEBAR_MENU;

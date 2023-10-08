@@ -13,6 +13,14 @@ module.exports = webpackConfig => {
 			devtool: 'source-map',
 			mode: 'development',
 			plugins: webpackConfig.plugins.slice( 0, 2 ),
+			entry: {
+				'advanced-sidebar-menu-block-editor': [
+					config.workingDirectory + '/src/block-editor.ts',
+				],
+				'advanced-sidebar-menu-admin': [
+					config.workingDirectory + '/src/admin.ts',
+				],
+			},
 		};
 	}
 
@@ -22,7 +30,10 @@ module.exports = webpackConfig => {
 	 */
 	return {
 		entry: {
-			'admin.min': [
+			'advanced-sidebar-menu-block-editor.min': [
+				config.workingDirectory + '/src/block-editor.ts',
+			],
+			'advanced-sidebar-menu-admin.min': [
 				config.workingDirectory + '/src/admin.ts',
 			],
 		},

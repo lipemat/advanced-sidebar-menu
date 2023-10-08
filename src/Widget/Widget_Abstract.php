@@ -71,7 +71,7 @@ abstract class Widget_Abstract extends \WP_Widget {
 			?> data-js="<?php echo esc_attr( $this->get_field_id( $element_key ) ); ?>"
 			<?php
 		}
-		// Append the hide to a global variable so it can be picked up only if the advanced-sidebar-menu JS is present.
+		// Append the hide to a global variable, so it can be picked up only if the advanced-sidebar-menu JS is present.
 		// Prevents hiding of elements when widgets are loaded in unique ways like ajax.
 		if ( $hide ) {
 			?>
@@ -99,8 +99,12 @@ abstract class Widget_Abstract extends \WP_Widget {
 			type="checkbox"
 			value="checked"
 			data-js="advanced-sidebar-menu/widget/<?php echo esc_attr( $this->id_base ); ?>/<?php echo esc_attr( $name ); ?>"
-			<?php echo ( null !== $element_to_reveal ) ? 'onclick="asm_reveal_element( \'' . esc_attr( $this->get_field_id( $element_to_reveal ) ) . '\')"' : ''; ?>
-			<?php echo $this->checked( $name ) ? 'checked' : ''; ?>
+			<?php
+			if ( null !== $element_to_reveal ) {
+				echo ' onclick="window.advancedSidebarMenuAdmin.clickReveal( \'' . esc_attr( $this->get_field_id( $element_to_reveal ) ) . '\')" ';
+			}
+			echo $this->checked( $name ) ? 'checked' : '';
+			?>
 		/>
 		<?php
 	}

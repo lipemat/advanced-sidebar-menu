@@ -96,7 +96,7 @@ class Notice {
 		 */
 		?>
 		<div class="advanced-sidebar-menu-column-box advanced-sidebar-info-panel wp-core-ui">
-			<h3 onclick="this.parentNode.classList.add('open')">
+			<h3 onclick="this.parentNode.classList.toggle('open')">
 				<?php esc_html_e( 'Advanced Sidebar Menu PRO', 'advanced-sidebar-menu' ); ?>
 			</h3>
 			<ol>

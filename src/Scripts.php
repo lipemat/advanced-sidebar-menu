@@ -65,10 +65,7 @@ class Scripts {
 	 * @return void
 	 */
 	public function register_gutenberg_scripts() {
-		$js_dir = apply_filters( 'advanced-sidebar-menu/js-dir', ADVANCED_SIDEBAR_MENU_URL . 'js/dist/' );
-		$file = $this->is_script_debug_enabled() ? 'admin' : 'admin.min';
-
-		wp_register_script( static::GUTENBERG_HANDLE, "{$js_dir}{$file}.js", [
+		wp_register_script( static::GUTENBERG_HANDLE, $this->get_dist_file( 'advanced-sidebar-menu-block-editor', 'js' ), [
 			'jquery',
 			'react',
 			'react-dom',
@@ -83,11 +80,11 @@ class Scripts {
 			'wp-url',
 		], ADVANCED_SIDEBAR_MENU_BASIC_VERSION, true );
 
-		// Must register here because used as a dependency of the Gutenberg styles.
-		wp_register_style( static::ADMIN_STYLE, ADVANCED_SIDEBAR_MENU_URL . 'resources/css/advanced-sidebar-menu.css', [], ADVANCED_SIDEBAR_MENU_BASIC_VERSION );
-
 		if ( ! $this->is_webpack_enabled() ) {
-			wp_register_style( static::GUTENBERG_CSS_HANDLE, "{$js_dir}{$file}.css", [
+			// Must register here because used as a dependency of the Gutenberg styles.
+			wp_register_style( static::ADMIN_STYLE, $this->get_dist_file( 'advanced-sidebar-menu-admin', 'css' ), [], ADVANCED_SIDEBAR_MENU_BASIC_VERSION );
+
+			wp_register_style( static::GUTENBERG_CSS_HANDLE, $this->get_dist_file( 'advanced-sidebar-menu-block-editor', 'css' ), [
 				static::ADMIN_STYLE,
 				'dashicons',
 			], ADVANCED_SIDEBAR_MENU_BASIC_VERSION );
@@ -114,7 +111,7 @@ class Scripts {
 	 * @return void
 	 */
 	public function admin_scripts() {
-		wp_enqueue_script( static::ADMIN_SCRIPT, ADVANCED_SIDEBAR_MENU_URL . 'resources/js/advanced-sidebar-menu.js', [
+		wp_enqueue_script( static::ADMIN_SCRIPT, $this->get_dist_file( 'advanced-sidebar-menu-admin', 'js' ), [
 			'jquery',
 		], ADVANCED_SIDEBAR_MENU_BASIC_VERSION, false );
 
@@ -234,10 +231,27 @@ class Scripts {
 		}
 		?>
 		<script>
-			if ( typeof ( advanced_sidebar_menu ) !== 'undefined' ) {
-				advanced_sidebar_menu.init();
+			if ( typeof ( window.advancedSidebarMenuAdmin ) !== 'undefined' ) {
+				window.advancedSidebarMenuAdmin.init();
 			}
 		</script>
 		<?php
+	}
+
+
+	/**
+	 * Translate a file slug to its location based on the current context.
+	 *
+	 * @since 9.2.2
+	 *
+	 * @param string $file_slug - The file slug.
+	 * @param string $extension - The file extension.
+	 *
+	 * @return string
+	 */
+	protected function get_dist_file( string $file_slug, string $extension ): string {
+		$js_dir = apply_filters( 'advanced-sidebar-menu/js-dir', ADVANCED_SIDEBAR_MENU_URL . 'js/dist/' );
+		$file_slug = $this->is_script_debug_enabled() ? $file_slug : "{$file_slug}.min";
+		return "{$js_dir}{$file_slug}.{$extension}";
 	}
 }
