@@ -59,15 +59,21 @@
 	}
 
 	.advanced-sidebar-info-panel {
+		overflow: hidden;
+
 		h3 {
 			cursor: pointer;
+			font-size: 18px !important;
+			margin: 0 0 8px !important;
 		}
 
 		ol {
 			height: 0;
 			margin: 0 !important;
 			opacity: 0;
-			transition: height .6s, opacity .6s;
+			overflow: hidden;
+			transition: opacity .6s;
+			z-index: 1;
 		}
 
 		&.open ol {
@@ -75,15 +81,21 @@
 			list-style: square !important;
 			margin: 13px !important;
 			opacity: 1;
+			overflow: hidden;
 
 			li {
 				list-style: square !important;
 
 			}
 		}
+
+		.button-primary {
+			position: relative;
+			z-index: 2;
+		}
 	}
 
-	.advanced-sidebar-menu-icon-preview {
-		margin: 5px 0 0 !important;
+	.advanced-sidebar-preview-trigger {
+		display: none;
 	}
 }

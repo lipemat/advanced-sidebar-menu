@@ -56,7 +56,7 @@ window.advancedSidebarMenuAdmin = {
 
 	/**
 	 * Use JS to show/hide widget elements instead of PHP because sometimes widgets are loaded
-	 * in weird ways like ajax and we don't want any fields hidden if the JS is never loaded
+	 * in weird ways like ajax, and we don't want any fields hidden if the JS is never loaded
 	 * to later show them
 	 *
 	 */
@@ -83,7 +83,7 @@ window.advancedSidebarMenuAdmin = {
 	handlePreviews() {
 		/**
 		 * Failsafe in case the image cannot load from onpointplugins.com.
-		 * Better to not have a preview than an broken one.
+		 * Better to not have a preview than a broken one.
 		 */
 		$( '[data-js="advanced-sidebar-menu/pro/preview/image"]' )
 			.on( 'error', function( ev ) {
