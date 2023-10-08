@@ -142,7 +142,7 @@ abstract class Block_Abstract {
 	 * @return false|array
 	 */
 	public function short_circuit_widget_blocks( $instance, $widget, array $args ) {
-		if ( ! \is_array( $instance ) || empty( $instance['content'] ) || strpos( $instance['content'], static::NAME ) === false ) {
+		if ( ! \is_array( $instance ) || empty( $instance['content'] ) || false === strpos( $instance['content'], static::NAME ) ) {
 			return $instance;
 		}
 
@@ -195,7 +195,7 @@ abstract class Block_Abstract {
 	public function register() {
 		register_block_type( static::NAME,
 			apply_filters( 'advanced-sidebar-menu/block-register/' . static::NAME, [
-				'api_version'     => 2,
+				'api_version'     => 3,
 				'attributes'      => $this->get_all_attributes(),
 				'description'     => $this->get_description(),
 				'editor_script'   => Scripts::GUTENBERG_HANDLE,
@@ -295,7 +295,7 @@ abstract class Block_Abstract {
 				$GLOBALS['wp_query']->queried_object = get_post();
 				$GLOBALS['wp_query']->queried_object_id = get_the_ID();
 				$GLOBALS['wp_query']->is_singular = true;
-				if ( get_post_type() === 'page' ) {
+				if ( 'page' === get_post_type() ) {
 					$GLOBALS['wp_query']->is_page = true;
 				} else {
 					$GLOBALS['wp_query']->is_single = true;
