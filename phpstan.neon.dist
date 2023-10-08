@@ -1,6 +1,8 @@
 includes:
     # Include the lipemat phpstan rules.
     - %rootDir%/../../../rules.neon
+    # Baseline full of @todo.
+    - dev/phpstan-baseline.php
 
 parameters:
     level: 5
