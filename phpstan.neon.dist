@@ -1,5 +1,21 @@
+includes:
+    # Include the lipemat phpstan rules.
+    - %rootDir%/../../../rules.neon
+
 parameters:
     level: 5
+    lipemat:
+        allowedToBeExtended:
+            - Advanced_Sidebar_Menu\Blocks\Block_Abstract
+            - Advanced_Sidebar_Menu\Menus\Menu_Abstract
+            - Advanced_Sidebar_Menu\Walkers\Category_Walker
+            - Advanced_Sidebar_Menu\Walkers\Page_Walker
+            - Advanced_Sidebar_Menu\Widget\Widget_Abstract
+            - Walker_Category
+            - Walker_Page
+            - WP_Widget
+        noExtends: true
+        nonDistributed: false
     strictRules:
         allRules: false
     paths:
