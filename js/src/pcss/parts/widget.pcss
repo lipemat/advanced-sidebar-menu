@@ -35,6 +35,10 @@
 		line-height: 14px !important;
 		margin: 4px 0 0 0 !important;
 		padding: 0 !important;
+
+		@media (--mobile) {
+			margin: 4px 0 8px !important;
+		}
 	}
 
 	.advanced-sidebar-menu-column a {
@@ -122,6 +126,37 @@
 	.advanced-sidebar-menu-column input {
 		margin: 0 0 6px !important;
 		width: 103px !important;
+
+		@media (--mobile) {
+			width: 145px !important;
+
+			&.asm-color-select {
+				width: 75px !important;
+			}
+		}
+	}
+
+	.wp-picker-active {
+		margin: 30px 0 10px calc(-100% - 5px) !important;
+	}
+}
+
+.advanced-sidebar-levels {
+	margin: -4px 0 4px !important;
+	padding: 0 !important;
+
+	li {
+		line-height: 1;
+		list-style: none !important;
+		margin-bottom: 2px;
+	}
+
+	@media (--mobile) {
+		margin: 12px 0 4px !important;
+
+		li {
+			margin-bottom: 8px;
+		}
 	}
 }
 
@@ -129,29 +164,33 @@
  * Color pickers
  *
  * --------------------------------------------------- */
-.advanced-sidebar-menu-column .wp-color-result-text {
-	background: #fff;
+.advanced-sidebar-menu-column {
+	.wp-color-result-text {
+		background: #fff;
+	}
+
+	.asm-color-select {
+		display: inline-block !important;
+		width: 100px !important;
+	}
+
+	.wp-picker-active {
+		.wp-picker-clear {
+			display: inline-block !important;
+			height: 30px !important;
+			line-height: 1 !important;
+			margin: 0 0 0 6px !important;
+			min-height: inherit !important;
+			vertical-align: top !important;
+			width: auto !important;
+		}
+	}
 }
 
-.advanced-sidebar-menu-column .asm-color-select {
-	display: inline-block !important;
-	width: 100px !important;
-}
-
-.advanced-sidebar-menu-styles-box .wp-picker-active {
-	margin: 30px 0 10px calc(-100% - 5px) !important;
-}
-
-.advanced-sidebar-menu-column .wp-picker-active .wp-picker-clear {
-	display: inline-block !important;
-	height: 30px !important;
-	line-height: 1 !important;
-	margin: 0 0 0 6px !important;
-	min-height: inherit !important;
-	vertical-align: top !important;
-	width: auto !important;
-}
-
+/**
+ * Preview
+ *
+ * --------------------------------------------------- */
 .advanced-sidebar-menu-icon-preview {
 	display: inline-block;
 	margin: 0 0 0 5px;
@@ -227,7 +266,7 @@ select.advanced-sidebar-menu-block-field {
 * Media Queries
 *
 ------------------------------------------ */
-@media all and (max-width: 1024px) {
+@media (--second-breakpoint) {
 	.advanced-sidebar-menu-column {
 		width: 100%;
 	}
@@ -250,17 +289,5 @@ select.advanced-sidebar-menu-block-field {
 
 	.advanced-sidebar-menu-open .advanced-sidebar-menu-column-box {
 		display: inherit;
-	}
-}
-
-@media all and (max-width: 780px) {
-	.advanced-sidebar-menu-styles-box .advanced-sidebar-menu-column select,
-	.advanced-sidebar-menu-styles-box .advanced-sidebar-menu-column input {
-		width: 145px !important;
-	}
-
-	.wp-customizer .advanced-sidebar-menu-styles-box .advanced-sidebar-menu-column select,
-	.wp-customizer .advanced-sidebar-menu-styles-box .advanced-sidebar-menu-column input {
-		width: 132px !important;
 	}
 }

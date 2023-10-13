@@ -40,14 +40,6 @@
 			width: 90%;
 		}
 
-		.wp-picker-container input[type='text'].wp-color-picker {
-			display: inline-block !important;
-			font-weight: 600;
-			height: 30px !important;
-			margin: -2px 6px 0 0 !important;
-			min-height: auto;
-			padding: 6px 3px;
-		}
 
 		h3 {
 			font-size: 17px;
@@ -60,6 +52,7 @@
 
 		label {
 			display: inline !important;
+			font-weight: 500;
 			vertical-align: middle !important;
 		}
 
@@ -72,9 +65,33 @@
 			line-height: 2.545;
 		}
 
+		.wp-picker-container input[type='text'].wp-color-picker {
+			margin: 0 6px 0 0 !important;
+		}
+
 		.wp-picker-active {
 			margin: 5px 0 10px 0 !important;
 			width: 100%;
+
+			input {
+				position: relative;
+				top: -3px;
+			}
+
+			.wp-picker-clear {
+				position: relative;
+				top: 0;
+			}
+		}
+
+		.description {
+			em {
+				color: #50575e;
+			}
+
+			@media (--mobile) {
+				margin: 4px 0 0 !important;
+			}
 		}
 	}
 
@@ -111,5 +128,28 @@
 
 	.advanced-sidebar-preview-trigger {
 		display: none;
+	}
+
+	.advanced-sidebar-levels {
+		margin: -8px 0 4px !important;
+
+		@media (--mobile) {
+			margin: -8px 0 4px !important;
+
+			li {
+				margin-bottom: 2px;
+			}
+		}
+	}
+
+	.advanced-sidebar-menu-styles-box {
+		.advanced-sidebar-menu-column {
+			width: 49% !important;
+		}
+
+		.wp-picker-active {
+			margin: 30px 0 10px calc(-100% - 5px) !important;
+			width: 198%;
+		}
 	}
 }

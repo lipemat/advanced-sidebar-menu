@@ -9,19 +9,20 @@
 
 	.advanced-sidebar-menu-column {
 		width: 100%;
-	}
 
-	.advanced-sidebar-menu-column .advanced-sidebar-menu-column {
-		width: 49%;
+		.wp-picker-container {
+			@media (--mobile) {
+				margin-bottom: 8px;
+			}
+		}
+
+		.advanced-sidebar-menu-column {
+			width: 49%;
+		}
 	}
 
 	.advanced-sidebar-menu-column-right {
 		margin-left: 0;
-	}
-
-	.advanced-sidebar-menu-column .asm-color-select {
-		display: inline-block !important;
-		width: 100px !important;
 	}
 
 	.advanced-sidebar-info-panel {
@@ -54,5 +55,21 @@
 
 	.advanced-sidebar-preview-trigger {
 		display: none;
+	}
+
+	.advanced-sidebar-levels {
+		@media (--mobile) {
+			li {
+				margin-bottom: 8px;
+			}
+		}
+	}
+
+	.wp-picker-container {
+		.wp-color-result {
+			&.button {
+				margin: 0 6px 6px 0;
+			}
+		}
 	}
 }

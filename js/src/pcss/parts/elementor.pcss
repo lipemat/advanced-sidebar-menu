@@ -3,6 +3,7 @@
  *
  ----------------------------------------------*/
 .elementor-control-content {
+
 	.advanced-sidebar-menu-column {
 		width: 100%;
 	}
@@ -21,6 +22,10 @@
 			width: 100%;
 		}
 
+		p {
+			margin-bottom: 8px;
+		}
+
 		.wp-picker-container input[type='text'].wp-color-picker {
 			font-weight: 600;
 			min-height: auto;
@@ -32,24 +37,14 @@
 			top: 7px;
 		}
 
-		.wp-picker-container {
-			float: none;
-		}
-
-		.wp-picker-container.wp-picker-active {
-			margin: 5px 0 10px 0 !important;
-			top: auto;
-			width: 100%;
-		}
-
-		.wp-picker-clear {
-			width: auto !important;
-		}
-
 		h3 {
 			font-size: 17px;
 			line-height: 22px;
 			margin: 10px 0;
+		}
+
+		.description {
+			margin: 8px 0 !important;
 		}
 
 		@media (prefers-color-scheme: dark) {
@@ -95,5 +90,11 @@
 
 	.advanced-sidebar-preview-trigger {
 		display: none;
+	}
+
+	.advanced-sidebar-menu-accordion-wrap {
+		select {
+			margin: 0 0 4px;
+		}
 	}
 }
