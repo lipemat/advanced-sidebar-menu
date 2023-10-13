@@ -69,6 +69,7 @@ abstract class Widget_Abstract extends \WP_Widget {
 
 		if ( null !== $element_key ) {
 			?> data-js="<?php echo esc_attr( $this->get_field_id( $element_key ) ); ?>"
+			class="advanced-sidebar-menu-<?php echo esc_attr( $element_key ); ?>"
 			<?php
 		}
 		// Append the hide to a global variable, so it can be picked up only if the advanced-sidebar-menu JS is present.
