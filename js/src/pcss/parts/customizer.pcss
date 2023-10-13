@@ -1,0 +1,58 @@
+/**
+ * Customizer
+ *
+ ------------------------------------- */
+.wp-customizer {
+	.advanced-sidebar-menu-icon-preview {
+		margin: 5px 0 0 5px;
+	}
+
+	.advanced-sidebar-menu-column {
+		width: 100%;
+	}
+
+	.advanced-sidebar-menu-column .advanced-sidebar-menu-column {
+		width: 49%;
+	}
+
+	.advanced-sidebar-menu-column-right {
+		margin-left: 0;
+	}
+
+	.advanced-sidebar-menu-column .asm-color-select {
+		display: inline-block !important;
+		width: 100px !important;
+	}
+
+	.advanced-sidebar-info-panel {
+		overflow: hidden;
+
+		h3 {
+			cursor: pointer;
+		}
+
+		ol {
+			height: 0;
+			margin: 0 !important;
+			opacity: 0;
+			overflow: hidden;
+			padding: 0 0 0 12px;
+			transition: opacity .6s;
+			z-index: 1;
+
+			li {
+				list-style: disc !important;
+			}
+		}
+
+		&.open ol {
+			height: auto;
+			margin: 13px 13px 4px !important;
+			opacity: 1;
+		}
+	}
+
+	.advanced-sidebar-preview-trigger {
+		display: none;
+	}
+}
