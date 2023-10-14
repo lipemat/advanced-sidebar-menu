@@ -12,7 +12,7 @@
   },
   "scripts": {
     "browserslist": "lipemat-js-boilerplate browserslist",
-    "lint": "lipemat-js-boilerplate lint && stylelint src/**/*.pcss --fix",
+    "lint": "lipemat-js-boilerplate lint && stylelint js/src/**/*.pcss --fix",
     "dist": "lipemat-js-boilerplate dist && lipemat-js-boilerplate dist --script-debug",
     "postinstall": "lipemat-js-boilerplate fix-pnp",
     "start": "lipemat-js-boilerplate start",
