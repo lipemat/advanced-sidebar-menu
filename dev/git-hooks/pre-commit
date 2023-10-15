@@ -11,7 +11,7 @@
 #
 # @version 5.3.0
 
-JEST_CONFIG="jest/jest.config.ts"
+JEST_CONFIG="jest/jest.config.js"
 LEGACY_PHP_VERSION="7.0"
 PHP_VERSION="8.1"
 PHPUNIT_DIR="../advanced-sidebar-menu-pro/dev/wp-unit"
