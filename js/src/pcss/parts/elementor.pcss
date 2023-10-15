@@ -106,5 +106,19 @@
 			margin: 30px 0 10px calc(-100% - 5px) !important;
 			width: 198%;
 		}
+
+		@media (--mobile) {
+			.advanced-sidebar-menu-column {
+				width: 100% !important;
+			}
+
+			.wp-picker-active {
+				margin: 0 0 10px !important;
+			}
+
+			.wp-picker-open + .wp-picker-input-wrap {
+				display: block;
+			}
+		}
 	}
 }
