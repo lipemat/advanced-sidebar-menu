@@ -5,7 +5,7 @@ includes:
     - dev/phpstan-baseline.php
 
 parameters:
-    level: 5
+    level: 6
     lipemat:
         allowedToBeExtended:
             - Advanced_Sidebar_Menu\Blocks\Block_Abstract

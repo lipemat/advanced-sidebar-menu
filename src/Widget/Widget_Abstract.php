@@ -87,6 +87,8 @@ abstract class Widget_Abstract extends \WP_Widget {
 	 *
 	 * @param string      $name              - Name of field.
 	 * @param string|null $element_to_reveal - Element to reveal/hide when box is checked/unchecked.
+	 *
+	 * @return void
 	 */
 	public function checkbox( $name, $element_to_reveal = null ) {
 		if ( ! \array_key_exists( $name, $this->widget_settings ) ) {
