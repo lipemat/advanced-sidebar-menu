@@ -2130,9 +2130,9 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@lipemat/js-boilerplate@npm:^9.4.4":
-  version: 9.4.4
-  resolution: "@lipemat/js-boilerplate@npm:9.4.4"
+"@lipemat/js-boilerplate@npm:^9.4.5":
+  version: 9.4.5
+  resolution: "@lipemat/js-boilerplate@npm:9.4.5"
   dependencies:
     "@babel/core": ^7.4.3
     "@babel/plugin-syntax-dynamic-import": ^7.8.3
@@ -2183,7 +2183,7 @@ __metadata:
     webpack-subresource-integrity: ^5.1.0
   bin:
     lipemat-js-boilerplate: bin/lipemat-js-boilerplate.js
-  checksum: d8befe2095a7229b56e97c96f1a050c26c943a9cf33f0586928e6159d4092c7023df8b8d963e9e3d8a62a070563673c87bea84fedc26215399f6eeb382127ba9
+  checksum: 021bf8b4305a7567cae005a7a79a6dcb360daa7339658bf8da209a8d0d69b9fc5fbede2da647a43e89b7440877a068199c8ce1b11b65156ffa38409732821855
   languageName: node
   linkType: hard
 
@@ -2250,7 +2250,7 @@ __metadata:
   resolution: "@onpointplugins/advanced-sidebar-menu@workspace:."
   dependencies:
     "@lipemat/eslint-config": ^3.1.1
-    "@lipemat/js-boilerplate": ^9.4.4
+    "@lipemat/js-boilerplate": ^9.4.5
     "@lipemat/js-boilerplate-gutenberg": ^2.11.0
     "@lipemat/stylelint-config": ^2.1.1
     "@types/dompurify": ^3.0.1

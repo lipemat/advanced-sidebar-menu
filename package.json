@@ -23,7 +23,7 @@
   },
   "devDependencies": {
     "@lipemat/eslint-config": "^3.1.1",
-    "@lipemat/js-boilerplate": "^9.4.4",
+    "@lipemat/js-boilerplate": "^9.4.5",
     "@lipemat/js-boilerplate-gutenberg": "^2.11.0",
     "@lipemat/stylelint-config": "^2.1.1",
     "@types/dompurify": "^3.0.1",
