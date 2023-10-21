@@ -10,6 +10,9 @@
     "cert": "D:/xampp/apache/certs/plugins.matlipe.com-crt.pem",
     "key": "D:/xampp/apache/certs/plugins.matlipe.com-key.pem"
   },
+  "browserslist": [
+    "extends @wordpress/browserslist-config"
+  ],
   "scripts": {
     "browserslist": "lipemat-js-boilerplate browserslist",
     "lint": "lipemat-js-boilerplate lint && stylelint js/src/**/*.pcss --fix",
