@@ -111,6 +111,16 @@ class Scripts {
 		if ( ! $this->is_webpack_enabled() ) {
 			wp_enqueue_style( static::ADMIN_STYLE, $this->get_dist_file( 'advanced-sidebar-menu-admin', 'css' ), [], ADVANCED_SIDEBAR_MENU_BASIC_VERSION );
 		}
+		/**
+		 * Fire action when admin scripts are being loaded.
+		 * Simply loading additional scripts such as "runtime" in any context
+		 * the admin scripts are used.
+		 *
+		 * @since 9.3.1
+		 *
+		 * @param Scripts $scripts - The Scripts instance.
+		 */
+		do_action( 'advanced-sidebar-menu/scripts/admin-scripts', $this );
 	}
 
 
