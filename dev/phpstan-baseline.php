@@ -167,6 +167,11 @@ $ignoreErrors[] = [
 	'path' => __DIR__ . '/../src/List_Pages.php',
 ];
 $ignoreErrors[] = [
+	'message' => '#^Control structures using `switch` should not be used\\.$#',
+	'count' => 1,
+	'path' => __DIR__ . '/../src/List_Pages.php',
+];
+$ignoreErrors[] = [
 	'message' => '#^Method Advanced_Sidebar_Menu\\\\List_Pages\\:\\:add_list_item_classes\\(\\) has parameter \\$classes with no value type specified in iterable type array\\.$#',
 	'count' => 1,
 	'path' => __DIR__ . '/../src/List_Pages.php',
@@ -199,6 +204,11 @@ $ignoreErrors[] = [
 $ignoreErrors[] = [
 	'message' => '#^Construct empty\\(\\) is not allowed\\. Use more strict comparison\\.$#',
 	'count' => 5,
+	'path' => __DIR__ . '/../src/Menus/Category.php',
+];
+$ignoreErrors[] = [
+	'message' => '#^Control structures using `switch` should not be used\\.$#',
+	'count' => 1,
 	'path' => __DIR__ . '/../src/Menus/Category.php',
 ];
 $ignoreErrors[] = [
