@@ -57,7 +57,7 @@ const Display = ( {
 	clientId,
 	children,
 }: Props ) => {
-	const showLevels = ( CONFIG.blocks.pages.id === name && CONFIG.isPro ) || attributes.display_all;
+	const showLevels = ( CONFIG.blocks.pages.id === name && '1' === CONFIG.isPro ) || true === attributes.display_all;
 
 	const fillProps: FillProps = {
 		type,
@@ -78,7 +78,7 @@ const Display = ( {
 					key={item}
 					//eslint-disable-next-line @wordpress/valid-sprintf
 					label={sprintf( checkboxes[ item ], label )}
-					checked={!! attributes[ item ]}
+					checked={true === attributes[ item ]}
 					onChange={checked => {
 						setAttributes( {
 							[ item ]: checked,
@@ -87,7 +87,7 @@ const Display = ( {
 				/>;
 			} )}
 			{showLevels && <div className={'components-base-control'}>
-				{/* translators: {select html input}, {post type plural label} */
+				{/* translators: {select HTML input}, {post type plural label} */
 					reactStringReplace( __( 'Display %1$s levels of child %2$s', 'advanced-sidebar-menu' ).replace( '%2$s', type?.labels?.name.toLowerCase() ?? '' ), '%1$s',
 						() => (
 							<select

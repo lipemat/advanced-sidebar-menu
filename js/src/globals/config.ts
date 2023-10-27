@@ -8,13 +8,13 @@ export type WPBoolean = '1' | '';
 interface JSConfig {
 	blocks: {
 		categories: {
-			id: string;
+			id: 'advanced-sidebar-menu/categories';
 		};
 		pages: {
-			id: string;
+			id: 'advanced-sidebar-menu/pages';
 		};
 		navigation?: {
-			id: string;
+			id: 'advanced-sidebar-menu/navigation';
 		}
 	};
 	categories: {

@@ -45,9 +45,9 @@ const getSidebarId = ( clientId: string ): string => {
 		return '';
 	}
 	const rootId = select( 'core/block-editor' ).getBlockRootClientId( clientId );
-	if ( rootId ) {
+	if ( 'undefined' !== typeof rootId && '' !== rootId ) {
 		const ParentBlock = select( 'core/block-editor' ).getBlocksByClientId( [ rootId ] );
-		if ( ParentBlock[ 0 ] && 'core/widget-area' === ParentBlock[ 0 ].name ) {
+		if ( 'undefined' !== typeof ParentBlock[ 0 ] && 'core/widget-area' === ParentBlock[ 0 ].name ) {
 			return ParentBlock[ 0 ]?.attributes?.id;
 		}
 	}
@@ -87,7 +87,7 @@ const Navigation = () => <Placeholder
  *         is enabled because the iframe has a late init.
  *
  */
-const placeholder = ( block ): () => ReactElement => {
+const placeholder = ( block: string ): () => ReactElement => {
 	switch ( block ) {
 		case CONFIG.blocks.pages.id:
 			return Page;
@@ -137,7 +137,7 @@ const TriggerWhenLoadingFinished = ( {
 	 * We throw an error, so our `ErrorBoundary` will catch it, otherwise we end up
 	 * with a "React objects may not be used as children" error, which means nothing.
 	 */
-	if ( children?.props?.children?.errorMsg ) {
+	if ( 'string' === typeof children?.props?.children?.errorMsg ) {
 		throw new Error( children?.props?.children?.errorMsg ?? 'Failed' );
 	}
 
