@@ -1,6 +1,6 @@
 {
   "name": "@onpointplugins/advanced-sidebar-menu",
-  "version": "6.2.0",
+  "version": "6.3.0",
   "description": "Gutenberg blocks for the Advanced Sidebar Menu plugin.",
   "author": "OnPoint Plugins <support@onpointplugins.com>",
   "license": "UNLICENSED",
@@ -15,7 +15,7 @@
   ],
   "scripts": {
     "browserslist": "lipemat-js-boilerplate browserslist",
-    "lint": "lipemat-js-boilerplate lint && stylelint js/src/**/*.pcss --fix",
+    "lint": "lipemat-js-boilerplate lint && stylelint js/src/**/*.pcss --fix --cache",
     "dist": "lipemat-js-boilerplate dist && lipemat-js-boilerplate dist --script-debug",
     "postinstall": "lipemat-js-boilerplate fix-pnp",
     "start": "lipemat-js-boilerplate start",
@@ -26,7 +26,7 @@
   },
   "devDependencies": {
     "@lipemat/eslint-config": "^3.1.1",
-    "@lipemat/js-boilerplate": "^9.4.5",
+    "@lipemat/js-boilerplate": "^9.5.1",
     "@lipemat/js-boilerplate-gutenberg": "^2.11.0",
     "@lipemat/stylelint-config": "^2.1.1",
     "@types/dompurify": "^3.0.1",
