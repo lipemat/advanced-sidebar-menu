@@ -281,6 +281,9 @@ Yes. Based on whatever page, post or category you are on, the menu will change a
 * Numerous bug fixes.
 
 == Upgrade Notice ==
+= 9.3.3 =
+Update to support WordPress 6.4.
+
 = 9.1.0 =
 Update to support PRO version 9.2.0.
 
