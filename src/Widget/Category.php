@@ -52,9 +52,10 @@ class Category extends Widget_Abstract {
 			'description'           => __( 'Creates a menu of all the categories using the parent/child relationship', 'advanced-sidebar-menu' ),
 			'show_instance_in_rest' => true,
 		];
-		$control_ops = [
-			'width' => wp_is_mobile() ? false : 620,
-		];
+		$control_ops = [];
+		if ( ! wp_is_mobile() ) {
+			$control_ops['width'] = 620;
+		}
 
 		parent::__construct( static::NAME, __( 'Advanced Sidebar - Categories', 'advanced-sidebar-menu' ), $widget_ops, $control_ops );
 
@@ -98,12 +99,12 @@ class Category extends Widget_Abstract {
 	 *
 	 * @return string
 	 */
-	public function get_taxonomy_label( $instance, $single = true ): string {
+	public function get_taxonomy_label( array $instance, $single = true ): string {
 		$taxonomy = get_taxonomy( apply_filters( 'advanced-sidebar-menu/widget/category/taxonomy-for-label', 'category', $this->control_options, $instance ) );
 		if ( false === $taxonomy ) {
 			$taxonomy = get_taxonomy( 'category' );// Sensible fallback.
 			if ( false === $taxonomy ) {
-				return '';
+				return $single ? __( 'Category', 'advanced-sidebar-menu' ) : __( 'Categories', 'advanced-sidebar-menu' );
 			}
 		}
 

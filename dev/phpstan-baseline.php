@@ -302,11 +302,6 @@ $ignoreErrors[] = [
 	'path' => __DIR__ . '/../src/Menus/Menu_Abstract.php',
 ];
 $ignoreErrors[] = [
-	'message' => '#^Construct empty\\(\\) is not allowed\\. Use more strict comparison\\.$#',
-	'count' => 2,
-	'path' => __DIR__ . '/../src/Menus/Page.php',
-];
-$ignoreErrors[] = [
 	'message' => '#^Method Advanced_Sidebar_Menu\\\\Notice\\:\\:get_features\\(\\) return type has no value type specified in iterable type array\\.$#',
 	'count' => 1,
 	'path' => __DIR__ . '/../src/Notice.php',

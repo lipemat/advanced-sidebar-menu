@@ -3,9 +3,11 @@ includes:
     - %rootDir%/../../../rules.neon
     # Baseline full of @todo.
     - dev/phpstan-baseline.php
+    # WP version specific ignores.
+    - dev/phpstan-phpVersion-ignores.php
 
 parameters:
-    level: 6
+    level: 8
     lipemat:
         allowedToBeExtended:
             - Advanced_Sidebar_Menu\Blocks\Block_Abstract

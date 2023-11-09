@@ -135,7 +135,7 @@ abstract class Block_Abstract {
 	 * We mimic the functionality of the inner echo while excluding
 	 * the calls to output the wrap.
 	 *
-	 * @param bool|array $instance - Contents of the block, before parsing.
+	 * @param false|array $instance - Contents of the block, before parsing.
 	 * @param \WP_Widget $widget   - Object representing a block based widget.
 	 * @param array      $args     - Widget area arguments.
 	 *
@@ -286,7 +286,7 @@ abstract class Block_Abstract {
 		 */
 		if ( \defined( 'REST_REQUEST' ) && REST_REQUEST && ! empty( $attr[ static::RENDER_REQUEST ] ) ) {
 			if ( ! empty( get_post() ) ) {
-				add_action( 'advanced-sidebar-menu/widget/before-render', function( $menu ) {
+				add_action( 'advanced-sidebar-menu/widget/before-render', function( Menu_Abstract $menu ) {
 					if ( method_exists( $menu, 'set_current_post' ) ) {
 						$menu->set_current_post( get_post() );
 					}
@@ -340,6 +340,6 @@ abstract class Block_Abstract {
 		ob_start();
 		$widget = $this->get_widget_class();
 		$widget->widget( $this->widget_args, $this->convert_checkbox_values( $attr ) );
-		return ob_get_clean();
+		return (string) ob_get_clean();
 	}
 }

@@ -114,7 +114,7 @@ class List_Pages {
 			if ( $this->get_current_page_id() === $post->ID ) {
 				$classes[] = 'current_page_item';
 				$classes[] = 'current-menu-item';
-			} elseif ( $this->current_page->post_parent === $post->ID ) {
+			} elseif ( null !== $this->current_page && $this->current_page->post_parent === $post->ID ) {
 				$classes[] = 'current_page_parent';
 				$classes[] = 'current_page_ancestor';
 				$classes[] = 'current-menu-parent';
@@ -325,9 +325,9 @@ class List_Pages {
 		if ( ! empty( $current_page_id ) ) {
 			if ( (int) $page_id === $current_page_id ) {
 				$return = true;
-			} elseif ( $this->current_page->post_parent === (int) $page_id ) {
+			} elseif ( null !== $this->current_page && $this->current_page->post_parent === (int) $page_id ) {
 				$return = true;
-			} else {
+			} elseif ( null !== $this->current_page ) {
 				$ancestors = get_post_ancestors( $this->current_page );
 				if ( ! empty( $ancestors ) && \in_array( (int) $page_id, $ancestors, true ) ) {
 					$return = true;

@@ -48,9 +48,10 @@ class Page extends Widget_Abstract {
 			'description'           => __( 'Creates a menu of all the pages using the parent/child relationship', 'advanced-sidebar-menu' ),
 			'show_instance_in_rest' => true,
 		];
-		$control_ops = [
-			'width' => wp_is_mobile() ? false : 620,
-		];
+		$control_ops = [];
+		if ( ! wp_is_mobile() ) {
+			$control_ops['width'] = 620;
+		}
 
 		parent::__construct( static::NAME, __( 'Advanced Sidebar - Pages', 'advanced-sidebar-menu' ), $widget_ops, $control_ops );
 
@@ -84,17 +85,21 @@ class Page extends Widget_Abstract {
 	 *
 	 * For adjusting widget option labels.
 	 *
+	 * @since 8.2.0
+	 *
 	 * @param array $instance - Widget settings.
 	 * @param bool  $single   - Singular label or plural.
 	 *
-	 * @since 8.2.0
-	 *
-	 * @return mixed
+	 * @return string
 	 */
 	public function get_post_type_label( $instance, $single = true ) {
-		$post_type = get_post_type_object( apply_filters( 'advanced-sidebar-menu/widget/page/post-type-for-label', 'page', $this->control_options, $instance ) );
-		if ( null === $post_type ) {
+		$type = apply_filters( 'advanced-sidebar-menu/widget/page/post-type-for-label', 'page', $this->control_options, $instance );
+		$post_type = get_post_type_object( $type );
+		if ( 'page' !== $type && null === $post_type ) {
 			$post_type = get_post_type_object( 'page' ); // Sensible fallback.
+		}
+		if ( null === $post_type ) {
+			return $single ? __( 'Page', 'advanced-sidebar-menu' ) : __( 'Pages', 'advanced-sidebar-menu' );
 		}
 
 		return $single ? $post_type->labels->singular_name : $post_type->labels->name;

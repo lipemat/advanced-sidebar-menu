@@ -178,12 +178,12 @@ class Scripts {
 		}
 
 		$script = wp_scripts()->query( 'react', 'scripts' );
-		if ( is_a( $script, \_WP_Dependency::class ) ) {
-			$script->src = \str_replace( wp_scripts_get_suffix(), '', $script->src );
+		if ( ! \is_bool( $script ) && is_a( $script, \_WP_Dependency::class ) ) {
+			$script->src = \str_replace( wp_scripts_get_suffix(), '', (string) $script->src );
 		}
 		$script = wp_scripts()->query( 'react-dom', 'scripts' );
-		if ( is_a( $script, \_WP_Dependency::class ) ) {
-			$script->src = \str_replace( wp_scripts_get_suffix(), '', $script->src );
+		if ( ! \is_bool( $script ) && is_a( $script, \_WP_Dependency::class ) ) {
+			$script->src = \str_replace( wp_scripts_get_suffix(), '', (string) $script->src );
 		}
 	}
 
@@ -198,7 +198,7 @@ class Scripts {
 			'categories'    => [
 				'displayEach' => Category::get_display_each_options(),
 			],
-			'currentScreen' => is_admin() ? get_current_screen()->base : '',
+			'currentScreen' => is_admin() && \function_exists( 'get_current_screen' ) ? get_current_screen()->base ?? '' : '',
 			'docs'          => [
 				'page'     => Core::instance()->get_documentation_url( Page::NAME ),
 				'category' => Core::instance()->get_documentation_url( Category::NAME ),

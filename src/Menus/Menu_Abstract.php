@@ -132,7 +132,7 @@ abstract class Menu_Abstract {
 		// Block widgets loaded via the REST API don't have full widget args.
 		if ( ! isset( $this->args['widget_id'] ) ) {
 			// Prefix any leading digits or hyphens with '_'.
-			$this->args['widget_id'] = \preg_replace( '/^([\d-])/', '_$1', wp_hash( wp_json_encode( $this->instance ) ) );
+			$this->args['widget_id'] = \preg_replace( '/^([\d-])/', '_$1', wp_hash( (string) wp_json_encode( $this->instance ) ) );
 			//phpcs:ignore -- Not actually using the value of $_POST.
 		} elseif ( ! empty( $_POST['action'] ) && 'elementor_ajax' === $_POST['action'] ) {
 			/**
@@ -140,7 +140,7 @@ abstract class Menu_Abstract {
 			 * Since we can't increment nor is there a unique id, we always
 			 * use the instance for Elementor previews.
 			 */
-			$this->args['widget_id'] .= wp_hash( wp_json_encode( $this->instance ) );
+			$this->args['widget_id'] .= wp_hash( (string) wp_json_encode( $this->instance ) );
 		}
 
 		if ( \in_array( $this->args['widget_id'], static::$unique_widget_ids, true ) ) {
@@ -207,7 +207,7 @@ abstract class Menu_Abstract {
 	 * @return bool
 	 */
 	public function include_parent() {
-		return $this->checked( static::INCLUDE_PARENT ) && ! $this->is_excluded( $this->get_top_parent_id() );
+		return $this->checked( static::INCLUDE_PARENT ) && ! $this->is_excluded( $this->get_top_parent_id() ?? - 1 );
 	}
 
 

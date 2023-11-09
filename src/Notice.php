@@ -122,7 +122,7 @@ class Notice {
 			</a>
 			<div
 				data-js="advanced-sidebar-menu/pro/preview/trigger"
-				data-target="advanced-sidebar-menu/pro/preview/<?php echo esc_attr( $widget->id ); ?>"
+				data-target="advanced-sidebar-menu/pro/preview/<?php echo esc_attr( (string) $widget->id ); ?>"
 				class="advanced-sidebar-desktop-only advanced-sidebar-preview-trigger"
 			>
 				<button class="button-secondary">
@@ -151,7 +151,7 @@ class Notice {
 		}
 		?>
 		<div
-			data-js="advanced-sidebar-menu/pro/preview/<?php echo esc_attr( $widget->id ); ?>"
+			data-js="advanced-sidebar-menu/pro/preview/<?php echo esc_attr( (string) $widget->id ); ?>"
 			class="advanced-sidebar-desktop-only advanced-sidebar-menu-full-width advanced-sidebar-menu-preview-wrap">
 			<div class="dashicons dashicons-no-alt advanced-sidebar-menu-close-icon"></div>
 			<img
