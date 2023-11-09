@@ -67,6 +67,7 @@ class Scripts {
 	public function register_gutenberg_scripts() {
 		wp_register_script( static::GUTENBERG_HANDLE, $this->get_dist_file( 'advanced-sidebar-menu-block-editor', 'js' ), [
 			'jquery',
+			'lodash',
 			'react',
 			'react-dom',
 			'wp-block-editor',
