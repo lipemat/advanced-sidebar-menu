@@ -47,7 +47,7 @@ const getSidebarId = ( clientId: string ): string => {
 	const rootId = select( 'core/block-editor' ).getBlockRootClientId( clientId );
 	if ( 'undefined' !== typeof rootId && '' !== rootId ) {
 		const ParentBlock = select( 'core/block-editor' ).getBlocksByClientId( [ rootId ] );
-		if ( 'undefined' !== typeof ParentBlock[ 0 ] && 'core/widget-area' === ParentBlock[ 0 ].name ) {
+		if ( null !== ParentBlock[ 0 ] && 'undefined' !== typeof ParentBlock[ 0 ] && 'core/widget-area' === ParentBlock[ 0 ]?.name ) {
 			return ParentBlock[ 0 ]?.attributes?.id;
 		}
 	}
