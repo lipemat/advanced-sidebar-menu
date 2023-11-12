@@ -1,5 +1,8 @@
 import {ComponentClass, FunctionComponent} from 'react';
 import {TransformLegacy} from '../gutenberg/helpers';
+import type {Attr as PageAttr} from '../gutenberg/blocks/pages/block';
+import type {Attr as CategoryAttr} from '../gutenberg/blocks/categories/block';
+import type {BlockAttributes, BlockSettings} from '@wordpress/blocks';
 
 export type Screen = 'site-editor' | 'widgets' | 'post' | 'customize';
 
@@ -9,12 +12,18 @@ interface JSConfig {
 	blocks: {
 		categories: {
 			id: 'advanced-sidebar-menu/categories';
+			attributes: BlockAttributes<CategoryAttr>;
+			supports: BlockSettings<CategoryAttr>['supports'];
 		};
 		pages: {
 			id: 'advanced-sidebar-menu/pages';
+			attributes: BlockAttributes<PageAttr>;
+			supports: BlockSettings<PageAttr>['supports'];
 		};
 		navigation?: {
 			id: 'advanced-sidebar-menu/navigation';
+			attributes: BlockAttributes<any>;
+			supports: BlockSettings<any>['supports'];
 		}
 	};
 	categories: {

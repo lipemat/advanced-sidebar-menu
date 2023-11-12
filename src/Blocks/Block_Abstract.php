@@ -246,6 +246,8 @@ abstract class Block_Abstract {
 	public function js_config( array $config ) {
 		$config['blocks'][ \explode( '/', static::NAME )[1] ] = [
 			'id' => static::NAME,
+			'attributes' => $this->get_all_attributes(),
+			'supports'   => $this->get_block_support(),
 		];
 
 		return $config;

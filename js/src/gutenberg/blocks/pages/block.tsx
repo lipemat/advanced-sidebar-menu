@@ -84,8 +84,8 @@ export const settings: BlockSettings<Attr, '', LegacyWidget<Attr & { title: stri
 			},
 		],
 	},
-	// `attributes` are registered server side because we use ServerSideRender.
-	// `supports` are registered server side for easy overrides.
+	attributes: block.attributes,
+	supports: block.supports,
 	edit: props => (
 		<Edit {...props} />
 	),
