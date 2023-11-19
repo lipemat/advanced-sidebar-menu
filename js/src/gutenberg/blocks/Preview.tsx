@@ -119,9 +119,7 @@ const TriggerWhenLoadingFinished = ( {
 		return () => {
 			// Give the preview a chance to load on WP 5.8.
 			setTimeout( () => {
-				$( '[data-preview="' + `${attributes.clientId}` + '"]' )
-					.find( 'a' )
-					.on( 'click', ev => ev.preventDefault() );
+				$( '[data-preview="' + `${attributes.clientId}` + '"]' ).on( 'click', 'a', ev => ev.preventDefault() );
 
 				doAction( 'advanced-sidebar-menu.blocks.preview.loading-finished', {
 					values: attributes,
