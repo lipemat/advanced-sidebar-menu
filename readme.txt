@@ -3,7 +3,7 @@
 Contributors: Mat Lipe, onpointplugins
 Donate link: https://www.paypal.com/cgi-bin/webscr?cmd=_donations&business=paypal%40onpointplugins%2ecom&lc=US&item_name=Advanced%20Sidebar%20Menu&no_note=0&currency_code=USD&bn=PP%2dDonationsBF%3abtn_donateCC_LG%2egif%3aNonHostedGuest
 Tags: block, widget, dynamic, hierarchy, menus, sidebar menu, category, pages, parent, child, automatic
-Requires at least: 5.8.0
+Requires at least: 6.0.0
 Tested up to: 6.4.1
 Requires PHP: 7.2.0
 Stable tag: 9.3.4
