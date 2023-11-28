@@ -10,7 +10,6 @@ use Advanced_Sidebar_Menu\Walkers\Category_Walker;
  * Category menu.
  *
  * @author OnPoint Plugins
- * @since  7.0.0
  */
 class Category extends Menu_Abstract {
 	use Memoize;

@@ -8,7 +8,6 @@ use Advanced_Sidebar_Menu\Menus\Menu_Abstract;
  * Creates a Widget of parent Child Categories
  *
  * @author  OnPoint Plugins
- * @since   7.0.0
  *
  * @package Advanced Sidebar Menu
  */

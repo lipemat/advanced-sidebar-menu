@@ -6,7 +6,6 @@ namespace Advanced_Sidebar_Menu\Menus;
  * Base for Menu classes.
  *
  * @author OnPoint Plugins
- * @since  7.0.0
  */
 abstract class Menu_Abstract {
 	const WIDGET = 'menu-abstract';

@@ -6,7 +6,6 @@ namespace Advanced_Sidebar_Menu\Traits;
  * Trait Singleton
  *
  * @author Mat Lipe
- * @since  7.7.0
  */
 trait Singleton {
 

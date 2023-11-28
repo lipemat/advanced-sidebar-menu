@@ -10,7 +10,6 @@ use Advanced_Sidebar_Menu\Widget\Page;
  * Core functionality for Advanced Sidebar Menu Plugin
  *
  * @author OnPoint Plugins
- * @since  7.0.0
  */
 class Core {
 	use Singleton;

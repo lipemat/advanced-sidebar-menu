@@ -9,7 +9,6 @@ use Advanced_Sidebar_Menu\List_Pages;
  * Page menu.
  *
  * @author OnPoint Plugins
- * @since  7.0.0
  */
 class Page extends Menu_Abstract {
 	const WIDGET = 'page';

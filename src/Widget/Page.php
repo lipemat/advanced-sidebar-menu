@@ -10,7 +10,6 @@ use Advanced_Sidebar_Menu\Menus\Menu_Abstract;
  * Parent child menu based on pages.
  *
  * @author OnPoint Plugins
- * @since  7.0.0
  */
 class Page extends Widget_Abstract {
 	const NAME = 'advanced_sidebar_menu';
@@ -336,8 +335,6 @@ class Page extends Widget_Abstract {
 	 * @param array $instance - Widget settings.
 	 *
 	 * @see   \Advanced_Sidebar_Menu\Menus\Page
-	 *
-	 * @since 7.0.0
 	 *
 	 * @return void
 	 */
