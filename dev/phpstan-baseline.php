@@ -382,19 +382,9 @@ $ignoreErrors[] = [
 	'path' => __DIR__ . '/../src/Walkers/Category_Walker.php',
 ];
 $ignoreErrors[] = [
-	'message' => '#^Method Advanced_Sidebar_Menu\\\\Walkers\\\\Category_Walker\\:\\:start_lvl\\(\\) has no return type specified\\.$#',
-	'count' => 1,
-	'path' => __DIR__ . '/../src/Walkers/Category_Walker.php',
-];
-$ignoreErrors[] = [
 	'message' => '#^Method Advanced_Sidebar_Menu\\\\Walkers\\\\Category_Walker\\:\\:start_lvl\\(\\) has parameter \\$args with no value type specified in iterable type array\\.$#',
 	'count' => 1,
 	'path' => __DIR__ . '/../src/Walkers/Category_Walker.php',
-];
-$ignoreErrors[] = [
-	'message' => '#^Method Advanced_Sidebar_Menu\\\\Walkers\\\\Page_Walker\\:\\:end_el\\(\\) has no return type specified\\.$#',
-	'count' => 1,
-	'path' => __DIR__ . '/../src/Walkers/Page_Walker.php',
 ];
 $ignoreErrors[] = [
 	'message' => '#^Method Advanced_Sidebar_Menu\\\\Walkers\\\\Page_Walker\\:\\:end_el\\(\\) has parameter \\$args with no value type specified in iterable type array\\.$#',
