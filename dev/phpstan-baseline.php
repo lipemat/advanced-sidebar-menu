@@ -117,17 +117,7 @@ $ignoreErrors[] = [
 	'path' => __DIR__ . '/../src/Cache.php',
 ];
 $ignoreErrors[] = [
-	'message' => '#^Method Advanced_Sidebar_Menu\\\\Cache\\:\\:hook\\(\\) has no return type specified\\.$#',
-	'count' => 1,
-	'path' => __DIR__ . '/../src/Cache.php',
-];
-$ignoreErrors[] = [
 	'message' => '#^Construct empty\\(\\) is not allowed\\. Use more strict comparison\\.$#',
-	'count' => 1,
-	'path' => __DIR__ . '/../src/Core.php',
-];
-$ignoreErrors[] = [
-	'message' => '#^Method Advanced_Sidebar_Menu\\\\Core\\:\\:hook\\(\\) has no return type specified\\.$#',
 	'count' => 1,
 	'path' => __DIR__ . '/../src/Core.php',
 ];
@@ -252,11 +242,6 @@ $ignoreErrors[] = [
 	'path' => __DIR__ . '/../src/Menus/Category.php',
 ];
 $ignoreErrors[] = [
-	'message' => '#^Property Advanced_Sidebar_Menu\\\\Menus\\\\Category\\:\\:\\$memoize_cache type has no value type specified in iterable type array\\.$#',
-	'count' => 1,
-	'path' => __DIR__ . '/../src/Menus/Category.php',
-];
-$ignoreErrors[] = [
 	'message' => '#^Construct empty\\(\\) is not allowed\\. Use more strict comparison\\.$#',
 	'count' => 1,
 	'path' => __DIR__ . '/../src/Menus/Menu_Abstract.php',
@@ -307,11 +292,6 @@ $ignoreErrors[] = [
 	'path' => __DIR__ . '/../src/Notice.php',
 ];
 $ignoreErrors[] = [
-	'message' => '#^Method Advanced_Sidebar_Menu\\\\Notice\\:\\:hook\\(\\) has no return type specified\\.$#',
-	'count' => 1,
-	'path' => __DIR__ . '/../src/Notice.php',
-];
-$ignoreErrors[] = [
 	'message' => '#^Method Advanced_Sidebar_Menu\\\\Notice\\:\\:info_panel\\(\\) has parameter \\$instance with no value type specified in iterable type array\\.$#',
 	'count' => 1,
 	'path' => __DIR__ . '/../src/Notice.php',
@@ -344,11 +324,6 @@ $ignoreErrors[] = [
 $ignoreErrors[] = [
 	'message' => '#^Construct empty\\(\\) is not allowed\\. Use more strict comparison\\.$#',
 	'count' => 2,
-	'path' => __DIR__ . '/../src/Scripts.php',
-];
-$ignoreErrors[] = [
-	'message' => '#^Method Advanced_Sidebar_Menu\\\\Scripts\\:\\:hook\\(\\) has no return type specified\\.$#',
-	'count' => 1,
 	'path' => __DIR__ . '/../src/Scripts.php',
 ];
 $ignoreErrors[] = [
