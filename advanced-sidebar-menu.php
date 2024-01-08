@@ -51,6 +51,8 @@ use Advanced_Sidebar_Menu\Widget\Widget_Abstract;
  * @return void
  */
 function advanced_sidebar_menu_load() {
+	load_plugin_textdomain( 'advanced-sidebar-menu', false, 'advanced-sidebar-menu/languages' );
+
 	Core::init();
 	// Blocks.
 	Categories::init();
@@ -64,8 +66,6 @@ function advanced_sidebar_menu_load() {
 	if ( Notice::instance()->is_conflicting_pro_version() ) {
 		remove_action( 'plugins_loaded', 'advanced_sidebar_menu_pro_init', 11 );
 	}
-
-	load_plugin_textdomain( 'advanced-sidebar-menu', false, 'advanced-sidebar-menu/languages' );
 }
 
 add_action( 'plugins_loaded', 'advanced_sidebar_menu_load' );
