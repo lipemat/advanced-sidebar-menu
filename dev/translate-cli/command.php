@@ -6,7 +6,7 @@ use Gettext\Translations;
 
 require __DIR__ . '/vendor/autoload.php';
 
-const RELATIVE_PATH = 'js/dist/admin.js';
+const RELATIVE_PATH = 'js/dist/advanced-sidebar-menu-block-editor.js';
 const EXTENSIONS = [ '.ts', '.js', 'jsx', 'tsx' ];
 
 class LocalGenerator extends Jed {
@@ -45,7 +45,7 @@ function make_json( $source_file ) {
 
 	$plural_forms = $all_translations->getPluralForms();
 	if ( $plural_forms ) {
-		list( $count, $rule ) = $plural_forms;
+		[ $count, $rule ] = $plural_forms;
 		$js_translations->setPluralForms( $count, $rule );
 	}
 

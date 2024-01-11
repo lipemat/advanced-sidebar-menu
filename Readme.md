@@ -64,7 +64,7 @@ support a Webpack/TypeScript structure.
 1. Looks for .jsx, .ts, and .tsx as well as the .js.
 2. Combines all matching translations to a single file instead of split
    by source file.
-3. Use the `js/dist/admin.js` as the source file for all.
+3. Use the `js/dist/advanced-sidebar-menu-block-editor.js` as the source file for all.
 4. May be run outside WP using PHP.
 
 The JSON files are automatically generated during deployment via GitHub Actions scripts.
