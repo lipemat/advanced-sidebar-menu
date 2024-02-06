@@ -90,5 +90,5 @@ export const settings: BlockSettings<Attr, '', LegacyWidget<Attr & { title: stri
 		<Edit {...props} />
 	),
 	save: () => null,
-	apiVersion: 2,
+	apiVersion: 3,
 };
