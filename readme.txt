@@ -14,11 +14,11 @@ License URI: http://www.gnu.org/licenses/gpl-3.0.html
 
 <h3>Fully automatic sidebar menus.</h3>
 
-Uses the parent/child relationship of your pages or categories to generate menus based on the current section of your site. Assign a page or category to a parent and this will do the rest for you.
+Uses the parent/child relationship of your pages or categories to generate menus based on the current section of your site. Assign a page or category to a parent and Advanced Sidebar Menu will do the rest for you.
 
 Keeps the menu clean and usable. Only related items display, so you don't have to worry about keeping a custom menu up to date or displaying links to items that don't belong.
 
-Widgets and blocks are available to display menus where you need them. Look for the "Advanced Sidebar - Pages" widget or block, or the "Advanced Sidebar - Categories" widget or block.
+Blocks are available to display menus where you need them. Look for the "Advanced Sidebar - Pages" block, or the "Advanced Sidebar - Categories" block. Widgets are also available for page builders or sites using classic widgets.
 
 <strong>Check out <a href="https://onpointplugins.com/product/advanced-sidebar-menu-pro/?utm_source=readme&utm_campaign=gopro&utm_medium=dot-org">Advanced Sidebar Menu PRO</a> for more features including accordion menus, menu colors and styles, custom link text, excluding of pages, category ordering, custom post types, custom taxonomies, priority support, and so much more!</strong>
 
