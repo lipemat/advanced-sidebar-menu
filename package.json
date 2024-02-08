@@ -1,6 +1,6 @@
 {
   "name": "@onpointplugins/advanced-sidebar-menu",
-  "version": "7.8.0",
+  "version": "8.1.0",
   "description": "Gutenberg blocks for the Advanced Sidebar Menu plugin.",
   "author": "OnPoint Plugins <support@onpointplugins.com>",
   "license": "UNLICENSED",
@@ -14,35 +14,38 @@
     "extends @wordpress/browserslist-config"
   ],
   "scripts": {
+    "analyze": "lipemat-js-boilerplate analyze",
     "browserslist": "lipemat-js-boilerplate browserslist",
     "lint": "lipemat-js-boilerplate lint && stylelint js/src/**/*.pcss --fix --cache",
     "dist": "lipemat-js-boilerplate dist && lipemat-js-boilerplate dist --script-debug",
     "postinstall": "lipemat-js-boilerplate fix-pnp",
-    "start": "lipemat-js-boilerplate start"
+    "start": "lipemat-js-boilerplate start",
+    "test": "lipemat-js-boilerplate test"
   },
   "dependencies": {
-    "react-string-replace": "^1.1.0"
+    "react-string-replace": "^1.1.1"
   },
   "devDependencies": {
     "@lipemat/eslint-config": "^3.1.1",
-    "@lipemat/js-boilerplate": "^10.5.1",
+    "@lipemat/js-boilerplate": "^10.7.0",
     "@lipemat/js-boilerplate-gutenberg": "^3.3.1",
-    "@lipemat/stylelint-config": "^2.1.1",
+    "@lipemat/stylelint-config": "^2.2.1",
     "@types/dompurify": "^3.0.1",
     "@types/jquery": "^3",
     "@types/lipemat__js-boilerplate": "lipemat/types-js-boilerplate#semver:^2",
     "@types/lodash": "^4.14.182",
     "@types/react": "^18",
     "classnames": "^2.3.2",
-    "dompurify": "^3.0.3",
+    "dompurify": "^3.0.6",
     "eslint": "^8",
+    "jest": "^29",
     "stylelint": "^14",
     "ts-node": "^10.9.1",
-    "typescript": "^5"
+    "typescript": "^5.3.3"
   },
   "resolutions": {
     "@types/react": "^18",
     "@types/react-dom": "^18"
   },
-  "packageManager": "yarn@3.6.4"
+  "packageManager": "yarn@4.1.0"
 }
