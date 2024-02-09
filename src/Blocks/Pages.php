@@ -13,7 +13,7 @@ use Advanced_Sidebar_Menu\Widget\Page;
 class Pages extends Block_Abstract {
 	use Singleton;
 
-	const NAME = 'advanced-sidebar-menu/pages';
+	public const NAME = 'advanced-sidebar-menu/pages';
 
 
 	/**

@@ -12,9 +12,9 @@ use Advanced_Sidebar_Menu\Utils;
  * @since 9.0.0
  */
 abstract class Block_Abstract {
-	const NAME = 'block-abstract';
+	public const NAME = 'block-abstract';
 
-	const RENDER_REQUEST = 'isServerSideRenderRequest';
+	public const RENDER_REQUEST = 'isServerSideRenderRequest';
 
 	/**
 	 * Widget arguments used in rendering.
@@ -192,18 +192,29 @@ abstract class Block_Abstract {
 	 *
 	 * @return void
 	 */
-	public function register() {
-		register_block_type( static::NAME,
-			apply_filters( 'advanced-sidebar-menu/block-register/' . static::NAME, [
-				'api_version'     => 3,
-				'attributes'      => $this->get_all_attributes(),
-				'description'     => $this->get_description(),
-				'editor_script'   => Scripts::GUTENBERG_HANDLE,
-				'editor_style'    => Scripts::GUTENBERG_CSS_HANDLE,
-				'keywords'        => $this->get_keywords(),
-				'render_callback' => [ $this, 'render' ],
-				'supports'        => $this->get_block_support(),
-			] ) );
+	public function register(): void {
+		$args = apply_filters( 'advanced-sidebar-menu/block-register/' . static::NAME, [
+			'api_version'           => 3,
+			'attributes'            => $this->get_all_attributes(),
+			'description'           => $this->get_description(),
+			'editor_script_handles' => [ Scripts::GUTENBERG_HANDLE ],
+			'editor_style_handles'  => [ Scripts::GUTENBERG_CSS_HANDLE ],
+			'keywords'              => $this->get_keywords(),
+			'render_callback'       => [ $this, 'render' ],
+			'supports'              => $this->get_block_support(),
+		] );
+
+		// Translate deprecated keys until required PRO version is 9.5.0.
+		if ( isset( $args['editor_script'] ) ) {
+			$args['editor_script_handles'] = (array) $args['editor_script'];
+			unset( $args['editor_script'] );
+		}
+		if ( isset( $args['editor_style'] ) ) {
+			$args['editor_style_handles'] = (array) $args['editor_style'];
+			unset( $args['editor_style'] );
+		}
+
+		register_block_type( static::NAME, $args );
 	}
 
 

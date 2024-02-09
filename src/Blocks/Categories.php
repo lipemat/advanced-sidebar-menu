@@ -13,7 +13,7 @@ use Advanced_Sidebar_Menu\Widget\Category;
 class Categories extends Block_Abstract {
 	use Singleton;
 
-	const NAME = 'advanced-sidebar-menu/categories';
+	public const NAME = 'advanced-sidebar-menu/categories';
 
 
 	/**
@@ -115,7 +115,7 @@ class Categories extends Block_Abstract {
 
 
 	/**
-	 * Return a new instance of the Page widget.
+	 * Return a new instance of the Categories widget.
 	 *
 	 * @return Category
 	 */
