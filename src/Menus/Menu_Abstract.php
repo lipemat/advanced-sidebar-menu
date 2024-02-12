@@ -8,23 +8,23 @@ namespace Advanced_Sidebar_Menu\Menus;
  * @author OnPoint Plugins
  */
 abstract class Menu_Abstract {
-	const WIDGET = 'menu-abstract';
+	public const WIDGET = 'menu-abstract';
 
 	// Options shared between menus.
-	const DISPLAY_ALL              = 'display_all';
-	const EXCLUDE                  = 'exclude';
-	const INCLUDE_CHILDLESS_PARENT = 'include_childless_parent';
-	const INCLUDE_PARENT           = 'include_parent';
-	const LEVELS                   = 'levels';
-	const ORDER                    = 'order';
-	const ORDER_BY                 = 'order_by';
-	const TITLE                    = 'title';
+	public const DISPLAY_ALL              = 'display_all';
+	public const EXCLUDE                  = 'exclude';
+	public const INCLUDE_CHILDLESS_PARENT = 'include_childless_parent';
+	public const INCLUDE_PARENT           = 'include_parent';
+	public const LEVELS                   = 'levels';
+	public const ORDER                    = 'order';
+	public const ORDER_BY                 = 'order_by';
+	public const TITLE                    = 'title';
 
 	// Possible level values.
-	const LEVEL_CHILD       = 'child';
-	const LEVEL_DISPLAY_ALL = 'display-all';
-	const LEVEL_GRANDCHILD  = 'grandchild';
-	const LEVEL_PARENT      = 'parent';
+	public const LEVEL_CHILD       = 'child';
+	public const LEVEL_DISPLAY_ALL = 'display-all';
+	public const LEVEL_GRANDCHILD  = 'grandchild';
+	public const LEVEL_PARENT      = 'parent';
 
 	/**
 	 * Widget Args
@@ -53,7 +53,7 @@ abstract class Menu_Abstract {
 
 
 	/**
-	 * Construct a new instance of this widget.
+	 * Constructs a new instance of this widget.
 	 *
 	 * @param array $instance - Widget settings.
 	 * @param array $args     - Widget registration arguments.
@@ -177,9 +177,9 @@ abstract class Menu_Abstract {
 
 
 	/**
-	 * Checks if a widget's checkbox is checked.
+	 * Is a widget's checkbox is checked?
 	 *
-	 * Checks first for a value then verifies the value = checked
+	 * Checks first for a value then verifies the value = 'checked'.
 	 *
 	 * @param string $name - Name of checkbox.
 	 *

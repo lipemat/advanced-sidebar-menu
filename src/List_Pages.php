@@ -293,11 +293,15 @@ class List_Pages {
 		$cache = Cache::instance();
 		$child_pages = $cache->get_child_pages( $this );
 		if ( false === $child_pages ) {
-			$args = $this->args;
-			$args['post_parent'] = $parent_page_id;
-			$args['fields'] = 'ids';
-			$args['suppress_filters'] = false;
-			$child_pages = get_posts( $args );
+			if ( $this->menu->is_excluded( $parent_page_id ) ) {
+				$child_pages = [];
+			} else {
+				$args = $this->args;
+				$args['post_parent'] = $parent_page_id;
+				$args['fields'] = 'ids';
+				$args['suppress_filters'] = false;
+				$child_pages = get_posts( $args );
+			}
 
 			$cache->add_child_pages( $this, $child_pages );
 		}

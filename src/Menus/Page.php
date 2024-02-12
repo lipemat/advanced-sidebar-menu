@@ -11,7 +11,7 @@ use Advanced_Sidebar_Menu\List_Pages;
  * @author OnPoint Plugins
  */
 class Page extends Menu_Abstract {
-	const WIDGET = 'page';
+	public const WIDGET = 'page';
 
 	/**
 	 * The current post

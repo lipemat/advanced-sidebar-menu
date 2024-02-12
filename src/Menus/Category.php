@@ -14,18 +14,18 @@ use Advanced_Sidebar_Menu\Walkers\Category_Walker;
 class Category extends Menu_Abstract {
 	use Memoize;
 
-	const WIDGET = 'category';
+	public const WIDGET = 'category';
 
-	const DISPLAY_ON_SINGLE     = 'single';
-	const EACH_CATEGORY_DISPLAY = 'new_widget';
+	public const DISPLAY_ON_SINGLE     = 'single';
+	public const EACH_CATEGORY_DISPLAY = 'new_widget';
 
-	const EACH_LIST   = 'list';
-	const EACH_WIDGET = 'widget';
+	public const EACH_LIST   = 'list';
+	public const EACH_WIDGET = 'widget';
 
 	/**
 	 * Top_level_term.
 	 *
-	 * @var \WP_Term
+	 * @var ?\WP_Term
 	 */
 	public $top_level_term;
 
@@ -38,7 +38,7 @@ class Category extends Menu_Abstract {
 	 *
 	 * @return void
 	 */
-	public function set_current_top_level_term( \WP_Term $term ) {
+	public function set_current_top_level_term( \WP_Term $term ): void {
 		$this->top_level_term = $term;
 	}
 
@@ -147,22 +147,21 @@ class Category extends Menu_Abstract {
 	 *
 	 * @return \WP_Term[]
 	 */
-	public function get_child_terms() {
-		$terms = get_terms(
-			\array_filter(
-				[
-					'taxonomy' => $this->get_taxonomy(),
-					'parent'   => $this->get_top_parent_id(),
-					'orderby'  => $this->get_order_by(),
-					'order'    => $this->get_order(),
-				]
-			)
-		);
-		if ( is_wp_error( $terms ) ) {
-			return [];
+	public function get_child_terms(): array {
+		$terms = [];
+		if ( null !== $this->get_top_parent_id() && ! $this->is_excluded( $this->get_top_parent_id() ) ) {
+			$terms = get_terms( \array_filter( [
+				'taxonomy' => $this->get_taxonomy(),
+				'parent'   => $this->get_top_parent_id(),
+				'orderby'  => $this->get_order_by(),
+				'order'    => $this->get_order(),
+			] ) );
+			if ( is_wp_error( $terms ) ) {
+				$terms = [];
+			}
 		}
 
-		return apply_filters( 'advanced-sidebar-menu/menus/category/get-child-terms', \array_filter( $terms ), $this );
+		return (array) apply_filters( 'advanced-sidebar-menu/menus/category/get-child-terms', \array_filter( $terms ), $this );
 	}
 
 
@@ -256,8 +255,8 @@ class Category extends Menu_Abstract {
 	 *
 	 * @return ?int
 	 */
-	public function get_top_parent_id() {
-		if ( empty( $this->top_level_term->term_id ) ) {
+	public function get_top_parent_id(): ?int {
+		if ( null === $this->top_level_term || $this->top_level_term->term_id < 1 ) {
 			return null;
 		}
 
@@ -355,7 +354,7 @@ class Category extends Menu_Abstract {
 	 *
 	 * @return bool
 	 */
-	public function is_current_top_level_term( \WP_Term $term ) {
+	public function is_current_top_level_term( \WP_Term $term ): bool {
 		if ( null === $this->top_level_term ) {
 			return false;
 		}
@@ -496,7 +495,7 @@ class Category extends Menu_Abstract {
 
 		if ( $this->is_current_top_level_term( $term ) || \in_array( $term->term_id, $this->get_current_ancestors(), true ) ) {
 			$children = get_term_children( $term->term_id, $this->get_taxonomy() );
-			if ( ! empty( $children ) ) {
+			if ( ! is_wp_error( $children ) && \count( $children ) > 0 ) {
 				$return = true;
 			}
 		}
@@ -515,7 +514,7 @@ class Category extends Menu_Abstract {
 	public function has_children( \WP_Term $term ) {
 		$return = false;
 		$children = get_term_children( $term->term_id, $this->get_taxonomy() );
-		if ( ! empty( $children ) ) {
+		if ( ! is_wp_error( $children ) && \count( $children ) > 0 ) {
 			$return = true;
 		}
 
