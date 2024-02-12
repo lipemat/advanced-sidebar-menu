@@ -118,3 +118,10 @@ function advanced_sidebar_menu_autoload( $class_name ) {
 }
 
 spl_autoload_register( 'advanced_sidebar_menu_autoload' );
+
+/**
+ * Cleanup any caches on deactivation.
+ */
+register_deactivation_hook( __FILE__, function() {
+	Cache::instance()->clear_cache_group();
+} );
