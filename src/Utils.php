@@ -14,12 +14,12 @@ class Utils {
 	use Singleton;
 
 	/**
-	 * Checks if a widget's checkbox is checked.
+	 * Is a widget's checkbox checked?
 	 *
 	 * Checks first for a value then verifies the value = checked.
 	 *
 	 * @param string $name     - name of checkbox.
-	 * @param array  $settings - Widget settings.
+	 * @param array<string, mixed> $settings - Widget settings.
 	 *
 	 * @return bool
 	 */
@@ -36,6 +36,21 @@ class Utils {
 
 
 	/**
+	 * Is a setting available and not an empty string?
+	 *
+	 * @since 9.5.0
+	 *
+	 * @param array<string, mixed> $settings - Settings to compare against.
+	 * @param string               $key      - Key of settings which may be available.
+	 *
+	 * @return bool
+	 */
+	public function is_empty( array $settings, string $key ): bool {
+		return ! isset( $settings[ $key ] ) || '' === $settings[ $key ];
+	}
+
+
+	/**
 	 * Apply a callback to all elements of an array recursively.
 	 *
 	 * Like `array_walk_recursive` except returns the result as
@@ -45,9 +60,9 @@ class Utils {
 	 * @since 8.6.5
 	 *
 	 * @param callable $callback   - Callback for each element in each level of array.
-	 * @param array    $to_recurse - Array to recurse.
+	 * @param array<string, mixed> $to_recurse - Array to recurse.
 	 *
-	 * @return array
+	 * @return array<string, mixed>
 	 */
 	public function array_map_recursive( callable $callback, array $to_recurse ): array {
 		$output = [];
