@@ -132,11 +132,6 @@ $ignoreErrors[] = [
 	'path' => __DIR__ . '/../src/Core.php',
 ];
 $ignoreErrors[] = [
-	'message' => '#^Method Advanced_Sidebar_Menu\\\\Core\\:\\:widget_documentation\\(\\) has parameter \\$_ with no value type specified in iterable type array\\.$#',
-	'count' => 1,
-	'path' => __DIR__ . '/../src/Core.php',
-];
-$ignoreErrors[] = [
 	'message' => '#^Method Advanced_Sidebar_Menu\\\\Debug\\:\\:adjust_widget_settings\\(\\) has parameter \\$instance with no value type specified in iterable type array\\.$#',
 	'count' => 1,
 	'path' => __DIR__ . '/../src/Debug.php',
@@ -257,16 +252,6 @@ $ignoreErrors[] = [
 	'path' => __DIR__ . '/../src/Menus/Menu_Abstract.php',
 ];
 $ignoreErrors[] = [
-	'message' => '#^Method Advanced_Sidebar_Menu\\\\Menus\\\\Menu_Abstract\\:\\:factory\\(\\) has parameter \\$widget_args with no value type specified in iterable type array\\.$#',
-	'count' => 1,
-	'path' => __DIR__ . '/../src/Menus/Menu_Abstract.php',
-];
-$ignoreErrors[] = [
-	'message' => '#^Method Advanced_Sidebar_Menu\\\\Menus\\\\Menu_Abstract\\:\\:factory\\(\\) has parameter \\$widget_instance with no value type specified in iterable type array\\.$#',
-	'count' => 1,
-	'path' => __DIR__ . '/../src/Menus/Menu_Abstract.php',
-];
-$ignoreErrors[] = [
 	'message' => '#^Method Advanced_Sidebar_Menu\\\\Menus\\\\Menu_Abstract\\:\\:get_widget_args\\(\\) return type has no value type specified in iterable type array\\.$#',
 	'count' => 1,
 	'path' => __DIR__ . '/../src/Menus/Menu_Abstract.php',
@@ -292,11 +277,6 @@ $ignoreErrors[] = [
 	'path' => __DIR__ . '/../src/Notice.php',
 ];
 $ignoreErrors[] = [
-	'message' => '#^Method Advanced_Sidebar_Menu\\\\Notice\\:\\:info_panel\\(\\) has parameter \\$instance with no value type specified in iterable type array\\.$#',
-	'count' => 1,
-	'path' => __DIR__ . '/../src/Notice.php',
-];
-$ignoreErrors[] = [
 	'message' => '#^Method Advanced_Sidebar_Menu\\\\Notice\\:\\:plugin_action_link\\(\\) has parameter \\$actions with no value type specified in iterable type array\\.$#',
 	'count' => 1,
 	'path' => __DIR__ . '/../src/Notice.php',
@@ -308,11 +288,6 @@ $ignoreErrors[] = [
 ];
 $ignoreErrors[] = [
 	'message' => '#^Method Advanced_Sidebar_Menu\\\\Notice\\:\\:preview\\(\\) has no return type specified\\.$#',
-	'count' => 1,
-	'path' => __DIR__ . '/../src/Notice.php',
-];
-$ignoreErrors[] = [
-	'message' => '#^Method Advanced_Sidebar_Menu\\\\Notice\\:\\:preview\\(\\) has parameter \\$instance with no value type specified in iterable type array\\.$#',
 	'count' => 1,
 	'path' => __DIR__ . '/../src/Notice.php',
 ];
@@ -365,146 +340,6 @@ $ignoreErrors[] = [
 	'message' => '#^Method Advanced_Sidebar_Menu\\\\Walkers\\\\Page_Walker\\:\\:end_el\\(\\) has parameter \\$args with no value type specified in iterable type array\\.$#',
 	'count' => 1,
 	'path' => __DIR__ . '/../src/Walkers/Page_Walker.php',
-];
-$ignoreErrors[] = [
-	'message' => '#^Method Advanced_Sidebar_Menu\\\\Widget\\\\Category\\:\\:box_display\\(\\) has parameter \\$instance with no value type specified in iterable type array\\.$#',
-	'count' => 1,
-	'path' => __DIR__ . '/../src/Widget/Category.php',
-];
-$ignoreErrors[] = [
-	'message' => '#^Method Advanced_Sidebar_Menu\\\\Widget\\\\Category\\:\\:box_display_on_single_posts\\(\\) has parameter \\$instance with no value type specified in iterable type array\\.$#',
-	'count' => 1,
-	'path' => __DIR__ . '/../src/Widget/Category.php',
-];
-$ignoreErrors[] = [
-	'message' => '#^Method Advanced_Sidebar_Menu\\\\Widget\\\\Category\\:\\:box_exclude\\(\\) has parameter \\$instance with no value type specified in iterable type array\\.$#',
-	'count' => 1,
-	'path' => __DIR__ . '/../src/Widget/Category.php',
-];
-$ignoreErrors[] = [
-	'message' => '#^Method Advanced_Sidebar_Menu\\\\Widget\\\\Category\\:\\:form\\(\\) has parameter \\$instance with no value type specified in iterable type array\\.$#',
-	'count' => 1,
-	'path' => __DIR__ . '/../src/Widget/Category.php',
-];
-$ignoreErrors[] = [
-	'message' => '#^Method Advanced_Sidebar_Menu\\\\Widget\\\\Category\\:\\:get_display_each_options\\(\\) return type has no value type specified in iterable type array\\.$#',
-	'count' => 1,
-	'path' => __DIR__ . '/../src/Widget/Category.php',
-];
-$ignoreErrors[] = [
-	'message' => '#^Method Advanced_Sidebar_Menu\\\\Widget\\\\Category\\:\\:get_taxonomy_label\\(\\) has parameter \\$instance with no value type specified in iterable type array\\.$#',
-	'count' => 1,
-	'path' => __DIR__ . '/../src/Widget/Category.php',
-];
-$ignoreErrors[] = [
-	'message' => '#^Method Advanced_Sidebar_Menu\\\\Widget\\\\Category\\:\\:update\\(\\) has parameter \\$new_instance with no value type specified in iterable type array\\.$#',
-	'count' => 1,
-	'path' => __DIR__ . '/../src/Widget/Category.php',
-];
-$ignoreErrors[] = [
-	'message' => '#^Method Advanced_Sidebar_Menu\\\\Widget\\\\Category\\:\\:update\\(\\) has parameter \\$old_instance with no value type specified in iterable type array\\.$#',
-	'count' => 1,
-	'path' => __DIR__ . '/../src/Widget/Category.php',
-];
-$ignoreErrors[] = [
-	'message' => '#^Method Advanced_Sidebar_Menu\\\\Widget\\\\Category\\:\\:update\\(\\) return type has no value type specified in iterable type array\\.$#',
-	'count' => 1,
-	'path' => __DIR__ . '/../src/Widget/Category.php',
-];
-$ignoreErrors[] = [
-	'message' => '#^Method Advanced_Sidebar_Menu\\\\Widget\\\\Category\\:\\:widget\\(\\) has parameter \\$args with no value type specified in iterable type array\\.$#',
-	'count' => 1,
-	'path' => __DIR__ . '/../src/Widget/Category.php',
-];
-$ignoreErrors[] = [
-	'message' => '#^Method Advanced_Sidebar_Menu\\\\Widget\\\\Category\\:\\:widget\\(\\) has parameter \\$instance with no value type specified in iterable type array\\.$#',
-	'count' => 1,
-	'path' => __DIR__ . '/../src/Widget/Category.php',
-];
-$ignoreErrors[] = [
-	'message' => '#^Property Advanced_Sidebar_Menu\\\\Widget\\\\Category\\:\\:\\$defaults type has no value type specified in iterable type array\\.$#',
-	'count' => 1,
-	'path' => __DIR__ . '/../src/Widget/Category.php',
-];
-$ignoreErrors[] = [
-	'message' => '#^Method Advanced_Sidebar_Menu\\\\Widget\\\\Page\\:\\:box_display\\(\\) has parameter \\$instance with no value type specified in iterable type array\\.$#',
-	'count' => 1,
-	'path' => __DIR__ . '/../src/Widget/Page.php',
-];
-$ignoreErrors[] = [
-	'message' => '#^Method Advanced_Sidebar_Menu\\\\Widget\\\\Page\\:\\:box_exclude\\(\\) has parameter \\$instance with no value type specified in iterable type array\\.$#',
-	'count' => 1,
-	'path' => __DIR__ . '/../src/Widget/Page.php',
-];
-$ignoreErrors[] = [
-	'message' => '#^Method Advanced_Sidebar_Menu\\\\Widget\\\\Page\\:\\:box_order\\(\\) has parameter \\$instance with no value type specified in iterable type array\\.$#',
-	'count' => 1,
-	'path' => __DIR__ . '/../src/Widget/Page.php',
-];
-$ignoreErrors[] = [
-	'message' => '#^Method Advanced_Sidebar_Menu\\\\Widget\\\\Page\\:\\:form\\(\\) has parameter \\$instance with no value type specified in iterable type array\\.$#',
-	'count' => 1,
-	'path' => __DIR__ . '/../src/Widget/Page.php',
-];
-$ignoreErrors[] = [
-	'message' => '#^Method Advanced_Sidebar_Menu\\\\Widget\\\\Page\\:\\:get_order_by_options\\(\\) return type has no value type specified in iterable type array\\.$#',
-	'count' => 1,
-	'path' => __DIR__ . '/../src/Widget/Page.php',
-];
-$ignoreErrors[] = [
-	'message' => '#^Method Advanced_Sidebar_Menu\\\\Widget\\\\Page\\:\\:get_post_type_label\\(\\) has parameter \\$instance with no value type specified in iterable type array\\.$#',
-	'count' => 1,
-	'path' => __DIR__ . '/../src/Widget/Page.php',
-];
-$ignoreErrors[] = [
-	'message' => '#^Method Advanced_Sidebar_Menu\\\\Widget\\\\Page\\:\\:update\\(\\) has parameter \\$new_instance with no value type specified in iterable type array\\.$#',
-	'count' => 1,
-	'path' => __DIR__ . '/../src/Widget/Page.php',
-];
-$ignoreErrors[] = [
-	'message' => '#^Method Advanced_Sidebar_Menu\\\\Widget\\\\Page\\:\\:update\\(\\) has parameter \\$old_instance with no value type specified in iterable type array\\.$#',
-	'count' => 1,
-	'path' => __DIR__ . '/../src/Widget/Page.php',
-];
-$ignoreErrors[] = [
-	'message' => '#^Method Advanced_Sidebar_Menu\\\\Widget\\\\Page\\:\\:update\\(\\) return type has no value type specified in iterable type array\\.$#',
-	'count' => 1,
-	'path' => __DIR__ . '/../src/Widget/Page.php',
-];
-$ignoreErrors[] = [
-	'message' => '#^Method Advanced_Sidebar_Menu\\\\Widget\\\\Page\\:\\:widget\\(\\) has parameter \\$args with no value type specified in iterable type array\\.$#',
-	'count' => 1,
-	'path' => __DIR__ . '/../src/Widget/Page.php',
-];
-$ignoreErrors[] = [
-	'message' => '#^Method Advanced_Sidebar_Menu\\\\Widget\\\\Page\\:\\:widget\\(\\) has parameter \\$instance with no value type specified in iterable type array\\.$#',
-	'count' => 1,
-	'path' => __DIR__ . '/../src/Widget/Page.php',
-];
-$ignoreErrors[] = [
-	'message' => '#^Property Advanced_Sidebar_Menu\\\\Widget\\\\Page\\:\\:\\$defaults type has no value type specified in iterable type array\\.$#',
-	'count' => 1,
-	'path' => __DIR__ . '/../src/Widget/Page.php',
-];
-$ignoreErrors[] = [
-	'message' => '#^Method Advanced_Sidebar_Menu\\\\Widget\\\\Widget_Abstract\\:\\:set_instance\\(\\) has parameter \\$defaults with no value type specified in iterable type array\\.$#',
-	'count' => 1,
-	'path' => __DIR__ . '/../src/Widget/Widget_Abstract.php',
-];
-$ignoreErrors[] = [
-	'message' => '#^Method Advanced_Sidebar_Menu\\\\Widget\\\\Widget_Abstract\\:\\:set_instance\\(\\) has parameter \\$instance with no value type specified in iterable type array\\.$#',
-	'count' => 1,
-	'path' => __DIR__ . '/../src/Widget/Widget_Abstract.php',
-];
-$ignoreErrors[] = [
-	'message' => '#^Method Advanced_Sidebar_Menu\\\\Widget\\\\Widget_Abstract\\:\\:set_instance\\(\\) return type has no value type specified in iterable type array\\.$#',
-	'count' => 1,
-	'path' => __DIR__ . '/../src/Widget/Widget_Abstract.php',
-];
-$ignoreErrors[] = [
-	'message' => '#^Property Advanced_Sidebar_Menu\\\\Widget\\\\Widget_Abstract\\:\\:\\$widget_settings type has no value type specified in iterable type array\\.$#',
-	'count' => 1,
-	'path' => __DIR__ . '/../src/Widget/Widget_Abstract.php',
 ];
 
 return ['parameters' => ['ignoreErrors' => $ignoreErrors]];

@@ -7,12 +7,30 @@ use Advanced_Sidebar_Menu\Utils;
  * Base class for this plugin's widgets.
  *
  * @author OnPoint Plugins
+ * @phpstan-type WIDGET_ARGS array{
+ *      name:           string,
+ *      id:             string,
+ *      description:    string,
+ *      class:          string,
+ *      before_widget:  string,
+ *      after_widget:   string,
+ *      before_title:   string,
+ *      after_title:    string,
+ *      before_sidebar: string,
+ *      after_sidebar:  string,
+ *      show_in_rest:   boolean,
+ *      widget_id:      string,
+ *      widget_name:    string,
+ * }
+ *
+ * @phpstan-template SETTINGS of array<string, string>
+ * @extends \WP_Widget<SETTINGS>
  */
 abstract class Widget_Abstract extends \WP_Widget {
 	/**
 	 * The current widget instance
 	 *
-	 * @var array
+	 * @var SETTINGS
 	 */
 	protected $widget_settings;
 
@@ -24,9 +42,13 @@ abstract class Widget_Abstract extends \WP_Widget {
 	 *
 	 * @see   \WP_Widget::form_callback()
 	 *
+	 * @phpstan-param SETTINGS $instance
+	 * @phpstan-param SETTINGS $defaults
+	 *
 	 * @param array $instance - widget settings.
 	 * @param array $defaults - defaults for all widgets.
 	 *
+	 * @phpstan-return SETTINGS
 	 * @return array
 	 */
 	public function set_instance( array $instance, array $defaults ) {
@@ -92,7 +114,7 @@ abstract class Widget_Abstract extends \WP_Widget {
 	 */
 	public function checkbox( $name, $element_to_reveal = null ) {
 		if ( ! \array_key_exists( $name, $this->widget_settings ) ) {
-			$this->widget_settings[ $name ] = null;
+			$this->widget_settings[ $name ] = '';
 		}
 
 		?>

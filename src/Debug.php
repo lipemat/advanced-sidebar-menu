@@ -19,7 +19,7 @@ use Advanced_Sidebar_Menu\Widget\Page;
 class Debug {
 	use Singleton;
 
-	const DEBUG_PARAM = 'asm_debug';
+	public const DEBUG_PARAM = 'asm_debug';
 
 
 	/**
@@ -100,7 +100,7 @@ class Debug {
 	/**
 	 * Print the widget settings as a JS variable.
 	 *
-	 * @param Menu_Abstract $menu   - Menu class.
+	 * @param Menu_Abstract<array<string,string>> $menu - Menu class.
 	 * @param Page|Category $widget - Widget class.
 	 *
 	 * @return void

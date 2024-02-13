@@ -5,11 +5,16 @@ namespace Advanced_Sidebar_Menu\Blocks;
 use Advanced_Sidebar_Menu\Menus\Menu_Abstract;
 use Advanced_Sidebar_Menu\Scripts;
 use Advanced_Sidebar_Menu\Utils;
+use Advanced_Sidebar_Menu\Widget\Category;
+use Advanced_Sidebar_Menu\Widget\Page;
 
 /**
  * Functionality shared by and required by all blocks.
  *
  * @since 9.0.0
+ *
+ * @phpstan-import-type PAGE_SETTINGS from Page
+ * @phpstan-import-type CATEGORY_SETTINGS from Category
  */
 abstract class Block_Abstract {
 	public const NAME = 'block-abstract';
@@ -136,7 +141,7 @@ abstract class Block_Abstract {
 	 * the calls to output the wrap.
 	 *
 	 * @param false|array $instance - Contents of the block, before parsing.
-	 * @param \WP_Widget  $widget   - Object representing a block based widget.
+	 * @param \WP_Widget<PAGE_SETTINGS|CATEGORY_SETTINGS> $widget - Object representing a block based widget.
 	 * @param array       $args     - Widget area arguments.
 	 *
 	 * @return false|array

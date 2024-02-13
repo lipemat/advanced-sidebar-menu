@@ -2,10 +2,17 @@
 
 namespace Advanced_Sidebar_Menu\Menus;
 
+use Advanced_Sidebar_Menu\Widget\Widget_Abstract;
+
 /**
  * Base for Menu classes.
  *
  * @author OnPoint Plugins
+ *
+ * @phpstan-import-type PAGE_SETTINGS from Page
+ * @phpstan-import-type WIDGET_ARGS from Widget_Abstract
+ *
+ * @phpstan-template SETTINGS of array<string, string>
  */
 abstract class Menu_Abstract {
 	public const WIDGET = 'menu-abstract';
@@ -58,7 +65,7 @@ abstract class Menu_Abstract {
 	 * @param array $instance - Widget settings.
 	 * @param array $args     - Widget registration arguments.
 	 */
-	public function __construct( array $instance, array $args ) {
+	final public function __construct( array $instance, array $args ) {
 		$this->instance = apply_filters( 'advanced-sidebar-menu/menus/widget-instance', $instance, $args, $this );
 		$this->args = $args;
 
@@ -277,7 +284,10 @@ abstract class Menu_Abstract {
 	/**
 	 * Constructs a new instance of this class.
 	 *
-	 * @param array $widget_instance - Widget settings.
+	 * @phpstan-param SETTINGS      $widget_instance
+	 * @phpstan-param WIDGET_ARGS   $widget_args
+	 *
+	 * @param array<string, string> $widget_instance - Widget settings.
 	 * @param array $widget_args     - Widget registration args.
 	 *
 	 * @static
@@ -285,7 +295,6 @@ abstract class Menu_Abstract {
 	 * @return static
 	 */
 	public static function factory( array $widget_instance, array $widget_args ) {
-		/* @phpstan-ignore-next-line */
 		$menu = new static( $widget_instance, $widget_args );
 		/* @phpstan-ignore-next-line */
 		static::$current = $menu;

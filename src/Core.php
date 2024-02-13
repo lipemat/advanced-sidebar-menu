@@ -10,6 +10,9 @@ use Advanced_Sidebar_Menu\Widget\Page;
  * Core functionality for Advanced Sidebar Menu Plugin
  *
  * @author OnPoint Plugins
+ *
+ * @phpstan-import-type PAGE_SETTINGS from Widget\Page
+ * @phpstan-import-type CATEGORY_SETTINGS from Widget\Category
  */
 class Core {
 	use Singleton;
@@ -45,14 +48,16 @@ class Core {
 	/**
 	 * Display a link to a widget's documentation.
 	 *
-	 * @param array      $_      - Widget settings.
-	 * @param \WP_Widget $widget - Widget class.
-	 *
 	 * @since 9.0.0
+	 *
+	 * @phpstan-param array<PAGE_SETTINGS|CATEGORY_SETTINGS> $_
+	 *
+	 * @param array                                          $_      - Widget settings.
+	 * @param \WP_Widget<PAGE_SETTINGS|CATEGORY_SETTINGS>    $widget - Widget class.
 	 *
 	 * @return void
 	 */
-	public function widget_documentation( $_, \WP_Widget $widget ) {
+	public function widget_documentation( array $_, \WP_Widget $widget ) {
 		?>
 		<p class="advanced-sidebar-widget-documentation">
 			<a

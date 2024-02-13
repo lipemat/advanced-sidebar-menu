@@ -10,31 +10,37 @@ use Advanced_Sidebar_Menu\Menus\Menu_Abstract;
  * Parent child menu based on pages.
  *
  * @author OnPoint Plugins
+ *
+ * @phpstan-import-type PAGE_SETTINGS from \Advanced_Sidebar_Menu\Menus\Page
+ * @phpstan-import-type WIDGET_ARGS from Widget_Abstract
+ *
+ * @extends Widget_Abstract<PAGE_SETTINGS>
  */
 class Page extends Widget_Abstract {
-	const NAME = 'advanced_sidebar_menu';
+	public const NAME = 'advanced_sidebar_menu';
 
-	const TITLE                    = Menu_Abstract::TITLE;
-	const INCLUDE_PARENT           = Menu_Abstract::INCLUDE_PARENT;
-	const INCLUDE_CHILDLESS_PARENT = Menu_Abstract::INCLUDE_CHILDLESS_PARENT;
-	const ORDER_BY                 = Menu_Abstract::ORDER_BY;
-	const EXCLUDE                  = Menu_Abstract::EXCLUDE;
-	const DISPLAY_ALL              = Menu_Abstract::DISPLAY_ALL;
-	const LEVELS                   = Menu_Abstract::LEVELS;
+	public const TITLE                    = Menu_Abstract::TITLE;
+	public const INCLUDE_PARENT           = Menu_Abstract::INCLUDE_PARENT;
+	public const INCLUDE_CHILDLESS_PARENT = Menu_Abstract::INCLUDE_CHILDLESS_PARENT;
+	public const ORDER_BY                 = Menu_Abstract::ORDER_BY;
+	public const EXCLUDE                  = Menu_Abstract::EXCLUDE;
+	public const DISPLAY_ALL              = Menu_Abstract::DISPLAY_ALL;
+	public const LEVELS                   = Menu_Abstract::LEVELS;
 
 	/**
 	 * Default values for the widget.
 	 *
+	 * @phpstan-var PAGE_SETTINGS
 	 * @var array
 	 */
 	protected static $defaults = [
-		self::TITLE                    => false,
-		self::INCLUDE_PARENT           => false,
-		self::INCLUDE_CHILDLESS_PARENT => false,
+		self::TITLE                    => '',
+		self::INCLUDE_PARENT           => '',
+		self::INCLUDE_CHILDLESS_PARENT => '',
 		self::ORDER_BY                 => 'menu_order',
-		self::EXCLUDE                  => false,
-		self::DISPLAY_ALL              => false,
-		self::LEVELS                   => 100,
+		self::EXCLUDE                  => '',
+		self::DISPLAY_ALL              => '',
+		self::LEVELS                   => '100',
 	];
 
 
@@ -86,7 +92,7 @@ class Page extends Widget_Abstract {
 	 *
 	 * @since 8.2.0
 	 *
-	 * @param array $instance - Widget settings.
+	 * @param PAGE_SETTINGS $instance - Widget settings.
 	 * @param bool  $single   - Singular label or plural.
 	 *
 	 * @return string
@@ -110,7 +116,7 @@ class Page extends Widget_Abstract {
 	 *
 	 * @since 9.0.0
 	 *
-	 * @return array
+	 * @return array<string, string>
 	 */
 	public static function get_order_by_options() {
 		return (array) apply_filters(
@@ -127,8 +133,10 @@ class Page extends Widget_Abstract {
 	/**
 	 * Display options.
 	 *
-	 * @param array           $instance - Widget settings.
-	 * @param Widget_Abstract $widget   - Registered widget arguments.
+	 * @phpstan-param PAGE_SETTINGS          $instance
+	 *
+	 * @param array                          $instance - Widget settings.
+	 * @param Widget_Abstract<PAGE_SETTINGS> $widget   - Registered widget arguments.
 	 *
 	 * @return void
 	 */
@@ -212,8 +220,10 @@ class Page extends Widget_Abstract {
 	/**
 	 * Order options.
 	 *
-	 * @param array           $instance - Widget settings.
-	 * @param Widget_Abstract $widget   - Registered widget arguments.
+	 * @phpstan-param PAGE_SETTINGS          $instance
+	 *
+	 * @param array                          $instance - Widget settings.
+	 * @param Widget_Abstract<PAGE_SETTINGS> $widget   - Registered widget arguments.
 	 *
 	 * @return void
 	 */
@@ -244,8 +254,10 @@ class Page extends Widget_Abstract {
 	/**
 	 * Exclude options.
 	 *
-	 * @param array           $instance - Widget settings.
-	 * @param Widget_Abstract $widget   - Registered widget arguments.
+	 * @phpstan-param PAGE_SETTINGS          $instance
+	 *
+	 * @param array                          $instance - Widget settings.
+	 * @param Widget_Abstract<PAGE_SETTINGS> $widget   - Registered widget arguments.
 	 *
 	 * @return void
 	 */
@@ -277,9 +289,9 @@ class Page extends Widget_Abstract {
 	/**
 	 * Widget form.
 	 *
-	 * @param array $instance - Widget settings.
+	 * @param PAGE_SETTINGS $instance - Widget settings.
 	 *
-	 * @since 7.2.1
+	 * @return string
 	 */
 	public function form( $instance ) {
 		$instance = $this->set_instance( $instance, static::$defaults );
@@ -314,15 +326,16 @@ class Page extends Widget_Abstract {
 	/**
 	 * Save the widget settings.
 	 *
+	 * @phpstan-param PAGE_SETTINGS $new_instance
+	 * @phpstan-param PAGE_SETTINGS $old_instance
+	 *
 	 * @param array $new_instance - New widget settings.
 	 * @param array $old_instance - Old widget settings.
 	 *
-	 * @return array
+	 * @return PAGE_SETTINGS
 	 */
 	public function update( $new_instance, $old_instance ) {
-		if ( isset( $new_instance['exclude'] ) ) {
-			$new_instance['exclude'] = wp_strip_all_tags( $new_instance['exclude'] );
-		}
+		$new_instance['exclude'] = wp_strip_all_tags( $new_instance['exclude'] );
 
 		return apply_filters( 'advanced-sidebar-menu/widget/page/update', $new_instance, $old_instance );
 	}
@@ -331,15 +344,15 @@ class Page extends Widget_Abstract {
 	/**
 	 * Widget Output.
 	 *
-	 * @param array $args     - Widget registration args.
-	 * @param array $instance - Widget settings.
-	 *
 	 * @see   \Advanced_Sidebar_Menu\Menus\Page
+	 *
+	 * @param WIDGET_ARGS   $args     - Widget registration args.
+	 * @param PAGE_SETTINGS $instance - Widget settings.
 	 *
 	 * @return void
 	 */
 	public function widget( $args, $instance ) {
-		$instance = wp_parse_args( $instance, static::$defaults );
+		$instance = $this->set_instance( $instance, static::$defaults );
 		$menu = \Advanced_Sidebar_Menu\Menus\Page::factory( $instance, $args );
 
 		do_action( 'advanced-sidebar-menu/widget/before-render', $menu, $this );

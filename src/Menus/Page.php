@@ -4,11 +4,26 @@ namespace Advanced_Sidebar_Menu\Menus;
 
 use Advanced_Sidebar_Menu\Core;
 use Advanced_Sidebar_Menu\List_Pages;
+use Advanced_Sidebar_Menu\Widget\Widget_Abstract;
 
 /**
  * Page menu.
  *
  * @author OnPoint Plugins
+ *
+ * @phpstan-import-type WIDGET_ARGS from Widget_Abstract
+ * @phpstan-type PAGE_SETTINGS array{
+ *      exclude: string,
+ *      order_by: string,
+ *      title?: string,
+ *      display_all?: ''|'checked',
+ *      include_childless_parent?: ''|'checked',
+ *      include_parent?: ''|'checked',
+ *      levels: numeric-string,
+ *      post_type?: string,
+ * }
+ *
+ * @extends Menu_Abstract<PAGE_SETTINGS>
  */
 class Page extends Menu_Abstract {
 	public const WIDGET = 'page';

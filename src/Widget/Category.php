@@ -10,35 +10,40 @@ use Advanced_Sidebar_Menu\Menus\Menu_Abstract;
  * @author  OnPoint Plugins
  *
  * @package Advanced Sidebar Menu
+ *
+ * @phpstan-import-type CATEGORY_SETTINGS from \Advanced_Sidebar_Menu\Menus\Category
+ * @phpstan-import-type WIDGET_ARGS from Widget_Abstract
+ *
+ * @extends Widget_Abstract<CATEGORY_SETTINGS>
  */
 class Category extends Widget_Abstract {
-	const NAME = 'advanced_sidebar_menu_category';
+	public const NAME = 'advanced_sidebar_menu_category';
 
-	const TITLE                    = Menu_Abstract::TITLE;
-	const INCLUDE_PARENT           = Menu_Abstract::INCLUDE_PARENT;
-	const INCLUDE_CHILDLESS_PARENT = Menu_Abstract::INCLUDE_CHILDLESS_PARENT;
-	const ORDER_BY                 = Menu_Abstract::ORDER_BY;
-	const EXCLUDE                  = Menu_Abstract::EXCLUDE;
-	const DISPLAY_ALL              = Menu_Abstract::DISPLAY_ALL;
-	const LEVELS                   = Menu_Abstract::LEVELS;
+	public const TITLE                    = Menu_Abstract::TITLE;
+	public const INCLUDE_PARENT           = Menu_Abstract::INCLUDE_PARENT;
+	public const INCLUDE_CHILDLESS_PARENT = Menu_Abstract::INCLUDE_CHILDLESS_PARENT;
+	public const ORDER_BY                 = Menu_Abstract::ORDER_BY;
+	public const EXCLUDE                  = Menu_Abstract::EXCLUDE;
+	public const DISPLAY_ALL              = Menu_Abstract::DISPLAY_ALL;
+	public const LEVELS                   = Menu_Abstract::LEVELS;
 
-	const DISPLAY_ON_SINGLE     = \Advanced_Sidebar_Menu\Menus\Category::DISPLAY_ON_SINGLE;
-	const EACH_CATEGORY_DISPLAY = \Advanced_Sidebar_Menu\Menus\Category::EACH_CATEGORY_DISPLAY;
+	public const DISPLAY_ON_SINGLE     = \Advanced_Sidebar_Menu\Menus\Category::DISPLAY_ON_SINGLE;
+	public const EACH_CATEGORY_DISPLAY = \Advanced_Sidebar_Menu\Menus\Category::EACH_CATEGORY_DISPLAY;
 
 	/**
 	 * Default widget values.
 	 *
-	 * @var array
+	 * @var CATEGORY_SETTINGS
 	 */
 	protected static $defaults = [
 		self::TITLE                    => '',
-		self::INCLUDE_PARENT           => false,
-		self::INCLUDE_CHILDLESS_PARENT => false,
-		self::DISPLAY_ON_SINGLE        => false,
+		self::INCLUDE_PARENT           => '',
+		self::INCLUDE_CHILDLESS_PARENT => '',
+		self::DISPLAY_ON_SINGLE        => '',
 		self::EACH_CATEGORY_DISPLAY    => 'widget',
 		self::EXCLUDE                  => '',
-		self::DISPLAY_ALL              => false,
-		self::LEVELS                   => 1,
+		self::DISPLAY_ALL              => '',
+		self::LEVELS                   => '1',
 	];
 
 
@@ -93,6 +98,8 @@ class Category extends Widget_Abstract {
 	 *
 	 * @since 8.2.0
 	 *
+	 * @phpstan-param CATEGORY_SETTINGS $instance
+	 *
 	 * @param array $instance - Widget settings.
 	 * @param bool  $single   - Singular label or plural.
 	 *
@@ -114,7 +121,7 @@ class Category extends Widget_Abstract {
 	/**
 	 * Get list of display each single post's category options.
 	 *
-	 * @return array
+	 * @return array{widget: string, list: string}
 	 */
 	public static function get_display_each_options() {
 		return [
@@ -127,8 +134,10 @@ class Category extends Widget_Abstract {
 	/**
 	 * Display options.
 	 *
-	 * @param array           $instance - Widget settings.
-	 * @param Widget_Abstract $widget   - Registered widget arguments.
+	 * @phpstan-param CATEGORY_SETTINGS          $instance
+	 *
+	 * @param array                              $instance - Widget settings.
+	 * @param Widget_Abstract<CATEGORY_SETTINGS> $widget   - Registered widget arguments.
 	 *
 	 * @return void
 	 */
@@ -203,8 +212,10 @@ class Category extends Widget_Abstract {
 	/**
 	 * Display categories on single post settings.
 	 *
-	 * @param array           $instance - Widget settings.
-	 * @param Widget_Abstract $widget   - Registered widget arguments.
+	 * @phpstan-param CATEGORY_SETTINGS          $instance
+	 *
+	 * @param array                              $instance - Widget settings.
+	 * @param Widget_Abstract<CATEGORY_SETTINGS> $widget   - Registered widget arguments.
 	 *
 	 * @return void
 	 */
@@ -261,8 +272,10 @@ class Category extends Widget_Abstract {
 	/**
 	 * Categories to exclude settings.
 	 *
-	 * @param array           $instance - Widget settings.
-	 * @param Widget_Abstract $widget   - Registered widget arguments.
+	 * @phpstan-param CATEGORY_SETTINGS          $instance
+	 *
+	 * @param array                              $instance - Widget settings.
+	 * @param Widget_Abstract<CATEGORY_SETTINGS> $widget   - Registered widget arguments.
 	 *
 	 * @return void
 	 */
@@ -295,9 +308,11 @@ class Category extends Widget_Abstract {
 	/**
 	 * Widget form.
 	 *
-	 * @param array $instance - Widget settings.
+	 * @phpstan-param CATEGORY_SETTINGS $instance
 	 *
-	 * @since 7.2.1
+	 * @param array                     $instance - Widget settings.
+	 *
+	 * @return string
 	 */
 	public function form( $instance ) {
 		$instance = $this->set_instance( $instance, static::$defaults );
@@ -334,10 +349,10 @@ class Category extends Widget_Abstract {
 	/**
 	 * Save the widget settings.
 	 *
-	 * @param array $new_instance - New widget settings.
-	 * @param array $old_instance - Old widget settings.
+	 * @param CATEGORY_SETTINGS $new_instance - New widget settings.
+	 * @param CATEGORY_SETTINGS $old_instance - Old widget settings.
 	 *
-	 * @return array
+	 * @return CATEGORY_SETTINGS
 	 */
 	public function update( $new_instance, $old_instance ) {
 		$new_instance['exclude'] = wp_strip_all_tags( $new_instance['exclude'] );
@@ -349,8 +364,8 @@ class Category extends Widget_Abstract {
 	/**
 	 * Widget Output
 	 *
-	 * @param array $args     - Widget registration args.
-	 * @param array $instance - Widget settings.
+	 * @param WIDGET_ARGS       $args     - Widget registration args.
+	 * @param CATEGORY_SETTINGS $instance - Widget settings.
 	 *
 	 * @return void
 	 */

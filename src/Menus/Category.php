@@ -10,6 +10,19 @@ use Advanced_Sidebar_Menu\Walkers\Category_Walker;
  * Category menu.
  *
  * @author OnPoint Plugins
+ *
+ * @phpstan-type CATEGORY_SETTINGS array{
+ *     taxonomy?: string,
+ *     exclude: string,
+ *     include_childless_parent?: ''|'checked',
+ *     include_parent?: ''|'checked',
+ *     levels: numeric-string,
+ *     new_widget: 'widget'|'list',
+ *     single: ''|'checked',
+ *     title?: string,
+ * }
+ *
+ * @extends Menu_Abstract<CATEGORY_SETTINGS>
  */
 class Category extends Menu_Abstract {
 	use Memoize;
