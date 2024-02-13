@@ -12,7 +12,7 @@ use Advanced_Sidebar_Menu\Widget\Widget_Abstract;
  * @phpstan-import-type PAGE_SETTINGS from Page
  * @phpstan-import-type WIDGET_ARGS from Widget_Abstract
  *
- * @phpstan-template SETTINGS of array<string, string>
+ * @phpstan-template SETTINGS of array<string, string|array<string, string>>
  */
 abstract class Menu_Abstract {
 	public const WIDGET = 'menu-abstract';
@@ -36,12 +36,16 @@ abstract class Menu_Abstract {
 	/**
 	 * Widget Args
 	 *
+	 * @phpstan-var WIDGET_ARGS
+	 *
 	 * @var array
 	 */
-	public $args = [];
+	public $args;
 
 	/**
 	 * Widget instance
+	 *
+	 * @phpstan-var SETTINGS
 	 *
 	 * @var array
 	 */
@@ -61,6 +65,9 @@ abstract class Menu_Abstract {
 
 	/**
 	 * Constructs a new instance of this widget.
+	 *
+	 * @phpstan-param SETTINGS    $instance
+	 * @phpstan-param WIDGET_ARGS $args
 	 *
 	 * @param array $instance - Widget settings.
 	 * @param array $args     - Widget registration arguments.
@@ -235,8 +242,8 @@ abstract class Menu_Abstract {
 	 *
 	 * @return array<int>
 	 */
-	public function get_excluded_ids() {
-		if ( ! \array_key_exists( static::EXCLUDE, $this->instance ) ) {
+	public function get_excluded_ids(): array {
+		if ( ! \array_key_exists( static::EXCLUDE, $this->instance ) || ! \is_string( $this->instance[ static::EXCLUDE ] ) ) {
 			return [];
 		}
 		return \array_map( '\intval', \array_filter( \explode( ',', $this->instance[ static::EXCLUDE ] ), 'is_numeric' ) );
@@ -248,8 +255,8 @@ abstract class Menu_Abstract {
 	 *
 	 * @return void
 	 */
-	public function title() {
-		if ( ! \array_key_exists( static::TITLE, $this->instance ) || '' === (string) $this->instance[ static::TITLE ] ) {
+	public function title(): void {
+		if ( ! \array_key_exists( static::TITLE, $this->instance ) || '' === $this->instance[ static::TITLE ] ) {
 			return;
 		}
 		$title = apply_filters( 'widget_title', $this->instance[ static::TITLE ], $this->args, $this->instance );

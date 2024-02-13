@@ -19,7 +19,7 @@ use Advanced_Sidebar_Menu\Widget\Widget_Abstract;
  *      display_all?: ''|'checked',
  *      include_childless_parent?: ''|'checked',
  *      include_parent?: ''|'checked',
- *      levels: numeric-string,
+ *      levels?: numeric-string,
  *      post_type?: string,
  * }
  *
@@ -98,7 +98,7 @@ class Page extends Menu_Abstract {
 	 *
 	 * @return int
 	 */
-	public function get_top_parent_id() {
+	public function get_top_parent_id(): int {
 		$top_id = - 1;
 		$post = $this->get_current_post();
 		if ( null !== $post ) {
@@ -110,7 +110,7 @@ class Page extends Menu_Abstract {
 			}
 		}
 
-		return apply_filters( 'advanced-sidebar-menu/menus/page/top-parent', $top_id, $this->args, $this->instance, $this );
+		return (int) apply_filters( 'advanced-sidebar-menu/menus/page/top-parent', $top_id, $this->args, $this->instance, $this );
 	}
 
 
@@ -148,7 +148,7 @@ class Page extends Menu_Abstract {
 	 *
 	 * @return bool
 	 */
-	public function has_pages() {
+	public function has_pages(): bool {
 		$list_pages = List_Pages::factory( $this );
 		$children = $list_pages->get_child_pages( $this->get_top_parent_id(), true );
 
@@ -161,13 +161,13 @@ class Page extends Menu_Abstract {
 	 *
 	 * @return int
 	 */
-	public function get_levels_to_display() {
+	public function get_levels_to_display(): int {
 		$levels = 100;
 		if ( $this->display_all() ) {
 			// Subtract 1 level to account for the first level children.
-			$levels = $this->instance[ static::LEVELS ] - 1;
+			$levels = ( (int) $this->instance[ static::LEVELS ] ) - 1;
 		}
-		return apply_filters( 'advanced-sidebar-menu/menus/page/levels', $levels, $this->args, $this->instance, $this );
+		return (int) apply_filters( 'advanced-sidebar-menu/menus/page/levels', $levels, $this->args, $this->instance, $this );
 	}
 
 
@@ -176,8 +176,8 @@ class Page extends Menu_Abstract {
 	 *
 	 * @return string
 	 */
-	public function get_post_type() {
-		return apply_filters( 'advanced-sidebar-menu/menus/page/post-type', 'page', $this->args, $this->instance, $this );
+	public function get_post_type(): string {
+		return (string) apply_filters( 'advanced-sidebar-menu/menus/page/post-type', 'page', $this->args, $this->instance, $this );
 	}
 
 

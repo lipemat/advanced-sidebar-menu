@@ -242,16 +242,6 @@ $ignoreErrors[] = [
 	'path' => __DIR__ . '/../src/Menus/Menu_Abstract.php',
 ];
 $ignoreErrors[] = [
-	'message' => '#^Method Advanced_Sidebar_Menu\\\\Menus\\\\Menu_Abstract\\:\\:__construct\\(\\) has parameter \\$args with no value type specified in iterable type array\\.$#',
-	'count' => 1,
-	'path' => __DIR__ . '/../src/Menus/Menu_Abstract.php',
-];
-$ignoreErrors[] = [
-	'message' => '#^Method Advanced_Sidebar_Menu\\\\Menus\\\\Menu_Abstract\\:\\:__construct\\(\\) has parameter \\$instance with no value type specified in iterable type array\\.$#',
-	'count' => 1,
-	'path' => __DIR__ . '/../src/Menus/Menu_Abstract.php',
-];
-$ignoreErrors[] = [
 	'message' => '#^Method Advanced_Sidebar_Menu\\\\Menus\\\\Menu_Abstract\\:\\:get_widget_args\\(\\) return type has no value type specified in iterable type array\\.$#',
 	'count' => 1,
 	'path' => __DIR__ . '/../src/Menus/Menu_Abstract.php',
@@ -262,12 +252,12 @@ $ignoreErrors[] = [
 	'path' => __DIR__ . '/../src/Menus/Menu_Abstract.php',
 ];
 $ignoreErrors[] = [
-	'message' => '#^Property Advanced_Sidebar_Menu\\\\Menus\\\\Menu_Abstract\\:\\:\\$args type has no value type specified in iterable type array\\.$#',
+	'message' => '#^Offset \'widget_id\' on array\\{name\\: string, id\\: string, description\\: string, class\\: string, before_widget\\: string, after_widget\\: string, before_title\\: string, after_title\\: string, \\.\\.\\.\\} in isset\\(\\) always exists and is not nullable\\.$#',
 	'count' => 1,
 	'path' => __DIR__ . '/../src/Menus/Menu_Abstract.php',
 ];
 $ignoreErrors[] = [
-	'message' => '#^Property Advanced_Sidebar_Menu\\\\Menus\\\\Menu_Abstract\\:\\:\\$instance type has no value type specified in iterable type array\\.$#',
+	'message' => '#^Property Advanced_Sidebar_Menu\\\\Menus\\\\Menu_Abstract\\<SETTINGS of array\\<string, array\\<string, string\\>\\|string\\>\\>\\:\\:\\$args \\(array\\{name\\: string, id\\: string, description\\: string, class\\: string, before_widget\\: string, after_widget\\: string, before_title\\: string, after_title\\: string, \\.\\.\\.\\}\\) does not accept array\\{name\\: string, id\\: string, description\\: string, class\\: string, before_widget\\: string, after_widget\\: string, before_title\\: string, after_title\\: string, \\.\\.\\.\\}\\.$#',
 	'count' => 1,
 	'path' => __DIR__ . '/../src/Menus/Menu_Abstract.php',
 ];
