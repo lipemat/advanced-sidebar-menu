@@ -15,6 +15,17 @@ use Advanced_Sidebar_Menu\Widget\Page;
  * variable including information about a page's widgets.
  *
  * @author OnPoint Plugins
+ *
+ * @phpstan-type DEBUG_INFO array{
+ *      basic: string,
+ *      classicWidgets: bool,
+ *      excluded_pages?: int[],
+ *      php: string,
+ *      pro: string|false,
+ *      scriptDebug: bool,
+ *      WordPress: string,
+ *      pro?: string
+ *  }
  */
 class Debug {
 	use Singleton;
@@ -78,6 +89,16 @@ class Debug {
 	 *
 	 * @since 9.0.2
 	 *
+	 * @phpstan-return array{
+	 *     basic: string,
+	 *     classicWidgets: bool,
+	 *     php: string,
+	 *     pro: string|false,
+	 *     scriptDebug: bool,
+	 *     WordPress: string,
+	 *     pro?: string
+	 * }
+	 *
 	 * @return array
 	 */
 	public function get_site_info(): array {
@@ -87,7 +108,7 @@ class Debug {
 			'php'            => PHP_VERSION,
 			'pro'            => false,
 			'scriptDebug'    => Scripts::instance()->is_script_debug_enabled(),
-			'wordpress'      => get_bloginfo( 'version' ),
+			'WordPress' => get_bloginfo( 'version' ),
 		];
 		if ( \defined( 'ADVANCED_SIDEBAR_MENU_PRO_VERSION' ) ) {
 			$data['pro'] = ADVANCED_SIDEBAR_MENU_PRO_VERSION;

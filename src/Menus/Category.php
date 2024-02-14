@@ -280,10 +280,12 @@ class Category extends Menu_Abstract {
 	/**
 	 * Get key to order the menu items by.
 	 *
+	 * 'term_id'|'name'|'count'|'slug'
+	 *
 	 * @return string
 	 */
-	public function get_order_by() {
-		return apply_filters( 'advanced-sidebar-menu/menus/category/order-by', 'name', $this->args, $this->instance, $this );
+	public function get_order_by(): string {
+		return (string) apply_filters( 'advanced-sidebar-menu/menus/category/order-by', 'name', $this->args, $this->instance, $this );
 	}
 
 
@@ -292,8 +294,8 @@ class Category extends Menu_Abstract {
 	 *
 	 * @return string
 	 */
-	public function get_order() {
-		return apply_filters( 'advanced-sidebar-menu/menus/category/order', 'ASC', $this->args, $this->instance, $this );
+	public function get_order(): string {
+		return (string) apply_filters( 'advanced-sidebar-menu/menus/category/order', 'ASC', $this->args, $this->instance, $this );
 	}
 
 
