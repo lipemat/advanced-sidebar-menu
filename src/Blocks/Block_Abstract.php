@@ -274,15 +274,18 @@ abstract class Block_Abstract {
 	 * Checkboxes are saved as `true` on the Gutenberg side.
 	 * The widgets expect the values to be `checked`.
 	 *
-	 * @param array $attr - Attribute values pre-converted.
+	 * @param array<string, mixed> $attr - Attribute values pre-converted.
 	 *
-	 * @return array
+	 * @return array<string, mixed>
 	 */
-	public function convert_checkbox_values( array $attr ) {
+	public function convert_checkbox_values( array $attr ): array {
 		// Map the boolean values to widget style 'checked'.
 		return Utils::instance()->array_map_recursive( function( $value ) {
 			if ( true === $value ) {
 				return 'checked';
+			}
+			if ( false === $value ) {
+				return '';
 			}
 			return $value;
 		}, $attr );
