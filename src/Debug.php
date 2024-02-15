@@ -134,7 +134,7 @@ class Debug {
 			<?php
 			echo esc_attr( static::DEBUG_PARAM );
 			?>
-			[ '<?php echo esc_js( $menu->args['widget_id'] ); ?>' ] = <?php echo wp_json_encode( $menu->instance ); ?>;
+			[ '<?php echo esc_js( $menu->args['widget_id'] ?? '' ); ?>' ] = <?php echo wp_json_encode( $menu->instance ); ?>;
 		</script>
 		<?php
 	}

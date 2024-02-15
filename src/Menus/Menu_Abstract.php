@@ -145,9 +145,9 @@ abstract class Menu_Abstract {
 		// Block widgets loaded via the REST API don't have full widget args.
 		if ( ! isset( $this->args['widget_id'] ) ) {
 			// Prefix any leading digits or hyphens with '_'.
-			$this->args['widget_id'] = \preg_replace( '/^([\d-])/', '_$1', wp_hash( (string) wp_json_encode( $this->instance ) ) );
-			//phpcs:ignore -- Not actually using the value of $_POST.
-		} elseif ( ! empty( $_POST['action'] ) && 'elementor_ajax' === $_POST['action'] ) {
+			$this->args['widget_id'] = (string) \preg_replace( '/^([\d-])/', '_$1', wp_hash( (string) wp_json_encode( $this->instance ) ) );
+			//phpcs:ignore WordPress.Security.NonceVerification -- Not actually using the value of $_POST.
+		} elseif ( isset( $_POST['action'] ) && 'elementor_ajax' === $_POST['action'] ) {
 			/**
 			 * Elementor sends widgets one at a time with the same id during the preview.
 			 * Since we can't increment nor is there a unique id, we always
@@ -173,9 +173,10 @@ abstract class Menu_Abstract {
 	/**
 	 * The instance arguments from the current widget.
 	 *
+	 * @phpstan-return SETTINGS
 	 * @return array
 	 */
-	public function get_widget_instance() {
+	public function get_widget_instance(): array {
 		return $this->instance;
 	}
 
@@ -183,9 +184,10 @@ abstract class Menu_Abstract {
 	/**
 	 * The widget arguments from the current widget.
 	 *
+	 * @phpstan-return WIDGET_ARGS
 	 * @return array
 	 */
-	public function get_widget_args() {
+	public function get_widget_args(): array {
 		return $this->args;
 	}
 

@@ -19,7 +19,7 @@ use Advanced_Sidebar_Menu\Utils;
  *      before_sidebar: string,
  *      after_sidebar:  string,
  *      show_in_rest:   boolean,
- *      widget_id:      string,
+ *      widget_id?:     string,
  *      widget_name:    string,
  * }
  *
