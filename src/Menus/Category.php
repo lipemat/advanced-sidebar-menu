@@ -16,7 +16,7 @@ use Advanced_Sidebar_Menu\Walkers\Category_Walker;
  *     exclude: string,
  *     include_childless_parent?: ''|'checked',
  *     include_parent?: ''|'checked',
- *     levels: numeric-string,
+ *     levels: numeric-string|int,
  *     new_widget: 'widget'|'list',
  *     single: ''|'checked',
  *     title?: string,

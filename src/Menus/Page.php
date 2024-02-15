@@ -19,7 +19,7 @@ use Advanced_Sidebar_Menu\Widget\Widget_Abstract;
  *      display_all?: ''|'checked',
  *      include_childless_parent?: ''|'checked',
  *      include_parent?: ''|'checked',
- *      levels?: numeric-string,
+ *      levels?: numeric-string|int,
  *      post_type?: string,
  * }
  *
