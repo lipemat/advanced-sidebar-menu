@@ -23,7 +23,7 @@ use Advanced_Sidebar_Menu\Utils;
  *      widget_name:    string,
  * }
  *
- * @phpstan-template SETTINGS of array<string, string|array<string, string>>
+ * @phpstan-template SETTINGS of array<string, string|int|array<string, string>>
  * @extends \WP_Widget<SETTINGS>
  */
 abstract class Widget_Abstract extends \WP_Widget {

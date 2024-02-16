@@ -30,7 +30,15 @@ class Page extends Widget_Abstract {
 	/**
 	 * Default values for the widget.
 	 *
-	 * @phpstan-var PAGE_SETTINGS
+	 * @phpstan-var array{
+	 *     title: string,
+	 *     include_parent: string,
+	 *     include_childless_parent: string,
+	 *     order_by: string,
+	 *     exclude: string,
+	 *     display_all: string,
+	 *     levels: string
+	 * }
 	 * @var array
 	 */
 	protected static $defaults = [
@@ -58,7 +66,7 @@ class Page extends Widget_Abstract {
 			$control_ops['width'] = 620;
 		}
 
-		parent::__construct( static::NAME, __( 'Advanced Sidebar - Pages', 'advanced-sidebar-menu' ), $widget_ops, $control_ops );
+		parent::__construct( self::NAME, __( 'Advanced Sidebar - Pages', 'advanced-sidebar-menu' ), $widget_ops, $control_ops );
 
 		$this->hook();
 	}
@@ -141,10 +149,11 @@ class Page extends Widget_Abstract {
 	 * @return void
 	 */
 	public function box_display( array $instance, $widget ) {
+		$instance = $this->set_instance( $instance, static::$defaults );
 		?>
 		<div class="advanced-sidebar-menu-column-box">
 			<p>
-				<?php $widget->checkbox( static::INCLUDE_PARENT ); ?>
+				<?php $widget->checkbox( self::INCLUDE_PARENT ); ?>
 				<label>
 					<?php
 					/* translators: Selected post type single label */
@@ -155,7 +164,7 @@ class Page extends Widget_Abstract {
 
 
 			<p>
-				<?php $widget->checkbox( static::INCLUDE_CHILDLESS_PARENT ); ?>
+				<?php $widget->checkbox( self::INCLUDE_CHILDLESS_PARENT ); ?>
 				<label>
 					<?php
 					/* translators: Selected post type single label */
@@ -165,7 +174,7 @@ class Page extends Widget_Abstract {
 			</p>
 
 			<p>
-				<?php $widget->checkbox( static::DISPLAY_ALL, static::LEVELS ); ?>
+				<?php $widget->checkbox( self::DISPLAY_ALL, self::LEVELS ); ?>
 				<label>
 					<?php
 					/* translators: Selected post type plural label */
@@ -177,18 +186,18 @@ class Page extends Widget_Abstract {
 			<div
 				<?php
 				if ( apply_filters( 'advanced-sidebar-menu/widget/page/hide-levels-field', true ) ) {
-					$widget->hide_element( static::DISPLAY_ALL, static::LEVELS );
+					$widget->hide_element( self::DISPLAY_ALL, self::LEVELS );
 				}
 				?>
 			>
 				<p>
-					<label for="<?php echo esc_attr( $widget->get_field_id( static::LEVELS ) ); ?>">
+					<label for="<?php echo esc_attr( $widget->get_field_id( self::LEVELS ) ); ?>">
 						<?php
 						ob_start();
 						?>
 						<select
-							id="<?php echo esc_attr( $widget->get_field_id( static::LEVELS ) ); ?>"
-							name="<?php echo esc_attr( $widget->get_field_name( static::LEVELS ) ); ?>">
+							id="<?php echo esc_attr( $widget->get_field_id( self::LEVELS ) ); ?>"
+							name="<?php echo esc_attr( $widget->get_field_name( self::LEVELS ) ); ?>">
 							<option value="100">
 								<?php esc_html_e( '- All -', 'advanced-sidebar-menu' ); ?>
 							</option>
@@ -231,16 +240,16 @@ class Page extends Widget_Abstract {
 		?>
 		<div class="advanced-sidebar-menu-column-box">
 			<p>
-				<label for="<?php echo esc_attr( $widget->get_field_id( static::ORDER_BY ) ); ?>">
+				<label for="<?php echo esc_attr( $widget->get_field_id( self::ORDER_BY ) ); ?>">
 					<?php esc_html_e( 'Order by', 'advanced-sidebar-menu' ); ?>
 				</label>
 				<select
-					id="<?php echo esc_attr( $widget->get_field_id( static::ORDER_BY ) ); ?>"
-					name="<?php echo esc_attr( $widget->get_field_name( static::ORDER_BY ) ); ?>"
+					id="<?php echo esc_attr( $widget->get_field_id( self::ORDER_BY ) ); ?>"
+					name="<?php echo esc_attr( $widget->get_field_name( self::ORDER_BY ) ); ?>"
 				>
 					<?php
 					foreach ( static::get_order_by_options() as $key => $order ) {
-						printf( '<option value="%s" %s>%s</option>', esc_attr( $key ), selected( $instance[ static::ORDER_BY ], $key, false ), esc_html( $order ) );
+						printf( '<option value="%s" %s>%s</option>', esc_attr( $key ), selected( $instance[ self::ORDER_BY ], $key, false ), esc_html( $order ) );
 					}
 					?>
 				</select>
@@ -265,18 +274,18 @@ class Page extends Widget_Abstract {
 		?>
 		<div class="advanced-sidebar-menu-column-box">
 			<p>
-				<label for="<?php echo esc_attr( $widget->get_field_id( static::EXCLUDE ) ); ?>">
+				<label for="<?php echo esc_attr( $widget->get_field_id( self::EXCLUDE ) ); ?>">
 					<?php
 					/* translators: Selected post type plural label */
 					printf( esc_html__( '%s to exclude (ids, comma separated)', 'advanced-sidebar-menu' ), esc_html( $this->get_post_type_label( $instance, false ) ) );
 					?>
 				</label>
 				<input
-					id="<?php echo esc_attr( $widget->get_field_id( static::EXCLUDE ) ); ?>"
-					name="<?php echo esc_attr( $widget->get_field_name( static::EXCLUDE ) ); ?>"
+					id="<?php echo esc_attr( $widget->get_field_id( self::EXCLUDE ) ); ?>"
+					name="<?php echo esc_attr( $widget->get_field_name( self::EXCLUDE ) ); ?>"
 					class="widefat advanced-sidebar-menu-block-field"
 					type="text"
-					value="<?php echo esc_attr( $instance[ static::EXCLUDE ] ); ?>" />
+					value="<?php echo esc_attr( $instance[ self::EXCLUDE ] ); ?>" />
 				<?php
 				do_action( 'advanced-sidebar-menu/widget/page/exclude-box', $instance, $widget );
 				?>
@@ -298,15 +307,15 @@ class Page extends Widget_Abstract {
 		do_action( 'advanced-sidebar-menu/widget/page/before-form', $instance, $this );
 		?>
 		<p xmlns="http://www.w3.org/1999/html">
-			<label for="<?php echo esc_attr( $this->get_field_id( static::TITLE ) ); ?>">
+			<label for="<?php echo esc_attr( $this->get_field_id( self::TITLE ) ); ?>">
 				<?php esc_html_e( 'Title', 'advanced-sidebar-menu' ); ?>:
 			</label>
 			<input
-				id="<?php echo esc_attr( $this->get_field_id( static::TITLE ) ); ?>"
-				name="<?php echo esc_attr( $this->get_field_name( static::TITLE ) ); ?>"
+				id="<?php echo esc_attr( $this->get_field_id( self::TITLE ) ); ?>"
+				name="<?php echo esc_attr( $this->get_field_name( self::TITLE ) ); ?>"
 				class="widefat"
 				type="text"
-				value="<?php echo esc_attr( $instance[ static::TITLE ] ); ?>" />
+				value="<?php echo esc_attr( $instance[ self::TITLE ] ?? '' ); ?>" />
 		</p>
 		<?php do_action( 'advanced-sidebar-menu/widget/page/before-columns', $instance, $this ); ?>
 		<div class="advanced-sidebar-menu-column advanced-sidebar-menu-column-left">

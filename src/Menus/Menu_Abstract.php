@@ -12,7 +12,7 @@ use Advanced_Sidebar_Menu\Widget\Widget_Abstract;
  * @phpstan-import-type PAGE_SETTINGS from Page
  * @phpstan-import-type WIDGET_ARGS from Widget_Abstract
  *
- * @phpstan-template SETTINGS of array<string, string|array<string, string>>
+ * @phpstan-template SETTINGS of array<string, string|int|array<string, string>>
  */
 abstract class Menu_Abstract {
 	public const WIDGET = 'menu-abstract';

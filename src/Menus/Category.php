@@ -12,14 +12,15 @@ use Advanced_Sidebar_Menu\Walkers\Category_Walker;
  * @author OnPoint Plugins
  *
  * @phpstan-type CATEGORY_SETTINGS array{
- *     taxonomy?: string,
+ *     'display-posts'?: string,
  *     exclude: string,
  *     include_childless_parent?: ''|'checked',
  *     include_parent?: ''|'checked',
  *     levels: numeric-string|int,
  *     new_widget: 'widget'|'list',
  *     single: ''|'checked',
- *     title?: string,
+ *     taxonomy?: string,
+ *     title?: string
  * }
  *
  * @extends Menu_Abstract<CATEGORY_SETTINGS>
