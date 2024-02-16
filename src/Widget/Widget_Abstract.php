@@ -43,7 +43,7 @@ abstract class Widget_Abstract extends \WP_Widget {
 	 * @see   \WP_Widget::form_callback()
 	 *
 	 * @phpstan-param SETTINGS $instance
-	 * @phpstan-param array<key-of<SETTINGS>, string> $defaults
+	 * @phpstan-param array<key-of<SETTINGS>, string|int|array<string, string|int>> $defaults
 	 *
 	 * @param array $instance - widget settings.
 	 * @param array $defaults - defaults for all widgets.
@@ -51,7 +51,7 @@ abstract class Widget_Abstract extends \WP_Widget {
 	 * @phpstan-return SETTINGS
 	 * @return array
 	 */
-	public function set_instance( array $instance, array $defaults ) {
+	public function set_instance( array $instance, array $defaults ): array {
 		$this->widget_settings = wp_parse_args( $instance, $defaults );
 
 		return $this->widget_settings;
