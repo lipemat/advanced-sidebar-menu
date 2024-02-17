@@ -1,8 +1,9 @@
-<?php
+<?php /** @noinspection CallableParameterUseCaseInTypeContextInspection */
 
 namespace Advanced_Sidebar_Menu\Widget;
 
 use Advanced_Sidebar_Menu\Menus\Menu_Abstract;
+use Advanced_Sidebar_Menu\Menus\Page as PageMenu;
 
 /**
  * Advanced_Sidebar_Menu_Widgets_Page
@@ -11,12 +12,22 @@ use Advanced_Sidebar_Menu\Menus\Menu_Abstract;
  *
  * @author OnPoint Plugins
  *
- * @phpstan-import-type PAGE_SETTINGS from \Advanced_Sidebar_Menu\Menus\Page
+ * @phpstan-import-type PAGE_SETTINGS from PageMenu
  * @phpstan-import-type WIDGET_ARGS from Widget_Abstract
  *
+ * @phpstan-type DEFAULTS \Required<\Pick<PAGE_SETTINGS, 'display_all'|'exclude'|'include_childless_parent'|'include_parent'|'levels'|'order_by'|'title'>>
+ *
+ * @implements Widget_Interface<PAGE_SETTINGS, DEFAULTS>
  * @extends Widget_Abstract<PAGE_SETTINGS>
  */
-class Page extends Widget_Abstract {
+class Page extends Widget_Abstract implements Widget_Interface {
+	/**
+	 * Shared widget instance logic.
+	 *
+	 * @phpstan-use Instance_Trait<PAGE_SETTINGS, DEFAULTS>
+	 */
+	use Instance_Trait;
+
 	public const NAME = 'advanced_sidebar_menu';
 
 	public const TITLE                    = Menu_Abstract::TITLE;
@@ -30,16 +41,7 @@ class Page extends Widget_Abstract {
 	/**
 	 * Default values for the widget.
 	 *
-	 * @phpstan-var array{
-	 *     title: string,
-	 *     include_parent: string,
-	 *     include_childless_parent: string,
-	 *     order_by: string,
-	 *     exclude: string,
-	 *     display_all: string,
-	 *     levels: string
-	 * }
-	 * @var array
+	 * @var DEFAULTS
 	 */
 	protected static $defaults = [
 		self::TITLE                    => '',
@@ -144,11 +146,11 @@ class Page extends Widget_Abstract {
 	 * @phpstan-param PAGE_SETTINGS          $instance
 	 *
 	 * @param array                          $instance - Widget settings.
-	 * @param Widget_Abstract<PAGE_SETTINGS> $widget   - Registered widget arguments.
+	 * @param Page $widget - Registered widget arguments.
 	 *
 	 * @return void
 	 */
-	public function box_display( array $instance, $widget ) {
+	public function box_display( array $instance, Page $widget ) {
 		$instance = $this->set_instance( $instance, static::$defaults );
 		?>
 		<div class="advanced-sidebar-menu-column-box">
@@ -161,7 +163,6 @@ class Page extends Widget_Abstract {
 					?>
 				</label>
 			</p>
-
 
 			<p>
 				<?php $widget->checkbox( self::INCLUDE_CHILDLESS_PARENT ); ?>
@@ -232,11 +233,11 @@ class Page extends Widget_Abstract {
 	 * @phpstan-param PAGE_SETTINGS          $instance
 	 *
 	 * @param array                          $instance - Widget settings.
-	 * @param Widget_Abstract<PAGE_SETTINGS> $widget   - Registered widget arguments.
+	 * @param Page $widget - Registered widget arguments.
 	 *
 	 * @return void
 	 */
-	public function box_order( array $instance, $widget ) {
+	public function box_order( array $instance, Page $widget ) {
 		?>
 		<div class="advanced-sidebar-menu-column-box">
 			<p>
@@ -266,11 +267,11 @@ class Page extends Widget_Abstract {
 	 * @phpstan-param PAGE_SETTINGS          $instance
 	 *
 	 * @param array                          $instance - Widget settings.
-	 * @param Widget_Abstract<PAGE_SETTINGS> $widget   - Registered widget arguments.
+	 * @param Page $widget - Registered widget arguments.
 	 *
 	 * @return void
 	 */
-	public function box_exclude( array $instance, $widget ) {
+	public function box_exclude( array $instance, Page $widget ) {
 		?>
 		<div class="advanced-sidebar-menu-column-box">
 			<p>
@@ -315,7 +316,7 @@ class Page extends Widget_Abstract {
 				name="<?php echo esc_attr( $this->get_field_name( self::TITLE ) ); ?>"
 				class="widefat"
 				type="text"
-				value="<?php echo esc_attr( $instance[ self::TITLE ] ?? '' ); ?>" />
+				value="<?php echo esc_attr( $instance[ self::TITLE ] ); ?>" />
 		</p>
 		<?php do_action( 'advanced-sidebar-menu/widget/page/before-columns', $instance, $this ); ?>
 		<div class="advanced-sidebar-menu-column advanced-sidebar-menu-column-left">
@@ -353,7 +354,7 @@ class Page extends Widget_Abstract {
 	/**
 	 * Widget Output.
 	 *
-	 * @see   \Advanced_Sidebar_Menu\Menus\Page
+	 * @see   PageMenu
 	 *
 	 * @param WIDGET_ARGS   $args     - Widget registration args.
 	 * @param PAGE_SETTINGS $instance - Widget settings.
@@ -362,7 +363,7 @@ class Page extends Widget_Abstract {
 	 */
 	public function widget( $args, $instance ) {
 		$instance = $this->set_instance( $instance, static::$defaults );
-		$menu = \Advanced_Sidebar_Menu\Menus\Page::factory( $instance, $args );
+		$menu = PageMenu::factory( $instance, $args );
 
 		do_action( 'advanced-sidebar-menu/widget/before-render', $menu, $this );
 

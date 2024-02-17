@@ -1,9 +1,9 @@
-<?php
+<?php /** @noinspection CallableParameterUseCaseInTypeContextInspection */
 
 namespace Advanced_Sidebar_Menu\Widget;
 
 use Advanced_Sidebar_Menu\Menus\Menu_Abstract;
-
+use Advanced_Sidebar_Menu\Menus\Category as CategoryMenu;
 /**
  * Creates a Widget of parent Child Categories
  *
@@ -11,12 +11,22 @@ use Advanced_Sidebar_Menu\Menus\Menu_Abstract;
  *
  * @package Advanced Sidebar Menu
  *
- * @phpstan-import-type CATEGORY_SETTINGS from \Advanced_Sidebar_Menu\Menus\Category
+ * @phpstan-import-type CATEGORY_SETTINGS from CategoryMenu
  * @phpstan-import-type WIDGET_ARGS from Widget_Abstract
  *
+ * @phpstan-type DEFAULTS \Required<\Pick<CATEGORY_SETTINGS, 'title'|'exclude'|'display_all'|'include_childless_parent'|'include_parent'|'levels'|'new_widget'|'single'>>
+ *
+ * @implements Widget_Interface<CATEGORY_SETTINGS, DEFAULTS>
  * @extends Widget_Abstract<CATEGORY_SETTINGS>
  */
-class Category extends Widget_Abstract {
+class Category extends Widget_Abstract implements Widget_Interface {
+	/**
+	 * Shared widget instance logic.
+	 *
+	 * @phpstan-use Instance_Trait<CATEGORY_SETTINGS, DEFAULTS>
+	 */
+	use Instance_Trait;
+
 	public const NAME = 'advanced_sidebar_menu_category';
 
 	public const TITLE                    = Menu_Abstract::TITLE;
@@ -27,14 +37,13 @@ class Category extends Widget_Abstract {
 	public const DISPLAY_ALL              = Menu_Abstract::DISPLAY_ALL;
 	public const LEVELS                   = Menu_Abstract::LEVELS;
 
-	public const DISPLAY_ON_SINGLE     = \Advanced_Sidebar_Menu\Menus\Category::DISPLAY_ON_SINGLE;
-	public const EACH_CATEGORY_DISPLAY = \Advanced_Sidebar_Menu\Menus\Category::EACH_CATEGORY_DISPLAY;
+	public const DISPLAY_ON_SINGLE     = CategoryMenu::DISPLAY_ON_SINGLE;
+	public const EACH_CATEGORY_DISPLAY = CategoryMenu::EACH_CATEGORY_DISPLAY;
 
 	/**
 	 * Default widget values.
 	 *
-	 * @phpstan-var array<self::*, string>
-	 * @var array
+	 * @var DEFAULTS
 	 */
 	protected static $defaults = [
 		self::TITLE                    => '',
@@ -126,8 +135,8 @@ class Category extends Widget_Abstract {
 	 */
 	public static function get_display_each_options() {
 		return [
-			\Advanced_Sidebar_Menu\Menus\Category::EACH_WIDGET => __( 'In a new widget', 'advanced-sidebar-menu' ),
-			\Advanced_Sidebar_Menu\Menus\Category::EACH_LIST   => __( 'In another list in the same widget', 'advanced-sidebar-menu' ),
+			CategoryMenu::EACH_WIDGET => __( 'In a new widget', 'advanced-sidebar-menu' ),
+			CategoryMenu::EACH_LIST   => __( 'In another list in the same widget', 'advanced-sidebar-menu' ),
 		];
 	}
 
@@ -138,11 +147,11 @@ class Category extends Widget_Abstract {
 	 * @phpstan-param CATEGORY_SETTINGS          $instance
 	 *
 	 * @param array                              $instance - Widget settings.
-	 * @param Widget_Abstract<CATEGORY_SETTINGS> $widget   - Registered widget arguments.
+	 * @param Category $widget - Registered widget arguments.
 	 *
 	 * @return void
 	 */
-	public function box_display( array $instance, $widget ) {
+	public function box_display( array $instance, Category $widget ) {
 		?>
 		<div class="advanced-sidebar-menu-column-box">
 			<p>
@@ -216,11 +225,11 @@ class Category extends Widget_Abstract {
 	 * @phpstan-param CATEGORY_SETTINGS          $instance
 	 *
 	 * @param array                              $instance - Widget settings.
-	 * @param Widget_Abstract<CATEGORY_SETTINGS> $widget   - Registered widget arguments.
+	 * @param Category $widget - Registered widget arguments.
 	 *
 	 * @return void
 	 */
-	public function box_display_on_single_posts( array $instance, $widget ) {
+	public function box_display_on_single_posts( array $instance, Category $widget ) {
 		?>
 		<div class="advanced-sidebar-menu-column-box">
 			<p>
@@ -276,11 +285,11 @@ class Category extends Widget_Abstract {
 	 * @phpstan-param CATEGORY_SETTINGS          $instance
 	 *
 	 * @param array                              $instance - Widget settings.
-	 * @param Widget_Abstract<CATEGORY_SETTINGS> $widget   - Registered widget arguments.
+	 * @param Category $widget - Registered widget arguments.
 	 *
 	 * @return void
 	 */
-	public function box_exclude( array $instance, $widget ) {
+	public function box_exclude( array $instance, Category $widget ) {
 		?>
 		<div class="advanced-sidebar-menu-column-box">
 			<p>
@@ -328,7 +337,7 @@ class Category extends Widget_Abstract {
 				name="<?php echo esc_attr( $this->get_field_name( self::TITLE ) ); ?>"
 				class="widefat"
 				type="text"
-				value="<?php echo esc_attr( $instance[ self::TITLE ] ?? static::$defaults[ self::TITLE ] ); ?>" />
+				value="<?php echo esc_attr( $instance[ self::TITLE ] ); ?>" />
 		</p>
 		<?php do_action( 'advanced-sidebar-menu/widget/category/before-columns', $instance, $this ); ?>
 		<div class="advanced-sidebar-menu-column">
@@ -372,7 +381,7 @@ class Category extends Widget_Abstract {
 	 */
 	public function widget( $args, $instance ) {
 		$instance = $this->set_instance( $instance, static::$defaults );
-		$menu = \Advanced_Sidebar_Menu\Menus\Category::factory( $instance, $args );
+		$menu = CategoryMenu::factory( $instance, $args );
 
 		do_action( 'advanced-sidebar-menu/widget/before-render', $menu, $this );
 

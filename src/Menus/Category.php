@@ -13,6 +13,7 @@ use Advanced_Sidebar_Menu\Walkers\Category_Walker;
  *
  * @phpstan-type CATEGORY_SETTINGS array{
  *     'display-posts'?: string,
+ *     display_all?: ''|'checked',
  *     exclude: string,
  *     include_childless_parent?: ''|'checked',
  *     include_parent?: ''|'checked',

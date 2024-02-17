@@ -42,8 +42,10 @@ use Advanced_Sidebar_Menu\Utils;
 use Advanced_Sidebar_Menu\Walkers\Category_Walker;
 use Advanced_Sidebar_Menu\Walkers\Page_Walker;
 use Advanced_Sidebar_Menu\Widget\Category as Widget_Category;
+use Advanced_Sidebar_Menu\Widget\Instance_Trait;
 use Advanced_Sidebar_Menu\Widget\Page as Widget_Page;
 use Advanced_Sidebar_Menu\Widget\Widget_Abstract;
+use Advanced_Sidebar_Menu\Widget\Widget_Interface;
 
 /**
  * Load the plugin
@@ -81,6 +83,8 @@ add_action( 'plugins_loaded', 'advanced_sidebar_menu_load' );
 function advanced_sidebar_menu_autoload( $class_name ) {
 	$classes = [
 		// Widgets.
+		Widget_Interface::class => 'Widget/Widget_Interface.php',
+		Instance_Trait::class   => 'Widget/Instance_Trait.php',
 		Widget_Abstract::class => 'Widget/Widget_Abstract.php',
 		Widget_Page::class     => 'Widget/Page.php',
 		Widget_Category::class => 'Widget/Category.php',
