@@ -10,7 +10,7 @@ use Advanced_Sidebar_Menu\Traits\Singleton;
  * @author OnPoint Plugins
  * @since  8.4.1
  */
-class Utils {
+class Utils implements Utils_Interface {
 	use Singleton;
 
 	/**
@@ -23,10 +23,10 @@ class Utils {
 	 *
 	 * @return bool
 	 */
-	public function is_checked( $name, array $settings ) {
+	public function is_checked( $name, array $settings ): bool {
 		// Handle array type names (e.g. open-links[all]).
 		preg_match( '/(?<field>\S*?)\[(?<key>\S*?)]/', $name, $array );
-		if ( ! empty( $array['field'] ) && ! empty( $array['key'] ) ) {
+		if ( isset( $array['field'], $array['key'] ) ) {
 			return isset( $settings[ $array['field'] ][ $array['key'] ] ) && 'checked' === $settings[ $array['field'] ][ $array['key'] ];
 		}
 
