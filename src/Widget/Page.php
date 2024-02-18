@@ -18,16 +18,16 @@ use Advanced_Sidebar_Menu\Utils;
  *
  * @phpstan-type DEFAULTS \Required<\Pick<PAGE_SETTINGS, 'display_all'|'exclude'|'include_childless_parent'|'include_parent'|'levels'|'order_by'|'title'>>
  *
- * @implements Widget_Interface<PAGE_SETTINGS, DEFAULTS>
+ * @implements Widget<PAGE_SETTINGS, DEFAULTS>
  * @extends Widget_Abstract<PAGE_SETTINGS>
  */
-class Page extends Widget_Abstract implements Widget_Interface {
+class Page extends Widget_Abstract implements Widget {
 	/**
 	 * Shared widget instance logic.
 	 *
-	 * @phpstan-use Instance_Trait<PAGE_SETTINGS, DEFAULTS>
+	 * @phpstan-use Instance<PAGE_SETTINGS, DEFAULTS>
 	 */
-	use Instance_Trait;
+	use Instance;
 
 	public const NAME = 'advanced_sidebar_menu';
 

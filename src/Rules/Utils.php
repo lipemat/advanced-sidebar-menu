@@ -1,6 +1,6 @@
 <?php
 
-namespace Advanced_Sidebar_Menu;
+namespace Advanced_Sidebar_Menu\Rules;
 
 /**
  * Enforce rules of the Utils class to guarantee signature does not
@@ -9,7 +9,7 @@ namespace Advanced_Sidebar_Menu;
  * @author OnPoint Plugins
  * @since  9.5.0
  */
-interface Utils_Interface {
+interface Utils {
 	/**
 	 * Is a widget's checkbox checked?
 	 *

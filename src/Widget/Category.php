@@ -17,16 +17,16 @@ use Advanced_Sidebar_Menu\Menus\Menu_Abstract;
  *
  * @phpstan-type DEFAULTS \Required<\Pick<CATEGORY_SETTINGS, 'title'|'exclude'|'display_all'|'include_childless_parent'|'include_parent'|'levels'|'new_widget'|'single'>>
  *
- * @implements Widget_Interface<CATEGORY_SETTINGS, DEFAULTS>
+ * @implements Widget<CATEGORY_SETTINGS, DEFAULTS>
  * @extends Widget_Abstract<CATEGORY_SETTINGS>
  */
-class Category extends Widget_Abstract implements Widget_Interface {
+class Category extends Widget_Abstract implements Widget {
 	/**
 	 * Shared widget instance logic.
 	 *
-	 * @phpstan-use Instance_Trait<CATEGORY_SETTINGS, DEFAULTS>
+	 * @phpstan-use Instance<CATEGORY_SETTINGS, DEFAULTS>
 	 */
-	use Instance_Trait;
+	use Instance;
 
 	public const NAME = 'advanced_sidebar_menu_category';
 

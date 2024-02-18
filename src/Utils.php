@@ -2,6 +2,7 @@
 
 namespace Advanced_Sidebar_Menu;
 
+use Advanced_Sidebar_Menu\Rules\Utils as Rules;
 use Advanced_Sidebar_Menu\Traits\Singleton;
 
 /**
@@ -10,7 +11,7 @@ use Advanced_Sidebar_Menu\Traits\Singleton;
  * @author OnPoint Plugins
  * @since  8.4.1
  */
-class Utils implements Utils_Interface {
+class Utils implements Rules {
 	use Singleton;
 
 	/**

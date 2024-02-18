@@ -11,12 +11,12 @@ namespace Advanced_Sidebar_Menu\Widget;
  *
  * @since 9.5.0
  *
- * @todo  Once the required basic version it 9.5.0, switch PRO to this trait.
+ * @todo  Once the required basic version it 9.5.0, switch PRO Navigation widget to this trait.
  *
  * @phpstan-template SETTINGS of array
  * @phpstan-template DEFAULTS of array<key-of<SETTINGS>, string|int|array<string, string|int>>
  */
-trait Instance_Trait {
+trait Instance {
 	/**
 	 * The current widget instance
 	 *

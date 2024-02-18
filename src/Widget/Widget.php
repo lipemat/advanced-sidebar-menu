@@ -7,9 +7,9 @@ namespace Advanced_Sidebar_Menu\Widget;
  *
  * @since  9.5.0
  *
- * @todo   Once the required basic version it 9.5.0, switch PRO to this interface
- *        instead of Widget_Abstract, then add a todo to remove
- *        Widget_Abstract once the required PRO version is of the new PRO version at that time.
+ * @todo  Once the required basic version is 9.5.0+, remove all PRO uses of Widget_Abstract in
+ *         favor of this interface, then add a todo to remove the
+ *        Widget_Abstract from the basic version once the required PRO version is of the new PRO version of that time.
  *
  *
  * @notice This interface should never change unless a major version is released.
@@ -17,7 +17,7 @@ namespace Advanced_Sidebar_Menu\Widget;
  * @phpstan-template SETTINGS of array
  * @phpstan-template DEFAULTS of array
  */
-interface Widget_Interface {
+interface Widget {
 	/**
 	 * Store the instance to this class.
 	 * We do this manually because filters hit the instance before we
