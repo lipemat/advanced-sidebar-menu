@@ -1,9 +1,10 @@
-<?php /** @noinspection CallableParameterUseCaseInTypeContextInspection */
+<?php
 
 namespace Advanced_Sidebar_Menu\Widget;
 
-use Advanced_Sidebar_Menu\Menus\Menu_Abstract;
 use Advanced_Sidebar_Menu\Menus\Category as CategoryMenu;
+use Advanced_Sidebar_Menu\Menus\Menu_Abstract;
+
 /**
  * Creates a Widget of parent Child Categories
  *
@@ -320,13 +321,13 @@ class Category extends Widget_Abstract implements Widget_Interface {
 	 *
 	 * @phpstan-param CATEGORY_SETTINGS $instance
 	 *
-	 * @param array                     $instance - Widget settings.
+	 * @param array $instance - Widget settings.
 	 *
 	 * @return string
 	 */
 	public function form( $instance ) {
-		$instance = $this->set_instance( $instance, static::$defaults );
-		do_action( 'advanced-sidebar-menu/widget/category/before-form', $instance, $this );
+		$settings = $this->set_instance( $instance, static::$defaults );
+		do_action( 'advanced-sidebar-menu/widget/category/before-form', $settings, $this );
 		?>
 		<p>
 			<label for="<?php echo esc_attr( $this->get_field_id( self::TITLE ) ); ?>">
@@ -337,20 +338,20 @@ class Category extends Widget_Abstract implements Widget_Interface {
 				name="<?php echo esc_attr( $this->get_field_name( self::TITLE ) ); ?>"
 				class="widefat"
 				type="text"
-				value="<?php echo esc_attr( $instance[ self::TITLE ] ); ?>" />
+				value="<?php echo esc_attr( $settings[ self::TITLE ] ); ?>" />
 		</p>
-		<?php do_action( 'advanced-sidebar-menu/widget/category/before-columns', $instance, $this ); ?>
+		<?php do_action( 'advanced-sidebar-menu/widget/category/before-columns', $settings, $this ); ?>
 		<div class="advanced-sidebar-menu-column">
-			<?php do_action( 'advanced-sidebar-menu/widget/category/left-column', $instance, $this ); ?>
+			<?php do_action( 'advanced-sidebar-menu/widget/category/left-column', $settings, $this ); ?>
 		</div>
 
 		<div class="advanced-sidebar-menu-column advanced-sidebar-menu-column-right">
-			<?php do_action( 'advanced-sidebar-menu/widget/category/right-column', $instance, $this ); ?>
+			<?php do_action( 'advanced-sidebar-menu/widget/category/right-column', $settings, $this ); ?>
 		</div>
 		<div class="advanced-sidebar-menu-full-width"><!-- clear --></div>
 
 		<?php
-		do_action( 'advanced-sidebar-menu/widget/category/after-form', $instance, $this );
+		do_action( 'advanced-sidebar-menu/widget/category/after-form', $settings, $this );
 
 		return '';
 	}
@@ -380,8 +381,8 @@ class Category extends Widget_Abstract implements Widget_Interface {
 	 * @return void
 	 */
 	public function widget( $args, $instance ) {
-		$instance = $this->set_instance( $instance, static::$defaults );
-		$menu = CategoryMenu::factory( $instance, $args );
+		$settings = $this->set_instance( $instance, static::$defaults );
+		$menu = CategoryMenu::factory( $settings, $args );
 
 		do_action( 'advanced-sidebar-menu/widget/before-render', $menu, $this );
 

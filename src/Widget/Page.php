@@ -1,4 +1,4 @@
-<?php /** @noinspection CallableParameterUseCaseInTypeContextInspection */
+<?php
 
 namespace Advanced_Sidebar_Menu\Widget;
 
@@ -143,15 +143,15 @@ class Page extends Widget_Abstract implements Widget_Interface {
 	/**
 	 * Display options.
 	 *
-	 * @phpstan-param PAGE_SETTINGS          $instance
+	 * @phpstan-param PAGE_SETTINGS $instance
 	 *
-	 * @param array                          $instance - Widget settings.
-	 * @param Page $widget - Registered widget arguments.
+	 * @param array                 $instance - Widget settings.
+	 * @param Page                  $widget   - Registered widget arguments.
 	 *
 	 * @return void
 	 */
 	public function box_display( array $instance, Page $widget ) {
-		$instance = $this->set_instance( $instance, static::$defaults );
+		$settings = $this->set_instance( $instance, static::$defaults );
 		?>
 		<div class="advanced-sidebar-menu-column-box">
 			<p>
@@ -159,7 +159,7 @@ class Page extends Widget_Abstract implements Widget_Interface {
 				<label>
 					<?php
 					/* translators: Selected post type single label */
-					printf( esc_html__( 'Display highest level parent %s', 'advanced-sidebar-menu' ), esc_html( strtolower( $this->get_post_type_label( $instance ) ) ) );
+					printf( esc_html__( 'Display highest level parent %s', 'advanced-sidebar-menu' ), esc_html( strtolower( $this->get_post_type_label( $settings ) ) ) );
 					?>
 				</label>
 			</p>
@@ -169,7 +169,7 @@ class Page extends Widget_Abstract implements Widget_Interface {
 				<label>
 					<?php
 					/* translators: Selected post type single label */
-					printf( esc_html__( 'Display menu when there is only the parent %s', 'advanced-sidebar-menu' ), esc_html( strtolower( $this->get_post_type_label( $instance ) ) ) );
+					printf( esc_html__( 'Display menu when there is only the parent %s', 'advanced-sidebar-menu' ), esc_html( strtolower( $this->get_post_type_label( $settings ) ) ) );
 					?>
 				</label>
 			</p>
@@ -179,7 +179,7 @@ class Page extends Widget_Abstract implements Widget_Interface {
 				<label>
 					<?php
 					/* translators: Selected post type plural label */
-					printf( esc_html__( 'Always display child %s', 'advanced-sidebar-menu' ), esc_html( strtolower( $this->get_post_type_label( $instance, false ) ) ) );
+					printf( esc_html__( 'Always display child %s', 'advanced-sidebar-menu' ), esc_html( strtolower( $this->get_post_type_label( $settings, false ) ) ) );
 					?>
 				</label>
 			</p>
@@ -205,7 +205,7 @@ class Page extends Widget_Abstract implements Widget_Interface {
 							<?php
 							for ( $i = 1; $i < 10; $i ++ ) {
 								?>
-								<option value="<?php echo esc_attr( (string) $i ); ?>" <?php selected( $i, (int) $instance[ static::LEVELS ] ); ?>>
+								<option value="<?php echo esc_attr( (string) $i ); ?>" <?php selected( $i, (int) $settings[ static::LEVELS ] ); ?>>
 									<?php echo \absint( $i ); ?>
 								</option>
 								<?php
@@ -214,13 +214,13 @@ class Page extends Widget_Abstract implements Widget_Interface {
 						</select>
 						<?php
 						/* translators: {select html input}, {Selected post type plural label} */
-						printf( esc_html__( 'Display %1$s levels of child %2$s', 'advanced-sidebar-menu' ), ob_get_clean(), esc_html( strtolower( $this->get_post_type_label( $instance, false ) ) ) ); //phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped
+						printf( esc_html__( 'Display %1$s levels of child %2$s', 'advanced-sidebar-menu' ), ob_get_clean(), esc_html( strtolower( $this->get_post_type_label( $settings, false ) ) ) ); //phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped
 						?>
 					</label>
 				</p>
 			</div>
 
-			<?php do_action( 'advanced-sidebar-menu/widget/page/display-box', $instance, $widget ); ?>
+			<?php do_action( 'advanced-sidebar-menu/widget/page/display-box', $settings, $widget ); ?>
 
 		</div>
 		<?php
@@ -304,8 +304,8 @@ class Page extends Widget_Abstract implements Widget_Interface {
 	 * @return string
 	 */
 	public function form( $instance ) {
-		$instance = $this->set_instance( $instance, static::$defaults );
-		do_action( 'advanced-sidebar-menu/widget/page/before-form', $instance, $this );
+		$settings = $this->set_instance( $instance, static::$defaults );
+		do_action( 'advanced-sidebar-menu/widget/page/before-form', $settings, $this );
 		?>
 		<p xmlns="http://www.w3.org/1999/html">
 			<label for="<?php echo esc_attr( $this->get_field_id( self::TITLE ) ); ?>">
@@ -316,18 +316,18 @@ class Page extends Widget_Abstract implements Widget_Interface {
 				name="<?php echo esc_attr( $this->get_field_name( self::TITLE ) ); ?>"
 				class="widefat"
 				type="text"
-				value="<?php echo esc_attr( $instance[ self::TITLE ] ); ?>" />
+				value="<?php echo esc_attr( $settings[ self::TITLE ] ); ?>" />
 		</p>
-		<?php do_action( 'advanced-sidebar-menu/widget/page/before-columns', $instance, $this ); ?>
+		<?php do_action( 'advanced-sidebar-menu/widget/page/before-columns', $settings, $this ); ?>
 		<div class="advanced-sidebar-menu-column advanced-sidebar-menu-column-left">
-			<?php do_action( 'advanced-sidebar-menu/widget/page/left-column', $instance, $this ); ?>
+			<?php do_action( 'advanced-sidebar-menu/widget/page/left-column', $settings, $this ); ?>
 		</div>
 		<div class="advanced-sidebar-menu-column advanced-sidebar-menu-column-right">
-			<?php do_action( 'advanced-sidebar-menu/widget/page/right-column', $instance, $this ); ?>
+			<?php do_action( 'advanced-sidebar-menu/widget/page/right-column', $settings, $this ); ?>
 		</div>
 		<div class="advanced-sidebar-menu-full-width"><!-- clear --></div>
 		<?php
-		do_action( 'advanced-sidebar-menu/widget/page/after-form', $instance, $this );
+		do_action( 'advanced-sidebar-menu/widget/page/after-form', $settings, $this );
 
 		return '';
 	}
@@ -362,8 +362,8 @@ class Page extends Widget_Abstract implements Widget_Interface {
 	 * @return void
 	 */
 	public function widget( $args, $instance ) {
-		$instance = $this->set_instance( $instance, static::$defaults );
-		$menu = PageMenu::factory( $instance, $args );
+		$settings = $this->set_instance( $instance, static::$defaults );
+		$menu = PageMenu::factory( $settings, $args );
 
 		do_action( 'advanced-sidebar-menu/widget/before-render', $menu, $this );
 
