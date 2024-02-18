@@ -76,4 +76,29 @@ class Utils {
 
 		return $output;
 	}
+
+
+	/**
+	 * Get the label for used post type.
+	 *
+	 * For adjusting widget option labels.
+	 *
+	 * @since 9.5.0
+	 *
+	 * @param string $type   - Post type to get label for.
+	 * @param bool   $single - Singular label or plural.
+	 *
+	 * @return string
+	 */
+	public function get_post_type_label( string $type, $single = true ): string {
+		$post_type = get_post_type_object( $type );
+		if ( 'page' !== $type && null === $post_type ) {
+			$post_type = get_post_type_object( 'page' ); // Sensible fallback.
+		}
+		if ( null === $post_type ) {
+			return $single ? __( 'Page', 'advanced-sidebar-menu' ) : __( 'Pages', 'advanced-sidebar-menu' );
+		}
+
+		return $single ? $post_type->labels->singular_name : $post_type->labels->name;
+	}
 }

@@ -4,6 +4,7 @@ namespace Advanced_Sidebar_Menu\Widget;
 
 use Advanced_Sidebar_Menu\Menus\Menu_Abstract;
 use Advanced_Sidebar_Menu\Menus\Page as PageMenu;
+use Advanced_Sidebar_Menu\Utils;
 
 /**
  * Advanced_Sidebar_Menu_Widgets_Page
@@ -108,16 +109,8 @@ class Page extends Widget_Abstract implements Widget_Interface {
 	 * @return string
 	 */
 	public function get_post_type_label( $instance, $single = true ) {
-		$type = apply_filters( 'advanced-sidebar-menu/widget/page/post-type-for-label', 'page', $this->control_options, $instance );
-		$post_type = get_post_type_object( $type );
-		if ( 'page' !== $type && null === $post_type ) {
-			$post_type = get_post_type_object( 'page' ); // Sensible fallback.
-		}
-		if ( null === $post_type ) {
-			return $single ? __( 'Page', 'advanced-sidebar-menu' ) : __( 'Pages', 'advanced-sidebar-menu' );
-		}
-
-		return $single ? $post_type->labels->singular_name : $post_type->labels->name;
+		$type = (string) apply_filters( 'advanced-sidebar-menu/widget/page/post-type-for-label', 'page', $this->control_options, $instance );
+		return Utils::instance()->get_post_type_label( $type, $single );
 	}
 
 
