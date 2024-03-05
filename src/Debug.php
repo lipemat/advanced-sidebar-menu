@@ -44,7 +44,7 @@ class Debug {
 			add_action( 'advanced-sidebar-menu/widget/before-render', [ $this, 'print_instance' ], 1, 2 );
 
 			if ( \is_array( $_GET[ static::DEBUG_PARAM ] ) ) {
-				add_filter( 'advanced-sidebar-menu/menus/widget-instance', [ $this, 'adjust_widget_settings' ] );
+				add_filter( 'advanced-sidebar-menu/menus/widget-instance', [ $this, 'adjust_widget_settings' ], 100 );
 			}
 		}
 	}
@@ -72,6 +72,18 @@ class Debug {
 			if ( null !== $type && ! $type->public ) {
 				unset( $overrides['post_type'] );
 			}
+		}
+		// Adjust global excluded categories.
+		if ( isset( $overrides['excludedCategories'] ) ) {
+			add_filter( 'advanced-sidebar-menu/meta/category-meta/excluded-term-ids', function() use ( $overrides ) {
+				return $overrides['excludedCategories'];
+			}, 100 );
+		}
+		// Adjust global excluded pages.
+		if ( isset( $overrides['excluded_pages'] ) ) {
+			add_filter( 'advanced-sidebar-menu/meta/page-meta/excluded-page-ids', function() use ( $overrides ) {
+				return $overrides['excluded_pages'];
+			}, 100 );
 		}
 
 		return wp_parse_args( $overrides, $instance );
@@ -128,8 +140,8 @@ class Debug {
 	/**
 	 * Print the widget settings as a JS variable.
 	 *
-	 * @param Menu_Abstract<array<string,string>> $menu - Menu class.
-	 * @param Page|Category $widget - Widget class.
+	 * @param Menu_Abstract<array<string,string>> $menu   - Menu class.
+	 * @param Page|Category                       $widget - Widget class.
 	 *
 	 * @return void
 	 */
