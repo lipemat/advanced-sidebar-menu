@@ -111,6 +111,12 @@ class Debug {
 			'scriptDebug'    => Scripts::instance()->is_script_debug_enabled(),
 			'WordPress'      => get_bloginfo( 'version' ),
 		];
+
+		$current_post = get_queried_object();
+		if ( $current_post instanceof \WP_Post ) {
+			$data['classicEditor'] = ! use_block_editor_for_post( $current_post );
+		}
+
 		if ( \defined( 'ADVANCED_SIDEBAR_MENU_PRO_VERSION' ) ) {
 			$data['pro'] = ADVANCED_SIDEBAR_MENU_PRO_VERSION;
 		}
