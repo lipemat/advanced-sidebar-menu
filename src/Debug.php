@@ -19,6 +19,7 @@ use Advanced_Sidebar_Menu\Widget\Page;
  * @phpstan-type DEBUG_INFO array{
  *      basic: string,
  *      classicWidgets: bool,
+ *      excludedCategories?: int[],
  *      excluded_pages?: int[],
  *      php: string,
  *      pro: string|false,
@@ -108,7 +109,7 @@ class Debug {
 			'php'            => PHP_VERSION,
 			'pro'            => false,
 			'scriptDebug'    => Scripts::instance()->is_script_debug_enabled(),
-			'WordPress' => get_bloginfo( 'version' ),
+			'WordPress'      => get_bloginfo( 'version' ),
 		];
 		if ( \defined( 'ADVANCED_SIDEBAR_MENU_PRO_VERSION' ) ) {
 			$data['pro'] = ADVANCED_SIDEBAR_MENU_PRO_VERSION;
