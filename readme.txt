@@ -6,7 +6,7 @@ Tags: block, widget, dynamic, hierarchy, menus, sidebar menu, category, pages, p
 Requires at least: 6.1.0
 Tested up to: 6.4.3
 Requires PHP: 7.2.0
-Stable tag: 9.4.3
+Stable tag: 9.5.0
 License: GPLv3 or later
 License URI: http://www.gnu.org/licenses/gpl-3.0.html
 
@@ -22,7 +22,7 @@ Blocks are available to display menus where you need them. Look for the "Advance
 
 <strong>Check out <a href="https://onpointplugins.com/product/advanced-sidebar-menu-pro/?utm_source=readme&utm_campaign=gopro&utm_medium=dot-org">Advanced Sidebar Menu PRO</a> for more features including accordion menus, menu colors and styles, custom link text, excluding of pages, category ordering, custom post types, custom taxonomies, priority support, and so much more!</strong>
 
-<blockquote><a href="https://onpointplugins.com/product/advanced-sidebar-menu-pro/?utm_source=readme&utm_campaign=gopro&utm_medium=dot-org" target="_blank">PRO version 9.2.0</a> is now available with the ability to exclude pages or categories using intuitive search and select!</blockquote>
+<blockquote><a href="https://onpointplugins.com/product/advanced-sidebar-menu-pro/?utm_source=readme&utm_campaign=gopro&utm_medium=dot-org" target="_blank">PRO version 9.5.0</a> is now available with the ability to exclude pages or categories using intuitive search and select!</blockquote>
 
 <h3>Features</h3>
 * Page and Category menu Gutenberg blocks.
@@ -165,6 +165,22 @@ The Categories Menu widget/block contains a "Display categories on single posts"
 Yes. Based on whatever page, post or category you are on, the menu will change automatically to display the current parents and children.
 
 == Changelog ==
+= 9.5.0 =
+* Introduced `is_truthy` utility method.
+* Introduced `get_post_type_label` utility method.
+* Introduced `is_empty` utility method.
+* Introduced `Menu` interface and began promoting `Menu_Abstract` to it.
+* Introduced `Utils_Interface` to guarantee the existence of shared methods.
+* Included classic editor state in debug information.
+* Fixed the missing dashicons shown in the Preview component inside iframes.
+* Fixed PHPCS minimum_wp_version config.
+* Switched widget classes to trait/interface based structure.
+* Introduced full array shapes for widget settings.
+* Improved default widget settings.
+* Prevented conflicts with theme styles and widget fields.
+* Fixed excluding of child items if the top level parent is excluded.
+* Converted deprecated block registering args to WordPress 6.1 version.
+
 = 9.4.3 =
 * Updated all block's api version to 3.
 * Updated Node to version 20.
