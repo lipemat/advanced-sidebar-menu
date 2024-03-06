@@ -81,54 +81,6 @@ abstract class Menu_Abstract implements Menu {
 
 
 	/**
-	 * Get id of the highest level parent item.
-	 *
-	 * @return ?int
-	 */
-	abstract public function get_top_parent_id();
-
-
-	/**
-	 * Get key to order the menu items by.
-	 *
-	 * @return string
-	 */
-	abstract public function get_order_by();
-
-
-	/**
-	 * Get order of the menu (ASC|DESC).
-	 *
-	 * @return string
-	 */
-	abstract public function get_order();
-
-
-	/**
-	 * Should this widget be displayed.
-	 *
-	 * @return bool
-	 */
-	abstract public function is_displayed();
-
-
-	/**
-	 * How many levels should be displayed.
-	 *
-	 * @return int
-	 */
-	abstract public function get_levels_to_display();
-
-
-	/**
-	 * Render the widget
-	 *
-	 * @return void
-	 */
-	abstract public function render();
-
-
-	/**
 	 * Increment the widget id until it is unique to all widgets being displayed
 	 * in the current context.
 	 *
