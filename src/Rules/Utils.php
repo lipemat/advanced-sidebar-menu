@@ -46,4 +46,17 @@ interface Utils {
 	 * @param bool   $single - Singular label or plural.
 	 */
 	public function get_post_type_label( string $type, $single = true ): string;
+
+
+	/**
+	 * Is this value a truthy value?
+	 *
+	 * For checking types which may be stored differently in the database
+	 * based on context (E.G., '1' true 'checked').
+	 *
+	 * @param bool|string|int $value - Value to check.
+	 *
+	 * @return bool
+	 */
+	public function is_truthy( $value ): bool;
 }

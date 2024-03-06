@@ -102,4 +102,21 @@ class Utils implements Rules {
 
 		return $single ? $post_type->labels->singular_name : $post_type->labels->name;
 	}
+
+
+	/**
+	 * Is this value a truthy value?
+	 *
+	 * For checking types which may be stored differently in the database
+	 * based on context (E.G., '1' true 'checked').
+	 *
+	 * @since 9.5.0
+	 *
+	 * @param bool|string|int $value - Value to check.
+	 *
+	 * @return bool
+	 */
+	public function is_truthy( $value ): bool {
+		return true === $value || 'true' === $value || 1 === $value || '1' === $value || 'checked' === $value || 'on' === $value;
+	}
 }
