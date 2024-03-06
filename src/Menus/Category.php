@@ -26,7 +26,7 @@ use Advanced_Sidebar_Menu\Walkers\Category_Walker;
  *
  * @extends Menu_Abstract<CATEGORY_SETTINGS>
  */
-class Category extends Menu_Abstract {
+class Category extends Menu_Abstract implements Menu {
 	use Memoize;
 
 	public const WIDGET = 'category';
@@ -317,6 +317,20 @@ class Category extends Menu_Abstract {
 		}
 
 		return apply_filters( 'advanced-sidebar-menu/menus/category/is-displayed', $display, $this->args, $this->instance, $this );
+	}
+
+
+	/**
+	 * Is this term excluded from this menu?
+	 *
+	 * @param int|string $id ID of the object.
+	 *
+	 * @return bool
+	 */
+	public function is_excluded( $id ): bool {
+		$excluded = \in_array( (int) $id, $this->get_excluded_ids(), true );
+
+		return (bool) apply_filters( 'advanced-sidebar-menu/menus/category/is-excluded', $excluded, $id, $this->get_widget_args(), $this->get_widget_instance(), $this );
 	}
 
 

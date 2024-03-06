@@ -14,7 +14,7 @@ use Advanced_Sidebar_Menu\Widget\Widget_Abstract;
  *
  * @phpstan-template SETTINGS of array<string, string|int|array<string, string>>
  */
-abstract class Menu_Abstract {
+abstract class Menu_Abstract implements Menu {
 	public const WIDGET = 'menu-abstract';
 
 	// Options shared between menus.
@@ -223,19 +223,6 @@ abstract class Menu_Abstract {
 	 */
 	public function include_parent() {
 		return $this->checked( static::INCLUDE_PARENT ) && ! $this->is_excluded( $this->get_top_parent_id() ?? - 1 );
-	}
-
-
-	/**
-	 * Is this id excluded from this menu?
-	 *
-	 * @param int|string $id ID of the object.
-	 *
-	 * @return bool
-	 */
-	public function is_excluded( $id ) {
-		$excluded = \in_array( (int) $id, $this->get_excluded_ids(), true );
-		return apply_filters( 'advanced-sidebar-menu/menus/' . static::WIDGET . '/is-excluded', $excluded, $id, $this->get_widget_args(), $this->get_widget_instance(), $this );
 	}
 
 
