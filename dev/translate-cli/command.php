@@ -6,6 +6,7 @@ use Gettext\Translations;
 
 require __DIR__ . '/vendor/autoload.php';
 
+const DOMAIN = 'advanced-sidebar-menu';
 const RELATIVE_PATH = 'js/dist/advanced-sidebar-menu-block-editor.js';
 const EXTENSIONS = [ '.ts', '.js', 'jsx', 'tsx' ];
 
@@ -42,6 +43,7 @@ function make_json( $source_file ) {
 	$js_translations = new Translations();
 	$js_translations->setHeader( 'Language', $all_translations->getLanguage() );
 	$js_translations->setHeader( 'PO-Revision-Date', $all_translations->getHeader( 'PO-Revision-Date' ) );
+	$js_translations->setHeader( 'X-Domain', DOMAIN );
 
 	$plural_forms = $all_translations->getPluralForms();
 	if ( $plural_forms ) {
