@@ -1,0 +1,57 @@
+{
+  "$schema": "https://playground.wordpress.net/blueprint-schema.json",
+  "landingPage": "/wp-admin/post.php?post=5&action=edit",
+  "preferredVersions": {
+    "php": "8.0",
+    "wp": "6.4.3"
+  },
+  "phpExtensionBundles": [
+    "kitchen-sink"
+  ],
+  "features": {
+    "networking": true
+  },
+  "steps": [
+    {
+      "step": "login",
+      "username": "admin",
+      "password": "password"
+    },
+    {
+      "step": "installPlugin",
+      "pluginZipFile": {
+        "resource": "wordpress.org/plugins",
+        "slug": "advanced-sidebar-menu"
+      },
+      "options": {
+        "activate": true
+      }
+    },
+    {
+      "step": "setSiteOptions",
+      "options": {
+        "blogname": "Advanced Sidebar Menu - Demo"
+      }
+    },
+    {
+      "step": "runPHP",
+      "code": "<?php\ninclude 'wordpress/wp-load.php';\nwp_insert_post(array(\n'import_id' => 5,\n'post_title' => 'Top Level Parent',\n'post_content' => '<!-- wp:advanced-sidebar-menu/pages {\"include_parent\":true,\"include_childless_parent\":true,\"display_all\":false} /--><!-- wp:paragraph --><p>View the various pages to see how the menu will display on each of them.</p><!-- /wp:paragraph --><!-- wp:paragraph --><p>The blocks may also be used in the <a href=\"/wp-admin/site-editor.php\" data-type=\"link\" data-id=\"/wp-admin/site-editor.php\">site editor</a>.</p><!-- /wp:paragraph --><!-- wp:paragraph --><p>For more information on how the menu levels work, see the <a href=\"https://onpointplugins.com/advanced-sidebar-menu/#interactive-demo\" data-type=\"link\" data-id=\"https://onpointplugins.com/advanced-sidebar-menu/#interactive-demo\" target=\"_blank\" rel=\"noreferrer noopener\">interactive demo</a>.</p><!-- /wp:paragraph -->',\n'post_status' => 'publish',\n'post_author' => 1,\n'post_type'=>'page'));"
+    },
+    {
+      "step": "runPHP",
+      "code": "<?php\ninclude 'wordpress/wp-load.php';\nwp_insert_post(array(\n'import_id' => 6,\n'post_parent'=>'5',\n'post_title' => 'Child 1',\n'post_content' => '<!-- wp:advanced-sidebar-menu/pages {\"include_parent\":true,\"include_childless_parent\":true,\"display_all\":false} /--><!-- wp:paragraph --><p>View the various pages to see how the menu will display on each of them.</p><!-- /wp:paragraph --><!-- wp:paragraph --><p>The blocks may also be used in the <a href=\"/wp-admin/site-editor.php\" data-type=\"link\" data-id=\"/wp-admin/site-editor.php\">site editor</a>.</p><!-- /wp:paragraph --><!-- wp:paragraph --><p>For more information on how the menu levels work, see the <a href=\"https://onpointplugins.com/advanced-sidebar-menu/#interactive-demo\" data-type=\"link\" data-id=\"https://onpointplugins.com/advanced-sidebar-menu/#interactive-demo\" target=\"_blank\" rel=\"noreferrer noopener\">interactive demo</a>.</p><!-- /wp:paragraph -->',\n'post_status' => 'publish',\n'post_author' => 1,\n'post_type'=>'page'));"
+    },
+    {
+      "step": "runPHP",
+      "code": "<?php\ninclude 'wordpress/wp-load.php';\nwp_insert_post(array(\n'import_id' => 7,\n'post_parent'=>'5',\n'post_title' => 'Child 2',\n'post_content' => '<!-- wp:advanced-sidebar-menu/pages {\"include_parent\":true,\"include_childless_parent\":true,\"display_all\":false} /--><!-- wp:paragraph --><p>View the various pages to see how the menu will display on each of them.</p><!-- /wp:paragraph --><!-- wp:paragraph --><p>The blocks may also be used in the <a href=\"/wp-admin/site-editor.php\" data-type=\"link\" data-id=\"/wp-admin/site-editor.php\">site editor</a>.</p><!-- /wp:paragraph --><!-- wp:paragraph --><p>For more information on how the menu levels work, see the <a href=\"https://onpointplugins.com/advanced-sidebar-menu/#interactive-demo\" data-type=\"link\" data-id=\"https://onpointplugins.com/advanced-sidebar-menu/#interactive-demo\" target=\"_blank\" rel=\"noreferrer noopener\">interactive demo</a>.</p><!-- /wp:paragraph -->',\n'post_status' => 'publish',\n'post_author' => 1,\n'post_type'=>'page'));"
+    },
+    {
+      "step": "runPHP",
+      "code": "<?php\ninclude 'wordpress/wp-load.php';\nwp_insert_post(array(\n'import_id' => 8,\n'post_parent'=>'6',\n'post_title' => 'Grandchild 2',\n'post_content' => '<!-- wp:advanced-sidebar-menu/pages {\"include_parent\":true,\"include_childless_parent\":true,\"display_all\":false} /--><!-- wp:paragraph --><p>View the various pages to see how the menu will display on each of them.</p><!-- /wp:paragraph --><!-- wp:paragraph --><p>The blocks may also be used in the <a href=\"/wp-admin/site-editor.php\" data-type=\"link\" data-id=\"/wp-admin/site-editor.php\">site editor</a>.</p><!-- /wp:paragraph --><!-- wp:paragraph --><p>For more information on how the menu levels work, see the <a href=\"https://onpointplugins.com/advanced-sidebar-menu/#interactive-demo\" data-type=\"link\" data-id=\"https://onpointplugins.com/advanced-sidebar-menu/#interactive-demo\" target=\"_blank\" rel=\"noreferrer noopener\">interactive demo</a>.</p><!-- /wp:paragraph -->',\n'post_status' => 'publish',\n'post_author' => 1,\n'post_type'=>'page'));"
+    },
+    {
+      "step": "runPHP",
+      "code": "<?php\ninclude 'wordpress/wp-load.php';\nwp_insert_post(array(\n'import_id' => 9,\n'post_parent'=>'6',\n'post_title' => 'Grandchild 2',\n'post_content' => '<!-- wp:advanced-sidebar-menu/pages {\"include_parent\":true,\"include_childless_parent\":true,\"display_all\":false} /--><!-- wp:paragraph --><p>View the various pages to see how the menu will display on each of them.</p><!-- /wp:paragraph --><!-- wp:paragraph --><p>The blocks may also be used in the <a href=\"/wp-admin/site-editor.php\" data-type=\"link\" data-id=\"/wp-admin/site-editor.php\">site editor</a>.</p><!-- /wp:paragraph --><!-- wp:paragraph --><p>For more information on how the menu levels work, see the <a href=\"https://onpointplugins.com/advanced-sidebar-menu/#interactive-demo\" data-type=\"link\" data-id=\"https://onpointplugins.com/advanced-sidebar-menu/#interactive-demo\" target=\"_blank\" rel=\"noreferrer noopener\">interactive demo</a>.</p><!-- /wp:paragraph -->',\n'post_status' => 'publish',\n'post_author' => 1,\n'post_type'=>'page'));"
+    }
+  ]
+}
