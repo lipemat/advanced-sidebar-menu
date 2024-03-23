@@ -20,10 +20,6 @@ Keeps the menu clean and usable. Only related items display, so you don't have t
 
 Blocks are available to display menus where you need them. Look for the "Advanced Sidebar - Pages" block, or the "Advanced Sidebar - Categories" block. Widgets are also available for page builders or sites using classic widgets.
 
-<strong>Check out <a href="https://onpointplugins.com/product/advanced-sidebar-menu-pro/?utm_source=readme&utm_campaign=gopro&utm_medium=dot-org">Advanced Sidebar Menu PRO</a> for more features including accordion menus, menu colors and styles, custom link text, excluding of pages, category ordering, custom post types, custom taxonomies, priority support, and so much more!</strong>
-
-<blockquote><a href="https://onpointplugins.com/product/advanced-sidebar-menu-pro/?utm_source=readme&utm_campaign=gopro&utm_medium=dot-org" target="_blank">PRO version 9.5.0</a> is now available with the ability to exclude pages or categories using intuitive search and select!</blockquote>
-
 <h3>Features</h3>
 * Page and Category menu Gutenberg blocks.
 * Page and Category menu widgets.
@@ -53,7 +49,24 @@ Blocks are available to display menus where you need them. Look for the "Advance
 * Always display child categories.
 * Levels of Categories to display when always display child categories is checked.
 
-<h3>PRO Features</h3>
+<h3>Included Language Translations</h3>
+* English (en_US).
+* French (fr_FR).
+* German (de_DE).
+* Spanish (es_ES).
+
+<h3>Documentation</h3>
+The official documentation for the plugin <a target="_blank" href="https://onpointplugins.com/advanced-sidebar-menu/">may be found here</a>.
+
+<h3>Developers</h3>
+Developer docs <a target="_blank" href="https://onpointplugins.com/advanced-sidebar-menu/developer-docs/">may be found here</a>.
+
+<h3>Contribute</h3>
+Send pull requests via the <a target="_blank" href="https://github.com/lipemat/advanced-sidebar-menu">GitHub Repo</a>
+
+<h3>Go PRO</h3>
+Our <a href="https://onpointplugins.com/product/advanced-sidebar-menu-pro/?utm_source=readme&utm_campaign=gopro&utm_medium=dot-org">PRO version</a> brings additional functionality to the this plugin. Check out [the demo](https://onpointplugins.com/advanced-sidebar-menu/advanced-sidebar-pro-demo/?utm_source=readme&utm_campaign=demo&utm_medium=dot-org) to see if the PRO version is useful for you.
+
 * Navigation menu widget.
 * Navigation menu Gutenberg block.
 * Ability to customize each page or navigation menu item link's text.
@@ -87,21 +100,6 @@ Blocks are available to display menus where you need them. Look for the "Advance
 * Ability to display the current navigation menu item's parents and children only.
 * Option to display the top-level navigation menu items when there are no child items or not viewing a menu item.
 * Priority support with access to members only support area.
-
-<h3>Included Language Translations</h3>
-* English (en_US).
-* French (fr_FR).
-* German (de_DE).
-* Spanish (es_ES).
-
-<h3>Documentation</h3>
-The official documentation for the plugin <a target="_blank" href="https://onpointplugins.com/advanced-sidebar-menu/">may be found here</a>.
-
-<h3>Developers</h3>
-Developer docs <a target="_blank" href="https://onpointplugins.com/advanced-sidebar-menu/developer-docs/">may be found here</a>.
-
-<h3>Contribute</h3>
-Send pull requests via the <a target="_blank" href="https://github.com/lipemat/advanced-sidebar-menu">GitHub Repo</a>
 
 == Installation ==
 
