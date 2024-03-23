@@ -4527,7 +4527,7 @@ const RAW_RUNTIME_STATE =
     ],\
     [\
       "webpack-dev-middleware",\
-      "virtual:e6718d8e05cd41f467dfda9db97a996c2efd8ea007a5141bfd10baa368da3316f56e752001d830d011efb3c1a199275c0eec44254b19861a00332e6ef9f3a71c#npm:5.3.3"\
+      "virtual:e6718d8e05cd41f467dfda9db97a996c2efd8ea007a5141bfd10baa368da3316f56e752001d830d011efb3c1a199275c0eec44254b19861a00332e6ef9f3a71c#npm:5.3.4"\
     ],\
     [\
       "webpack-dev-server",\
@@ -21711,17 +21711,17 @@ const RAW_RUNTIME_STATE =
       }]\
     ]],\
     ["webpack-dev-middleware", [\
-      ["npm:5.3.3", {\
-        "packageLocation": "./.yarn/cache/webpack-dev-middleware-npm-5.3.3-c3f195990d-378ceed430.zip/node_modules/webpack-dev-middleware/",\
+      ["npm:5.3.4", {\
+        "packageLocation": "./.yarn/cache/webpack-dev-middleware-npm-5.3.4-74a86c7ece-257df7d6bc.zip/node_modules/webpack-dev-middleware/",\
         "packageDependencies": [\
-          ["webpack-dev-middleware", "npm:5.3.3"]\
+          ["webpack-dev-middleware", "npm:5.3.4"]\
         ],\
         "linkType": "SOFT"\
       }],\
-      ["virtual:e6718d8e05cd41f467dfda9db97a996c2efd8ea007a5141bfd10baa368da3316f56e752001d830d011efb3c1a199275c0eec44254b19861a00332e6ef9f3a71c#npm:5.3.3", {\
-        "packageLocation": "./.yarn/__virtual__/webpack-dev-middleware-virtual-898f9b24bb/0/cache/webpack-dev-middleware-npm-5.3.3-c3f195990d-378ceed430.zip/node_modules/webpack-dev-middleware/",\
+      ["virtual:e6718d8e05cd41f467dfda9db97a996c2efd8ea007a5141bfd10baa368da3316f56e752001d830d011efb3c1a199275c0eec44254b19861a00332e6ef9f3a71c#npm:5.3.4", {\
+        "packageLocation": "./.yarn/__virtual__/webpack-dev-middleware-virtual-88fc70df06/0/cache/webpack-dev-middleware-npm-5.3.4-74a86c7ece-257df7d6bc.zip/node_modules/webpack-dev-middleware/",\
         "packageDependencies": [\
-          ["webpack-dev-middleware", "virtual:e6718d8e05cd41f467dfda9db97a996c2efd8ea007a5141bfd10baa368da3316f56e752001d830d011efb3c1a199275c0eec44254b19861a00332e6ef9f3a71c#npm:5.3.3"],\
+          ["webpack-dev-middleware", "virtual:e6718d8e05cd41f467dfda9db97a996c2efd8ea007a5141bfd10baa368da3316f56e752001d830d011efb3c1a199275c0eec44254b19861a00332e6ef9f3a71c#npm:5.3.4"],\
           ["@types/webpack", null],\
           ["colorette", "npm:2.0.20"],\
           ["memfs", "npm:3.5.3"],\
@@ -21781,7 +21781,7 @@ const RAW_RUNTIME_STATE =
           ["spdy", "npm:4.0.2"],\
           ["webpack", "virtual:53d3534ee986379f79d04c9dc668fcd409d26267d72cb30604014cbfda218e70e1b2ad42d86b17ac97d57a8c078ed964ad15f76bf4fafb4ef7bb5f9cec59061c#npm:5.90.1"],\
           ["webpack-cli", "virtual:53d3534ee986379f79d04c9dc668fcd409d26267d72cb30604014cbfda218e70e1b2ad42d86b17ac97d57a8c078ed964ad15f76bf4fafb4ef7bb5f9cec59061c#npm:4.10.0"],\
-          ["webpack-dev-middleware", "virtual:e6718d8e05cd41f467dfda9db97a996c2efd8ea007a5141bfd10baa368da3316f56e752001d830d011efb3c1a199275c0eec44254b19861a00332e6ef9f3a71c#npm:5.3.3"],\
+          ["webpack-dev-middleware", "virtual:e6718d8e05cd41f467dfda9db97a996c2efd8ea007a5141bfd10baa368da3316f56e752001d830d011efb3c1a199275c0eec44254b19861a00332e6ef9f3a71c#npm:5.3.4"],\
           ["ws", "virtual:38e75d35780da091b0bde176f91d3db2756a85f1ae2bad7384aa30fddcec245afe4e46c581e4cedffd67be55693280807840af729b1cb636eb380a9ee5b4407c#npm:8.16.0"]\
         ],\
         "packagePeers": [\
@@ -29051,10 +29051,7 @@ Required by: ${issuerForDisplay}
             if (runtimeState.enableTopLevelFallback) {
               if (dependencyReference == null && fallbackReference === null) {
                 const reference = runtimeState.fallbackPool.get(dependencyName);
-                // # Warnings suppressed via @lipemat/js-boilerplate/fix-pnp script. 
-if (! alwaysWarnOnFallback && reference != null) { 
-dependencyReference = reference; 
-} else if (alwaysWarnOnFallback && reference != null) {
+                if (reference != null) {
                   fallbackReference = reference;
                 }
               }
