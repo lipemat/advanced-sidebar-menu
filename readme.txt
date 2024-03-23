@@ -65,7 +65,7 @@ Developer docs <a target="_blank" href="https://onpointplugins.com/advanced-side
 Send pull requests via the <a target="_blank" href="https://github.com/lipemat/advanced-sidebar-menu">GitHub Repo</a>
 
 <h3>Go PRO</h3>
-Our <a href="https://onpointplugins.com/product/advanced-sidebar-menu-pro/?utm_source=readme&utm_campaign=gopro&utm_medium=dot-org">PRO version</a> brings additional functionality to the this plugin. Check out [the demo](https://onpointplugins.com/advanced-sidebar-menu/advanced-sidebar-pro-demo/?utm_source=readme&utm_campaign=demo&utm_medium=dot-org) to see if the PRO version is useful for you.
+Our <a href="https://onpointplugins.com/product/advanced-sidebar-menu-pro/?utm_source=readme&utm_campaign=gopro&utm_medium=dot-org">PRO version</a> brings additional functionality to this plugin. Check out [the demo](https://onpointplugins.com/advanced-sidebar-menu/advanced-sidebar-pro-demo/?utm_source=readme&utm_campaign=demo&utm_medium=dot-org) to see if the PRO version is useful for you.
 
 * Navigation menu widget.
 * Navigation menu Gutenberg block.
