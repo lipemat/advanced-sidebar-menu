@@ -1,5 +1,4 @@
 <?php
-//phpcs:disable Universal.CodeAnalysis.ConstructorDestructorReturn.ReturnValueFound -- Not a constructor.
 
 namespace Advanced_Sidebar_Menu;
 
@@ -170,9 +169,21 @@ class List_Pages {
 	/**
 	 * Generate the arguments shared by `walk_page_tree` and `get_posts`.
 	 *
-	 * @return array
+	 * @return array{
+	 *    echo: int,
+	 *    exclude: string,
+	 *    item_spacing: 'preserve'|'discard',
+	 *    levels: int,
+	 *    order: 'ASC'|'DESC',
+	 *    orderby: string,
+	 *    post_type: string,
+	 *    posts_per_page: int,
+	 *    suppress_filters: bool,
+	 *    title_li: string,
+	 *    walker: Page_Walker
+	 * }
 	 */
-	protected function parse_args() {
+	protected function parse_args(): array {
 		$args = [
 			'echo'             => 0,
 			'exclude'          => $this->menu->get_excluded_ids(),
@@ -181,15 +192,16 @@ class List_Pages {
 			'order'            => $this->menu->get_order(),
 			'orderby'          => $this->menu->get_order_by(),
 			'post_type'        => $this->menu->get_post_type(),
-			// phpcs:ignore -- Several cases of menu items higher than 100.
+			// phpcs:ignore WordPress.WP.PostsPerPage -- Several cases of menu items higher than 100.
 			'posts_per_page'   => 200,
 			'suppress_filters' => false,
 			'title_li'         => '',
 			'walker'           => new Page_Walker(),
 		];
 
-		//phpcs:ignore -- Using WP core filter for `wp_list_pages` compatibility.
+		//phpcs:ignore WordPress.NamingConventions.PrefixAllGlobals -- WP core filter for `wp_list_pages` compatibility.
 		$args['exclude'] = apply_filters( 'wp_list_pages_excludes', wp_parse_id_list( $args['exclude'] ) );
+		// Must be string when used with `wp_list_pages`.
 		$args['exclude'] = \implode( ',', $args['exclude'] );
 
 		return apply_filters( 'advanced-sidebar-menu/list-pages/parse-args', $args, $this );
@@ -223,14 +235,8 @@ class List_Pages {
 			$this->output .= '</li>' . "\n";
 		}
 
-		//phpcs:ignore WordPress.NamingConventions.PrefixAllGlobals.NonPrefixedHooknameFound
-		$this->output = apply_filters( 'wp_list_pages', $this->output, $this->args, $pages );
-		if ( ! $this->args['echo'] ) {
-			return $this->output;
-		}
-
-		echo $this->output; // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped
-		return '';
+		//phpcs:ignore WordPress.NamingConventions -- WP core filter for `wp_list_pages` compatibility.
+		return apply_filters( 'wp_list_pages', $this->output, $this->args, $pages );
 	}
 
 

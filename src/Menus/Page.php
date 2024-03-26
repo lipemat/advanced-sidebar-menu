@@ -73,10 +73,12 @@ class Page extends Menu_Abstract implements Menu {
 	/**
 	 * Get key to order the menu items by.
 	 *
+	 * @notice Must be a string because it is also used by `wp_list_pages`.
+	 *
 	 * @return string
 	 */
-	public function get_order_by() {
-		return apply_filters( 'advanced-sidebar-menu/menus/page/order-by', $this->instance[ static::ORDER_BY ], $this->get_current_post(), $this->args, $this->instance, $this );
+	public function get_order_by(): string {
+		return (string) apply_filters( 'advanced-sidebar-menu/menus/page/order-by', $this->instance[ static::ORDER_BY ], $this->get_current_post(), $this->args, $this->instance, $this );
 	}
 
 
@@ -85,8 +87,8 @@ class Page extends Menu_Abstract implements Menu {
 	 *
 	 * @return string
 	 */
-	public function get_order() {
-		return apply_filters( 'advanced-sidebar-menu/menus/page/order', 'ASC', $this->get_current_post(), $this->args, $this->instance, $this );
+	public function get_order(): string {
+		return (string) apply_filters( 'advanced-sidebar-menu/menus/page/order', 'ASC', $this->get_current_post(), $this->args, $this->instance, $this );
 	}
 
 

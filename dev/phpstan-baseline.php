@@ -162,11 +162,6 @@ $ignoreErrors[] = [
 	'path' => __DIR__ . '/../src/List_Pages.php',
 ];
 $ignoreErrors[] = [
-	'message' => '#^Method Advanced_Sidebar_Menu\\\\List_Pages\\:\\:parse_args\\(\\) return type has no value type specified in iterable type array\\.$#',
-	'count' => 1,
-	'path' => __DIR__ . '/../src/List_Pages.php',
-];
-$ignoreErrors[] = [
 	'message' => '#^Property Advanced_Sidebar_Menu\\\\List_Pages\\:\\:\\$args type has no value type specified in iterable type array\\.$#',
 	'count' => 1,
 	'path' => __DIR__ . '/../src/List_Pages.php',
