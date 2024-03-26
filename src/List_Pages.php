@@ -65,6 +65,16 @@ class List_Pages {
 	 */
 	protected $menu;
 
+	/**
+	 * Used to differentiate the cache based on the top parent
+	 * being excluded.
+	 *
+	 * Will change the cache hash based on 1|0.
+	 *
+	 * @var bool
+	 */
+	protected $excluded_top_level = false;
+
 
 	/**
 	 * Constructor
@@ -290,10 +300,10 @@ class List_Pages {
 		// Holds a unique key so cache can distinguish calls.
 		$this->current_children_parent = $parent_page_id;
 
-		$cache = Cache::instance();
-		$child_pages = $cache->get_child_pages( $this );
+		$this->excluded_top_level = $this->menu->is_excluded( $this->top_parent_id );
+		$child_pages = Cache::instance()->get_child_pages( $this );
 		if ( false === $child_pages ) {
-			if ( $this->menu->is_excluded( $parent_page_id ) ) {
+			if ( $this->excluded_top_level ) {
 				$child_pages = [];
 			} else {
 				$args = $this->args;
@@ -302,11 +312,12 @@ class List_Pages {
 				$args['suppress_filters'] = false;
 				$child_pages = get_posts( $args );
 			}
-
-			$cache->add_child_pages( $this, $child_pages );
+			Cache::instance()->add_child_pages( $this, $child_pages );
 		}
 
-		$child_pages = \array_map( 'get_post', $child_pages );
+		$child_pages = \array_map( 'get_post', \array_filter( $child_pages, function( $post_id ) {
+			return ! $this->menu->is_excluded( $post_id );
+		} ) );
 
 		if ( $is_first_level ) {
 			return (array) apply_filters( 'advanced-sidebar-menu/list-pages/first-level-child-pages', $child_pages, $this, $this->menu );
