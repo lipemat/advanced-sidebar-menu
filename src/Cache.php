@@ -5,15 +5,25 @@ namespace Advanced_Sidebar_Menu;
 use Advanced_Sidebar_Menu\Traits\Singleton;
 
 /**
- * Menu Cache
+ * No longer used. Will be removed in version 10.
  *
- * @author OnPoint Plugins
+ * @deprecated
  */
 class Cache {
 	use Singleton;
 
 	public const CACHE_GROUP     = 'advanced-sidebar-menu';
 	public const CHILD_PAGES_KEY = 'child-pages';
+
+
+	/**
+	 * Constructor.
+	 *
+	 * @deprecated
+	 */
+	public function __construct() {
+		_deprecated_constructor( __CLASS__, '9.5.0' );
+	}
 
 
 	/**
