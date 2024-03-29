@@ -1513,7 +1513,7 @@ const RAW_RUNTIME_STATE =
     ],\
     [\
       "body-parser",\
-      "npm:1.20.1"\
+      "npm:1.20.2"\
     ],\
     [\
       "bonjour-service",\
@@ -1741,7 +1741,7 @@ const RAW_RUNTIME_STATE =
     ],\
     [\
       "cookie",\
-      "npm:0.5.0"\
+      "npm:0.6.0"\
     ],\
     [\
       "cookie-signature",\
@@ -2205,7 +2205,7 @@ const RAW_RUNTIME_STATE =
     ],\
     [\
       "express",\
-      "npm:4.18.2"\
+      "npm:4.19.2"\
     ],\
     [\
       "fast-deep-equal",\
@@ -3789,7 +3789,7 @@ const RAW_RUNTIME_STATE =
     ],\
     [\
       "raw-body",\
-      "npm:2.5.1"\
+      "npm:2.5.2"\
     ],\
     [\
       "rc",\
@@ -11276,10 +11276,10 @@ const RAW_RUNTIME_STATE =
       }]\
     ]],\
     ["body-parser", [\
-      ["npm:1.20.1", {\
-        "packageLocation": "./.yarn/cache/body-parser-npm-1.20.1-759fd14db9-a202d493e2.zip/node_modules/body-parser/",\
+      ["npm:1.20.2", {\
+        "packageLocation": "./.yarn/cache/body-parser-npm-1.20.2-44738662cf-06f1438fff.zip/node_modules/body-parser/",\
         "packageDependencies": [\
-          ["body-parser", "npm:1.20.1"],\
+          ["body-parser", "npm:1.20.2"],\
           ["bytes", "npm:3.1.2"],\
           ["content-type", "npm:1.0.5"],\
           ["debug", "virtual:e0cd6afa69db469de21c754be1546e018ea723a8653bf7c1fdbb52b3d67b9c4065461f2d7632852c8644c3b36b5304269483ba2eb51ad39f9eae03847036d7a9#npm:2.6.9"],\
@@ -11289,7 +11289,7 @@ const RAW_RUNTIME_STATE =
           ["iconv-lite", "npm:0.4.24"],\
           ["on-finished", "npm:2.4.1"],\
           ["qs", "npm:6.11.0"],\
-          ["raw-body", "npm:2.5.1"],\
+          ["raw-body", "npm:2.5.2"],\
           ["type-is", "npm:1.6.18"],\
           ["unpipe", "npm:1.0.0"]\
         ],\
@@ -12005,10 +12005,10 @@ const RAW_RUNTIME_STATE =
       }]\
     ]],\
     ["cookie", [\
-      ["npm:0.5.0", {\
-        "packageLocation": "./.yarn/cache/cookie-npm-0.5.0-e2d58a161a-c01ca3ef8d.zip/node_modules/cookie/",\
+      ["npm:0.6.0", {\
+        "packageLocation": "./.yarn/cache/cookie-npm-0.6.0-362d6a2e45-f2318b31af.zip/node_modules/cookie/",\
         "packageDependencies": [\
-          ["cookie", "npm:0.5.0"]\
+          ["cookie", "npm:0.6.0"]\
         ],\
         "linkType": "HARD"\
       }]\
@@ -13667,16 +13667,16 @@ const RAW_RUNTIME_STATE =
       }]\
     ]],\
     ["express", [\
-      ["npm:4.18.2", {\
-        "packageLocation": "./.yarn/cache/express-npm-4.18.2-bb15ff679a-75af556306.zip/node_modules/express/",\
+      ["npm:4.19.2", {\
+        "packageLocation": "./.yarn/cache/express-npm-4.19.2-f81334a22a-e82e2662ea.zip/node_modules/express/",\
         "packageDependencies": [\
-          ["express", "npm:4.18.2"],\
+          ["express", "npm:4.19.2"],\
           ["accepts", "npm:1.3.8"],\
           ["array-flatten", "npm:1.1.1"],\
-          ["body-parser", "npm:1.20.1"],\
+          ["body-parser", "npm:1.20.2"],\
           ["content-disposition", "npm:0.5.4"],\
           ["content-type", "npm:1.0.5"],\
-          ["cookie", "npm:0.5.0"],\
+          ["cookie", "npm:0.6.0"],\
           ["cookie-signature", "npm:1.0.6"],\
           ["debug", "virtual:e0cd6afa69db469de21c754be1546e018ea723a8653bf7c1fdbb52b3d67b9c4065461f2d7632852c8644c3b36b5304269483ba2eb51ad39f9eae03847036d7a9#npm:2.6.9"],\
           ["depd", "npm:2.0.0"],\
@@ -19101,10 +19101,10 @@ const RAW_RUNTIME_STATE =
       }]\
     ]],\
     ["raw-body", [\
-      ["npm:2.5.1", {\
-        "packageLocation": "./.yarn/cache/raw-body-npm-2.5.1-9dd1d9fff9-5dad5a3a64.zip/node_modules/raw-body/",\
+      ["npm:2.5.2", {\
+        "packageLocation": "./.yarn/cache/raw-body-npm-2.5.2-5cb9dfebc1-b201c4b660.zip/node_modules/raw-body/",\
         "packageDependencies": [\
-          ["raw-body", "npm:2.5.1"],\
+          ["raw-body", "npm:2.5.2"],\
           ["bytes", "npm:3.1.2"],\
           ["http-errors", "npm:2.0.0"],\
           ["iconv-lite", "npm:0.4.24"],\
@@ -21765,7 +21765,7 @@ const RAW_RUNTIME_STATE =
           ["compression", "npm:1.7.4"],\
           ["connect-history-api-fallback", "npm:2.0.0"],\
           ["default-gateway", "npm:6.0.3"],\
-          ["express", "npm:4.18.2"],\
+          ["express", "npm:4.19.2"],\
           ["graceful-fs", "npm:4.2.11"],\
           ["html-entities", "npm:2.4.0"],\
           ["http-proxy-middleware", "virtual:e6718d8e05cd41f467dfda9db97a996c2efd8ea007a5141bfd10baa368da3316f56e752001d830d011efb3c1a199275c0eec44254b19861a00332e6ef9f3a71c#npm:2.0.6"],\
@@ -29051,10 +29051,7 @@ Required by: ${issuerForDisplay}
             if (runtimeState.enableTopLevelFallback) {
               if (dependencyReference == null && fallbackReference === null) {
                 const reference = runtimeState.fallbackPool.get(dependencyName);
-                // # Warnings suppressed via @lipemat/js-boilerplate/fix-pnp script. 
-if (! alwaysWarnOnFallback && reference != null) { 
-dependencyReference = reference; 
-} else if (alwaysWarnOnFallback && reference != null) {
+                if (reference != null) {
                   fallbackReference = reference;
                 }
               }
