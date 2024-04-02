@@ -26,6 +26,7 @@ define( 'ADVANCED_SIDEBAR_MENU_URL', plugin_dir_url( __FILE__ ) );
 
 use Advanced_Sidebar_Menu\Blocks\Categories;
 use Advanced_Sidebar_Menu\Blocks\Pages;
+use Advanced_Sidebar_Menu\Cache;
 use Advanced_Sidebar_Menu\Core;
 use Advanced_Sidebar_Menu\Debug;
 use Advanced_Sidebar_Menu\Notice;
@@ -44,6 +45,7 @@ function advanced_sidebar_menu_load() {
 	Categories::init();
 	Pages::init();
 
+	Cache::init();
 	Debug::init();
 	Notice::init();
 	Scripts::init();
@@ -69,3 +71,10 @@ function advanced_sidebar_menu_autoload( $class_name ) {
 	}
 }
 spl_autoload_register( 'advanced_sidebar_menu_autoload' );
+
+/**
+ * Cleanup any caches on deactivation.
+ */
+register_deactivation_hook( __FILE__, function() {
+	Cache::instance()->clear_cache_group();
+} );

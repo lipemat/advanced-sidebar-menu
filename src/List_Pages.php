@@ -48,11 +48,31 @@ class List_Pages {
 	protected $args = [];
 
 	/**
+	 * Used exclusively for caching
+	 * Holds the value of the latest parent we
+	 * retrieve children for so Cache can distinguish
+	 * between calls.
+	 *
+	 * @var int
+	 */
+	protected $current_children_parent = 0;
+
+	/**
 	 * Menu class
 	 *
 	 * @var Page
 	 */
 	protected $menu;
+
+	/**
+	 * Used to differentiate the cache based on the top parent
+	 * being excluded.
+	 *
+	 * Will change the cache hash based on 1|0.
+	 *
+	 * @var bool
+	 */
+	protected $excluded_top_level = false;
 
 
 	/**
@@ -283,17 +303,27 @@ class List_Pages {
 	 * @return \WP_Post[]
 	 */
 	public function get_child_pages( $parent_page_id, $is_first_level = false ): array {
-		$child_pages = [];
-		if ( ! $this->menu->is_excluded( $this->top_parent_id ) ) {
-			$args = $this->args;
-			$args['post_parent'] = $parent_page_id;
-			$args['fields'] = 'all';
-			$args['suppress_filters'] = false;
-			$child_pages = get_posts( $args );
-			$child_pages = \array_filter( $child_pages, function( $post ) {
-				return ! $this->menu->is_excluded( $post instanceof \WP_Post ? $post->ID : $post );
-			} );
+		// Holds a unique key so cache can distinguish calls.
+		$this->current_children_parent = $parent_page_id;
+
+		$this->excluded_top_level = $this->menu->is_excluded( $this->top_parent_id );
+		$child_pages = Cache::instance()->get_child_pages( $this );
+		if ( false === $child_pages ) {
+			if ( $this->excluded_top_level ) {
+				$child_pages = [];
+			} else {
+				$args = $this->args;
+				$args['post_parent'] = $parent_page_id;
+				$args['fields'] = 'ids';
+				$args['suppress_filters'] = false;
+				$child_pages = get_posts( $args );
+			}
+			Cache::instance()->add_child_pages( $this, $child_pages );
 		}
+
+		$child_pages = \array_map( 'get_post', \array_filter( $child_pages, function( $post_id ) {
+			return ! $this->menu->is_excluded( $post_id );
+		} ) );
 
 		if ( $is_first_level ) {
 			return (array) apply_filters( 'advanced-sidebar-menu/list-pages/first-level-child-pages', $child_pages, $this, $this->menu );
