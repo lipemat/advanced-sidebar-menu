@@ -48,16 +48,6 @@ class List_Pages {
 	protected $args = [];
 
 	/**
-	 * Used exclusively for caching
-	 * Holds the value of the latest parent we
-	 * retrieve children for so Cache can distinguish
-	 * between calls.
-	 *
-	 * @var int
-	 */
-	protected $current_children_parent = 0;
-
-	/**
 	 * Menu class
 	 *
 	 * @var Page
@@ -65,14 +55,15 @@ class List_Pages {
 	protected $menu;
 
 	/**
-	 * Used to differentiate the cache based on the top parent
-	 * being excluded.
+	 * Used exclusively to differentiate the cache based on changes
+	 * to internal properties.
 	 *
-	 * Will change the cache hash based on 1|0.
-	 *
-	 * @var bool
+	 * @var array{excluded: bool, parent: int}
 	 */
-	protected $excluded_top_level = false;
+	protected $cache = [
+		'excluded' => false,
+		'parent'   => 0,
+	];
 
 
 	/**
@@ -303,13 +294,14 @@ class List_Pages {
 	 * @return \WP_Post[]
 	 */
 	public function get_child_pages( $parent_page_id, $is_first_level = false ): array {
-		// Holds a unique key so cache can distinguish calls.
-		$this->current_children_parent = $parent_page_id;
-
-		$this->excluded_top_level = $this->menu->is_excluded( $this->top_parent_id );
+		$excluded = $this->menu->is_excluded( $parent_page_id ) || $this->menu->is_excluded( $this->top_parent_id );
+		$this->cache = [
+			'parent'   => $parent_page_id,
+			'excluded' => $excluded,
+		];
 		$child_pages = Cache::instance()->get_child_pages( $this );
 		if ( false === $child_pages ) {
-			if ( $this->excluded_top_level ) {
+			if ( $excluded ) {
 				$child_pages = [];
 			} else {
 				$args = $this->args;
