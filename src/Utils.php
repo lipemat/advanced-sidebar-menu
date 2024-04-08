@@ -47,7 +47,11 @@ class Utils implements Rules {
 	 * @return bool
 	 */
 	public function is_empty( array $settings, string $key ): bool {
-		return ! isset( $settings[ $key ] ) || '' === $settings[ $key ];
+		return ! isset( $settings[ $key ] ) ||
+			'' === $settings[ $key ] ||
+			'0' === $settings[ $key ] ||
+			0 === $settings[ $key ] ||
+			false === $settings[ $key ];
 	}
 
 
