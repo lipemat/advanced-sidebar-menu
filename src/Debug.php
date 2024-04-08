@@ -115,6 +115,9 @@ class Debug {
 	 * @return array
 	 */
 	public function get_site_info(): array {
+		if ( ! \function_exists( 'is_plugin_active' ) ) {
+			require_once ABSPATH . 'wp-admin/includes/plugin.php';
+		}
 		$data = [
 			'basic'          => ADVANCED_SIDEBAR_MENU_BASIC_VERSION,
 			'classicWidgets' => is_plugin_active( 'classic-widgets/classic-widgets.php' ),
