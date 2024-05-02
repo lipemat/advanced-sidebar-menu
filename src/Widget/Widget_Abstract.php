@@ -8,19 +8,19 @@ use Advanced_Sidebar_Menu\Utils;
  *
  * @author OnPoint Plugins
  * @phpstan-type WIDGET_ARGS array{
- *      name:           string,
- *      id:             string,
- *      description:    string,
- *      class:          string,
+ *      name?:          string,
+ *      id?:            string,
+ *      description?:   string,
+ *      class?:         string,
  *      before_widget:  string,
  *      after_widget:   string,
  *      before_title:   string,
  *      after_title:    string,
- *      before_sidebar: string,
- *      after_sidebar:  string,
- *      show_in_rest:   boolean,
+ *      before_sidebar?:string,
+ *      after_sidebar?: string,
+ *      show_in_rest?:  boolean,
  *      widget_id?:     string,
- *      widget_name:    string,
+ *      widget_name?:   string,
  * }
  *
  * @phpstan-template SETTINGS of array<string, string|int|array<string, string>>

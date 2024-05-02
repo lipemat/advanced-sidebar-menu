@@ -4,17 +4,15 @@ namespace Advanced_Sidebar_Menu\Menus;
 
 use Advanced_Sidebar_Menu\Core;
 use Advanced_Sidebar_Menu\List_Pages;
-use Advanced_Sidebar_Menu\Widget\Widget_Abstract;
 
 /**
  * Page menu.
  *
  * @author OnPoint Plugins
  *
- * @phpstan-import-type WIDGET_ARGS from Widget_Abstract
  * @phpstan-type PAGE_SETTINGS array{
  *      exclude: string,
- *      order_by: string,
+ *      order_by: 'menu_order'|'post_title'|'post_date',
  *      title?: string,
  *      display_all?: ''|'checked',
  *      include_childless_parent?: ''|'checked',

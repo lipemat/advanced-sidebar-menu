@@ -593,7 +593,7 @@ class Category extends Menu_Abstract implements Menu {
 				continue;
 			}
 
-			if ( ! $menu_open || ( static::EACH_WIDGET === $this->instance[ static::EACH_CATEGORY_DISPLAY ] ) ) {
+			if ( ! $menu_open || self::EACH_WIDGET === $this->instance[ self::EACH_CATEGORY_DISPLAY ] ) {
 				echo $this->args['before_widget']; //phpcs:ignore
 
 				do_action( 'advanced-sidebar-menu/menus/category/render', $this );
@@ -604,7 +604,7 @@ class Category extends Menu_Abstract implements Menu {
 
 					$menu_open = true;
 					$close_menu = true;
-					if ( static::EACH_LIST === $this->instance[ static::EACH_CATEGORY_DISPLAY ] ) {
+					if ( self::EACH_LIST === $this->instance[ self::EACH_CATEGORY_DISPLAY ] ) {
 						$close_menu = false;
 					}
 				}
