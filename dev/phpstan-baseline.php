@@ -3,7 +3,7 @@
 $ignoreErrors = [];
 $ignoreErrors[] = [
 	'message' => '#^Construct empty\\(\\) is not allowed\\. Use more strict comparison\\.$#',
-	'count' => 8,
+	'count' => 3,
 	'path' => __DIR__ . '/../src/Blocks/Block_Abstract.php',
 ];
 $ignoreErrors[] = [
@@ -23,11 +23,6 @@ $ignoreErrors[] = [
 ];
 $ignoreErrors[] = [
 	'message' => '#^Method Advanced_Sidebar_Menu\\\\Blocks\\\\Block_Abstract\\:\\:exclude_from_legacy_widgets\\(\\) return type has no value type specified in iterable type array\\.$#',
-	'count' => 1,
-	'path' => __DIR__ . '/../src/Blocks/Block_Abstract.php',
-];
-$ignoreErrors[] = [
-	'message' => '#^Method Advanced_Sidebar_Menu\\\\Blocks\\\\Block_Abstract\\:\\:get_all_attributes\\(\\) return type has no value type specified in iterable type array\\.$#',
 	'count' => 1,
 	'path' => __DIR__ . '/../src/Blocks/Block_Abstract.php',
 ];
@@ -57,16 +52,6 @@ $ignoreErrors[] = [
 	'path' => __DIR__ . '/../src/Blocks/Block_Abstract.php',
 ];
 $ignoreErrors[] = [
-	'message' => '#^Method Advanced_Sidebar_Menu\\\\Blocks\\\\Block_Abstract\\:\\:render\\(\\) has parameter \\$attr with no value type specified in iterable type array\\.$#',
-	'count' => 1,
-	'path' => __DIR__ . '/../src/Blocks/Block_Abstract.php',
-];
-$ignoreErrors[] = [
-	'message' => '#^Method Advanced_Sidebar_Menu\\\\Blocks\\\\Block_Abstract\\:\\:short_circuit_widget_blocks\\(\\) has parameter \\$args with no value type specified in iterable type array\\.$#',
-	'count' => 1,
-	'path' => __DIR__ . '/../src/Blocks/Block_Abstract.php',
-];
-$ignoreErrors[] = [
 	'message' => '#^Method Advanced_Sidebar_Menu\\\\Blocks\\\\Block_Abstract\\:\\:short_circuit_widget_blocks\\(\\) has parameter \\$instance with no value type specified in iterable type array\\.$#',
 	'count' => 1,
 	'path' => __DIR__ . '/../src/Blocks/Block_Abstract.php',
@@ -77,19 +62,9 @@ $ignoreErrors[] = [
 	'path' => __DIR__ . '/../src/Blocks/Block_Abstract.php',
 ];
 $ignoreErrors[] = [
-	'message' => '#^Method Advanced_Sidebar_Menu\\\\Blocks\\\\Categories\\:\\:get_attributes\\(\\) return type has no value type specified in iterable type array\\.$#',
-	'count' => 1,
-	'path' => __DIR__ . '/../src/Blocks/Categories.php',
-];
-$ignoreErrors[] = [
 	'message' => '#^Method Advanced_Sidebar_Menu\\\\Blocks\\\\Categories\\:\\:get_block_support\\(\\) return type has no value type specified in iterable type array\\.$#',
 	'count' => 1,
 	'path' => __DIR__ . '/../src/Blocks/Categories.php',
-];
-$ignoreErrors[] = [
-	'message' => '#^Method Advanced_Sidebar_Menu\\\\Blocks\\\\Pages\\:\\:get_attributes\\(\\) return type has no value type specified in iterable type array\\.$#',
-	'count' => 1,
-	'path' => __DIR__ . '/../src/Blocks/Pages.php',
 ];
 $ignoreErrors[] = [
 	'message' => '#^Method Advanced_Sidebar_Menu\\\\Blocks\\\\Pages\\:\\:get_block_support\\(\\) return type has no value type specified in iterable type array\\.$#',
