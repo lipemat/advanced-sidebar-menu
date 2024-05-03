@@ -116,7 +116,7 @@ const placeholder = ( block: string ): () => ReactElement => {
  * an action when the loading component is unmounted to allow
  * components to hook into when ServerSideRender has finished loading.
  *
- * @notice Using a constant to prevent reload on every content change.
+ * @notice Using a constant to prevent a reload on every content change.
  *
  */
 const TriggerWhenLoadingFinished = ( {
@@ -130,8 +130,6 @@ const TriggerWhenLoadingFinished = ( {
 		return () => {
 			// Give the preview a chance to load on WP 5.8.
 			setTimeout( () => {
-				$( '[data-preview="' + `${attributes.clientId}` + '"]' ).on( 'click', 'a', ev => ev.preventDefault() );
-
 				doAction( 'advanced-sidebar-menu.blocks.preview.loading-finished', {
 					values: attributes,
 					clientId: attributes.clientId,
@@ -179,7 +177,16 @@ const Preview = <A, >( {attributes, block, clientId}: Props<A> ) => {
 	delete blockProps.style;
 
 	return (
-		<div {...blockProps} data-preview={sanitizedClientId}>
+		// eslint-disable-next-line jsx-a11y/click-events-have-key-events,jsx-a11y/no-static-element-interactions
+		<div
+			{...blockProps}
+			onClick={ev => {
+				const element = ev.target as HTMLElement;
+				if ( 'A' === element.nodeName ) {
+					ev.preventDefault();
+				}
+			}}
+		>
 			<ServerSideRender<A & PreviewOptions>
 				EmptyResponsePlaceholder={placeholder( block )}
 				LoadingResponsePlaceholder={TriggerWhenLoadingFinished}
