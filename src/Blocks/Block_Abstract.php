@@ -176,7 +176,7 @@ abstract class Block_Abstract {
 	 * @return false|array
 	 */
 	public function short_circuit_widget_blocks( $instance, $widget, array $args ) {
-		if ( ! \is_array( $instance ) || empty( $instance['content'] ) || false === \strpos( $instance['content'], static::NAME ) ) {
+		if ( ! \is_array( $instance ) || ! isset( $instance['content'] ) || false === \strpos( $instance['content'], static::NAME ) ) {
 			return $instance;
 		}
 
@@ -352,7 +352,7 @@ abstract class Block_Abstract {
 	/**
 	 * Render the block by passing the attributes to the widget renders.
 	 *
-	 * @phpstan-param SETTINGS & SHARED $attr
+	 * @phpstan-param \Union<SETTINGS, SHARED> $attr
 	 *
 	 * @param array $attr - Block attributes matching widget settings.
 	 *
@@ -365,6 +365,7 @@ abstract class Block_Abstract {
 
 		// Use the sidebar arguments if available.
 		if ( isset( $attr['sidebarId'], $GLOBALS['wp_registered_sidebars'][ $attr['sidebarId'] ] ) && '' !== $attr['sidebarId'] ) {
+			// @phpstan-ignore-next-line -- Until we can support @template in `\Union` we can't properly type this.
 			$this->widget_args = wp_parse_args( (array) $GLOBALS['wp_registered_sidebars'][ $attr['sidebarId'] ], $this->widget_args );
 		}
 
@@ -373,7 +374,7 @@ abstract class Block_Abstract {
 			$classnames .= ' advanced-sidebar-blocked-style';
 		}
 
-		if ( ! empty( $this->widget_args['before_widget'] ) ) {
+		if ( ! Utils::instance()->is_empty( $this->widget_args, 'before_widget' ) ) {
 			// Add main CSS class to widgets wrap.
 			if ( false !== \strpos( $this->widget_args['before_widget'], 'widget_block' ) ) {
 				$this->widget_args['before_widget'] = \str_replace( 'widget_block', 'widget_block advanced-sidebar-menu', $this->widget_args['before_widget'] );
@@ -405,7 +406,7 @@ abstract class Block_Abstract {
 		$this->widget_args['before_widget'] .= \sprintf( '<%s %s>', $wrap, $wrapper_attributes );
 		$this->widget_args['after_widget'] = \sprintf( '</%s>', $wrap ) . $this->widget_args['after_widget'];
 		// Passed via ServerSideRender, so we can enable accordions in Gutenberg editor.
-		if ( ! empty( $attr['clientId'] ) ) {
+		if ( isset( $attr['clientId'] ) && '' !== \trim( $attr['clientId'] ) ) {
 			$this->widget_args['widget_id'] = $attr['clientId'];
 		}
 
