@@ -5,11 +5,14 @@ namespace Advanced_Sidebar_Menu\Menus;
 use Advanced_Sidebar_Menu\Core;
 use Advanced_Sidebar_Menu\Traits\Memoize;
 use Advanced_Sidebar_Menu\Walkers\Category_Walker;
+use Advanced_Sidebar_Menu\Widget\Widget_Abstract;
 
 /**
  * Category menu.
  *
  * @author OnPoint Plugins
+ *
+ * @phpstan-import-type WIDGET_ARGS from Widget_Abstract
  *
  * @phpstan-type CATEGORY_SETTINGS array{
  *     'display-posts'?: string,
@@ -25,6 +28,7 @@ use Advanced_Sidebar_Menu\Walkers\Category_Walker;
  * }
  *
  * @extends Menu_Abstract<CATEGORY_SETTINGS>
+ * @implements Menu<CATEGORY_SETTINGS, Category>
  */
 class Category extends Menu_Abstract implements Menu {
 	use Memoize;
@@ -43,6 +47,13 @@ class Category extends Menu_Abstract implements Menu {
 	 * @var ?\WP_Term
 	 */
 	public $top_level_term;
+
+	/**
+	 * Store current menu instance.
+	 *
+	 * @var ?Category
+	 */
+	protected static $current_menu;
 
 
 	/**
@@ -648,5 +659,34 @@ class Category extends Menu_Abstract implements Menu {
 		do_action( 'advanced-sidebar-menu/menus/category/render/after', $this );
 		echo $this->args['after_widget'];
 		//phpcs:enable WordPress.Security.EscapeOutput
+	}
+
+
+	/**
+	 * Get current menu instance.
+	 *
+	 * @return Category|null
+	 */
+	public static function get_current(): ?Category {
+		return static::$current_menu;
+	}
+
+
+	/**
+	 * Constructs a new instance of this class.
+	 *
+	 * @phpstan-param CATEGORY_SETTINGS $widget_instance
+	 * @phpstan-param WIDGET_ARGS       $widget_args
+	 *
+	 * @param array                     $widget_instance - Widget settings.
+	 * @param array                     $widget_args     - Widget registration args.
+	 *
+	 * @return Category
+	 */
+	public static function factory( array $widget_instance, array $widget_args ): Category {
+		$menu = new static( $widget_instance, $widget_args );
+		static::$current_menu = $menu;
+
+		return $menu;
 	}
 }

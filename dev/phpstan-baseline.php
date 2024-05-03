@@ -211,5 +211,17 @@ $ignoreErrors[] = [
 	'count' => 1,
 	'path' => __DIR__ . '/../src/Walkers/Page_Walker.php',
 ];
+$ignoreErrors[] = [
+	'message' => '#^Call to deprecated method factory\\(\\) of class Advanced_Sidebar_Menu\\\\Menus\\\\Category\\:
+In favor of using factory on the specific class\\.$#',
+	'count' => 1,
+	'path' => __DIR__ . '/../src/Widget/Category.php',
+];
+$ignoreErrors[] = [
+	'message' => '#^Call to deprecated method factory\\(\\) of class Advanced_Sidebar_Menu\\\\Menus\\\\Page\\:
+In favor of using factory on the specific class\\.$#',
+	'count' => 1,
+	'path' => __DIR__ . '/../src/Widget/Page.php',
+];
 
 return ['parameters' => ['ignoreErrors' => $ignoreErrors]];

@@ -4,11 +4,14 @@ namespace Advanced_Sidebar_Menu\Menus;
 
 use Advanced_Sidebar_Menu\Core;
 use Advanced_Sidebar_Menu\List_Pages;
+use Advanced_Sidebar_Menu\Widget\Widget_Abstract;
 
 /**
  * Page menu.
  *
  * @author OnPoint Plugins
+ *
+ * @phpstan-import-type WIDGET_ARGS from Widget_Abstract
  *
  * @phpstan-type PAGE_SETTINGS array{
  *      exclude: string,
@@ -22,6 +25,7 @@ use Advanced_Sidebar_Menu\List_Pages;
  * }
  *
  * @extends Menu_Abstract<PAGE_SETTINGS>
+ * @implements Menu<PAGE_SETTINGS, Page>
  */
 class Page extends Menu_Abstract implements Menu {
 	public const WIDGET = 'page';
@@ -32,6 +36,13 @@ class Page extends Menu_Abstract implements Menu {
 	 * @var null|\WP_Post
 	 */
 	protected $post;
+
+	/**
+	 * Store current menu instance.
+	 *
+	 * @var ?Page
+	 */
+	protected static $current_menu;
 
 
 	/**
@@ -227,5 +238,34 @@ class Page extends Menu_Abstract implements Menu {
 
 		echo $this->args['after_widget'];
 		// phpcs:enable WordPress.Security.EscapeOutput.OutputNotEscaped
+	}
+
+
+	/**
+	 * Get current menu instance.
+	 *
+	 * @return Page|null
+	 */
+	public static function get_current() {
+		return static::$current_menu;
+	}
+
+
+	/**
+	 * Constructs a new instance of this class.
+	 *
+	 * @phpstan-param PAGE_SETTINGS $widget_instance
+	 * @phpstan-param WIDGET_ARGS   $widget_args
+	 *
+	 * @param array                 $widget_instance - Widget settings.
+	 * @param array                 $widget_args     - Widget registration args.
+	 *
+	 * @return Page
+	 */
+	public static function factory( array $widget_instance, array $widget_args ): Page {
+		$menu = new static( $widget_instance, $widget_args );
+		static::$current_menu = $menu;
+
+		return $menu;
 	}
 }
