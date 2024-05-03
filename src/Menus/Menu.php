@@ -2,6 +2,8 @@
 
 namespace Advanced_Sidebar_Menu\Menus;
 
+use Advanced_Sidebar_Menu\Widget\Widget_Abstract;
+
 /**
  * Rules for a Menu class.
  *
@@ -9,6 +11,10 @@ namespace Advanced_Sidebar_Menu\Menus;
  *
  * @author OnPoint Plugins
  * @since  9.5.0
+ *
+ * @phpstan-import-type WIDGET_ARGS from Widget_Abstract
+ * @phpstan-template SETTINGS of array<string, string|int|array<string, string>>
+ * @phpstan-template INTERFACED_CLASS
  */
 interface Menu {
 	/**
@@ -67,4 +73,26 @@ interface Menu {
 	 * @return void
 	 */
 	public function render();
+
+
+	/**
+	 * Get current menu instance.
+	 *
+	 * @phpstan-return INTERFACED_CLASS|null
+	 */
+	public static function get_current();
+
+
+	/**
+	 * Constructs a new instance of this class.
+	 *
+	 * @phpstan-param WIDGET_ARGS $widget_args
+	 * @phpstan-param SETTINGS    $widget_instance
+	 *
+	 * @param array               $widget_instance - Widget settings.
+	 * @param array               $widget_args     - Widget registration args.
+	 *
+	 * @phpstan-return INTERFACED_CLASS
+	 */
+	public static function factory( array $widget_instance, array $widget_args );
 }

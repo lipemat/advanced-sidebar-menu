@@ -13,6 +13,7 @@ use Advanced_Sidebar_Menu\Widget\Widget_Abstract;
  * @phpstan-import-type WIDGET_ARGS from Widget_Abstract
  *
  * @phpstan-template SETTINGS of array<string, string|int|array<string, string>>
+ * @implements Menu<SETTINGS, self<SETTINGS>>
  */
 abstract class Menu_Abstract implements Menu {
 	public const WIDGET = 'menu-abstract';
@@ -207,22 +208,16 @@ abstract class Menu_Abstract implements Menu {
 	}
 
 
+	//phpcs:disable
 	/**
-	 * Store current menu instance.
-	 *
-	 * @static
-	 *
-	 * @var Page|Category|null
+	 * @deprecated No longer used.
 	 */
+	// @phpstan-ignore-next-line
 	protected static $current;
 
 
 	/**
-	 * Get current menu instance.
-	 *
-	 * @static
-	 *
-	 * @return Page|Category|null
+	 * @deprecated In favor of using factory on the specific class.
 	 */
 	public static function get_current() {
 		return static::$current;
@@ -230,23 +225,12 @@ abstract class Menu_Abstract implements Menu {
 
 
 	/**
-	 * Constructs a new instance of this class.
-	 *
-	 * @phpstan-param SETTINGS      $widget_instance
-	 * @phpstan-param WIDGET_ARGS   $widget_args
-	 *
-	 * @param array<string, string> $widget_instance - Widget settings.
-	 * @param array $widget_args     - Widget registration args.
-	 *
-	 * @static
-	 *
-	 * @return static
+	 * @deprecated In favor of using factory on the specific class.
 	 */
 	public static function factory( array $widget_instance, array $widget_args ) {
 		$menu = new static( $widget_instance, $widget_args );
-		/* @phpstan-ignore-next-line */
 		static::$current = $menu;
-
 		return $menu;
 	}
+	//phpcs:enable
 }
