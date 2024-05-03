@@ -30,7 +30,7 @@ class Core {
 		add_action( 'advanced-sidebar-menu/widget/navigation-menu/before-form', [ $this, 'transform_notice' ], 1 );
 		add_action( 'advanced-sidebar-menu/widget/page/after-form', [ $this, 'widget_documentation' ], 99, 2 );
 		add_action( 'advanced-sidebar-menu/widget/category/after-form', [ $this, 'widget_documentation' ], 99, 2 );
-		add_filter( 'plugin_action_links_' . static::PLUGIN_FILE, [ $this, 'plugin_action_links' ] );
+		add_filter( 'plugin_action_links_' . self::PLUGIN_FILE, [ $this, 'plugin_action_links' ] );
 	}
 
 
@@ -99,12 +99,12 @@ class Core {
 	 * Add a link to the plugin's documentation to the plugin's row on the
 	 * plugins page.
 	 *
-	 * @param array $actions - Array of actions and their link.
+	 * @param array<string, string> $actions - Array of actions and their link.
 	 *
-	 * @return array
+	 * @return array<string, string>
 	 */
 	public function plugin_action_links( array $actions ): array {
-		$actions['documentation'] = sprintf( '<a href="%1$s%2$s" target="_blank">%3$s</a>',
+		$actions['documentation'] = \sprintf( '<a href="%1$s%2$s" target="_blank">%3$s</a>',
 			$this->get_documentation_url(), '?utm_source=wp-plugins&utm_campaign=documentation&utm_medium=wp-dash', __( 'Documentation', 'advanced-sidebar-menu' ) );
 
 		return $actions;
@@ -115,16 +115,18 @@ class Core {
 	 * Retrieve a template file from either the theme's 'advanced-sidebar-menu' directory
 	 * or this plugin's view folder if one does not exist.
 	 *
-	 * @param string $file_name - Name of template file without the PHP extension.
-	 *
 	 * @since 6.0.0
+	 *
+	 * @phpstan-param 'category_list.php'|'page_list.php' $file_name
+	 *
+	 * @param string                                      $file_name - Name of template file with the PHP extension.
 	 *
 	 * @return string
 	 */
-	public function get_template_part( $file_name ) {
+	public function get_template_part( string $file_name ): string {
 		$file = locate_template( 'advanced-sidebar-menu/' . $file_name );
 		$comments = apply_filters( 'advanced-sidebar-menu/core/include-template-parts-comments', true, $file_name );
-		if ( empty( $file ) ) {
+		if ( '' === $file ) {
 			if ( $comments ) {
 				?>
 				<!-- advanced-sidebar-menu/core-template -->
@@ -137,7 +139,7 @@ class Core {
 			<?php
 		}
 
-		return apply_filters( 'advanced-sidebar-menu/core/get-template-part', $file, $file_name, $this );
+		return (string) apply_filters( 'advanced-sidebar-menu/core/get-template-part', $file, $file_name, $this );
 	}
 
 
