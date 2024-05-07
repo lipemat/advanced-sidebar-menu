@@ -6,7 +6,7 @@ Tags: menus, page menus, category menus, sidebars, hierarchy
 Requires at least: 6.1.0
 Tested up to: 6.5.3
 Requires PHP: 7.2.0
-Stable tag: 9.5.1
+Stable tag: 9.5.2
 License: GPLv3 or later
 License URI: http://www.gnu.org/licenses/gpl-3.0.html
 
@@ -163,6 +163,16 @@ The Categories Menu widget/block contains a "Display categories on single posts"
 Yes. Based on whatever page, post or category you are on, the menu will change automatically to display the current parents and children.
 
 == Changelog ==
+= 9.5.2 =
+* Provided unique HTML ids for category widgets with multiple top level categories.
+* Continued work on converting the `Menu_Abstract` to an interface.
+* Fixed click handling of menu previews in the block editor.
+* Fixed fatal error when `is_plugin_active` is not available.
+* Implemented PHPStan array shapes for block classes.
+* Improved falsey conditions in the `Utils::is_empty` method.
+* Officially added support for PHP 8.3.
+* Tested to WordPress Core 6.5.3.
+
 = 9.5.1 =
 * Improved the plugin readme.
 * Improved the translation headers.
