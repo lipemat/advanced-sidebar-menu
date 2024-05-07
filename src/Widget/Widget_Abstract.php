@@ -10,6 +10,7 @@ use Advanced_Sidebar_Menu\Utils;
  * @phpstan-type WIDGET_ARGS array{
  *      name?:          string,
  *      id?:            string,
+ *      id_increment?:  string,
  *      description?:   string,
  *      class?:         string,
  *      before_widget:  string,
