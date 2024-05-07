@@ -390,9 +390,9 @@ class Category extends Menu_Abstract implements Menu {
 	/**
 	 * Is a term our current top level term?
 	 *
-	 * @param \WP_Term $term - Term to check against.
-	 *
 	 * @since 8.8.0
+	 *
+	 * @param \WP_Term $term - Term to check against.
 	 *
 	 * @return bool
 	 */
@@ -510,9 +510,9 @@ class Category extends Menu_Abstract implements Menu {
 	/**
 	 * Is a term the currently viewed term?
 	 *
-	 * @param \WP_Term $term - Term to check against.
-	 *
 	 * @since 8.8.0
+	 *
+	 * @param \WP_Term $term - Term to check against.
 	 *
 	 * @return bool
 	 */
@@ -598,14 +598,19 @@ class Category extends Menu_Abstract implements Menu {
 		$close_menu = false;
 		$output = '';
 
-		foreach ( $this->get_top_level_terms() as $_cat ) {
+		foreach ( $this->get_top_level_terms() as $i => $_cat ) {
 			$this->set_current_top_level_term( $_cat );
 			if ( ! $this->is_term_displayed( $_cat ) ) {
 				continue;
 			}
 
 			if ( ! $menu_open || self::EACH_WIDGET === $this->instance[ self::EACH_CATEGORY_DISPLAY ] ) {
-				echo $this->args['before_widget']; //phpcs:ignore
+				if ( $i > 0 && isset( $this->args['widget_id'] ) ) {
+					$this->args['id_increment'] = '-' . ( $i + 1 );
+					echo \str_replace( "id=\"{$this->args['widget_id']}\"", "id=\"{$this->args['widget_id']}{$this->args['id_increment']}\"", $this->args['before_widget'] ); //phpcs:ignore WordPress.Security
+				} else {
+					echo $this->args['before_widget']; //phpcs:ignore WordPress.Security
+				}
 
 				do_action( 'advanced-sidebar-menu/menus/category/render', $this );
 
@@ -647,9 +652,9 @@ class Category extends Menu_Abstract implements Menu {
 	 * The `advanced-sidebar-menu/menus/category/close-menu` filter lets
 	 * us target the inner content of each `<div>`.
 	 *
-	 * @param string $output - Contents of the widget `<div>`.
-	 *
 	 * @since   9.0.0
+	 *
+	 * @param string $output - Contents of the widget `<div>`.
 	 *
 	 * @return void
 	 */
