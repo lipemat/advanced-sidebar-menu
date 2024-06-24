@@ -22,7 +22,6 @@
 
 	<rule ref="LipePlugin">
 		<exclude name="Lipe.Performance.PostNotIn.exclude_exclude" />
-		<exclude name="LipePlugin.CodeAnalysis.SelfInClass.ClassConstant" />
 	</rule>
 
 	<!-- https://github.com/WordPress/WordPress-Coding-Standards/wiki/Customizable-sniff-properties#wordpressnamingconventionsprefixallglobals-prefix-everything-in-the-global-namespace -->
