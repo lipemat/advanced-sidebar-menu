@@ -92,6 +92,7 @@ const Display = ( {
 						() => (
 							<select
 								key={'levels'}
+								className={'advanced-sidebar-menu-display-select'}
 								value={attributes.levels}
 								onChange={ev => setAttributes( {levels: parseInt( ev.target.value )} )}
 							>
