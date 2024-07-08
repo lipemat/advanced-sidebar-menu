@@ -126,9 +126,9 @@ class Category extends Menu_Abstract implements Menu {
 	 *
 	 * @since 8.8.0
 	 *
-	 * @return array
+	 * @return int[]
 	 */
-	public function get_current_ancestors() {
+	public function get_current_ancestors(): array {
 		return $this->once( function() {
 			$included = $this->get_included_term_ids();
 			$ancestors = [];
@@ -141,7 +141,7 @@ class Category extends Menu_Abstract implements Menu {
 				$ancestors[] = $term_ancestors;
 			}
 
-			if ( empty( $ancestors ) ) {
+			if ( [] === $ancestors ) {
 				return [];
 			}
 
@@ -454,14 +454,14 @@ class Category extends Menu_Abstract implements Menu {
 	 * Add various classes to category item to define it among levels
 	 * as well as current item state.
 	 *
-	 * @param array    $classes  - List of classes added to category list item.
+	 * @param string[] $classes - List of classes added to category list item.
 	 * @param \WP_Term $category - Current category.
 	 *
 	 * @filter category_css_class 11 2
 	 *
-	 * @return array
+	 * @return string[]
 	 */
-	public function add_list_item_classes( $classes, $category ) {
+	public function add_list_item_classes( array $classes, \WP_Term $category ): array {
 		$classes[] = 'menu-item';
 		if ( $this->has_children( $category ) ) {
 			$classes[] = 'has_children';
@@ -475,7 +475,7 @@ class Category extends Menu_Abstract implements Menu {
 				if ( $current->parent === $category->term_id ) {
 					$classes[] = 'current-menu-parent';
 					$classes[] = 'current-menu-ancestor';
-				} elseif ( $this->is_current_term_ancestor( $current ) ) {
+				} elseif ( $this->is_current_term_ancestor( $category ) ) {
 					$classes[] = 'current-menu-ancestor';
 				}
 			}
@@ -525,24 +525,25 @@ class Category extends Menu_Abstract implements Menu {
 
 
 	/**
-	 * Is this term an ancestor of the current term?
-	 * Does this term have children?
+	 * Both are required to be considered an ancestor.
+	 * - Is this term an ancestor of the current term?
+	 * - Does this term have children?
 	 *
 	 * @param \WP_Term $term - Category or term.
 	 *
 	 * @return mixed
 	 */
 	public function is_current_term_ancestor( \WP_Term $term ) {
-		$return = false;
+		$is_ancestor = false;
 
 		if ( $this->is_current_top_level_term( $term ) || \in_array( $term->term_id, $this->get_current_ancestors(), true ) ) {
 			$children = get_term_children( $term->term_id, $this->get_taxonomy() );
 			if ( ! is_wp_error( $children ) && \count( $children ) > 0 ) {
-				$return = true;
+				$is_ancestor = true;
 			}
 		}
 
-		return apply_filters( 'advanced-sidebar-menu/menus/category/is-current-term-ancestor', $return, $term, $this );
+		return apply_filters( 'advanced-sidebar-menu/menus/category/is-current-term-ancestor', $is_ancestor, $term, $this );
 	}
 
 
