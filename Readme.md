@@ -54,6 +54,11 @@ PHP translations are using the standard [i18n process](https://developer.wordpre
 6. Translate any missing strings.
 7. Click "Save".
 
+The PHP files are automatically generated during deployment via GitHub Actions scripts.
+
+** Manually Generate Translation PHP Files**
+1. `wp i18n make-php languages/.`
+
 ### JS
 
 JS files are translated using the [block editor i18n process](https://developer.wordpress.org/block-editor/how-to-guides/internationalization/).
