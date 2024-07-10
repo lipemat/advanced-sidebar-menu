@@ -9,6 +9,7 @@
 
 # Language files compliled during deployment.
 languages/*.json
+languages/*.php
 # JS dist files
 js/dist
 # Composer files
