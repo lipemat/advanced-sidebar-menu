@@ -2,6 +2,42 @@
 
 $ignoreErrors = [];
 $ignoreErrors[] = [
+	// identifier: lipemat.noUnknownProperty
+	'message' => '#^Accessing `is_page` property on unknown `\\$GLOBALS\\[\'wp_query\'\\]` can skip important errors\\. Make sure the type is known\\.$#',
+	'count' => 1,
+	'path' => __DIR__ . '/../src/Blocks/Block_Abstract.php',
+];
+$ignoreErrors[] = [
+	// identifier: lipemat.noUnknownProperty
+	'message' => '#^Accessing `is_single` property on unknown `\\$GLOBALS\\[\'wp_query\'\\]` can skip important errors\\. Make sure the type is known\\.$#',
+	'count' => 1,
+	'path' => __DIR__ . '/../src/Blocks/Block_Abstract.php',
+];
+$ignoreErrors[] = [
+	// identifier: lipemat.noUnknownProperty
+	'message' => '#^Accessing `is_singular` property on unknown `\\$GLOBALS\\[\'wp_query\'\\]` can skip important errors\\. Make sure the type is known\\.$#',
+	'count' => 1,
+	'path' => __DIR__ . '/../src/Blocks/Block_Abstract.php',
+];
+$ignoreErrors[] = [
+	// identifier: lipemat.noUnknownProperty
+	'message' => '#^Accessing `queried_object_id` property on unknown `\\$GLOBALS\\[\'wp_query\'\\]` can skip important errors\\. Make sure the type is known\\.$#',
+	'count' => 1,
+	'path' => __DIR__ . '/../src/Blocks/Block_Abstract.php',
+];
+$ignoreErrors[] = [
+	// identifier: lipemat.noUnknownProperty
+	'message' => '#^Accessing `queried_object` property on unknown `\\$GLOBALS\\[\'wp_query\'\\]` can skip important errors\\. Make sure the type is known\\.$#',
+	'count' => 1,
+	'path' => __DIR__ . '/../src/Blocks/Block_Abstract.php',
+];
+$ignoreErrors[] = [
+	// identifier: lipemat.noUnknownMethodCaller
+	'message' => '#^Calling `widget` method on unknown `\\$widget` can skip important errors\\. Make sure the type is known\\.$#',
+	'count' => 1,
+	'path' => __DIR__ . '/../src/Blocks/Block_Abstract.php',
+];
+$ignoreErrors[] = [
 	// identifier: missingType.iterableValue
 	'message' => '#^Method Advanced_Sidebar_Menu\\\\Blocks\\\\Block_Abstract\\:\\:add_jetpack_support\\(\\) has parameter \\$blocks with no value type specified in iterable type array\\.$#',
 	'count' => 1,
@@ -64,6 +100,11 @@ $ignoreErrors[] = [
 $ignoreErrors[] = [
 	// identifier: missingType.iterableValue
 	'message' => '#^Method Advanced_Sidebar_Menu\\\\Blocks\\\\Block_Abstract\\:\\:short_circuit_widget_blocks\\(\\) return type has no value type specified in iterable type array\\.$#',
+	'count' => 1,
+	'path' => __DIR__ . '/../src/Blocks/Block_Abstract.php',
+];
+$ignoreErrors[] = [
+	'message' => '#^Returning false in non\\-return bool class method\\. Use null with type\\|null instead or add bool return type$#',
 	'count' => 1,
 	'path' => __DIR__ . '/../src/Blocks/Block_Abstract.php',
 ];
@@ -184,6 +225,11 @@ $ignoreErrors[] = [
 $ignoreErrors[] = [
 	// identifier: if.condNotBoolean
 	'message' => '#^Only booleans are allowed in an if condition, mixed given\\.$#',
+	'count' => 1,
+	'path' => __DIR__ . '/../src/Menus/Category.php',
+];
+$ignoreErrors[] = [
+	'message' => '#^Returning false in non\\-return bool class method\\. Use null with type\\|null instead or add bool return type$#',
 	'count' => 1,
 	'path' => __DIR__ . '/../src/Menus/Category.php',
 ];
