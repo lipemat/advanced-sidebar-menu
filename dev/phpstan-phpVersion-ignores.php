@@ -10,6 +10,12 @@
 $ignoreErrors = [];
 
 if ( PHP_VERSION_ID < 80000 ) {
+	$ignoreErrors[] = [
+		// identifier: generics.notGeneric
+		'message' => '#^PHPDoc tag @extends contains generic type WP_Widget\\<array\\<string, mixed\\>\\> but class WP_Widget is not generic\\.$#',
+		'count'   => 1,
+		'path'    => __DIR__ . '/../src/Widget/Widget_Abstract.php',
+	];
 	// \_WP_Dependency returns `string` in old versions of WP, `string|bool` in newer versions.
 	$ignoreErrors[] = [
 		// identifier: generics.notGeneric
@@ -82,12 +88,6 @@ if ( PHP_VERSION_ID < 80000 ) {
 		'message' => '#^Parameter \\#2 \\$old_instance \\(array\\{exclude\\: string, order_by\\: \'menu_order\'\\|\'post_date\'\\|\'post_title\', title\\?\\: string, display_all\\?\\: \'\'\\|\'checked\', include_childless_parent\\?\\: \'\'\\|\'checked\', include_parent\\?\\: \'\'\\|\'checked\', levels\\?\\: int\\|numeric\\-string, post_type\\?\\: string\\}\\) of method Advanced_Sidebar_Menu\\\\Widget\\\\Page\\:\\:update\\(\\) should be contravariant with parameter \\$old_instance \\(array\\) of method WP_Widget\\:\\:update\\(\\)$#',
 		'count'   => 1,
 		'path'    => __DIR__ . '/../src/Widget/Page.php',
-	];
-	$ignoreErrors[] = [
-		// identifier: generics.notGeneric
-		'message' => '#^PHPDoc tag @extends contains generic type WP_Widget\\<array\\<string, array\\<string, string\\>\\|int\\|string\\>\\> but class WP_Widget is not generic\\.$#',
-		'count'   => 1,
-		'path'    => __DIR__ . '/../src/Widget/Widget_Abstract.php',
 	];
 	$ignoreErrors[] = [
 		// identifier: generics.notGeneric

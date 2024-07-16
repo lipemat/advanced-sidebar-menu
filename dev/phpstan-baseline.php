@@ -236,6 +236,12 @@ $ignoreErrors[] = [
 	'path' => __DIR__ . '/../src/Menus/Category.php',
 ];
 $ignoreErrors[] = [
+	// identifier: missingType.generics
+	'message' => '#^Property Advanced_Sidebar_Menu\\\\Menus\\\\Menu_Abstract\\:\\:\\$current with generic class Advanced_Sidebar_Menu\\\\Menus\\\\Menu_Abstract does not specify its types\\: SETTINGS$#',
+	'count' => 1,
+	'path' => __DIR__ . '/../src/Menus/Menu_Abstract.php',
+];
+$ignoreErrors[] = [
 	// identifier: missingType.iterableValue
 	'message' => '#^Method Advanced_Sidebar_Menu\\\\Notice\\:\\:get_features\\(\\) return type has no value type specified in iterable type array\\.$#',
 	'count' => 1,
@@ -291,11 +297,185 @@ In favor of using factory on the specific class\\.$#',
 	'path' => __DIR__ . '/../src/Widget/Category.php',
 ];
 $ignoreErrors[] = [
+	// identifier: method.childParameterType
+	'message' => '#^Parameter \\#1 \\$controlling_checkbox \\(\'display\\-posts\'\\|\'display_all\'\\|\'exclude\'\\|\'include_childless…\'\\|\'include_parent\'\\|\'levels\'\\|\'new_widget\'\\|\'single\'\\|\'taxonomy\'\\|\'title\'\\) of method Advanced_Sidebar_Menu\\\\Widget\\\\Category\\:\\:hide_element\\(\\) should be contravariant with parameter \\$controlling_checkbox \\(key\\-of\\<array\\<string, mixed\\>\\>\\) of method Advanced_Sidebar_Menu\\\\Widget\\\\Widget\\<array\\<string, mixed\\>,array\\<string, mixed\\>\\>\\:\\:hide_element\\(\\)$#',
+	'count' => 1,
+	'path' => __DIR__ . '/../src/Widget/Category.php',
+];
+$ignoreErrors[] = [
+	// identifier: method.childParameterType
+	'message' => '#^Parameter \\#1 \\$controlling_checkbox \\(\'display\\-posts\'\\|\'display_all\'\\|\'exclude\'\\|\'include_childless…\'\\|\'include_parent\'\\|\'levels\'\\|\'new_widget\'\\|\'single\'\\|\'taxonomy\'\\|\'title\'\\) of method Advanced_Sidebar_Menu\\\\Widget\\\\Category\\:\\:hide_element\\(\\) should be contravariant with parameter \\$controlling_checkbox \\(key\\-of\\<array\\{display\\-posts\\?\\: string, display_all\\?\\: \'\'\\|\'checked\', exclude\\: string, include_childless_parent\\?\\: \'\'\\|\'checked\', include_parent\\?\\: \'\'\\|\'checked\', levels\\: int\\|numeric\\-string, new_widget\\: \'list\'\\|\'widget\', single\\: \'\'\\|\'checked\', \\.\\.\\.\\}\\>\\) of method Advanced_Sidebar_Menu\\\\Widget\\\\Widget_Abstract\\<array\\<string, int\\|string\\>,array\\<string, int\\|string\\>\\>\\:\\:hide_element\\(\\)$#',
+	'count' => 1,
+	'path' => __DIR__ . '/../src/Widget/Category.php',
+];
+$ignoreErrors[] = [
+	// identifier: method.childParameterType
+	'message' => '#^Parameter \\#1 \\$instance \\(array\\{display\\-posts\\?\\: string, display_all\\?\\: \'\'\\|\'checked\', exclude\\: string, include_childless_parent\\?\\: \'\'\\|\'checked\', include_parent\\?\\: \'\'\\|\'checked\', levels\\: int\\|numeric\\-string, new_widget\\: \'list\'\\|\'widget\', single\\: \'\'\\|\'checked\', \\.\\.\\.\\}\\) of method Advanced_Sidebar_Menu\\\\Widget\\\\Category\\:\\:set_instance\\(\\) should be contravariant with parameter \\$instance \\(array\\<string, mixed\\>\\) of method Advanced_Sidebar_Menu\\\\Widget\\\\Widget\\<array\\<string, mixed\\>,array\\<string, mixed\\>\\>\\:\\:set_instance\\(\\)$#',
+	'count' => 1,
+	'path' => __DIR__ . '/../src/Widget/Category.php',
+];
+$ignoreErrors[] = [
+	// identifier: method.childParameterType
+	'message' => '#^Parameter \\#1 \\$name \\(\'display\\-posts\'\\|\'display_all\'\\|\'exclude\'\\|\'include_childless…\'\\|\'include_parent\'\\|\'levels\'\\|\'new_widget\'\\|\'single\'\\|\'taxonomy\'\\|\'title\'\\) of method Advanced_Sidebar_Menu\\\\Widget\\\\Category\\:\\:checkbox\\(\\) should be contravariant with parameter \\$name \\(key\\-of\\<array\\<string, mixed\\>\\>\\) of method Advanced_Sidebar_Menu\\\\Widget\\\\Widget\\<array\\<string, mixed\\>,array\\<string, mixed\\>\\>\\:\\:checkbox\\(\\)$#',
+	'count' => 1,
+	'path' => __DIR__ . '/../src/Widget/Category.php',
+];
+$ignoreErrors[] = [
+	// identifier: method.childParameterType
+	'message' => '#^Parameter \\#1 \\$name \\(\'display\\-posts\'\\|\'display_all\'\\|\'exclude\'\\|\'include_childless…\'\\|\'include_parent\'\\|\'levels\'\\|\'new_widget\'\\|\'single\'\\|\'taxonomy\'\\|\'title\'\\) of method Advanced_Sidebar_Menu\\\\Widget\\\\Category\\:\\:checkbox\\(\\) should be contravariant with parameter \\$name \\(key\\-of\\<array\\{display\\-posts\\?\\: string, display_all\\?\\: \'\'\\|\'checked\', exclude\\: string, include_childless_parent\\?\\: \'\'\\|\'checked\', include_parent\\?\\: \'\'\\|\'checked\', levels\\: int\\|numeric\\-string, new_widget\\: \'list\'\\|\'widget\', single\\: \'\'\\|\'checked\', \\.\\.\\.\\}\\>\\) of method Advanced_Sidebar_Menu\\\\Widget\\\\Widget_Abstract\\<array\\<string, int\\|string\\>,array\\<string, int\\|string\\>\\>\\:\\:checkbox\\(\\)$#',
+	'count' => 1,
+	'path' => __DIR__ . '/../src/Widget/Category.php',
+];
+$ignoreErrors[] = [
+	// identifier: method.childParameterType
+	'message' => '#^Parameter \\#2 \\$defaults \\(array\\{display_all\\: \'\'\\|\'checked\', exclude\\: string, include_childless_parent\\: \'\'\\|\'checked\', include_parent\\: \'\'\\|\'checked\', levels\\: int\\|numeric\\-string, new_widget\\: \'list\'\\|\'widget\', single\\: \'\'\\|\'checked\', title\\: string\\}\\) of method Advanced_Sidebar_Menu\\\\Widget\\\\Category\\:\\:set_instance\\(\\) should be contravariant with parameter \\$defaults \\(array\\<string, mixed\\>\\) of method Advanced_Sidebar_Menu\\\\Widget\\\\Widget\\<array\\<string, mixed\\>,array\\<string, mixed\\>\\>\\:\\:set_instance\\(\\)$#',
+	'count' => 1,
+	'path' => __DIR__ . '/../src/Widget/Category.php',
+];
+$ignoreErrors[] = [
+	// identifier: method.childParameterType
+	'message' => '#^Parameter \\#2 \\$element_key \\(\'display\\-posts\'\\|\'display_all\'\\|\'exclude\'\\|\'include_childless…\'\\|\'include_parent\'\\|\'levels\'\\|\'new_widget\'\\|\'single\'\\|\'taxonomy\'\\|\'title\'\\|null\\) of method Advanced_Sidebar_Menu\\\\Widget\\\\Category\\:\\:hide_element\\(\\) should be contravariant with parameter \\$element_key \\(key\\-of\\<array\\<string, mixed\\>\\>\\|null\\) of method Advanced_Sidebar_Menu\\\\Widget\\\\Widget\\<array\\<string, mixed\\>,array\\<string, mixed\\>\\>\\:\\:hide_element\\(\\)$#',
+	'count' => 1,
+	'path' => __DIR__ . '/../src/Widget/Category.php',
+];
+$ignoreErrors[] = [
+	// identifier: method.childParameterType
+	'message' => '#^Parameter \\#2 \\$element_key \\(\'display\\-posts\'\\|\'display_all\'\\|\'exclude\'\\|\'include_childless…\'\\|\'include_parent\'\\|\'levels\'\\|\'new_widget\'\\|\'single\'\\|\'taxonomy\'\\|\'title\'\\|null\\) of method Advanced_Sidebar_Menu\\\\Widget\\\\Category\\:\\:hide_element\\(\\) should be contravariant with parameter \\$element_key \\(key\\-of\\<array\\{display\\-posts\\?\\: string, display_all\\?\\: \'\'\\|\'checked\', exclude\\: string, include_childless_parent\\?\\: \'\'\\|\'checked\', include_parent\\?\\: \'\'\\|\'checked\', levels\\: int\\|numeric\\-string, new_widget\\: \'list\'\\|\'widget\', single\\: \'\'\\|\'checked\', \\.\\.\\.\\}\\>\\|null\\) of method Advanced_Sidebar_Menu\\\\Widget\\\\Widget_Abstract\\<array\\<string, int\\|string\\>,array\\<string, int\\|string\\>\\>\\:\\:hide_element\\(\\)$#',
+	'count' => 1,
+	'path' => __DIR__ . '/../src/Widget/Category.php',
+];
+$ignoreErrors[] = [
+	// identifier: method.childParameterType
+	'message' => '#^Parameter \\#2 \\$element_to_reveal \\(\'display\\-posts\'\\|\'display_all\'\\|\'exclude\'\\|\'include_childless…\'\\|\'include_parent\'\\|\'levels\'\\|\'new_widget\'\\|\'single\'\\|\'taxonomy\'\\|\'title\'\\|null\\) of method Advanced_Sidebar_Menu\\\\Widget\\\\Category\\:\\:checkbox\\(\\) should be contravariant with parameter \\$element_to_reveal \\(key\\-of\\<array\\<string, mixed\\>\\>\\|null\\) of method Advanced_Sidebar_Menu\\\\Widget\\\\Widget\\<array\\<string, mixed\\>,array\\<string, mixed\\>\\>\\:\\:checkbox\\(\\)$#',
+	'count' => 1,
+	'path' => __DIR__ . '/../src/Widget/Category.php',
+];
+$ignoreErrors[] = [
+	// identifier: method.childParameterType
+	'message' => '#^Parameter \\#2 \\$element_to_reveal \\(\'display\\-posts\'\\|\'display_all\'\\|\'exclude\'\\|\'include_childless…\'\\|\'include_parent\'\\|\'levels\'\\|\'new_widget\'\\|\'single\'\\|\'taxonomy\'\\|\'title\'\\|null\\) of method Advanced_Sidebar_Menu\\\\Widget\\\\Category\\:\\:checkbox\\(\\) should be contravariant with parameter \\$element_to_reveal \\(key\\-of\\<array\\{display\\-posts\\?\\: string, display_all\\?\\: \'\'\\|\'checked\', exclude\\: string, include_childless_parent\\?\\: \'\'\\|\'checked\', include_parent\\?\\: \'\'\\|\'checked\', levels\\: int\\|numeric\\-string, new_widget\\: \'list\'\\|\'widget\', single\\: \'\'\\|\'checked\', \\.\\.\\.\\}\\>\\|null\\) of method Advanced_Sidebar_Menu\\\\Widget\\\\Widget_Abstract\\<array\\<string, int\\|string\\>,array\\<string, int\\|string\\>\\>\\:\\:checkbox\\(\\)$#',
+	'count' => 1,
+	'path' => __DIR__ . '/../src/Widget/Category.php',
+];
+$ignoreErrors[] = [
+	// identifier: missingType.iterableValue
+	'message' => '#^Property Advanced_Sidebar_Menu\\\\Widget\\\\Widget_Abstract\\<array\\<string, int\\|string\\>,array\\<string, int\\|string\\>\\>\\:\\:\\$widget_settings type has no value type specified in iterable type array\\.$#',
+	'count' => 1,
+	'path' => __DIR__ . '/../src/Widget/Category.php',
+];
+$ignoreErrors[] = [
 	// identifier: staticMethod.deprecated
 	'message' => '#^Call to deprecated method factory\\(\\) of class Advanced_Sidebar_Menu\\\\Menus\\\\Page\\:
 In favor of using factory on the specific class\\.$#',
 	'count' => 1,
 	'path' => __DIR__ . '/../src/Widget/Page.php',
+];
+$ignoreErrors[] = [
+	// identifier: method.childParameterType
+	'message' => '#^Parameter \\#1 \\$controlling_checkbox \\(\'display_all\'\\|\'exclude\'\\|\'include_childless…\'\\|\'include_parent\'\\|\'levels\'\\|\'order_by\'\\|\'post_type\'\\|\'title\'\\) of method Advanced_Sidebar_Menu\\\\Widget\\\\Page\\:\\:hide_element\\(\\) should be contravariant with parameter \\$controlling_checkbox \\(key\\-of\\<array\\<string, mixed\\>\\>\\) of method Advanced_Sidebar_Menu\\\\Widget\\\\Widget\\<array\\<string, mixed\\>,array\\<string, mixed\\>\\>\\:\\:hide_element\\(\\)$#',
+	'count' => 1,
+	'path' => __DIR__ . '/../src/Widget/Page.php',
+];
+$ignoreErrors[] = [
+	// identifier: method.childParameterType
+	'message' => '#^Parameter \\#1 \\$controlling_checkbox \\(\'display_all\'\\|\'exclude\'\\|\'include_childless…\'\\|\'include_parent\'\\|\'levels\'\\|\'order_by\'\\|\'post_type\'\\|\'title\'\\) of method Advanced_Sidebar_Menu\\\\Widget\\\\Page\\:\\:hide_element\\(\\) should be contravariant with parameter \\$controlling_checkbox \\(key\\-of\\<array\\{exclude\\: string, order_by\\: \'menu_order\'\\|\'post_date\'\\|\'post_title\', title\\?\\: string, display_all\\?\\: \'\'\\|\'checked\', include_childless_parent\\?\\: \'\'\\|\'checked\', include_parent\\?\\: \'\'\\|\'checked\', levels\\?\\: int\\|numeric\\-string, post_type\\?\\: string\\}\\>\\) of method Advanced_Sidebar_Menu\\\\Widget\\\\Widget_Abstract\\<array\\<string, int\\|string\\>,array\\<string, int\\|string\\>\\>\\:\\:hide_element\\(\\)$#',
+	'count' => 1,
+	'path' => __DIR__ . '/../src/Widget/Page.php',
+];
+$ignoreErrors[] = [
+	// identifier: method.childParameterType
+	'message' => '#^Parameter \\#1 \\$instance \\(array\\{exclude\\: string, order_by\\: \'menu_order\'\\|\'post_date\'\\|\'post_title\', title\\?\\: string, display_all\\?\\: \'\'\\|\'checked\', include_childless_parent\\?\\: \'\'\\|\'checked\', include_parent\\?\\: \'\'\\|\'checked\', levels\\?\\: int\\|numeric\\-string, post_type\\?\\: string\\}\\) of method Advanced_Sidebar_Menu\\\\Widget\\\\Page\\:\\:set_instance\\(\\) should be contravariant with parameter \\$instance \\(array\\<string, mixed\\>\\) of method Advanced_Sidebar_Menu\\\\Widget\\\\Widget\\<array\\<string, mixed\\>,array\\<string, mixed\\>\\>\\:\\:set_instance\\(\\)$#',
+	'count' => 1,
+	'path' => __DIR__ . '/../src/Widget/Page.php',
+];
+$ignoreErrors[] = [
+	// identifier: method.childParameterType
+	'message' => '#^Parameter \\#1 \\$name \\(\'display_all\'\\|\'exclude\'\\|\'include_childless…\'\\|\'include_parent\'\\|\'levels\'\\|\'order_by\'\\|\'post_type\'\\|\'title\'\\) of method Advanced_Sidebar_Menu\\\\Widget\\\\Page\\:\\:checkbox\\(\\) should be contravariant with parameter \\$name \\(key\\-of\\<array\\<string, mixed\\>\\>\\) of method Advanced_Sidebar_Menu\\\\Widget\\\\Widget\\<array\\<string, mixed\\>,array\\<string, mixed\\>\\>\\:\\:checkbox\\(\\)$#',
+	'count' => 1,
+	'path' => __DIR__ . '/../src/Widget/Page.php',
+];
+$ignoreErrors[] = [
+	// identifier: method.childParameterType
+	'message' => '#^Parameter \\#1 \\$name \\(\'display_all\'\\|\'exclude\'\\|\'include_childless…\'\\|\'include_parent\'\\|\'levels\'\\|\'order_by\'\\|\'post_type\'\\|\'title\'\\) of method Advanced_Sidebar_Menu\\\\Widget\\\\Page\\:\\:checkbox\\(\\) should be contravariant with parameter \\$name \\(key\\-of\\<array\\{exclude\\: string, order_by\\: \'menu_order\'\\|\'post_date\'\\|\'post_title\', title\\?\\: string, display_all\\?\\: \'\'\\|\'checked\', include_childless_parent\\?\\: \'\'\\|\'checked\', include_parent\\?\\: \'\'\\|\'checked\', levels\\?\\: int\\|numeric\\-string, post_type\\?\\: string\\}\\>\\) of method Advanced_Sidebar_Menu\\\\Widget\\\\Widget_Abstract\\<array\\<string, int\\|string\\>,array\\<string, int\\|string\\>\\>\\:\\:checkbox\\(\\)$#',
+	'count' => 1,
+	'path' => __DIR__ . '/../src/Widget/Page.php',
+];
+$ignoreErrors[] = [
+	// identifier: method.childParameterType
+	'message' => '#^Parameter \\#2 \\$defaults \\(array\\{exclude\\: string, order_by\\: \'menu_order\'\\|\'post_date\'\\|\'post_title\', title\\: string, display_all\\: \'\'\\|\'checked\', include_childless_parent\\: \'\'\\|\'checked\', include_parent\\: \'\'\\|\'checked\', levels\\: int\\|numeric\\-string\\}\\) of method Advanced_Sidebar_Menu\\\\Widget\\\\Page\\:\\:set_instance\\(\\) should be contravariant with parameter \\$defaults \\(array\\<string, mixed\\>\\) of method Advanced_Sidebar_Menu\\\\Widget\\\\Widget\\<array\\<string, mixed\\>,array\\<string, mixed\\>\\>\\:\\:set_instance\\(\\)$#',
+	'count' => 1,
+	'path' => __DIR__ . '/../src/Widget/Page.php',
+];
+$ignoreErrors[] = [
+	// identifier: method.childParameterType
+	'message' => '#^Parameter \\#2 \\$element_key \\(\'display_all\'\\|\'exclude\'\\|\'include_childless…\'\\|\'include_parent\'\\|\'levels\'\\|\'order_by\'\\|\'post_type\'\\|\'title\'\\|null\\) of method Advanced_Sidebar_Menu\\\\Widget\\\\Page\\:\\:hide_element\\(\\) should be contravariant with parameter \\$element_key \\(key\\-of\\<array\\<string, mixed\\>\\>\\|null\\) of method Advanced_Sidebar_Menu\\\\Widget\\\\Widget\\<array\\<string, mixed\\>,array\\<string, mixed\\>\\>\\:\\:hide_element\\(\\)$#',
+	'count' => 1,
+	'path' => __DIR__ . '/../src/Widget/Page.php',
+];
+$ignoreErrors[] = [
+	// identifier: method.childParameterType
+	'message' => '#^Parameter \\#2 \\$element_key \\(\'display_all\'\\|\'exclude\'\\|\'include_childless…\'\\|\'include_parent\'\\|\'levels\'\\|\'order_by\'\\|\'post_type\'\\|\'title\'\\|null\\) of method Advanced_Sidebar_Menu\\\\Widget\\\\Page\\:\\:hide_element\\(\\) should be contravariant with parameter \\$element_key \\(key\\-of\\<array\\{exclude\\: string, order_by\\: \'menu_order\'\\|\'post_date\'\\|\'post_title\', title\\?\\: string, display_all\\?\\: \'\'\\|\'checked\', include_childless_parent\\?\\: \'\'\\|\'checked\', include_parent\\?\\: \'\'\\|\'checked\', levels\\?\\: int\\|numeric\\-string, post_type\\?\\: string\\}\\>\\|null\\) of method Advanced_Sidebar_Menu\\\\Widget\\\\Widget_Abstract\\<array\\<string, int\\|string\\>,array\\<string, int\\|string\\>\\>\\:\\:hide_element\\(\\)$#',
+	'count' => 1,
+	'path' => __DIR__ . '/../src/Widget/Page.php',
+];
+$ignoreErrors[] = [
+	// identifier: method.childParameterType
+	'message' => '#^Parameter \\#2 \\$element_to_reveal \\(\'display_all\'\\|\'exclude\'\\|\'include_childless…\'\\|\'include_parent\'\\|\'levels\'\\|\'order_by\'\\|\'post_type\'\\|\'title\'\\|null\\) of method Advanced_Sidebar_Menu\\\\Widget\\\\Page\\:\\:checkbox\\(\\) should be contravariant with parameter \\$element_to_reveal \\(key\\-of\\<array\\<string, mixed\\>\\>\\|null\\) of method Advanced_Sidebar_Menu\\\\Widget\\\\Widget\\<array\\<string, mixed\\>,array\\<string, mixed\\>\\>\\:\\:checkbox\\(\\)$#',
+	'count' => 1,
+	'path' => __DIR__ . '/../src/Widget/Page.php',
+];
+$ignoreErrors[] = [
+	// identifier: method.childParameterType
+	'message' => '#^Parameter \\#2 \\$element_to_reveal \\(\'display_all\'\\|\'exclude\'\\|\'include_childless…\'\\|\'include_parent\'\\|\'levels\'\\|\'order_by\'\\|\'post_type\'\\|\'title\'\\|null\\) of method Advanced_Sidebar_Menu\\\\Widget\\\\Page\\:\\:checkbox\\(\\) should be contravariant with parameter \\$element_to_reveal \\(key\\-of\\<array\\{exclude\\: string, order_by\\: \'menu_order\'\\|\'post_date\'\\|\'post_title\', title\\?\\: string, display_all\\?\\: \'\'\\|\'checked\', include_childless_parent\\?\\: \'\'\\|\'checked\', include_parent\\?\\: \'\'\\|\'checked\', levels\\?\\: int\\|numeric\\-string, post_type\\?\\: string\\}\\>\\|null\\) of method Advanced_Sidebar_Menu\\\\Widget\\\\Widget_Abstract\\<array\\<string, int\\|string\\>,array\\<string, int\\|string\\>\\>\\:\\:checkbox\\(\\)$#',
+	'count' => 1,
+	'path' => __DIR__ . '/../src/Widget/Page.php',
+];
+$ignoreErrors[] = [
+	// identifier: missingType.iterableValue
+	'message' => '#^Property Advanced_Sidebar_Menu\\\\Widget\\\\Widget_Abstract\\<array\\<string, int\\|string\\>,array\\<string, int\\|string\\>\\>\\:\\:\\$widget_settings type has no value type specified in iterable type array\\.$#',
+	'count' => 1,
+	'path' => __DIR__ . '/../src/Widget/Page.php',
+];
+$ignoreErrors[] = [
+	// identifier: missingType.generics
+	'message' => '#^Class Advanced_Sidebar_Menu\\\\Widget\\\\Widget_Abstract implements generic interface Advanced_Sidebar_Menu\\\\Widget\\\\Widget but does not specify its types\\: SETTINGS, DEFAULTS$#',
+	'count' => 1,
+	'path' => __DIR__ . '/../src/Widget/Widget_Abstract.php',
+];
+$ignoreErrors[] = [
+	// identifier: missingType.iterableValue
+	'message' => '#^Method Advanced_Sidebar_Menu\\\\Widget\\\\Widget_Abstract\\:\\:set_instance\\(\\) return type has no value type specified in iterable type array\\.$#',
+	'count' => 1,
+	'path' => __DIR__ . '/../src/Widget/Widget_Abstract.php',
+];
+$ignoreErrors[] = [
+	// identifier: return.unresolvableType
+	'message' => '#^PHPDoc tag @return contains unresolvable type\\.$#',
+	'count' => 1,
+	'path' => __DIR__ . '/../src/Widget/Widget_Abstract.php',
+];
+$ignoreErrors[] = [
+	// identifier: property.unresolvableType
+	'message' => '#^PHPDoc tag @var for property Advanced_Sidebar_Menu\\\\Widget\\\\Widget_Abstract\\:\\:\\$widget_settings contains unresolvable type\\.$#',
+	'count' => 1,
+	'path' => __DIR__ . '/../src/Widget/Widget_Abstract.php',
+];
+$ignoreErrors[] = [
+	// identifier: property.phpDocType
+	'message' => '#^PHPDoc tag @var for property Advanced_Sidebar_Menu\\\\Widget\\\\Widget_Abstract\\:\\:\\$widget_settings with type mixed is not subtype of native type array\\.$#',
+	'count' => 1,
+	'path' => __DIR__ . '/../src/Widget/Widget_Abstract.php',
+];
+$ignoreErrors[] = [
+	// identifier: missingType.iterableValue
+	'message' => '#^Property Advanced_Sidebar_Menu\\\\Widget\\\\Widget_Abstract\\:\\:\\$widget_settings type has no value type specified in iterable type array\\.$#',
+	'count' => 1,
+	'path' => __DIR__ . '/../src/Widget/Widget_Abstract.php',
+];
+$ignoreErrors[] = [
+	// identifier: method.childReturnType
+	'message' => '#^Return type \\(array\\) of method Advanced_Sidebar_Menu\\\\Widget\\\\Widget_Abstract\\:\\:set_instance\\(\\) should be covariant with return type \\(array\\<string, mixed\\>\\) of method Advanced_Sidebar_Menu\\\\Widget\\\\Widget\\<array\\<string, mixed\\>,array\\<string, mixed\\>\\>\\:\\:set_instance\\(\\)$#',
+	'count' => 1,
+	'path' => __DIR__ . '/../src/Widget/Widget_Abstract.php',
 ];
 
 return ['parameters' => ['ignoreErrors' => $ignoreErrors]];

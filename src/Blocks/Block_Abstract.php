@@ -7,7 +7,7 @@ use Advanced_Sidebar_Menu\Scripts;
 use Advanced_Sidebar_Menu\Utils;
 use Advanced_Sidebar_Menu\Widget\Category;
 use Advanced_Sidebar_Menu\Widget\Page;
-use Advanced_Sidebar_Menu\Widget\Widget_Abstract;
+use Advanced_Sidebar_Menu\Widget\Widget;
 use Advanced_Sidebar_Menu\Widget_Options\Shared\Style_Targeting;
 
 /**
@@ -17,7 +17,7 @@ use Advanced_Sidebar_Menu\Widget_Options\Shared\Style_Targeting;
  *
  * @phpstan-import-type PAGE_SETTINGS from Page
  * @phpstan-import-type CATEGORY_SETTINGS from Category
- * @phpstan-import-type WIDGET_ARGS from Widget_Abstract
+ * @phpstan-import-type WIDGET_ARGS from Widget
  *
  * @phpstan-type ATTR_SHAPE array{
  *    type: string,
@@ -167,11 +167,11 @@ abstract class Block_Abstract {
 	 * We mimic the functionality of the inner echo while excluding
 	 * the calls to output the wrap.
 	 *
-	 * @phpstan-param WIDGET_ARGS $args
+	 * @phpstan-param WIDGET_ARGS                         $args
 	 *
-	 * @param false|array $instance - Contents of the block, before parsing.
-	 * @param \WP_Widget<PAGE_SETTINGS|CATEGORY_SETTINGS> $widget - Object representing a block based widget.
-	 * @param array       $args     - Widget area arguments.
+	 * @param false|array                                 $instance - Contents of the block, before parsing.
+	 * @param \WP_Widget<PAGE_SETTINGS|CATEGORY_SETTINGS> $widget   - Object representing a block based widget.
+	 * @param array                                       $args     - Widget area arguments.
 	 *
 	 * @return false|array
 	 */
@@ -261,19 +261,19 @@ abstract class Block_Abstract {
 	 */
 	protected function get_all_attributes() {
 		return \array_merge( [
-			'clientId'             => [
+			'clientId'           => [
 				'type' => 'string',
 			],
 			self::RENDER_REQUEST => [
 				'type' => 'boolean',
 			],
-			'sidebarId'            => [
+			'sidebarId'          => [
 				'type' => 'string',
 			],
-			'style'                => [
+			'style'              => [
 				'type' => 'object',
 			],
-			Menu_Abstract::TITLE   => [
+			Menu_Abstract::TITLE => [
 				'type' => 'string',
 			],
 		], $this->get_attributes() );
@@ -291,7 +291,7 @@ abstract class Block_Abstract {
 	 */
 	public function js_config( array $config ) {
 		$config['blocks'][ \explode( '/', static::NAME )[1] ] = [
-			'id' => static::NAME,
+			'id'         => static::NAME,
 			'attributes' => $this->get_all_attributes(),
 			'supports'   => $this->get_block_support(),
 		];
@@ -354,7 +354,7 @@ abstract class Block_Abstract {
 	 *
 	 * @phpstan-param \Union<SETTINGS, SHARED> $attr
 	 *
-	 * @param array $attr - Block attributes matching widget settings.
+	 * @param array                            $attr - Block attributes matching widget settings.
 	 *
 	 * @return string
 	 */

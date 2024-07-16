@@ -23,7 +23,6 @@ const headingStyles = {
 const InfoPanel = ( {}: Props ) => {
 	return ( <InspectorControls>
 		<PanelBody
-			// @ts-ignore -- @todo remove ignore on next update of @types.
 			title={<span style={titleStyles}>
 				{__( 'Go PRO', 'advanced-sidebar-menu' )}
 			</span>}

@@ -5,14 +5,14 @@ namespace Advanced_Sidebar_Menu\Menus;
 use Advanced_Sidebar_Menu\Core;
 use Advanced_Sidebar_Menu\Traits\Memoize;
 use Advanced_Sidebar_Menu\Walkers\Category_Walker;
-use Advanced_Sidebar_Menu\Widget\Widget_Abstract;
+use Advanced_Sidebar_Menu\Widget\Widget;
 
 /**
  * Category menu.
  *
  * @author OnPoint Plugins
  *
- * @phpstan-import-type WIDGET_ARGS from Widget_Abstract
+ * @phpstan-import-type WIDGET_ARGS from Widget
  *
  * @phpstan-type CATEGORY_SETTINGS array{
  *     'display-posts'?: string,
@@ -42,18 +42,18 @@ class Category extends Menu_Abstract implements Menu {
 	public const EACH_WIDGET = 'widget';
 
 	/**
-	 * Top_level_term.
-	 *
-	 * @var ?\WP_Term
-	 */
-	public $top_level_term;
-
-	/**
 	 * Store current menu instance.
 	 *
 	 * @var ?Category
 	 */
 	protected static $current_menu;
+
+	/**
+	 * Top_level_term.
+	 *
+	 * @var ?\WP_Term
+	 */
+	public $top_level_term;
 
 
 	/**
@@ -207,6 +207,163 @@ class Category extends Menu_Abstract implements Menu {
 
 
 	/**
+	 * Get id of the highest level parent item.
+	 *
+	 * @return ?int
+	 */
+	public function get_top_parent_id(): ?int {
+		if ( null === $this->top_level_term || $this->top_level_term->term_id < 1 ) {
+			return null;
+		}
+
+		return $this->top_level_term->term_id;
+	}
+
+
+	/**
+	 * Get key to order the menu items by.
+	 *
+	 * 'term_id'|'name'|'count'|'slug'
+	 *
+	 * @return string
+	 */
+	public function get_order_by(): string {
+		return (string) apply_filters( 'advanced-sidebar-menu/menus/category/order-by', 'name', $this->args, $this->instance, $this );
+	}
+
+
+	/**
+	 * Get order of the menu (ASC|DESC).
+	 *
+	 * @return string
+	 */
+	public function get_order(): string {
+		return (string) apply_filters( 'advanced-sidebar-menu/menus/category/order', 'ASC', $this->args, $this->instance, $this );
+	}
+
+
+	/**
+	 * Is this menu displayed?
+	 *
+	 * @return bool
+	 */
+	public function is_displayed() {
+		$display = false;
+		if ( is_singular() ) {
+			if ( $this->checked( static::DISPLAY_ON_SINGLE ) ) {
+				$display = true;
+			}
+		} elseif ( $this->is_tax() ) {
+			$display = true;
+		}
+
+		return apply_filters( 'advanced-sidebar-menu/menus/category/is-displayed', $display, $this->args, $this->instance, $this );
+	}
+
+
+	/**
+	 * Is this term excluded from this menu?
+	 *
+	 * @param int|string $id ID of the object.
+	 *
+	 * @return bool
+	 */
+	public function is_excluded( $id ): bool {
+		$excluded = \in_array( (int) $id, $this->get_excluded_ids(), true );
+
+		return (bool) apply_filters( 'advanced-sidebar-menu/menus/category/is-excluded', $excluded, $id, $this->get_widget_args(), $this->get_widget_instance(), $this );
+	}
+
+
+	/**
+	 * Get list of excluded ids from widget settings.
+	 *
+	 * @return array<int>
+	 */
+	public function get_excluded_ids(): array {
+		return \array_map( '\intval', (array) apply_filters( 'advanced-sidebar-menu/menus/category/excluded', parent::get_excluded_ids(), $this->args, $this->instance, $this ) );
+	}
+
+
+	/**
+	 * Render the widget output.
+	 *
+	 * @example Display singe post categories in a new widget.
+	 *          ```html
+	 *          <div>
+	 *              <ul />
+	 *          </div>
+	 *          <div>
+	 *             <ul />
+	 *          </div>
+	 *          ```
+	 *
+	 * @example Display singe post categories in another list.
+	 *          ```html
+	 *          <div>
+	 *              <ul />
+	 *              <ul />
+	 *          </div>
+	 *          ```
+	 *
+	 * @return void
+	 */
+	public function render() {
+		if ( ! $this->is_displayed() ) {
+			return;
+		}
+
+		add_filter( 'category_css_class', [ $this, 'add_list_item_classes' ], 11, 2 );
+
+		$menu_open = false;
+		$close_menu = false;
+		$output = '';
+
+		foreach ( $this->get_top_level_terms() as $i => $_cat ) {
+			$this->set_current_top_level_term( $_cat );
+			if ( ! $this->is_term_displayed( $_cat ) ) {
+				continue;
+			}
+
+			if ( ! $menu_open || self::EACH_WIDGET === $this->instance[ self::EACH_CATEGORY_DISPLAY ] ) {
+				if ( $i > 0 && isset( $this->args['widget_id'] ) ) {
+					$this->args['id_increment'] = '-' . ( $i + 1 );
+					echo \str_replace( "id=\"{$this->args['widget_id']}\"", "id=\"{$this->args['widget_id']}{$this->args['id_increment']}\"", $this->args['before_widget'] ); //phpcs:ignore WordPress.Security
+				} else {
+					echo $this->args['before_widget']; //phpcs:ignore WordPress.Security
+				}
+
+				do_action( 'advanced-sidebar-menu/menus/category/render', $this );
+
+				if ( ! $menu_open ) {
+					// Must remain in the loop vs the template.
+					$this->title();
+
+					$menu_open = true;
+					$close_menu = true;
+					if ( self::EACH_LIST === $this->instance[ self::EACH_CATEGORY_DISPLAY ] ) {
+						$close_menu = false;
+					}
+				}
+			}
+
+			$view = require Core::instance()->get_template_part( 'category_list.php' );
+
+			$output .= apply_filters( 'advanced-sidebar-menu/menus/category/output', $view, $this->args, $this->instance, $this );
+
+			if ( $close_menu ) {
+				$this->close_menu( $output );
+				$output = '';
+			}
+		}
+
+		if ( ! $close_menu && $menu_open ) {
+			$this->close_menu( $output );
+		}
+	}
+
+
+	/**
 	 * Get the top-level terms for the current page.
 	 * Could be multiple if on a single.
 	 * This will be one if on an archive.
@@ -277,75 +434,6 @@ class Category extends Menu_Abstract implements Menu {
 
 
 	/**
-	 * Get id of the highest level parent item.
-	 *
-	 * @return ?int
-	 */
-	public function get_top_parent_id(): ?int {
-		if ( null === $this->top_level_term || $this->top_level_term->term_id < 1 ) {
-			return null;
-		}
-
-		return $this->top_level_term->term_id;
-	}
-
-
-	/**
-	 * Get key to order the menu items by.
-	 *
-	 * 'term_id'|'name'|'count'|'slug'
-	 *
-	 * @return string
-	 */
-	public function get_order_by(): string {
-		return (string) apply_filters( 'advanced-sidebar-menu/menus/category/order-by', 'name', $this->args, $this->instance, $this );
-	}
-
-
-	/**
-	 * Get order of the menu (ASC|DESC).
-	 *
-	 * @return string
-	 */
-	public function get_order(): string {
-		return (string) apply_filters( 'advanced-sidebar-menu/menus/category/order', 'ASC', $this->args, $this->instance, $this );
-	}
-
-
-	/**
-	 * Is this menu displayed?
-	 *
-	 * @return bool
-	 */
-	public function is_displayed() {
-		$display = false;
-		if ( is_singular() ) {
-			if ( $this->checked( static::DISPLAY_ON_SINGLE ) ) {
-				$display = true;
-			}
-		} elseif ( $this->is_tax() ) {
-			$display = true;
-		}
-
-		return apply_filters( 'advanced-sidebar-menu/menus/category/is-displayed', $display, $this->args, $this->instance, $this );
-	}
-
-
-	/**
-	 * Is this term excluded from this menu?
-	 *
-	 * @param int|string $id ID of the object.
-	 *
-	 * @return bool
-	 */
-	public function is_excluded( $id ): bool {
-		$excluded = \in_array( (int) $id, $this->get_excluded_ids(), true );
-
-		return (bool) apply_filters( 'advanced-sidebar-menu/menus/category/is-excluded', $excluded, $id, $this->get_widget_args(), $this->get_widget_instance(), $this );
-	}
-
-
-	/**
 	 * Is this term, and it's children displayed
 	 *
 	 * 1. If children not empty we always display (or at least let the view handle it).
@@ -405,16 +493,6 @@ class Category extends Menu_Abstract implements Menu {
 
 
 	/**
-	 * Get list of excluded ids from widget settings.
-	 *
-	 * @return array<int>
-	 */
-	public function get_excluded_ids(): array {
-		return \array_map( '\intval', (array) apply_filters( 'advanced-sidebar-menu/menus/category/excluded', parent::get_excluded_ids(), $this->args, $this->instance, $this ) );
-	}
-
-
-	/**
 	 * Removes the closing </li> tag from a list item to allow for child menus inside of it
 	 *
 	 * @param string|false $item - An <li></li> item.
@@ -454,7 +532,7 @@ class Category extends Menu_Abstract implements Menu {
 	 * Add various classes to category item to define it among levels
 	 * as well as current item state.
 	 *
-	 * @param string[] $classes - List of classes added to category list item.
+	 * @param string[] $classes  - List of classes added to category list item.
 	 * @param \WP_Term $category - Current category.
 	 *
 	 * @filter category_css_class 11 2
@@ -562,84 +640,6 @@ class Category extends Menu_Abstract implements Menu {
 		}
 
 		return apply_filters( 'advanced-sidebar-menu/menus/category/has-children', $return, $term, $this );
-	}
-
-
-	/**
-	 * Render the widget output.
-	 *
-	 * @example Display singe post categories in a new widget.
-	 *          ```html
-	 *          <div>
-	 *              <ul />
-	 *          </div>
-	 *          <div>
-	 *             <ul />
-	 *          </div>
-	 *          ```
-	 *
-	 * @example Display singe post categories in another list.
-	 *          ```html
-	 *          <div>
-	 *              <ul />
-	 *              <ul />
-	 *          </div>
-	 *          ```
-	 *
-	 * @return void
-	 */
-	public function render() {
-		if ( ! $this->is_displayed() ) {
-			return;
-		}
-
-		add_filter( 'category_css_class', [ $this, 'add_list_item_classes' ], 11, 2 );
-
-		$menu_open = false;
-		$close_menu = false;
-		$output = '';
-
-		foreach ( $this->get_top_level_terms() as $i => $_cat ) {
-			$this->set_current_top_level_term( $_cat );
-			if ( ! $this->is_term_displayed( $_cat ) ) {
-				continue;
-			}
-
-			if ( ! $menu_open || self::EACH_WIDGET === $this->instance[ self::EACH_CATEGORY_DISPLAY ] ) {
-				if ( $i > 0 && isset( $this->args['widget_id'] ) ) {
-					$this->args['id_increment'] = '-' . ( $i + 1 );
-					echo \str_replace( "id=\"{$this->args['widget_id']}\"", "id=\"{$this->args['widget_id']}{$this->args['id_increment']}\"", $this->args['before_widget'] ); //phpcs:ignore WordPress.Security
-				} else {
-					echo $this->args['before_widget']; //phpcs:ignore WordPress.Security
-				}
-
-				do_action( 'advanced-sidebar-menu/menus/category/render', $this );
-
-				if ( ! $menu_open ) {
-					// Must remain in the loop vs the template.
-					$this->title();
-
-					$menu_open = true;
-					$close_menu = true;
-					if ( self::EACH_LIST === $this->instance[ self::EACH_CATEGORY_DISPLAY ] ) {
-						$close_menu = false;
-					}
-				}
-			}
-
-			$view = require Core::instance()->get_template_part( 'category_list.php' );
-
-			$output .= apply_filters( 'advanced-sidebar-menu/menus/category/output', $view, $this->args, $this->instance, $this );
-
-			if ( $close_menu ) {
-				$this->close_menu( $output );
-				$output = '';
-			}
-		}
-
-		if ( ! $close_menu && $menu_open ) {
-			$this->close_menu( $output );
-		}
 	}
 
 

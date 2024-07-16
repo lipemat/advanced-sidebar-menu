@@ -8,23 +8,28 @@ use Advanced_Sidebar_Menu\Menus\Menu_Abstract;
 /**
  * Creates a Widget of parent Child Categories
  *
- * @author  OnPoint Plugins
+ * @author   OnPoint Plugins
  *
- * @package Advanced Sidebar Menu
+ * @package  Advanced Sidebar Menu
  *
  * @phpstan-import-type CATEGORY_SETTINGS from CategoryMenu
- * @phpstan-import-type WIDGET_ARGS from Widget_Abstract
+ * @phpstan-import-type WIDGET_ARGS from Widget
  *
- * @phpstan-type DEFAULTS \Required<\Pick<CATEGORY_SETTINGS, 'title'|'exclude'|'display_all'|'include_childless_parent'|'include_parent'|'levels'|'new_widget'|'single'>>
+ * @formatter:off
+ * @phpstan-type DEFAULTS \Required<\Pick<CATEGORY_SETTINGS,'title'|'exclude'|'display_all'|'include_childless_parent'|'include_parent'|'levels'|'new_widget'|'single'>>
+ * @formatter:on
  *
  * @implements Widget<CATEGORY_SETTINGS, DEFAULTS>
- * @extends Widget_Abstract<CATEGORY_SETTINGS>
+ * @extends Widget_Abstract<CATEGORY_SETTINGS, DEFAULTS>
  */
 class Category extends Widget_Abstract implements Widget {
 	/**
-	 * Shared widget instance logic.
-	 *
-	 * @phpstan-use Instance<CATEGORY_SETTINGS, DEFAULTS>
+	 * @use Checkbox<CATEGORY_SETTINGS>
+	 */
+	use Checkbox;
+
+	/**
+	 * @use Instance<CATEGORY_SETTINGS, DEFAULTS>
 	 */
 	use Instance;
 
@@ -111,8 +116,8 @@ class Category extends Widget_Abstract implements Widget {
 	 *
 	 * @phpstan-param CATEGORY_SETTINGS $instance
 	 *
-	 * @param array $instance - Widget settings.
-	 * @param bool  $single   - Singular label or plural.
+	 * @param array                     $instance - Widget settings.
+	 * @param bool                      $single   - Singular label or plural.
 	 *
 	 * @return string
 	 */
@@ -145,10 +150,10 @@ class Category extends Widget_Abstract implements Widget {
 	/**
 	 * Display options.
 	 *
-	 * @phpstan-param CATEGORY_SETTINGS          $instance
+	 * @phpstan-param CATEGORY_SETTINGS $instance
 	 *
-	 * @param array                              $instance - Widget settings.
-	 * @param Category $widget - Registered widget arguments.
+	 * @param array                     $instance - Widget settings.
+	 * @param Category                  $widget   - Registered widget arguments.
 	 *
 	 * @return void
 	 */
@@ -223,10 +228,10 @@ class Category extends Widget_Abstract implements Widget {
 	/**
 	 * Display categories on single post settings.
 	 *
-	 * @phpstan-param CATEGORY_SETTINGS          $instance
+	 * @phpstan-param CATEGORY_SETTINGS $instance
 	 *
-	 * @param array                              $instance - Widget settings.
-	 * @param Category $widget - Registered widget arguments.
+	 * @param array                     $instance - Widget settings.
+	 * @param Category                  $widget   - Registered widget arguments.
 	 *
 	 * @return void
 	 */
@@ -283,10 +288,10 @@ class Category extends Widget_Abstract implements Widget {
 	/**
 	 * Categories to exclude settings.
 	 *
-	 * @phpstan-param CATEGORY_SETTINGS          $instance
+	 * @phpstan-param CATEGORY_SETTINGS $instance
 	 *
-	 * @param array                              $instance - Widget settings.
-	 * @param Category $widget - Registered widget arguments.
+	 * @param array                     $instance - Widget settings.
+	 * @param Category                  $widget   - Registered widget arguments.
 	 *
 	 * @return void
 	 */
@@ -321,7 +326,7 @@ class Category extends Widget_Abstract implements Widget {
 	 *
 	 * @phpstan-param CATEGORY_SETTINGS $instance
 	 *
-	 * @param array $instance - Widget settings.
+	 * @param array                     $instance - Widget settings.
 	 *
 	 * @return string
 	 */

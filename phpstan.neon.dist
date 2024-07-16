@@ -27,7 +27,3 @@ parameters:
         - advanced-sidebar-menu.php
     scanFiles:
         - dev/stubs/advanced-sidebar-menu-pro.stub
-    ignoreErrors:
-        - # Remove once the WP version use for wordpress-legacy >= 6.2.
-            message: '#^Function apply_filters invoked with [3456789] parameters, 2 required\.$#'
-            reportUnmatched: false
