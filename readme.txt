@@ -3,7 +3,7 @@
 Contributors: Mat Lipe, onpointplugins
 Donate link: https://www.paypal.com/cgi-bin/webscr?cmd=_donations&business=paypal%40onpointplugins%2ecom&lc=US&item_name=Advanced%20Sidebar%20Menu&no_note=0&currency_code=USD&bn=PP%2dDonationsBF%3abtn_donateCC_LG%2egif%3aNonHostedGuest
 Tags: menus, page menus, category menus, sidebars, hierarchy
-Requires at least: 6.1.0
+Requires at least: 6.2.0
 Tested up to: 6.5.5
 Requires PHP: 7.4.0
 Stable tag: 9.5.2

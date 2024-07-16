@@ -12,11 +12,6 @@ $ignoreErrors = [];
 if ( PHP_VERSION_ID < 80000 ) {
 	// \_WP_Dependency returns `string` in old versions of WP, `string|bool` in newer versions.
 	$ignoreErrors[] = [
-		'message' => '#^Casting to string something that\'s already string.$#',
-		'count'   => 2,
-		'path'    => __DIR__ . '/../src/Scripts.php',
-	];
-	$ignoreErrors[] = [
 		// identifier: generics.notGeneric
 		'message' => '#^PHPDoc tag @param for parameter \\$widget contains generic type WP_Widget\\<array\\<string, int\\|string\\>\\> but class WP_Widget is not generic\\.$#',
 		'count'   => 1,
