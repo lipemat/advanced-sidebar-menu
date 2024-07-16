@@ -74,4 +74,18 @@ trait Instance {
 	public function get_id(): string {
 		return (string) $this->id;
 	}
+
+
+	/**
+	 * Get the widget number.
+	 *
+	 * Replacement for `$widget->number`.
+	 *
+	 * @since 9.6.0
+	 *
+	 * @return string
+	 */
+	public function get_widget_number(): string {
+		return (string) $this->number;
+	}
 }

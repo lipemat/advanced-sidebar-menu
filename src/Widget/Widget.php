@@ -54,9 +54,7 @@ interface Widget {
 	 *
 	 * Checks first for a value then verifies the value = 'checked'.
 	 *
-	 * @phpstan-param key-of<SETTINGS> $name
-	 *
-	 * @param string                   $name - Name of checkbox.
+	 * @param string $name - Name of checkbox.
 	 *
 	 * @return bool
 	 */
@@ -66,14 +64,11 @@ interface Widget {
 	/**
 	 * Hide an element_key if a controlling_checkbox is checked.
 	 *
-	 * @phpstan-param key-of<SETTINGS>      $controlling_checkbox
-	 * @phpstan-param key-of<SETTINGS>|null $element_key
-	 *
-	 * @param string                        $controlling_checkbox - Name of controlling_checkbox field which controls whether to hide this
+	 * @param string  $controlling_checkbox                       - Name of controlling_checkbox field which controls whether to hide this
 	 *                                                            element or not.
-	 * @param ?string                       $element_key          - Match the `element_to_reveal` passed to $this->checkbox() for the
+	 * @param ?string $element_key                                - Match the `element_to_reveal` passed to $this->checkbox() for the
 	 *                                                            checkbox which controls this.
-	 * @param bool                          $reverse              - hide on check instead of show on check.
+	 * @param bool    $reverse                                    - hide on check instead of show on check.
 	 *
 	 * @return void
 	 */
@@ -83,11 +78,8 @@ interface Widget {
 	/**
 	 * Outputs a <input type="checkbox"> with the id and name filled.
 	 *
-	 * @phpstan-param key-of<SETTINGS>      $name
-	 * @phpstan-param key-of<SETTINGS>|null $element_to_reveal
-	 *
-	 * @param string                        $name              - Name of field.
-	 * @param ?string                       $element_to_reveal - Element to reveal/hide when box is checked/unchecked.
+	 * @param string  $name              - Name of field.
+	 * @param ?string $element_to_reveal - Element to reveal/hide when box is checked/unchecked.
 	 *
 	 * @return void
 	 */
@@ -144,4 +136,16 @@ interface Widget {
 	 * @return string
 	 */
 	public function get_id(): string;
+
+
+	/**
+	 * Get the widget number.
+	 *
+	 * Replacement for `$widget->number`.
+	 *
+	 * @since 9.6.0
+	 *
+	 * @return string
+	 */
+	public function get_widget_number(): string;
 }
