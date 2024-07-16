@@ -104,7 +104,8 @@ $ignoreErrors[] = [
 	'path' => __DIR__ . '/../src/Blocks/Block_Abstract.php',
 ];
 $ignoreErrors[] = [
-	'message' => '#^Returning false in non\\-return bool class method\\. Use null with type\\|null instead or add bool return type$#',
+	// identifier: lipemat.returnNullOverFalse
+	'message' => '#^Returning false in a method without a `bool` return type\\. Return `null` with `\\<type\\>\\|null` or add `bool` to the return type\\.$#',
 	'count' => 1,
 	'path' => __DIR__ . '/../src/Blocks/Block_Abstract.php',
 ];
@@ -229,7 +230,8 @@ $ignoreErrors[] = [
 	'path' => __DIR__ . '/../src/Menus/Category.php',
 ];
 $ignoreErrors[] = [
-	'message' => '#^Returning false in non\\-return bool class method\\. Use null with type\\|null instead or add bool return type$#',
+	// identifier: lipemat.returnNullOverFalse
+	'message' => '#^Returning false in a method without a `bool` return type\\. Return `null` with `\\<type\\>\\|null` or add `bool` to the return type\\.$#',
 	'count' => 1,
 	'path' => __DIR__ . '/../src/Menus/Category.php',
 ];
