@@ -2,7 +2,7 @@ import {createBlock, CreateBlock} from '@wordpress/blocks';
 import {CONFIG, Screen} from '../globals/config';
 
 export type TransformLegacy = <Attr>( name: string ) => ( widgetValues: {
-	instance: Record<string, any>
+	instance: { [ key: string ]: string | number | object | boolean }
 } ) => CreateBlock<Attr>;
 
 /**

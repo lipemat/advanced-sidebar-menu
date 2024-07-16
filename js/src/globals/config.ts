@@ -22,8 +22,8 @@ interface JSConfig {
 		};
 		navigation?: {
 			id: 'advanced-sidebar-menu/navigation';
-			attributes: BlockAttributes<any>;
-			supports: BlockSettings<any>['supports'];
+			attributes: BlockAttributes<object>;
+			supports: BlockSettings<object>['supports'];
 		}
 	};
 	categories: {
@@ -39,7 +39,7 @@ interface JSConfig {
 	};
 	error: string;
 	ErrorBoundary: ComponentClass<{
-		attributes: Record<string, any>,
+		attributes: object,
 		block: string;
 		section: string;
 	}>;
@@ -50,7 +50,7 @@ interface JSConfig {
 	pages: {
 		orderBy: { [ value: string ]: string };
 	};
-	Preview: FunctionComponent<any>;
+	Preview: FunctionComponent<object>;
 	siteInfo: {
 		basic: string;
 		classicWidgets: boolean;

@@ -4,7 +4,7 @@ import {addQueryArgs} from '@wordpress/url';
 import {sanitize} from 'dompurify';
 
 type Props = {
-	attributes: Record<string, any>,
+	attributes: object,
 	block: string;
 	section: string;
 }

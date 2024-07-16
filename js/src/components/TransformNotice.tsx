@@ -4,7 +4,7 @@ import {Notice} from '@wordpress/components';
 
 import styles from './transform-notice.pcss';
 
-type Props = {};
+type Props = Record<string, never>;
 
 export const DISMISS_KEY = 'advanced-sidebar-menu/transform-notice-dismissed';
 
