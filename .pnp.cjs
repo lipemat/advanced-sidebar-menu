@@ -1046,7 +1046,7 @@ const RAW_RUNTIME_STATE =
     ],\
     [\
       "@types/react-dom",\
-      "npm:17.0.25"\
+      "npm:18.2.25"\
     ],\
     [\
       "@types/retry",\
@@ -4585,6 +4585,7 @@ const RAW_RUNTIME_STATE =
           ["@types/lodash", "npm:4.17.7"],\
           ["@types/node", "npm:20.11.30"],\
           ["@types/react", "npm:18.2.79"],\
+          ["@types/react-dom", "npm:18.2.25"],\
           ["classnames", "npm:2.5.1"],\
           ["dompurify", "npm:3.1.6"],\
           ["eslint", "npm:8.57.0"],\
@@ -8550,6 +8551,7 @@ const RAW_RUNTIME_STATE =
           ["@types/lodash", "npm:4.17.7"],\
           ["@types/node", "npm:20.11.30"],\
           ["@types/react", "npm:18.2.79"],\
+          ["@types/react-dom", "npm:18.2.25"],\
           ["classnames", "npm:2.5.1"],\
           ["dompurify", "npm:3.1.6"],\
           ["eslint", "npm:8.57.0"],\
@@ -9239,7 +9241,7 @@ const RAW_RUNTIME_STATE =
           ["@types/codemirror", "npm:5.60.15"],\
           ["@types/jquery", "npm:3.5.30"],\
           ["@types/react", "npm:18.2.79"],\
-          ["@types/react-dom", "npm:18.3.0"],\
+          ["@types/react-dom", "npm:18.2.25"],\
           ["@types/tinymce", "npm:4.6.9"],\
           ["@types/webpack-env", "npm:1.18.5"]\
         ],\
@@ -9421,18 +9423,10 @@ const RAW_RUNTIME_STATE =
       }]\
     ]],\
     ["@types/react-dom", [\
-      ["npm:17.0.25", {\
-        "packageLocation": "./.yarn/cache/@types-react-dom-npm-17.0.25-05c1b4f48a-18a95d4d68.zip/node_modules/@types/react-dom/",\
+      ["npm:18.2.25", {\
+        "packageLocation": "./.yarn/cache/@types-react-dom-npm-18.2.25-162e24188e-87604407ec.zip/node_modules/@types/react-dom/",\
         "packageDependencies": [\
-          ["@types/react-dom", "npm:17.0.25"],\
-          ["@types/react", "npm:18.2.79"]\
-        ],\
-        "linkType": "HARD"\
-      }],\
-      ["npm:18.3.0", {\
-        "packageLocation": "./.yarn/cache/@types-react-dom-npm-18.3.0-111444d3eb-6c90d2ed72.zip/node_modules/@types/react-dom/",\
-        "packageDependencies": [\
-          ["@types/react-dom", "npm:18.3.0"],\
+          ["@types/react-dom", "npm:18.2.25"],\
           ["@types/react", "npm:18.2.79"]\
         ],\
         "linkType": "HARD"\
@@ -10219,7 +10213,7 @@ const RAW_RUNTIME_STATE =
           ["@wordpress/element", "npm:4.20.0"],\
           ["@babel/runtime", "npm:7.24.8"],\
           ["@types/react", "npm:18.2.79"],\
-          ["@types/react-dom", "npm:17.0.25"],\
+          ["@types/react-dom", "npm:18.2.25"],\
           ["@wordpress/escape-html", "npm:2.58.0"],\
           ["change-case", "npm:4.1.2"],\
           ["is-plain-object", "npm:5.0.0"],\

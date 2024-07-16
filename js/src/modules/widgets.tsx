@@ -1,4 +1,4 @@
-import ReactDOM from 'react-dom';
+import {createRoot} from 'react-dom/client';
 import TransformNotice, {DISMISS_KEY} from '../components/TransformNotice';
 import {CONFIG} from '../globals/config';
 
@@ -20,8 +20,8 @@ function renderTransformNotice() {
 	 */
 	try {
 		placeholders.forEach( placeholder => {
-			// eslint-disable-next-line -- Still using React 17 on some WP versions.
-			ReactDOM.render( <TransformNotice />, placeholder );
+			const root = createRoot( placeholder );
+			root.render( <TransformNotice /> );
 		} );
 	} catch ( e ) {
 		console.error( e );

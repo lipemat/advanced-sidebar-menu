@@ -2307,6 +2307,7 @@ __metadata:
     "@types/lodash": "npm:^4.14.182"
     "@types/node": "npm:~20.11.0"
     "@types/react": "npm:~18.2.0"
+    "@types/react-dom": "npm:~18.2.0"
     classnames: "npm:^2.3.2"
     dompurify: "npm:^3.1.6"
     eslint: "npm:^8"
@@ -3028,21 +3029,12 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@types/react-dom@npm:^16 || ^17 || ^18":
-  version: 18.3.0
-  resolution: "@types/react-dom@npm:18.3.0"
+"@types/react-dom@npm:~18.2.0":
+  version: 18.2.25
+  resolution: "@types/react-dom@npm:18.2.25"
   dependencies:
     "@types/react": "npm:*"
-  checksum: 10c0/6c90d2ed72c5a0e440d2c75d99287e4b5df3e7b011838cdc03ae5cd518ab52164d86990e73246b9d812eaf02ec351d74e3b4f5bd325bf341e13bf980392fd53b
-  languageName: node
-  linkType: hard
-
-"@types/react-dom@npm:^17.0.11":
-  version: 17.0.25
-  resolution: "@types/react-dom@npm:17.0.25"
-  dependencies:
-    "@types/react": "npm:^17"
-  checksum: 10c0/18a95d4d684cacc697d97ae66e3c8402da2f866c053fa6a5982694aa8eb6229afcefd3bfaaab4175c1b0ef3494c881e4d25e2167aa669bcbbb84114fd02ae5ba
+  checksum: 10c0/87604407eca6884c5b4d4657cb511dc5ba28ea1cfa5d0ce1fc2d659a7ad1b64ae85dcda60e3f010641f9a52a6a60dfcaa6be3b0d0de9d624475052a13dae01f4
   languageName: node
   linkType: hard
 
