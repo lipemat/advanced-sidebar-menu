@@ -26,8 +26,8 @@ namespace Advanced_Sidebar_Menu\Widget;
  *       widget_name?:   string,
  *  }
  *
- * @phpstan-template SETTINGS of array<string, mixed>
- * @phpstan-template DEFAULTS of array<key-of<SETTINGS>, mixed>
+ * @template SETTINGS of array<string, mixed>
+ * @template DEFAULTS of array<key-of<SETTINGS>, mixed>
  */
 interface Widget {
 	/**

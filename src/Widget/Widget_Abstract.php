@@ -11,6 +11,7 @@ namespace Advanced_Sidebar_Menu\Widget;
  * @template DEFAULTS of array<key-of<SETTINGS>, mixed>
  *
  * @extends \WP_Widget<SETTINGS>
+ * @implements Widget<SETTINGS, DEFAULTS>
  */
 abstract class Widget_Abstract extends \WP_Widget implements Widget {
 	/**

@@ -297,18 +297,6 @@ In favor of using factory on the specific class\\.$#',
 	'path' => __DIR__ . '/../src/Widget/Category.php',
 ];
 $ignoreErrors[] = [
-	// identifier: method.childParameterType
-	'message' => '#^Parameter \\#1 \\$instance \\(array\\{display\\-posts\\?\\: string, display_all\\?\\: \'\'\\|\'checked\', exclude\\: string, include_childless_parent\\?\\: \'\'\\|\'checked\', include_parent\\?\\: \'\'\\|\'checked\', levels\\: int\\|numeric\\-string, new_widget\\: \'list\'\\|\'widget\', single\\: \'\'\\|\'checked\', \\.\\.\\.\\}\\) of method Advanced_Sidebar_Menu\\\\Widget\\\\Category\\:\\:set_instance\\(\\) should be contravariant with parameter \\$instance \\(array\\<string, mixed\\>\\) of method Advanced_Sidebar_Menu\\\\Widget\\\\Widget\\<array\\<string, mixed\\>,array\\<string, mixed\\>\\>\\:\\:set_instance\\(\\)$#',
-	'count' => 1,
-	'path' => __DIR__ . '/../src/Widget/Category.php',
-];
-$ignoreErrors[] = [
-	// identifier: method.childParameterType
-	'message' => '#^Parameter \\#2 \\$defaults \\(array\\{display_all\\: \'\'\\|\'checked\', exclude\\: string, include_childless_parent\\: \'\'\\|\'checked\', include_parent\\: \'\'\\|\'checked\', levels\\: int\\|numeric\\-string, new_widget\\: \'list\'\\|\'widget\', single\\: \'\'\\|\'checked\', title\\: string\\}\\) of method Advanced_Sidebar_Menu\\\\Widget\\\\Category\\:\\:set_instance\\(\\) should be contravariant with parameter \\$defaults \\(array\\<string, mixed\\>\\) of method Advanced_Sidebar_Menu\\\\Widget\\\\Widget\\<array\\<string, mixed\\>,array\\<string, mixed\\>\\>\\:\\:set_instance\\(\\)$#',
-	'count' => 1,
-	'path' => __DIR__ . '/../src/Widget/Category.php',
-];
-$ignoreErrors[] = [
 	// identifier: missingType.iterableValue
 	'message' => '#^Property Advanced_Sidebar_Menu\\\\Widget\\\\Widget_Abstract\\<array\\<string, int\\|string\\>,array\\<string, int\\|string\\>\\>\\:\\:\\$widget_settings type has no value type specified in iterable type array\\.$#',
 	'count' => 1,
@@ -322,28 +310,10 @@ In favor of using factory on the specific class\\.$#',
 	'path' => __DIR__ . '/../src/Widget/Page.php',
 ];
 $ignoreErrors[] = [
-	// identifier: method.childParameterType
-	'message' => '#^Parameter \\#1 \\$instance \\(array\\{exclude\\: string, order_by\\: \'menu_order\'\\|\'post_date\'\\|\'post_title\', title\\?\\: string, display_all\\?\\: \'\'\\|\'checked\', include_childless_parent\\?\\: \'\'\\|\'checked\', include_parent\\?\\: \'\'\\|\'checked\', levels\\?\\: int\\|numeric\\-string, post_type\\?\\: string\\}\\) of method Advanced_Sidebar_Menu\\\\Widget\\\\Page\\:\\:set_instance\\(\\) should be contravariant with parameter \\$instance \\(array\\<string, mixed\\>\\) of method Advanced_Sidebar_Menu\\\\Widget\\\\Widget\\<array\\<string, mixed\\>,array\\<string, mixed\\>\\>\\:\\:set_instance\\(\\)$#',
-	'count' => 1,
-	'path' => __DIR__ . '/../src/Widget/Page.php',
-];
-$ignoreErrors[] = [
-	// identifier: method.childParameterType
-	'message' => '#^Parameter \\#2 \\$defaults \\(array\\{exclude\\: string, order_by\\: \'menu_order\'\\|\'post_date\'\\|\'post_title\', title\\: string, display_all\\: \'\'\\|\'checked\', include_childless_parent\\: \'\'\\|\'checked\', include_parent\\: \'\'\\|\'checked\', levels\\: int\\|numeric\\-string\\}\\) of method Advanced_Sidebar_Menu\\\\Widget\\\\Page\\:\\:set_instance\\(\\) should be contravariant with parameter \\$defaults \\(array\\<string, mixed\\>\\) of method Advanced_Sidebar_Menu\\\\Widget\\\\Widget\\<array\\<string, mixed\\>,array\\<string, mixed\\>\\>\\:\\:set_instance\\(\\)$#',
-	'count' => 1,
-	'path' => __DIR__ . '/../src/Widget/Page.php',
-];
-$ignoreErrors[] = [
 	// identifier: missingType.iterableValue
 	'message' => '#^Property Advanced_Sidebar_Menu\\\\Widget\\\\Widget_Abstract\\<array\\<string, int\\|string\\>,array\\<string, int\\|string\\>\\>\\:\\:\\$widget_settings type has no value type specified in iterable type array\\.$#',
 	'count' => 1,
 	'path' => __DIR__ . '/../src/Widget/Page.php',
-];
-$ignoreErrors[] = [
-	// identifier: missingType.generics
-	'message' => '#^Class Advanced_Sidebar_Menu\\\\Widget\\\\Widget_Abstract implements generic interface Advanced_Sidebar_Menu\\\\Widget\\\\Widget but does not specify its types\\: SETTINGS, DEFAULTS$#',
-	'count' => 1,
-	'path' => __DIR__ . '/../src/Widget/Widget_Abstract.php',
 ];
 $ignoreErrors[] = [
 	// identifier: missingType.iterableValue
@@ -377,7 +347,7 @@ $ignoreErrors[] = [
 ];
 $ignoreErrors[] = [
 	// identifier: method.childReturnType
-	'message' => '#^Return type \\(array\\) of method Advanced_Sidebar_Menu\\\\Widget\\\\Widget_Abstract\\:\\:set_instance\\(\\) should be covariant with return type \\(array\\<string, mixed\\>\\) of method Advanced_Sidebar_Menu\\\\Widget\\\\Widget\\<array\\<string, mixed\\>,array\\<string, mixed\\>\\>\\:\\:set_instance\\(\\)$#',
+	'message' => '#^Return type \\(array\\) of method Advanced_Sidebar_Menu\\\\Widget\\\\Widget_Abstract\\:\\:set_instance\\(\\) should be covariant with return type \\(array\\<string, mixed\\>\\) of method Advanced_Sidebar_Menu\\\\Widget\\\\Widget\\<SETTINGS of array\\<string, mixed\\>,DEFAULTS of array\\<string, mixed\\>\\>\\:\\:set_instance\\(\\)$#',
 	'count' => 1,
 	'path' => __DIR__ . '/../src/Widget/Widget_Abstract.php',
 ];

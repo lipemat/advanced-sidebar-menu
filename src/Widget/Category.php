@@ -19,10 +19,10 @@ use Advanced_Sidebar_Menu\Menus\Menu_Abstract;
  * @phpstan-type DEFAULTS \Required<\Pick<CATEGORY_SETTINGS,'title'|'exclude'|'display_all'|'include_childless_parent'|'include_parent'|'levels'|'new_widget'|'single'>>
  * @formatter:on
  *
- * @implements Widget<CATEGORY_SETTINGS, DEFAULTS>
+ * @implements WidgetWithId<CATEGORY_SETTINGS, DEFAULTS>
  * @extends Widget_Abstract<CATEGORY_SETTINGS, DEFAULTS>
  */
-class Category extends Widget_Abstract implements Widget {
+class Category extends Widget_Abstract implements WidgetWithId {
 	/**
 	 * @use Checkbox<CATEGORY_SETTINGS>
 	 */
@@ -32,6 +32,8 @@ class Category extends Widget_Abstract implements Widget {
 	 * @use Instance<CATEGORY_SETTINGS, DEFAULTS>
 	 */
 	use Instance;
+
+	use WidgetIdAccess;
 
 	public const NAME = 'advanced_sidebar_menu_category';
 
