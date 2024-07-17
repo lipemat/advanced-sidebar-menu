@@ -46,46 +46,4 @@ trait Instance {
 
 		return $this->widget_settings;
 	}
-
-
-	/**
-	 * Get the base id from the `WP_Widget` class.
-	 *
-	 * Replacement for `$widget->id_base`.
-	 *
-	 * @since 9.6.0
-	 *
-	 * @return string
-	 */
-	public function get_id_base(): string {
-		return $this->id_base;
-	}
-
-
-	/**
-	 * Get the id from the `WP_Widget` class.
-	 *
-	 * Replacement for `$widget->id`.
-	 *
-	 * @since 9.6.0
-	 *
-	 * @return string
-	 */
-	public function get_id(): string {
-		return (string) $this->id;
-	}
-
-
-	/**
-	 * Get the widget number.
-	 *
-	 * Replacement for `$widget->number`.
-	 *
-	 * @since 9.6.0
-	 *
-	 * @return string
-	 */
-	public function get_widget_number(): string {
-		return (string) $this->number;
-	}
 }
