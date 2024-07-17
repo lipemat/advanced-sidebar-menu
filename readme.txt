@@ -1,5 +1,4 @@
 === Advanced Sidebar Menu ===
-
 Contributors: Mat Lipe, onpointplugins
 Donate link: https://www.paypal.com/cgi-bin/webscr?cmd=_donations&business=paypal%40onpointplugins%2ecom&lc=US&item_name=Advanced%20Sidebar%20Menu&no_note=0&currency_code=USD&bn=PP%2dDonationsBF%3abtn_donateCC_LG%2egif%3aNonHostedGuest
 Tags: menus, page menus, category menus, sidebars, hierarchy
@@ -9,6 +8,7 @@ Requires PHP: 7.4.0
 Stable tag: 9.5.2
 License: GPLv3 or later
 License URI: http://www.gnu.org/licenses/gpl-3.0.html
+Fully automatic sidebar menus.
 
 == Description ==
 
