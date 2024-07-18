@@ -6,6 +6,7 @@ import type {EntriesConfig} from '@lipemat/js-boilerplate/config/entries.config'
 const entries: EntriesConfig = {
 	'advanced-sidebar-menu-admin': [ 'widget-admin.ts' ],
 	'advanced-sidebar-menu-block-editor': [ 'block-editor.ts' ],
+	'advanced-sidebar-menu-debug': [ 'debug.ts' ],
 };
 
 module.exports = entries;
