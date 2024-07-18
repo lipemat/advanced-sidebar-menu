@@ -1,5 +1,3 @@
-const config = require( '@lipemat/js-boilerplate/helpers/package-config' );
-
 module.exports = webpackConfig => {
 	if ( '--script-debug' === process.argv[ 2 ] ) {
 		/**
@@ -13,14 +11,6 @@ module.exports = webpackConfig => {
 			devtool: 'source-map',
 			mode: 'development',
 			plugins: webpackConfig.plugins.slice( 0, 2 ),
-			entry: {
-				'advanced-sidebar-menu-block-editor': [
-					config.workingDirectory + '/src/block-editor.ts',
-				],
-				'advanced-sidebar-menu-admin': [
-					config.workingDirectory + '/src/admin.ts',
-				],
-			},
 		};
 	}
 
@@ -28,14 +18,11 @@ module.exports = webpackConfig => {
 	 * Convert the names of the outputted files to `min`
 	 * when not generating `script-debug` versions.
 	 */
+	const entries = {};
+	Object.keys( webpackConfig.entry ).forEach( key => {
+		entries[ key + '.min' ] = webpackConfig.entry[ key ];
+	} );
 	return {
-		entry: {
-			'advanced-sidebar-menu-block-editor.min': [
-				config.workingDirectory + '/src/block-editor.ts',
-			],
-			'advanced-sidebar-menu-admin.min': [
-				config.workingDirectory + '/src/admin.ts',
-			],
-		},
+		entry: entries,
 	};
 };
