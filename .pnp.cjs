@@ -21,6 +21,10 @@ const RAW_RUNTIME_STATE =
   ],\
   "fallbackPool": [\
     [\
+      "@adobe/css-tools",\
+      "npm:4.4.0"\
+    ],\
+    [\
       "@ampproject/remapping",\
       "npm:2.3.0"\
     ],\
@@ -841,6 +845,18 @@ const RAW_RUNTIME_STATE =
       "npm:2.5.2"\
     ],\
     [\
+      "@testing-library/dom",\
+      "npm:9.3.4"\
+    ],\
+    [\
+      "@testing-library/jest-dom",\
+      "npm:5.17.0"\
+    ],\
+    [\
+      "@testing-library/react",\
+      "virtual:3ba643f9797e66ff36745c8831d7b481c8461f8796976105d977ed697b1503bc1aac4e4723d6c88131f394a861739d3190eb8c5f40d049cf9141692aeb98caa3#npm:14.3.1"\
+    ],\
+    [\
       "@tootallnate/once",\
       "npm:2.0.0"\
     ],\
@@ -863,6 +879,10 @@ const RAW_RUNTIME_STATE =
     [\
       "@types/archy",\
       "npm:0.0.32"\
+    ],\
+    [\
+      "@types/aria-query",\
+      "npm:5.0.4"\
     ],\
     [\
       "@types/babel__core",\
@@ -959,6 +979,10 @@ const RAW_RUNTIME_STATE =
     [\
       "@types/istanbul-reports",\
       "npm:3.0.4"\
+    ],\
+    [\
+      "@types/jest",\
+      "npm:29.5.12"\
     ],\
     [\
       "@types/jquery",\
@@ -1083,6 +1107,10 @@ const RAW_RUNTIME_STATE =
     [\
       "@types/tern",\
       "npm:0.23.9"\
+    ],\
+    [\
+      "@types/testing-library__jest-dom",\
+      "npm:5.14.9"\
     ],\
     [\
       "@types/tinymce",\
@@ -1781,6 +1809,10 @@ const RAW_RUNTIME_STATE =
       "npm:6.1.0"\
     ],\
     [\
+      "css.escape",\
+      "npm:1.5.1"\
+    ],\
+    [\
       "cssdb",\
       "npm:7.11.2"\
     ],\
@@ -1915,6 +1947,10 @@ const RAW_RUNTIME_STATE =
     [\
       "doctrine",\
       "npm:2.1.0"\
+    ],\
+    [\
+      "dom-accessibility-api",\
+      "npm:0.5.16"\
     ],\
     [\
       "dom-converter",\
@@ -2909,6 +2945,10 @@ const RAW_RUNTIME_STATE =
       "npm:1.0.0-beta.8"\
     ],\
     [\
+      "jquery",\
+      "npm:3.7.1"\
+    ],\
+    [\
       "js-tokens",\
       "npm:4.0.0"\
     ],\
@@ -3055,6 +3095,10 @@ const RAW_RUNTIME_STATE =
     [\
       "lru-cache",\
       "npm:10.4.3"\
+    ],\
+    [\
+      "lz-string",\
+      "npm:1.5.0"\
     ],\
     [\
       "make-dir",\
@@ -4579,7 +4623,10 @@ const RAW_RUNTIME_STATE =
           ["@lipemat/js-boilerplate", "npm:10.9.2"],\
           ["@lipemat/js-boilerplate-gutenberg", "virtual:3ba643f9797e66ff36745c8831d7b481c8461f8796976105d977ed697b1503bc1aac4e4723d6c88131f394a861739d3190eb8c5f40d049cf9141692aeb98caa3#npm:3.4.2"],\
           ["@lipemat/stylelint-config", "virtual:3ba643f9797e66ff36745c8831d7b481c8461f8796976105d977ed697b1503bc1aac4e4723d6c88131f394a861739d3190eb8c5f40d049cf9141692aeb98caa3#npm:2.2.1"],\
+          ["@testing-library/jest-dom", "npm:5.17.0"],\
+          ["@testing-library/react", "virtual:3ba643f9797e66ff36745c8831d7b481c8461f8796976105d977ed697b1503bc1aac4e4723d6c88131f394a861739d3190eb8c5f40d049cf9141692aeb98caa3#npm:14.3.1"],\
           ["@types/dompurify", "npm:3.0.5"],\
+          ["@types/jest", "npm:29.5.12"],\
           ["@types/jquery", "npm:3.5.30"],\
           ["@types/lipemat__js-boilerplate", "https://github.com/lipemat/types-js-boilerplate.git#commit=82bd8858c2ac37088342932af1d391978805267e"],\
           ["@types/lodash", "npm:4.17.7"],\
@@ -4590,12 +4637,22 @@ const RAW_RUNTIME_STATE =
           ["dompurify", "npm:3.1.6"],\
           ["eslint", "npm:8.57.0"],\
           ["jest", "virtual:ad610cc2c86c64dbd001b0d003451f716cf386a68fe01315d0d02f156772abe346b48df6a7529c1a3d87ef68369ff43fa33057c5059a80123b91402216c047b2#npm:29.7.0"],\
+          ["jquery", "npm:3.7.1"],\
           ["react-string-replace", "npm:1.1.1"],\
           ["stylelint", "npm:14.16.1"],\
           ["ts-node", "virtual:3ba643f9797e66ff36745c8831d7b481c8461f8796976105d977ed697b1503bc1aac4e4723d6c88131f394a861739d3190eb8c5f40d049cf9141692aeb98caa3#npm:10.9.2"],\
           ["typescript", "patch:typescript@npm%3A5.5.3#optional!builtin<compat/typescript>::version=5.5.3&hash=379a07"]\
         ],\
         "linkType": "SOFT"\
+      }]\
+    ]],\
+    ["@adobe/css-tools", [\
+      ["npm:4.4.0", {\
+        "packageLocation": "./.yarn/cache/@adobe-css-tools-npm-4.4.0-3e89ecd033-d65ddc7193.zip/node_modules/@adobe/css-tools/",\
+        "packageDependencies": [\
+          ["@adobe/css-tools", "npm:4.4.0"]\
+        ],\
+        "linkType": "HARD"\
       }]\
     ]],\
     ["@ampproject/remapping", [\
@@ -8545,7 +8602,10 @@ const RAW_RUNTIME_STATE =
           ["@lipemat/js-boilerplate", "npm:10.9.2"],\
           ["@lipemat/js-boilerplate-gutenberg", "virtual:3ba643f9797e66ff36745c8831d7b481c8461f8796976105d977ed697b1503bc1aac4e4723d6c88131f394a861739d3190eb8c5f40d049cf9141692aeb98caa3#npm:3.4.2"],\
           ["@lipemat/stylelint-config", "virtual:3ba643f9797e66ff36745c8831d7b481c8461f8796976105d977ed697b1503bc1aac4e4723d6c88131f394a861739d3190eb8c5f40d049cf9141692aeb98caa3#npm:2.2.1"],\
+          ["@testing-library/jest-dom", "npm:5.17.0"],\
+          ["@testing-library/react", "virtual:3ba643f9797e66ff36745c8831d7b481c8461f8796976105d977ed697b1503bc1aac4e4723d6c88131f394a861739d3190eb8c5f40d049cf9141692aeb98caa3#npm:14.3.1"],\
           ["@types/dompurify", "npm:3.0.5"],\
+          ["@types/jest", "npm:29.5.12"],\
           ["@types/jquery", "npm:3.5.30"],\
           ["@types/lipemat__js-boilerplate", "https://github.com/lipemat/types-js-boilerplate.git#commit=82bd8858c2ac37088342932af1d391978805267e"],\
           ["@types/lodash", "npm:4.17.7"],\
@@ -8556,6 +8616,7 @@ const RAW_RUNTIME_STATE =
           ["dompurify", "npm:3.1.6"],\
           ["eslint", "npm:8.57.0"],\
           ["jest", "virtual:ad610cc2c86c64dbd001b0d003451f716cf386a68fe01315d0d02f156772abe346b48df6a7529c1a3d87ef68369ff43fa33057c5059a80123b91402216c047b2#npm:29.7.0"],\
+          ["jquery", "npm:3.7.1"],\
           ["react-string-replace", "npm:1.1.1"],\
           ["stylelint", "npm:14.16.1"],\
           ["ts-node", "virtual:3ba643f9797e66ff36745c8831d7b481c8461f8796976105d977ed697b1503bc1aac4e4723d6c88131f394a861739d3190eb8c5f40d049cf9141692aeb98caa3#npm:10.9.2"],\
@@ -8888,6 +8949,69 @@ const RAW_RUNTIME_STATE =
         "linkType": "HARD"\
       }]\
     ]],\
+    ["@testing-library/dom", [\
+      ["npm:9.3.4", {\
+        "packageLocation": "./.yarn/cache/@testing-library-dom-npm-9.3.4-cfb609c4fc-147da340e8.zip/node_modules/@testing-library/dom/",\
+        "packageDependencies": [\
+          ["@testing-library/dom", "npm:9.3.4"],\
+          ["@babel/code-frame", "npm:7.24.7"],\
+          ["@babel/runtime", "npm:7.24.8"],\
+          ["@types/aria-query", "npm:5.0.4"],\
+          ["aria-query", "npm:5.1.3"],\
+          ["chalk", "npm:4.1.2"],\
+          ["dom-accessibility-api", "npm:0.5.16"],\
+          ["lz-string", "npm:1.5.0"],\
+          ["pretty-format", "npm:27.5.1"]\
+        ],\
+        "linkType": "HARD"\
+      }]\
+    ]],\
+    ["@testing-library/jest-dom", [\
+      ["npm:5.17.0", {\
+        "packageLocation": "./.yarn/cache/@testing-library-jest-dom-npm-5.17.0-a702605ee4-24e09c5779.zip/node_modules/@testing-library/jest-dom/",\
+        "packageDependencies": [\
+          ["@testing-library/jest-dom", "npm:5.17.0"],\
+          ["@adobe/css-tools", "npm:4.4.0"],\
+          ["@babel/runtime", "npm:7.24.8"],\
+          ["@types/testing-library__jest-dom", "npm:5.14.9"],\
+          ["aria-query", "npm:5.3.0"],\
+          ["chalk", "npm:3.0.0"],\
+          ["css.escape", "npm:1.5.1"],\
+          ["dom-accessibility-api", "npm:0.5.16"],\
+          ["lodash", "npm:4.17.21"],\
+          ["redent", "npm:3.0.0"]\
+        ],\
+        "linkType": "HARD"\
+      }]\
+    ]],\
+    ["@testing-library/react", [\
+      ["npm:14.3.1", {\
+        "packageLocation": "./.yarn/cache/@testing-library-react-npm-14.3.1-08c822f7c7-1ccf4eb151.zip/node_modules/@testing-library/react/",\
+        "packageDependencies": [\
+          ["@testing-library/react", "npm:14.3.1"]\
+        ],\
+        "linkType": "SOFT"\
+      }],\
+      ["virtual:3ba643f9797e66ff36745c8831d7b481c8461f8796976105d977ed697b1503bc1aac4e4723d6c88131f394a861739d3190eb8c5f40d049cf9141692aeb98caa3#npm:14.3.1", {\
+        "packageLocation": "./.yarn/__virtual__/@testing-library-react-virtual-90ab42d46d/0/cache/@testing-library-react-npm-14.3.1-08c822f7c7-1ccf4eb151.zip/node_modules/@testing-library/react/",\
+        "packageDependencies": [\
+          ["@testing-library/react", "virtual:3ba643f9797e66ff36745c8831d7b481c8461f8796976105d977ed697b1503bc1aac4e4723d6c88131f394a861739d3190eb8c5f40d049cf9141692aeb98caa3#npm:14.3.1"],\
+          ["@babel/runtime", "npm:7.24.8"],\
+          ["@testing-library/dom", "npm:9.3.4"],\
+          ["@types/react", "npm:18.2.79"],\
+          ["@types/react-dom", "npm:18.2.25"],\
+          ["react", null],\
+          ["react-dom", null]\
+        ],\
+        "packagePeers": [\
+          "@types/react-dom",\
+          "@types/react",\
+          "react-dom",\
+          "react"\
+        ],\
+        "linkType": "HARD"\
+      }]\
+    ]],\
     ["@tootallnate/once", [\
       ["npm:2.0.0", {\
         "packageLocation": "./.yarn/cache/@tootallnate-once-npm-2.0.0-e36cf4f140-073bfa5480.zip/node_modules/@tootallnate/once/",\
@@ -8938,6 +9062,15 @@ const RAW_RUNTIME_STATE =
         "packageLocation": "./.yarn/cache/@types-archy-npm-0.0.32-2a550a99a6-2eec65ddc6.zip/node_modules/@types/archy/",\
         "packageDependencies": [\
           ["@types/archy", "npm:0.0.32"]\
+        ],\
+        "linkType": "HARD"\
+      }]\
+    ]],\
+    ["@types/aria-query", [\
+      ["npm:5.0.4", {\
+        "packageLocation": "./.yarn/cache/@types-aria-query-npm-5.0.4-51d2b61619-dc667bc6a3.zip/node_modules/@types/aria-query/",\
+        "packageDependencies": [\
+          ["@types/aria-query", "npm:5.0.4"]\
         ],\
         "linkType": "HARD"\
       }]\
@@ -9189,6 +9322,17 @@ const RAW_RUNTIME_STATE =
         "packageDependencies": [\
           ["@types/istanbul-reports", "npm:3.0.4"],\
           ["@types/istanbul-lib-report", "npm:3.0.3"]\
+        ],\
+        "linkType": "HARD"\
+      }]\
+    ]],\
+    ["@types/jest", [\
+      ["npm:29.5.12", {\
+        "packageLocation": "./.yarn/cache/@types-jest-npm-29.5.12-6459b9d012-25fc8e4c61.zip/node_modules/@types/jest/",\
+        "packageDependencies": [\
+          ["@types/jest", "npm:29.5.12"],\
+          ["expect", "npm:29.7.0"],\
+          ["pretty-format", "npm:29.7.0"]\
         ],\
         "linkType": "HARD"\
       }]\
@@ -9517,6 +9661,16 @@ const RAW_RUNTIME_STATE =
         "packageDependencies": [\
           ["@types/tern", "npm:0.23.9"],\
           ["@types/estree", "npm:1.0.5"]\
+        ],\
+        "linkType": "HARD"\
+      }]\
+    ]],\
+    ["@types/testing-library__jest-dom", [\
+      ["npm:5.14.9", {\
+        "packageLocation": "./.yarn/cache/@types-testing-library__jest-dom-npm-5.14.9-319d22d764-91f7b15e88.zip/node_modules/@types/testing-library__jest-dom/",\
+        "packageDependencies": [\
+          ["@types/testing-library__jest-dom", "npm:5.14.9"],\
+          ["@types/jest", "npm:29.5.12"]\
         ],\
         "linkType": "HARD"\
       }]\
@@ -11525,6 +11679,15 @@ const RAW_RUNTIME_STATE =
         ],\
         "linkType": "HARD"\
       }],\
+      ["npm:3.0.0", {\
+        "packageLocation": "./.yarn/cache/chalk-npm-3.0.0-e813208025-ee650b0a06.zip/node_modules/chalk/",\
+        "packageDependencies": [\
+          ["chalk", "npm:3.0.0"],\
+          ["ansi-styles", "npm:4.3.0"],\
+          ["supports-color", "npm:7.2.0"]\
+        ],\
+        "linkType": "HARD"\
+      }],\
       ["npm:4.1.2", {\
         "packageLocation": "./.yarn/cache/chalk-npm-4.1.2-ba8b67ab80-4a3fef5cc3.zip/node_modules/chalk/",\
         "packageDependencies": [\
@@ -12243,6 +12406,15 @@ const RAW_RUNTIME_STATE =
         "linkType": "HARD"\
       }]\
     ]],\
+    ["css.escape", [\
+      ["npm:1.5.1", {\
+        "packageLocation": "./.yarn/cache/css.escape-npm-1.5.1-b24d2ba77a-5e09035e5b.zip/node_modules/css.escape/",\
+        "packageDependencies": [\
+          ["css.escape", "npm:1.5.1"]\
+        ],\
+        "linkType": "HARD"\
+      }]\
+    ]],\
     ["cssdb", [\
       ["npm:7.11.2", {\
         "packageLocation": "./.yarn/cache/cssdb-npm-7.11.2-d799f85811-5cd8dfee70.zip/node_modules/cssdb/",\
@@ -12686,6 +12858,15 @@ const RAW_RUNTIME_STATE =
         "packageDependencies": [\
           ["doctrine", "npm:3.0.0"],\
           ["esutils", "npm:2.0.3"]\
+        ],\
+        "linkType": "HARD"\
+      }]\
+    ]],\
+    ["dom-accessibility-api", [\
+      ["npm:0.5.16", {\
+        "packageLocation": "./.yarn/cache/dom-accessibility-api-npm-0.5.16-d3e2310666-b2c2eda4fa.zip/node_modules/dom-accessibility-api/",\
+        "packageDependencies": [\
+          ["dom-accessibility-api", "npm:0.5.16"]\
         ],\
         "linkType": "HARD"\
       }]\
@@ -16196,6 +16377,15 @@ const RAW_RUNTIME_STATE =
         "linkType": "HARD"\
       }]\
     ]],\
+    ["jquery", [\
+      ["npm:3.7.1", {\
+        "packageLocation": "./.yarn/cache/jquery-npm-3.7.1-eeeac0f21e-808cfbfb75.zip/node_modules/jquery/",\
+        "packageDependencies": [\
+          ["jquery", "npm:3.7.1"]\
+        ],\
+        "linkType": "HARD"\
+      }]\
+    ]],\
     ["js-tokens", [\
       ["npm:4.0.0", {\
         "packageLocation": "./.yarn/cache/js-tokens-npm-4.0.0-0ac852e9e2-e248708d37.zip/node_modules/js-tokens/",\
@@ -16657,6 +16847,15 @@ const RAW_RUNTIME_STATE =
         "packageDependencies": [\
           ["lru-cache", "npm:6.0.0"],\
           ["yallist", "npm:4.0.0"]\
+        ],\
+        "linkType": "HARD"\
+      }]\
+    ]],\
+    ["lz-string", [\
+      ["npm:1.5.0", {\
+        "packageLocation": "./.yarn/cache/lz-string-npm-1.5.0-3860794e30-36128e4de3.zip/node_modules/lz-string/",\
+        "packageDependencies": [\
+          ["lz-string", "npm:1.5.0"]\
         ],\
         "linkType": "HARD"\
       }]\
@@ -18963,6 +19162,16 @@ const RAW_RUNTIME_STATE =
       }]\
     ]],\
     ["pretty-format", [\
+      ["npm:27.5.1", {\
+        "packageLocation": "./.yarn/cache/pretty-format-npm-27.5.1-cd7d49696f-0cbda1031a.zip/node_modules/pretty-format/",\
+        "packageDependencies": [\
+          ["pretty-format", "npm:27.5.1"],\
+          ["ansi-regex", "npm:5.0.1"],\
+          ["ansi-styles", "npm:5.2.0"],\
+          ["react-is", "npm:17.0.2"]\
+        ],\
+        "linkType": "HARD"\
+      }],\
       ["npm:29.7.0", {\
         "packageLocation": "./.yarn/cache/pretty-format-npm-29.7.0-7d330b2ea2-edc5ff89f5.zip/node_modules/pretty-format/",\
         "packageDependencies": [\
@@ -19187,6 +19396,13 @@ const RAW_RUNTIME_STATE =
         "packageLocation": "./.yarn/cache/react-is-npm-16.13.1-a9b9382b4f-33977da7a5.zip/node_modules/react-is/",\
         "packageDependencies": [\
           ["react-is", "npm:16.13.1"]\
+        ],\
+        "linkType": "HARD"\
+      }],\
+      ["npm:17.0.2", {\
+        "packageLocation": "./.yarn/cache/react-is-npm-17.0.2-091bbb8db6-2bdb6b93fb.zip/node_modules/react-is/",\
+        "packageDependencies": [\
+          ["react-is", "npm:17.0.2"]\
         ],\
         "linkType": "HARD"\
       }],\

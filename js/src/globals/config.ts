@@ -3,21 +3,22 @@ import {TransformLegacy} from '../gutenberg/helpers';
 import type {Attr as PageAttr} from '../gutenberg/blocks/pages/block';
 import type {Attr as CategoryAttr} from '../gutenberg/blocks/categories/block';
 import type {BlockAttributes, BlockSettings} from '@wordpress/blocks';
+import type {PreviewOptions} from '../gutenberg/blocks/Preview';
 
 export type Screen = 'site-editor' | 'widgets' | 'post' | 'customize';
 
 export type WPBoolean = '1' | '';
 
-interface JSConfig {
+export interface JSConfig {
 	blocks: {
 		categories: {
 			id: 'advanced-sidebar-menu/categories';
-			attributes: BlockAttributes<CategoryAttr>;
+			attributes: BlockAttributes<CategoryAttr & PreviewOptions>;
 			supports: BlockSettings<CategoryAttr>['supports'];
 		};
 		pages: {
 			id: 'advanced-sidebar-menu/pages';
-			attributes: BlockAttributes<PageAttr>;
+			attributes: BlockAttributes<PageAttr & PreviewOptions>;
 			supports: BlockSettings<PageAttr>['supports'];
 		};
 		navigation?: {
@@ -54,10 +55,11 @@ interface JSConfig {
 	siteInfo: {
 		basic: string;
 		classicWidgets: boolean;
+		menus: Array<object>;
 		php: string;
-		pro: string;
+		pro: string | false;
 		scriptDebug: boolean;
-		wordpress: string;
+		WordPress: string;
 	};
 	support: string;
 	transformLegacyWidget: TransformLegacy;

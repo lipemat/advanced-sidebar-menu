@@ -16,6 +16,7 @@ export type PreviewOptions = {
 	isServerSideRenderRequest: boolean;
 	clientId: string;
 	sidebarId: string;
+	style?: object;
 }
 
 type Props<A> = {

@@ -21,7 +21,7 @@ export type Attr = {
 
 // Options used by basic when available from PRO.
 type ProRegistered = {
-	taxonomy: string;
+	taxonomy?: string;
 }
 
 export type setAttributes = ( newValue: {

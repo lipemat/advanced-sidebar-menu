@@ -20,7 +20,7 @@ export type Attr = {
 
 // Options used by basic when available from PRO.
 type ProRegistered = {
-	post_type: string;
+	post_type?: string;
 }
 
 export type setAttributes = ( newValue: {
