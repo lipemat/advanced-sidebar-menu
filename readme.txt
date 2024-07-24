@@ -163,6 +163,7 @@ The Categories Menu widget/block contains a "Display categories on single posts"
 Yes. Based on whatever page, post or category you are on, the menu will change automatically to display the current parents and children.
 
 == Changelog ==
+
 = 9.6.0 =
 * Introduced `Widget/WidgtId` and `Widget/WithWidgetId` interfaces.
 * Introduced `Widget/WidgetIdAccess` and `Widget/Checbox` traits.
