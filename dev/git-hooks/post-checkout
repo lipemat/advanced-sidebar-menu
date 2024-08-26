@@ -4,9 +4,8 @@
 #
 # Runs the `post-merge` hook when a new branch is checked out.
 #
-# @version 1.0.1
+# @version 1.1.0
 #
 #####################################################################################
 
-DIR="$(cd "$(dirname "$(realpath "$0")}")" >/dev/null && pwd)"
-exec $DIR/post-merge
+source /e/scripts/git/hooks/version-1/post-checkout
