@@ -2,10 +2,10 @@
 
 #####################################################################################
 #
-# Get our local environment's dependencies up to date when merging a branch.
+# Run yarn dist to build the plugin after making a commit.
 #
 # @version 5.2.0
 #
 #####################################################################################
 
-source /e/scripts/git/hooks/version-1/post-merge-plugin
+source /e/scripts/git/hooks/version-1/post-commit-plugin
