@@ -1,0 +1,68 @@
+############################################################
+# Test and lint files in a pull request.
+#
+# Variables must be set in the calling repository.
+# https://github.com/lipemat/advanced-sidebar-menu/settings/variables/actions
+# vars:
+#   BASIC: The basic plugin slug.
+#   BASIC_BRANCH: The branch of the basic plugin.
+#   DIR: The directory of the plugin.
+#   NODE_VERSION: The version of Node to install.
+#   PHPCS_VERSION: The version of `lipemat/wp-phpcs` to install.
+#   PHPSTAN_VERSION: The version of PHPStan to install.
+#   PRO: The pro plugin slug.
+#   PRO_BRANCH: The branch of the pro plugin.
+# secrets:
+#   PUBLIC_ACTIONS_PRO_REPO: The token to access the pro repository.
+#
+# @version 0.0.6
+#
+############################################################
+
+name: Test & Lint Files
+
+on:
+  pull_request:
+    types:
+      - opened
+      - edited
+      - synchronize
+
+jobs:
+  php-lint:
+    strategy:
+      matrix:
+        php: [ 7.4, 8.0, 8.1, 8.2, 8.3 ]
+    uses: lipemat/public-actions/.github/workflows/php-lint.yml@version/1
+    with:
+      php: ${{ matrix.php }}
+  
+  wp-unit:
+    strategy:
+      matrix:
+        wp: [ 6.2.6, 6.6.1 ]
+        php: [ 7.4, 8.3 ]
+        multisite: [ 'multisite' ]
+    uses: lipemat/public-actions/.github/workflows/wp-unit-plugin.yml@version/1
+    with:
+      multisite: ${{ matrix.multisite }}
+      php: ${{ matrix.php }}
+      wp: ${{ matrix.wp }}
+    secrets: inherit
+  
+  phpstan:
+    strategy:
+      matrix:
+        combination:
+          - php: 7.4
+            stubs: 6.2.5
+          - php: 8.3
+            stubs: 6.6.0
+    uses: lipemat/public-actions/.github/workflows/phpstan-plugin.yml@version/1
+    with:
+      php: ${{ matrix.combination.php }}
+      stubs: ${{ matrix.combination.stubs }}
+    secrets: inherit
+  
+  phpcs:
+    uses: lipemat/public-actions/.github/workflows/phpcs-plugin.yml@version/1
