@@ -174,9 +174,6 @@ const Preview = <A, >( {attributes, block, clientId}: Props<A> ) => {
 
 	const sanitizedClientId = sanitizeClientId( clientId );
 
-	// Prevent styles from doubling up as they are already added via render in PHP.
-	delete blockProps.style;
-
 	return (
 		// eslint-disable-next-line jsx-a11y/click-events-have-key-events,jsx-a11y/no-static-element-interactions
 		<div
@@ -200,6 +197,7 @@ const Preview = <A, >( {attributes, block, clientId}: Props<A> ) => {
 				}}
 				block={block}
 				httpMethod={'POST'}
+				skipBlockSupportAttributes
 			/>
 		</div>
 	);
