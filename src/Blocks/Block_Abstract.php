@@ -363,21 +363,22 @@ abstract class Block_Abstract {
 			$this->spoof_wp_query();
 		}
 
+		$widget_args = $this->widget_args;
+
 		// Use the sidebar arguments if available.
 		if ( isset( $attr['sidebarId'], $GLOBALS['wp_registered_sidebars'][ $attr['sidebarId'] ] ) && '' !== $attr['sidebarId'] ) {
-			// @phpstan-ignore-next-line -- Until we can support @template in `\Union` we can't properly type this.
-			$this->widget_args = wp_parse_args( (array) $GLOBALS['wp_registered_sidebars'][ $attr['sidebarId'] ], $this->widget_args );
+			$widget_args = wp_parse_args( (array) $GLOBALS['wp_registered_sidebars'][ $attr['sidebarId'] ], $widget_args );
 		}
 
 		$classnames = '';
-		if ( class_exists( Style_Targeting::class ) && isset( $attr[ Style_Targeting::BLOCK_STYLE ] ) && true === $attr[ Style_Targeting::BLOCK_STYLE ] ) {
+		if ( \class_exists( Style_Targeting::class ) && isset( $attr[ Style_Targeting::BLOCK_STYLE ] ) && true === $attr[ Style_Targeting::BLOCK_STYLE ] ) {
 			$classnames .= ' advanced-sidebar-blocked-style';
 		}
 
-		if ( ! Utils::instance()->is_empty( $this->widget_args, 'before_widget' ) ) {
+		if ( ! Utils::instance()->is_empty( $widget_args, 'before_widget' ) ) {
 			// Add main CSS class to widgets wrap.
 			if ( false !== \strpos( $this->widget_args['before_widget'], 'widget_block' ) ) {
-				$this->widget_args['before_widget'] = \str_replace( 'widget_block', 'widget_block advanced-sidebar-menu', $this->widget_args['before_widget'] );
+				$widget_args['before_widget'] = \str_replace( 'widget_block', 'widget_block advanced-sidebar-menu', $widget_args['before_widget'] );
 			} else {
 				$classnames .= ' advanced-sidebar-menu';
 			}
@@ -403,16 +404,16 @@ abstract class Block_Abstract {
 		], $attr, $classnames, $this );
 
 		$wrapper_attributes = get_block_wrapper_attributes( $attributes );
-		$this->widget_args['before_widget'] .= \sprintf( '<%s %s>', $wrap, $wrapper_attributes );
-		$this->widget_args['after_widget'] = \sprintf( '</%s>', $wrap ) . $this->widget_args['after_widget'];
+		$widget_args['before_widget'] .= \sprintf( '<%s %s>', $wrap, $wrapper_attributes );
+		$widget_args['after_widget'] = \sprintf( '</%s>', $wrap ) . $widget_args['after_widget'];
 		// Passed via ServerSideRender, so we can enable accordions in Gutenberg editor.
 		if ( isset( $attr['clientId'] ) && '' !== \trim( $attr['clientId'] ) ) {
-			$this->widget_args['widget_id'] = $attr['clientId'];
+			$widget_args['widget_id'] = $attr['clientId'];
 		}
 
 		ob_start();
 		$widget = $this->get_widget_class();
-		$widget->widget( $this->widget_args, $this->convert_checkbox_values( $attr ) );
+		$widget->widget( $widget_args, $this->convert_checkbox_values( $attr ) );
 		return (string) ob_get_clean();
 	}
 }
