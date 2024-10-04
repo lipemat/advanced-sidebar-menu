@@ -350,6 +350,26 @@ abstract class Block_Abstract {
 
 
 	/**
+	 * Is the current render a `ServerSideRender` request?
+	 *
+	 * @since 9.7.0
+	 *
+	 * @todo  Switch to `wp_is_rest_endpoint` once WP 6.5 is the minimum.
+	 *
+	 * @phpstan-param \Union<SETTINGS, SHARED> $attr
+	 *
+	 * @param array                            $attr - Block attributes matching widget settings.
+	 *
+	 * @return bool
+	 */
+	protected function is_server_side_render( array $attr ): bool {
+		//phpcs:ignore WordPress.NamingConventions -- Temporarily using core filter from wp_is_rest_request.
+		$is_rest = (bool) apply_filters( 'wp_is_rest_endpoint', \defined( 'REST_REQUEST' ) && REST_REQUEST );
+		return $is_rest && ! Utils::instance()->is_empty( $attr, self::RENDER_REQUEST );
+	}
+
+
+	/**
 	 * Render the block by passing the attributes to the widget renders.
 	 *
 	 * @phpstan-param \Union<SETTINGS, SHARED> $attr
@@ -359,7 +379,7 @@ abstract class Block_Abstract {
 	 * @return string
 	 */
 	public function render( $attr ) {
-		if ( \defined( 'REST_REQUEST' ) && REST_REQUEST && ! Utils::instance()->is_empty( $attr, self::RENDER_REQUEST ) ) {
+		if ( $this->is_server_side_render( $attr ) ) {
 			$this->spoof_wp_query();
 		}
 
