@@ -370,6 +370,27 @@ abstract class Block_Abstract {
 
 
 	/**
+	 * When `ServerSideRender` is passed `skipBlockSupportAttributes` it removes
+	 * all styles added to the block wrapper in the editor. The `shadow` style
+	 * has not yet been added to the remove list, so we must do it manually,
+	 * or the box shadow will double up.
+	 *
+	 * @link https://github.com/WordPress/gutenberg/issues/65882
+	 * @todo Remove when issue is resolved.
+	 *
+	 * @internal
+	 *
+	 * @param string $wrapper_attributes - Attributes to add to the wrapper.
+	 *
+	 * @return string
+	 */
+	private function strip_box_shadow( string $wrapper_attributes ): string { //phpcs:ignore LipePlugin.CodeAnalysis.PrivateInClass -- Temporary method.
+		$wrapper_attributes = (string) \preg_replace( '/box-shadow:[^;]+;?/', '', $wrapper_attributes );
+		return \str_replace( 'style="" ', '', $wrapper_attributes );
+	}
+
+
+	/**
 	 * Render the block by passing the attributes to the widget renders.
 	 *
 	 * @phpstan-param \Union<SETTINGS, SHARED> $attr
@@ -424,6 +445,9 @@ abstract class Block_Abstract {
 		], $attr, $classnames, $this );
 
 		$wrapper_attributes = get_block_wrapper_attributes( $attributes );
+		if ( $this->is_server_side_render( $attr ) ) {
+			$wrapper_attributes = $this->strip_box_shadow( $wrapper_attributes );
+		}
 		$widget_args['before_widget'] .= \sprintf( '<%s %s>', $wrap, $wrapper_attributes );
 		$widget_args['after_widget'] = \sprintf( '</%s>', $wrap ) . $widget_args['after_widget'];
 		// Passed via ServerSideRender, so we can enable accordions in Gutenberg editor.
