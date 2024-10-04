@@ -21,7 +21,13 @@ jest.dontMock( 'jquery' );
  * Fixes Error: "Popover is not declared configurable"
  */
 const defineProperty = Object.defineProperty;
-Object.defineProperty = ( o, p, c ) => defineProperty( o, p, Object.assign( {}, c ?? {}, {configurable: true} ) );
+Object.defineProperty = ( o, p, c ) => {
+	const descriptor = Object.getOwnPropertyDescriptor( o, p );
+	if ( ! descriptor || true === descriptor.configurable ) {
+		return defineProperty( o, p, Object.assign( {}, c ?? {}, {configurable: true} ) );
+	}
+	return defineProperty( o, p, c );
+};
 
 /**
  * Requirements of Gutenberg version 10.7.4
