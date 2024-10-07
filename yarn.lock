@@ -2939,8 +2939,8 @@ __metadata:
   linkType: hard
 
 "@types/lipemat__js-boilerplate@github:lipemat/types-js-boilerplate#semver:^2, @types/lipemat__js-boilerplate@lipemat/types-js-boilerplate#semver:^2":
-  version: 2.13.1
-  resolution: "@types/lipemat__js-boilerplate@https://github.com/lipemat/types-js-boilerplate.git#commit=82bd8858c2ac37088342932af1d391978805267e"
+  version: 2.15.1
+  resolution: "@types/lipemat__js-boilerplate@https://github.com/lipemat/types-js-boilerplate.git#commit=73f6232232397fba3bbc4aaa1fadc2aa5bfdabf8"
   dependencies:
     "@types/codemirror": "npm:^5.60.5"
     "@types/jquery": "npm:^3.5.5"
@@ -2948,7 +2948,7 @@ __metadata:
     "@types/react-dom": "npm:^16 || ^17 || ^18"
     "@types/tinymce": "npm:^4.5.23"
     "@types/webpack-env": "npm:^1.18.0"
-  checksum: 10c0/27fd4f1d50da1df2b699fa121d32f10071bcbe1f8ca0bc1197071f9ba0e7df04feeda5c0d522b42f46672297992821f76656014404214db3e3e665f2bc74a268
+  checksum: 10c0/4f99f3211790bc7635b8bb7de8d69097cfc99c148d30cf6c39431cc487d5d5d53263e8e3e19fe2fd2e37dab4524e31a1a474eaf93a8b9a52626b47582e0b4d19
   languageName: node
   linkType: hard
 
@@ -4463,7 +4463,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"body-parser@npm:^1.20.3":
+"body-parser@npm:1.20.3":
   version: 1.20.3
   resolution: "body-parser@npm:1.20.3"
   dependencies:
@@ -6469,7 +6469,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"express@npm:^4.20.0":
+"express@npm:^4.17.3":
   version: 4.21.0
   resolution: "express@npm:4.21.0"
   dependencies:
@@ -9932,10 +9932,10 @@ __metadata:
   languageName: node
   linkType: hard
 
-"path-to-regexp@npm:^0.1.10":
-  version: 0.1.11
-  resolution: "path-to-regexp@npm:0.1.11"
-  checksum: 10c0/8ad06c6ac418cde34db4b0792204a628667a67141dc197cb85b5ad9f35810cbee34bd1aed336f960876dbd47326df30c8c5774fedf501cd67de87fb08384cfdf
+"path-to-regexp@npm:0.1.10":
+  version: 0.1.10
+  resolution: "path-to-regexp@npm:0.1.10"
+  checksum: 10c0/34196775b9113ca6df88e94c8d83ba82c0e1a2063dd33bfe2803a980da8d49b91db8104f49d5191b44ea780d46b8670ce2b7f4a5e349b0c48c6779b653f1afe4
   languageName: node
   linkType: hard
 
@@ -11343,7 +11343,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"send@npm:^0.19.0":
+"send@npm:0.19.0":
   version: 0.19.0
   resolution: "send@npm:0.19.0"
   dependencies:
@@ -11399,7 +11399,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"serve-static@npm:^1.16.0":
+"serve-static@npm:1.16.2":
   version: 1.16.2
   resolution: "serve-static@npm:1.16.2"
   dependencies:
