@@ -4,7 +4,7 @@ import ServerSideRender from '@wordpress/server-side-render';
 import {Placeholder, Spinner} from '@wordpress/components';
 import {useBlockProps} from '@wordpress/block-editor';
 import {sanitize} from 'dompurify';
-import {doAction} from '@wordpress/hooks';
+import {applyFilters, doAction} from '@wordpress/hooks';
 import {__} from '@wordpress/i18n';
 import {select} from '@wordpress/data';
 import {isScreen} from '../helpers';
@@ -174,6 +174,23 @@ const Preview = <A, >( {attributes, block, clientId}: Props<A> ) => {
 
 	const sanitizedClientId = sanitizeClientId( clientId );
 
+	let attributesToSend: A & PreviewOptions = {
+		...attributes,
+		isServerSideRenderRequest: true,
+		clientId: sanitizedClientId,
+		sidebarId: getSidebarId( clientId ),
+	};
+	/**
+	 * Filters the attributes sent to the preview.
+	 *
+	 * @since 9.6.3
+	 *
+	 * @param {Object} attributes The attributes to send to the preview.
+	 * @param {string} block      The block name.
+	 * @param {string} clientId   The client id.
+	 */
+	attributesToSend = applyFilters( 'advanced-sidebar-menu.blocks.preview.attributes', attributesToSend, block, clientId );
+
 	return (
 		// eslint-disable-next-line jsx-a11y/click-events-have-key-events,jsx-a11y/no-static-element-interactions
 		<div
@@ -188,13 +205,7 @@ const Preview = <A, >( {attributes, block, clientId}: Props<A> ) => {
 			<ServerSideRender<A & PreviewOptions>
 				EmptyResponsePlaceholder={placeholder( block )}
 				LoadingResponsePlaceholder={TriggerWhenLoadingFinished}
-				attributes={{
-					...attributes,
-					// Send custom attribute to determine server side renders.
-					isServerSideRenderRequest: true,
-					clientId: sanitizedClientId,
-					sidebarId: getSidebarId( clientId ),
-				}}
+				attributes={attributesToSend}
 				block={block}
 				httpMethod={'POST'}
 				skipBlockSupportAttributes
