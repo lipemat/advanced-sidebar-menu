@@ -347,9 +347,10 @@ class Category extends Menu_Abstract implements Menu {
 				}
 			}
 
-			$view = require Core::instance()->get_template_part( 'category_list.php' );
+			$crumb = '';
+			$view = require Core::instance()->get_template_part( 'category_list.php', $crumb );
 
-			$output .= apply_filters( 'advanced-sidebar-menu/menus/category/output', $view, $this->args, $this->instance, $this );
+			$output .= apply_filters( 'advanced-sidebar-menu/menus/category/output', $crumb . $view, $this->args, $this->instance, $this );
 
 			if ( $close_menu ) {
 				$this->close_menu( $output );
