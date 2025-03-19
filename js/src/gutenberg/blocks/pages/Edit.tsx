@@ -56,6 +56,17 @@ const Edit = ( {attributes, setAttributes, clientId, name}: Props ) => {
 
 	return ( <>
 		<InspectorControls>
+			<div className={'components-panel__body is-opened'}>
+				<a
+					href={CONFIG.docs.page}
+					target="_blank"
+					rel="noopener noreferrer"
+				>
+					{__( 'Documentation', 'advanced-sidebar-menu' )}
+				</a>
+			</div>
+		</InspectorControls>
+		<InspectorControls>
 			{isScreen( [ 'widgets', 'site-editor', 'customize' ] ) && <PanelBody>
 				<TextControl
 					value={attributes.title ?? ''}
@@ -71,7 +82,6 @@ const Edit = ( {attributes, setAttributes, clientId, name}: Props ) => {
 					type={postType} />
 
 				<div className={'components-panel__body is-opened'}>
-
 					<Slot<FillProps>
 						name="advanced-sidebar-menu/pages/general"
 						fillProps={fillProps} />
@@ -94,17 +104,8 @@ const Edit = ( {attributes, setAttributes, clientId, name}: Props ) => {
 						type={postType}
 						attributes={attributes}
 						setAttributes={setAttributes} />
-
-					<p>
-						<a
-							href={CONFIG.docs.page}
-							target="_blank"
-							rel="noopener noreferrer"
-						>
-							{__( 'block documentation', 'advanced-sidebar-menu' )}
-						</a>
-					</p>
 				</div>
+
 			</ErrorBoundary>
 			<ErrorBoundary attributes={attributes} block={name} section={'pages/Edit/inspector'}>
 				<Slot<FillProps>

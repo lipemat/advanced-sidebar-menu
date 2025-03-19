@@ -52,6 +52,17 @@ const Edit = ( {attributes, setAttributes, clientId, name}: Props ) => {
 
 	return ( <>
 		<InspectorControls>
+			<div className={'components-panel__body is-opened'}>
+				<a
+					href={CONFIG.docs.category}
+					target="_blank"
+					rel="noopener noreferrer"
+				>
+					{__( 'Documentation', 'advanced-sidebar-menu' )}
+				</a>
+			</div>
+		</InspectorControls>
+		<InspectorControls>
 			{isScreen( [ 'widgets', 'site-editor', 'customize' ] ) && <PanelBody>
 				<TextControl
 					value={attributes.title ?? ''}
@@ -111,15 +122,6 @@ const Edit = ( {attributes, setAttributes, clientId, name}: Props ) => {
 						attributes={attributes}
 						setAttributes={setAttributes} />
 
-					<p>
-						<a
-							href={CONFIG.docs.category}
-							target="_blank"
-							rel="noopener noreferrer"
-						>
-							{__( 'block documentation', 'advanced-sidebar-menu' )}
-						</a>
-					</p>
 				</div>
 			</ErrorBoundary>
 			<ErrorBoundary
@@ -146,6 +148,7 @@ const Edit = ( {attributes, setAttributes, clientId, name}: Props ) => {
 			</ErrorBoundary>
 		</BlockControls>
 
+
 		<InfoPanel clientId={clientId} />
 
 		<ErrorBoundary attributes={attributes} block={name} section={'categories/Edit/preview'}>
@@ -153,6 +156,7 @@ const Edit = ( {attributes, setAttributes, clientId, name}: Props ) => {
 		</ErrorBoundary>
 
 		<SideLoad clientId={clientId} />
+
 	</> );
 };
 
