@@ -1,5 +1,5 @@
 === Advanced Sidebar Menu ===
-Contributors: Mat Lipe, onpointplugins
+Contributors: onpointplugins, Mat Lipe
 Donate link: https://www.paypal.com/cgi-bin/webscr?cmd=_donations&business=paypal%40onpointplugins%2ecom&lc=US&item_name=Advanced%20Sidebar%20Menu&no_note=0&currency_code=USD&bn=PP%2dDonationsBF%3abtn_donateCC_LG%2egif%3aNonHostedGuest
 Tags: menus, page menus, category menus, sidebars, hierarchy
 Requires at least: 6.2.0
@@ -19,6 +19,8 @@ Uses the parent/child relationship of your pages or categories to generate menus
 Keeps the menu clean and usable. Only related items display, so you don't have to worry about keeping a custom menu up to date or displaying links to items that don't belong.
 
 Blocks are available to display menus where you need them. Look for the "Advanced Sidebar - Pages" block, or the "Advanced Sidebar - Categories" block. Widgets are also available for page builders or sites using classic widgets.
+
+**Developed and Supported by <a href="https://onpointplugins.com/advanced-sidebar-menu/" target="_blank">OnPoint Plugins</a>.**
 
 <h3>Features</h3>
 * Page and Category menu Gutenberg blocks.
