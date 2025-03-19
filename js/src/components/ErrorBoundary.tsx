@@ -45,10 +45,10 @@ class ErrorBoundary extends Component<PropsWithChildren<Props>, {
 	 *         mode but provides full error info in React production.
 	 */
 	componentDidCatch( error: Error, info: ErrorInfo ) {
-		console.log( '%cError caught by the Advanced Sidebar ErrorBoundary!', 'color:orange; font-size: large; font-weight: bold' );
-		console.log( this.props );
-		console.log( error );
-		console.log( info );
+		console.warn( '%cError caught by the Advanced Sidebar ErrorBoundary!', 'color:orange; font-size: large; font-weight: bold' );
+		console.warn( this.props );
+		console.warn( error );
+		console.warn( info );
 		this.setState( {
 			error,
 		} );

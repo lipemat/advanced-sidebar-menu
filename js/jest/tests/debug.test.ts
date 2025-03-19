@@ -10,7 +10,7 @@ describe( 'debug.ts', () => {
 	 * the output.
 	 */
 	beforeAll( async () => {
-		consoleSpy = jest.spyOn( console, 'log' ).mockImplementation();
+		consoleSpy = jest.spyOn( console, 'debug' ).mockImplementation();
 
 		const module = await import( '../../../../advanced-sidebar-menu/js/src/debug' );
 		serializeObject = module.serializeObject;

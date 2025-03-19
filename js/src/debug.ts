@@ -77,8 +77,8 @@ export function advancedSidebarMenuDebug( params: object ) {
 
 window.advancedSidebarMenuDebug = advancedSidebarMenuDebug;
 
-console.log( 'Advanced Sidebar Info:' );
-console.log( {...window.asm_debug, menus: 'See below for menus.'} );
-console.log( 'Advanced Sidebar Menus:' );
-console.log( window.asm_debug.menus );
-console.log( 'The `advancedSidebarMenuDebug` function is available for debugging.' );
+console.debug( 'Advanced Sidebar Info:' );
+console.debug( {...window.asm_debug, menus: 'See below for menus.'} );
+console.debug( 'Advanced Sidebar Menus:' );
+console.debug( window.asm_debug.menus );
+console.debug( 'The `advancedSidebarMenuDebug` function is available for debugging.' );

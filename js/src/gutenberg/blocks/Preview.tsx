@@ -97,7 +97,6 @@ const Navigation = () => <Placeholder
  * @notice The styles will not display for the preview
  *         in the block inserter sidebar when Webpack
  *         is enabled because the iframe has a late init.
- *
  */
 const placeholder = ( block: string ): () => ReactElement => {
 	switch ( block ) {
@@ -118,7 +117,6 @@ const placeholder = ( block: string ): () => ReactElement => {
  * components to hook into when ServerSideRender has finished loading.
  *
  * @notice Using a constant to prevent a reload on every content change.
- *
  */
 const TriggerWhenLoadingFinished = ( {
 	children,
