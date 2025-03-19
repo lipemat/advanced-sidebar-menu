@@ -60,6 +60,9 @@ Blocks are available to display menus where you need them. Look for the "Advance
 <h3>Documentation</h3>
 The official documentation for the plugin <a target="_blank" href="https://onpointplugins.com/advanced-sidebar-menu/">may be found here</a>.
 
+<h3>Demo</h3>
+In interactive demonstration of the generated menu structure <a target="_blank" href="https://onpointplugins.com/advanced-sidebar-menu/#interactive-demo">may be found here</a>.
+
 <h3>Developers</h3>
 Developer docs <a target="_blank" href="https://onpointplugins.com/advanced-sidebar-menu/developer-docs/">may be found here</a>.
 
