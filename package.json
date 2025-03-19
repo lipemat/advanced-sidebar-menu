@@ -27,16 +27,16 @@
     "@testing-library/react": "^14",
     "@types/jest": "^29",
     "@wordpress/block-editor": "11.3.9",
+    "@wordpress/browserslist-config": "^6.19.0",
     "@wordpress/server-side-render": "4.3.6",
     "jquery": "3.6.4",
     "react-string-replace": "^1.1.1"
   },
   "devDependencies": {
     "@lipemat/eslint-config": "^3.3.1",
-    "@lipemat/js-boilerplate": "^10.9.2",
+    "@lipemat/js-boilerplate": "^10.11.5",
     "@lipemat/js-boilerplate-gutenberg": "^3.4.1",
     "@lipemat/stylelint-config": "^2.2.1",
-    "@types/dompurify": "^3.0.1",
     "@types/jquery": "^3",
     "@types/lipemat__js-boilerplate": "lipemat/types-js-boilerplate#semver:^2",
     "@types/lodash": "^4.14.182",
@@ -44,12 +44,12 @@
     "@types/react": "~18.2.0",
     "@types/react-dom": "~18.2.0",
     "classnames": "^2.3.2",
-    "dompurify": "^3.1.6",
+    "dompurify": "^3.2.4",
     "eslint": "^8",
     "jest": "^29",
     "stylelint": "^14",
     "ts-node": "^10.9.1",
-    "typescript": "^5.5.3"
+    "typescript": "^5.8.2"
   },
   "resolutions": {
     "@types/react": "~18.2.0",
@@ -57,5 +57,5 @@
     "react": "18.2.0",
     "react-dom": "18.2.0"
   },
-  "packageManager": "yarn@4.6.0"
+  "packageManager": "yarn@4.7.0"
 }

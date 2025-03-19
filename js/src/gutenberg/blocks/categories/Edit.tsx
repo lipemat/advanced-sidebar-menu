@@ -1,6 +1,6 @@
 import {useSelect} from '@wordpress/data';
 import {CONFIG} from '../../../globals/config';
-import {sanitize} from 'dompurify';
+import DOMPurify from 'dompurify';
 import {BlockControls, InspectorControls} from '@wordpress/block-editor';
 import Preview from '../Preview';
 import {Attr, block} from './block';
@@ -13,9 +13,10 @@ import {__, sprintf} from '@wordpress/i18n';
 import InfoPanel from '../InfoPanel';
 import SideLoad from '../../SideLoad';
 import {isScreen} from '../../helpers';
+import ExcludeField from '../ExcludeField';
 
 import styles from '../pages/edit.pcss';
-import ExcludeField from '../ExcludeField';
+
 
 export type FillProps =
 	Pick<BlockEditProps<Attr>, 'clientId' | 'attributes' | 'setAttributes' | 'name'>
@@ -35,7 +36,7 @@ const Edit = ( {attributes, setAttributes, clientId, name}: Props ) => {
 			<InspectorControls>
 				<div
 					className={styles.error}
-					dangerouslySetInnerHTML={{__html: sanitize( CONFIG.error )}} />
+					dangerouslySetInnerHTML={{__html: DOMPurify.sanitize( CONFIG.error )}} />
 			</InspectorControls>
 			<Preview<Attr> attributes={attributes} block={block.id} clientId={clientId} />
 		</> );

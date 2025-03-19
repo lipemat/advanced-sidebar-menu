@@ -3,7 +3,7 @@ import {CONFIG} from '../../globals/config';
 import ServerSideRender from '@wordpress/server-side-render';
 import {Placeholder, Spinner} from '@wordpress/components';
 import {useBlockProps} from '@wordpress/block-editor';
-import {sanitize} from 'dompurify';
+import DOMPurify from 'dompurify';
 import {applyFilters, doAction} from '@wordpress/hooks';
 import {__} from '@wordpress/i18n';
 import {select} from '@wordpress/data';
@@ -168,7 +168,7 @@ const Preview = <A, >( {attributes, block, clientId}: Props<A> ) => {
 	if ( '' !== CONFIG.error ) {
 		return <div
 			className={styles.error}
-			dangerouslySetInnerHTML={{__html: sanitize( CONFIG.error )}} />;
+			dangerouslySetInnerHTML={{__html: DOMPurify.sanitize( CONFIG.error )}} />;
 	}
 
 

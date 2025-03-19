@@ -7,15 +7,15 @@ import Display from '../Display';
 import {useSelect} from '@wordpress/data';
 import InfoPanel from '../InfoPanel';
 import {CONFIG} from '../../../globals/config';
-import {sanitize} from 'dompurify';
 import {__} from '@wordpress/i18n';
 import {Type} from '@wordpress/api/types';
 import ErrorBoundary from '../../../components/ErrorBoundary';
 import SideLoad from '../../SideLoad';
 import {isScreen} from '../../helpers';
+import ExcludeField from '../ExcludeField';
+import DOMPurify from 'dompurify';
 
 import styles from './edit.pcss';
-import ExcludeField from '../ExcludeField';
 
 
 export type FillProps =
@@ -39,7 +39,7 @@ const Edit = ( {attributes, setAttributes, clientId, name}: Props ) => {
 			<InspectorControls>
 				<div
 					className={styles.error}
-					dangerouslySetInnerHTML={{__html: sanitize( CONFIG.error )}} />
+					dangerouslySetInnerHTML={{__html: DOMPurify.sanitize( CONFIG.error )}} />
 			</InspectorControls>
 			<Preview<Attr> attributes={attributes} block={block.id} clientId={clientId} />
 		</> );

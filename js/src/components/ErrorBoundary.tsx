@@ -1,7 +1,7 @@
 import {Component, ErrorInfo, PropsWithChildren} from 'react';
 import {CONFIG} from '../globals/config';
 import {addQueryArgs} from '@wordpress/url';
-import {sanitize} from 'dompurify';
+import DOMPurify from 'dompurify';
 
 type Props = {
 	attributes: object,
@@ -63,7 +63,7 @@ class ErrorBoundary extends Component<PropsWithChildren<Props>, {
 					</h4>
 					<p>
 						Please <a
-							href={addQueryArgs( sanitize( window.location.href ), {
+							href={addQueryArgs( DOMPurify.sanitize( window.location.href ), {
 								'script-debug': 'true',
 							}, )}
 						>enable script debug</a> to retrieve error information.
