@@ -9,7 +9,6 @@
 #   DIR: The directory of the plugin.
 #   NODE_VERSION: The version of Node to install.
 #   PHPCS_VERSION: The version of `lipemat/wp-phpcs` to install.
-#   PHPSTAN_VERSION: The version of PHPStan to install.
 #   PRO: The pro plugin slug.
 #   PRO_BRANCH: The branch of the pro plugin.
 # secrets:
