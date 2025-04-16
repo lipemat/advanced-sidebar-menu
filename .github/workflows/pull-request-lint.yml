@@ -62,6 +62,7 @@ jobs:
     uses: lipemat/public-actions/.github/workflows/phpstan-plugin.yml@version/1
     with:
       php: ${{ matrix.combination.php }}
+      phpstan-version: ${{ matrix.combination.phpstan-version }}
       stubs: ${{ matrix.combination.stubs }}
     secrets: inherit
   
