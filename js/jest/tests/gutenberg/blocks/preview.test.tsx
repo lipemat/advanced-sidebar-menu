@@ -1,4 +1,4 @@
-import Preview, {type PreviewOptions} from '../../../../src/gutenberg/blocks/Preview';
+import Preview, {type ServerSideRenderRequired} from '../../../../src/gutenberg/blocks/Preview';
 import {fireEvent, render} from '@testing-library/react';
 import {addFilter} from '@wordpress/hooks';
 import CategorySimpleAccordion from '../../../fixtures/category-counts-accordion';
@@ -6,7 +6,7 @@ import CategorySimpleAccordion from '../../../fixtures/category-counts-accordion
 const mockServerSideRender = jest.fn();
 
 jest.mock( '@wordpress/server-side-render', () => {
-	return ( attr: PreviewOptions ) => mockServerSideRender( attr );
+	return ( attr: ServerSideRenderRequired ) => mockServerSideRender( attr );
 } );
 
 jest.mock( '@wordpress/block-editor', () => {
@@ -85,7 +85,7 @@ describe( 'Preview component', () => {
 			'simple-li',
 			'simple-ul',
 			'simple-icon',
-		]
+		];
 		NO_FIRE.forEach( text => {
 			expect( getByText( text ) ).toBeInTheDocument();
 			const result = fireEvent.click( getByText( text ) );

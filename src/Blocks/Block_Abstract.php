@@ -246,27 +246,16 @@ abstract class Block_Abstract {
 	 * Get attributes defined in this class as well
 	 * as common attributes shared by all blocks.
 	 *
+	 * @notice To be used when registering via PHP, not in JS.
+	 *
 	 * @phpstan-return array<string, ATTR_SHAPE>
 	 * @return array
 	 */
 	protected function get_all_attributes() {
-		return \array_merge( [
-			'clientId'           => [
-				'type' => 'string',
-			],
-			self::RENDER_REQUEST => [
-				'type' => 'boolean',
-			],
-			'sidebarId'          => [
-				'type' => 'string',
-			],
-			'style'              => [
-				'type' => 'object',
-			],
-			Menu_Abstract::TITLE => [
-				'type' => 'string',
-			],
-		], $this->get_attributes() );
+		return \array_merge(
+			Common_Attributes::instance()->get_common_attributes(),
+			Common_Attributes::instance()->get_server_side_render_attributes(),
+			$this->get_attributes() );
 	}
 
 
@@ -282,7 +271,7 @@ abstract class Block_Abstract {
 	public function js_config( array $config ) {
 		$config['blocks'][ \explode( '/', static::NAME )[1] ] = [
 			'id'         => static::NAME,
-			'attributes' => $this->get_all_attributes(),
+			'attributes' => $this->get_attributes(),
 			'supports'   => $this->get_block_support(),
 		];
 
@@ -299,7 +288,7 @@ abstract class Block_Abstract {
 	 * @return array<string, mixed>
 	 */
 	public function convert_checkbox_values( array $attr ): array {
-		// Map the boolean values to widget style 'checked'.
+		// Map the boolean values to the widget style 'checked'.
 		return Utils::instance()->array_map_recursive( function( $value ) {
 			if ( true === $value ) {
 				return 'checked';

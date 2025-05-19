@@ -58,9 +58,9 @@ class Pages extends Block_Abstract {
 
 
 	/**
-	 * Get list of words used to search for the block.
+	 * Get a list of words used to search for the block.
 	 *
-	 * English and translated so both will be searchable.
+	 * English and translated, so both will be searchable.
 	 *
 	 * @return array<string>
 	 */
