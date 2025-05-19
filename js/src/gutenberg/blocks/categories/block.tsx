@@ -4,6 +4,7 @@ import Edit from './Edit';
 import {DisplayOptions} from '../Display';
 import {transformLegacyWidget} from '../../helpers';
 import {__} from '@wordpress/i18n';
+import type {CommonAttr} from '../Preview';
 
 /**
  * Attributes specific to the widget as well as shared
@@ -16,8 +17,7 @@ export type Attr = {
 	exclude: string;
 	new_widget: 'widget' | 'list';
 	single: boolean;
-	title?: string;
-} & DisplayOptions & ProRegistered;
+} & DisplayOptions & ProRegistered & CommonAttr;
 
 // Options used by basic when available from PRO.
 type ProRegistered = {
@@ -75,7 +75,7 @@ export const settings: BlockSettings<Attr, '', LegacyWidget<Attr & { title: stri
 				blocks: [ 'core/legacy-widget' ],
 				isMatch: ( {idBase, instance} ) => {
 					if ( null === instance?.raw ) {
-						// Can't transform if raw instance is not shown in REST API.
+						// Can't transform if the raw instance is not shown in REST API.
 						return false;
 					}
 					return 'advanced_sidebar_menu_category' === idBase;
@@ -84,7 +84,7 @@ export const settings: BlockSettings<Attr, '', LegacyWidget<Attr & { title: stri
 			},
 		],
 	},
-	attributes: block.attributes,
+	attributes: {...block.attributes, ...CONFIG.blocks.commonAttr, ...CONFIG.blocks.previewAttr},
 	supports: block.supports,
 	edit: props => (
 		<Edit {...props} />

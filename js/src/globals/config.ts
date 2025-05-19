@@ -3,7 +3,7 @@ import {TransformLegacy} from '../gutenberg/helpers';
 import type {Attr as PageAttr} from '../gutenberg/blocks/pages/block';
 import type {Attr as CategoryAttr} from '../gutenberg/blocks/categories/block';
 import type {BlockAttributes, BlockSettings} from '@wordpress/blocks';
-import type {PreviewOptions} from '../gutenberg/blocks/Preview';
+import type {CommonAttr, ServerSideRenderRequired} from '../gutenberg/blocks/Preview';
 
 export type Screen = 'site-editor' | 'widgets' | 'post' | 'customize';
 
@@ -11,14 +11,16 @@ export type WPBoolean = '1' | '';
 
 export interface JSConfig {
 	blocks: {
+		commonAttr: BlockAttributes<CommonAttr>;
+		previewAttr: BlockAttributes<ServerSideRenderRequired>;
 		categories: {
 			id: 'advanced-sidebar-menu/categories';
-			attributes: BlockAttributes<CategoryAttr & PreviewOptions>;
+			attributes: BlockAttributes<CategoryAttr>;
 			supports: BlockSettings<CategoryAttr>['supports'];
 		};
 		pages: {
 			id: 'advanced-sidebar-menu/pages';
-			attributes: BlockAttributes<PageAttr & PreviewOptions>;
+			attributes: BlockAttributes<PageAttr>;
 			supports: BlockSettings<PageAttr>['supports'];
 		};
 		navigation?: {

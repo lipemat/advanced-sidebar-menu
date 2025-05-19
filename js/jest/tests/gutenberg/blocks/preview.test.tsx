@@ -1,11 +1,11 @@
-import Preview, {type PreviewOptions} from '../../../../src/gutenberg/blocks/Preview';
+import Preview, {type ServerSideRenderRequired} from '../../../../src/gutenberg/blocks/Preview';
 import {render} from '@testing-library/react';
 import {addFilter} from '@wordpress/hooks';
 
 const mockServerSideRender = jest.fn();
 
 jest.mock( '@wordpress/server-side-render', () => {
-	return ( attr: PreviewOptions ) => mockServerSideRender( attr );
+	return ( attr: ServerSideRenderRequired ) => mockServerSideRender( attr );
 } );
 
 jest.mock( '@wordpress/block-editor', () => {
