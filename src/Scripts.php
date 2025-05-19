@@ -81,7 +81,7 @@ class Scripts {
 	 * within the iframes of areas such as FSE.
 	 *
 	 * The actual script/style loading is done via `register_block_type`
-	 * using 'editor_script' and 'editor_style'.
+	 * using 'editor_script_handles' and 'editor_style_handles'.
 	 *
 	 * @action init 10 0
 	 *

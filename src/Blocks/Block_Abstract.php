@@ -238,16 +238,6 @@ abstract class Block_Abstract {
 			'supports'              => $this->get_block_support(),
 		] );
 
-		// Translate deprecated keys until required PRO version is 9.5.0.
-		if ( isset( $args['editor_script'] ) ) {
-			$args['editor_script_handles'] = (array) $args['editor_script'];
-			unset( $args['editor_script'] );
-		}
-		if ( isset( $args['editor_style'] ) ) {
-			$args['editor_style_handles'] = (array) $args['editor_style'];
-			unset( $args['editor_style'] );
-		}
-
 		register_block_type( static::NAME, $args );
 	}
 
