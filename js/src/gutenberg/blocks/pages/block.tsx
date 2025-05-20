@@ -2,7 +2,7 @@ import {BlockSettings, LegacyWidget} from '@wordpress/blocks';
 import {CONFIG} from '../../../globals/config';
 import Edit from './Edit';
 import {DisplayOptions} from '../Display';
-import {transformLegacyWidget} from '../../helpers';
+import {transformLegacyWidget, translateBlockAttributes} from '../../helpers';
 import {__} from '@wordpress/i18n';
 import type {CommonAttr} from '../Preview';
 
@@ -85,7 +85,7 @@ export const settings: BlockSettings<Attr, '', LegacyWidget<Attr & { title: stri
 			},
 		],
 	},
-	attributes: {...block.attributes, ...CONFIG.blocks.commonAttr, ...CONFIG.blocks.previewAttr},
+	attributes: translateBlockAttributes<Attr>( block.attributes ),
 	supports: block.supports,
 	edit: props => (
 		<Edit {...props} />

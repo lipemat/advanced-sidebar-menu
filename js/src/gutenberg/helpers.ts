@@ -1,5 +1,6 @@
-import {createBlock, CreateBlock} from '@wordpress/blocks';
+import {type BlockAttributes, createBlock, CreateBlock} from '@wordpress/blocks';
 import {CONFIG, Screen} from '../globals/config';
+import type {CommonAttr, ServerSideRenderRequired} from './blocks/Preview';
 
 export type TransformLegacy = <Attr>( name: string ) => ( widgetValues: {
 	instance: { [ key: string ]: string | number | object | boolean }
@@ -19,6 +20,15 @@ export const isScreen = ( screens: Array<Screen> ): boolean => {
 export const transformLegacyWidget: TransformLegacy = <A>( name: string ) => ( {instance} ) => {
 	return createBlock<A>( name, translateLegacyWidget<A>( instance.raw ) );
 };
+
+/**
+ * Merge the common attributes and preview attributes into the block attributes.
+ *
+ * @since 9.7.0
+ */
+export function translateBlockAttributes<Attr>( attributes: BlockAttributes<Attr> ): BlockAttributes<Attr & CommonAttr & ServerSideRenderRequired> {
+	return {...attributes, ...CONFIG.blocks.commonAttr, ...CONFIG.blocks.previewAttr};
+}
 
 /**
  * Translate the widget's "checked" to the boolean
