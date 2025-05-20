@@ -6,26 +6,111 @@ jest.mock( '@lipemat/js-boilerplate-gutenberg', () => ( {
 } ) );
 
 describe( 'Gutenberg', () => {
-	it( 'Translates block attributes into PRO < 9.9.0 format.', () => {
+	it( 'Translates categories block attributes into PRO < 9.9.0 format.', () => {
 		Index();
 
 		const blocks = window.ADVANCED_SIDEBAR_MENU.blocks;
-		expect( blocks.categories.attributes ).toEqual( {
-			...blocks.categories.attributes,
-			...blocks.commonAttr,
-			...blocks.previewAttr,
-		} );
-		expect( blocks.pages.attributes ).toEqual( {
-			...blocks.pages.attributes,
-			...blocks.commonAttr,
-			...blocks.previewAttr,
-		} );
-		if ( window.ADVANCED_SIDEBAR_MENU.blocks.navigation && blocks.navigation ) {
-			expect( blocks.navigation.attributes ).toEqual( {
-				...blocks.navigation.attributes,
-				...blocks.commonAttr,
-				...blocks.previewAttr,
-			} );
-		}
+
+		const attributes = blocks.categories?.attributes ?? {};
+		expect( attributes ).toMatchInlineSnapshot( `
+{
+  "clientId": {
+    "type": "string",
+  },
+  "display_all": {
+    "default": false,
+    "type": "boolean",
+  },
+  "exclude": {
+    "default": "",
+    "type": "string",
+  },
+  "include_childless_parent": {
+    "default": false,
+    "type": "boolean",
+  },
+  "include_parent": {
+    "default": false,
+    "type": "boolean",
+  },
+  "isServerSideRenderRequest": {
+    "type": "boolean",
+  },
+  "levels": {
+    "default": 100,
+    "type": "number",
+  },
+  "new_widget": {
+    "default": "list",
+    "enum": [
+      "list",
+      "widget",
+    ],
+    "type": "string",
+  },
+  "sidebarId": {
+    "type": "string",
+  },
+  "single": {
+    "default": true,
+    "type": "boolean",
+  },
+  "style": {
+    "type": "object",
+  },
+  "title": {
+    "type": "string",
+  },
+}
+` );
+	} );
+
+
+	it( 'Translates pages block attributes into PRO < 9.9.0 format.', () => {
+		Index();
+
+		const blocks = window.ADVANCED_SIDEBAR_MENU.blocks;
+
+		const attributes = blocks.pages?.attributes ?? {};
+		expect( attributes ).toMatchInlineSnapshot( `
+{
+  "clientId": {
+    "type": "string",
+  },
+  "display_all": {
+    "type": "boolean",
+  },
+  "exclude": {
+    "default": "",
+    "type": "string",
+  },
+  "include_childless_parent": {
+    "type": "boolean",
+  },
+  "include_parent": {
+    "type": "boolean",
+  },
+  "isServerSideRenderRequest": {
+    "type": "boolean",
+  },
+  "levels": {
+    "default": 100,
+    "type": "number",
+  },
+  "order_by": {
+    "default": "menu_order",
+    "type": "string",
+  },
+  "sidebarId": {
+    "type": "string",
+  },
+  "style": {
+    "type": "object",
+  },
+  "title": {
+    "type": "string",
+  },
+}
+` );
 	} );
 } );
