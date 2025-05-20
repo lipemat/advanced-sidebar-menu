@@ -113,4 +113,34 @@ describe( 'Gutenberg', () => {
 }
 ` );
 	} );
+
+
+	it( 'Translates page block supports into PRO < 9.9.0 format.', () => {
+		Index();
+
+		const blocks = window.ADVANCED_SIDEBAR_MENU.blocks;
+
+		const supports = blocks.pages?.supports ?? {};
+		expect( supports ).toMatchInlineSnapshot( `
+{
+  "anchor": true,
+  "html": false,
+}
+` );
+	} );
+
+
+	it( 'Translates categories block supports into PRO < 9.9.0 format.', () => {
+		Index();
+
+		const blocks = window.ADVANCED_SIDEBAR_MENU.blocks;
+
+		const supports = blocks.categories?.supports ?? {};
+		expect( supports ).toMatchInlineSnapshot( `
+{
+  "anchor": true,
+  "html": false,
+}
+` );
+	} );
 } );

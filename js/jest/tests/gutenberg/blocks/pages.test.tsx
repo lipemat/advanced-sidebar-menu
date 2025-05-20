@@ -1,6 +1,6 @@
 import {settings} from '../../../../src/gutenberg/blocks/pages/block';
 
-jest.mock( '@wordpress/block-editor', () => ( {} ) );
+jest.mock( '../../../../src/gutenberg/blocks/pages/Edit.tsx', () => ( {} ) );
 
 
 describe( 'Pages Block', () => {
@@ -44,6 +44,14 @@ describe( 'Pages Block', () => {
 					type: 'string',
 				},
 			} );
+		} );
+	} );
+
+
+	it( 'Should have the correct support', () => {
+		expect( settings.supports ).toEqual( {
+			anchor: true,
+			html: false,
 		} );
 	} );
 } );
