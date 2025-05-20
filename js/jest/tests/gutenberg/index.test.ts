@@ -14,9 +14,10 @@ describe( 'Gutenberg', () => {
 		window.ADVANCED_SIDEBAR_MENU.isProCommonAttr = '';
 	} );
 
-	it( 'Translates categories block attributes into PRO < 9.9.0 format.', () => {
-		Index();
-		const blocks = window.ADVANCED_SIDEBAR_MENU.blocks;
+	describe( 'Legacy PRO < 9.9.0', () => {
+		it( 'Translates categories block attributes into PRO < 9.9.0 format.', () => {
+			Index();
+			const blocks = window.ADVANCED_SIDEBAR_MENU.blocks;
 
 		const attributes = blocks.categories?.attributes ?? {};
 		expect( attributes ).toMatchInlineSnapshot( `
@@ -235,5 +236,29 @@ describe( 'Gutenberg', () => {
   "html": false,
 }
 ` );
+		} );
+	} );
+
+
+	describe( 'Passing to PRO', () => {
+		test( 'Passed globals', () => {
+			window.ADVANCED_SIDEBAR_MENU.isPro = '';
+			Index();
+
+			expect( window.ADVANCED_SIDEBAR_MENU ).not.toHaveProperty( 'ErrorBoundary' );
+			expect( window.ADVANCED_SIDEBAR_MENU ).not.toHaveProperty( 'getBlockSupports' );
+			expect( window.ADVANCED_SIDEBAR_MENU ).not.toHaveProperty( 'transformLegacyWidget' );
+			expect( window.ADVANCED_SIDEBAR_MENU ).not.toHaveProperty( 'translateBlockAttributes' );
+			expect( window.ADVANCED_SIDEBAR_MENU ).not.toHaveProperty( 'Preview' );
+
+			window.ADVANCED_SIDEBAR_MENU.isPro = '1';
+			Index();
+
+			expect( window.ADVANCED_SIDEBAR_MENU.ErrorBoundary ).toBe( ErrorBoundary );
+			expect( window.ADVANCED_SIDEBAR_MENU.getBlockSupports ).toBe( getBlockSupports );
+			expect( window.ADVANCED_SIDEBAR_MENU.transformLegacyWidget ).toBe( transformLegacyWidget );
+			expect( window.ADVANCED_SIDEBAR_MENU.translateBlockAttributes ).toBe( translateBlockAttributes );
+			expect( window.ADVANCED_SIDEBAR_MENU.Preview ).toBe( Preview );
+		} );
 	} );
 } );
