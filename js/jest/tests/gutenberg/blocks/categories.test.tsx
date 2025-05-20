@@ -1,6 +1,6 @@
 import {settings} from '../../../../src/gutenberg/blocks/categories/block';
 
-jest.mock( '@wordpress/block-editor', () => ( {} ) );
+jest.mock( '../../../../src/gutenberg/blocks/categories/Edit.tsx', () => ( {} ) );
 
 
 describe( 'Categories Block', () => {
@@ -53,6 +53,14 @@ describe( 'Categories Block', () => {
 			title: {
 				type: 'string',
 			},
+		} );
+	} );
+
+
+	it( 'Should have the correct support', () => {
+		expect( settings.supports ).toEqual( {
+			anchor: true,
+			html: false,
 		} );
 	} );
 } );

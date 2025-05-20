@@ -1,7 +1,7 @@
-import {BlockSettings, LegacyWidget} from '@wordpress/blocks';
+import type {BlockSettings, LegacyWidget} from '@wordpress/blocks';
 import {CONFIG} from '../../../globals/config';
 import Edit from './Edit';
-import {DisplayOptions} from '../Display';
+import type {DisplayOptions} from '../Display';
 import {transformLegacyWidget, translateBlockAttributes} from '../../helpers';
 import {__} from '@wordpress/i18n';
 import type {CommonAttr} from '../Preview';
