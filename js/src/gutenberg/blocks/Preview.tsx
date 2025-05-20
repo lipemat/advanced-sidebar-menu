@@ -161,7 +161,9 @@ const TriggerWhenLoadingFinished = ( {
 
 
 const Preview = <A, >( {attributes, block, clientId}: Props<A> ) => {
-	const blockProps = useBlockProps();
+	const blockProps = useBlockProps( {
+		className: styles.wrap,
+	} );
 
 	if ( '' !== CONFIG.error ) {
 		return <div
