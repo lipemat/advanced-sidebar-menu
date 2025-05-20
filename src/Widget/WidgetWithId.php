@@ -13,9 +13,6 @@ namespace Advanced_Sidebar_Menu\Widget;
  * @phpstan-template SETTINGS of array<string, mixed>
  * @phpstan-template DEFAULTS of array<key-of<SETTINGS>, mixed>
  *
- * @todo   Switch all PRO `Widget` classes to use this interface once minimum basic version is 9.6.0+.
- * @todo   Add a @todo to `__Temp_Id_Proxy` to remove it when minimum PRO version is whatever the new version is.
- *
  * @extends Widget<SETTINGS, DEFAULTS>
  * @extends WidgetId<SETTINGS>
  */
