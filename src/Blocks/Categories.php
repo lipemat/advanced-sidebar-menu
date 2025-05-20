@@ -31,17 +31,6 @@ class Categories extends Block_Abstract {
 
 
 	/**
-	 * Get the description of this block.
-	 *
-	 * @return string
-	 */
-	protected function get_description() {
-		return __( 'Creates a menu of all the categories using the parent/child relationship',
-			'advanced-sidebar-menu' );
-	}
-
-
-	/**
 	 * Get featured this block supports.
 	 *
 	 * Done on the PHP side, so we can easily add additional features
@@ -54,34 +43,6 @@ class Categories extends Block_Abstract {
 			'anchor' => true,
 			'html'   => false,
 		] );
-	}
-
-
-	/**
-	 * Get list of words used to search for the block.
-	 *
-	 * English and translated so both will be searchable.
-	 *
-	 * @return array<string>
-	 */
-	public function get_keywords() {
-		$category = get_taxonomy( 'category' );
-
-		return [
-			'Advanced Sidebar',
-			'menu',
-			'sidebar',
-			'category',
-			'categories',
-			'taxonomy',
-			'term',
-			false !== $category ? $category->labels->name : '',
-			false !== $category ? $category->labels->singular_name : '',
-			__( 'menu', 'advanced-sidebar-menu' ),
-			__( 'sidebar', 'advanced-sidebar-menu' ),
-			__( 'taxonomy', 'advanced-sidebar-menu' ),
-			__( 'term', 'advanced-sidebar-menu' ),
-		];
 	}
 
 
@@ -141,5 +102,46 @@ class Categories extends Block_Abstract {
 	 */
 	protected function get_widget_class() {
 		return new Category();
+	}
+
+
+	/**
+	 * @deprecated 9.7.0
+	 *
+	 * @phpstan-return array<string>
+	 */
+	public function get_keywords() {
+		_deprecated_function( __METHOD__, '9.7.0' );
+
+		$category = get_taxonomy( 'category' );
+
+		return [
+			'Advanced Sidebar',
+			'menu',
+			'sidebar',
+			'category',
+			'categories',
+			'taxonomy',
+			'term',
+			false !== $category ? $category->labels->name : '',
+			false !== $category ? $category->labels->singular_name : '',
+			__( 'menu', 'advanced-sidebar-menu' ),
+			__( 'sidebar', 'advanced-sidebar-menu' ),
+			__( 'taxonomy', 'advanced-sidebar-menu' ),
+			__( 'term', 'advanced-sidebar-menu' ),
+		];
+	}
+
+
+	/**
+	 * @deprecated 9.7.0
+	 *
+	 * @return string
+	 */
+	protected function get_description() {
+		_deprecated_function( __METHOD__, '9.7.0' );
+
+		return __( 'Creates a menu of all the categories using the parent/child relationship',
+			'advanced-sidebar-menu' );
 	}
 }

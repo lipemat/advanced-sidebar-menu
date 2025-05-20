@@ -16,7 +16,7 @@ use Advanced_Sidebar_Menu\Traits\Singleton;
  * @phpstan-import-type ATTR_SHAPE from Block_Abstract
  *
  */
-class Common_Attributes {
+class Common {
 	use Singleton;
 
 	/**

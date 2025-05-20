@@ -65,6 +65,14 @@ export const settings: BlockSettings<Attr, '', LegacyWidget<Attr & { title: stri
 	title: __( 'Advanced Sidebar - Categories', 'advanced-sidebar-menu' ),
 	icon: 'welcome-widgets-menus',
 	category: 'widgets',
+	description: __( 'Creates a menu of all the categories using the parent/child relationship',
+		'advanced-sidebar-menu' ),
+	keywords: [
+		__( 'taxonomy', 'advanced-sidebar-menu' ),
+		__( 'term', 'advanced-sidebar-menu' ),
+		__( 'category', 'advanced-sidebar-menu' ),
+		__( 'menu', 'advanced-sidebar-menu' ),
+	],
 	example: {
 		attributes: EXAMPLE,
 	},

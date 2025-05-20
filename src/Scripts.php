@@ -3,7 +3,7 @@
 namespace Advanced_Sidebar_Menu;
 
 use Advanced_Sidebar_Menu\Blocks\Block_Abstract;
-use Advanced_Sidebar_Menu\Blocks\Common_Attributes;
+use Advanced_Sidebar_Menu\Blocks\Common;
 use Advanced_Sidebar_Menu\Traits\Singleton;
 use Advanced_Sidebar_Menu\Widget\Category;
 use Advanced_Sidebar_Menu\Widget\Page;
@@ -230,8 +230,8 @@ class Scripts {
 	public function js_config(): array {
 		return apply_filters( 'advanced-sidebar-menu/scripts/js-config', [
 			'blocks'        => [
-				'commonAttr'  => Common_Attributes::instance()->get_common_attributes(),
-				'previewAttr' => Common_Attributes::instance()->get_server_side_render_attributes(),
+				'commonAttr'  => Common::instance()->get_common_attributes(),
+				'previewAttr' => Common::instance()->get_server_side_render_attributes(),
 			],
 			'categories'    => [
 				'displayEach' => Category::get_display_each_options(),

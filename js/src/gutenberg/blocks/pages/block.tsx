@@ -65,6 +65,7 @@ export const settings: BlockSettings<Attr, '', LegacyWidget<Attr & { title: stri
 	title: __( 'Advanced Sidebar - Pages', 'advanced-sidebar-menu' ),
 	icon: 'welcome-widgets-menus',
 	category: 'widgets',
+	description: __( 'Creates a menu of all the pages using the parent/child relationship', 'advanced-sidebar-menu' ),
 	example: {
 		attributes: EXAMPLE,
 	},
