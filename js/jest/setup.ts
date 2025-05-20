@@ -6,9 +6,9 @@ import type {JSConfig} from '../src/globals/config';
 
 // Support jQuery in tests.
 import $ from 'jquery';
-// @ts-ignore
+// @ts-expect-error
 global.jQuery = $;
-// @ts-ignore
+// @ts-expect-error
 global.$ = global.jQuery;
 jQuery.fx.off = true;
 jest.dontMock( 'jquery' );
@@ -47,9 +47,6 @@ global.React = require( 'react' );
 
 // Mock environmental variables
 const config: JSConfig = {
-	// @ts-expect-error
-	ErrorBoundary: ( {children} ) => children,
-	Preview: () => null,
 	blocks: {
 		commonAttr: {
 			style: {
@@ -69,6 +66,10 @@ const config: JSConfig = {
 			sidebarId: {
 				type: 'string',
 			},
+		},
+		blockSupport: {
+			anchor: true,
+			html: false,
 		},
 		categories: {
 			id: 'advanced-sidebar-menu/categories',
@@ -106,10 +107,6 @@ const config: JSConfig = {
 					default: 100,
 				},
 			},
-			supports: {
-				anchor: true,
-				html: false,
-			},
 		},
 		pages: {
 			id: 'advanced-sidebar-menu/pages',
@@ -135,10 +132,6 @@ const config: JSConfig = {
 					type: 'number',
 					default: 100,
 				},
-			},
-			supports: {
-				anchor: true,
-				html: false,
 			},
 		},
 	},
@@ -182,6 +175,7 @@ const config: JSConfig = {
 	},
 	support: 'https://wordpress.org/support/plugin/advanced-sidebar-menu/#new-topic-0',
 };
+
 
 window.ADVANCED_SIDEBAR_MENU = config;
 

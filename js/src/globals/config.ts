@@ -1,9 +1,8 @@
-import {ComponentClass, FunctionComponent} from 'react';
-import {TransformLegacy, translateBlockAttributes} from '../gutenberg/helpers';
 import type {Attr as PageAttr} from '../gutenberg/blocks/pages/block';
 import type {Attr as CategoryAttr} from '../gutenberg/blocks/categories/block';
-import type {BlockAttributes, BlockSettings} from '@wordpress/blocks';
+import type {BlockAttributes, BlockSettings, BlockSupports} from '@wordpress/blocks';
 import type {CommonAttr, ServerSideRenderRequired} from '../gutenberg/blocks/Preview';
+import type {PassedGlobals} from '../gutenberg/index';
 
 export type Screen = 'site-editor' | 'widgets' | 'post' | 'customize';
 
@@ -41,11 +40,6 @@ export interface JSConfig {
 		category: string;
 	};
 	error: string;
-	ErrorBoundary: ComponentClass<{
-		attributes: object,
-		block: string;
-		section: string;
-	}>;
 	features: Array<string>;
 	isPostEdit: WPBoolean;
 	isPro: WPBoolean;
@@ -54,7 +48,6 @@ export interface JSConfig {
 	pages: {
 		orderBy: { [ value: string ]: string };
 	};
-	Preview: FunctionComponent<object>;
 	siteInfo: {
 		basic: string;
 		classicWidgets: boolean;
@@ -65,14 +58,12 @@ export interface JSConfig {
 		WordPress: string;
 	};
 	support: string;
-	transformLegacyWidget: TransformLegacy;
-	translateBlockAttributes: typeof translateBlockAttributes;
 }
 
 
 declare global {
 	interface Window {
-		ADVANCED_SIDEBAR_MENU: JSConfig;
+		ADVANCED_SIDEBAR_MENU: JSConfig & PassedGlobals;
 		advancedSidebarMenuAdmin: {
 			init: () => void;
 			handlePreviews: () => void;
@@ -84,4 +75,4 @@ declare global {
 	}
 }
 
-export const CONFIG: JSConfig = window.ADVANCED_SIDEBAR_MENU;
+export const CONFIG: JSConfig & PassedGlobals = window.ADVANCED_SIDEBAR_MENU;
