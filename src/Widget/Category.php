@@ -20,9 +20,9 @@ use Advanced_Sidebar_Menu\Menus\Menu_Abstract;
  * @formatter:on
  *
  * @implements WidgetWithId<CATEGORY_SETTINGS, DEFAULTS>
- * @extends Widget_Abstract<CATEGORY_SETTINGS, DEFAULTS>
+ * @extends \WP_Widget<CATEGORY_SETTINGS>
  */
-class Category extends Widget_Abstract implements WidgetWithId {
+class Category extends \WP_Widget implements WidgetWithId {
 	/**
 	 * @use Checkbox<CATEGORY_SETTINGS>
 	 */

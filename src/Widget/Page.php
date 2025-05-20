@@ -19,9 +19,9 @@ use Advanced_Sidebar_Menu\Utils;
  * @formatter:on
  *
  * @implements WidgetWithId<PAGE_SETTINGS, DEFAULTS>
- * @extends Widget_Abstract<PAGE_SETTINGS, DEFAULTS>
+ * @extends \WP_Widget<PAGE_SETTINGS>
  */
-class Page extends Widget_Abstract implements WidgetWithId {
+class Page extends \WP_Widget implements WidgetWithId {
 	/**
 	 * @use Checkbox<PAGE_SETTINGS>
 	 */

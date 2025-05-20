@@ -62,12 +62,6 @@ $ignoreErrors[] = [
 	'path' => __DIR__ . '/../src/Blocks/Block_Abstract.php',
 ];
 $ignoreErrors[] = [
-	'message' => '#^Method Advanced_Sidebar_Menu\\\\Blocks\\\\Block_Abstract\\:\\:get_attributes\\(\\) return type has no value type specified in iterable type array\\.$#',
-	'identifier' => 'missingType.iterableValue',
-	'count' => 1,
-	'path' => __DIR__ . '/../src/Blocks/Block_Abstract.php',
-];
-$ignoreErrors[] = [
 	'message' => '#^Method Advanced_Sidebar_Menu\\\\Blocks\\\\Block_Abstract\\:\\:get_block_support\\(\\) return type has no value type specified in iterable type array\\.$#',
 	'identifier' => 'missingType.iterableValue',
 	'count' => 1,
@@ -285,59 +279,11 @@ In favor of using factory on the specific class\\.$#',
 	'path' => __DIR__ . '/../src/Widget/Category.php',
 ];
 $ignoreErrors[] = [
-	'message' => '#^Property Advanced_Sidebar_Menu\\\\Widget\\\\Widget_Abstract\\<array\\<string, int\\|string\\>,array\\<string, int\\|string\\>\\>\\:\\:\\$widget_settings type has no value type specified in iterable type array\\.$#',
-	'identifier' => 'missingType.iterableValue',
-	'count' => 1,
-	'path' => __DIR__ . '/../src/Widget/Category.php',
-];
-$ignoreErrors[] = [
 	'message' => '#^Call to deprecated method factory\\(\\) of class Advanced_Sidebar_Menu\\\\Menus\\\\Page\\:
 In favor of using factory on the specific class\\.$#',
 	'identifier' => 'staticMethod.deprecated',
 	'count' => 1,
 	'path' => __DIR__ . '/../src/Widget/Page.php',
-];
-$ignoreErrors[] = [
-	'message' => '#^Property Advanced_Sidebar_Menu\\\\Widget\\\\Widget_Abstract\\<array\\<string, int\\|string\\>,array\\<string, int\\|string\\>\\>\\:\\:\\$widget_settings type has no value type specified in iterable type array\\.$#',
-	'identifier' => 'missingType.iterableValue',
-	'count' => 1,
-	'path' => __DIR__ . '/../src/Widget/Page.php',
-];
-$ignoreErrors[] = [
-	'message' => '#^Method Advanced_Sidebar_Menu\\\\Widget\\\\Widget_Abstract\\:\\:set_instance\\(\\) return type has no value type specified in iterable type array\\.$#',
-	'identifier' => 'missingType.iterableValue',
-	'count' => 1,
-	'path' => __DIR__ . '/../src/Widget/Widget_Abstract.php',
-];
-$ignoreErrors[] = [
-	'message' => '#^PHPDoc tag @return contains unresolvable type\\.$#',
-	'identifier' => 'return.unresolvableType',
-	'count' => 1,
-	'path' => __DIR__ . '/../src/Widget/Widget_Abstract.php',
-];
-$ignoreErrors[] = [
-	'message' => '#^PHPDoc tag @var for property Advanced_Sidebar_Menu\\\\Widget\\\\Widget_Abstract\\:\\:\\$widget_settings contains unresolvable type\\.$#',
-	'identifier' => 'property.unresolvableType',
-	'count' => 1,
-	'path' => __DIR__ . '/../src/Widget/Widget_Abstract.php',
-];
-$ignoreErrors[] = [
-	'message' => '#^PHPDoc tag @var for property Advanced_Sidebar_Menu\\\\Widget\\\\Widget_Abstract\\:\\:\\$widget_settings with type mixed is not subtype of native type array\\.$#',
-	'identifier' => 'property.phpDocType',
-	'count' => 1,
-	'path' => __DIR__ . '/../src/Widget/Widget_Abstract.php',
-];
-$ignoreErrors[] = [
-	'message' => '#^Property Advanced_Sidebar_Menu\\\\Widget\\\\Widget_Abstract\\:\\:\\$widget_settings type has no value type specified in iterable type array\\.$#',
-	'identifier' => 'missingType.iterableValue',
-	'count' => 1,
-	'path' => __DIR__ . '/../src/Widget/Widget_Abstract.php',
-];
-$ignoreErrors[] = [
-	'message' => '#^Return type \\(array\\) of method Advanced_Sidebar_Menu\\\\Widget\\\\Widget_Abstract\\:\\:set_instance\\(\\) should be covariant with return type \\(array\\<string, mixed\\>\\) of method Advanced_Sidebar_Menu\\\\Widget\\\\Widget\\<SETTINGS of array\\<string, mixed\\>,DEFAULTS of array\\<string, mixed\\>\\>\\:\\:set_instance\\(\\)$#',
-	'identifier' => 'method.childReturnType',
-	'count' => 1,
-	'path' => __DIR__ . '/../src/Widget/Widget_Abstract.php',
 ];
 
 return ['parameters' => ['ignoreErrors' => $ignoreErrors]];
