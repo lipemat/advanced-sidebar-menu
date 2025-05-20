@@ -230,8 +230,9 @@ class Scripts {
 	public function js_config(): array {
 		return apply_filters( 'advanced-sidebar-menu/scripts/js-config', [
 			'blocks'        => [
-				'commonAttr'  => Common::instance()->get_common_attributes(),
-				'previewAttr' => Common::instance()->get_server_side_render_attributes(),
+				'commonAttr'   => Common::instance()->get_common_attributes(),
+				'previewAttr'  => Common::instance()->get_server_side_render_attributes(),
+				'blockSupport' => Common::instance()->get_block_supports(),
 			],
 			'categories'    => [
 				'displayEach' => Category::get_display_each_options(),

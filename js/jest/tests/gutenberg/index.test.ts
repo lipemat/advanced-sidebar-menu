@@ -1,4 +1,7 @@
 import Index from '../../../src/gutenberg/index';
+import {getBlockSupports, transformLegacyWidget, translateBlockAttributes} from '../../../src/gutenberg/helpers';
+import Preview from '../../../src/gutenberg/blocks/Preview';
+import ErrorBoundary from '../../../src/components/ErrorBoundary';
 
 jest.mock( '@wordpress/block-editor', () => ( {} ) );
 jest.mock( '@lipemat/js-boilerplate-gutenberg', () => ( {
@@ -19,8 +22,8 @@ describe( 'Gutenberg', () => {
 			Index();
 			const blocks = window.ADVANCED_SIDEBAR_MENU.blocks;
 
-		const attributes = blocks.categories?.attributes ?? {};
-		expect( attributes ).toMatchInlineSnapshot( `
+			const attributes = blocks.categories?.attributes ?? {};
+			expect( attributes ).toMatchInlineSnapshot( `
 {
   "clientId": {
     "type": "string",
@@ -71,17 +74,17 @@ describe( 'Gutenberg', () => {
   },
 }
 ` );
-	} );
+		} );
 
-	it( 'Skips translation if PRO is not active.', () => {
-		window.ADVANCED_SIDEBAR_MENU.isPro = '';
+		it( 'Skips translation if PRO is not active.', () => {
+			window.ADVANCED_SIDEBAR_MENU.isPro = '';
 
-		Index();
+			Index();
 
-		const blocks = window.ADVANCED_SIDEBAR_MENU.blocks;
+			const blocks = window.ADVANCED_SIDEBAR_MENU.blocks;
 
-		const attributes = blocks.categories?.attributes ?? {};
-		expect( attributes ).toMatchInlineSnapshot( `
+			const attributes = blocks.categories?.attributes ?? {};
+			expect( attributes ).toMatchInlineSnapshot( `
 {
   "display_all": {
     "default": false,
@@ -118,19 +121,19 @@ describe( 'Gutenberg', () => {
 }
 ` );
 
-		const supports = blocks.categories?.supports ?? {};
-		expect( supports ).toMatchInlineSnapshot( `{}` );
-	} );
+			const supports = blocks.categories?.supports ?? {};
+			expect( supports ).toMatchInlineSnapshot( `{}` );
+		} );
 
 
-	it( 'Skips translation if PRO is active and common attributes are active.', () => {
-		window.ADVANCED_SIDEBAR_MENU.isProCommonAttr = '1';
-		Index();
+		it( 'Skips translation if PRO is active and common attributes are active.', () => {
+			window.ADVANCED_SIDEBAR_MENU.isProCommonAttr = '1';
+			Index();
 
-		const blocks = window.ADVANCED_SIDEBAR_MENU.blocks;
+			const blocks = window.ADVANCED_SIDEBAR_MENU.blocks;
 
-		const attributes = blocks.pages?.attributes ?? {};
-		expect( attributes ).toMatchInlineSnapshot( `
+			const attributes = blocks.pages?.attributes ?? {};
+			expect( attributes ).toMatchInlineSnapshot( `
 {
   "display_all": {
     "type": "boolean",
@@ -155,18 +158,18 @@ describe( 'Gutenberg', () => {
   },
 }
 ` );
-		const supports = blocks.pages?.supports ?? {};
-		expect( supports ).toMatchInlineSnapshot( `{}` );
-	} );
+			const supports = blocks.pages?.supports ?? {};
+			expect( supports ).toMatchInlineSnapshot( `{}` );
+		} );
 
 
-	it( 'Translates pages block attributes into PRO < 9.9.0 format.', () => {
-		Index();
+		it( 'Translates pages block attributes into PRO < 9.9.0 format.', () => {
+			Index();
 
-		const blocks = window.ADVANCED_SIDEBAR_MENU.blocks;
+			const blocks = window.ADVANCED_SIDEBAR_MENU.blocks;
 
-		const attributes = blocks.pages?.attributes ?? {};
-		expect( attributes ).toMatchInlineSnapshot( `
+			const attributes = blocks.pages?.attributes ?? {};
+			expect( attributes ).toMatchInlineSnapshot( `
 {
   "clientId": {
     "type": "string",
@@ -206,31 +209,31 @@ describe( 'Gutenberg', () => {
   },
 }
 ` );
-	} );
+		} );
 
 
-	it( 'Translates page block supports into PRO < 9.9.0 format.', () => {
-		Index();
+		it( 'Translates page block supports into PRO < 9.9.0 format.', () => {
+			Index();
 
-		const blocks = window.ADVANCED_SIDEBAR_MENU.blocks;
+			const blocks = window.ADVANCED_SIDEBAR_MENU.blocks;
 
-		const supports = blocks.pages?.supports ?? {};
-		expect( supports ).toMatchInlineSnapshot( `
+			const supports = blocks.pages?.supports ?? {};
+			expect( supports ).toMatchInlineSnapshot( `
 {
   "anchor": true,
   "html": false,
 }
 ` );
-	} );
+		} );
 
 
-	it( 'Translates categories block supports into PRO < 9.9.0 format.', () => {
-		Index();
+		it( 'Translates categories block supports into PRO < 9.9.0 format.', () => {
+			Index();
 
-		const blocks = window.ADVANCED_SIDEBAR_MENU.blocks;
+			const blocks = window.ADVANCED_SIDEBAR_MENU.blocks;
 
-		const supports = blocks.categories?.supports ?? {};
-		expect( supports ).toMatchInlineSnapshot( `
+			const supports = blocks.categories?.supports ?? {};
+			expect( supports ).toMatchInlineSnapshot( `
 {
   "anchor": true,
   "html": false,

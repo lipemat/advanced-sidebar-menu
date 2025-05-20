@@ -1,4 +1,4 @@
-import {type BlockAttributes, createBlock, CreateBlock} from '@wordpress/blocks';
+import {type BlockAttributes, BlockSupports, createBlock, CreateBlock} from '@wordpress/blocks';
 import {CONFIG, Screen} from '../globals/config';
 import type {CommonAttr, ServerSideRenderRequired} from './blocks/Preview';
 
@@ -28,6 +28,15 @@ export const transformLegacyWidget: TransformLegacy = <A>( name: string ) => ( {
  */
 export function translateBlockAttributes<Attr>( attributes: BlockAttributes<Attr> ): BlockAttributes<Attr & CommonAttr & ServerSideRenderRequired> {
 	return {...attributes, ...CONFIG.blocks.commonAttr, ...CONFIG.blocks.previewAttr};
+}
+
+/**
+ * Get block support from a common location.
+ *
+ * @since 9.7.0
+ */
+export function getBlockSupports(): BlockSupports {
+	return CONFIG.blocks.blockSupport;
 }
 
 /**

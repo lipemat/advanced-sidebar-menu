@@ -2,7 +2,7 @@ import type {BlockSettings, LegacyWidget} from '@wordpress/blocks';
 import {CONFIG} from '../../../globals/config';
 import Edit from './Edit';
 import type {DisplayOptions} from '../Display';
-import {transformLegacyWidget, translateBlockAttributes} from '../../helpers';
+import {getBlockSupports, transformLegacyWidget, translateBlockAttributes} from '../../helpers';
 import {__} from '@wordpress/i18n';
 import type {CommonAttr} from '../Preview';
 
@@ -10,8 +10,8 @@ import type {CommonAttr} from '../Preview';
  * Attributes specific to the widget as well as shared
  * widget attributes.
  *
- * @see \Advanced_Sidebar_Menu\Blocks\Block_Abstract::get_all_attributes
  * @see \Advanced_Sidebar_Menu\Blocks\Pages::get_attributes
+ * @see \Advanced_Sidebar_Menu\Blocks\Common
  */
 export type Attr = {
 	exclude: string;
@@ -86,7 +86,7 @@ export const settings: BlockSettings<Attr, '', LegacyWidget<Attr & { title: stri
 		],
 	},
 	attributes: translateBlockAttributes<Attr>( block.attributes ),
-	supports: block.supports,
+	supports: getBlockSupports(),
 	edit: props => (
 		<Edit {...props} />
 	),
