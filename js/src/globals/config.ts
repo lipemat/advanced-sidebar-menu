@@ -1,5 +1,5 @@
 import {ComponentClass, FunctionComponent} from 'react';
-import {TransformLegacy} from '../gutenberg/helpers';
+import {TransformLegacy, translateBlockAttributes} from '../gutenberg/helpers';
 import type {Attr as PageAttr} from '../gutenberg/blocks/pages/block';
 import type {Attr as CategoryAttr} from '../gutenberg/blocks/categories/block';
 import type {BlockAttributes, BlockSettings} from '@wordpress/blocks';
@@ -65,6 +65,7 @@ export interface JSConfig {
 	};
 	support: string;
 	transformLegacyWidget: TransformLegacy;
+	translateBlockAttributes: typeof translateBlockAttributes;
 }
 
 
