@@ -52,7 +52,7 @@ class Common {
 		$filtered = (array) apply_filters( 'advanced-sidebar-menu/blocks/common-attributes/supports', $basic_support, $this );
 
 		if ( $basic_support === $filtered ) {
-			// @todo Remove this filter once PRO version is 9.9.0+.
+			// @todo Remove this filter once the required PRO version is 9.9.0+.
 			return (array) apply_filters( 'advanced-sidebar-menu/blocks/navigation/supports', $basic_support, $this );
 		}
 		return $filtered;
