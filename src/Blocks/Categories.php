@@ -11,6 +11,8 @@ use Advanced_Sidebar_Menu\Widget\Category;
  * @since  9.0.0
  *
  * @phpstan-import-type ATTR_SHAPE from Block_Abstract
+ * @phpstan-import-type CATEGORY_SETTINGS from Category
+ * @phpstan-import-type DEFAULTS from Category as CAT_DEFAULTS
  *
  * @phpstan-type CATEGORY_ATTRIBUTES array{
  *     display_all: bool,
@@ -23,40 +25,36 @@ use Advanced_Sidebar_Menu\Widget\Category;
  *     taxonomy?: string,
  * }
  * @extends Block_Abstract<CATEGORY_ATTRIBUTES>
+ * @implements Block<CATEGORY_SETTINGS, CAT_DEFAULTS>
  */
-class Categories extends Block_Abstract {
+class Categories extends Block_Abstract implements Block {
 	use Singleton;
 
 	public const NAME = 'advanced-sidebar-menu/categories';
 
 
 	/**
-	 * Get featured this block supports.
+	 * Return a new instance of the Categories widget.
 	 *
-	 * Done on the PHP side, so we can easily add additional features
-	 * via the PRO version.
-	 *
-	 * @return array
+	 * @return Category
 	 */
-	protected function get_block_support() {
-		return apply_filters( 'advanced-sidebar-menu/blocks/categories/supports', [
-			'anchor' => true,
-			'html'   => false,
-		] );
+	public function get_widget_class(): Category {
+		return new Category();
 	}
 
 
 	/**
-	 * Get list of attributes and their types.
+	 * Get the list of attributes and their types.
 	 *
-	 * Must be done PHP side because we're using ServerSideRender
+	 * Must be done on both PHP and JS sides to support default values
+	 * * and SeverSideRender.
 	 *
 	 * @link https://developer.wordpress.org/block-editor/reference-guides/block-api/block-attributes/
 	 *
 	 * @phpstan-return array<key-of<CATEGORY_ATTRIBUTES>, ATTR_SHAPE>
 	 * @return array
 	 */
-	protected function get_attributes() {
+	public function get_attributes() {
 		return apply_filters( 'advanced-sidebar-menu/blocks/categories/attributes', [
 			Category::INCLUDE_PARENT           => [
 				'type'    => 'boolean',
@@ -96,12 +94,17 @@ class Categories extends Block_Abstract {
 
 
 	/**
-	 * Return a new instance of the Categories widget.
+	 * @deprecated 9.7.0
 	 *
-	 * @return Category
+	 * @phpstan-return array<string, bool>
 	 */
-	protected function get_widget_class() {
-		return new Category();
+	protected function get_block_support() {
+		_deprecated_function( __METHOD__, '9.7.0' );
+
+		return apply_filters( 'advanced-sidebar-menu/blocks/categories/supports', [
+			'anchor' => true,
+			'html'   => false,
+		] );
 	}
 
 

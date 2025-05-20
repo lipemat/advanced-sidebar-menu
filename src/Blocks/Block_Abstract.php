@@ -57,7 +57,7 @@ abstract class Block_Abstract {
 	 * @phpstan-var WIDGET_ARGS
 	 * @var array<string, string>
 	 */
-	protected $widget_args = [
+	protected array $widget_args = [
 		'before_widget' => '',
 		'after_widget'  => '',
 		// Default used for FSE.
@@ -67,32 +67,15 @@ abstract class Block_Abstract {
 
 
 	/**
-	 * Get the list of attributes and their types.
+	 * @todo       Remove once \Advanced_Sidebar_Menu\Blocks\Navigation implements `Block` interface.
 	 *
-	 * Must be done PHP side because we're using ServerSideRender.
-	 *
-	 * @see  Pro_Block_Abstract::get_all_attributes()
-	 *
-	 * @link https://developer.wordpress.org/block-editor/reference-guides/block-api/block-attributes/
-	 *
-	 * @return array
+	 * @return array<string, ATTR_SHAPE>
 	 */
 	abstract protected function get_attributes();
 
 
 	/**
-	 * Get featured this block supports.
-	 *
-	 * Done on the PHP side, so we can easily add additional features
-	 * via the PRO version.
-	 *
-	 * @return array
-	 */
-	abstract protected function get_block_support();
-
-
-	/**
-	 * Get the widget class, which matches this block.
+	 * @todo       Remove once \Advanced_Sidebar_Menu\Blocks\Navigation implements `Block` interface.
 	 */
 	abstract protected function get_widget_class();
 
@@ -154,7 +137,7 @@ abstract class Block_Abstract {
 	 * @phpstan-param WIDGET_ARGS                         $args
 	 *
 	 * @param false|array                                 $instance - Contents of the block, before parsing.
-	 * @param \WP_Widget<PAGE_SETTINGS|CATEGORY_SETTINGS> $widget   - Object representing a block based widget.
+	 * @param \WP_Widget<PAGE_SETTINGS|CATEGORY_SETTINGS> $widget   - Object representing a block-based widget.
 	 * @param array                                       $args     - Widget area arguments.
 	 *
 	 * @return false|array
@@ -211,13 +194,19 @@ abstract class Block_Abstract {
 	 * @return void
 	 */
 	public function register(): void {
+		$attributes = \array_merge(
+			Common::instance()->get_common_attributes(),
+			Common::instance()->get_server_side_render_attributes(),
+			$this->get_attributes()
+		);
+
 		$args = apply_filters( 'advanced-sidebar-menu/block-register/' . static::NAME, [
 			'api_version'           => 3,
-			'attributes'            => $this->get_all_attributes(),
+			'attributes'            => $attributes,
 			'editor_script_handles' => [ Scripts::GUTENBERG_HANDLE ],
 			'editor_style_handles'  => [ Scripts::GUTENBERG_CSS_HANDLE ],
 			'render_callback'       => [ $this, 'render' ],
-			'supports'              => $this->get_block_support(),
+			'supports'              => Common::instance()->get_block_supports(),
 		] );
 
 		register_block_type( static::NAME, $args );
@@ -225,15 +214,12 @@ abstract class Block_Abstract {
 
 
 	/**
-	 * Get attributes defined in this class as well
-	 * as common attributes shared by all blocks.
-	 *
-	 * @notice To be used when registering via PHP, not in JS.
+	 * @deprecated 9.7.0
 	 *
 	 * @phpstan-return array<string, ATTR_SHAPE>
-	 * @return array
 	 */
 	protected function get_all_attributes() {
+		_deprecated_function( __METHOD__, '9.7.0' );
 		return \array_merge(
 			Common::instance()->get_common_attributes(),
 			Common::instance()->get_server_side_render_attributes(),
@@ -255,7 +241,7 @@ abstract class Block_Abstract {
 		$config['blocks'][ \explode( '/', static::NAME )[1] ] = [
 			'id'         => static::NAME,
 			'attributes' => $this->get_attributes(),
-			'supports'   => $this->get_block_support(),
+			'supports'   => Common::instance()->get_block_supports(),
 		];
 
 		return $config;
@@ -379,7 +365,7 @@ abstract class Block_Abstract {
 		}
 
 		if ( ! Utils::instance()->is_empty( $widget_args, 'before_widget' ) ) {
-			// Add main CSS class to widgets wrap.
+			// Add the main CSS class to widgets wrap.
 			if ( false !== \strpos( $this->widget_args['before_widget'], 'widget_block' ) ) {
 				$widget_args['before_widget'] = \str_replace( 'widget_block', 'widget_block advanced-sidebar-menu', $widget_args['before_widget'] );
 			} else {
@@ -412,14 +398,14 @@ abstract class Block_Abstract {
 		}
 		$widget_args['before_widget'] .= \sprintf( '<%s %s>', $wrap, $wrapper_attributes );
 		$widget_args['after_widget'] = \sprintf( '</%s>', $wrap ) . $widget_args['after_widget'];
-		// Passed via ServerSideRender, so we can enable accordions in Gutenberg editor.
+		// Passed via ServerSideRender, so we can enable accordions in the Gutenberg editor.
 		if ( isset( $attr['clientId'] ) && '' !== \trim( $attr['clientId'] ) ) {
 			$widget_args['widget_id'] = $attr['clientId'];
 		}
 
-		ob_start();
+		\ob_start();
 		$widget = $this->get_widget_class();
 		$widget->widget( $widget_args, $this->convert_checkbox_values( $attr ) );
-		return (string) ob_get_clean();
+		return (string) \ob_get_clean();
 	}
 }
