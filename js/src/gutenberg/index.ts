@@ -19,12 +19,15 @@ export default () => {
 	window.ADVANCED_SIDEBAR_MENU.transformLegacyWidget = transformLegacyWidget;
 	window.ADVANCED_SIDEBAR_MENU.translateBlockAttributes = translateBlockAttributes;
 
+
 	// Translate common and preview attributes to old format for legacy PRO versions.
 	// @todo Remove this when required PRO version is 9.9.0+.
-	const blocks = window.ADVANCED_SIDEBAR_MENU.blocks;
-	window.ADVANCED_SIDEBAR_MENU.blocks.categories.attributes = translateBlockAttributes( blocks.categories.attributes );
-	window.ADVANCED_SIDEBAR_MENU.blocks.pages.attributes = translateBlockAttributes( blocks.pages.attributes );
-	if ( window.ADVANCED_SIDEBAR_MENU.blocks.navigation && blocks.navigation ) {
-		window.ADVANCED_SIDEBAR_MENU.blocks.navigation.attributes = translateBlockAttributes( blocks.navigation.attributes );
+	if ( '1' === window.ADVANCED_SIDEBAR_MENU.isPro && '1' !== window.ADVANCED_SIDEBAR_MENU.isProCommonAttr ) {
+		const blocks = window.ADVANCED_SIDEBAR_MENU.blocks;
+		window.ADVANCED_SIDEBAR_MENU.blocks.categories.attributes = translateBlockAttributes( blocks.categories.attributes );
+		window.ADVANCED_SIDEBAR_MENU.blocks.pages.attributes = translateBlockAttributes( blocks.pages.attributes );
+		if ( window.ADVANCED_SIDEBAR_MENU.blocks.navigation && blocks.navigation ) {
+			window.ADVANCED_SIDEBAR_MENU.blocks.navigation.attributes = translateBlockAttributes( blocks.navigation.attributes );
+		}
 	}
 }

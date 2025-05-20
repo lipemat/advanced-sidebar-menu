@@ -49,6 +49,7 @@ export interface JSConfig {
 	features: Array<string>;
 	isPostEdit: WPBoolean;
 	isPro: WPBoolean;
+	isProCommonAttr?: WPBoolean;
 	isWidgets: WPBoolean;
 	pages: {
 		orderBy: { [ value: string ]: string };
