@@ -14,7 +14,6 @@ use Advanced_Sidebar_Menu\Traits\Singleton;
  * @since  9.7.0
  *
  * @phpstan-import-type ATTR_SHAPE from Block_Abstract
- *
  */
 class Common {
 	use Singleton;
@@ -34,6 +33,29 @@ class Common {
 				'type' => 'string',
 			],
 		], $this );
+	}
+
+
+	/**
+	 * Common features all blocks supports.
+	 *
+	 * @link   https://developer.wordpress.org/block-editor/reference-guides/block-api/block-supports
+	 *
+	 * @return array<string, mixed>
+	 */
+	public function get_block_supports(): array {
+		$basic_support = [
+			'anchor' => true,
+			'html'   => false,
+		];
+
+		$filtered = (array) apply_filters( 'advanced-sidebar-menu/blocks/common-attributes/supports', $basic_support, $this );
+
+		if ( $basic_support === $filtered ) {
+			// @todo Remove this filter once PRO version is 9.9.0+.
+			return (array) apply_filters( 'advanced-sidebar-menu/blocks/navigation/supports', $basic_support, $this );
+		}
+		return $filtered;
 	}
 
 

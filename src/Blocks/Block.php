@@ -2,8 +2,6 @@
 
 namespace Advanced_Sidebar_Menu\Blocks;
 
-use Advanced_Sidebar_Menu\Widget\Category;
-use Advanced_Sidebar_Menu\Widget\Page;
 use Advanced_Sidebar_Menu\Widget\WidgetWithId;
 
 /**
@@ -15,8 +13,9 @@ use Advanced_Sidebar_Menu\Widget\WidgetWithId;
  * @since  9.7.0
  *
  * @phpstan-import-type ATTR_SHAPE from Block_Abstract
- * @phpstan-import-type PAGE_SETTINGS from Page
- * @phpstan-import-type CATEGORY_SETTINGS from Category
+ *
+ * @template SETTINGS of array<string, mixed>
+ * @template DEFAULTS of array<string, mixed>
  */
 interface Block {
 	/**
@@ -37,7 +36,7 @@ interface Block {
 	/**
 	 * Get the widget class, which matches this block.
 	 *
-	 * @return WidgetWithId<array<string, mixed>, array{}>
+	 * @return WidgetWithId<SETTINGS, DEFAULTS>
 	 */
 	public function get_widget_class(): WidgetWithId;
 }
