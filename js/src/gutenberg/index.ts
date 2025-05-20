@@ -3,8 +3,6 @@ import Preview from './blocks/Preview';
 import {transformLegacyWidget} from './helpers';
 import ErrorBoundary from '../components/ErrorBoundary';
 
-export type CommonAttr = {}
-
 /**
  * Use our custom autoloader to automatically require,
  * register and add HMR support to the Gutenberg-related items.

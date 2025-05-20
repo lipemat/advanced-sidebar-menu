@@ -67,7 +67,7 @@ abstract class Block_Abstract {
 
 
 	/**
-	 * Get list of attributes and their types.
+	 * Get the list of attributes and their types.
 	 *
 	 * Must be done PHP side because we're using ServerSideRender.
 	 *
@@ -89,22 +89,6 @@ abstract class Block_Abstract {
 	 * @return array
 	 */
 	abstract protected function get_block_support();
-
-
-	/**
-	 * Get list of words used to search for the block.
-	 *
-	 * @return string[]
-	 */
-	abstract protected function get_keywords();
-
-
-	/**
-	 * Get the description of this block.
-	 *
-	 * @return string
-	 */
-	abstract protected function get_description();
 
 
 	/**
@@ -131,7 +115,7 @@ abstract class Block_Abstract {
 	 * Exclude this block from new Legacy Widgets.
 	 *
 	 * Leave existing intact while forcing users to use the block
-	 * instead for new widgets.
+	 * instead of new widgets.
 	 *
 	 * @param array|bool $blocks - Excluded blocks.
 	 *
@@ -230,10 +214,8 @@ abstract class Block_Abstract {
 		$args = apply_filters( 'advanced-sidebar-menu/block-register/' . static::NAME, [
 			'api_version'           => 3,
 			'attributes'            => $this->get_all_attributes(),
-			'description'           => $this->get_description(),
 			'editor_script_handles' => [ Scripts::GUTENBERG_HANDLE ],
 			'editor_style_handles'  => [ Scripts::GUTENBERG_CSS_HANDLE ],
-			'keywords'              => $this->get_keywords(),
 			'render_callback'       => [ $this, 'render' ],
 			'supports'              => $this->get_block_support(),
 		] );
@@ -253,9 +235,10 @@ abstract class Block_Abstract {
 	 */
 	protected function get_all_attributes() {
 		return \array_merge(
-			Common_Attributes::instance()->get_common_attributes(),
-			Common_Attributes::instance()->get_server_side_render_attributes(),
-			$this->get_attributes() );
+			Common::instance()->get_common_attributes(),
+			Common::instance()->get_server_side_render_attributes(),
+			$this->get_attributes()
+		);
 	}
 
 

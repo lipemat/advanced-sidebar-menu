@@ -31,13 +31,33 @@ class Pages extends Block_Abstract {
 
 
 	/**
-	 * Get the description of this block.
+	 * @deprecated 9.7.0
+	 *
+	 * @phpstan-return array<string>
+	 */
+	public function get_keywords() {
+		_deprecated_function( __METHOD__, '9.7.0' );
+		return [
+			'Advanced Sidebar',
+			'menu',
+			'sidebar',
+			'pages',
+			'butt',
+			__( 'menu', 'advanced-sidebar-menu' ),
+			__( 'sidebar', 'advanced-sidebar-menu' ),
+			__( 'pages', 'advanced-sidebar-menu' ),
+		];
+	}
+
+
+	/**
+	 * @deprecated 9.7.0
 	 *
 	 * @return string
 	 */
 	protected function get_description() {
-		return __( 'Creates a menu of all the categories using the parent/child relationship',
-			'advanced-sidebar-menu' );
+		_deprecated_function( __METHOD__, '9.7.0' );
+		return __( 'Creates a menu of all the pages using the parent/child relationship', 'advanced-sidebar-menu' );
 	}
 
 
@@ -54,26 +74,6 @@ class Pages extends Block_Abstract {
 			'anchor' => true,
 			'html'   => false,
 		] );
-	}
-
-
-	/**
-	 * Get a list of words used to search for the block.
-	 *
-	 * English and translated, so both will be searchable.
-	 *
-	 * @return array<string>
-	 */
-	public function get_keywords() {
-		return [
-			'Advanced Sidebar',
-			'menu',
-			'sidebar',
-			'pages',
-			__( 'menu', 'advanced-sidebar-menu' ),
-			__( 'sidebar', 'advanced-sidebar-menu' ),
-			__( 'pages', 'advanced-sidebar-menu' ),
-		];
 	}
 
 
