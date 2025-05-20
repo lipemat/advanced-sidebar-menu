@@ -12,20 +12,24 @@ export interface JSConfig {
 	blocks: {
 		commonAttr: BlockAttributes<CommonAttr>;
 		previewAttr: BlockAttributes<ServerSideRenderRequired>;
+		blockSupport: BlockSupports;
 		categories: {
 			id: 'advanced-sidebar-menu/categories';
 			attributes: BlockAttributes<CategoryAttr>;
-			supports: BlockSettings<CategoryAttr>['supports'];
+			// @todo: Remove when required PRO version is 9.9.0+.
+			supports?: BlockSettings<CategoryAttr>['supports'];
 		};
 		pages: {
 			id: 'advanced-sidebar-menu/pages';
 			attributes: BlockAttributes<PageAttr>;
-			supports: BlockSettings<PageAttr>['supports'];
+			// @todo: Remove when required PRO version is 9.9.0+.
+			supports?: BlockSettings<PageAttr>['supports'];
 		};
 		navigation?: {
 			id: 'advanced-sidebar-menu/navigation';
 			attributes: BlockAttributes<object>;
-			supports: BlockSettings<object>['supports'];
+			// @todo: Remove when required PRO version is 9.9.0+.
+			supports?: BlockSettings<object>['supports'];
 		}
 	};
 	categories: {

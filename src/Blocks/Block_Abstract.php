@@ -241,7 +241,6 @@ abstract class Block_Abstract {
 		$config['blocks'][ \explode( '/', static::NAME )[1] ] = [
 			'id'         => static::NAME,
 			'attributes' => $this->get_attributes(),
-			'supports'   => Common::instance()->get_block_supports(),
 		];
 
 		return $config;
