@@ -14,8 +14,8 @@ use Advanced_Sidebar_Menu\Widget\WidgetWithId;
  *
  * @phpstan-import-type ATTR_SHAPE from Block_Abstract
  *
- * @template SETTINGS of array<string, mixed>
- * @template DEFAULTS of array<string, mixed>
+ * @template SETTINGS of array<string, string|int|bool|array<string, string>>
+ * @template DEFAULTS of array<key-of<SETTINGS>, int|string|array<string, string>>
  */
 interface Block {
 	/**
@@ -39,4 +39,12 @@ interface Block {
 	 * @return WidgetWithId<SETTINGS, DEFAULTS>
 	 */
 	public function get_widget_class(): WidgetWithId;
+
+
+	/**
+	 * Get the description of this block.
+	 *
+	 * @return string
+	 */
+	public function get_description(): string;
 }

@@ -8,6 +8,7 @@ use Advanced_Sidebar_Menu\Utils;
 use Advanced_Sidebar_Menu\Widget\Category;
 use Advanced_Sidebar_Menu\Widget\Page;
 use Advanced_Sidebar_Menu\Widget\Widget;
+use Advanced_Sidebar_Menu\Widget\WidgetWithId;
 use Advanced_Sidebar_Menu\Widget_Options\Shared\Style_Targeting;
 
 /**
@@ -41,6 +42,8 @@ use Advanced_Sidebar_Menu\Widget_Options\Shared\Style_Targeting;
  * }
  *
  * @phpstan-template SETTINGS of array<string, string|int|bool|array<string, string>>
+ * @phpstan-template WIDGET_SETTINGS of array<string, string|int|array<string, string>>
+ * @phpstan-template DEFAULTS of array<key-of<SETTINGS>, int|string|array<string, string>>
  */
 abstract class Block_Abstract {
 	public const NAME = 'block-abstract';
@@ -67,7 +70,7 @@ abstract class Block_Abstract {
 
 
 	/**
-	 * @todo       Remove once \Advanced_Sidebar_Menu\Blocks\Navigation implements `Block` interface.
+	 * @todo  Remove once \Advanced_Sidebar_Menu\Blocks\Navigation implements `Block` interface.
 	 *
 	 * @return array<string, ATTR_SHAPE>
 	 */
@@ -75,9 +78,19 @@ abstract class Block_Abstract {
 
 
 	/**
-	 * @todo       Remove once \Advanced_Sidebar_Menu\Blocks\Navigation implements `Block` interface.
+	 * @todo  Remove once \Advanced_Sidebar_Menu\Blocks\Navigation implements `Block` interface.
+	 *
+	 * @return WidgetWithId<WIDGET_SETTINGS, DEFAULTS>
 	 */
 	abstract protected function get_widget_class();
+
+
+	/**
+	 * @todo  Remove once \Advanced_Sidebar_Menu\Blocks\Navigation implements `Block` interface.
+	 *
+	 * @return string
+	 */
+	abstract protected function get_description();
 
 
 	/**
@@ -120,6 +133,7 @@ abstract class Block_Abstract {
 		}
 
 		$widget = $this->get_widget_class();
+		// @phpstan-ignore classConstant.notFound (@todo switch to `get_id_base()` once required PRO version is 9.9.0+)
 		$blocks[] = $widget::NAME;
 		return $blocks;
 	}
@@ -203,6 +217,7 @@ abstract class Block_Abstract {
 		$args = apply_filters( 'advanced-sidebar-menu/block-register/' . static::NAME, [
 			'api_version'           => 3,
 			'attributes'            => $attributes,
+			'description'           => $this->get_description(),
 			'editor_script_handles' => [ Scripts::GUTENBERG_HANDLE ],
 			'editor_style_handles'  => [ Scripts::GUTENBERG_CSS_HANDLE ],
 			'render_callback'       => [ $this, 'render' ],
@@ -251,9 +266,12 @@ abstract class Block_Abstract {
 	 * Checkboxes are saved as `true` on the Gutenberg side.
 	 * The widgets expect the values to be `checked`.
 	 *
-	 * @param array<string, mixed> $attr - Attribute values pre-converted.
+	 * @phpstan-param \Union<SETTINGS, SHARED>          $attr
 	 *
-	 * @return array<string, mixed>
+	 * @param array<string, mixed|array<string, mixed>> $attr - Attribute values pre-converted.
+	 *
+	 * @phpstan-return WIDGET_SETTINGS
+	 * @return array<string, string|int|array<string, string|int>>
 	 */
 	public function convert_checkbox_values( array $attr ): array {
 		// Map the boolean values to the widget style 'checked'.

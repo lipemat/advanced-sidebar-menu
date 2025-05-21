@@ -32,12 +32,6 @@ $ignoreErrors[] = [
 	'path' => __DIR__ . '/../src/Blocks/Block_Abstract.php',
 ];
 $ignoreErrors[] = [
-	'message' => '#^Calling `widget` method on unknown `\\$widget` can skip important errors\\. Make sure the type is known\\.$#',
-	'identifier' => 'lipemat.noUnknownMethodCaller',
-	'count' => 1,
-	'path' => __DIR__ . '/../src/Blocks/Block_Abstract.php',
-];
-$ignoreErrors[] = [
 	'message' => '#^Method Advanced_Sidebar_Menu\\\\Blocks\\\\Block_Abstract\\:\\:add_jetpack_support\\(\\) has parameter \\$blocks with no value type specified in iterable type array\\.$#',
 	'identifier' => 'missingType.iterableValue',
 	'count' => 1,
@@ -50,6 +44,12 @@ $ignoreErrors[] = [
 	'path' => __DIR__ . '/../src/Blocks/Block_Abstract.php',
 ];
 $ignoreErrors[] = [
+	'message' => '#^Method Advanced_Sidebar_Menu\\\\Blocks\\\\Block_Abstract\\:\\:convert_checkbox_values\\(\\) should return WIDGET_SETTINGS of array\\<string, array\\<string, string\\>\\|int\\|string\\> but returns array\\<string, mixed\\>\\.$#',
+	'identifier' => 'return.type',
+	'count' => 1,
+	'path' => __DIR__ . '/../src/Blocks/Block_Abstract.php',
+];
+$ignoreErrors[] = [
 	'message' => '#^Method Advanced_Sidebar_Menu\\\\Blocks\\\\Block_Abstract\\:\\:exclude_from_legacy_widgets\\(\\) has parameter \\$blocks with no value type specified in iterable type array\\.$#',
 	'identifier' => 'missingType.iterableValue',
 	'count' => 1,
@@ -58,12 +58,6 @@ $ignoreErrors[] = [
 $ignoreErrors[] = [
 	'message' => '#^Method Advanced_Sidebar_Menu\\\\Blocks\\\\Block_Abstract\\:\\:exclude_from_legacy_widgets\\(\\) return type has no value type specified in iterable type array\\.$#',
 	'identifier' => 'missingType.iterableValue',
-	'count' => 1,
-	'path' => __DIR__ . '/../src/Blocks/Block_Abstract.php',
-];
-$ignoreErrors[] = [
-	'message' => '#^Method Advanced_Sidebar_Menu\\\\Blocks\\\\Block_Abstract\\:\\:get_widget_class\\(\\) has no return type specified\\.$#',
-	'identifier' => 'missingType.return',
 	'count' => 1,
 	'path' => __DIR__ . '/../src/Blocks/Block_Abstract.php',
 ];
@@ -88,6 +82,12 @@ $ignoreErrors[] = [
 $ignoreErrors[] = [
 	'message' => '#^Method Advanced_Sidebar_Menu\\\\Blocks\\\\Block_Abstract\\:\\:short_circuit_widget_blocks\\(\\) return type has no value type specified in iterable type array\\.$#',
 	'identifier' => 'missingType.iterableValue',
+	'count' => 1,
+	'path' => __DIR__ . '/../src/Blocks/Block_Abstract.php',
+];
+$ignoreErrors[] = [
+	'message' => '#^Parameter \\#1 \\$args of method Advanced_Sidebar_Menu\\\\Widget\\\\Widget\\<WIDGET_SETTINGS of array\\<string, array\\<string, string\\>\\|int\\|string\\>,DEFAULTS of array\\<string, array\\<string, string\\>\\|int\\|string\\>\\>\\:\\:widget\\(\\) expects array\\{name\\?\\: string, id\\?\\: string, id_increment\\?\\: string, description\\?\\: string, class\\?\\: string, before_widget\\: string, after_widget\\: string, before_title\\: string, \\.\\.\\.\\}, non\\-empty\\-array given\\.$#',
+	'identifier' => 'argument.type',
 	'count' => 1,
 	'path' => __DIR__ . '/../src/Blocks/Block_Abstract.php',
 ];

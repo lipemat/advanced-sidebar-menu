@@ -11,8 +11,8 @@ use Advanced_Sidebar_Menu\Widget\Category;
  * @since  9.0.0
  *
  * @phpstan-import-type ATTR_SHAPE from Block_Abstract
- * @phpstan-import-type CATEGORY_SETTINGS from Category
- * @phpstan-import-type DEFAULTS from Category as CAT_DEFAULTS
+ * @phpstan-import-type CATEGORY_SETTINGS from Category as WIDGET_SETTINGS
+ * @phpstan-import-type DEFAULTS from Category as DEFAULTS
  *
  * @phpstan-type CATEGORY_ATTRIBUTES array{
  *     display_all: bool,
@@ -24,13 +24,24 @@ use Advanced_Sidebar_Menu\Widget\Category;
  *     single: bool,
  *     taxonomy?: string,
  * }
- * @extends Block_Abstract<CATEGORY_ATTRIBUTES>
- * @implements Block<CATEGORY_SETTINGS, CAT_DEFAULTS>
+ * @extends Block_Abstract<CATEGORY_ATTRIBUTES, WIDGET_SETTINGS, DEFAULTS>
+ * @implements Block<WIDGET_SETTINGS, DEFAULTS>
  */
 class Categories extends Block_Abstract implements Block {
 	use Singleton;
 
 	public const NAME = 'advanced-sidebar-menu/categories';
+
+
+	/**
+	 * Get the description of this block.
+	 *
+	 * @return string
+	 */
+	public function get_description(): string {
+		return __( 'Creates a menu of all the categories using the parent/child relationship',
+			'advanced-sidebar-menu' );
+	}
 
 
 	/**
@@ -133,18 +144,5 @@ class Categories extends Block_Abstract implements Block {
 			__( 'taxonomy', 'advanced-sidebar-menu' ),
 			__( 'term', 'advanced-sidebar-menu' ),
 		];
-	}
-
-
-	/**
-	 * @deprecated 9.7.0
-	 *
-	 * @return string
-	 */
-	protected function get_description() {
-		_deprecated_function( __METHOD__, '9.7.0' );
-
-		return __( 'Creates a menu of all the categories using the parent/child relationship',
-			'advanced-sidebar-menu' );
 	}
 }

@@ -11,8 +11,8 @@ use Advanced_Sidebar_Menu\Widget\Page;
  * @since  9.0.0
  *
  * @phpstan-import-type ATTR_SHAPE from Block_Abstract
- * @phpstan-import-type PAGE_SETTINGS from Page
- * @phpstan-import-type DEFAULTS from Page as PAGE_DEFAULTS
+ * @phpstan-import-type PAGE_SETTINGS from Page as WIDGET_SETTINGS
+ * @phpstan-import-type DEFAULTS from Page as DEFAULTS
  *
  * @phpstan-type PAGE_ATTRIBUTES array{
  *   display_all?: bool,
@@ -24,8 +24,8 @@ use Advanced_Sidebar_Menu\Widget\Page;
  *   post_type?: string,
  * }
  *
- * @extends Block_Abstract<PAGE_ATTRIBUTES>
- * @implements Block<PAGE_SETTINGS, PAGE_DEFAULTS>
+ * @extends Block_Abstract<PAGE_ATTRIBUTES, WIDGET_SETTINGS, DEFAULTS>
+ * @implements Block<WIDGET_SETTINGS, DEFAULTS>
  */
 class Pages extends Block_Abstract implements Block {
 	use Singleton;
@@ -34,9 +34,18 @@ class Pages extends Block_Abstract implements Block {
 
 
 	/**
+	 * Get the description of this block.
+	 *
+	 * @return string
+	 */
+	public function get_description(): string {
+		return __( 'Creates a menu of all the pages using the parent/child relationship', 'advanced-sidebar-menu' );
+	}
+
+
+	/**
 	 * Return a new instance of the Page widget.
 	 *
-	 * @return Page
 	 */
 	public function get_widget_class(): Page {
 		return new Page();
@@ -98,18 +107,6 @@ class Pages extends Block_Abstract implements Block {
 			__( 'sidebar', 'advanced-sidebar-menu' ),
 			__( 'pages', 'advanced-sidebar-menu' ),
 		];
-	}
-
-
-	/**
-	 * @deprecated 9.7.0
-	 *
-	 * @return string
-	 */
-	protected function get_description() {
-		_deprecated_function( __METHOD__, '9.7.0' );
-
-		return __( 'Creates a menu of all the pages using the parent/child relationship', 'advanced-sidebar-menu' );
 	}
 
 
