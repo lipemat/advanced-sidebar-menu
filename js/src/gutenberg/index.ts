@@ -2,7 +2,6 @@ import {autoloadBlocks} from '@lipemat/js-boilerplate-gutenberg';
 import Preview from './blocks/Preview';
 import {getBlockSupports, TransformLegacy, transformLegacyWidget, translateBlockAttributes} from './helpers';
 import ErrorBoundary from '../components/ErrorBoundary';
-import type {ComponentClass, FunctionComponent} from 'react';
 
 
 // @see content/plugins/advanced-sidebar-menu-pro/js/src/globals/config.ts
@@ -10,12 +9,8 @@ export type PassedGlobals = Partial<{
 	transformLegacyWidget: TransformLegacy;
 	translateBlockAttributes: typeof translateBlockAttributes;
 	getBlockSupports: typeof getBlockSupports;
-	Preview: FunctionComponent<object>;
-	ErrorBoundary: ComponentClass<{
-		attributes: object,
-		block: string;
-		section: string;
-	}>;
+	Preview: typeof Preview;
+	ErrorBoundary: typeof ErrorBoundary;
 }>;
 
 /**
