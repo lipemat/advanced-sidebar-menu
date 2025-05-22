@@ -2,6 +2,7 @@
 
 namespace Advanced_Sidebar_Menu\Blocks;
 
+use Advanced_Sidebar_Menu\__Temp_Id_Proxy;
 use Advanced_Sidebar_Menu\Menus\Menu_Abstract;
 use Advanced_Sidebar_Menu\Scripts;
 use Advanced_Sidebar_Menu\Utils;
@@ -70,7 +71,7 @@ abstract class Block_Abstract {
 
 
 	/**
-	 * @todo  Remove once \Advanced_Sidebar_Menu\Blocks\Navigation implements `Block` interface.
+	 * @todo  Remove once minimum required PRO Blocks\Navigation implements `Block` interface.
 	 *
 	 * @return array<string, ATTR_SHAPE>
 	 */
@@ -78,7 +79,7 @@ abstract class Block_Abstract {
 
 
 	/**
-	 * @todo  Remove once \Advanced_Sidebar_Menu\Blocks\Navigation implements `Block` interface.
+	 * @todo  Remove once minimum required PRO Blocks\Navigation implements `Block` interface.
 	 *
 	 * @return WidgetWithId<WIDGET_SETTINGS, DEFAULTS>
 	 */
@@ -133,8 +134,7 @@ abstract class Block_Abstract {
 		}
 
 		$widget = $this->get_widget_class();
-		// @phpstan-ignore classConstant.notFound (@todo switch to `get_id_base()` once required PRO version is 9.9.0+)
-		$blocks[] = $widget::NAME;
+		$blocks[] = __Temp_Id_Proxy::factory( $widget )->get_id_base();
 		return $blocks;
 	}
 
@@ -341,7 +341,7 @@ abstract class Block_Abstract {
 	 * or the box shadow will double up.
 	 *
 	 * @link https://github.com/WordPress/gutenberg/issues/65882
-	 * @todo Remove when issue is resolved.
+	 * @todo Remove when the issue is resolved.
 	 *
 	 * @internal
 	 *
@@ -364,7 +364,7 @@ abstract class Block_Abstract {
 	 *
 	 * @return string
 	 */
-	public function render( $attr ) {
+	public function render( array $attr ): string {
 		if ( $this->is_server_side_render( $attr ) ) {
 			$this->spoof_wp_query();
 		}
