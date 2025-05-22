@@ -1,6 +1,7 @@
 import Preview, {type PreviewOptions} from '../../../../src/gutenberg/blocks/Preview';
-import {render} from '@testing-library/react';
+import {fireEvent, render} from '@testing-library/react';
 import {addFilter} from '@wordpress/hooks';
+import CategorySimpleAccordion from '../../../fixtures/category-counts-accordion';
 
 const mockServerSideRender = jest.fn();
 
@@ -25,8 +26,8 @@ const ControlledPreview = ( {attributes} ) => {
 
 describe( 'Preview component', () => {
 	/**
-	 * We can't test a component from the basic version within the PRO version so
-	 * instead we test existence and usage of the filter.
+	 * We can't test a component from the basic version within the PRO version, so
+	 * instead we test the existence and usage of the filter.
 	 *
 	 * @see advanced-sidebar-menu-pro/js/jest/tests/gutenberg/blocks/widget-styles/section.test.tsx:'Does not refresh preview when section is opened or closed'
 	 */
@@ -61,6 +62,39 @@ describe( 'Preview component', () => {
 			isServerSideRenderRequest: true,
 			clientId: 'unit-test-client-id',
 			sidebarId: '',
+		} );
+	} );
+
+
+	it( 'prevents link events from firing on click', () => {
+		// Set up test attributes
+		const attributes = {
+			order_by: 'title',
+		};
+		mockServerSideRender.mockImplementation( () => CategorySimpleAccordion );
+		const {getByTestId, getByText} = render( <ControlledPreview attributes={attributes} /> );
+
+		const NO_FIRE = [
+			'Indoor Hobbies',
+			'(0)',
+			'City Planter',
+			'Boating',
+		];
+
+		const FIRE = [
+			'simple-li',
+			'simple-ul',
+			'simple-icon',
+		]
+		NO_FIRE.forEach( text => {
+			expect( getByText( text ) ).toBeInTheDocument();
+			const result = fireEvent.click( getByText( text ) );
+			expect( result ).toBe( false );
+		} );
+		FIRE.forEach( testId => {
+			expect( getByTestId( testId ) ).toBeInTheDocument();
+			const result = fireEvent.click( getByTestId( testId ) );
+			expect( result ).toBe( true );
 		} );
 	} );
 } );

@@ -197,7 +197,7 @@ const Preview = <A, >( {attributes, block, clientId}: Props<A> ) => {
 			{...blockProps}
 			onClick={ev => {
 				const element = ev.target as HTMLElement;
-				if ( 'A' === element.nodeName ) {
+				if ( 'A' === element.nodeName || ( 'SPAN' === element.nodeName && 'A' === element.parentNode?.nodeName ) ) {
 					ev.preventDefault();
 				}
 			}}
