@@ -263,31 +263,6 @@ abstract class Block_Abstract {
 
 
 	/**
-	 * Checkboxes are saved as `true` on the Gutenberg side.
-	 * The widgets expect the values to be `checked`.
-	 *
-	 * @phpstan-param \Union<SETTINGS, SHARED>          $attr
-	 *
-	 * @param array<string, mixed|array<string, mixed>> $attr - Attribute values pre-converted.
-	 *
-	 * @phpstan-return WIDGET_SETTINGS
-	 * @return array<string, string|int|array<string, string|int>>
-	 */
-	public function convert_checkbox_values( array $attr ): array {
-		// Map the boolean values to the widget style 'checked'.
-		return Utils::instance()->array_map_recursive( function( $value ) {
-			if ( true === $value ) {
-				return 'checked';
-			}
-			if ( false === $value ) {
-				return '';
-			}
-			return $value;
-		}, $attr );
-	}
-
-
-	/**
 	 * Within the Editor ServerSideRender request come in as REST requests.
 	 * We spoof the WP_Query as much as required to get the menus to
 	 * display the same way they will on the front-end.
@@ -422,7 +397,19 @@ abstract class Block_Abstract {
 
 		\ob_start();
 		$widget = $this->get_widget_class();
-		$widget->widget( $widget_args, $this->convert_checkbox_values( $attr ) );
+		$widget->widget( $widget_args, Attributes\Utils::instance()->convert_all_checkboxes( $attr ) );
 		return (string) \ob_get_clean();
+	}
+
+
+	/**
+	 * @deprecated 9.7.0
+	 * @phpstan-return WIDGET_SETTINGS
+	 *
+	 * @param array<string, array<string, string|bool>|int|string|bool> $attr - Block attributes matching widget settings.
+	 */
+	public function convert_checkbox_values( array $attr ): array {
+		_deprecated_function( __METHOD__, '9.7.0', 'Utils::instance()->convert_all_checkboxes()' );
+		return Attributes\Utils::instance()->convert_all_checkboxes( $attr );
 	}
 }

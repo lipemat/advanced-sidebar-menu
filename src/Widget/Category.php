@@ -2,8 +2,8 @@
 
 namespace Advanced_Sidebar_Menu\Widget;
 
-use Advanced_Sidebar_Menu\Menus\Category as CategoryMenu;
-use Advanced_Sidebar_Menu\Menus\Menu_Abstract;
+use Advanced_Sidebar_Menu\Blocks\Attributes\CategoryAttr;
+use Advanced_Sidebar_Menu\Menus\Category as Menu;
 
 /**
  * Creates a Widget of parent Child Categories
@@ -12,7 +12,7 @@ use Advanced_Sidebar_Menu\Menus\Menu_Abstract;
  *
  * @package  Advanced Sidebar Menu
  *
- * @phpstan-import-type CATEGORY_SETTINGS from CategoryMenu
+ * @phpstan-import-type CATEGORY_SETTINGS from Menu
  * @phpstan-import-type WIDGET_ARGS from Widget
  *
  * @formatter:off
@@ -37,32 +37,16 @@ class Category extends \WP_Widget implements WidgetWithId {
 
 	public const NAME = 'advanced_sidebar_menu_category';
 
-	public const TITLE                    = CategoryMenu::TITLE;
-	public const INCLUDE_PARENT           = CategoryMenu::INCLUDE_PARENT;
-	public const INCLUDE_CHILDLESS_PARENT = CategoryMenu::INCLUDE_CHILDLESS_PARENT;
-	public const ORDER_BY                 = CategoryMenu::ORDER_BY;
-	public const EXCLUDE                  = CategoryMenu::EXCLUDE;
-	public const DISPLAY_ALL              = CategoryMenu::DISPLAY_ALL;
-	public const LEVELS                   = CategoryMenu::LEVELS;
+	public const TITLE                    = Menu::TITLE;
+	public const INCLUDE_PARENT           = Menu::INCLUDE_PARENT;
+	public const INCLUDE_CHILDLESS_PARENT = Menu::INCLUDE_CHILDLESS_PARENT;
+	public const ORDER_BY                 = Menu::ORDER_BY;
+	public const EXCLUDE                  = Menu::EXCLUDE;
+	public const DISPLAY_ALL              = Menu::DISPLAY_ALL;
+	public const LEVELS                   = Menu::LEVELS;
 
-	public const DISPLAY_ON_SINGLE    = CategoryMenu::DISPLAY_ON_SINGLE;
-	public const POST_CATEGORY_LAYOUT = CategoryMenu::POST_CATEGORY_LAYOUT;
-
-	/**
-	 * Default widget values.
-	 *
-	 * @var DEFAULTS
-	 */
-	protected static $defaults = [
-		self::TITLE                    => '',
-		self::INCLUDE_PARENT           => '',
-		self::INCLUDE_CHILDLESS_PARENT => '',
-		self::DISPLAY_ON_SINGLE        => '',
-		self::POST_CATEGORY_LAYOUT     => 'widget',
-		self::EXCLUDE                  => '',
-		self::DISPLAY_ALL              => '',
-		self::LEVELS                   => '1',
-	];
+	public const DISPLAY_ON_SINGLE    = Menu::DISPLAY_ON_SINGLE;
+	public const POST_CATEGORY_LAYOUT = Menu::POST_CATEGORY_LAYOUT;
 
 
 	/**
@@ -143,8 +127,8 @@ class Category extends \WP_Widget implements WidgetWithId {
 	 */
 	public static function get_display_each_options() {
 		return [
-			CategoryMenu::EACH_WIDGET => __( 'In a new widget', 'advanced-sidebar-menu' ),
-			CategoryMenu::EACH_LIST   => __( 'In another list in the same widget', 'advanced-sidebar-menu' ),
+			Menu::EACH_WIDGET => __( 'In a new widget', 'advanced-sidebar-menu' ),
+			Menu::EACH_LIST   => __( 'In another list in the same widget', 'advanced-sidebar-menu' ),
 		];
 	}
 
@@ -176,7 +160,7 @@ class Category extends \WP_Widget implements WidgetWithId {
 				<label>
 					<?php
 					/* translators: Selected taxonomy single label */
-					printf( esc_html__( 'Display menu when there is only the parent %s', 'advanced-sidebar-menu' ), esc_html( strtolower( $this->get_taxonomy_label( $instance ) ) ) );
+					\printf( esc_html__( 'Display menu when there is only the parent %s', 'advanced-sidebar-menu' ), esc_html( strtolower( $this->get_taxonomy_label( $instance ) ) ) );
 					?>
 				</label>
 			</p>
@@ -185,7 +169,7 @@ class Category extends \WP_Widget implements WidgetWithId {
 				<label>
 					<?php
 					/* translators: Selected taxonomy plural label */
-					printf( esc_html__( 'Always display child %s', 'advanced-sidebar-menu' ), esc_html( strtolower( $this->get_taxonomy_label( $instance, false ) ) ) );
+					\printf( esc_html__( 'Always display child %s', 'advanced-sidebar-menu' ), esc_html( strtolower( $this->get_taxonomy_label( $instance, false ) ) ) );
 					?>
 				</label>
 			</p>
@@ -193,7 +177,7 @@ class Category extends \WP_Widget implements WidgetWithId {
 				<p>
 					<label for="<?php echo esc_attr( $widget->get_field_id( self::LEVELS ) ); ?>">
 						<?php
-						ob_start();
+						\ob_start();
 						?>
 						<select
 							id="<?php echo esc_attr( $widget->get_field_id( self::LEVELS ) ); ?>"
@@ -333,7 +317,8 @@ class Category extends \WP_Widget implements WidgetWithId {
 	 * @return string
 	 */
 	public function form( $instance ) {
-		$settings = $this->set_instance( $instance, static::$defaults );
+		$values = CategoryAttr::factory( $instance );
+		$settings = $this->set_instance( $values->get_args(), $values->get_args() );
 		do_action( 'advanced-sidebar-menu/widget/category/before-form', $settings, $this );
 		?>
 		<p>
@@ -388,8 +373,8 @@ class Category extends \WP_Widget implements WidgetWithId {
 	 * @return void
 	 */
 	public function widget( $args, $instance ) {
-		$settings = $this->set_instance( $instance, static::$defaults );
-		$menu = CategoryMenu::factory( $settings, $args );
+		$values = CategoryAttr::factory( $instance );
+		$menu = Menu::factory( $values->get_args(), $args );
 
 		do_action( 'advanced-sidebar-menu/widget/before-render', $menu, $this );
 

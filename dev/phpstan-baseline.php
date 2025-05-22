@@ -2,6 +2,12 @@
 
 $ignoreErrors = [];
 $ignoreErrors[] = [
+	'message' => '#^Method Advanced_Sidebar_Menu\\\\Blocks\\\\Attributes\\\\CategoryAttr\\:\\:get_args\\(\\) should return array\\{display\\-posts\\: string, display_all\\: \'\'\\|\'checked\', exclude\\: string, include_childless_parent\\: \'\'\\|\'checked\', include_parent\\: \'\'\\|\'checked\', levels\\: int\\|numeric\\-string, new_widget\\: \'list\'\\|\'widget\', single\\: \'\'\\|\'checked\', \\.\\.\\.\\} but returns array\\<string, array\\<string, int\\|string\\>\\|int\\|string\\>\\.$#',
+	'identifier' => 'return.type',
+	'count' => 1,
+	'path' => __DIR__ . '/../src/Blocks/Attributes/CategoryAttr.php',
+];
+$ignoreErrors[] = [
 	'message' => '#^Accessing `is_page` property on unknown `\\$GLOBALS\\[\'wp_query\'\\]` can skip important errors\\. Make sure the type is known\\.$#',
 	'identifier' => 'lipemat.noUnknownProperty',
 	'count' => 1,
@@ -42,6 +48,12 @@ $ignoreErrors[] = [
 	'identifier' => 'missingType.iterableValue',
 	'count' => 1,
 	'path' => __DIR__ . '/../src/Blocks/Block_Abstract.php',
+];
+$ignoreErrors[] = [
+	'message'    => '#^Method Advanced_Sidebar_Menu\\\\Blocks\\\\Block_Abstract\\:\\:convert_checkbox_values\\(\\) should return WIDGET_SETTINGS of array\\<string, array\\<string, string\\>\\|int\\|string\\> but returns array\\<string, array\\<string, int\\|string\\>\\|int\\|string\\>\\.$#',
+	'identifier' => 'return.type',
+	'count'      => 1,
+	'path'       => __DIR__ . '/../src/Blocks/Block_Abstract.php',
 ];
 $ignoreErrors[] = [
 	'message' => '#^Method Advanced_Sidebar_Menu\\\\Blocks\\\\Block_Abstract\\:\\:exclude_from_legacy_widgets\\(\\) has parameter \\$blocks with no value type specified in iterable type array\\.$#',
@@ -87,6 +99,12 @@ $ignoreErrors[] = [
 ];
 $ignoreErrors[] = [
 	'message' => '#^Parameter \\#1 \\$widget of static method Advanced_Sidebar_Menu\\\\__Temp_Id_Proxy\\:\\:factory\\(\\) expects Advanced_Sidebar_Menu\\\\Widget\\\\Widget\\<array\\{\\}, array\\{\\}\\>, Advanced_Sidebar_Menu\\\\Widget\\\\WidgetWithId\\<WIDGET_SETTINGS of array\\<string, array\\<string, string\\>\\|int\\|string\\>, DEFAULTS of array\\<string, array\\<string, string\\>\\|int\\|string\\>\\> given\\.$#',
+	'identifier' => 'argument.type',
+	'count' => 1,
+	'path' => __DIR__ . '/../src/Blocks/Block_Abstract.php',
+];
+$ignoreErrors[] = [
+	'message' => '#^Parameter \\#2 \\$instance of method Advanced_Sidebar_Menu\\\\Widget\\\\Widget\\<WIDGET_SETTINGS of array\\<string, array\\<string, string\\>\\|int\\|string\\>,DEFAULTS of array\\<string, array\\<string, string\\>\\|int\\|string\\>\\>\\:\\:widget\\(\\) expects WIDGET_SETTINGS of array\\<string, array\\<string, string\\>\\|int\\|string\\>, array\\<string, array\\<string, int\\|string\\>\\|int\\|string\\> given\\.$#',
 	'identifier' => 'argument.type',
 	'count' => 1,
 	'path' => __DIR__ . '/../src/Blocks/Block_Abstract.php',

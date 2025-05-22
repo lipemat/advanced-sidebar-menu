@@ -106,16 +106,15 @@ class Categories extends Block_Abstract implements Block {
 	}
 
 
+	/**
+	 * Render the block by passing the attributes to the widget renders.
+	 *
+	 * @param array<string, mixed> $attr - Block attributes matching widget.
+	 *
+	 * @return string
+	 */
 	public function render( array $attr ): string {
-		$args = new CategoryAttr( $attr );
-		$args->display_all = $args->get_bool_check( Menu::DISPLAY_ALL, $attr );
-		$args->exclude = $attr[ Menu::EXCLUDE ] ?? '';
-		$args->include_childless_parent = $args->get_bool_check( Menu::INCLUDE_CHILDLESS_PARENT, $attr );
-		$args->include_parent = $args->get_bool_check( Menu::INCLUDE_PARENT, $attr );
-		$args->levels = $attr[ Menu::LEVELS ] ?? 1;
-		$args->new_widget = $attr[ Widget::POST_CATEGORY_LAYOUT ] ?? Menu::EACH_WIDGET;
-		$args->single = $args->get_bool_check( Menu::DISPLAY_ON_SINGLE, $attr );
-		$args->taxonomy = $attr['taxonomy'] ?? 'category';
+		$args = CategoryAttr::factory( $attr );
 
 		return parent::render( $args->get_args() );
 	}

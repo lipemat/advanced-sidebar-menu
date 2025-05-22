@@ -365,6 +365,35 @@ class Category extends Menu_Abstract implements Menu {
 
 
 	/**
+	 * Get current menu instance.
+	 *
+	 * @return Category|null
+	 */
+	public static function get_current(): ?Category {
+		return static::$current_menu;
+	}
+
+
+	/**
+	 * Constructs a new instance of this class.
+	 *
+	 * @phpstan-param CATEGORY_SETTINGS $widget_instance
+	 * @phpstan-param WIDGET_ARGS       $widget_args
+	 *
+	 * @param array                     $widget_instance - Widget settings.
+	 * @param array                     $widget_args     - Widget registration args.
+	 *
+	 * @return Category
+	 */
+	public static function factory( array $widget_instance, array $widget_args ): Category {
+		$menu = new static( $widget_instance, $widget_args );
+		static::$current_menu = $menu;
+
+		return $menu;
+	}
+
+
+	/**
 	 * Get the top-level terms for the current page.
 	 * Could be multiple if on a single.
 	 * This will be one if on an archive.
@@ -668,34 +697,5 @@ class Category extends Menu_Abstract implements Menu {
 		do_action( 'advanced-sidebar-menu/menus/category/render/after', $this );
 		echo $this->args['after_widget'];
 		//phpcs:enable WordPress.Security.EscapeOutput
-	}
-
-
-	/**
-	 * Get current menu instance.
-	 *
-	 * @return Category|null
-	 */
-	public static function get_current(): ?Category {
-		return static::$current_menu;
-	}
-
-
-	/**
-	 * Constructs a new instance of this class.
-	 *
-	 * @phpstan-param CATEGORY_SETTINGS $widget_instance
-	 * @phpstan-param WIDGET_ARGS       $widget_args
-	 *
-	 * @param array                     $widget_instance - Widget settings.
-	 * @param array                     $widget_args     - Widget registration args.
-	 *
-	 * @return Category
-	 */
-	public static function factory( array $widget_instance, array $widget_args ): Category {
-		$menu = new static( $widget_instance, $widget_args );
-		static::$current_menu = $menu;
-
-		return $menu;
 	}
 }

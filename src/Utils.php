@@ -17,7 +17,7 @@ class Utils implements Rules {
 	/**
 	 * Is a widget's checkbox checked?
 	 *
-	 * Checks first for a value then verifies the value = checked.
+	 * Checks first for a value, then verifies the value = checked.
 	 *
 	 * @param string               $name     - name of checkbox.
 	 * @param array<string, mixed> $settings - Widget settings.
