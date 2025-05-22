@@ -11,6 +11,8 @@ use Advanced_Sidebar_Menu\Widget\Page;
  * @since  9.0.0
  *
  * @phpstan-import-type ATTR_SHAPE from Block_Abstract
+ * @phpstan-import-type PAGE_SETTINGS from Page as WIDGET_SETTINGS
+ * @phpstan-import-type DEFAULTS from Page as DEFAULTS
  *
  * @phpstan-type PAGE_ATTRIBUTES array{
  *   display_all?: bool,
@@ -22,9 +24,10 @@ use Advanced_Sidebar_Menu\Widget\Page;
  *   post_type?: string,
  * }
  *
- * @extends Block_Abstract<PAGE_ATTRIBUTES>
+ * @extends Block_Abstract<PAGE_ATTRIBUTES, WIDGET_SETTINGS, DEFAULTS>
+ * @implements Block<WIDGET_SETTINGS, DEFAULTS>
  */
-class Pages extends Block_Abstract {
+class Pages extends Block_Abstract implements Block {
 	use Singleton;
 
 	public const NAME = 'advanced-sidebar-menu/pages';
@@ -35,50 +38,22 @@ class Pages extends Block_Abstract {
 	 *
 	 * @return string
 	 */
-	protected function get_description() {
-		return __( 'Creates a menu of all the categories using the parent/child relationship',
-			'advanced-sidebar-menu' );
+	public function get_description(): string {
+		return __( 'Creates a menu of all the pages using the parent/child relationship', 'advanced-sidebar-menu' );
 	}
 
 
 	/**
-	 * Get featured this block supports.
+	 * Return a new instance of the Page widget.
 	 *
-	 * Done on the PHP side, so we can easily add additional features
-	 * via the PRO version.
-	 *
-	 * @return array
 	 */
-	protected function get_block_support() {
-		return apply_filters( 'advanced-sidebar-menu/blocks/pages/supports', [
-			'anchor' => true,
-			'html'   => false,
-		] );
+	public function get_widget_class(): Page {
+		return new Page();
 	}
 
 
 	/**
-	 * Get list of words used to search for the block.
-	 *
-	 * English and translated so both will be searchable.
-	 *
-	 * @return array<string>
-	 */
-	public function get_keywords() {
-		return [
-			'Advanced Sidebar',
-			'menu',
-			'sidebar',
-			'pages',
-			__( 'menu', 'advanced-sidebar-menu' ),
-			__( 'sidebar', 'advanced-sidebar-menu' ),
-			__( 'pages', 'advanced-sidebar-menu' ),
-		];
-	}
-
-
-	/**
-	 * Get list of attributes and their types.
+	 * Get the list of attributes and their types.
 	 *
 	 * Must be done PHP side because we're using ServerSideRender
 	 *
@@ -87,7 +62,7 @@ class Pages extends Block_Abstract {
 	 * @phpstan-return array<key-of<PAGE_ATTRIBUTES>, ATTR_SHAPE>
 	 * @return array
 	 */
-	protected function get_attributes(): array {
+	public function get_attributes(): array {
 		return (array) apply_filters( 'advanced-sidebar-menu/blocks/pages/attributes', [
 			Page::INCLUDE_PARENT           => [
 				'type' => 'boolean',
@@ -115,11 +90,37 @@ class Pages extends Block_Abstract {
 
 
 	/**
-	 * Return a new instance of the Page widget.
+	 * @deprecated 9.7.0
 	 *
-	 * @return Page
+	 * @phpstan-return array<string>
 	 */
-	protected function get_widget_class() {
-		return new Page();
+	public function get_keywords() {
+		_deprecated_function( __METHOD__, '9.7.0' );
+
+		return [
+			'Advanced Sidebar',
+			'menu',
+			'sidebar',
+			'pages',
+			'butt',
+			__( 'menu', 'advanced-sidebar-menu' ),
+			__( 'sidebar', 'advanced-sidebar-menu' ),
+			__( 'pages', 'advanced-sidebar-menu' ),
+		];
+	}
+
+
+	/**
+	 * @deprecated 9.7.0
+	 *
+	 * @phpstan-return array<string, bool>
+	 */
+	protected function get_block_support() {
+		_deprecated_function( __METHOD__, '9.7.0' );
+
+		return apply_filters( 'advanced-sidebar-menu/blocks/pages/supports', [
+			'anchor' => true,
+			'html'   => false,
+		] );
 	}
 }

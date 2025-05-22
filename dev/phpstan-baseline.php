@@ -2,6 +2,12 @@
 
 $ignoreErrors = [];
 $ignoreErrors[] = [
+	'message' => '#^Method Advanced_Sidebar_Menu\\\\Blocks\\\\Attributes\\\\CategoryAttr\\:\\:get_args\\(\\) should return array\\{display\\-posts\\: string, display_all\\: \'\'\\|\'checked\', exclude\\: string, include_childless_parent\\: \'\'\\|\'checked\', include_parent\\: \'\'\\|\'checked\', levels\\: int\\|numeric\\-string, new_widget\\: \'list\'\\|\'widget\', single\\: \'\'\\|\'checked\', \\.\\.\\.\\} but returns array\\<string, array\\<string, int\\|string\\>\\|int\\|string\\>\\.$#',
+	'identifier' => 'return.type',
+	'count' => 1,
+	'path' => __DIR__ . '/../src/Blocks/Attributes/CategoryAttr.php',
+];
+$ignoreErrors[] = [
 	'message' => '#^Accessing `is_page` property on unknown `\\$GLOBALS\\[\'wp_query\'\\]` can skip important errors\\. Make sure the type is known\\.$#',
 	'identifier' => 'lipemat.noUnknownProperty',
 	'count' => 1,
@@ -32,12 +38,6 @@ $ignoreErrors[] = [
 	'path' => __DIR__ . '/../src/Blocks/Block_Abstract.php',
 ];
 $ignoreErrors[] = [
-	'message' => '#^Calling `widget` method on unknown `\\$widget` can skip important errors\\. Make sure the type is known\\.$#',
-	'identifier' => 'lipemat.noUnknownMethodCaller',
-	'count' => 1,
-	'path' => __DIR__ . '/../src/Blocks/Block_Abstract.php',
-];
-$ignoreErrors[] = [
 	'message' => '#^Method Advanced_Sidebar_Menu\\\\Blocks\\\\Block_Abstract\\:\\:add_jetpack_support\\(\\) has parameter \\$blocks with no value type specified in iterable type array\\.$#',
 	'identifier' => 'missingType.iterableValue',
 	'count' => 1,
@@ -50,6 +50,12 @@ $ignoreErrors[] = [
 	'path' => __DIR__ . '/../src/Blocks/Block_Abstract.php',
 ];
 $ignoreErrors[] = [
+	'message'    => '#^Method Advanced_Sidebar_Menu\\\\Blocks\\\\Block_Abstract\\:\\:convert_checkbox_values\\(\\) should return WIDGET_SETTINGS of array\\<string, array\\<string, string\\>\\|int\\|string\\> but returns array\\<string, array\\<string, int\\|string\\>\\|int\\|string\\>\\.$#',
+	'identifier' => 'return.type',
+	'count'      => 1,
+	'path'       => __DIR__ . '/../src/Blocks/Block_Abstract.php',
+];
+$ignoreErrors[] = [
 	'message' => '#^Method Advanced_Sidebar_Menu\\\\Blocks\\\\Block_Abstract\\:\\:exclude_from_legacy_widgets\\(\\) has parameter \\$blocks with no value type specified in iterable type array\\.$#',
 	'identifier' => 'missingType.iterableValue',
 	'count' => 1,
@@ -58,24 +64,6 @@ $ignoreErrors[] = [
 $ignoreErrors[] = [
 	'message' => '#^Method Advanced_Sidebar_Menu\\\\Blocks\\\\Block_Abstract\\:\\:exclude_from_legacy_widgets\\(\\) return type has no value type specified in iterable type array\\.$#',
 	'identifier' => 'missingType.iterableValue',
-	'count' => 1,
-	'path' => __DIR__ . '/../src/Blocks/Block_Abstract.php',
-];
-$ignoreErrors[] = [
-	'message' => '#^Method Advanced_Sidebar_Menu\\\\Blocks\\\\Block_Abstract\\:\\:get_attributes\\(\\) return type has no value type specified in iterable type array\\.$#',
-	'identifier' => 'missingType.iterableValue',
-	'count' => 1,
-	'path' => __DIR__ . '/../src/Blocks/Block_Abstract.php',
-];
-$ignoreErrors[] = [
-	'message' => '#^Method Advanced_Sidebar_Menu\\\\Blocks\\\\Block_Abstract\\:\\:get_block_support\\(\\) return type has no value type specified in iterable type array\\.$#',
-	'identifier' => 'missingType.iterableValue',
-	'count' => 1,
-	'path' => __DIR__ . '/../src/Blocks/Block_Abstract.php',
-];
-$ignoreErrors[] = [
-	'message' => '#^Method Advanced_Sidebar_Menu\\\\Blocks\\\\Block_Abstract\\:\\:get_widget_class\\(\\) has no return type specified\\.$#',
-	'identifier' => 'missingType.return',
 	'count' => 1,
 	'path' => __DIR__ . '/../src/Blocks/Block_Abstract.php',
 ];
@@ -104,22 +92,28 @@ $ignoreErrors[] = [
 	'path' => __DIR__ . '/../src/Blocks/Block_Abstract.php',
 ];
 $ignoreErrors[] = [
-	'message' => '#^Returning false in a method without a `bool` return type\\. Return `null` with `\\<type\\>\\|null` or add `bool` to the return type\\.$#',
-	'identifier' => 'lipemat.returnNullOverFalse',
+	'message' => '#^Parameter \\#1 \\$args of method Advanced_Sidebar_Menu\\\\Widget\\\\Widget\\<WIDGET_SETTINGS of array\\<string, array\\<string, string\\>\\|int\\|string\\>,DEFAULTS of array\\<string, array\\<string, string\\>\\|int\\|string\\>\\>\\:\\:widget\\(\\) expects array\\{name\\?\\: string, id\\?\\: string, id_increment\\?\\: string, description\\?\\: string, class\\?\\: string, before_widget\\: string, after_widget\\: string, before_title\\: string, \\.\\.\\.\\}, non\\-empty\\-array given\\.$#',
+	'identifier' => 'argument.type',
 	'count' => 1,
 	'path' => __DIR__ . '/../src/Blocks/Block_Abstract.php',
 ];
 $ignoreErrors[] = [
-	'message' => '#^Method Advanced_Sidebar_Menu\\\\Blocks\\\\Categories\\:\\:get_block_support\\(\\) return type has no value type specified in iterable type array\\.$#',
-	'identifier' => 'missingType.iterableValue',
+	'message' => '#^Parameter \\#1 \\$widget of static method Advanced_Sidebar_Menu\\\\__Temp_Id_Proxy\\:\\:factory\\(\\) expects Advanced_Sidebar_Menu\\\\Widget\\\\Widget\\<array\\{\\}, array\\{\\}\\>, Advanced_Sidebar_Menu\\\\Widget\\\\WidgetWithId\\<WIDGET_SETTINGS of array\\<string, array\\<string, string\\>\\|int\\|string\\>, DEFAULTS of array\\<string, array\\<string, string\\>\\|int\\|string\\>\\> given\\.$#',
+	'identifier' => 'argument.type',
 	'count' => 1,
-	'path' => __DIR__ . '/../src/Blocks/Categories.php',
+	'path' => __DIR__ . '/../src/Blocks/Block_Abstract.php',
 ];
 $ignoreErrors[] = [
-	'message' => '#^Method Advanced_Sidebar_Menu\\\\Blocks\\\\Pages\\:\\:get_block_support\\(\\) return type has no value type specified in iterable type array\\.$#',
-	'identifier' => 'missingType.iterableValue',
+	'message' => '#^Parameter \\#2 \\$instance of method Advanced_Sidebar_Menu\\\\Widget\\\\Widget\\<WIDGET_SETTINGS of array\\<string, array\\<string, string\\>\\|int\\|string\\>,DEFAULTS of array\\<string, array\\<string, string\\>\\|int\\|string\\>\\>\\:\\:widget\\(\\) expects WIDGET_SETTINGS of array\\<string, array\\<string, string\\>\\|int\\|string\\>, array\\<string, array\\<string, int\\|string\\>\\|int\\|string\\> given\\.$#',
+	'identifier' => 'argument.type',
 	'count' => 1,
-	'path' => __DIR__ . '/../src/Blocks/Pages.php',
+	'path' => __DIR__ . '/../src/Blocks/Block_Abstract.php',
+];
+$ignoreErrors[] = [
+	'message' => '#^Returning false in a method without a `bool` return type\\. Return `null` with `\\<type\\>\\|null` or add `bool` to the return type\\.$#',
+	'identifier' => 'lipemat.returnNullOverFalse',
+	'count' => 1,
+	'path' => __DIR__ . '/../src/Blocks/Block_Abstract.php',
 ];
 $ignoreErrors[] = [
 	'message' => '#^Method Advanced_Sidebar_Menu\\\\Cache\\:\\:add_child_pages\\(\\) has parameter \\$child_pages with no value type specified in iterable type array\\.$#',
@@ -276,68 +270,6 @@ $ignoreErrors[] = [
 	'identifier' => 'missingType.iterableValue',
 	'count' => 1,
 	'path' => __DIR__ . '/../src/Walkers/Page_Walker.php',
-];
-$ignoreErrors[] = [
-	'message' => '#^Call to deprecated method factory\\(\\) of class Advanced_Sidebar_Menu\\\\Menus\\\\Category\\:
-In favor of using factory on the specific class\\.$#',
-	'identifier' => 'staticMethod.deprecated',
-	'count' => 1,
-	'path' => __DIR__ . '/../src/Widget/Category.php',
-];
-$ignoreErrors[] = [
-	'message' => '#^Property Advanced_Sidebar_Menu\\\\Widget\\\\Widget_Abstract\\<array\\<string, int\\|string\\>,array\\<string, int\\|string\\>\\>\\:\\:\\$widget_settings type has no value type specified in iterable type array\\.$#',
-	'identifier' => 'missingType.iterableValue',
-	'count' => 1,
-	'path' => __DIR__ . '/../src/Widget/Category.php',
-];
-$ignoreErrors[] = [
-	'message' => '#^Call to deprecated method factory\\(\\) of class Advanced_Sidebar_Menu\\\\Menus\\\\Page\\:
-In favor of using factory on the specific class\\.$#',
-	'identifier' => 'staticMethod.deprecated',
-	'count' => 1,
-	'path' => __DIR__ . '/../src/Widget/Page.php',
-];
-$ignoreErrors[] = [
-	'message' => '#^Property Advanced_Sidebar_Menu\\\\Widget\\\\Widget_Abstract\\<array\\<string, int\\|string\\>,array\\<string, int\\|string\\>\\>\\:\\:\\$widget_settings type has no value type specified in iterable type array\\.$#',
-	'identifier' => 'missingType.iterableValue',
-	'count' => 1,
-	'path' => __DIR__ . '/../src/Widget/Page.php',
-];
-$ignoreErrors[] = [
-	'message' => '#^Method Advanced_Sidebar_Menu\\\\Widget\\\\Widget_Abstract\\:\\:set_instance\\(\\) return type has no value type specified in iterable type array\\.$#',
-	'identifier' => 'missingType.iterableValue',
-	'count' => 1,
-	'path' => __DIR__ . '/../src/Widget/Widget_Abstract.php',
-];
-$ignoreErrors[] = [
-	'message' => '#^PHPDoc tag @return contains unresolvable type\\.$#',
-	'identifier' => 'return.unresolvableType',
-	'count' => 1,
-	'path' => __DIR__ . '/../src/Widget/Widget_Abstract.php',
-];
-$ignoreErrors[] = [
-	'message' => '#^PHPDoc tag @var for property Advanced_Sidebar_Menu\\\\Widget\\\\Widget_Abstract\\:\\:\\$widget_settings contains unresolvable type\\.$#',
-	'identifier' => 'property.unresolvableType',
-	'count' => 1,
-	'path' => __DIR__ . '/../src/Widget/Widget_Abstract.php',
-];
-$ignoreErrors[] = [
-	'message' => '#^PHPDoc tag @var for property Advanced_Sidebar_Menu\\\\Widget\\\\Widget_Abstract\\:\\:\\$widget_settings with type mixed is not subtype of native type array\\.$#',
-	'identifier' => 'property.phpDocType',
-	'count' => 1,
-	'path' => __DIR__ . '/../src/Widget/Widget_Abstract.php',
-];
-$ignoreErrors[] = [
-	'message' => '#^Property Advanced_Sidebar_Menu\\\\Widget\\\\Widget_Abstract\\:\\:\\$widget_settings type has no value type specified in iterable type array\\.$#',
-	'identifier' => 'missingType.iterableValue',
-	'count' => 1,
-	'path' => __DIR__ . '/../src/Widget/Widget_Abstract.php',
-];
-$ignoreErrors[] = [
-	'message' => '#^Return type \\(array\\) of method Advanced_Sidebar_Menu\\\\Widget\\\\Widget_Abstract\\:\\:set_instance\\(\\) should be covariant with return type \\(array\\<string, mixed\\>\\) of method Advanced_Sidebar_Menu\\\\Widget\\\\Widget\\<SETTINGS of array\\<string, mixed\\>,DEFAULTS of array\\<string, mixed\\>\\>\\:\\:set_instance\\(\\)$#',
-	'identifier' => 'method.childReturnType',
-	'count' => 1,
-	'path' => __DIR__ . '/../src/Widget/Widget_Abstract.php',
 ];
 
 return ['parameters' => ['ignoreErrors' => $ignoreErrors]];

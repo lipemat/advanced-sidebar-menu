@@ -6,9 +6,9 @@ import type {JSConfig} from '../src/globals/config';
 
 // Support jQuery in tests.
 import $ from 'jquery';
-// @ts-ignore
+// @ts-expect-error
 global.jQuery = $;
-// @ts-ignore
+// @ts-expect-error
 global.$ = global.jQuery;
 jQuery.fx.off = true;
 jest.dontMock( 'jquery' );
@@ -47,67 +47,33 @@ global.React = require( 'react' );
 
 // Mock environmental variables
 const config: JSConfig = {
-	// @ts-ignore
-	ErrorBoundary: ( {children} ) => children,
-	Preview: () => null,
-	categories: {
-		displayEach: {
-			widget: 'In a new widget',
-			list: 'In another list in the same widget',
-		},
-	},
-	currentScreen: 'post',
-	docs: {
-		page: 'https://onpointplugins.com/advanced-sidebar-menu/basic-usage/advanced-sidebar-menu-pages/',
-		category: 'https://onpointplugins.com/advanced-sidebar-menu/basic-usage/advanced-sidebar-menu-categories/',
-	},
-	error: '',
-	features: [
-		'Styling options including borders, bullets, colors, backgrounds, font size and weight.',
-		'Accordion menus.',
-		'Support for custom navigation menus from Appearance -> Menus.',
-		'Select and display custom post types and taxonomies.',
-		'Priority support with access to members only support area.',
-	],
-	isPostEdit: '1',
-	isPro: '',
-	isWidgets: '',
-	pages: {
-		orderBy: {
-			menu_order: 'Page Order',
-			post_title: 'Title',
-			post_date: 'Published Date',
-		},
-	},
-	siteInfo: {
-		basic: '9.6.0',
-		classicWidgets: false,
-		menus: [],
-		php: '7.4.30',
-		pro: false,
-		scriptDebug: true,
-		WordPress: '6.6',
-	},
-	support: 'https://wordpress.org/support/plugin/advanced-sidebar-menu/#new-topic-0',
 	blocks: {
+		commonAttr: {
+			style: {
+				type: 'object',
+			},
+			title: {
+				type: 'string',
+			},
+		},
+		previewAttr: {
+			clientId: {
+				type: 'string',
+			},
+			isServerSideRenderRequest: {
+				type: 'boolean',
+			},
+			sidebarId: {
+				type: 'string',
+			},
+		},
+		blockSupport: {
+			anchor: true,
+			html: false,
+		},
 		categories: {
 			id: 'advanced-sidebar-menu/categories',
 			attributes: {
-				clientId: {
-					type: 'string',
-				},
-				isServerSideRenderRequest: {
-					type: 'boolean',
-				},
-				sidebarId: {
-					type: 'string',
-				},
-				style: {
-					type: 'object',
-				},
-				title: {
-					type: 'string',
-				},
 				include_parent: {
 					type: 'boolean',
 					default: false,
@@ -141,28 +107,10 @@ const config: JSConfig = {
 					default: 100,
 				},
 			},
-			supports: {
-				anchor: true,
-			},
 		},
 		pages: {
 			id: 'advanced-sidebar-menu/pages',
 			attributes: {
-				clientId: {
-					type: 'string',
-				},
-				isServerSideRenderRequest: {
-					type: 'boolean',
-				},
-				sidebarId: {
-					type: 'string',
-				},
-				style: {
-					type: 'object',
-				},
-				title: {
-					type: 'string',
-				},
 				include_parent: {
 					type: 'boolean',
 				},
@@ -185,12 +133,49 @@ const config: JSConfig = {
 					default: 100,
 				},
 			},
-			supports: {
-				anchor: true,
-			},
 		},
 	},
+	categories: {
+		displayEach: {
+			widget: 'In a new widget',
+			list: 'In another list in the same widget',
+		},
+	},
+	currentScreen: 'post',
+	docs: {
+		page: 'https://onpointplugins.com/advanced-sidebar-menu/basic-usage/advanced-sidebar-menu-pages/',
+		category: 'https://onpointplugins.com/advanced-sidebar-menu/basic-usage/advanced-sidebar-menu-categories/',
+	},
+	error: '',
+	features: [
+		'Styling options including borders, bullets, colors, backgrounds, font size and weight.',
+		'Accordion menus.',
+		'Support for custom navigation menus from Appearance -> Menus.',
+		'Select and display custom post types and taxonomies.',
+		'Priority support with access to members only support area.',
+	],
+	isPostEdit: '1',
+	isPro: '',
+	isWidgets: '',
+	pages: {
+		orderBy: {
+			menu_order: 'Page Order',
+			post_title: 'Title',
+			post_date: 'Published Date',
+		},
+	},
+	siteInfo: {
+		basic: '9.6.5',
+		classicWidgets: false,
+		menus: [],
+		php: '7.4.30',
+		pro: false,
+		scriptDebug: true,
+		WordPress: '6.8.1',
+	},
+	support: 'https://wordpress.org/support/plugin/advanced-sidebar-menu/#new-topic-0',
 };
+
 
 window.ADVANCED_SIDEBAR_MENU = config;
 

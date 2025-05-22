@@ -10,6 +10,8 @@
 $ignoreErrors = [];
 
 if ( PHP_VERSION_ID < 80000 ) {
+} else {
+
 }
 
 return [ 'parameters' => [ 'ignoreErrors' => $ignoreErrors ] ];

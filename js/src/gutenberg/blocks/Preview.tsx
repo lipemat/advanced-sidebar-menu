@@ -11,12 +11,21 @@ import {isScreen} from '../helpers';
 
 import styles from './preview.pcss';
 
+/**
+ * @see \Advanced_Sidebar_Menu\Blocks\Common_Attributes::get_common_attributes
+ */
+export type CommonAttr = {
+	title?: string;
+	style?: object;
+}
 
-export type PreviewOptions = {
+/**
+ * @see \Advanced_Sidebar_Menu\Blocks\Common_Attributes::get_server_side_render_attributes
+ */
+export type ServerSideRenderRequired = {
 	isServerSideRenderRequest: boolean;
 	clientId: string;
 	sidebarId: string;
-	style?: object;
 }
 
 type Props<A> = {
@@ -161,7 +170,9 @@ const TriggerWhenLoadingFinished = ( {
 
 
 const Preview = <A, >( {attributes, block, clientId}: Props<A> ) => {
-	const blockProps = useBlockProps();
+	const blockProps = useBlockProps( {
+		className: styles.wrap,
+	} );
 
 	if ( '' !== CONFIG.error ) {
 		return <div
@@ -172,7 +183,7 @@ const Preview = <A, >( {attributes, block, clientId}: Props<A> ) => {
 
 	const sanitizedClientId = sanitizeClientId( clientId );
 
-	let attributesToSend: A & PreviewOptions = {
+	let attributesToSend: A & ServerSideRenderRequired = {
 		...attributes,
 		isServerSideRenderRequest: true,
 		clientId: sanitizedClientId,
@@ -200,7 +211,7 @@ const Preview = <A, >( {attributes, block, clientId}: Props<A> ) => {
 				}
 			}}
 		>
-			<ServerSideRender<A & PreviewOptions>
+			<ServerSideRender<A & ServerSideRenderRequired>
 				EmptyResponsePlaceholder={placeholder( block )}
 				LoadingResponsePlaceholder={TriggerWhenLoadingFinished}
 				attributes={attributesToSend}

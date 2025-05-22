@@ -1,9 +1,8 @@
-import {ComponentClass, FunctionComponent} from 'react';
-import {TransformLegacy} from '../gutenberg/helpers';
 import type {Attr as PageAttr} from '../gutenberg/blocks/pages/block';
 import type {Attr as CategoryAttr} from '../gutenberg/blocks/categories/block';
-import type {BlockAttributes, BlockSettings} from '@wordpress/blocks';
-import type {PreviewOptions} from '../gutenberg/blocks/Preview';
+import type {BlockAttributes, BlockSettings, BlockSupports} from '@wordpress/blocks';
+import type {CommonAttr, ServerSideRenderRequired} from '../gutenberg/blocks/Preview';
+import type {PassedGlobals} from '../gutenberg/index';
 
 export type Screen = 'site-editor' | 'widgets' | 'post' | 'customize';
 
@@ -11,20 +10,26 @@ export type WPBoolean = '1' | '';
 
 export interface JSConfig {
 	blocks: {
+		commonAttr: BlockAttributes<CommonAttr>;
+		previewAttr: BlockAttributes<ServerSideRenderRequired>;
+		blockSupport: BlockSupports;
 		categories: {
 			id: 'advanced-sidebar-menu/categories';
-			attributes: BlockAttributes<CategoryAttr & PreviewOptions>;
-			supports: BlockSettings<CategoryAttr>['supports'];
+			attributes: BlockAttributes<CategoryAttr>;
+			// @todo: Remove when required PRO version is 9.9.0+.
+			supports?: BlockSettings<CategoryAttr>['supports'];
 		};
 		pages: {
 			id: 'advanced-sidebar-menu/pages';
-			attributes: BlockAttributes<PageAttr & PreviewOptions>;
-			supports: BlockSettings<PageAttr>['supports'];
+			attributes: BlockAttributes<PageAttr>;
+			// @todo: Remove when required PRO version is 9.9.0+.
+			supports?: BlockSettings<PageAttr>['supports'];
 		};
 		navigation?: {
 			id: 'advanced-sidebar-menu/navigation';
 			attributes: BlockAttributes<object>;
-			supports: BlockSettings<object>['supports'];
+			// @todo: Remove when required PRO version is 9.9.0+.
+			supports?: BlockSettings<object>['supports'];
 		}
 	};
 	categories: {
@@ -39,19 +44,14 @@ export interface JSConfig {
 		category: string;
 	};
 	error: string;
-	ErrorBoundary: ComponentClass<{
-		attributes: object,
-		block: string;
-		section: string;
-	}>;
 	features: Array<string>;
 	isPostEdit: WPBoolean;
 	isPro: WPBoolean;
+	isProCommonAttr?: WPBoolean;
 	isWidgets: WPBoolean;
 	pages: {
 		orderBy: { [ value: string ]: string };
 	};
-	Preview: FunctionComponent<object>;
 	siteInfo: {
 		basic: string;
 		classicWidgets: boolean;
@@ -62,13 +62,12 @@ export interface JSConfig {
 		WordPress: string;
 	};
 	support: string;
-	transformLegacyWidget: TransformLegacy;
 }
 
 
 declare global {
 	interface Window {
-		ADVANCED_SIDEBAR_MENU: JSConfig;
+		ADVANCED_SIDEBAR_MENU: JSConfig & PassedGlobals;
 		advancedSidebarMenuAdmin: {
 			init: () => void;
 			handlePreviews: () => void;
@@ -80,4 +79,4 @@ declare global {
 	}
 }
 
-export const CONFIG: JSConfig = window.ADVANCED_SIDEBAR_MENU;
+export const CONFIG: JSConfig & PassedGlobals = window.ADVANCED_SIDEBAR_MENU;

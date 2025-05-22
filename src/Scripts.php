@@ -3,6 +3,7 @@
 namespace Advanced_Sidebar_Menu;
 
 use Advanced_Sidebar_Menu\Blocks\Block_Abstract;
+use Advanced_Sidebar_Menu\Blocks\Common;
 use Advanced_Sidebar_Menu\Traits\Singleton;
 use Advanced_Sidebar_Menu\Widget\Category;
 use Advanced_Sidebar_Menu\Widget\Page;
@@ -81,7 +82,7 @@ class Scripts {
 	 * within the iframes of areas such as FSE.
 	 *
 	 * The actual script/style loading is done via `register_block_type`
-	 * using 'editor_script' and 'editor_style'.
+	 * using 'editor_script_handles' and 'editor_style_handles'.
 	 *
 	 * @action init 10 0
 	 *
@@ -228,6 +229,11 @@ class Scripts {
 	 */
 	public function js_config(): array {
 		return apply_filters( 'advanced-sidebar-menu/scripts/js-config', [
+			'blocks'        => [
+				'commonAttr'   => Common::instance()->get_common_attributes(),
+				'previewAttr'  => Common::instance()->get_server_side_render_attributes(),
+				'blockSupport' => Common::instance()->get_block_supports(),
+			],
 			'categories'    => [
 				'displayEach' => Category::get_display_each_options(),
 			],

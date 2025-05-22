@@ -2,8 +2,10 @@
 
 namespace Advanced_Sidebar_Menu\Blocks;
 
+use Advanced_Sidebar_Menu\Blocks\Attributes\CategoryAttr;
+use Advanced_Sidebar_Menu\Menus\Category as Menu;
 use Advanced_Sidebar_Menu\Traits\Singleton;
-use Advanced_Sidebar_Menu\Widget\Category;
+use Advanced_Sidebar_Menu\Widget\Category as Widget;
 
 /**
  * Advanced Sidebar - Categories, Gutenberg block.
@@ -11,6 +13,8 @@ use Advanced_Sidebar_Menu\Widget\Category;
  * @since  9.0.0
  *
  * @phpstan-import-type ATTR_SHAPE from Block_Abstract
+ * @phpstan-import-type CATEGORY_SETTINGS from Widget as WIDGET_SETTINGS
+ * @phpstan-import-type DEFAULTS from Widget
  *
  * @phpstan-type CATEGORY_ATTRIBUTES array{
  *     display_all: bool,
@@ -22,9 +26,10 @@ use Advanced_Sidebar_Menu\Widget\Category;
  *     single: bool,
  *     taxonomy?: string,
  * }
- * @extends Block_Abstract<CATEGORY_ATTRIBUTES>
+ * @extends Block_Abstract<CATEGORY_ATTRIBUTES, WIDGET_SETTINGS, DEFAULTS>
+ * @implements Block<WIDGET_SETTINGS, DEFAULTS>
  */
-class Categories extends Block_Abstract {
+class Categories extends Block_Abstract implements Block {
 	use Singleton;
 
 	public const NAME = 'advanced-sidebar-menu/categories';
@@ -35,21 +40,94 @@ class Categories extends Block_Abstract {
 	 *
 	 * @return string
 	 */
-	protected function get_description() {
+	public function get_description(): string {
 		return __( 'Creates a menu of all the categories using the parent/child relationship',
 			'advanced-sidebar-menu' );
 	}
 
 
 	/**
-	 * Get featured this block supports.
+	 * Return a new instance of the Categories widget.
 	 *
-	 * Done on the PHP side, so we can easily add additional features
-	 * via the PRO version.
+	 * @return Widget
+	 */
+	public function get_widget_class(): Widget {
+		return new Widget();
+	}
+
+
+	/**
+	 * Get the list of attributes and their types.
 	 *
+	 * Must be done on both PHP and JS sides to support default values
+	 * * and SeverSideRender.
+	 *
+	 * @link https://developer.wordpress.org/block-editor/reference-guides/block-api/block-attributes/
+	 *
+	 * @phpstan-return array<key-of<CATEGORY_ATTRIBUTES>, ATTR_SHAPE>
 	 * @return array
 	 */
+	public function get_attributes() {
+		return apply_filters( 'advanced-sidebar-menu/blocks/categories/attributes', [
+			Widget::INCLUDE_PARENT           => [
+				'type'    => 'boolean',
+				'default' => false,
+			],
+			Widget::INCLUDE_CHILDLESS_PARENT => [
+				'type'    => 'boolean',
+				'default' => false,
+			],
+			Widget::EXCLUDE                  => [
+				'type'    => 'string',
+				'default' => '',
+			],
+			Widget::DISPLAY_ALL              => [
+				'type'    => 'boolean',
+				'default' => false,
+			],
+			Widget::DISPLAY_ON_SINGLE        => [
+				'type'    => 'boolean',
+				'default' => true,
+			],
+			// No block option available. We only support 'list'.
+			Widget::POST_CATEGORY_LAYOUT     => [
+				'type'    => 'string',
+				'default' => Menu::EACH_LIST,
+				'enum'    => [
+					Menu::EACH_LIST,
+					Menu::EACH_WIDGET,
+				],
+			],
+			Widget::LEVELS                   => [
+				'type'    => 'number',
+				'default' => 100,
+			],
+		] );
+	}
+
+
+	/**
+	 * Render the block by passing the attributes to the widget renders.
+	 *
+	 * @param array<string, mixed> $attr - Block attributes matching widget.
+	 *
+	 * @return string
+	 */
+	public function render( array $attr ): string {
+		$args = CategoryAttr::factory( $attr );
+
+		return parent::render( $args->get_args() );
+	}
+
+
+	/**
+	 * @deprecated 9.7.0
+	 *
+	 * @phpstan-return array<string, bool>
+	 */
 	protected function get_block_support() {
+		_deprecated_function( __METHOD__, '9.7.0' );
+
 		return apply_filters( 'advanced-sidebar-menu/blocks/categories/supports', [
 			'anchor' => true,
 			'html'   => false,
@@ -58,13 +136,13 @@ class Categories extends Block_Abstract {
 
 
 	/**
-	 * Get list of words used to search for the block.
+	 * @deprecated 9.7.0
 	 *
-	 * English and translated so both will be searchable.
-	 *
-	 * @return array<string>
+	 * @phpstan-return array<string>
 	 */
 	public function get_keywords() {
+		_deprecated_function( __METHOD__, '9.7.0' );
+
 		$category = get_taxonomy( 'category' );
 
 		return [
@@ -82,64 +160,5 @@ class Categories extends Block_Abstract {
 			__( 'taxonomy', 'advanced-sidebar-menu' ),
 			__( 'term', 'advanced-sidebar-menu' ),
 		];
-	}
-
-
-	/**
-	 * Get list of attributes and their types.
-	 *
-	 * Must be done PHP side because we're using ServerSideRender
-	 *
-	 * @link https://developer.wordpress.org/block-editor/reference-guides/block-api/block-attributes/
-	 *
-	 * @phpstan-return array<key-of<CATEGORY_ATTRIBUTES>, ATTR_SHAPE>
-	 * @return array
-	 */
-	protected function get_attributes() {
-		return apply_filters( 'advanced-sidebar-menu/blocks/categories/attributes', [
-			Category::INCLUDE_PARENT           => [
-				'type'    => 'boolean',
-				'default' => false,
-			],
-			Category::INCLUDE_CHILDLESS_PARENT => [
-				'type'    => 'boolean',
-				'default' => false,
-			],
-			Category::EXCLUDE                  => [
-				'type'    => 'string',
-				'default' => '',
-			],
-			Category::DISPLAY_ALL              => [
-				'type'    => 'boolean',
-				'default' => false,
-			],
-			Category::DISPLAY_ON_SINGLE        => [
-				'type'    => 'boolean',
-				'default' => true,
-			],
-			// No block option available. We only support 'list'.
-			Category::EACH_CATEGORY_DISPLAY    => [
-				'type'    => 'string',
-				'default' => \Advanced_Sidebar_Menu\Menus\Category::EACH_LIST,
-				'enum'    => [
-					\Advanced_Sidebar_Menu\Menus\Category::EACH_LIST,
-					\Advanced_Sidebar_Menu\Menus\Category::EACH_WIDGET,
-				],
-			],
-			Category::LEVELS                   => [
-				'type'    => 'number',
-				'default' => 100,
-			],
-		] );
-	}
-
-
-	/**
-	 * Return a new instance of the Categories widget.
-	 *
-	 * @return Category
-	 */
-	protected function get_widget_class() {
-		return new Category();
 	}
 }
