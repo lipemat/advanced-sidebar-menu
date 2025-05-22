@@ -22,7 +22,9 @@ class __Temp_Id_Proxy {
 	/**
 	 * Constructor.
 	 *
-	 * @param Widget $widget - Widget instance.
+	 * @phpstan-param Widget<array{}, array{}> $widget
+	 *
+	 * @param Widget                           $widget - Widget instance.
 	 */
 	final protected function __construct( Widget $widget ) {
 		$this->widget = $widget;
