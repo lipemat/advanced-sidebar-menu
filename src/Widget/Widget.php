@@ -52,7 +52,7 @@ interface Widget {
 	/**
 	 * Is this checkbox checked?
 	 *
-	 * Checks first for a value then verifies the value = 'checked'.
+	 * Checks first for a value, then verifies the value = 'checked'.
 	 *
 	 * @param string $name - Name of checkbox.
 	 *

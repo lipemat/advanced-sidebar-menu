@@ -2,8 +2,10 @@
 
 namespace Advanced_Sidebar_Menu\Blocks;
 
+use Advanced_Sidebar_Menu\Blocks\Attributes\CategoryAttr;
+use Advanced_Sidebar_Menu\Menus\Category as Menu;
 use Advanced_Sidebar_Menu\Traits\Singleton;
-use Advanced_Sidebar_Menu\Widget\Category;
+use Advanced_Sidebar_Menu\Widget\Category as Widget;
 
 /**
  * Advanced Sidebar - Categories, Gutenberg block.
@@ -11,8 +13,8 @@ use Advanced_Sidebar_Menu\Widget\Category;
  * @since  9.0.0
  *
  * @phpstan-import-type ATTR_SHAPE from Block_Abstract
- * @phpstan-import-type CATEGORY_SETTINGS from Category as WIDGET_SETTINGS
- * @phpstan-import-type DEFAULTS from Category as DEFAULTS
+ * @phpstan-import-type CATEGORY_SETTINGS from Widget as WIDGET_SETTINGS
+ * @phpstan-import-type DEFAULTS from Widget
  *
  * @phpstan-type CATEGORY_ATTRIBUTES array{
  *     display_all: bool,
@@ -47,10 +49,10 @@ class Categories extends Block_Abstract implements Block {
 	/**
 	 * Return a new instance of the Categories widget.
 	 *
-	 * @return Category
+	 * @return Widget
 	 */
-	public function get_widget_class(): Category {
-		return new Category();
+	public function get_widget_class(): Widget {
+		return new Widget();
 	}
 
 
@@ -67,40 +69,55 @@ class Categories extends Block_Abstract implements Block {
 	 */
 	public function get_attributes() {
 		return apply_filters( 'advanced-sidebar-menu/blocks/categories/attributes', [
-			Category::INCLUDE_PARENT           => [
+			Widget::INCLUDE_PARENT           => [
 				'type'    => 'boolean',
 				'default' => false,
 			],
-			Category::INCLUDE_CHILDLESS_PARENT => [
+			Widget::INCLUDE_CHILDLESS_PARENT => [
 				'type'    => 'boolean',
 				'default' => false,
 			],
-			Category::EXCLUDE                  => [
+			Widget::EXCLUDE                  => [
 				'type'    => 'string',
 				'default' => '',
 			],
-			Category::DISPLAY_ALL              => [
+			Widget::DISPLAY_ALL              => [
 				'type'    => 'boolean',
 				'default' => false,
 			],
-			Category::DISPLAY_ON_SINGLE        => [
+			Widget::DISPLAY_ON_SINGLE        => [
 				'type'    => 'boolean',
 				'default' => true,
 			],
 			// No block option available. We only support 'list'.
-			Category::EACH_CATEGORY_DISPLAY    => [
+			Widget::POST_CATEGORY_LAYOUT     => [
 				'type'    => 'string',
-				'default' => \Advanced_Sidebar_Menu\Menus\Category::EACH_LIST,
+				'default' => Menu::EACH_LIST,
 				'enum'    => [
-					\Advanced_Sidebar_Menu\Menus\Category::EACH_LIST,
-					\Advanced_Sidebar_Menu\Menus\Category::EACH_WIDGET,
+					Menu::EACH_LIST,
+					Menu::EACH_WIDGET,
 				],
 			],
-			Category::LEVELS                   => [
+			Widget::LEVELS                   => [
 				'type'    => 'number',
 				'default' => 100,
 			],
 		] );
+	}
+
+
+	public function render( array $attr ): string {
+		$args = new CategoryAttr( $attr );
+		$args->display_all = $args->get_bool_check( Menu::DISPLAY_ALL, $attr );
+		$args->exclude = $attr[ Menu::EXCLUDE ] ?? '';
+		$args->include_childless_parent = $args->get_bool_check( Menu::INCLUDE_CHILDLESS_PARENT, $attr );
+		$args->include_parent = $args->get_bool_check( Menu::INCLUDE_PARENT, $attr );
+		$args->levels = $attr[ Menu::LEVELS ] ?? 1;
+		$args->new_widget = $attr[ Widget::POST_CATEGORY_LAYOUT ] ?? Menu::EACH_WIDGET;
+		$args->single = $args->get_bool_check( Menu::DISPLAY_ON_SINGLE, $attr );
+		$args->taxonomy = $attr['taxonomy'] ?? 'category';
+
+		return parent::render( $args->get_args() );
 	}
 
 
