@@ -8,7 +8,7 @@ use Advanced_Sidebar_Menu\Widget\WidgetId;
 /**
  * Temporary proxy to translate the `id` property to `id_base` and `number`.
  *
- * @todo Remove this class when the minimum PRO version is 9.9.0+.
+ * @todo Remove this class when the minimum PRO version is 9.10.0+.
  *
  * @internal
  */

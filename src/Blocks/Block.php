@@ -10,7 +10,7 @@ use Advanced_Sidebar_Menu\Widget\WidgetWithId;
  * Replacement for `Block_Abstract` as we move from inheritance to composition.
  *
  * @author OnPoint Plugins
- * @since  9.7.0
+ * @since  9.8.0
  *
  * @phpstan-import-type ATTR_SHAPE from Block_Abstract
  *
