@@ -3892,7 +3892,6 @@ __metadata:
     eslint: "npm:^9"
     jest: "npm:^29"
     jquery: "npm:3.6.4"
-    react-string-replace: "npm:^1.1.1"
     stylelint: "npm:^14"
     ts-node: "npm:^10.9.1"
     typescript: "npm:^5.8.2"
@@ -14641,13 +14640,6 @@ __metadata:
   version: 0.14.2
   resolution: "react-refresh@npm:0.14.2"
   checksum: 10c0/875b72ef56b147a131e33f2abd6ec059d1989854b3ff438898e4f9310bfcc73acff709445b7ba843318a953cb9424bcc2c05af2b3d80011cee28f25aef3e2ebb
-  languageName: node
-  linkType: hard
-
-"react-string-replace@npm:^1.1.1":
-  version: 1.1.1
-  resolution: "react-string-replace@npm:1.1.1"
-  checksum: 10c0/5a4a4fd9c3758b4680da113adf411342116238b4dc68fa4c4e9b04c046cb757d4f00d6ba441301fa3afb44c847dacc17a2707865698ff1fc78a369182458e894
   languageName: node
   linkType: hard
 

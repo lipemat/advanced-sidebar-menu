@@ -30,8 +30,7 @@
     "@wordpress/block-editor": "11.3.9",
     "@wordpress/browserslist-config": "^6.19.0",
     "@wordpress/server-side-render": "4.3.6",
-    "jquery": "3.6.4",
-    "react-string-replace": "^1.1.1"
+    "jquery": "3.6.4"
   },
   "devDependencies": {
     "@lipemat/eslint-config": "^4.0.3",

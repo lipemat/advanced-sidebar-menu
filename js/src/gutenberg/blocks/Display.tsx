@@ -1,11 +1,10 @@
-import {CheckboxControl, PanelBody, Slot} from '@wordpress/components';
+import {CheckboxControl, PanelBody, SelectControl, Slot} from '@wordpress/components';
 import {CONFIG} from '../../globals/config';
 import type {Attr as PageAttr} from './pages/block';
 import type {Attr as CategoryAttr} from './categories/block';
 import {__, sprintf} from '@wordpress/i18n';
 import {Type} from '@wordpress/api/types';
 import {range} from 'lodash';
-import reactStringReplace from 'react-string-replace';
 import {Taxonomy} from '@wordpress/api/taxonomies';
 import ErrorBoundary from '../../components/ErrorBoundary';
 import {BlockEditProps} from '@wordpress/blocks';
@@ -40,11 +39,24 @@ const checkboxes: { [attr in keyof Partial<DisplayOptions>]: string } = {
 	display_all: __( 'Always display child %s', 'advanced-sidebar-menu' ),
 };
 
+const LEVEL_OPTIONS: Array<{value: string, label: string}> = [
+	{
+		value: '100',
+		label: __( '- All -', 'advanced-sidebar-menu' ),
+	},
+	...range( 1, 11 ).map( n => (
+		{
+			value: n.toString(),
+			label: n.toString(),
+		}
+	) ),
+]
+
 /**
  * Display Options shared between widgets.
  *
  * 1. Display the highest level parent page.
- * 2. Display menu when there is only the parent page.
+ * 2. Display the menu when there is only the parent page.
  * 3. Always display child pages.
  * 5. Display levels of child pages.
  *
@@ -88,26 +100,23 @@ const Display = ( {
 					__nextHasNoMarginBottom
 				/>;
 			} )}
-			{showLevels && <div className={'components-base-control'}>
-				{/* translators: {select HTML input}, {post type plural label} */
-					reactStringReplace( __( 'Display %1$s levels of child %2$s', 'advanced-sidebar-menu' ).replace( '%2$s', type?.labels?.name.toLowerCase() ?? '' ), '%1$s',
-						() => (
-							<select
-								key={'levels'}
-								className={'advanced-sidebar-menu-display-select'}
-								value={attributes.levels}
-								onChange={ev => setAttributes( {levels: parseInt( ev.target.value )} )}
-							>
-								<option value="100">
-									{__( '- All -', 'advanced-sidebar-menu' )}
-								</option>
-								{range( 1, 10 ).map( n => <option key={n} value={n}>
-									{n}
-								</option> )}
-							</select>
-						) )}
-			</div>}
-
+			{showLevels &&
+				<SelectControl
+					key={'levels'}
+					/* translators: {select HTML input}, {post type plural label} */
+					label={sprintf( __( 'Levels of child %s to display', 'advanced-sidebar-menu' ), type?.labels?.name.toLowerCase() ?? '' )}
+					className={'advanced-sidebar-menu-display-select'}
+					value={attributes.levels.toString()}
+					onChange={value => {
+						setAttributes( {
+							levels: parseInt( value ),
+						} )
+					}}
+					options={LEVEL_OPTIONS}
+					// @ts-expect-error -- Not technically available until WP 6.7.
+					__next40pxDefaultSize
+					__nextHasNoMarginBottom
+				/>}
 			{children}
 
 			<ErrorBoundary attributes={attributes} block={name} section={'Display/slots'}>

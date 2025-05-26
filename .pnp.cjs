@@ -4206,10 +4206,6 @@ const RAW_RUNTIME_STATE =
       "npm:0.14.2"\
     ],\
     [\
-      "react-string-replace",\
-      "npm:1.1.1"\
-    ],\
-    [\
       "read-cache",\
       "npm:1.0.0"\
     ],\
@@ -5170,7 +5166,6 @@ const RAW_RUNTIME_STATE =
           ["eslint", "virtual:e3b5dcd4f6093dbf814272e825870b53a5dd4b494a9d793177f38fa73054c250da3010169206d76cd2c8ac7b2887cd25928093bfbf311561462d14378d69ed68#npm:9.22.0"],\
           ["jest", "virtual:e30fcfb4c8af2393a5c22ca7306aded54d40fa081e6fc9ec1b0eb36567bf313181788e0d65e5bf189b1b6ca951060cace17c223545057fc3bfd6b64b917f0a7e#npm:29.7.0"],\
           ["jquery", "npm:3.6.4"],\
-          ["react-string-replace", "npm:1.1.1"],\
           ["stylelint", "npm:14.16.1"],\
           ["ts-node", "virtual:3ba643f9797e66ff36745c8831d7b481c8461f8796976105d977ed697b1503bc1aac4e4723d6c88131f394a861739d3190eb8c5f40d049cf9141692aeb98caa3#npm:10.9.2"],\
           ["typescript", "patch:typescript@npm%3A5.8.2#optional!builtin<compat/typescript>::version=5.8.2&hash=5786d5"]\
@@ -11770,7 +11765,6 @@ const RAW_RUNTIME_STATE =
           ["eslint", "virtual:e3b5dcd4f6093dbf814272e825870b53a5dd4b494a9d793177f38fa73054c250da3010169206d76cd2c8ac7b2887cd25928093bfbf311561462d14378d69ed68#npm:9.22.0"],\
           ["jest", "virtual:e30fcfb4c8af2393a5c22ca7306aded54d40fa081e6fc9ec1b0eb36567bf313181788e0d65e5bf189b1b6ca951060cace17c223545057fc3bfd6b64b917f0a7e#npm:29.7.0"],\
           ["jquery", "npm:3.6.4"],\
-          ["react-string-replace", "npm:1.1.1"],\
           ["stylelint", "npm:14.16.1"],\
           ["ts-node", "virtual:3ba643f9797e66ff36745c8831d7b481c8461f8796976105d977ed697b1503bc1aac4e4723d6c88131f394a861739d3190eb8c5f40d049cf9141692aeb98caa3#npm:10.9.2"],\
           ["typescript", "patch:typescript@npm%3A5.8.2#optional!builtin<compat/typescript>::version=5.8.2&hash=5786d5"]\
@@ -25679,15 +25673,6 @@ const RAW_RUNTIME_STATE =
         "packageLocation": "./.yarn/cache/react-refresh-npm-0.14.2-95df341b4d-875b72ef56.zip/node_modules/react-refresh/",\
         "packageDependencies": [\
           ["react-refresh", "npm:0.14.2"]\
-        ],\
-        "linkType": "HARD"\
-      }]\
-    ]],\
-    ["react-string-replace", [\
-      ["npm:1.1.1", {\
-        "packageLocation": "./.yarn/cache/react-string-replace-npm-1.1.1-614c815872-5a4a4fd9c3.zip/node_modules/react-string-replace/",\
-        "packageDependencies": [\
-          ["react-string-replace", "npm:1.1.1"]\
         ],\
         "linkType": "HARD"\
       }]\
