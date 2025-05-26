@@ -92,6 +92,8 @@ const Edit = ( {attributes, setAttributes, clientId, name}: Props ) => {
 								single: value,
 							} );
 						}}
+						// @ts-expect-error -- Not technically available until WP 6.7.
+						__nextHasNoMarginBottom
 					/>}
 					{/*
 						  Only widget screens support this option because we

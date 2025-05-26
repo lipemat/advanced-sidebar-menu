@@ -84,6 +84,8 @@ const Display = ( {
 							[ item ]: checked,
 						} );
 					}}
+					// @ts-expect-error -- Not technically available until WP 6.7.
+					__nextHasNoMarginBottom
 				/>;
 			} )}
 			{showLevels && <div className={'components-base-control'}>
