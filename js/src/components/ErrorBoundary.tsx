@@ -22,7 +22,7 @@ class ErrorBoundary extends Component<PropsWithChildren<Props>, {
 	hasError: boolean,
 	error: Error | null
 }> {
-	constructor( props ) {
+	constructor( props: Props ) {
 		super( props );
 		this.state = {
 			hasError: false,
@@ -62,11 +62,19 @@ class ErrorBoundary extends Component<PropsWithChildren<Props>, {
 						Something went wrong!
 					</h4>
 					<p>
-						Please <a
-							href={addQueryArgs( DOMPurify.sanitize( window.location.href ), {
-								'script-debug': 'true',
-							}, )}
-						>enable script debug</a> to retrieve error information.
+						<button
+							className={'components-button is-link'}
+							onClick={e => {
+								e.preventDefault();
+								const location = addQueryArgs( DOMPurify.sanitize( window.location.href ), {
+									'script-debug': 'true',
+								} );
+								window.open( location, '_blank', 'noopener,noreferrer' );
+							}}
+						>
+							Please enable script debug
+						</button>
+						to retrieve error information.
 					</p>
 				</div> );
 			}
@@ -76,17 +84,28 @@ class ErrorBoundary extends Component<PropsWithChildren<Props>, {
 						Something went wrong!
 					</h4>
 					<p>
-						Please <a target="_blank" href={CONFIG.support} rel="noreferrer">
-							create a support request
-						</a> with the following:
+						<button
+							className={'components-button is-link'}
+							onClick={e => {
+								e.preventDefault();
+								window.open( DOMPurify.sanitize( CONFIG.support ), '_blank', 'noopener,noreferrer' );
+							}}
+						>
+							Please create a support request
+						</button>
+						&nbsp;with the following information:
 					</p>
 					<ol>
 						<li>
-							The <a
-								href={'https://onpointplugins.com/how-to-retrieve-console-logs-from-your-browser/'}
-								target={'_blank'} rel="noreferrer">
-								logs from your browser console.
-							</a>
+							<button
+								className={'components-button is-link'}
+								onClick={e => {
+									e.preventDefault();
+									window.open( 'https://onpointplugins.com/how-to-retrieve-console-logs-from-your-browser/', '_blank', 'noopener,noreferrer' );
+								}}
+							>
+								The logs from your browser console.
+							</button>
 						</li>
 						<li>
 							The following information.
