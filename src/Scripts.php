@@ -211,11 +211,11 @@ class Scripts {
 		}
 
 		$script = wp_scripts()->query( 'react', 'scripts' );
-		if ( ! \is_bool( $script ) && is_a( $script, \_WP_Dependency::class ) ) {
+		if ( $script instanceof \_WP_Dependency ) {
 			$script->src = \str_replace( wp_scripts_get_suffix(), '', (string) $script->src );
 		}
 		$script = wp_scripts()->query( 'react-dom', 'scripts' );
-		if ( ! \is_bool( $script ) && is_a( $script, \_WP_Dependency::class ) ) {
+		if ( $script instanceof \_WP_Dependency ) {
 			$script->src = \str_replace( wp_scripts_get_suffix(), '', (string) $script->src );
 		}
 	}
