@@ -67,7 +67,10 @@ const Edit = ( {attributes, setAttributes, clientId, name}: Props ) => {
 				<TextControl
 					value={attributes.title ?? ''}
 					label={__( 'Title', 'advanced-sidebar-menu' )}
-					onChange={title => setAttributes( {title} )} />
+					onChange={title => setAttributes( {title} )}
+					// @ts-expect-error -- Not technically supported until WP 6.7
+					__nextHasNoMarginBottom
+				/>
 			</PanelBody>}
 			<ErrorBoundary attributes={attributes} block={name} section={'categories/Edit/general'}>
 				<Display
