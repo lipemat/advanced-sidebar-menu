@@ -52,10 +52,10 @@ class Common {
 
 		$filtered = (array) apply_filters( 'advanced-sidebar-menu/blocks/common-attributes/supports', $basic_support, $this );
 
-		if ( $basic_support === $filtered && null !== Notice::instance()->get_pro_version() ) {
+		if ( ! $this->_pro_supports_common() && null !== Notice::instance()->get_pro_version() ) {
 			// Temporary shim to bring in common supports for all blocks for PRO < 9.10.0.
 			// @todo Remove this filter once the required PRO version is 9.10.0+.
-			return (array) apply_filters( 'advanced-sidebar-menu/blocks/navigation/supports', $basic_support, $this );
+			return (array) apply_filters( 'advanced-sidebar-menu/blocks/pages/supports', $basic_support, $this );
 		}
 		return $filtered;
 	}
@@ -79,5 +79,21 @@ class Common {
 				'type' => 'string',
 			],
 		];
+	}
+
+
+	/**
+	 * Check if the basic version supports common attributes.
+	 *
+	 * @todo Remove once the minimum PRO version is 9.10.0.
+	 *
+	 * @internal
+	 *
+	 * @return bool
+	 */
+	public function _pro_supports_common(): bool { //phpcs:ignore
+		// @phpstan-ignore function.impossibleType
+		$supported = \class_exists( Pro_Common::class ) && \method_exists( Pro_Common::class, 'get_common_attributes' );
+		return apply_filters_deprecated( 'advanced-sidebar-menu/blocks/common-attributes/pro-supports-common', [ $supported, $this ], '9.8.0' );
 	}
 }
