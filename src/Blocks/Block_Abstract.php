@@ -22,7 +22,7 @@ use Advanced_Sidebar_Menu\Widget_Options\Shared\Style_Targeting;
  * @phpstan-import-type WIDGET_ARGS from Widget
  *
  * @phpstan-type ATTR_SHAPE array{
- *    type: string,
+ *    type: string|array<int,string>,
  *    default?: mixed,
  *    enum?: array<string|int|bool>,
  *    items?: array{

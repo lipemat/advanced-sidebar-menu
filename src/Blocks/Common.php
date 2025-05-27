@@ -26,7 +26,7 @@ class Common {
 	 * @return array
 	 */
 	public function get_common_attributes(): array {
-		return (array) apply_filters( 'advanced-sidebar-menu/blocks/common-attributes/shared', [
+		return (array) apply_filters( 'advanced-sidebar-menu/blocks/common-attributes/attributes', [
 			'style'              => [
 				'type' => 'object',
 			],
