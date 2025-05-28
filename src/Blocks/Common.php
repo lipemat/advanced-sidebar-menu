@@ -69,13 +69,13 @@ class Common {
 	 */
 	public function get_server_side_render_attributes(): array {
 		return [
-			'clientId'                     => [
+			Block_Abstract::BLOCK_ID       => [
 				'type' => 'string',
 			],
 			Block_Abstract::RENDER_REQUEST => [
 				'type' => 'boolean',
 			],
-			'sidebarId'                    => [
+			Block_Abstract::SIDEBAR_ID     => [
 				'type' => 'string',
 			],
 		];

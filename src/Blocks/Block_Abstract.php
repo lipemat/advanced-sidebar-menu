@@ -50,6 +50,8 @@ abstract class Block_Abstract {
 	public const NAME = 'block-abstract';
 
 	public const RENDER_REQUEST = 'isServerSideRenderRequest';
+	public const BLOCK_ID       = 'clientId';
+	public const SIDEBAR_ID     = 'sidebarId';
 
 	/**
 	 * Widget arguments used in rendering.
@@ -372,8 +374,8 @@ abstract class Block_Abstract {
 		$widget_args = $this->widget_args;
 
 		// Use the sidebar arguments if available.
-		if ( isset( $attr['sidebarId'], $GLOBALS['wp_registered_sidebars'][ $attr['sidebarId'] ] ) && '' !== $attr['sidebarId'] ) {
-			$widget_args = wp_parse_args( (array) $GLOBALS['wp_registered_sidebars'][ $attr['sidebarId'] ], $widget_args );
+		if ( isset( $attr[ self::SIDEBAR_ID ], $GLOBALS['wp_registered_sidebars'][ $attr[ self::SIDEBAR_ID ] ] ) && '' !== $attr[ self::SIDEBAR_ID ] ) {
+			$widget_args = wp_parse_args( (array) $GLOBALS['wp_registered_sidebars'][ $attr[ self::SIDEBAR_ID ] ], $widget_args );
 		}
 
 		$classnames = '';
@@ -416,8 +418,8 @@ abstract class Block_Abstract {
 		$widget_args['before_widget'] .= \sprintf( '<%s %s>', $wrap, $wrapper_attributes );
 		$widget_args['after_widget'] = \sprintf( '</%s>', $wrap ) . $widget_args['after_widget'];
 		// Passed via ServerSideRender, so we can enable accordions in the Gutenberg editor.
-		if ( isset( $attr['clientId'] ) && '' !== \trim( $attr['clientId'] ) ) {
-			$widget_args['widget_id'] = $attr['clientId'];
+		if ( isset( $attr[ self::BLOCK_ID ] ) && '' !== \trim( $attr[ self::BLOCK_ID ] ) ) {
+			$widget_args['widget_id'] = $attr[ self::BLOCK_ID ];
 		}
 
 		\ob_start();
