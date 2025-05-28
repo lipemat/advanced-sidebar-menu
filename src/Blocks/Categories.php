@@ -37,6 +37,16 @@ class Categories extends Block_Abstract implements Block {
 
 
 	/**
+	 * Get the name of this block.
+	 *
+	 * @return string
+	 */
+	public function get_name(): string {
+		return self::NAME;
+	}
+
+
+	/**
 	 * Get the description of this block.
 	 *
 	 * @return string

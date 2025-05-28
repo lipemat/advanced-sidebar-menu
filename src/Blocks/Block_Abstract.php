@@ -258,8 +258,14 @@ abstract class Block_Abstract {
 	 * @return array
 	 */
 	public function js_config( array $config ) {
-		$config['blocks'][ \explode( '/', static::NAME )[1] ] = [
-			'id'         => static::NAME,
+		if ( $this instanceof Block ) {
+			$name = $this->get_name();
+		} else {
+			$name = static::NAME;
+		}
+
+		$config['blocks'][ \explode( '/', $name )[1] ] = [
+			'id'         => $name,
 			'attributes' => $this->get_attributes(),
 		];
 
