@@ -3,6 +3,7 @@
 namespace Advanced_Sidebar_Menu\Blocks;
 
 use Advanced_Sidebar_Menu\Blocks\Attributes\CategoryAttr;
+use Advanced_Sidebar_Menu\Blocks\Register\Attribute;
 use Advanced_Sidebar_Menu\Menus\Category as Menu;
 use Advanced_Sidebar_Menu\Traits\Singleton;
 use Advanced_Sidebar_Menu\Widget\Category as Widget;
@@ -69,39 +70,39 @@ class Categories extends Block_Abstract implements Block {
 	 */
 	public function get_attributes() {
 		return apply_filters( 'advanced-sidebar-menu/blocks/categories/attributes', [
-			Widget::INCLUDE_PARENT           => [
+			Widget::INCLUDE_PARENT           => Attribute::factory( [
 				'type'    => 'boolean',
 				'default' => false,
-			],
-			Widget::INCLUDE_CHILDLESS_PARENT => [
+			] ),
+			Widget::INCLUDE_CHILDLESS_PARENT => Attribute::factory( [
 				'type'    => 'boolean',
 				'default' => false,
-			],
-			Widget::EXCLUDE                  => [
+			] ),
+			Widget::EXCLUDE                  => Attribute::factory( [
 				'type'    => 'string',
 				'default' => '',
-			],
-			Widget::DISPLAY_ALL              => [
+			] ),
+			Widget::DISPLAY_ALL              => Attribute::factory( [
 				'type'    => 'boolean',
 				'default' => false,
-			],
-			Widget::DISPLAY_ON_SINGLE        => [
+			] ),
+			Widget::DISPLAY_ON_SINGLE        => Attribute::factory( [
 				'type'    => 'boolean',
 				'default' => true,
-			],
+			] ),
 			// No block option available. We only support 'list'.
-			Widget::POST_CATEGORY_LAYOUT     => [
+			Widget::POST_CATEGORY_LAYOUT     => Attribute::factory( [
 				'type'    => 'string',
 				'default' => Menu::EACH_LIST,
 				'enum'    => [
 					Menu::EACH_LIST,
 					Menu::EACH_WIDGET,
 				],
-			],
-			Widget::LEVELS                   => [
+			] ),
+			Widget::LEVELS                   => Attribute::factory( [
 				'type'    => 'number',
 				'default' => 100,
-			],
+			] ),
 		] );
 	}
 

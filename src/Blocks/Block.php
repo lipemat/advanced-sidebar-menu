@@ -2,6 +2,7 @@
 
 namespace Advanced_Sidebar_Menu\Blocks;
 
+use Advanced_Sidebar_Menu\Blocks\Register\Attribute;
 use Advanced_Sidebar_Menu\Widget\WidgetWithId;
 
 /**
@@ -28,7 +29,7 @@ interface Block {
 	 *
 	 * @link https://developer.wordpress.org/block-editor/reference-guides/block-api/block-attributes/
 	 *
-	 * @return array<string, ATTR_SHAPE>
+	 * @return array<string, ATTR_SHAPE|Attribute>
 	 */
 	public function get_attributes();
 

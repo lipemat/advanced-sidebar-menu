@@ -3,6 +3,8 @@
 namespace Advanced_Sidebar_Menu\Blocks;
 
 use Advanced_Sidebar_Menu\__Temp_Id_Proxy;
+use Advanced_Sidebar_Menu\Blocks\Register\Attribute;
+use Advanced_Sidebar_Menu\Blocks\Register\Register_Utils;
 use Advanced_Sidebar_Menu\Menus\Menu_Abstract;
 use Advanced_Sidebar_Menu\Scripts;
 use Advanced_Sidebar_Menu\Utils;
@@ -22,9 +24,9 @@ use Advanced_Sidebar_Menu\Widget_Options\Shared\Style_Targeting;
  * @phpstan-import-type WIDGET_ARGS from Widget
  *
  * @phpstan-type ATTR_SHAPE array{
- *    type: string|array<int,string>,
+ *    type: Attribute::TYPE_*|(list<Attribute::TYPE_*>),
  *    default?: mixed,
- *    enum?: array<string|int|bool>,
+ *    enum?: list<string|int|bool>,
  *    items?: array{
  *      type: string,
  *      required?: array<string>,
@@ -75,7 +77,7 @@ abstract class Block_Abstract {
 	/**
 	 * @todo  Remove once minimum required PRO Blocks\Navigation implements `Block` interface.
 	 *
-	 * @return array<string, ATTR_SHAPE>
+	 * @return array<string, ATTR_SHAPE|Attribute>
 	 */
 	abstract protected function get_attributes();
 
@@ -218,7 +220,7 @@ abstract class Block_Abstract {
 
 		$args = apply_filters( 'advanced-sidebar-menu/block-register/' . static::NAME, [
 			'api_version'           => 3,
-			'attributes'            => $attributes,
+			'attributes'            => Register_Utils::instance()->translate_attributes_to_php( $attributes ),
 			'description'           => $this->get_description(),
 			'editor_script_handles' => [ Scripts::GUTENBERG_HANDLE ],
 			'editor_style_handles'  => [ Scripts::GUTENBERG_CSS_HANDLE ],
@@ -237,11 +239,12 @@ abstract class Block_Abstract {
 	 */
 	protected function get_all_attributes() {
 		_deprecated_function( __METHOD__, '9.8.0' );
-		return \array_merge(
+		$all = \array_merge(
 			Common::instance()->get_common_attributes(),
 			Common::instance()->get_server_side_render_attributes(),
 			$this->get_attributes()
 		);
+		return Register_Utils::instance()->translate_attributes_to_php( $all );
 	}
 
 

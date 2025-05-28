@@ -2,6 +2,7 @@
 
 namespace Advanced_Sidebar_Menu\Blocks;
 
+use Advanced_Sidebar_Menu\Blocks\Register\Attribute;
 use Advanced_Sidebar_Menu\Traits\Singleton;
 use Advanced_Sidebar_Menu\Widget\Page;
 
@@ -20,7 +21,7 @@ use Advanced_Sidebar_Menu\Widget\Page;
  *   include_childless_parent?: bool,
  *   include_parent?: bool,
  *   levels: int,
- *   order_by: 'menu_order'|'post_title'|'post_date',
+ *   order_by: Page::ORDER_BY_*,
  *   post_type?: string,
  * }
  *
@@ -59,32 +60,32 @@ class Pages extends Block_Abstract implements Block {
 	 *
 	 * @link https://developer.wordpress.org/block-editor/reference-guides/block-api/block-attributes/
 	 *
-	 * @phpstan-return array<key-of<PAGE_ATTRIBUTES>, ATTR_SHAPE>
+	 * @phpstan-return array<key-of<PAGE_ATTRIBUTES>, ATTR_SHAPE|Attribute>
 	 * @return array
 	 */
 	public function get_attributes(): array {
 		return (array) apply_filters( 'advanced-sidebar-menu/blocks/pages/attributes', [
-			Page::INCLUDE_PARENT           => [
+			Page::INCLUDE_PARENT           => Attribute::factory( [
 				'type' => 'boolean',
-			],
-			Page::INCLUDE_CHILDLESS_PARENT => [
+			] ),
+			Page::INCLUDE_CHILDLESS_PARENT => Attribute::factory( [
 				'type' => 'boolean',
-			],
-			Page::ORDER_BY                 => [
+			] ),
+			Page::ORDER_BY                 => Attribute::factory( [
 				'type'    => 'string',
-				'default' => 'menu_order',
-			],
-			Page::EXCLUDE                  => [
+				'default' => Page::ORDER_BY_MENU_ORDER,
+			] ),
+			Page::EXCLUDE                  => Attribute::factory( [
 				'type'    => 'string',
 				'default' => '',
-			],
-			Page::DISPLAY_ALL              => [
+			] ),
+			Page::DISPLAY_ALL              => Attribute::factory( [
 				'type' => 'boolean',
-			],
-			Page::LEVELS                   => [
+			] ),
+			Page::LEVELS                   => Attribute::factory( [
 				'type'    => 'number',
 				'default' => 100,
-			],
+			] ),
 		] );
 	}
 
