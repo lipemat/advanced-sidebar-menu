@@ -15,13 +15,13 @@ use Advanced_Sidebar_Menu\Blocks\Block_Abstract;
  * @phpstan-import-type ATTR_SHAPE from Block_Abstract
  */
 interface AttributeRules {
-	public const TYPE_STRING  = 'string';
 	public const TYPE_ARRAY   = 'array';
-	public const TYPE_OBJECT  = 'object';
 	public const TYPE_BOOLEAN = 'boolean';
-	public const TYPE_NUMBER  = 'number';
 	public const TYPE_INTEGER = 'integer';
 	public const TYPE_NULL    = 'null';
+	public const TYPE_NUMBER  = 'number';
+	public const TYPE_OBJECT  = 'object';
+	public const TYPE_STRING  = 'string';
 
 
 	/**

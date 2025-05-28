@@ -10,6 +10,8 @@ use Advanced_Sidebar_Menu\Widget\WidgetWithId;
  *
  * Replacement for `Block_Abstract` as we move from inheritance to composition.
  *
+ * @note   Do not change this interface without bumping a major version.
+ *
  * @author OnPoint Plugins
  * @since  9.8.0
  *
@@ -19,6 +21,14 @@ use Advanced_Sidebar_Menu\Widget\WidgetWithId;
  * @template DEFAULTS of array<key-of<SETTINGS>, int|string|array<string, string>>
  */
 interface Block {
+	/**
+	 * Get the name of this block.
+	 *
+	 * @return string
+	 */
+	public function get_name(): string;
+
+
 	/**
 	 * Get the list of attributes and their types.
 	 *

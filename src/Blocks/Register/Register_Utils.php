@@ -36,4 +36,26 @@ class Register_Utils {
 			return $attribute;
 		}, $attributes );
 	}
+
+
+	/**
+	 * Convert an array of attributes to JavaScript attributes.
+	 *
+	 * @template T of string
+	 *
+	 * @phpstan-param array<T, ATTR_SHAPE|Attribute> $attributes
+	 *
+	 * @param array<string, ATTR_SHAPE|Attribute>    $attributes - Array of attributes.
+	 *
+	 * @phpstan-return array<T, JS_Attribute>
+	 * @return array<string, JS_Attribute> - Array of JavaScript-shaped attributes.
+	 */
+	public function translate_attributes_to_js( array $attributes ): array {
+		return \array_map( function( $attribute ) {
+			if ( $attribute instanceof Attribute ) {
+				return JS_Attribute::from( $attribute );
+			}
+			return JS_Attribute::from( Attribute::factory( $attribute ) );
+		}, $attributes );
+	}
 }

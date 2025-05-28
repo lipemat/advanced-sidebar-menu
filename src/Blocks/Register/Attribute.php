@@ -66,7 +66,7 @@ class Attribute implements AttributeRules {
 	 *
 	 * @formatter:off
 	 *
-	 * @param string|array $type - Data type of the property.
+	 * @param string|array $type - Block JSON attribute type.
 	 *
 	 * @formatter:on
 	 *
@@ -145,20 +145,6 @@ class Attribute implements AttributeRules {
 
 
 	/**
-	 * Create a new instance of the attribute.
-	 *
-	 * @phpstan-param ATTR_SHAPE $attribute
-	 *
-	 * @param array              $attribute - Attribute is a standard array format.
-	 *
-	 * @return static
-	 */
-	public static function factory( array $attribute ) {
-		return new static( $attribute );
-	}
-
-
-	/**
 	 * Check if a value is of the specified type.
 	 *
 	 * @param mixed  $value The value to check.
@@ -182,5 +168,19 @@ class Attribute implements AttributeRules {
 			default:
 				return false;
 		}
+	}
+
+
+	/**
+	 * Create a new instance of the attribute.
+	 *
+	 * @phpstan-param ATTR_SHAPE $attribute
+	 *
+	 * @param array              $attribute - Attribute is a standard array format.
+	 *
+	 * @return static
+	 */
+	public static function factory( array $attribute ) {
+		return new static( $attribute );
 	}
 }
