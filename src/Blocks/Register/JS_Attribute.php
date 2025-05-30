@@ -99,7 +99,7 @@ final class JS_Attribute implements \JsonSerializable {
 	 * @phpstan-return JS_ATTR_SHAPE
 	 * @return array
 	 */
-	public function jsonSerialize(): array {
+	public function to_js_attribute(): array {
 		$attributes = [
 			't' => $this->type(),
 		];
@@ -110,6 +110,17 @@ final class JS_Attribute implements \JsonSerializable {
 			$attributes['e'] = $this->attribute->enum;
 		}
 		return $attributes;
+	}
+
+
+	/**
+	 * Convert the attribute to a JavaScript array format.
+	 *
+	 * @phpstan-return JS_ATTR_SHAPE
+	 * @return array
+	 */
+	public function jsonSerialize(): array {
+		return $this->to_js_attribute();
 	}
 
 

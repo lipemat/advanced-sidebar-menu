@@ -266,7 +266,7 @@ abstract class Block_Abstract {
 
 		$config['blocks'][ \explode( '/', $name )[1] ] = [
 			'id'         => $name,
-			'attributes' => $this->get_attributes(),
+			'attributes' => Register_Utils::instance()->translate_attributes_to_php( $this->get_attributes() ),
 		];
 
 		return $config;
