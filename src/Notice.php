@@ -48,7 +48,7 @@ class Notice {
 	/**
 	 * Is the PRO version installed?
 	 *
-	 * @since 9.8.0
+	 * @since 9.7.0
 	 *
 	 * @return ?string
 	 */

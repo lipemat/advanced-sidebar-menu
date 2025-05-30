@@ -233,12 +233,12 @@ abstract class Block_Abstract {
 
 
 	/**
-	 * @deprecated 9.8.0
+	 * @deprecated 9.7.0
 	 *
 	 * @phpstan-return array<string, ATTR_SHAPE>
 	 */
 	protected function get_all_attributes() {
-		_deprecated_function( __METHOD__, '9.8.0' );
+		_deprecated_function( __METHOD__, '9.7.0' );
 		$all = \array_merge(
 			Common::instance()->get_common_attributes(),
 			Common::instance()->get_server_side_render_attributes(),
@@ -328,7 +328,7 @@ abstract class Block_Abstract {
 	/**
 	 * Is the current render a `ServerSideRender` request?
 	 *
-	 * @since 9.8.0
+	 * @since 9.7.0
 	 *
 	 * @todo  Switch to `wp_is_rest_endpoint` once WP 6.5 is the minimum.
 	 *

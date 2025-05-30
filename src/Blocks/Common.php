@@ -12,7 +12,7 @@ use Advanced_Sidebar_Menu\Traits\Singleton;
  * Done in a common way to make the passed JS CONFIG as small as possible.
  *
  * @author OnPoint Plugins
- * @since  9.8.0
+ * @since  9.7.0
  *
  * @phpstan-import-type ATTR_SHAPE from Block_Abstract
  */
@@ -52,9 +52,9 @@ class Common {
 
 		$filtered = (array) apply_filters( 'advanced-sidebar-menu/blocks/common-attributes/supports', $basic_support, $this );
 
-		if ( ! $this->_pro_supports_common() && null !== Notice::instance()->get_pro_version() ) {
-			// Temporary shim to bring in common supports for all blocks for PRO < 9.10.0.
-			// @todo Remove this filter once the required PRO version is 9.10.0+.
+		if ( ! $this->_temp_pro_supports_common() && null !== Notice::instance()->get_pro_version() ) {
+			// Temporary shim to bring in common supports for all blocks for PRO < 9.9.0.
+			// @todo Remove this filter once the required PRO version is 9.9.0+.
 			return (array) apply_filters( 'advanced-sidebar-menu/blocks/pages/supports', $basic_support, $this );
 		}
 		return $filtered;
@@ -85,15 +85,15 @@ class Common {
 	/**
 	 * Check if the basic version supports common attributes.
 	 *
-	 * @todo Remove once the minimum PRO version is 9.10.0.
+	 * @todo Remove once the minimum PRO version is 9.9.0.
 	 *
 	 * @internal
 	 *
 	 * @return bool
 	 */
-	public function _pro_supports_common(): bool { //phpcs:ignore
+	public function _temp_pro_supports_common(): bool { //phpcs:ignore
 		// @phpstan-ignore function.impossibleType
 		$supported = \class_exists( Pro_Common::class ) && \method_exists( Pro_Common::class, 'get_common_attributes' );
-		return apply_filters_deprecated( 'advanced-sidebar-menu/blocks/common-attributes/pro-supports-common', [ $supported, $this ], '9.8.0' );
+		return apply_filters_deprecated( 'advanced-sidebar-menu/blocks/common-attributes/pro-supports-common', [ $supported, $this ], '9.7.0' );
 	}
 }

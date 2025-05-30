@@ -118,12 +118,12 @@ class Categories extends Block_Abstract implements Block {
 
 
 	/**
-	 * @deprecated 9.8.0
+	 * @deprecated 9.7.0
 	 *
 	 * @phpstan-return array<string, bool>
 	 */
 	protected function get_block_support() {
-		_deprecated_function( __METHOD__, '9.8.0' );
+		_deprecated_function( __METHOD__, '9.7.0' );
 
 		return apply_filters( 'advanced-sidebar-menu/blocks/categories/supports', [
 			'anchor' => true,
@@ -133,12 +133,12 @@ class Categories extends Block_Abstract implements Block {
 
 
 	/**
-	 * @deprecated 9.8.0
+	 * @deprecated 9.7.0
 	 *
 	 * @phpstan-return array<string>
 	 */
 	public function get_keywords() {
-		_deprecated_function( __METHOD__, '9.8.0' );
+		_deprecated_function( __METHOD__, '9.7.0' );
 
 		$category = get_taxonomy( 'category' );
 

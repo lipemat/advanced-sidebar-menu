@@ -13,7 +13,7 @@ use Advanced_Sidebar_Menu\Widget\WidgetWithId;
  * @note   Do not change this interface without bumping a major version.
  *
  * @author OnPoint Plugins
- * @since  9.8.0
+ * @since  9.7.0
  *
  * @phpstan-import-type ATTR_SHAPE from Block_Abstract
  *
