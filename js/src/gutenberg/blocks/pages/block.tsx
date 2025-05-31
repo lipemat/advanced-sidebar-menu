@@ -5,6 +5,7 @@ import type {DisplayOptions} from '../Display';
 import {getBlockSupports, transformLegacyWidget, translateBlockAttributes} from '../../helpers';
 import {__} from '@wordpress/i18n';
 import type {CommonAttr} from '../Preview';
+import PagesIcon from './PagesIcon';
 
 /**
  * Attributes specific to the widget as well as shared
@@ -63,7 +64,7 @@ export const name = block.id;
 
 export const settings: BlockSettings<Attr, '', LegacyWidget<Attr & { title: string }>> = {
 	title: __( 'Advanced Sidebar - Pages', 'advanced-sidebar-menu' ),
-	icon: 'welcome-widgets-menus',
+	icon: <PagesIcon />,
 	category: 'widgets',
 	description: __( 'Creates a menu of all the pages using the parent/child relationship', 'advanced-sidebar-menu' ),
 	example: {
