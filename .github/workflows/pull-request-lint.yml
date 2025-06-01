@@ -88,3 +88,4 @@ jobs:
     
   js-unit:
     uses: lipemat/public-actions/.github/workflows/js-unit-plugin.yml@version/1
+    secrets: inherit
