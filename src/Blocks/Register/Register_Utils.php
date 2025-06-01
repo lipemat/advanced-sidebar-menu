@@ -54,9 +54,9 @@ class Register_Utils {
 	public function translate_attributes_to_js( array $attributes ): array {
 		return \array_map( function( $attribute ) {
 			if ( $attribute instanceof Attribute ) {
-				return JS_Attribute::from( $attribute )->jsonSerialize();
+				return JS_Attribute::from( $attribute )->to_js_attribute();
 			}
-			return JS_Attribute::from( Attribute::factory( $attribute ) )->jsonSerialize();
+			return JS_Attribute::from( Attribute::factory( $attribute ) )->to_js_attribute();
 		}, $attributes );
 	}
 }

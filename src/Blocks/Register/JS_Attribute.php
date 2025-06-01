@@ -19,7 +19,7 @@ namespace Advanced_Sidebar_Menu\Blocks\Register;
  * }
  *
  */
-final class JS_Attribute implements \JsonSerializable {
+final class JS_Attribute {
 	public const TYPE_ARRAY   = 'a';
 	public const TYPE_BOOLEAN = 'b';
 	public const TYPE_INTEGER = 'i';
@@ -110,17 +110,6 @@ final class JS_Attribute implements \JsonSerializable {
 			$attributes['e'] = $this->attribute->enum;
 		}
 		return $attributes;
-	}
-
-
-	/**
-	 * Convert the attribute to a JavaScript array format.
-	 *
-	 * @phpstan-return JS_ATTR_SHAPE
-	 * @return array
-	 */
-	public function jsonSerialize(): array {
-		return $this->to_js_attribute();
 	}
 
 
