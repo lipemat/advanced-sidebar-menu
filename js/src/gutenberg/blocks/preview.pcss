@@ -1,7 +1,18 @@
+.wrap {
+	svg {
+		cursor: pointer !important;
+		pointer-events: unset !important;
+	}
+}
+
 .placeholder {
 	:global(.components-placeholder__label) { /* stylelint-disable-line */
 		flex-direction: column;
 		width: 100%;
+
+		svg {
+			margin-bottom: 6px;
+		}
 	}
 
 	:global(.components-placeholder__instructions) { /* stylelint-disable-line */

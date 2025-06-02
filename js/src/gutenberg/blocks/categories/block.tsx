@@ -2,8 +2,10 @@ import {CONFIG} from '../../../globals/config';
 import {BlockSettings, LegacyWidget} from '@wordpress/blocks';
 import Edit from './Edit';
 import {DisplayOptions} from '../Display';
-import {transformLegacyWidget} from '../../helpers';
+import {getBlockSupports, transformLegacyWidget, translateBlockAttributes} from '../../helpers';
 import {__} from '@wordpress/i18n';
+import type {CommonAttr} from '../Preview';
+import CategoriesIcon from './CategoriesIcon';
 
 /**
  * Attributes specific to the widget as well as shared
@@ -16,8 +18,7 @@ export type Attr = {
 	exclude: string;
 	new_widget: 'widget' | 'list';
 	single: boolean;
-	title?: string;
-} & DisplayOptions & ProRegistered;
+} & DisplayOptions & ProRegistered & CommonAttr;
 
 // Options used by basic when available from PRO.
 type ProRegistered = {
@@ -63,8 +64,16 @@ export const name = block.id;
 
 export const settings: BlockSettings<Attr, '', LegacyWidget<Attr & { title: string }>> = {
 	title: __( 'Advanced Sidebar - Categories', 'advanced-sidebar-menu' ),
-	icon: 'welcome-widgets-menus',
+	icon: CategoriesIcon,
 	category: 'widgets',
+	description: __( 'Creates a menu of all the categories using the parent/child relationship',
+		'advanced-sidebar-menu' ),
+	keywords: [
+		__( 'taxonomy', 'advanced-sidebar-menu' ),
+		__( 'term', 'advanced-sidebar-menu' ),
+		__( 'category', 'advanced-sidebar-menu' ),
+		__( 'menu', 'advanced-sidebar-menu' ),
+	],
 	example: {
 		attributes: EXAMPLE,
 	},
@@ -75,7 +84,7 @@ export const settings: BlockSettings<Attr, '', LegacyWidget<Attr & { title: stri
 				blocks: [ 'core/legacy-widget' ],
 				isMatch: ( {idBase, instance} ) => {
 					if ( null === instance?.raw ) {
-						// Can't transform if raw instance is not shown in REST API.
+						// Can't transform if the raw instance is not shown in REST API.
 						return false;
 					}
 					return 'advanced_sidebar_menu_category' === idBase;
@@ -84,8 +93,8 @@ export const settings: BlockSettings<Attr, '', LegacyWidget<Attr & { title: stri
 			},
 		],
 	},
-	attributes: block.attributes,
-	supports: block.supports,
+	attributes: translateBlockAttributes<Attr>( block.attributes ),
+	supports: getBlockSupports(),
 	edit: props => (
 		<Edit {...props} />
 	),

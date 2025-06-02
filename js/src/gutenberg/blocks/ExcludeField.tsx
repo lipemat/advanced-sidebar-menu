@@ -39,7 +39,10 @@ const ExcludeField = ( {type, attributes, setAttributes}: Props ) => {
 				setAttributes( {
 					exclude: value,
 				} );
-			}} />
+			}}
+			// @ts-expect-error -- Not technically supported until WP 6.7
+			__nextHasNoMarginBottom
+		/>
 	);
 };
 
