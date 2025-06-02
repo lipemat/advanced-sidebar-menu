@@ -1,4 +1,4 @@
-import {ReactElement, useEffect} from 'react';
+import {type ReactElement, useEffect} from 'react';
 import {CONFIG} from '../../globals/config';
 import ServerSideRender from '@wordpress/server-side-render';
 import {Placeholder, Spinner} from '@wordpress/components';
@@ -8,8 +8,12 @@ import {applyFilters, doAction} from '@wordpress/hooks';
 import {__} from '@wordpress/i18n';
 import {select} from '@wordpress/data';
 import {isScreen} from '../helpers';
+import PagesIcon from './pages/PagesIcon';
+import CategoriesIcon from './categories/CategoriesIcon';
+import NavigationIcon from './NavigationIcon';
 
 import styles from './preview.pcss';
+
 
 /**
  * @see \Advanced_Sidebar_Menu\Blocks\Common_Attributes::get_common_attributes
@@ -33,17 +37,6 @@ type Props<A> = {
 	block: string;
 	clientId: string;
 };
-
-/**
- * Same as the Dashicons `welcome-widgets-menus` icon but available inside
- * iframe editors which don't enqueue the Dashicons font.
- */
-const ICON = <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20">
-	<rect x="0" fill="none" width="20" height="20" />
-	<g>
-		<path d="M19 16V3c0-.55-.45-1-1-1H3c-.55 0-1 .45-1 1v13c0 .55.45 1 1 1h15c.55 0 1-.45 1-1zM4 4h13v4H4V4zm1 1v2h3V5H5zm4 0v2h3V5H9zm4 0v2h3V5h-3zm-8.5 5c.28 0 .5.22.5.5s-.22.5-.5.5-.5-.22-.5-.5.22-.5.5-.5zM6 10h4v1H6v-1zm6 0h5v5h-5v-5zm-7.5 2c.28 0 .5.22.5.5s-.22.5-.5.5-.5-.22-.5-.5.22-.5.5-.5zM6 12h4v1H6v-1zm7 0v2h3v-2h-3zm-8.5 2c.28 0 .5.22.5.5s-.22.5-.5.5-.5-.22-.5-.5.22-.5.5-.5zM6 14h4v1H6v-1z" />
-	</g>
-</svg>;
 
 /**
  * Sanitize a client id for use as an HTML id.
@@ -83,21 +76,21 @@ const getSidebarId = ( clientId: string ): string => {
  */
 const Page = () => <Placeholder
 	className={styles.placeholder}
-	icon={ICON}
+	icon={PagesIcon}
 	label={__( 'Advanced Sidebar - Pages', 'advanced-sidebar-menu' )}
 	instructions={__( 'No preview available', 'advanced-sidebar-menu' )}
 />;
 
 const Category = () => <Placeholder
 	className={styles.placeholder}
-	icon={ICON}
+	icon={CategoriesIcon}
 	label={__( 'Advanced Sidebar - Categories', 'advanced-sidebar-menu' )}
 	instructions={__( 'No preview available', 'advanced-sidebar-menu' )}
 />;
 
 const Navigation = () => <Placeholder
 	className={styles.placeholder}
-	icon={ICON}
+	icon={NavigationIcon}
 	label={__( 'Advanced Sidebar - Navigation', 'advanced-sidebar-menu' )}
 	instructions={__( 'No preview available', 'advanced-sidebar-menu' )}
 />;

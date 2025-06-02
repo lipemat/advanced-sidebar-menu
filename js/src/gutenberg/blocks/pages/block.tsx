@@ -64,7 +64,7 @@ export const name = block.id;
 
 export const settings: BlockSettings<Attr, '', LegacyWidget<Attr & { title: string }>> = {
 	title: __( 'Advanced Sidebar - Pages', 'advanced-sidebar-menu' ),
-	icon: <PagesIcon />,
+	icon: PagesIcon,
 	category: 'widgets',
 	description: __( 'Creates a menu of all the pages using the parent/child relationship', 'advanced-sidebar-menu' ),
 	example: {

@@ -2,15 +2,17 @@ import {autoloadBlocks} from '@lipemat/js-boilerplate-gutenberg';
 import Preview from './blocks/Preview';
 import {getBlockSupports, TransformLegacy, transformLegacyWidget, translateBlockAttributes} from './helpers';
 import ErrorBoundary from '../components/ErrorBoundary';
+import NavigationIcon from './blocks/NavigationIcon';
 
 
 // @see content/plugins/advanced-sidebar-menu-pro/js/src/globals/config.ts
 export type PassedGlobals = Partial<{
+	ErrorBoundary: typeof ErrorBoundary;
+	NavigationIcon: typeof NavigationIcon;
+	Preview: typeof Preview;
+	getBlockSupports: typeof getBlockSupports;
 	transformLegacyWidget: TransformLegacy;
 	translateBlockAttributes: typeof translateBlockAttributes;
-	getBlockSupports: typeof getBlockSupports;
-	Preview: typeof Preview;
-	ErrorBoundary: typeof ErrorBoundary;
 }>;
 
 /**
@@ -29,6 +31,7 @@ export default () => {
 		return;
 	}
 	window.ADVANCED_SIDEBAR_MENU.ErrorBoundary = ErrorBoundary;
+	window.ADVANCED_SIDEBAR_MENU.NavigationIcon = NavigationIcon;
 	window.ADVANCED_SIDEBAR_MENU.Preview = Preview;
 	window.ADVANCED_SIDEBAR_MENU.getBlockSupports = getBlockSupports;
 	window.ADVANCED_SIDEBAR_MENU.transformLegacyWidget = transformLegacyWidget;
