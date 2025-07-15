@@ -171,7 +171,7 @@ const config: JSConfig = {
 		php: '7.4.30',
 		pro: false,
 		scriptDebug: true,
-		WordPress: '6.8.1',
+		WordPress: '6.8.2',
 	},
 	support: 'https://wordpress.org/support/plugin/advanced-sidebar-menu/#new-topic-0',
 };

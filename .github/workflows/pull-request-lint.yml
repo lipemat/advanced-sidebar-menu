@@ -51,11 +51,11 @@ jobs:
           },
           {
             php: 7.4,
-            wp: 6.8.1
+            wp: 6.8.2
           },
           {
             php: 8.4,
-            wp: 6.8.1
+            wp: 6.8.2
           },
         ]
         multisite: [ 'multisite' ]
@@ -85,7 +85,7 @@ jobs:
   
   phpcs:
     uses: lipemat/public-actions/.github/workflows/phpcs-plugin.yml@version/1
-    
+  
   js-unit:
     uses: lipemat/public-actions/.github/workflows/js-unit-plugin.yml@version/1
     secrets: inherit
