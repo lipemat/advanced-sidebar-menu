@@ -31,15 +31,15 @@ type Props = PropsWithChildren<{
 }>;
 
 const checkboxes: { [attr in keyof Partial<DisplayOptions>]: string } = {
-	/* translators: Selected taxonomy single label */
+	/* translators: %s Selected taxonomy single label */
 	include_parent: __( 'Display highest level parent %s', 'advanced-sidebar-menu' ),
-	/* translators: Selected taxonomy single label */
+	/* translators: %s Selected taxonomy single label */
 	include_childless_parent: __( 'Display menu when there is only the parent %s', 'advanced-sidebar-menu' ),
-	/* translators: Selected taxonomy plural label */
+	/* translators: %s Selected taxonomy plural label */
 	display_all: __( 'Always display child %s', 'advanced-sidebar-menu' ),
 };
 
-const LEVEL_OPTIONS: Array<{value: string, label: string}> = [
+const LEVEL_OPTIONS: Array<{ value: string, label: string }> = [
 	{
 		value: '100',
 		label: __( '- All -', 'advanced-sidebar-menu' ),
@@ -50,7 +50,7 @@ const LEVEL_OPTIONS: Array<{value: string, label: string}> = [
 			label: n.toString(),
 		}
 	) ),
-]
+];
 
 /**
  * Display Options shared between widgets.
@@ -103,14 +103,14 @@ const Display = ( {
 			{showLevels &&
 				<SelectControl
 					key={'levels'}
-					/* translators: {select HTML input}, {post type plural label} */
+					/* translators: %s {select HTML input}, {post type plural label} */
 					label={sprintf( __( 'Levels of child %s to display', 'advanced-sidebar-menu' ), type?.labels?.name.toLowerCase() ?? '' )}
 					className={'advanced-sidebar-menu-display-select'}
 					value={attributes.levels.toString()}
 					onChange={value => {
 						setAttributes( {
 							levels: parseInt( value ),
-						} )
+						} );
 					}}
 					options={LEVEL_OPTIONS}
 					// @ts-expect-error -- Not technically available until WP 6.7.
