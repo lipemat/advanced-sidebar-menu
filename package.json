@@ -1,6 +1,6 @@
 {
   "name": "@onpointplugins/advanced-sidebar-menu",
-  "version": "11.3.1",
+  "version": "11.6.3",
   "description": "Gutenberg blocks for the Advanced Sidebar Menu plugin.",
   "author": "OnPoint Plugins <support@onpointplugins.com>",
   "license": "UNLICENSED",
@@ -33,9 +33,9 @@
     "jquery": "3.6.4"
   },
   "devDependencies": {
-    "@lipemat/eslint-config": "^4.0.4",
-    "@lipemat/js-boilerplate": "^10.13.1",
-    "@lipemat/js-boilerplate-gutenberg": "^4.1.2",
+    "@lipemat/eslint-config": "^5.1.1",
+    "@lipemat/js-boilerplate": "^10.14.4",
+    "@lipemat/js-boilerplate-gutenberg": "^4.2.0",
     "@lipemat/stylelint-config": "^2.2.2",
     "@types/jquery": "^3",
     "@types/lipemat__js-boilerplate": "lipemat/types-js-boilerplate#semver:^2",
@@ -48,9 +48,10 @@
     "dompurify": "^3.2.5",
     "eslint": "^9",
     "jest": "^29",
+    "react-dom": "18.2.0",
     "stylelint": "^14",
     "ts-node": "^10.9.2",
-    "typescript": "^5.9.2"
+    "typescript": "~5.8.3"
   },
   "resolutions": {
     "@types/react": "~18.2.0",
@@ -58,5 +59,5 @@
     "react": "18.2.0",
     "react-dom": "18.2.0"
   },
-  "packageManager": "yarn@4.9.2"
+  "packageManager": "yarn@4.10.3"
 }

@@ -87,7 +87,7 @@ const Edit = ( {attributes, setAttributes, clientId, name}: Props ) => {
 		                We default the attribute to `true` if we are editing
 		                a post during register of block attributes. */}
 					{isScreen( [ 'post' ] ) && <CheckboxControl
-						/* translators: Selected taxonomy plural label */
+						/* translators: %s: Selected taxonomy plural label */
 						label={sprintf( __( 'Display %s on single posts', 'advanced-sidebar-menu' ), taxonomy?.labels?.name.toLowerCase() ?? '' )}
 						checked={attributes.single}
 						onChange={value => {
@@ -104,7 +104,7 @@ const Edit = ( {attributes, setAttributes, clientId, name}: Props ) => {
 						  list only. */}
 					{isScreen( [ 'widgets', 'customize' ] ) && attributes.single &&
 						<SelectControl<'list' | 'widget'>
-							/* translators: Selected taxonomy single label */
+							/* translators: %s: Selected taxonomy single label */
 							label={sprintf( __( 'Display each single post\'s %s', 'advanced-sidebar-menu' ), taxonomy?.labels?.name.toLowerCase() ?? '' )}
 							value={attributes.new_widget}
 							options={Object.keys( CONFIG.categories.displayEach ).map( ( key: 'list' | 'widget' ) => ( {

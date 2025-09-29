@@ -1,4 +1,6 @@
 // phpcs:disable Lipe.JS.HTMLExecutingFunctions, Lipe.JS.Window.location -- Running in browser console all execution is possible.
+import DOMPurify from 'dompurify';
+
 /**
  * Debugging utilities available when `asm_debug` is included in the URL.
  *
@@ -71,8 +73,8 @@ export function addObjectAsUrlParams( url: string | URL, params: object ) {
  * @example `advancedSidebarMenuDebug({links_expand: "checked", links_expand_levels: {all: 'checked'}})`
  */
 export function advancedSidebarMenuDebug( params: object ) {
-	const url = new URL( window.location.href );
-	window.location.href = addObjectAsUrlParams( `${url.origin}${url.pathname}`, params );
+	const url = new URL( DOMPurify.sanitize( window.location.href ) );
+	window.location.href = DOMPurify.sanitize( addObjectAsUrlParams( `${url.origin}${url.pathname}`, params ) );
 }
 
 window.advancedSidebarMenuDebug = advancedSidebarMenuDebug;

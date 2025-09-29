@@ -3,6 +3,8 @@ import {CONFIG} from '../globals/config';
 import {addQueryArgs} from '@wordpress/url';
 import DOMPurify from 'dompurify';
 
+const {sanitize} = DOMPurify;
+
 type Props = {
 	attributes: object,
 	block: string;
@@ -66,10 +68,10 @@ class ErrorBoundary extends Component<PropsWithChildren<Props>, {
 							className={'components-button is-link'}
 							onClick={e => {
 								e.preventDefault();
-								const location = addQueryArgs( DOMPurify.sanitize( window.location.href ), {
+								const location = addQueryArgs( sanitize( window.location.href ), {
 									'script-debug': 'true',
 								} );
-								window.open( location, '_blank', 'noopener,noreferrer' );
+								window.open( sanitize( location ), '_blank', 'noopener,noreferrer' );
 							}}
 						>
 							Please enable script debug
@@ -88,7 +90,7 @@ class ErrorBoundary extends Component<PropsWithChildren<Props>, {
 							className={'components-button is-link'}
 							onClick={e => {
 								e.preventDefault();
-								window.open( DOMPurify.sanitize( CONFIG.support ), '_blank', 'noopener,noreferrer' );
+								window.open( sanitize( CONFIG.support ), '_blank', 'noopener,noreferrer' );
 							}}
 						>
 							Please create a support request

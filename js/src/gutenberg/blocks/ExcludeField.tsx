@@ -31,7 +31,7 @@ const ExcludeField = ( {type, attributes, setAttributes}: Props ) => {
 
 	return (
 		<TextControl
-			/* translators: Selected post type plural label */
+			/* translators: %s: Selected post type plural label */
 			label={sprintf( __( '%s to exclude', 'advanced-sidebar-menu' ), type?.labels?.name ?? '' )}
 			value={attributes.exclude}
 			help={<>{__( 'ids, comma separated', 'advanced-sidebar-menu' )}{help}</>}
