@@ -86,12 +86,6 @@ $ignoreErrors[] = [
 	'path' => __DIR__ . '/../src/Blocks/Block_Abstract.php',
 ];
 $ignoreErrors[] = [
-	'message' => '#^Parameter \\#1 \\$widget of static method Advanced_Sidebar_Menu\\\\__Temp_Id_Proxy\\:\\:factory\\(\\) expects Advanced_Sidebar_Menu\\\\Widget\\\\Widget\\<array\\{\\}, array\\{\\}\\>, Advanced_Sidebar_Menu\\\\Widget\\\\WidgetWithId\\<WIDGET_SETTINGS of array\\<string, array\\<string, string\\>\\|int\\|string\\>, DEFAULTS of array\\<string, array\\<string, string\\>\\|int\\|string\\>\\> given\\.$#',
-	'identifier' => 'argument.type',
-	'count' => 1,
-	'path' => __DIR__ . '/../src/Blocks/Block_Abstract.php',
-];
-$ignoreErrors[] = [
 	'message' => '#^Returning false in a method without a `bool` return type\\. Return `null` with `\\<type\\>\\|null` or add `bool` to the return type\\.$#',
 	'identifier' => 'lipemat.returnNullOverFalse',
 	'count' => 1,

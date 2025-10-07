@@ -11,7 +11,6 @@ use Advanced_Sidebar_Menu\Utils;
 use Advanced_Sidebar_Menu\Widget\Category;
 use Advanced_Sidebar_Menu\Widget\Page;
 use Advanced_Sidebar_Menu\Widget\Widget;
-use Advanced_Sidebar_Menu\Widget\WidgetWithId;
 use Advanced_Sidebar_Menu\Widget_Options\Shared\Style_Targeting;
 
 /**
@@ -85,7 +84,7 @@ abstract class Block_Abstract {
 	/**
 	 * @todo  Remove once minimum required PRO Blocks\Navigation implements `Block` interface.
 	 *
-	 * @return WidgetWithId<WIDGET_SETTINGS, DEFAULTS>
+	 * @return Widget<WIDGET_SETTINGS, DEFAULTS>
 	 */
 	abstract protected function get_widget_class();
 
@@ -138,7 +137,7 @@ abstract class Block_Abstract {
 		}
 
 		$widget = $this->get_widget_class();
-		$blocks[] = __Temp_Id_Proxy::factory( $widget )->get_id_base();
+		$blocks[] = $widget->get_id_base();
 		return $blocks;
 	}
 
