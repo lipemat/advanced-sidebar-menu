@@ -49,21 +49,21 @@ const config: JSConfig = {
 	blocks: {
 		commonAttr: {
 			style: {
-				t: 'o',
+				type: 'object',
 			},
 			title: {
-				t: 's',
+				type: 'string',
 			},
 		},
 		previewAttr: {
 			clientId: {
-				t: 's',
+				type: 'string',
 			},
 			isServerSideRenderRequest: {
-				t: 'b',
+				type: 'boolean',
 			},
 			sidebarId: {
-				t: 's',
+				type: 'string',
 			},
 		},
 		blockSupport: {
@@ -74,36 +74,36 @@ const config: JSConfig = {
 			id: 'advanced-sidebar-menu/categories',
 			attributes: {
 				include_parent: {
-					t: 'b',
-					d: false,
+					type: 'boolean',
+					default: false,
 				},
 				include_childless_parent: {
-					t: 'b',
-					d: false,
+					type: 'boolean',
+					default: false,
 				},
 				exclude: {
-					t: 's',
-					d: '',
+					type: 'string',
+					default: '',
 				},
 				display_all: {
-					t: 'b',
-					d: false,
+					type: 'boolean',
+					default: false,
 				},
 				single: {
-					t: 'b',
-					d: true,
+					type: 'boolean',
+					default: true,
 				},
 				new_widget: {
-					t: 's',
-					d: 'list',
-					e: [
+					type: 'string',
+					default: 'list',
+					enum: [
 						'list',
 						'widget',
 					],
 				},
 				levels: {
-					t: 'n',
-					d: 100,
+					type: 'number',
+					default: 100,
 				},
 			},
 		},
@@ -111,25 +111,25 @@ const config: JSConfig = {
 			id: 'advanced-sidebar-menu/pages',
 			attributes: {
 				include_parent: {
-					t: 'b',
+					type: 'boolean',
 				},
 				include_childless_parent: {
-					t: 'b',
+					type: 'boolean',
 				},
 				order_by: {
-					t: 's',
-					d: 'menu_order',
+					type: 'string',
+					default: 'menu_order',
 				},
 				exclude: {
-					t: 's',
-					d: '',
+					type: 'string',
+					default: '',
 				},
 				display_all: {
-					t: 'b',
+					type: 'boolean',
 				},
 				levels: {
-					t: 'n',
-					d: 100,
+					type: 'number',
+					default: 100,
 				},
 			},
 		},
@@ -164,13 +164,13 @@ const config: JSConfig = {
 		},
 	},
 	siteInfo: {
-		basic: '9.7.1',
+		basic: '9.6.5',
 		classicWidgets: false,
 		menus: [],
 		php: '7.4.30',
 		pro: false,
 		scriptDebug: true,
-		WordPress: '6.8.3',
+		WordPress: '6.8.2',
 	},
 	support: 'https://wordpress.org/support/plugin/advanced-sidebar-menu/#new-topic-0',
 };

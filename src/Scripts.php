@@ -4,7 +4,6 @@ namespace Advanced_Sidebar_Menu;
 
 use Advanced_Sidebar_Menu\Blocks\Block_Abstract;
 use Advanced_Sidebar_Menu\Blocks\Common;
-use Advanced_Sidebar_Menu\Blocks\Register\Register_Utils;
 use Advanced_Sidebar_Menu\Traits\Singleton;
 use Advanced_Sidebar_Menu\Widget\Category;
 use Advanced_Sidebar_Menu\Widget\Page;
@@ -231,8 +230,8 @@ class Scripts {
 	public function js_config(): array {
 		return apply_filters( 'advanced-sidebar-menu/scripts/js-config', [
 			'blocks'        => [
-				'commonAttr'   => Register_Utils::instance()->translate_attributes_to_js( Common::instance()->get_common_attributes() ),
-				'previewAttr'  => Register_Utils::instance()->translate_attributes_to_js( Common::instance()->get_server_side_render_attributes() ),
+				'commonAttr'   => Common::instance()->get_common_attributes(),
+				'previewAttr'  => Common::instance()->get_server_side_render_attributes(),
 				'blockSupport' => Common::instance()->get_block_supports(),
 			],
 			'categories'    => [
