@@ -12,9 +12,11 @@ namespace Advanced_Sidebar_Menu\Blocks\Register;
  * @author OnPoint Plugins
  * @since  9.7.0
  *
+ * @see    js/src/gutenberg/blocks/register/JsAttributes.ts
+ *
  * @phpstan-type JS_ATTR_SHAPE array{
  *     t: JS_Attribute::TYPE_*|list<JS_Attribute::TYPE_*>,
- *     d?: string|int|bool|array<mixed>|object|null,
+ *     d?: string|int|bool|array<string|number>|object|null,
  *     e?: list<string|int|bool>,
  * }
  *

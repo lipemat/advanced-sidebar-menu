@@ -1,6 +1,7 @@
 import {type BlockAttributes, BlockSupports, createBlock, CreateBlock} from '@wordpress/blocks';
 import {CONFIG, Screen} from '../globals/config';
 import type {CommonAttr, ServerSideRenderRequired} from './blocks/Preview';
+import {type ShortBlockAttributes, translateShortAttributes} from './blocks/register/JsAttributes';
 
 export type TransformLegacy = <Attr>( name: string ) => ( widgetValues: {
 	instance: { [ key: string ]: string | number | object | boolean }
@@ -26,8 +27,12 @@ export const transformLegacyWidget: TransformLegacy = <A>( name: string ) => ( {
  *
  * @since 9.7.0
  */
-export function translateBlockAttributes<Attr>( attributes: BlockAttributes<Attr> ): BlockAttributes<Attr & CommonAttr & ServerSideRenderRequired> {
-	return {...attributes, ...CONFIG.blocks.commonAttr, ...CONFIG.blocks.previewAttr};
+export function translateBlockAttributes<Attr>( attributes: ShortBlockAttributes<Attr> ): BlockAttributes<Attr & CommonAttr & ServerSideRenderRequired> {
+	return translateShortAttributes<Attr & CommonAttr & ServerSideRenderRequired>( {
+		...attributes,
+		...CONFIG.blocks.commonAttr,
+		...CONFIG.blocks.previewAttr,
+	} );
 }
 
 /**

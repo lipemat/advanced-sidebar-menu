@@ -1,8 +1,9 @@
 import type {Attr as PageAttr} from '../gutenberg/blocks/pages/block';
 import type {Attr as CategoryAttr} from '../gutenberg/blocks/categories/block';
-import type {BlockAttributes, BlockSupports} from '@wordpress/blocks';
+import type {BlockSupports} from '@wordpress/blocks';
 import type {CommonAttr, ServerSideRenderRequired} from '../gutenberg/blocks/Preview';
 import type {PassedGlobals} from '../gutenberg/index';
+import type {ShortBlockAttributes} from '../gutenberg/blocks/register/JsAttributes';
 
 export type Screen = 'site-editor' | 'widgets' | 'post' | 'customize';
 
@@ -10,20 +11,20 @@ export type WPBoolean = '1' | '';
 
 export interface JSConfig {
 	blocks: {
-		commonAttr: BlockAttributes<CommonAttr>;
-		previewAttr: BlockAttributes<ServerSideRenderRequired>;
+		commonAttr: ShortBlockAttributes<CommonAttr>;
+		previewAttr: ShortBlockAttributes<ServerSideRenderRequired>;
 		blockSupport: BlockSupports;
 		categories: {
 			id: 'advanced-sidebar-menu/categories';
-			attributes: BlockAttributes<CategoryAttr>;
+			attributes: ShortBlockAttributes<CategoryAttr>;
 		};
 		pages: {
 			id: 'advanced-sidebar-menu/pages';
-			attributes: BlockAttributes<PageAttr>;
+			attributes: ShortBlockAttributes<PageAttr>;
 		};
 		navigation?: {
 			id: 'advanced-sidebar-menu/navigation';
-			attributes: BlockAttributes<object>;
+			attributes: ShortBlockAttributes<object>;
 		}
 	};
 	categories: {
