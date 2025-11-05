@@ -2,7 +2,6 @@
 
 namespace Advanced_Sidebar_Menu\Blocks;
 
-use Advanced_Sidebar_Menu\__Temp_Id_Proxy;
 use Advanced_Sidebar_Menu\Blocks\Register\Attribute;
 use Advanced_Sidebar_Menu\Blocks\Register\Register_Utils;
 use Advanced_Sidebar_Menu\Menus\Menu_Abstract;
@@ -74,7 +73,7 @@ abstract class Block_Abstract {
 
 
 	/**
-	 * @todo  Remove once minimum required PRO Blocks\Navigation implements `Block` interface.
+	 * @todo  Remove once minimum required PRO is 9.10.0
 	 *
 	 * @return array<string, ATTR_SHAPE|Attribute>
 	 */
@@ -82,7 +81,7 @@ abstract class Block_Abstract {
 
 
 	/**
-	 * @todo  Remove once minimum required PRO Blocks\Navigation implements `Block` interface.
+	 * @todo  Remove once minimum required PRO is 9.10.0
 	 *
 	 * @return Widget<WIDGET_SETTINGS, DEFAULTS>
 	 */
@@ -90,7 +89,7 @@ abstract class Block_Abstract {
 
 
 	/**
-	 * @todo  Remove once \Advanced_Sidebar_Menu\Blocks\Navigation implements `Block` interface.
+	 * @todo  Remove once minimum required PRO is 9.10.0
 	 *
 	 * @return string
 	 */
