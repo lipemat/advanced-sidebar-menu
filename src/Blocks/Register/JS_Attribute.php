@@ -14,7 +14,7 @@ namespace Advanced_Sidebar_Menu\Blocks\Register;
  *
  * @phpstan-type JS_ATTR_SHAPE array{
  *     t: JS_Attribute::TYPE_*|list<JS_Attribute::TYPE_*>,
- *     d?: 'string'|'int'|'bool'|'array'|'object'|null,
+ *     d?: string|int|bool|array<mixed>|object|null,
  *     e?: list<string|int|bool>,
  * }
  *
