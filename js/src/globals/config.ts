@@ -1,6 +1,6 @@
 import type {Attr as PageAttr} from '../gutenberg/blocks/pages/block';
 import type {Attr as CategoryAttr} from '../gutenberg/blocks/categories/block';
-import type {BlockAttributes, BlockSettings, BlockSupports} from '@wordpress/blocks';
+import type {BlockAttributes, BlockSupports} from '@wordpress/blocks';
 import type {CommonAttr, ServerSideRenderRequired} from '../gutenberg/blocks/Preview';
 import type {PassedGlobals} from '../gutenberg/index';
 
@@ -16,20 +16,14 @@ export interface JSConfig {
 		categories: {
 			id: 'advanced-sidebar-menu/categories';
 			attributes: BlockAttributes<CategoryAttr>;
-			// @todo: Remove when required PRO version is 9.9.0+.
-			supports?: BlockSettings<CategoryAttr>['supports'];
 		};
 		pages: {
 			id: 'advanced-sidebar-menu/pages';
 			attributes: BlockAttributes<PageAttr>;
-			// @todo: Remove when required PRO version is 9.9.0+.
-			supports?: BlockSettings<PageAttr>['supports'];
 		};
 		navigation?: {
 			id: 'advanced-sidebar-menu/navigation';
 			attributes: BlockAttributes<object>;
-			// @todo: Remove when required PRO version is 9.9.0+.
-			supports?: BlockSettings<object>['supports'];
 		}
 	};
 	categories: {
@@ -47,7 +41,6 @@ export interface JSConfig {
 	features: Array<string>;
 	isPostEdit: WPBoolean;
 	isPro: WPBoolean;
-	isProCommonAttr?: WPBoolean;
 	isWidgets: WPBoolean;
 	pages: {
 		orderBy: { [ value: string ]: string };

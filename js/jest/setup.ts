@@ -1,5 +1,4 @@
 import 'core-js/stable';
-import 'regenerator-runtime/runtime';
 import '@testing-library/jest-dom';
 
 import type {JSConfig} from '../src/globals/config';
