@@ -5,7 +5,7 @@ Tags: menus, page menus, category menus, sidebars, hierarchy
 Requires at least: 6.2.0
 Tested up to: 6.8.3
 Requires PHP: 7.4.0
-Stable tag: 9.8.0
+Stable tag: 9.8.1
 License: GPLv3 or later
 License URI: http://www.gnu.org/licenses/gpl-3.0.html
 Fully automatic sidebar menus.
@@ -218,6 +218,10 @@ The Categories Menu widget/block contains a "Display categories on single posts"
 Yes. Based on whatever page post or category you are on, the menu will change automatically to display the current parents and children.
 
 == Changelog ==
+
+= 9.8.1 = 
+* Introduced 'advanced-sidebar-menu/pages/general-after' slot fill.
+* Updated expired @todos in PHP docs.
 
 = 9.8.0 = 
 * Updated Node.js to version 22.21.1.
@@ -460,6 +464,9 @@ Yes. Based on whatever page post or category you are on, the menu will change au
 * Numerous bug fixes.
 
 == Upgrade Notice ==
+= 9.8.1 =
+Update to support PRO version 9.10.0
+
 = 9.3.4 =
 Update to support WordPress 6.4.
 
