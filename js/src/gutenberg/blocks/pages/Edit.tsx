@@ -107,6 +107,10 @@ const Edit = ( {attributes, setAttributes, clientId, name}: Props ) => {
 						type={postType}
 						attributes={attributes}
 						setAttributes={setAttributes} />
+
+					<Slot<FillProps>
+						name="advanced-sidebar-menu/pages/general-after"
+						fillProps={fillProps} />
 				</div>
 
 			</ErrorBoundary>
