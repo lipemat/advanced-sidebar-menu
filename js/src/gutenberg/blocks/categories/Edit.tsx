@@ -86,7 +86,7 @@ const Edit = ( {attributes, setAttributes, clientId, name}: Props ) => {
 
 		                We default the attribute to `true` if we are editing
 		                a post during register of block attributes. */}
-					{isScreen( [ 'post' ] ) && <CheckboxControl
+					{! isScreen( [ 'post' ] ) && <CheckboxControl
 						/* translators: %s: Selected taxonomy plural label */
 						label={sprintf( __( 'Display %s on single posts', 'advanced-sidebar-menu' ), taxonomy?.labels?.name.toLowerCase() ?? '' )}
 						checked={attributes.single}
