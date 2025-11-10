@@ -28,10 +28,10 @@ class Register_Utils {
 	 * @phpstan-return array<T, ATTR_SHAPE>
 	 * @return array<string, ATTR_SHAPE> - Array of PHP-shaped attributes.
 	 */
-	public function translate_attributes_to_php( array $attributes ): array {
+	public function translate_attributes_to_array( array $attributes ): array {
 		return \array_map( function( $attribute ) {
 			if ( $attribute instanceof Attribute ) {
-				return $attribute->to_php_attribute();
+				return $attribute->to_array();
 			}
 			return $attribute;
 		}, $attributes );

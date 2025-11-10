@@ -130,7 +130,7 @@ class Attribute implements AttributeRules, \JsonSerializable {
 	 *
 	 * @return array - Attribute is a standard array format.
 	 */
-	public function to_php_attribute(): array {
+	public function to_array(): array {
 		$attribute = [
 			'type' => $this->type,
 		];
@@ -179,7 +179,7 @@ class Attribute implements AttributeRules, \JsonSerializable {
 	 * @return array - Attribute is a standard array format.
 	 */
 	public function jsonSerialize(): array {
-		return $this->to_php_attribute();
+		return $this->to_array();
 	}
 
 
