@@ -2,6 +2,7 @@
 
 namespace Advanced_Sidebar_Menu\Blocks;
 
+use Advanced_Sidebar_Menu\Blocks\Register\Attribute;
 use Advanced_Sidebar_Menu\Menus\Menu_Abstract;
 use Advanced_Sidebar_Menu\Notice;
 use Advanced_Sidebar_Menu\Traits\Singleton;
@@ -13,8 +14,6 @@ use Advanced_Sidebar_Menu\Traits\Singleton;
  *
  * @author OnPoint Plugins
  * @since  9.7.0
- *
- * @phpstan-import-type ATTR_SHAPE from Block_Abstract
  */
 class Common {
 	use Singleton;
@@ -22,17 +21,17 @@ class Common {
 	/**
 	 * Get all attributes shared by all blocks.
 	 *
-	 * @phpstan-return array<'style'|'title', ATTR_SHAPE>
+	 * @phpstan-return array<'style'|'title', Attribute>
 	 * @return array
 	 */
 	public function get_common_attributes(): array {
 		return (array) apply_filters( 'advanced-sidebar-menu/blocks/common-attributes/attributes', [
-			'style'              => [
+			'style'              => Attribute::factory( [
 				'type' => 'object',
-			],
-			Menu_Abstract::TITLE => [
+			] ),
+			Menu_Abstract::TITLE => Attribute::factory( [
 				'type' => 'string',
-			],
+			] ),
 		], $this );
 	}
 
@@ -64,20 +63,20 @@ class Common {
 	/**
 	 * Get all attributes used for previewing the block.
 	 *
-	 * @phpstan-return array<'clientId'|'isServerSideRenderRequest'|'sidebarId', ATTR_SHAPE>
+	 * @phpstan-return array<'clientId'|'isServerSideRenderRequest'|'sidebarId', Attribute>
 	 * @return array
 	 */
 	public function get_server_side_render_attributes(): array {
 		return [
-			Block_Abstract::BLOCK_ID       => [
+			Block_Abstract::BLOCK_ID       => Attribute::factory( [
 				'type' => 'string',
-			],
-			Block_Abstract::RENDER_REQUEST => [
+			] ),
+			Block_Abstract::RENDER_REQUEST => Attribute::factory( [
 				'type' => 'boolean',
-			],
-			Block_Abstract::SIDEBAR_ID     => [
+			] ),
+			Block_Abstract::SIDEBAR_ID     => Attribute::factory( [
 				'type' => 'string',
-			],
+			] ),
 		];
 	}
 
