@@ -36,4 +36,23 @@ class Register_Utils {
 			return $attribute;
 		}, $attributes );
 	}
+
+
+	/**
+	 * No longer used.
+	 *
+	 * @deprecated in favor of translate_attributes_to_array.
+	 *
+	 * @template T of string
+	 *
+	 * @phpstan-param array<T, ATTR_SHAPE|Attribute> $attributes
+	 *
+	 * @param array<string, ATTR_SHAPE|Attribute>    $attributes - Array of attributes.
+	 *
+	 * @phpstan-return array<T, ATTR_SHAPE>
+	 * @return array<string, ATTR_SHAPE>
+	 */
+	public function translate_attributes_to_php( array $attributes ): array {
+		return $this->translate_attributes_to_array( $attributes );
+	}
 }
