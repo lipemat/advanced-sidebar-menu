@@ -4,7 +4,7 @@ env:
   # Can't specify a VERSION, or the plugin will deploy in that version.  
   # VERSION: 3.4.2
   NODE_VERSION: '22.17.0'
-  PHP_VERSION: '8.4'
+  PHP_VERSION: '8.5'
   TZ: 'America/New_York'
   
 permissions:
