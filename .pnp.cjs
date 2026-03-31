@@ -2371,7 +2371,7 @@ const RAW_RUNTIME_STATE =
     ],\
     [\
       "dompurify",\
-      "npm:3.3.0"\
+      "npm:3.3.3"\
     ],\
     [\
       "domutils",\
@@ -5227,7 +5227,7 @@ const RAW_RUNTIME_STATE =
           ["@wordpress/browserslist-config", "npm:6.34.0"],\
           ["@wordpress/server-side-render", "virtual:3ba643f9797e66ff36745c8831d7b481c8461f8796976105d977ed697b1503bc1aac4e4723d6c88131f394a861739d3190eb8c5f40d049cf9141692aeb98caa3#npm:4.3.6"],\
           ["classnames", "npm:2.5.1"],\
-          ["dompurify", "npm:3.3.0"],\
+          ["dompurify", "npm:3.3.3"],\
           ["eslint", "virtual:3ba643f9797e66ff36745c8831d7b481c8461f8796976105d977ed697b1503bc1aac4e4723d6c88131f394a861739d3190eb8c5f40d049cf9141692aeb98caa3#npm:9.39.1"],\
           ["jest", "virtual:71620b9c4488956c0e6588ac03140045df76ebd6306a98773323db005b141a191eaf352f3f56976e04a0a39a6e729b2b6bc380b8899f78571f5e2dc8a0ed6637#npm:29.7.0"],\
           ["jquery", "npm:3.6.4"],\
@@ -11438,7 +11438,7 @@ const RAW_RUNTIME_STATE =
           ["@wordpress/browserslist-config", "npm:6.34.0"],\
           ["@wordpress/server-side-render", "virtual:3ba643f9797e66ff36745c8831d7b481c8461f8796976105d977ed697b1503bc1aac4e4723d6c88131f394a861739d3190eb8c5f40d049cf9141692aeb98caa3#npm:4.3.6"],\
           ["classnames", "npm:2.5.1"],\
-          ["dompurify", "npm:3.3.0"],\
+          ["dompurify", "npm:3.3.3"],\
           ["eslint", "virtual:3ba643f9797e66ff36745c8831d7b481c8461f8796976105d977ed697b1503bc1aac4e4723d6c88131f394a861739d3190eb8c5f40d049cf9141692aeb98caa3#npm:9.39.1"],\
           ["jest", "virtual:71620b9c4488956c0e6588ac03140045df76ebd6306a98773323db005b141a191eaf352f3f56976e04a0a39a6e729b2b6bc380b8899f78571f5e2dc8a0ed6637#npm:29.7.0"],\
           ["jquery", "npm:3.6.4"],\
@@ -17973,11 +17973,11 @@ const RAW_RUNTIME_STATE =
       }]\
     ]],\
     ["dompurify", [\
-      ["npm:3.3.0", {\
-        "packageLocation": "./.yarn/cache/dompurify-npm-3.3.0-caeafd3783-66b1787b0b.zip/node_modules/dompurify/",\
+      ["npm:3.3.3", {\
+        "packageLocation": "./.yarn/cache/dompurify-npm-3.3.3-6b51c69448-097c14a21a.zip/node_modules/dompurify/",\
         "packageDependencies": [\
           ["@types/trusted-types", "npm:2.0.7"],\
-          ["dompurify", "npm:3.3.0"]\
+          ["dompurify", "npm:3.3.3"]\
         ],\
         "linkType": "HARD"\
       }]\
