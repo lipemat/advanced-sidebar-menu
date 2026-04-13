@@ -4,6 +4,7 @@ namespace Advanced_Sidebar_Menu\Menus;
 
 use Advanced_Sidebar_Menu\Core;
 use Advanced_Sidebar_Menu\List_Pages;
+use Advanced_Sidebar_Menu\Widget\Page as PageWidget;
 use Advanced_Sidebar_Menu\Widget\Widget;
 
 /**
@@ -29,6 +30,9 @@ use Advanced_Sidebar_Menu\Widget\Widget;
  */
 class Page extends Menu_Abstract implements Menu {
 	public const WIDGET = 'page';
+
+	public const ORDER_ASC  = 'ASC';
+	public const ORDER_DESC = 'DESC';
 
 	/**
 	 * Store current menu instance.
@@ -80,14 +84,14 @@ class Page extends Menu_Abstract implements Menu {
 
 
 	/**
-	 * Get key to order the menu items by.
+	 * Get the key to order the menu items by.
 	 *
 	 * @notice Must be a string because it is also used by `wp_list_pages`.
 	 *
 	 * @return string
 	 */
 	public function get_order_by(): string {
-		return (string) apply_filters( 'advanced-sidebar-menu/menus/page/order-by', $this->instance[ static::ORDER_BY ], $this->get_current_post(), $this->args, $this->instance, $this );
+		return (string) apply_filters( 'advanced-sidebar-menu/menus/page/order-by', $this->instance[ static::ORDER_BY ] ?? PageWidget::ORDER_BY_MENU_ORDER, $this->get_current_post(), $this->args, $this->instance, $this );
 	}
 
 
@@ -97,7 +101,7 @@ class Page extends Menu_Abstract implements Menu {
 	 * @return string
 	 */
 	public function get_order(): string {
-		return (string) apply_filters( 'advanced-sidebar-menu/menus/page/order', 'ASC', $this->get_current_post(), $this->args, $this->instance, $this );
+		return (string) apply_filters( 'advanced-sidebar-menu/menus/page/order', self::ORDER_ASC, $this->get_current_post(), $this->args, $this->instance, $this );
 	}
 
 
