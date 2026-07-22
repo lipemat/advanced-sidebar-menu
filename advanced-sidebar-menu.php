@@ -19,8 +19,8 @@ if ( defined( 'ADVANCED_SIDEBAR_BASIC_VERSION' ) ) {
 	return;
 }
 
-define( 'ADVANCED_SIDEBAR_MENU_BASIC_VERSION', '9.8.4' );
-define( 'ADVANCED_SIDEBAR_MENU_REQUIRED_PRO_VERSION', '9.9.0' );
+define( 'ADVANCED_SIDEBAR_MENU_BASIC_VERSION', '9.8.5' );
+define( 'ADVANCED_SIDEBAR_MENU_REQUIRED_PRO_VERSION', '9.10.1' );
 define( 'ADVANCED_SIDEBAR_MENU_DIR', plugin_dir_path( __FILE__ ) );
 define( 'ADVANCED_SIDEBAR_MENU_URL', plugin_dir_url( __FILE__ ) );
 
