@@ -14,7 +14,7 @@ Fully automatic sidebar menus.
 
 <h3>Fully automatic sidebar menus.</h3>
 
-Uses the parent/child relationship of your pag[VERSION](../../../../phpstan/VERSION)es or categories to generate menus based on the current section of your site. Assign a page or category to a parent and Advanced Sidebar Menu will do the rest for you.
+Uses the parent/child relationship of your pages or categories to generate menus based on the current section of your site. Assign a page or category to a parent, and Advanced Sidebar Menu will do the rest for you.
 
 Keeps the menu clean and usable. Only related items display, so you don't have to worry about keeping a custom menu up to date or displaying links to items that don't belong.
 
