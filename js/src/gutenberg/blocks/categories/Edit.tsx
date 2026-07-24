@@ -16,6 +16,7 @@ import {isScreen} from '../../helpers';
 import ExcludeField from '../ExcludeField';
 
 import styles from '../pages/edit.pcss';
+import {NEXT_40PX_DEFAULT_SIZE_CLASS} from '../../next-40px-default-size';
 
 
 export type FillProps =
@@ -70,6 +71,8 @@ const Edit = ( {attributes, setAttributes, clientId, name}: Props ) => {
 					onChange={title => setAttributes( {title} )}
 					// @ts-expect-error -- Not technically supported until WP 6.7
 					__nextHasNoMarginBottom
+					__next40pxDefaultSize
+					className={NEXT_40PX_DEFAULT_SIZE_CLASS}
 				/>
 			</PanelBody>}
 			<ErrorBoundary attributes={attributes} block={name} section={'categories/Edit/general'}>
@@ -113,6 +116,10 @@ const Edit = ( {attributes, setAttributes, clientId, name}: Props ) => {
 							} ) )}
 							/* eslint-disable-next-line camelcase */
 							onChange={new_widget => setAttributes( {new_widget} )}
+							// @ts-expect-error -- Not technically supported until WP 6.7
+							__nextHasNoMarginBottom
+							__next40pxDefaultSize
+							className={NEXT_40PX_DEFAULT_SIZE_CLASS}
 						/>}
 				</Display>
 

@@ -6,6 +6,7 @@ import {Attr as CategoryAttr} from './categories/block';
 import {BlockEditProps} from '@wordpress/blocks';
 import {Taxonomy} from '@wordpress/api/taxonomies';
 import DOMPurify from 'dompurify';
+import {NEXT_40PX_DEFAULT_SIZE_CLASS} from '../next-40px-default-size';
 
 type Props = {
 	attributes: PageAttr | CategoryAttr;
@@ -42,6 +43,8 @@ const ExcludeField = ( {type, attributes, setAttributes}: Props ) => {
 			}}
 			// @ts-expect-error -- Not technically supported until WP 6.7
 			__nextHasNoMarginBottom
+			__next40pxDefaultSize
+			className={NEXT_40PX_DEFAULT_SIZE_CLASS}
 		/>
 	);
 };

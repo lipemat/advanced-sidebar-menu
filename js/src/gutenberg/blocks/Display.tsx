@@ -9,6 +9,7 @@ import {Taxonomy} from '@wordpress/api/taxonomies';
 import ErrorBoundary from '../../components/ErrorBoundary';
 import {BlockEditProps} from '@wordpress/blocks';
 import {PropsWithChildren} from 'react';
+import {NEXT_40PX_DEFAULT_SIZE_CLASS} from '../next-40px-default-size';
 
 
 export type DisplayOptions = {
@@ -105,7 +106,7 @@ const Display = ( {
 					key={'levels'}
 					/* translators: %s {select HTML input}, {post type plural label} */
 					label={sprintf( __( 'Levels of child %s to display', 'advanced-sidebar-menu' ), type?.labels?.name.toLowerCase() ?? '' )}
-					className={'advanced-sidebar-menu-display-select'}
+					className={`advanced-sidebar-menu-display-select ${NEXT_40PX_DEFAULT_SIZE_CLASS}`}
 					value={attributes.levels.toString()}
 					onChange={value => {
 						setAttributes( {

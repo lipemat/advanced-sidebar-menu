@@ -1,0 +1,27 @@
+/**
+ * `@wordpress/components` only applies the `is-next-40px-default-size` /
+ * 40px sizing when the `__next40pxDefaultSize` prop is both passed and
+ * recognized by the installed `@wordpress/components` version.
+ *
+ * Older WordPress versions ignore the prop, current versions honor it, and
+ * future versions will make it the permanent default and ignore the prop
+ * entirely. Applying the same sizing directly, here, keeps every control
+ * a consistent 40px across all of them.
+ *
+ * @see https://github.com/WordPress/gutenberg/blob/trunk/packages/components/src/text-control/index.tsx
+ * @see https://github.com/WordPress/gutenberg/blob/trunk/packages/components/src/select-control/styles/select-control-styles.ts
+ */
+:global(.advanced-sidebar-menu-next-40px-default-size) { /* stylelint-disable-line */
+
+	:global(.components-text-control__input) { /* stylelint-disable-line */
+		height: 2.5rem !important;
+		padding-left: .75rem !important;
+		padding-right: .75rem !important;
+	}
+
+	:global(.components-select-control__input) { /* stylelint-disable-line */
+		height: 2.5rem !important;
+		min-height: 2.5rem !important;
+		padding: 0 1.875rem 0 .75rem !important;
+	}
+}

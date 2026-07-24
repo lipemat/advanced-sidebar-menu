@@ -4,6 +4,8 @@ import {getBlockSupports, TransformLegacy, transformLegacyWidget, translateBlock
 import ErrorBoundary from '../components/ErrorBoundary';
 import NavigationIcon from './blocks/NavigationIcon';
 
+import './next-40px-default-size.pcss';
+
 
 // @see content/plugins/advanced-sidebar-menu-pro/js/src/globals/config.ts
 export type PassedGlobals = Partial<{

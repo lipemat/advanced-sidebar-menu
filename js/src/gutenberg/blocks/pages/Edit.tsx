@@ -1,19 +1,21 @@
 import {BlockControls, InspectorControls} from '@wordpress/block-editor';
 import {PanelBody, SelectControl, Slot, TextControl} from '@wordpress/components';
 import {BlockEditProps} from '@wordpress/blocks';
+import DOMPurify from 'dompurify';
+import {useSelect} from '@wordpress/data';
+import {__} from '@wordpress/i18n';
+import {Type} from '@wordpress/api/types';
+
 import {Attr, block} from './block';
 import Preview from '../Preview';
 import Display from '../Display';
-import {useSelect} from '@wordpress/data';
 import InfoPanel from '../InfoPanel';
 import {CONFIG} from '../../../globals/config';
-import {__} from '@wordpress/i18n';
-import {Type} from '@wordpress/api/types';
 import ErrorBoundary from '../../../components/ErrorBoundary';
 import SideLoad from '../../SideLoad';
 import {isScreen} from '../../helpers';
 import ExcludeField from '../ExcludeField';
-import DOMPurify from 'dompurify';
+import {NEXT_40PX_DEFAULT_SIZE_CLASS} from '../../next-40px-default-size';
 
 import styles from './edit.pcss';
 
@@ -74,6 +76,8 @@ const Edit = ( {attributes, setAttributes, clientId, name}: Props ) => {
 					onChange={title => setAttributes( {title} )}
 					// @ts-expect-error -- Not technically supported until WP 6.7
 					__nextHasNoMarginBottom
+					__next40pxDefaultSize
+					className={NEXT_40PX_DEFAULT_SIZE_CLASS}
 				/>
 			</PanelBody>}
 			<ErrorBoundary attributes={attributes} block={name} section={'pages/Edit/general'}>
@@ -101,7 +105,12 @@ const Edit = ( {attributes, setAttributes, clientId, name}: Props ) => {
 							setAttributes( {
 								order_by: value,
 							} );
-						}} />
+						}}
+						// @ts-expect-error -- Not technically supported until WP 6.7
+						__nextHasNoMarginBottom
+						__next40pxDefaultSize
+						className={NEXT_40PX_DEFAULT_SIZE_CLASS}
+					/>
 
 					<ExcludeField
 						type={postType}
