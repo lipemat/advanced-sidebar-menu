@@ -3,7 +3,7 @@
   "landingPage": "/wp-admin/post.php?post=5&action=edit",
   "preferredVersions": {
     "php": "8.0",
-    "wp": "7.1.1"
+    "wp": "7.1.3"
   },
   "features": {
     "networking": true
