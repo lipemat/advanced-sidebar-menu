@@ -342,7 +342,6 @@ class Page extends Menu_Abstract implements Menu {
 	public function has_pages(): bool {
 		$list_pages = List_Pages::factory( $this );
 		$children = $list_pages->get_child_pages( $this->get_top_parent_id(), true );
-		$list_pages->unhook();
 
 		return \count( $children ) > 0;
 	}

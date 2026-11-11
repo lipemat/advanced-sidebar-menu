@@ -76,7 +76,6 @@ class List_Pages {
 		$this->top_parent_id = $menu->get_top_parent_id();
 		$this->current_page = $menu->get_current_post();
 		$this->args = $this->parse_args();
-		$this->hook();
 	}
 
 
@@ -87,7 +86,7 @@ class List_Pages {
 	 *
 	 * @return void
 	 */
-	protected function hook(): void {
+	public function hook(): void {
 		add_filter( 'page_css_class', [ $this, 'add_list_item_classes' ], 2, 2 );
 	}
 
