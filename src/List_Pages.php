@@ -81,12 +81,26 @@ class List_Pages {
 
 
 	/**
-	 * Filters
+	 * Add this list's filters
+	 *
+	 * @see self::unhook()
 	 *
 	 * @return void
 	 */
-	protected function hook() {
+	protected function hook(): void {
 		add_filter( 'page_css_class', [ $this, 'add_list_item_classes' ], 2, 2 );
+	}
+
+
+	/**
+	 * Remove this list's filters.
+	 *
+	 * @since 9.9.0
+	 *
+	 * @see   self::hook()
+	 */
+	public function unhook(): void {
+		remove_filter( 'page_css_class', [ $this, 'add_list_item_classes' ], 2 );
 	}
 
 
@@ -99,12 +113,12 @@ class List_Pages {
 	 * We cover pages as well to handle edge cases where a site's theme
 	 * changes/removes default classes.
 	 *
-	 * @param array    $classes - Provided classes for item.
-	 * @param \WP_Post $post    - The item.
+	 * @param array<string> $classes - Provided classes for item.
+	 * @param \WP_Post      $post    - The item.
 	 *
-	 * @return array
+	 * @return list<string>
 	 */
-	public function add_list_item_classes( $classes, \WP_Post $post ) {
+	public function add_list_item_classes( array $classes, \WP_Post $post ): array {
 		$classes[] = 'menu-item';
 		$children = $this->get_child_pages( $post->ID, $post->ID === $this->top_parent_id );
 		if ( ! empty( $children ) ) {
@@ -128,7 +142,7 @@ class List_Pages {
 			}
 		}
 
-		return \array_unique( $classes );
+		return \array_values( \array_unique( $classes ) );
 	}
 
 

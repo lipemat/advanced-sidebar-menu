@@ -48,6 +48,20 @@ class Page extends Menu_Abstract implements Menu {
 	 */
 	protected $post;
 
+	/**
+	 * Top parent of the tree being rendered.
+	 *
+	 * @var ?int
+	 */
+	protected ?int $rendering_top_parent_id = null;
+
+	/**
+	 * Has the title printed during the current render?
+	 *
+	 * @var bool
+	 */
+	protected bool $is_title_printed = false;
+
 
 	/**
 	 * Used for setting the current post during unit testing
@@ -114,6 +128,10 @@ class Page extends Menu_Abstract implements Menu {
 	 * @return int
 	 */
 	public function get_top_parent_id(): int {
+		if ( \is_int( $this->rendering_top_parent_id ) ) {
+			return $this->rendering_top_parent_id;
+		}
+
 		$top_id = - 1;
 		$post = $this->get_current_post();
 		if ( null !== $post ) {
@@ -130,28 +148,64 @@ class Page extends Menu_Abstract implements Menu {
 
 
 	/**
+	 * Get the top-level page ids, which each render a tree.
+	 *
+	 * Filtered ids must be real page ids.
+	 *
+	 * @since 9.9.0
+	 *
+	 * @return list<int>
+	 */
+	public function get_top_level_page_ids(): array {
+		$default_parents = [ $this->get_top_parent_id() ];
+		$page_ids = (array) apply_filters( 'advanced-sidebar-menu/menus/page/top-level-page-ids', $default_parents, $this->args, $this->instance, $this );
+
+		$page_ids = \array_values( \array_unique( \array_map( '\intval', $page_ids ) ) );
+		if ( $default_parents === $page_ids ) {
+			return $page_ids;
+		}
+
+		return \array_values( \array_filter( $page_ids, function( int $page_id ): bool {
+			return $page_id > 0;
+		} ) );
+	}
+
+
+	/**
 	 * Is this menu displayed?
 	 *
 	 * @return bool
 	 */
-	public function is_displayed() {
+	public function is_displayed(): bool {
 		$display = false;
 		$post_type = $this->get_post_type();
 		$current_post_type = $this->get_current_post()->post_type ?? 'invalid';
 		if ( is_page() || ( is_singular() && $post_type === $current_post_type ) ) {
 			// If we are on the correct post type.
 			if ( get_post_type( $this->get_top_parent_id() ) === $post_type ) {
-				// If we have children.
-				if ( $this->has_pages() ) {
-					$display = true;
-					// No children + not excluded + include parent +include childless parent.
-				} elseif ( $this->checked( static::INCLUDE_CHILDLESS_PARENT ) && $this->checked( static::INCLUDE_PARENT ) && ! $this->is_excluded( $this->get_top_parent_id() ) ) {
-					$display = true;
-				}
+				$display = $this->is_tree_displayed();
 			}
 		}
 
-		return apply_filters( 'advanced-sidebar-menu/menus/page/is-displayed', $display, $this->args, $this->instance, $this );
+		return (bool) apply_filters( 'advanced-sidebar-menu/menus/page/is-displayed', $display, $this->args, $this->instance, $this );
+	}
+
+
+	/**
+	 * Does the tree of the current top parent have anything to show?
+	 *
+	 * @since 9.9.0
+	 *
+	 * @return bool
+	 */
+	protected function is_tree_displayed(): bool {
+		// If we have children.
+		if ( $this->has_pages() ) {
+			return true;
+		}
+
+		// No children + not excluded + include parent +include childless parent.
+		return $this->checked( static::INCLUDE_CHILDLESS_PARENT ) && $this->checked( static::INCLUDE_PARENT ) && ! $this->is_excluded( $this->get_top_parent_id() );
 	}
 
 
@@ -195,28 +249,85 @@ class Page extends Menu_Abstract implements Menu {
 
 
 	/**
-	 * Render the widget
+	 * Echos the title once per render.
 	 *
 	 * @return void
 	 */
-	public function render() {
+	public function title(): void {
+		if ( $this->is_title_printed ) {
+			return;
+		}
+
+		parent::title();
+	}
+
+
+	/**
+	 * Render the widget
+	 *
+	 * One tree per top-level page id inside a single widget.
+	 */
+	public function render(): void {
 		if ( ! $this->is_displayed() ) {
 			return;
 		}
 
+		$page_ids = $this->get_top_level_page_ids();
+		$has_single_top_parent = [ $this->get_top_parent_id() ] === $page_ids;
+		$is_open = false;
+		$output = '';
+
 		// phpcs:disable WordPress.Security.EscapeOutput.OutputNotEscaped
-		echo $this->args['before_widget'];
+		foreach ( $page_ids as $page_id ) {
+			if ( ! $has_single_top_parent ) {
+				$this->rendering_top_parent_id = $page_id;
+			}
 
-		do_action( 'advanced-sidebar-menu/menus/page/render', $this );
+			// A lone top parent tree is governed by `is_displayed` alone.
+			if ( $has_single_top_parent || $this->is_tree_displayed() ) {
+				if ( ! $is_open ) {
+					echo $this->args['before_widget'];
 
+					do_action( 'advanced-sidebar-menu/menus/page/render', $this );
+
+					$is_open = true;
+				}
+
+				$output .= $this->get_tree_output();
+				$this->is_title_printed = true;
+			}
+		}
+
+		$this->rendering_top_parent_id = null;
+		$this->is_title_printed = false;
+
+		if ( $is_open ) {
+			echo apply_filters( 'advanced-sidebar-menu/menus/page/output', $output, $this->get_current_post(), $this->args, $this->instance, $this );
+
+			do_action( 'advanced-sidebar-menu/menus/page/render/after', $this );
+
+			echo $this->args['after_widget'];
+		}
+		// phpcs:enable WordPress.Security.EscapeOutput.OutputNotEscaped
+	}
+
+
+	/**
+	 * Get the output of the template for the current top parent.
+	 *
+	 * Own scope, so a template's variables can't touch the render loop.
+	 *
+	 * @since        9.9.0
+	 *
+	 * @noinspection UsingInclusionReturnValueInspection
+	 *
+	 * @return string
+	 */
+	protected function get_tree_output(): string {
 		$crumb = '';
 		$output = require Core::instance()->get_template_part( 'page_list.php', $crumb );
-		echo apply_filters( 'advanced-sidebar-menu/menus/page/output', $crumb . $output, $this->get_current_post(), $this->args, $this->instance, $this );
 
-		do_action( 'advanced-sidebar-menu/menus/page/render/after', $this );
-
-		echo $this->args['after_widget'];
-		// phpcs:enable WordPress.Security.EscapeOutput.OutputNotEscaped
+		return $crumb . $output;
 	}
 
 
@@ -231,6 +342,7 @@ class Page extends Menu_Abstract implements Menu {
 	public function has_pages(): bool {
 		$list_pages = List_Pages::factory( $this );
 		$children = $list_pages->get_child_pages( $this->get_top_parent_id(), true );
+		$list_pages->unhook();
 
 		return \count( $children ) > 0;
 	}

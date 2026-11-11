@@ -116,18 +116,6 @@ $ignoreErrors[] = [
 	'path' => __DIR__ . '/../src/List_Pages.php',
 ];
 $ignoreErrors[] = [
-	'message' => '#^Method Advanced_Sidebar_Menu\\\\List_Pages\\:\\:add_list_item_classes\\(\\) has parameter \\$classes with no value type specified in iterable type array\\.$#',
-	'identifier' => 'missingType.iterableValue',
-	'count' => 1,
-	'path' => __DIR__ . '/../src/List_Pages.php',
-];
-$ignoreErrors[] = [
-	'message' => '#^Method Advanced_Sidebar_Menu\\\\List_Pages\\:\\:add_list_item_classes\\(\\) return type has no value type specified in iterable type array\\.$#',
-	'identifier' => 'missingType.iterableValue',
-	'count' => 1,
-	'path' => __DIR__ . '/../src/List_Pages.php',
-];
-$ignoreErrors[] = [
 	'message' => '#^Method Advanced_Sidebar_Menu\\\\List_Pages\\:\\:get_args\\(\\) return type has no value type specified in iterable type array\\.$#',
 	'identifier' => 'missingType.iterableValue',
 	'count' => 1,
