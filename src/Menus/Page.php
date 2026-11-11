@@ -217,6 +217,9 @@ class Page extends Menu_Abstract implements Menu {
 	 * @return bool
 	 */
 	public function is_excluded( $id ): bool {
+		if ( 0 === (int) $id ) {
+			return false;
+		}
 		$excluded = \in_array( (int) $id, $this->get_excluded_ids(), true );
 
 		return (bool) apply_filters( 'advanced-sidebar-menu/menus/page/is-excluded', $excluded, $id, $this->get_widget_args(), $this->get_widget_instance(), $this );

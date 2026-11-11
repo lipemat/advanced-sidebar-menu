@@ -307,7 +307,8 @@ class List_Pages {
 	 * @return \WP_Post[]
 	 */
 	public function get_child_pages( $parent_page_id, $is_first_level = false ): array {
-		$excluded = $this->menu->is_excluded( $parent_page_id ) || $this->menu->is_excluded( $this->top_parent_id );
+		// Top-level pages sit outside the top parent's tree.
+		$excluded = $this->menu->is_excluded( $parent_page_id ) || ( 0 < $parent_page_id && $this->menu->is_excluded( $this->top_parent_id ) );
 		$this->cache = [
 			'parent'   => $parent_page_id,
 			'excluded' => $excluded,
