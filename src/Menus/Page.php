@@ -42,18 +42,18 @@ class Page extends Menu_Abstract implements Menu {
 	protected static $current_menu;
 
 	/**
+	 * Top parent of the tree being rendered.
+	 *
+	 * @var ?int
+	 */
+	public ?int $forced_top_parent_id = null;
+
+	/**
 	 * The current post
 	 *
 	 * @var null|\WP_Post
 	 */
 	protected $post;
-
-	/**
-	 * Top parent of the tree being rendered.
-	 *
-	 * @var ?int
-	 */
-	protected ?int $rendering_top_parent_id = null;
 
 	/**
 	 * Has the title printed during the current render?
@@ -128,8 +128,8 @@ class Page extends Menu_Abstract implements Menu {
 	 * @return int
 	 */
 	public function get_top_parent_id(): int {
-		if ( \is_int( $this->rendering_top_parent_id ) ) {
-			return $this->rendering_top_parent_id;
+		if ( \is_int( $this->forced_top_parent_id ) ) {
+			return $this->forced_top_parent_id;
 		}
 
 		$top_id = - 1;
@@ -198,7 +198,7 @@ class Page extends Menu_Abstract implements Menu {
 	 *
 	 * @return bool
 	 */
-	protected function is_tree_displayed(): bool {
+	public function is_tree_displayed(): bool {
 		// If we have children.
 		if ( $this->has_pages() ) {
 			return true;
@@ -283,7 +283,7 @@ class Page extends Menu_Abstract implements Menu {
 		// phpcs:disable WordPress.Security.EscapeOutput.OutputNotEscaped
 		foreach ( $page_ids as $page_id ) {
 			if ( ! $has_single_top_parent ) {
-				$this->rendering_top_parent_id = $page_id;
+				$this->forced_top_parent_id = $page_id;
 			}
 
 			// A lone top parent tree is governed by `is_displayed` alone.
@@ -301,7 +301,7 @@ class Page extends Menu_Abstract implements Menu {
 			}
 		}
 
-		$this->rendering_top_parent_id = null;
+		$this->forced_top_parent_id = null;
 		$this->is_title_printed = false;
 
 		if ( $is_open ) {
