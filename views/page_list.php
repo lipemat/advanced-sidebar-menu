@@ -2,7 +2,7 @@
 /**
  * The output of the "Advanced Sidebar Pages Menu" widget
  *
- * @since   9.9.0
+ * @since   8.3.3
  *
  * To edit copy this file to a folder in your theme called 'advanced-sidebar-menu' and edit at will.
  *
@@ -16,7 +16,6 @@ use Advanced_Sidebar_Menu\Menus\Page;
 
 $current_menu = Page::get_current();
 $list_pages = List_Pages::factory( $current_menu );
-$list_pages->hook();
 $child_pages = $list_pages->get_child_pages( $current_menu->get_top_parent_id(), true );
 $content = '';
 
@@ -39,5 +38,4 @@ if ( $current_menu->include_parent() ) {
 	$content .= '</li></ul><!-- End .parent-sidebar-menu -->';
 }
 
-$list_pages->unhook();
 return $content;

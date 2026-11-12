@@ -218,6 +218,10 @@ The Categories Menu widget/block contains a "Display categories on single posts"
 Yes. Based on whatever page post or category you are on, the menu will change automatically to display the current parents and children.
 
 == Changelog ==
+= 9.9.0 =
+* Fixed menu classes leaking onto other page lists and `page_css_class` filters piling up.
+* Changed `List_Pages::add_list_item_classes()` to static and registered once, so classes apply only to lists built from `List_Pages` args.
+
 = 9.8.6 =
 * Support WordPress 7.1
 * Tested to WordPress Core 7.1
