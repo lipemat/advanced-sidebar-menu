@@ -54,17 +54,6 @@ class List_Pages {
 	 */
 	protected $menu;
 
-	/**
-	 * Used exclusively to differentiate the cache based on changes
-	 * to internal properties.
-	 *
-	 * @var array{excluded: bool, parent: int}
-	 */
-	protected $cache = [
-		'excluded' => false,
-		'parent'   => 0,
-	];
-
 
 	/**
 	 * Constructor
@@ -307,35 +296,42 @@ class List_Pages {
 	 * @return \WP_Post[]
 	 */
 	public function get_child_pages( $parent_page_id, $is_first_level = false ): array {
-		// Top-level pages sit outside the top parent's tree.
-		$excluded = $this->menu->is_excluded( $parent_page_id ) || ( 0 < $parent_page_id && $this->menu->is_excluded( $this->top_parent_id ) );
-		$this->cache = [
-			'parent'   => $parent_page_id,
-			'excluded' => $excluded,
-		];
-		$child_pages = Cache::instance()->get_child_pages( $this );
-		if ( false === $child_pages ) {
-			if ( $excluded ) {
-				$child_pages = [];
-			} else {
-				$args = $this->args;
-				$args['post_parent'] = $parent_page_id;
-				$args['fields'] = 'ids';
-				$args['suppress_filters'] = false;
-				$child_pages = get_posts( $args );
-			}
-			Cache::instance()->add_child_pages( $this, $child_pages );
+		$child_pages = [];
+		if ( ! $this->menu->is_excluded( $parent_page_id ) && ( 0 < $parent_page_id && ! $this->menu->is_excluded( $this->top_parent_id ) ) ) {
+			$child_pages = $this->query_child_page_ids( $parent_page_id );
 		}
 
-		$child_pages = \array_map( 'get_post', \array_filter( $child_pages, function( $post_id ) {
-			return ! $this->menu->is_excluded( $post_id );
-		} ) );
+		$child_pages = \array_filter( $child_pages, fn( $post_id ) => ! $this->menu->is_excluded( $post_id ) );
+		$posts = \array_map( 'get_post', $child_pages );
 
 		if ( $is_first_level ) {
-			return (array) apply_filters( 'advanced-sidebar-menu/list-pages/first-level-child-pages', $child_pages, $this, $this->menu );
+			return (array) apply_filters( 'advanced-sidebar-menu/list-pages/first-level-child-pages', $posts, $this, $this->menu );
 		}
 
-		return (array) apply_filters( 'advanced-sidebar-menu/list-pages/grandchild-pages', $child_pages, $this, $this->menu );
+		return (array) apply_filters( 'advanced-sidebar-menu/list-pages/grandchild-pages', $posts, $this, $this->menu );
+	}
+
+
+	/**
+	 * Retrieve the ids of a page's children from the cache or query.
+	 *
+	 * @param int $parent_page_id - Page id we are getting children of.
+	 *
+	 * @return array<int>
+	 */
+	protected function query_child_page_ids( int $parent_page_id ): array {
+		$args = $this->args;
+		$args['post_parent'] = $parent_page_id;
+		$args['fields'] = 'ids';
+		$args['suppress_filters'] = false;
+
+		$child_pages = Cache::instance()->get_child_pages( $args );
+		if ( \is_array( $child_pages ) ) {
+			return $child_pages;
+		}
+		$child_pages = \array_map( '\intval', get_posts( $args ) );
+		Cache::instance()->add_child_pages( $args, $child_pages );
+		return $child_pages;
 	}
 
 

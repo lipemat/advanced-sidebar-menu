@@ -28,7 +28,7 @@ Create a GitHub issue in `lipemat/advanced-sidebar-menu-pro`.
 
 ## When a skill says "link the branch to the issue"
 
-GitHub's API can only link a branch while creating it (`createLinkedBranch`), so create the remote branch through the issue: `gh issue develop <number> --repo lipemat/advanced-sidebar-menu-pro --branch-repo lipemat/advanced-sidebar-menu --name <branch> --base master`. The local branch of the same name then pushes onto it.
+GitHub's API can only link a branch while creating it (`createLinkedBranch`), so create the remote branch through the issue: `gh issue develop <number> --repo lipemat/advanced-sidebar-menu-pro --branch-repo lipemat/advanced-sidebar-menu --name <branch> --base develop`. The local branch of the same name then pushes onto it.
 
 ## When a skill says "fetch the relevant ticket"
 
