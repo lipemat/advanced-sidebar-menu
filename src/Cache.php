@@ -77,14 +77,14 @@ class Cache {
 	 * @note Once WP 6.2 is the lowest supported version, it may not be necessary to cache
 	 *       as WP_Query will likely handle caching natively.
 	 *
-	 * @param List_Pages $list_pages - Full menu class with all properties set.
+	 * @param array<string, mixed> $args - Arguments passed to `get_posts`.
 	 *
-	 * @return array|false
+	 * @return array<int>|false
 	 */
-	public function get_child_pages( List_Pages $list_pages ) {
-		$key = $this->get_key_from_asm( $list_pages );
+	public function get_child_pages( array $args ) {
 		$all_child_pages = (array) wp_cache_get( static::CHILD_PAGES_KEY, $this->get_cache_group() );
-		return $all_child_pages[ $key ] ?? false;
+
+		return $all_child_pages[ $this->get_key( $args ) ] ?? false;
 	}
 
 
@@ -92,31 +92,29 @@ class Cache {
 	 * Add a post and its children to the cache
 	 * Uses a global key for all posts so this appends to an array
 	 *
-	 * @param List_Pages $list_pages  - Full menu class with all properties set.
-	 * @param array      $child_pages - List of child pages to store.
+	 * @param array<string, mixed> $args        - Arguments passed to `get_posts`.
+	 * @param array<int>           $child_pages - List of child page ids to store.
 	 *
 	 * @return void
 	 */
-	public function add_child_pages( List_Pages $list_pages, $child_pages ) {
-		$key = $this->get_key_from_asm( $list_pages );
+	public function add_child_pages( array $args, array $child_pages ): void {
 		$all_child_pages = (array) wp_cache_get( static::CHILD_PAGES_KEY, $this->get_cache_group() );
-		$all_child_pages[ $key ] = $child_pages;
+		$all_child_pages[ $this->get_key( $args ) ] = $child_pages;
+
 		wp_cache_set( static::CHILD_PAGES_KEY, $all_child_pages, $this->get_cache_group() );
 	}
 
 
 	/**
-	 * Too many possibilities for properties set to the object
-	 * used for generations.
-	 * To guarantee we have a unique id for the cache we serialize
-	 * the entire object and hash it.
+	 * Unique key for the query arguments.
 	 *
-	 * @param List_Pages $list_pages - Full menu class with all properties set.
+	 * @param array<string, mixed> $args - Arguments passed to `get_posts`.
 	 *
 	 * @return string
 	 */
-	protected function get_key_from_asm( List_Pages $list_pages ) {
-		$string = \serialize( $list_pages ); //phpcs:ignore -- Serialize is required.
-		return \md5( $string );
+	protected function get_key( array $args ): string {
+		// Not a query arg and changes while walking.
+		unset( $args['walker'] );
+		return \md5( maybe_serialize( $args ) );
 	}
 }
