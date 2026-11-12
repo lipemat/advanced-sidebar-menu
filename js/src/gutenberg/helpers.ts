@@ -1,10 +1,10 @@
-import {type BlockAttributes, BlockSupports, createBlock, CreateBlock} from '@wordpress/blocks';
+import {type BlockAttributes, BlockSupports, createBlock, CreateBlock, type LegacyWidget} from '@wordpress/blocks';
 import {CONFIG, Screen} from '../globals/config';
 import type {CommonAttr, ServerSideRenderRequired} from './blocks/Preview';
 
-export type TransformLegacy = <Attr>( name: string ) => ( widgetValues: {
-	instance: { [ key: string ]: string | number | object | boolean }
-} ) => CreateBlock<Attr>;
+type LegacySettings = { [ key: string ]: string | number | boolean | object | null | undefined };
+
+export type TransformLegacy = <Attr>( name: string ) => ( widgetValues: LegacyWidget<LegacySettings> ) => CreateBlock<Attr>;
 
 /**
  * Are we on one of the provided screens?
@@ -18,7 +18,7 @@ export const isScreen = ( screens: Array<Screen> ): boolean => {
  *
  */
 export const transformLegacyWidget: TransformLegacy = <A>( name: string ) => ( {instance} ) => {
-	return createBlock<A>( name, translateLegacyWidget<A>( instance.raw ) );
+	return createBlock<A>( name, translateLegacyWidget<A>( instance.raw ?? {} ) );
 };
 
 /**
@@ -44,18 +44,22 @@ export function getBlockSupports(): BlockSupports {
  * version used in the block.
  *
  */
-const translateLegacyWidget = <A>( settings ): A => {
+const translateLegacyWidget = <A>( settings: LegacySettings ): A => {
 	Object.entries( settings ).forEach( ( [ key, value ] ) => {
 		if ( 'checked' === value ) {
 			settings[ key ] = true;
 		}
-		if ( 'object' === typeof value ) {
-			translateLegacyWidget( settings[ key ] );
+		if ( isLegacySettings( value ) ) {
+			translateLegacyWidget( value );
 		}
 		// Old widgets used to use "0" for some defaults.
 		if ( '0' === value ) {
 			delete settings[ key ];
 		}
 	} );
-	return settings;
+	return settings as A;
 };
+
+function isLegacySettings( value: LegacySettings[string] ): value is LegacySettings {
+	return null !== value && 'object' === typeof value;
+}

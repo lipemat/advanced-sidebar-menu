@@ -110,7 +110,7 @@ const Edit = ( {attributes, setAttributes, clientId, name}: Props ) => {
 							/* translators: %s: Selected taxonomy single label */
 							label={sprintf( __( 'Display each single post\'s %s', 'advanced-sidebar-menu' ), taxonomy?.labels?.name.toLowerCase() ?? '' )}
 							value={attributes.new_widget}
-							options={Object.keys( CONFIG.categories.displayEach ).map( ( key: 'list' | 'widget' ) => ( {
+							options={( Object.keys( CONFIG.categories.displayEach ) as Array<'list' | 'widget'> ).map( key => ( {
 								value: key,
 								label: CONFIG.categories.displayEach[ key ],
 							} ) )}

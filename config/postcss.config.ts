@@ -1,7 +1,7 @@
-import cleanCss from '@lipemat/js-boilerplate/lib/postcss-clean';
-import type {PostCSSConfig} from '@lipemat/js-boilerplate/config/postcss.config';
+import cleanCss from '@lipemat/js-boilerplate-shared/lib/postcss-clean.js';
+import type {PostcssConfig} from '@lipemat/js-boilerplate-shared/helpers/postcss-config.js';
 
-module.exports = ( postcssConfig: PostCSSConfig ) => {
+export default ( postcssConfig: PostcssConfig ) => {
 	if ( '--script-debug' === process.argv[ 2 ] ) {
 		/**
 		 * Configure `css-clean` to not minify the CSS
@@ -17,7 +17,7 @@ module.exports = ( postcssConfig: PostCSSConfig ) => {
 			level: 0,
 		} ) );
 
-		const config: Partial<PostCSSConfig> = {
+		const config: Partial<PostcssConfig> = {
 			plugins: postcssConfig.plugins,
 		};
 		return config;

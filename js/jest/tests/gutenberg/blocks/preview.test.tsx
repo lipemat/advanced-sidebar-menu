@@ -16,7 +16,7 @@ jest.mock( '@wordpress/block-editor', () => {
 	};
 } );
 
-const ControlledPreview = ( {attributes} ) => {
+const ControlledPreview = ( {attributes}: { attributes: object } ) => {
 	return <Preview
 		attributes={attributes}
 		block={'advanced-sidebar-menu/pages'}

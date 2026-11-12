@@ -9,4 +9,4 @@ const entries: EntriesConfig = {
 	'advanced-sidebar-menu-debug': [ 'debug.ts' ],
 };
 
-module.exports = entries;
+export default entries;
