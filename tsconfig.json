@@ -1,10 +1,17 @@
 {
-  "extends": "@lipemat/js-boilerplate/config/tsconfig.json",
+  "extends": "@lipemat/js-boilerplate-shared/config/tsconfig.json",
   "$schema": "https://json.schemastore.org/tsconfig",
   "include": [
     "js/jest/**/*",
     "js/src/**/*",
     "config/**/*",
     "resources/js/**/*"
-  ]
+  ],
+  "compilerOptions": {
+    "types": [
+      "jest",
+      "lipemat__js-boilerplate",
+      "webpack-env"
+    ]
+  }
 }

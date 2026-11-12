@@ -1,6 +1,6 @@
 import type {CssLoaderConfig} from '@lipemat/js-boilerplate/config/css-loader.config';
 
-module.exports = ( cssLoaderConfig: CssLoaderConfig ): Partial<CssLoaderConfig> => {
+export default ( cssLoaderConfig: CssLoaderConfig ): Partial<CssLoaderConfig> => {
 	if ( '--script-debug' === process.argv[ 2 ] ) {
 		/**
 		 * Use long names for CSS classes when running

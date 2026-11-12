@@ -82,7 +82,7 @@ export const settings: BlockSettings<Attr, '', LegacyWidget<Attr & { title: stri
 			{
 				type: 'block',
 				blocks: [ 'core/legacy-widget' ],
-				isMatch: ( {idBase, instance} ) => {
+				isMatch: ( {idBase, instance}: LegacyWidget<Attr & { title: string }> ) => {
 					if ( null === instance?.raw ) {
 						// Can't transform if the raw instance is not shown in REST API.
 						return false;

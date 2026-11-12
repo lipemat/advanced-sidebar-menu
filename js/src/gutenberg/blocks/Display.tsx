@@ -31,7 +31,9 @@ type Props = PropsWithChildren<{
 	clientId: string;
 }>;
 
-const checkboxes: { [attr in keyof Partial<DisplayOptions>]: string } = {
+type Checkbox = Exclude<keyof DisplayOptions, 'levels'>;
+
+const checkboxes: Record<Checkbox, string> = {
 	/* translators: %s Selected taxonomy single label */
 	include_parent: __( 'Display highest level parent %s', 'advanced-sidebar-menu' ),
 	/* translators: %s Selected taxonomy single label */
@@ -82,7 +84,7 @@ const Display = ( {
 
 	return (
 		<PanelBody title={__( 'Display', 'advanced-sidebar-menu' )}>
-			{Object.keys( checkboxes ).map( item => {
+			{( Object.keys( checkboxes ) as Checkbox[] ).map( item => {
 				let label = type?.labels?.singular_name.toLowerCase() ?? '';
 				if ( 'display_all' === item ) {
 					label = type?.labels?.name.toLowerCase() ?? '';

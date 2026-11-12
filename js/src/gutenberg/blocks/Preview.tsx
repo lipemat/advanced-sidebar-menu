@@ -1,4 +1,4 @@
-import {type ReactElement, useEffect} from 'react';
+import {isValidElement, type ReactElement, type ReactNode, useEffect} from 'react';
 import {CONFIG} from '../../globals/config';
 import ServerSideRender from '@wordpress/server-side-render';
 import {Placeholder, Spinner} from '@wordpress/components';
@@ -36,6 +36,20 @@ type Props<A> = {
 	attributes: A;
 	block: string;
 	clientId: string;
+};
+
+type LoadingProps = {
+	attributes?: Pick<ServerSideRenderRequired, 'clientId'>;
+	children: ReactNode | ReactNode[];
+};
+
+/**
+ * The `<RawHTML />` ServerSideRender wraps a failed fetch's error in.
+ */
+type FailedResponse = {
+	children?: {
+		errorMsg?: string;
+	};
 };
 
 /**
@@ -125,7 +139,7 @@ const TriggerWhenLoadingFinished = ( {
 	attributes = {
 		clientId: '',
 	},
-} ) => {
+}: LoadingProps ) => {
 	useEffect( () => {
 		// Call action when the loading component unmounts because loading is finished.
 		return () => {
@@ -145,8 +159,8 @@ const TriggerWhenLoadingFinished = ( {
 	 * We throw an error, so our `ErrorBoundary` will catch it, otherwise we end up
 	 * with a "React objects may not be used as children" error, which means nothing.
 	 */
-	if ( 'string' === typeof children?.props?.children?.errorMsg ) {
-		throw new Error( children?.props?.children?.errorMsg ?? 'Failed' );
+	if ( isValidElement<FailedResponse>( children ) && 'string' === typeof children.props.children?.errorMsg ) {
+		throw new Error( children.props.children.errorMsg );
 	}
 
 	return (

@@ -1,6 +1,7 @@
 import {withFilters} from '@wordpress/components';
 import {select} from '@wordpress/data';
 import {isEmpty} from 'lodash';
+import type {PropsWithChildren} from 'react';
 
 type Props = {
 	clientId: string;
@@ -18,7 +19,7 @@ let firstClientId = '';
  * and only return the Fill for that block. The rest of the blocks
  * inherit the Fill from the first block via their Slots.
  */
-const SideLoad = ( {clientId, children} ) => {
+const SideLoad = ( {clientId, children}: PropsWithChildren<Props> ) => {
 	if ( ! isEmpty( firstClientId ) && clientId !== firstClientId ) {
 		// Make sure block still exists.
 		if ( -1 !== select( 'core/block-editor' ).getBlockIndex( firstClientId ) ) {

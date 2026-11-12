@@ -66,7 +66,7 @@ declare global {
 			handlePreviews: () => void;
 			showHideElements: () => void;
 			clickReveal: ( id: string ) => void;
-			setHideState( target: JQuery<HTMLElement> ): void;
+			setHideState: ( target: JQuery<HTMLElement> ) => void;
 		};
 		__TEST__?: boolean;
 	}
