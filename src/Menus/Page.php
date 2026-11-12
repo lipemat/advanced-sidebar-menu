@@ -48,6 +48,13 @@ class Page extends Menu_Abstract implements Menu {
 	 */
 	protected $post;
 
+	/**
+	 * Filtered excluded ids for this request.
+	 *
+	 * @var ?array<int>
+	 */
+	protected ?array $excluded_ids = null;
+
 
 	/**
 	 * Used for setting the current post during unit testing
@@ -57,8 +64,9 @@ class Page extends Menu_Abstract implements Menu {
 	 *
 	 * @return void
 	 */
-	public function set_current_post( \WP_Post $post ) {
+	public function set_current_post( \WP_Post $post ): void {
 		$this->post = $post;
+		$this->excluded_ids = null;
 	}
 
 
@@ -187,10 +195,16 @@ class Page extends Menu_Abstract implements Menu {
 	/**
 	 * Get ids of any pages excluded via widget settings.
 	 *
+	 * Memoized until `reset_excluded_ids()` is called.
+	 *
 	 * @return array<int>
 	 */
 	public function get_excluded_ids(): array {
-		return \array_map( '\intval', (array) apply_filters( 'advanced-sidebar-menu/menus/page/excluded', parent::get_excluded_ids(), $this->get_current_post(), $this->args, $this->instance, $this ) );
+		if ( \is_array( $this->excluded_ids ) ) {
+			return $this->excluded_ids;
+		}
+		$this->excluded_ids = \array_map( '\intval', (array) apply_filters( 'advanced-sidebar-menu/menus/page/excluded', parent::get_excluded_ids(), $this->get_current_post(), $this->args, $this->instance, $this ) );
+		return $this->excluded_ids;
 	}
 
 
