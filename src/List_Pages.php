@@ -297,7 +297,9 @@ class List_Pages {
 	 */
 	public function get_child_pages( $parent_page_id, $is_first_level = false ): array {
 		$child_pages = [];
-		if ( ! $this->menu->is_excluded( $parent_page_id ) && ( 0 < $parent_page_id && ! $this->menu->is_excluded( $this->top_parent_id ) ) ) {
+		// Top-level pages sit outside the top parent's tree.
+		$top_parent_excluded = 0 < $parent_page_id && $this->menu->is_excluded( $this->top_parent_id );
+		if ( ! $top_parent_excluded && ! $this->menu->is_excluded( $parent_page_id ) ) {
 			$child_pages = $this->query_child_page_ids( $parent_page_id );
 		}
 
