@@ -219,6 +219,7 @@ Yes. Based on whatever page post or category you are on, the menu will change au
 
 == Changelog ==
 = 9.9.0 =
+* Added support for multiple top-level pages in the pages menu, each displaying its own child pages.
 * Fixed menu classes leaking onto other page lists and `page_css_class` filters piling up.
 * Changed `List_Pages::add_list_item_classes()` to static and registered once, so classes apply only to lists built from `List_Pages` args.
 
