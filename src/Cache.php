@@ -66,13 +66,17 @@ class Cache {
 
 
 	/**
-	 * Get unique key for this group
+	 * Get the group holding the cache entries.
 	 *
 	 * @return string
 	 */
 	public function get_cache_group(): string {
-		$key = wp_cache_get_last_changed( static::CACHE_GROUP . ':' . ADVANCED_SIDEBAR_MENU_BASIC_VERSION );
-		return static::CACHE_GROUP . ':' . ADVANCED_SIDEBAR_MENU_BASIC_VERSION . ':' . $key;
+		$group = static::CACHE_GROUP . ':' . ADVANCED_SIDEBAR_MENU_BASIC_VERSION;
+		if ( \function_exists( 'wp_cache_get_multiple_salted' ) ) {
+			// Salted entries overwrite in place.
+			return $group;
+		}
+		return $group . ':' . $this->get_last_changed();
 	}
 
 
@@ -119,9 +123,9 @@ class Cache {
 		foreach ( $args_list as $args ) {
 			$entries[ $this->get_key( static::CHILD_PAGES_KEY, $args ) ] = [];
 		}
-		$stored = \array_filter( wp_cache_get_multiple( \array_keys( $entries ), $this->get_cache_group() ), '\is_array' );
+		$stored = \array_filter( $this->get_entries( \array_keys( $entries ) ), '\is_array' );
 
-		wp_cache_set_multiple( \array_diff_key( $entries, $stored ), $this->get_cache_group() );
+		$this->store_entries( \array_diff_key( $entries, $stored ) );
 	}
 
 
@@ -163,7 +167,8 @@ class Cache {
 	 * @return ?list<int>
 	 */
 	protected function get_ids( string $prefix, array $query_args ): ?array {
-		$ids = wp_cache_get( $this->get_key( $prefix, $query_args ), $this->get_cache_group() );
+		$key = $this->get_key( $prefix, $query_args );
+		$ids = $this->get_entries( [ $key ] )[ $key ] ?? null;
 		if ( \is_array( $ids ) ) {
 			return Utils::instance()->clean_post_ids( $ids );
 		}
@@ -181,7 +186,48 @@ class Cache {
 	 * @return void
 	 */
 	protected function store_ids( string $prefix, array $query_args, array $ids ): void {
-		wp_cache_set( $this->get_key( $prefix, $query_args ), $ids, $this->get_cache_group() );
+		$this->store_entries( [ $this->get_key( $prefix, $query_args ) => $ids ] );
+	}
+
+
+	/**
+	 * Retrieve the entries stored under the keys, salted when supported.
+	 *
+	 * @param array<string> $keys - Entry keys.
+	 *
+	 * @return array<mixed>
+	 */
+	protected function get_entries( array $keys ): array {
+		if ( \function_exists( 'wp_cache_get_multiple_salted' ) ) {
+			return wp_cache_get_multiple_salted( $keys, $this->get_cache_group(), $this->get_last_changed() );
+		}
+		return wp_cache_get_multiple( $keys, $this->get_cache_group() );
+	}
+
+
+	/**
+	 * Store the entries under their keys, salted when supported.
+	 *
+	 * @param array<string, array<int>> $entries - Ids keyed by entry key.
+	 *
+	 * @return void
+	 */
+	protected function store_entries( array $entries ): void {
+		if ( \function_exists( 'wp_cache_set_multiple_salted' ) ) {
+			wp_cache_set_multiple_salted( $entries, $this->get_cache_group(), $this->get_last_changed() );
+			return;
+		}
+		wp_cache_set_multiple( $entries, $this->get_cache_group() );
+	}
+
+
+	/**
+	 * Get the time this group was last cleared.
+	 *
+	 * @return string
+	 */
+	protected function get_last_changed(): string {
+		return wp_cache_get_last_changed( static::CACHE_GROUP . ':' . ADVANCED_SIDEBAR_MENU_BASIC_VERSION );
 	}
 
 
