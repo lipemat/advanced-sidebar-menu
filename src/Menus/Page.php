@@ -218,6 +218,31 @@ class Page extends Menu_Abstract implements Menu {
 
 
 	/**
+	 * Get the top-level page ids whose trees have something to display.
+	 *
+	 * @since 9.9.0
+	 *
+	 * @param array<int> $page_ids - Top-level page ids.
+	 *
+	 * @return list<int>
+	 */
+	public function get_displayed_tree_ids( array $page_ids ): array {
+		List_Pages::factory( $this )->get_query()->prime_child_ids( $page_ids );
+
+		$original_top_parent_id = $this->forced_top_parent_id;
+		try {
+			$displayed = \array_filter( $page_ids, function( int $page_id ): bool {
+				$this->forced_top_parent_id = $page_id;
+				return $this->is_tree_displayed();
+			} );
+			return \array_values( $displayed );
+		} finally {
+			$this->forced_top_parent_id = $original_top_parent_id;
+		}
+	}
+
+
+	/**
 	 * Is this page excluded from this menu?
 	 *
 	 * @param int|string $id ID of the object.
@@ -293,26 +318,26 @@ class Page extends Menu_Abstract implements Menu {
 		$has_single_top_parent = [ $this->get_top_parent_id() ] === $page_ids;
 		$is_open = false;
 		$output = '';
+		// A lone top parent tree is governed by `is_displayed` alone.
+		if ( false === $has_single_top_parent ) {
+			$page_ids = $this->get_displayed_tree_ids( $page_ids );
+		}
 
 		// phpcs:disable WordPress.Security.EscapeOutput.OutputNotEscaped
 		foreach ( $page_ids as $page_id ) {
-			if ( ! $has_single_top_parent ) {
+			if ( false === $has_single_top_parent ) {
 				$this->forced_top_parent_id = $page_id;
 			}
+			if ( false === $is_open ) {
+				echo $this->args['before_widget'];
 
-			// A lone top parent tree is governed by `is_displayed` alone.
-			if ( $has_single_top_parent || $this->is_tree_displayed() ) {
-				if ( ! $is_open ) {
-					echo $this->args['before_widget'];
+				do_action( 'advanced-sidebar-menu/menus/page/render', $this );
 
-					do_action( 'advanced-sidebar-menu/menus/page/render', $this );
-
-					$is_open = true;
-				}
-
-				$output .= $this->get_tree_output();
-				$this->is_title_printed = true;
+				$is_open = true;
 			}
+
+			$output .= $this->get_tree_output();
+			$this->is_title_printed = true;
 		}
 
 		$this->forced_top_parent_id = null;
