@@ -3,7 +3,7 @@ Contributors: onpointplugins, Mat Lipe
 Donate link: https://www.paypal.com/cgi-bin/webscr?cmd=_donations&business=paypal%40onpointplugins%2ecom&lc=US&item_name=Advanced%20Sidebar%20Menu&no_note=0&currency_code=USD&bn=PP%2dDonationsBF%3abtn_donateCC_LG%2egif%3aNonHostedGuest
 Tags: menus, page menus, category menus, sidebars, hierarchy
 Requires at least: 6.2.0
-Tested up to: 7.1.3
+Tested up to: 7.1.4
 Requires PHP: 7.4.0
 Stable tag: 9.8.6
 License: GPLv3 or later
@@ -227,7 +227,7 @@ Yes. Based on whatever page post or category you are on, the menu will change au
 * Introduced `Utils::clean_post_ids()` for sanitizing lists of post ids.
 * Fixed excluded categories displaying when supplied by `top-level-term-ids` filter callbacks.
 * Upgraded js-boilerplate to version 11.
-* Tested to WordPress Core 7.1.3.
+* Tested to WordPress Core 7.1.4.
 
 = 9.8.6 =
 * Support WordPress 7.1
